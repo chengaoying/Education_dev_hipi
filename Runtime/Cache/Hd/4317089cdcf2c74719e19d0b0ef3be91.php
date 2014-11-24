@@ -5,6 +5,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<?php phpinfo(); ?>
+hipi_web
 </body>
 </html>

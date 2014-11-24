@@ -7,8 +7,9 @@
  */
 
 namespace Hd\Controller;
+use Common\Controller\CommonController;
 
-class IndexController extends \Think\Controller {
+class IndexController extends CommonController {
 	
 	public function indexAct(){
 		$this->display();
