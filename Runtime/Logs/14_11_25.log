@@ -1,0 +1,23 @@
+[ 2014-11-25T10:53:19+08:00 ] 192.168.0.152 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015576s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001798s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+NOTIC: [8] Undefined index: REDIRECT_URL D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 15 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.019734s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.021925s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000148s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000692s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038226s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038506s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001176s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001418s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.009992s ]
+INFO: [ app_end ] --END-- [ RunTime:0.010275s ]
+

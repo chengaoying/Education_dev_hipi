@@ -11,6 +11,8 @@ namespace Test\Controller;
 class IndexController extends \Think\Controller {
 	
 	public function indexAct(){
+		dump(S('1'));
+		exit;
 		$this->display();
 	}
 	
