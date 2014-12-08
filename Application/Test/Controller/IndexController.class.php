@@ -11,8 +11,6 @@ namespace Test\Controller;
 class IndexController extends \Think\Controller {
 	
 	public function indexAct(){
-		dump(S('Channel'));
-		exit;
 		$this->display();
 	}
 	
@@ -25,8 +23,8 @@ class IndexController extends \Think\Controller {
 	
 	public function hproseAct(){
 		vendor('Hprose.HproseHttpClient');
-		$client = new \HproseHttpClient('http://localhost:8500/Api/HproseTest');
-		$result = $client->test();
+		$client = new \HproseHttpClient('http://localhost:8500/Api/UserApi');
+		$result = $client->add(array('id'=>1));
 		dump($result);
 	}
 	

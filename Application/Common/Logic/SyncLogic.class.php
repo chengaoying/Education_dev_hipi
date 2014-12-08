@@ -41,28 +41,7 @@ class SyncLogic{
 	 */
 	private function saveData($key,$data){
 		S($key,$data);
-		
 		save_log('sync_test',array($key));
-		
-		/* $productKeys = array('Product','Config','Notice','Channel','SpecialType','Credit');//产品缓存：产品信息、产品配制、公告、栏目,专题分类配制、积分 
-		$adKeys = array('AdSpace','Ad');//广告位、广告
-		$groupKeys = array('Class','Special');  //多分组，以$KEY_二级ID为索引
-		
-		if(in_array($key,$productKeys)){ 
-			$product = S('Product');
-			$product[$key] = $data;
-			S('Product',$product);
-		}elseif(in_array($key,$adKeys)){ 
-			$ad = S('Ad');
-			$ad[$key] = $data;
-			S('Ad',$ad);
-		}elseif(in_array($key,$groupKeys)){ //分类(按栏目分组）
-			foreach($data as $k=>$v){
-				S($key.'_'.$k,$v);
-			}
-		}else{ //其它单个
-			S($key,$data);
-		}		 */
 	}
 	
 }

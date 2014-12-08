@@ -1,0 +1,10 @@
+[ 2014-12-03T17:34:10+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015601s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001860s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.018468s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.020773s ]
+

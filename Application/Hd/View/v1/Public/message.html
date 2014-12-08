@@ -1,0 +1,59 @@
+<layout name="layout" />
+<style>
+body	{ background-image:url(__HD__/images/common/msg/bg.png); }
+.buttons td { padding:5px 10px;}
+
+</style>
+
+<div style="position:absolute;top:255px;left:350px;">
+<img src="__HD__/images/common/msg/icon_{$icon}.png"/>
+</div>
+
+<div style="position:absolute;top:295px;left:550px;">
+<font style="font-size:24px;color:#999;">{$message}</font>
+</div>
+
+<div style="position:absolute;top:295px;left:550px;">
+<a href="{$button.url}" title="{$button.text}"
+	onmouseover="changeImage('#button_{$key}','__HD__/images/common/{$button.img2}')" 
+	onmouseout="changeImage('#button_{$key}','__HD__/images/common/{$button.img1}')">
+	<img id="button_{$key}" src="__HD__/images/common/{$button.img1}" />
+</a>
+</div>
+
+<!-- <a id="a_back" style="none" href="{:get_back_url('Index/index',1)}"></a> -->
+<!-- <table width="1280" height="720" cellspacing="0" cellpadding="0" border="0" style="text-align:center">
+<tr><td height="226"></td></tr>
+<tr><td height="195">
+	<table width="1280" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td width="360"></td>
+		<td width="104" align="left"><img src="__HD__/images/common/msg/icon_{$icon}.png"/></td>
+        <td width="60"></td>
+		<td align="left" style="font-size:24px;color:#999;">{$message}</td>
+		<td width="350"></td>
+	</tr>
+	</table>
+</td></tr>
+<tr><td height="75"></td></tr>
+<tr><td align="center" >
+	<table class="buttons" cellspacing="0" cellpadding="0">
+	<tr>
+	<foreach name="buttons" item="button">
+		<td>
+		<empty name="button.img1">
+			<a href="{$button.url}">{$button.text}</a>
+		<else />
+			<a href="{$button.url}" title="{$button.text}"
+				onmouseover="changeImage('#button_{$key}','__HD__/images/common/{$button.img2}')" 
+				onmouseout="changeImage('#button_{$key}','__HD__/images/common/{$button.img1}')">
+			<img id="button_{$key}" src="__HD__/images/common/{$button.img1}" />
+			</a>
+		</empty>
+		</td>
+	</foreach>
+	</tr>
+	</table>
+</td></tr>
+<tr><td height="40"></td></tr>
+</table> -->

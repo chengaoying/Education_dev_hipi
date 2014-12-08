@@ -1,0 +1,40 @@
+[ 2014-12-04T15:30:00+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.010135s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001227s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.020319s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.021797s ]
+
+[ 2014-12-04T15:30:13+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000435s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000573s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001942s ]
+
+[ 2014-12-04T15:30:29+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000454s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000588s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001072s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001837s ]
+
+[ 2014-12-04T15:46:39+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000075s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001080s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000722s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001518s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002437s ]
+

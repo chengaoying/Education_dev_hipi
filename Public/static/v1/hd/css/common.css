@@ -1,0 +1,38 @@
+body {
+	margin: 0;
+	padding:0;
+	width: 1280px;
+	height: 720px;
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	background-repeat:no-repeat;
+	color: #FFFFFF;
+	background-color: #000000;
+}
+table {
+	font-size: 16px;
+	margin:0;
+	padding:0;
+	border-collapse: collapse;
+	border-spacing: 0;
+	color: #FFFFFF;
+}
+table td {
+	font-size:16px;
+	font-weight:bold;
+	color:#FFFFFF;	
+}
+img {
+	margin:0;
+	padding:0;
+	border: 0px;
+}
+
+
+a {	text-decoration:none; color:#fff;}
+a:hover { color:#fff;}
+
+.none	{ display:none;}
+
+.pageTable {width:1280px; height:720px;border-collapse:collapse;border-spacing:0;}
+.pageTable td { margin:0px; padding:0px;}

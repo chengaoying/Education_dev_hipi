@@ -1,0 +1,64 @@
+[ 2014-12-02T13:57:11+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.014965s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001806s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.019498s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.021698s ]
+
+[ 2014-12-02T15:46:47+08:00 ] 192.168.0.187 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000651s ]
+NOTIC: [8] Undefined index: REDIRECT_URL D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 15 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001056s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001900s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000085s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000221s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032870s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033054s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.012745s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.012883s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004216s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004333s ]
+
+[ 2014-12-02T15:49:43+08:00 ] 192.168.0.60 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000875s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001163s ]
+NOTIC: [8] Undefined index: REDIRECT_URL D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 15 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001935s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003451s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000089s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000232s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009429s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009609s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000286s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000633s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000739s ]
+
+[ 2014-12-02T17:17:28+08:00 ] 192.168.0.154 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000067s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015492s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001577s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.023969s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.025910s ]
+

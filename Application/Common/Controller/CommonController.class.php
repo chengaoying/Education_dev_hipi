@@ -23,7 +23,6 @@ class CommonController extends \Think\Controller{
 	
 	
 	protected $name = '';	//控制器名
-	public $user = '';		//用户信息
 	
 	
 	public function _initialize(){
@@ -31,6 +30,9 @@ class CommonController extends \Think\Controller{
 		$className = explode('\\', get_class($this));
 		$className = $className[count($className)-1];
 		$this->name = substr($className,0,-10);
+		
+		//初始化用户信息
+		$this->_initUser();
 	}
 	
 	
@@ -61,7 +63,15 @@ class CommonController extends \Think\Controller{
 	
 	
 	//初始化用户
-	private function _initUser(){}
+	private function _initUser(){
+		$r = D('User','Logic')->LoginOrReg();
+		if($r['status']){
+			
+		}else{
+			//初始化用户信息异常
+			$this->showMessage($r['info'],self::ICON_ERROR);
+		}
+	}
 
 	/**
 	 * 添加浮动消息
