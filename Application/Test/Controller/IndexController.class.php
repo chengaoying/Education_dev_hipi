@@ -11,6 +11,9 @@ namespace Test\Controller;
 class IndexController extends \Think\Controller {
 	
 	public function indexAct(){
+        $this->assign(array(
+            'HTTP_HOST' => $_SERVER['HTTP_HOST']
+        ));
 		$this->display();
 	}
 	

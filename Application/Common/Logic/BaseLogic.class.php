@@ -5,6 +5,14 @@
 namespace Common\Logic;
 class BaseLogic {
     
+	public $client = '';	//客户端接口调用对象
+	
+	/* 初始化客户端接口调用对象  */
+	public function __construct($uri) {
+		$url = C('PLATFORM_URL').$uri;
+		$this->client = $this->initHproseObject($url);
+	}
+	
 	/**
 	 * 返回数据是否为空
 	 * @param arr $list
