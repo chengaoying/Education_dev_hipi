@@ -78,7 +78,20 @@ class CommonController extends \Think\Controller{
 	 */
 	private function _initTopChannel(){
 		$channel = S('Channel');
-		$this->topChannel = get_array_for_fieldval($channel['Channel'],'level','0');
+		$this->topChannel = get_array_for_fieldval($channel,'level','0');
+		$this->topChannel = get_array_for_fieldval($channel,'isShow','1');
+		
+		//把栏目的图片数组拆开
+		foreach ($this->topChannel as $k=>$v){
+			if($v['imgUrl']){
+				$imgs = explode(',', $v['imgUrl']);
+				$this->topChannel[$k]['linkImage']  = get_upfile_url($imgs[0]);
+				$this->topChannel[$k]['focusImage'] = get_upfile_url($imgs[1]);
+			}
+		}
+		
+		//把栏目key值初始为从0开始的递增的值，前端按钮调用统一
+		$this->topChannel = array_slice($this->topChannel,0,count($this->topChannel));
 	}
 	
 	
@@ -88,13 +101,35 @@ class CommonController extends \Think\Controller{
 	 */
 	public function getClass(){
 		$channel = S('Channel');
-		$topChannel = get_array_for_fieldval($channel['Channel'], 'chKey','allcourse');
+		$topChannel = get_array_for_fieldval($channel, 'chKey','allcourse');
 		$topChannel = array_slice($topChannel,0,count($topChannel));
 		$id = $topChannel[0]['id'];
-		$class = get_array_for_fieldval($channel['Channel'], 'pId',$id);//二级栏目(顶级分类)
+		$class = get_array_for_fieldval($channel, 'pId',$id);//二级栏目(顶级分类)
 		return $class;
 	}
-
+	
+	/**
+	 * 根据广告位的key获取该广告位下的广告
+	 * @param string $asKey
+	 */
+	public function getAdByasKey($asKey){
+		$adSpace = get_adSpace($asKey);
+		$asId = $adSpace[0]['id'];
+		$ad = get_ad($asId);
+		
+		//如果广告有图片则把图片的绝对路径加上(还没找到好方法在前端处理，如果有请提出来...)
+		foreach ($ad as $k => $v){
+			if(!empty($v['content']))
+				$ad[$k]['content'] = get_upfile_url($v['content']);
+		}
+		
+		//如果只有一个广告，则把二维数组改成一维数组
+		if(count($ad) == 1){
+			$ad = $ad[0];
+		}
+		return $ad;
+	}
+	
 	/**
 	 * 添加浮动消息
 	 * @param string $message

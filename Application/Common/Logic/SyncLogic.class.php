@@ -20,13 +20,9 @@ class SyncLogic{
 			case "test": //通信测试
 				return result_data(1,'通信测试成功！');
 			case "data": //数据通知
-				if(empty($param['name'])){	//全部
-					foreach($param['data'] as $key=>$data){
-						$this->saveData($key,$data);
-					}					
-				}else{
-					$this->saveData($param['name'],$param['data']);
-				}
+				foreach($param['data'] as $key=>$data){
+					$this->saveData($key,$data);
+				}					
 				return result_data(1,'数据同步成功！');
 			default:	//异常操作
 				return 	result_data(0,'异常操作，操作类型：'.$param['action']);

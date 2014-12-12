@@ -17,7 +17,7 @@ body {background-color: transparent;}
 <body>
 
 <style>
-    body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
+    body{ background-image:url(/static/v1/hd/images/common/uc_bg.jpg); }
 
 #text_age{
 	position: absolute;

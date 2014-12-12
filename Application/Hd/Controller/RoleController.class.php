@@ -22,7 +22,7 @@ class RoleController extends CommonController {
 			$class = $this->getClass();	
 			//龄段
 			$stage = S('Stage');
-			foreach ($stage['Stage'] as $k=>$v){
+			foreach ($stage as $k=>$v){
 				$data[$class[$v['chId']]['chKey']][$v['id']] = $v;
 			}
 			$this->assign(array('stage' => $data));

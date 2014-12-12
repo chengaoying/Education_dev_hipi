@@ -190,13 +190,21 @@ Epg.Button = Epg.btn =
 		var current = this.current;
 		if(prev)
 		{
-			if(prev.linkImage)
+			if(prev.linkImage){
 				G(prev.id).src = prev.linkImage;
+			}else{
+				G(prev.id).width  -= 10;
+				G(prev.id).height -= 10;
+			}
 		}
 		if(current)
 		{
-			if(current.focusImage)
+			if(current.focusImage){
 				G(current.id).src = current.focusImage;
+			}else{
+				G(current.id).width  += 10;
+				G(current.id).height += 10;
+			}
 		}
 	}
 };
@@ -319,6 +327,7 @@ var event_handler = function(e)
 //按键处理
 document.onkeypress = event_handler;
 
-window.EPG = window.epg = Epg;//增加别名
+//增加别名
+window.EPG = window.epg = Epg;
 
 

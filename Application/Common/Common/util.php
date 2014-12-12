@@ -118,6 +118,21 @@ function get_array_for_fieldval($arr,$field,$fieldVal){
 	return $arr;
 }
 
+/**
+ * 过滤掉二维数组中多余的字段项
+ * @param arr $arr 元数组
+ * @param arr $require 保留的字段
+ */
+function get_array_fieldkey($arr,$require){
+	foreach ($arr as $k => $v){
+		foreach ($v as $k1 => $v1){
+			if(!in_array($k1, $require))
+				unset($arr[$k][$k1]);
+		}
+	}
+	return $arr;
+}
+
 
 /**
  * 从数组中取某列值替换数组的键名
@@ -134,7 +149,6 @@ function array_replace_keyval($arr, $keyName='',$valName='') {
     }
     return $newArr;
 }
-
 
 
 /**

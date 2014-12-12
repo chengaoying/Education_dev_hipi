@@ -15,18 +15,15 @@ class IndexController extends CommonController {
 		//欢迎页，如果有跳转至欢迎页
 		
 		//检查用户是否有角色帐号，没有则跳转至创建角色页面
-		//有则使用用户最近使用的角色帐号进入产品
-		$user = unserialize(Session('user'));
+		//有则使用用户最近使用的角色帐号进入产品首页(推荐课程页)
 		$roleList = Session('roleList');
 		if(count($roleList) < 1){
 			header('location:'.U('Role/createRole'));
+		}else{
+			header('location:'.U('Course/recommend'));
 		}
-		
-		$this->assign(array(
-			'role'		 =>	unserialize(Session('role')),	
-			'topChannel' => $this->topChannel,	
-		));
-		$this->display();
+		exit;
+		//$this->display();
 	}
 	
 	/**
