@@ -10,10 +10,10 @@ var	KEY_BACK 		 = 0x0008; 	// 返回/删除
 var KEY_ENTER 		 = 0x000D; 	// 确定
 var KEY_PAGE_UP		 = 0x0021;	// 上页
 var KEY_PAGE_DOWN    = 0x0022;  // 下页
-var KEY_LEFT		 = 0x0025;  // 左
-var	KEY_UP			 = 0x0026;  // 上
-var KEY_RIGHT 		 = 0x0027;	// 右
-var	KEY_DOWN 		 = 0x0028;	// 下
+var KEY_LEFT		 = 97;//0x0025;  // 左
+var	KEY_UP			 = 119;//0x0026;  // 上
+var KEY_RIGHT 		 = 100;//0x0027;	// 右
+var	KEY_DOWN 		 = 115;//0x0028;	// 下
 var KEY_0 			 = 0x0030;  // 0       
 var KEY_1 			 = 0x0031;  // 1
 var KEY_2 			 = 0x0032;  // 2
@@ -150,6 +150,7 @@ Epg.Button = Epg.btn =
 	/** 移动 */
 	move: function(dir)
 	{
+		if(undefined == this.current[dir]) return; //update 20141213   修改bug:如果移动方向的值没设置，则不进行移动操作
 		var button;
 		var nextButtonId = this.current[dir];
 		if(typeof nextButtonId == "string")//如果是字符串，强制改为数组，简化代码
@@ -196,6 +197,14 @@ Epg.Button = Epg.btn =
 				G(prev.id).width  -= 10;
 				G(prev.id).height -= 10;
 			}
+			if(prev.selectBox){ //add 20141213    失去焦点后隐藏光标，并把光标的尺寸恢复到原始大小
+				var selectBoxId = prev.id + '_focus';
+				G(selectBoxId).width  -= 10;
+				G(selectBoxId).height -= 10;
+				var divId = 'div_' + prev.id + '_focus';
+				H(divId);
+			}
+			
 		}
 		if(current)
 		{
@@ -204,6 +213,14 @@ Epg.Button = Epg.btn =
 			}else{
 				G(current.id).width  += 10;
 				G(current.id).height += 10;
+			}
+			if(current.selectBox){ //add 20141213    增加焦点框选中效果
+				var selectBoxId = current.id + '_focus';
+				var divId = 'div_' + current.id + '_focus';
+				G(selectBoxId).src = current.selectBox;
+				G(selectBoxId).width  += 10;
+				G(selectBoxId).height += 10;
+				S(divId);
 			}
 		}
 	}
