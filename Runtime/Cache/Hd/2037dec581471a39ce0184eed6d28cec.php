@@ -153,14 +153,8 @@ window.onload=function()
 
 <!-- 页面右侧 -->
 	<!-- 推荐的课程 -->
-<<<<<<< HEAD
-
-<?php $__FOR_START_11383__=1;$__FOR_END_11383__=7;for($i=$__FOR_START_11383__;$i < $__FOR_END_11383__;$i+=1){ if($i > 3){ $top = 405; $left = 540 + ($i-4)*225; }else{ $top = 180; $left = 540 + ($i-1)*225; } ?>
-	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:210px;height:210px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;vertical-align:middle;text-align:center;">
-=======
-<?php $__FOR_START_20093__=1;$__FOR_END_20093__=7;for($i=$__FOR_START_20093__;$i < $__FOR_END_20093__;$i+=1){ if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
+<?php $__FOR_START_5817__=1;$__FOR_END_5817__=7;for($i=$__FOR_START_5817__;$i < $__FOR_END_5817__;$i+=1){ if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
 	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:230px;height:210px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
->>>>>>> 2cbda9824aa093b3ffcfba1278804a69e755bf3d
 		<img id="tuijian_<?php echo ($i); ?>" src="/static/v1/hd/images/test/<?php echo ($i); ?>.jpg" width="210" height="210">
 	</div>
 	<div id="div_tuijian_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:<?php echo ($left); ?>px;top:<?php echo ($top-3); ?>px;text-align:center;">

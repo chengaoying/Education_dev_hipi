@@ -24,3 +24,12 @@ function get_ad($asId){
 	$ads = array_slice($ads,0,count($ads));
 	return $ads;
 }
+
+/**
+ * 用于调试，用好的格式在页面打印数组，易于查看
+ * @param unknown_type $array
+ */
+function p($array)
+{
+	dump($array, 1, '<pre>', 0);
+}

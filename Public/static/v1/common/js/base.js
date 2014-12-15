@@ -10,10 +10,10 @@ var	KEY_BACK 		 = 0x0008; 	// 返回/删除
 var KEY_ENTER 		 = 0x000D; 	// 确定
 var KEY_PAGE_UP		 = 0x0021;	// 上页
 var KEY_PAGE_DOWN    = 0x0022;  // 下页
-var KEY_LEFT		 = 97;//0x0025;  // 左
-var	KEY_UP			 = 119;//0x0026;  // 上
-var KEY_RIGHT 		 = 100;//0x0027;	// 右
-var	KEY_DOWN 		 = 115;//0x0028;	// 下
+var KEY_LEFT		 = 97;// 0x0025;  // 左
+var	KEY_UP			 = 119;// 0x0026;  // 上
+var KEY_RIGHT 		 = 100;// 0x0027;	// 右
+var	KEY_DOWN 		 = 115;// 0x0028;	// 下
 var KEY_0 			 = 0x0030;  // 0       
 var KEY_1 			 = 0x0031;  // 1
 var KEY_2 			 = 0x0032;  // 2
@@ -181,6 +181,7 @@ Epg.Button = Epg.btn =
 	/** 点击确定按钮 */
 	click: function(interceptor)
 	{
+		
 		Epg.call(this.current.action, [this.current]);
 	},
 	
