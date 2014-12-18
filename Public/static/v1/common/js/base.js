@@ -10,10 +10,10 @@ var	KEY_BACK 		 = 0x0008; 	// 返回/删除
 var KEY_ENTER 		 = 0x000D; 	// 确定
 var KEY_PAGE_UP		 = 0x0021;	// 上页
 var KEY_PAGE_DOWN    = 0x0022;  // 下页
-var KEY_LEFT		 = 97;// 0x0025;  // 左
-var	KEY_UP			 = 119;// 0x0026;  // 上
-var KEY_RIGHT 		 = 100;// 0x0027;	// 右
-var	KEY_DOWN 		 = 115;// 0x0028;	// 下
+var KEY_LEFT		 = 97;	//= 0x0025;   // 左
+var	KEY_UP			 = 119;	//= 0x0026;   // 上
+var KEY_RIGHT 		 = 100;	//= 0x0027;	// 右
+var	KEY_DOWN 		 = 115;	//= 0x0028;	// 下
 var KEY_0 			 = 0x0030;  // 0       
 var KEY_1 			 = 0x0031;  // 1
 var KEY_2 			 = 0x0032;  // 2
@@ -97,7 +97,13 @@ var Epg =
 	isArray: function(o)
 	{
 		return (o instanceof Array); 
-	}
+	},
+	isEmpty: function(o)
+	{
+		if(undefined != o && o != null && o != "")
+			return false;
+		return true;
+	},
 };
 
 // 自定义按钮
@@ -117,7 +123,8 @@ Epg.Button = Epg.btn =
 				KEY_RIGHT:'Epg.Button.move("right")',	//右键
 				KEY_UP:'Epg.Button.move("up")',			//上键
 				KEY_DOWN:'Epg.Button.move("down")',		//下键
-				KEY_BACK:'back()'						//返回键
+				KEY_BACK:'Epg.Button.defBack()',		//返回键
+				KEY_0:'Epg.Button.defBack()',			//按0返回
 			});
 		}
 		
@@ -181,8 +188,32 @@ Epg.Button = Epg.btn =
 	/** 点击确定按钮 */
 	click: function(interceptor)
 	{
-		
+		if(Epg.isEmpty(this.current.action)) //add 20141216  添加页面按钮默认的action函数
+			this.current.action = "Epg.btn.defAction()";
 		Epg.call(this.current.action, [this.current]);
+	},
+	
+	/**
+	 * add 20141216  添加页面默认的action操作
+	 * 页面默认action操作（页面跳转），流程：
+	 * 1.先获取按钮img标签的title属性（存放跳转地址）
+	 * 2.如果img标签的title属性为空，则获取上层div的title属性值
+	 */
+	defAction: function(){
+		var url = G(Epg.btn.current.id).title;
+		if(Epg.isEmpty(url)) url = G('div_' + Epg.btn.current.id).title; 
+		Epg.jump(url);
+	},
+	
+	/**
+	 * add 20141218  添加页面默认的返回操作
+	 * 方式一：页面添加一个隐藏的a标签，id="a_back",href="{$url}"
+	 * 方式二：直接在页面重写Epg.key.set({KEY_BACK:"back()"})，js函数back中实现跳转
+	 */
+	defBack: function(){
+		var url = G('a_back').href;
+		if(Epg.isEmpty(url)) return;
+		Epg.jump(url);
 	},
 	
 	/** 更新 */
@@ -231,10 +262,22 @@ Epg.Button = Epg.btn =
  * 用于开发时控制台输出信息
  * @param info 
  */
-Epg.debug=function(info)
+Epg.debug = function(info)
 {
-	if(debug_mode && typeof console !== 'undefined' && console.log)
+	if(debug_mode && typeof console !== undefined && console.log)
 		console.log(info);
+};
+
+/**
+ * 跳转
+ * @param href 要跳转的url
+ * @param f 焦点按钮，默认当前按钮ID
+ */
+Epg.jump = function(href,f)
+{
+	if(f === undefined)
+		f = Epg.btn.current.id;
+	window.location.href = href /*+ '&f=' + f*/;
 };
 
 /**

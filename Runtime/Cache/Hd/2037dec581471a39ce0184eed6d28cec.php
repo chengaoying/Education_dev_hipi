@@ -115,23 +115,20 @@ window.onload=function()
 <!-- 静态图片 -->
 <div id="user_info_bg"></div>
 <div id="recently_saw_bg"></div>
-<div class="shadow" style="left:90px;"></div>
-<div class="shadow" style="left:315px;"></div>
-<div class="shadow" style="left:540px;"></div>
-<div class="shadow" style="left:765px;"></div>
-<div class="shadow" style="left:990px;"></div>
+<?php $__FOR_START_3801__=1;$__FOR_END_3801__=6;for($i=$__FOR_START_3801__;$i < $__FOR_END_3801__;$i+=1){ $left = 90 + ($i-1)*225; ?>
+	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
 <!-- 顶部-栏目 -->
 <?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 90 + ($i-1)*150; $top = 75; ?>
 	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>' src="<?php echo ($ch['linkImage']); ?>" width="95" height="26">
+		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="95" height="26">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 页面左侧 -->
 	<!-- 广告 -->
 <div id="div_t_left_ad_1" style="position:absolute;width:230px;height:174px;left:80px;top:180px;text-align:center;">
-	<img id="t_left_ad" src="<?php echo ($left_ad['content']); ?>" width="210" height="174">
+	<img id="t_left_ad"  src="<?php echo ($left_ad['content']); ?>" width="210" height="174">
 </div>
 
 
@@ -139,7 +136,7 @@ window.onload=function()
 <!-- 页面中间 -->
 	<!-- 广告 -->
 <div id="div_t_right_ad" style="position:absolute;width:230px;height:320px;left:305px;top:180px;text-align:center;">
-	<img id="t_right_ad" src="<?php echo ($right_ad['content']); ?>" width="210" height="320">
+	<img id="t_right_ad" title="123"  src="<?php echo ($right_ad['content']); ?>" width="210" height="320">
 </div>
 <div id="div_t_right_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:326px;left:305px;top:177px;text-align:center;">
 	<img id="t_right_ad_focus" src="" width="216" height="326">
@@ -153,14 +150,13 @@ window.onload=function()
 
 <!-- 页面右侧 -->
 	<!-- 推荐的课程 -->
-<?php $__FOR_START_5817__=1;$__FOR_END_5817__=7;for($i=$__FOR_START_5817__;$i < $__FOR_END_5817__;$i+=1){ if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
+<?php $__FOR_START_8350__=1;$__FOR_END_8350__=7;for($i=$__FOR_START_8350__;$i < $__FOR_END_8350__;$i+=1){ if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
 	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:230px;height:210px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="tuijian_<?php echo ($i); ?>" src="/static/v1/hd/images/test/<?php echo ($i); ?>.jpg" width="210" height="210">
 	</div>
 	<div id="div_tuijian_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:<?php echo ($left); ?>px;top:<?php echo ($top-3); ?>px;text-align:center;">
 		<img id="tuijian_<?php echo ($i); ?>_focus" src="" width="216" height="216">
 	</div><?php } ?>
-
 
 
 </body>

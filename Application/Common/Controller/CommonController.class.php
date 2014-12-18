@@ -78,8 +78,8 @@ class CommonController extends \Think\Controller{
 	 */
 	private function _initTopChannel(){
 		$channel = S('Channel');
-		$this->topChannel = get_array_for_fieldval($channel,'level','0');
-		$this->topChannel = get_array_for_fieldval($channel,'isShow','1');
+		$this->topChannel = get_array_for_fieldval($channel,'level',0);
+		$this->topChannel = get_array_for_fieldval($this->topChannel,'isShow','1');
 		
 		//把栏目的图片数组拆开
 		foreach ($this->topChannel as $k=>$v){
@@ -105,6 +105,12 @@ class CommonController extends \Think\Controller{
 		$topChannel = array_slice($topChannel,0,count($topChannel));
 		$id = $topChannel[0]['id'];
 		$class = get_array_for_fieldval($channel, 'pId',$id);//二级栏目(顶级分类)
+		
+		//把class的图片地址加上绝对路径
+		foreach ($class as $k => $v){
+			$class[$k]['imgUrl'] = get_upfile_url($v['imgUrl']);
+		}
+		
 		return $class;
 	}
 	

@@ -1,0 +1,113 @@
+<layout name="layout" />
+
+<style>
+    body{ background-image:url(__HD__/images/common/bg.jpg); }
+    
+/* 底部投影背景图 */
+.shadow{
+	position:absolute;
+    display: block;
+    width:260px;
+    height:55px;
+	top:610px;
+    background-image:url(__HD__/images/common/shadow_2.png);
+}
+    
+</style>
+
+<script type="text/javascript">
+
+//栏目object(json格式数据)
+var channel = {$json_channel};
+var json_class = {$json_class};
+
+var buttons=
+	[
+	 	/* 栏目  */
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:'class_1'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'class_1'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',right:'search',down:'class_2'},
+
+		/* 检索按钮 */
+		{id:'search',name:'',action:'',linkImage:'__HD__/images/Index/allCourse/btn_search.png',focusImage:'__HD__/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
+		
+		/* 顶级分类（二级栏目） */
+		{id:'class_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'class_2',up:'ch_1',down:'class_5'},
+		{id:'class_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_1',right:'class_3',up:'ch_3',down:'class_6'},
+		{id:'class_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_2',right:'class_4',up:'ch_3',down:'class_7'},
+		{id:'class_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_3',right:'',up:'search',down:'class_8'},
+		{id:'class_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'class_6',up:'class_1',down:''},
+		{id:'class_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_5',right:'class_7',up:'class_2',down:''},
+		{id:'class_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_6',right:'class_8',up:'class_3',down:''},
+		{id:'class_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_7',right:'',up:'class_4',down:''},
+	];
+
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	//栏目
+	for(var i=0; i<channel.length; i++)
+	{
+		buttons[i].name = channel[i].name;
+		buttons[i].linkImage = channel[i].linkImage;
+		buttons[i].focusImage = channel[i].focusImage;
+	}
+	
+	//顶级分类（二级栏目）
+	for(var j=0; j<json_class.length; j++)
+	{
+		buttons[j+3].name = json_class[j].name;
+		//buttons[j+3].linkImage = json_class[j].imgUrl;
+	}
+	
+}
+
+
+window.onload=function()
+{
+	initButtons();
+	Epg.btn.init('ch_2',buttons,true);	
+};
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
+
+<!-- 静态图片-底部投影效果 -->
+<php>$count = count($class)-4;</php>
+<for start="1" end="$count+1" step="1">
+	<php> $left = 90 + ($i-1)*280;</php>
+	<div class="shadow" style="left:{$left}px;"></div>
+</for>
+
+
+<!-- 顶部栏目 -->
+<volist name="topChannel" id="ch">
+	<php>
+		$left = 90 + ($i-1)*150; $top = 75;
+	</php>
+	<div id="div_ch_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;">
+		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="95" height="26">
+	</div>	
+</volist>
+
+<!-- 检索按钮 -->
+<div id="div_search" style="position:absolute;width:130px;height:40px;left:1060px;top:60px;text-align:center;">
+    <img id="search" title="" src="__HD__/images/Index/allCourse/btn_search.png" width="130" height="40">
+</div>
+
+<!-- 顶级分类（二级栏目） -->
+<volist name="class" id="c" key="i">
+    <php>
+        if($i > 4){
+            $top = 405; $left = 80 + ($i-5)*280;
+        }else{
+            $top = 180; $left = 80 + ($i-1)*280;
+        }
+    </php>
+    <div id="div_class_{$i}" style="position:absolute;width:280px;height:225px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="class_{$i}" title="" src="{$c['imgUrl']}" width="260" height="205">
+    </div>
+    <div id="div_class_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:{$left}px;top:{$top-3}px;text-align:center;">
+        <img id="class_{$i}_focus" src="" width="260" height="205">
+    </div>
+</volist>
+
