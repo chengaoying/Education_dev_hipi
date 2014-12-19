@@ -95,7 +95,73 @@ class IndexController extends CommonController {
 	/**
 	 * 我的课程首页
 	 */
-	public function myCourseAct(){}
+	public function myCourseAct(){
+		//栏目数据json格式-前端js使用
+		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage'));
+		$json_channel = json_encode($json_channel);
+		
+		//我的课程
+		$myCourse = array();
+		$myCourse = array(
+				array(
+						'id' => 1,
+						'name' => 'aa',
+						'content' => get_upfile_url('__HD__/images/course/my/a.jpg')
+				),
+				array(
+						'id' => 1,
+						'name' => 'bb',
+						'content' => get_upfile_url('__HD__/images/course/my/b.jpg')
+				),
+				array(
+						'id' => 1,
+						'name' => 'cc',
+						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+				),
+				array(
+						'id' => 1,
+						'name' => 'cc',
+						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+				),
+				array(
+						'id' => 1,
+						'name' => 'cc',
+						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+				),
+				array(
+						'id' => 1,
+						'name' => 'cc',
+						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+				),
+				array(
+						'id' => 1,
+						'name' => 'cc',
+						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+				),
+				array(
+						'id' => 1,
+						'name' => 'cc',
+						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+				),
+				array(
+						'id' => 1,
+						'name' => 'cc',
+						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+				),
+				array(
+						'id' => 1,
+						'name' => 'cc',
+						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+				),
+		);
+		//print_r($myCourse);
+		$this->assign(array(
+			'json_channel'	=> $json_channel,
+			'topChannel' 	=> $this->topChannel,
+			'myCourse'      => $myCourse,
+		));
+		$this->display();
+	}
 	
 	
 }

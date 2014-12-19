@@ -90,7 +90,7 @@ window.onload=function()
 
 <!-- 静态图片-底部投影效果 -->
 <?php $count = count($class)-4; ?>
-<?php $__FOR_START_21512__=1;$__FOR_END_21512__=$count+1;for($i=$__FOR_START_21512__;$i < $__FOR_END_21512__;$i+=1){ $left = 90 + ($i-1)*280; ?>
+<?php $__FOR_START_10339__=1;$__FOR_END_10339__=$count+1;for($i=$__FOR_START_10339__;$i < $__FOR_END_10339__;$i+=1){ $left = 90 + ($i-1)*280; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
@@ -108,7 +108,7 @@ window.onload=function()
 <!-- 顶级分类（二级栏目） -->
 <?php if(is_array($class)): $i = 0; $__LIST__ = $class;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$c): $mod = ($i % 2 );++$i; if($i > 4){ $top = 405; $left = 80 + ($i-5)*280; }else{ $top = 180; $left = 80 + ($i-1)*280; } ?>
     <div id="div_class_<?php echo ($i); ?>" style="position:absolute;width:280px;height:225px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-        <img id="class_<?php echo ($i); ?>" title="" src="<?php echo ($c['imgUrl']); ?>" width="260" height="205">
+        <img id="class_<?php echo ($i); ?>" title="<?php echo ($c['linkUrl']); ?>" src="<?php echo ($c['imgUrl']); ?>" width="260" height="205">
     </div>
     <div id="div_class_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:<?php echo ($left); ?>px;top:<?php echo ($top-3); ?>px;text-align:center;">
         <img id="class_<?php echo ($i); ?>_focus" src="" width="260" height="205">
