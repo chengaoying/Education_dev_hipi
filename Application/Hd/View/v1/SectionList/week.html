@@ -1,0 +1,115 @@
+<layout name="layout" />
+<style type="text/css">
+    body{ background-image:url(__HD__/images/common/bg.jpg); }
+    
+    /* 左上角栏目logo */
+    .ch_logo{
+        position: absolute;
+        display: block;
+        top:60px;
+        left:85px;
+        width: 185px;
+        height: 42px;
+        background: url(__HD__/images/course/kinder/ch_logo.png) no-repeat;
+    }
+    
+    /* 幼儿园哪个班 */
+    .classlevel{
+        position: absolute;
+        display: block;
+        top:65px;
+        left:265px;
+        width: 90px;
+        height: 38px;
+        background: url(__HD__/images/course/kinder/{$classLevel}_class.png) no-repeat;
+    }
+    
+    /*一周背景*/
+    .weekbg{
+        position: absolute;
+        display: block;
+        top:180px;
+        left:75px;
+        width: 1130px;
+        height: 440px;
+        background: url(__HD__/images/course/kinder/week_bg.png) no-repeat;
+    }
+</style>
+
+<script type="text/javascript">
+
+
+var buttons=
+	[
+        /*一周课程*/
+        {id:'week_course',name:'',action:'',linkImage:'__HD__/images/course/kinder/week_course.png',focusImage:'__HD__/images/course/kinder/week_course_over.png',selectBox:'',left:'',right:'video_1',up:'',down:'video_1'},
+        
+        /*视频列表*/
+	 	{id:'video_1_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
+        {id:'video_1_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
+        {id:'video_1_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
+        {id:'video_1_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_1_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_2_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
+        {id:'video_2_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
+        {id:'video_2_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
+        {id:'video_2_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_2_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_3_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
+        {id:'video_3_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
+        {id:'video_3_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
+        {id:'video_3_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_3_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_4_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
+        {id:'video_4_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
+        {id:'video_4_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
+        {id:'video_4_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_4_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_5_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
+        {id:'video_5_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
+        {id:'video_5_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
+        {id:'video_5_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_5_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_6_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
+        {id:'video_6_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
+        {id:'video_6_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
+        {id:'video_6_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
+        {id:'video_7_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
+        {id:'video_7_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
+        {id:'video_7_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
+        {id:'video_7_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
+	];
+
+
+window.onload=function()
+{
+	Epg.btn.init('week_course',buttons,true);	
+};
+</script>
+
+<!-- 左上角的栏目LOGO -->
+<div class="ch_logo"></div>
+
+<!-- 幼儿园哪个班 -->
+<div class="classlevel"></div>
+
+<!-- 一周背景  -->
+<div class="weekbg"></div>
+
+<!-- 一周视频列表 -->
+<volist name="videoList" id="week" key="i">
+    <volist name="week" id="video" key="key">
+        <php>
+            $left = 85+($i-1)*160;
+            $top = 260+($key-1)*72;
+        </php>
+        <div id="div_video_{$i}_{$key}" style="position:absolute;width:150px;height:70px;left:{$left}px;top:{$top}px;line-height: 70px;text-align:center;color:#666;">
+            <if condition="($i eq 6 and $key eq 4) or ($i eq 7 and $key eq 4)">
+                <img id="video_{$i}_{$key}" src="{$video['content']}" width="150" height="139">
+            <else/>
+                {$video['name']}
+            </if>
+        </div>
+    </volist>
+</volist>
+
