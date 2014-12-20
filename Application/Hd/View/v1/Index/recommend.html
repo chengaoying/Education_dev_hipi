@@ -61,12 +61,12 @@ var buttons=
 		{id:'t_bottom_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'record_1',right:'tuijian_4',up:'t_right_ad',down:''},
 		
 		/* 推荐课程 */
-		{id:'tuijian_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'t_right_ad',right:'tuijian_2',up:'ch_3',down:'tuijian_4'},
-		{id:'tuijian_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'tuijian_1',right:'tuijian_3',up:'ch_3',down:'tuijian_5'},
-		{id:'tuijian_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'tuijian_2',right:'',up:'ch_3',down:'tuijian_6'},
-		{id:'tuijian_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'t_right_ad',right:'tuijian_5',up:'tuijian_1',down:''},
-		{id:'tuijian_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
-		{id:'tuijian_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
+		{id:'tuijian_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'t_right_ad',right:'tuijian_2',up:'ch_3',down:'tuijian_4'},
+		{id:'tuijian_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'tuijian_1',right:'tuijian_3',up:'ch_3',down:'tuijian_5'},
+		{id:'tuijian_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'tuijian_2',right:'',up:'ch_3',down:'tuijian_6'},
+		{id:'tuijian_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'t_right_ad',right:'tuijian_5',up:'tuijian_1',down:''},
+		{id:'tuijian_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
+		{id:'tuijian_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
 		
 		//最近观看记录		
 		{id:'record_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/24_24.png',left:'',right:'t_bottom_ad',up:'',down:'record_2'},
@@ -160,15 +160,16 @@ window.onload=function()
 <for start="1" end="7" step="1" name="i">
 	<php>
 		if($i > 3){
-			$top = 405; $left = 530 + ($i-4)*225;
+			$top = 405; $left = 535 + ($i-4)*225;
 		}else{
-			$top = 180; $left = 530 + ($i-1)*225;
+			$top = 180; $left = 535 + ($i-1)*225;
 		}
 	</php>
-	<div id="div_tuijian_{$i}" style="position:absolute;width:230px;height:210px;left:{$left}px;top:{$top}px;text-align:center;">
+	<div id="div_tuijian_{$i}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
+		<img id="view_tuijian_{$i}" style="" src="__HD__/common/transparent.png" width="210" height="5">
 		<img id="tuijian_{$i}" src="__HD__/images/test/{$i}.jpg" width="210" height="210">
 	</div>
-	<div id="div_tuijian_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:{$left}px;top:{$top-3}px;text-align:center;">
+	<div id="div_tuijian_{$i}_focus" style="position:absolute;visibility:hidden;width:220px;height:220px;left:{$left}px;top:{$top-3}px;text-align:center;">
 		<img id="tuijian_{$i}_focus" src="" width="216" height="216">
 	</div>
 </for>

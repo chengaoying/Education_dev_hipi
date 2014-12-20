@@ -78,12 +78,12 @@ var buttons=
 		{id:'t_bottom_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'record_1',right:'tuijian_4',up:'t_right_ad',down:''},
 		
 		/* 推荐课程 */
-		{id:'tuijian_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'t_right_ad',right:'tuijian_2',up:'ch_3',down:'tuijian_4'},
-		{id:'tuijian_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_1',right:'tuijian_3',up:'ch_3',down:'tuijian_5'},
-		{id:'tuijian_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_2',right:'',up:'ch_3',down:'tuijian_6'},
-		{id:'tuijian_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'t_right_ad',right:'tuijian_5',up:'tuijian_1',down:''},
-		{id:'tuijian_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
-		{id:'tuijian_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
+		{id:'tuijian_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.gif',left:'t_right_ad',right:'tuijian_2',up:'ch_3',down:'tuijian_4'},
+		{id:'tuijian_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.gif',left:'tuijian_1',right:'tuijian_3',up:'ch_3',down:'tuijian_5'},
+		{id:'tuijian_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.gif',left:'tuijian_2',right:'',up:'ch_3',down:'tuijian_6'},
+		{id:'tuijian_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.gif',left:'t_right_ad',right:'tuijian_5',up:'tuijian_1',down:''},
+		{id:'tuijian_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.gif',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
+		{id:'tuijian_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.gif',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
 		
 		//最近观看记录		
 		{id:'record_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/24_24.png',left:'',right:'t_bottom_ad',up:'',down:'record_2'},
@@ -121,7 +121,7 @@ window.onload=function()
 <!-- 静态图片 -->
 <div id="user_info_bg"></div>
 <div id="recently_saw_bg"></div>
-<?php $__FOR_START_21876__=1;$__FOR_END_21876__=6;for($i=$__FOR_START_21876__;$i < $__FOR_END_21876__;$i+=1){ $left = 90 + ($i-1)*225; ?>
+<?php $__FOR_START_23998__=1;$__FOR_END_23998__=6;for($i=$__FOR_START_23998__;$i < $__FOR_END_23998__;$i+=1){ $left = 90 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
@@ -164,11 +164,12 @@ window.onload=function()
 
 <!-- 页面右侧 -->
 	<!-- 推荐的课程 -->
-<?php $__FOR_START_27293__=1;$__FOR_END_27293__=7;for($i=$__FOR_START_27293__;$i < $__FOR_END_27293__;$i+=1){ if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
-	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:230px;height:210px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+<?php $__FOR_START_32287__=1;$__FOR_END_32287__=7;for($i=$__FOR_START_32287__;$i < $__FOR_END_32287__;$i+=1){ if($i > 3){ $top = 405; $left = 535 + ($i-4)*225; }else{ $top = 180; $left = 535 + ($i-1)*225; } ?>
+	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+		<img id="view_tuijian_<?php echo ($i); ?>" style="" src="/static/v1/hd/common/transparent.png" width="210" height="5">
 		<img id="tuijian_<?php echo ($i); ?>" src="/static/v1/hd/images/test/<?php echo ($i); ?>.jpg" width="210" height="210">
 	</div>
-	<div id="div_tuijian_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:<?php echo ($left); ?>px;top:<?php echo ($top-3); ?>px;text-align:center;">
+	<div id="div_tuijian_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top-3); ?>px;text-align:center;">
 		<img id="tuijian_<?php echo ($i); ?>_focus" src="" width="216" height="216">
 	</div><?php } ?>
 

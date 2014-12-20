@@ -17,6 +17,7 @@ class SectionListController extends CommonController {
 	public function earlyAct(){
 		$template = 'detail_early';
 		$month = 13;//几个月的小孩
+        $age = 2;
 		if($month>=1 and $month<=12){
 			$year = 1;
 		}else if($month>12 and $month<=24){
@@ -97,7 +98,7 @@ class SectionListController extends CommonController {
 		);
 		$this->assign(array(
 			'month' => $month,
-			'year' => $year,
+			'age' => $age,
 			'chList' => $chList,
 			'json_ch' => json_encode($chList),
 			'videoList' => $videoList,
@@ -110,7 +111,7 @@ class SectionListController extends CommonController {
 	 */
 	public function preschoolAct(){
 		$template = 'detail_preschool';
-		$classLevel = 'big'; //哪个班
+		$class = 'big'; //哪个班
 		$weekDay = 1;//周几
 		
 		//视频列表
@@ -163,7 +164,7 @@ class SectionListController extends CommonController {
 				),
 		);
 		$this->assign(array(
-				'classLevel' => $classLevel,
+				'class' => $class,
 				'videoList' => $videoList,
 				'specialList' => $specialList,
 		));
@@ -229,7 +230,7 @@ class SectionListController extends CommonController {
 	 * 一周课程--课时列表
 	 */
 	public function weekAct(){
-		$classLevel = 'big';
+		$class = 'big';
 		$videoList = array();
 		$videoList = array(
 				1 => array(
@@ -384,7 +385,7 @@ class SectionListController extends CommonController {
 		);
 		
 		$this->assign(array(
-				'classLevel' => $classLevel,
+				'class' => $class,
 				'videoList' => $videoList,
 		));
 		$this->display();

@@ -42,6 +42,7 @@ var buttons=
 	];
 
 var gradelist = {$json_grade};
+
 /* 初始化按钮 属性   */
 var initButtons = function(){
 	//年级
@@ -56,6 +57,7 @@ var initButtons = function(){
 
 window.onload=function()
 {
+    
     initButtons();
 	Epg.btn.init('grade_1',buttons,true);
 };
@@ -66,9 +68,9 @@ window.onload=function()
 
 <!-- 6个年级栏目 -->
 <volist name="gradeList" id="grade" key="i">
-    <php>$left = 310+($i-1)*80;</php>
-    <div id="div_grade_{$i}" title="{:U('SectionList/primaryschool')}" style="position:absolute;width:80px;height:38px;left:{$left}px;top:80px;text-align:center;">
-        <img id="grade_{$i}" src="{$grade['linkImage']}" width="80" height="38">
+    <php>$left = 310+($i-1)*90;</php>
+    <div id="div_grade_{$i}" title="{:U('CourseList/primarySingle')}" style="position:absolute;width:80px;height:38px;left:{$left}px;top:80px;text-align:center;">
+        <img id="grade_{$i}" src="{$grade['linkImage']}" width="69" height="26">
     </div>
 </volist>
 

@@ -14,14 +14,14 @@
     }
     
     /* 幼儿园哪个班 */
-    .classlevel{
+    .class{
         position: absolute;
         display: block;
-        top:65px;
-        left:265px;
-        width: 90px;
-        height: 38px;
-        background: url(__HD__/images/course/kinder/{$classLevel}_class.png) no-repeat;
+        top:70px;
+        left:285px;
+        width: 54px;
+        height: 29px;
+        background: url(__HD__/images/course/kinder/class_{$class}_title.png) no-repeat;
     }
     
     
@@ -59,7 +59,7 @@ window.onload=function()
 <div class="ch_logo"></div>
 
 <!-- 幼儿园哪个班 -->
-<div class="classlevel"></div>
+<div class="class"></div>
 
 <!-- 一周课程 -->
 <div id="div_week_course" title="{:U('Course/week')}" style="position: absolute;width:98px;height:40px;left:1090px;top:65px;">

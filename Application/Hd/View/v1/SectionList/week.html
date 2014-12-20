@@ -14,14 +14,14 @@
     }
     
     /* 幼儿园哪个班 */
-    .classlevel{
+    .class{
         position: absolute;
         display: block;
-        top:65px;
-        left:265px;
-        width: 90px;
-        height: 38px;
-        background: url(__HD__/images/course/kinder/{$classLevel}_class.png) no-repeat;
+        top:70px;
+        left:285px;
+        width: 54px;
+        height: 29px;
+        background: url(__HD__/images/course/kinder/class_{$class}_title.png) no-repeat;
     }
     
     /*一周背景*/
@@ -41,49 +41,46 @@
 
 var buttons=
 	[
-        /*一周课程*/
-        {id:'week_course',name:'',action:'',linkImage:'__HD__/images/course/kinder/week_course.png',focusImage:'__HD__/images/course/kinder/week_course_over.png',selectBox:'',left:'',right:'video_1',up:'',down:'video_1'},
-        
         /*视频列表*/
-	 	{id:'video_1_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
-        {id:'video_1_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
-        {id:'video_1_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
-        {id:'video_1_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_1_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_2_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
-        {id:'video_2_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
-        {id:'video_2_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
-        {id:'video_2_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_2_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_3_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
-        {id:'video_3_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
-        {id:'video_3_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
-        {id:'video_3_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_3_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_4_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
-        {id:'video_4_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
-        {id:'video_4_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
-        {id:'video_4_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_4_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_5_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
-        {id:'video_5_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
-        {id:'video_5_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
-        {id:'video_5_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_5_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_6_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
-        {id:'video_6_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
-        {id:'video_6_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
-        {id:'video_6_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_7_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
-        {id:'video_7_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
-        {id:'video_7_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
-        {id:'video_7_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
+	 	{id:'video_1_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2_1',up:'',down:'video_1_2'},
+        {id:'video_1_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2_2',up:'video_1_1',down:'video_1_3'},
+        {id:'video_1_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2_3',up:'video_1_2',down:'video_1_4'},
+        {id:'video_1_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2_4',up:'video_1_3',down:'video_1_5'},
+        {id:'video_1_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2_5',up:'video_1_4',down:''},
+        {id:'video_2_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1_1',right:'video_3_1',up:'',down:'video_2_2'},
+        {id:'video_2_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1_2',right:'video_3_2',up:'video_2_1',down:'video_2_3'},
+        {id:'video_2_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1_3',right:'video_3_3',up:'video_2_2',down:'video_2_4'},
+        {id:'video_2_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1_4',right:'video_3_4',up:'video_2_3',down:'video_2_5'},
+        {id:'video_2_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1_5',right:'video_3_5',up:'video_2_4',down:''},
+        {id:'video_3_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2_1',right:'video_4_1',up:'',down:'video_3_2'},
+        {id:'video_3_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2_2',right:'video_4_2',up:'video_3_1',down:'video_3_3'},
+        {id:'video_3_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2_3',right:'video_4_3',up:'video_3_2',down:'video_3_4'},
+        {id:'video_3_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2_4',right:'video_4_4',up:'video_3_3',down:'video_3_5'},
+        {id:'video_3_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2_5',right:'video_4_5',up:'video_3_4',down:''},
+        {id:'video_4_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3_1',right:'video_5_1',up:'',down:'video_4_2'},
+        {id:'video_4_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3_2',right:'video_5_2',up:'video_4_1',down:'video_4_3'},
+        {id:'video_4_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3_3',right:'video_5_3',up:'video_4_2',down:'video_4_4'},
+        {id:'video_4_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3_4',right:'video_5_4',up:'video_4_3',down:'video_4_5'},
+        {id:'video_4_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3_5',right:'video_5_5',up:'video_4_4',down:''},
+        {id:'video_5_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4_1',right:'video_6_1',up:'',down:'video_5_2'},
+        {id:'video_5_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4_2',right:'video_6_2',up:'video_5_1',down:'video_5_3'},
+        {id:'video_5_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4_3',right:'video_6_3',up:'video_5_2',down:'video_5_4'},
+        {id:'video_5_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4_4',right:'video_6_4',up:'video_5_3',down:'video_5_5'},
+        {id:'video_5_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4_5',right:'video_6_4',up:'video_5_4',down:''},
+        {id:'video_6_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_5_1',right:'video_7_1',up:'',down:'video_6_2'},
+        {id:'video_6_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_5_2',right:'video_7_2',up:'video_6_1',down:'video_6_3'},
+        {id:'video_6_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_5_3',right:'video_7_3',up:'video_6_2',down:'video_6_4'},
+        {id:'video_6_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_5_4',right:'video_7_4',up:'video_6_3',down:''},
+        {id:'video_7_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_6_1',right:'',up:'',down:'video_7_2'},
+        {id:'video_7_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_6_2',right:'',up:'video_7_1',down:'video_7_3'},
+        {id:'video_7_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_6_3',right:'',up:'video_7_2',down:'video_7_4'},
+        {id:'video_7_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_6_4',right:'',up:'video_7_3',down:''},
 	];
 
 
 window.onload=function()
 {
-	Epg.btn.init('week_course',buttons,true);	
+	Epg.btn.init('video_1_1',buttons,true);	
 };
 </script>
 
@@ -91,7 +88,7 @@ window.onload=function()
 <div class="ch_logo"></div>
 
 <!-- 幼儿园哪个班 -->
-<div class="classlevel"></div>
+<div class="class"></div>
 
 <!-- 一周背景  -->
 <div class="weekbg"></div>
@@ -101,14 +98,22 @@ window.onload=function()
     <volist name="week" id="video" key="key">
         <php>
             $left = 85+($i-1)*160;
-            $top = 260+($key-1)*72;
+            $top = 260+($key-1)*70;
+            if(($i == 6 && $key == 4) || ($i==7 && $key == 4)){
+                $height = 130;
+            }else{
+                $height = 60;
+            }
         </php>
         <div id="div_video_{$i}_{$key}" style="position:absolute;width:150px;height:70px;left:{$left}px;top:{$top}px;line-height: 70px;text-align:center;color:#666;">
             <if condition="($i eq 6 and $key eq 4) or ($i eq 7 and $key eq 4)">
                 <img id="video_{$i}_{$key}" src="{$video['content']}" width="150" height="139">
             <else/>
-                {$video['name']}
+            <span id="video_{$i}_{$key}">{$video['name']}</span>
             </if>
+        </div>
+        <div id="div_video_{$i}_{$key}_focus" style="position:absolute;visibility: hidden;width:140px;height:{$height}px;left:{$left}px;top:{$top}px;text-align:center;">
+            <img id="video_{$i}_{$key}_focus" src="" width="140" height="{$height}">
         </div>
     </volist>
 </volist>

@@ -10,10 +10,10 @@ var	KEY_BACK 		 = 0x0008; 	// 返回/删除
 var KEY_ENTER 		 = 0x000D; 	// 确定
 var KEY_PAGE_UP		 = 0x0021;	// 上页
 var KEY_PAGE_DOWN    = 0x0022;  // 下页
-var KEY_LEFT		 = 97;	//= 0x0025;   // 左
-var	KEY_UP			 = 119;	//= 0x0026;   // 上
-var KEY_RIGHT 		 = 100;	//= 0x0027;	// 右
-var	KEY_DOWN 		 = 115;	//= 0x0028;	// 下
+var KEY_LEFT		 = 0x0025;   // 左
+var	KEY_UP			 = 0x0026;   // 上
+var KEY_RIGHT 		 = 0x0027;	// 右
+var	KEY_DOWN 		 = 0x0028;	// 下
 var KEY_0 			 = 0x0030;  // 0       
 var KEY_1 			 = 0x0031;  // 1
 var KEY_2 			 = 0x0032;  // 2
@@ -228,6 +228,7 @@ Epg.Button = Epg.btn =
 			}else{
 				G(prev.id).width  -= 10;
 				G(prev.id).height -= 10;
+				G('view_'+prev.id).height = 5;
 			}
 			if(prev.selectBox){ //add 20141213    失去焦点后隐藏光标，并把光标的尺寸恢复到原始大小
 				var selectBoxId = prev.id + '_focus';
@@ -245,6 +246,7 @@ Epg.Button = Epg.btn =
 			}else{
 				G(current.id).width  += 10;
 				G(current.id).height += 10;
+				G('view_'+current.id).height = 1;
 			}
 			if(current.selectBox){ //add 20141213    增加焦点框选中效果
 				var selectBoxId = current.id + '_focus';
