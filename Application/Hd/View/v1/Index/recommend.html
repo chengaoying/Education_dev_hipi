@@ -11,7 +11,7 @@
     height:125px;
     top:370px;
     left:90px;	
-    background-image:url(__HD__/images/recommend/user_info_bg.jpg);
+    background-image:url(__HD__/images/index/recommend/user_info_bg.jpg);
 }  
 
 /* 最近观看背景图 */
@@ -22,7 +22,7 @@
     height:120px;
     top:495px;
     left:90px;	
-    background-image:url(__HD__/images/recommend/recently_saw_bg.png);
+    background-image:url(__HD__/images/index/recommend/recently_saw_bg.png);
 } 
 
 /* 底部投影背景图 */
@@ -33,10 +33,6 @@
     height:54px;
 	top:615px;
     background-image:url(__HD__/images/common/shadow_1.png);
-}
-
-#div_left_ad{
-	
 }
 
 </style>
@@ -57,21 +53,21 @@ var buttons=
 		
 		/* 广告 */
 		//{id:'t_left_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'t_right_ad',up:'ch_1',down:''},
-		{id:'t_right_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_2.png',left:'',right:'tuijian_1',up:'ch_3',down:'t_bottom_ad'},
-		{id:'t_bottom_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'record_1',right:'tuijian_4',up:'t_right_ad',down:''},
+		{id:'t_right_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'',right:'tuijian_1',up:'ch_3',down:'t_bottom_ad'},
+		{id:'t_bottom_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x100.gif',left:'record_1',right:'tuijian_4',up:'t_right_ad',down:''},
 		
 		/* 推荐课程 */
-		{id:'tuijian_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'t_right_ad',right:'tuijian_2',up:'ch_3',down:'tuijian_4'},
-		{id:'tuijian_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'tuijian_1',right:'tuijian_3',up:'ch_3',down:'tuijian_5'},
-		{id:'tuijian_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'tuijian_2',right:'',up:'ch_3',down:'tuijian_6'},
-		{id:'tuijian_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'t_right_ad',right:'tuijian_5',up:'tuijian_1',down:''},
-		{id:'tuijian_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
-		{id:'tuijian_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.gif',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
+		{id:'tuijian_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'t_right_ad',right:'tuijian_2',up:'ch_3',down:'tuijian_4'},
+		{id:'tuijian_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'tuijian_1',right:'tuijian_3',up:'ch_3',down:'tuijian_5'},
+		{id:'tuijian_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'tuijian_2',right:'',up:'ch_3',down:'tuijian_6'},
+		{id:'tuijian_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'t_right_ad',right:'tuijian_5',up:'tuijian_1',down:''},
+		{id:'tuijian_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
+		{id:'tuijian_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
 		
 		//最近观看记录		
-		{id:'record_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/24_24.png',left:'',right:'t_bottom_ad',up:'',down:'record_2'},
-		{id:'record_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/24_24.png',left:'',right:'t_bottom_ad',up:'record_1',down:'record_3'},
-		{id:'record_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/24_24.png',left:'',right:'t_bottom_ad',up:'record_2',down:''},
+		{id:'record_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'',down:'record_2'},
+		{id:'record_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'record_1',down:'record_3'},
+		{id:'record_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'record_2',down:''},
 	];
 
 /* 初始化按钮 属性   */
@@ -131,27 +127,30 @@ window.onload=function()
 	<php>
 		$left = 135; $top = 510 + ($i-1)*30;
 	</php>
-	<div id="div_record_{$i}" style="position:absolute;width:160px;height:30px;left:{$left}px;top:{$top}px;">
+	<div id="div_record_{$i}" style="position:absolute;width:160px;height:30px;left:{$left}px;top:{$top}px;vertical-align: middle;">
 		<span id="record_{$i}" title="">{$r['name']}</span>
 	</div>	
-	<div id="div_record_{$i}_focus" style="position:absolute;visibility: hidden;width:160px;height:30px;left:{$left-10}px;top:{$top-5}px;text-align:center;">
-		<img id="record_{$i}_focus" src="" width="160" height="24">
+	<div id="div_record_{$i}_focus" style="position:absolute;visibility: hidden;width:165px;height:30px;left:{$left-10}px;top:{$top-2}px;text-align:center;">
+		<img id="record_{$i}_focus" src="" width="165" height="24">
 	</div>
 </volist>
 
 
 <!-- 页面中间 -->
 	<!-- 广告 -->
-<div id="div_t_right_ad" style="position:absolute;width:230px;height:320px;left:305px;top:180px;text-align:center;">
+<div id="div_t_right_ad" style="position:absolute;width:220px;height:330px;left:305px;top:180px;text-align:center;">
 	<img id="t_right_ad" title="123"  src="{$right_ad['content']}" width="210" height="320">
 </div>
-<div id="div_t_right_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:326px;left:305px;top:177px;text-align:center;">
-	<img id="t_right_ad_focus" src="" width="216" height="326">
+<div id="div_t_right_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:340px;left:300px;top:175px;text-align:center;">
+	<img id="t_right_ad_focus" src="" width="220" height="330">
 </div>
 
 	<!-- 成长指标/推荐课程 -->
-<div id="div_t_bottom_ad" style="position:absolute;width:230px;height:100px;left:305px;top:515px;text-align:center;">
+<div id="div_t_bottom_ad" style="position:absolute;width:220px;height:110px;left:305px;top:515px;text-align:center;">
 	<img id="t_bottom_ad" src="{$bottom_ad['content']}" width="210" height="100">
+</div>
+<div id="div_t_bottom_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:120px;left:300px;top:510px;text-align:center;">
+	<img id="t_bottom_ad_focus" src="" width="220" height="110">
 </div>
 
 
@@ -166,11 +165,10 @@ window.onload=function()
 		}
 	</php>
 	<div id="div_tuijian_{$i}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
-		<img id="view_tuijian_{$i}" style="" src="__HD__/common/transparent.png" width="210" height="5">
 		<img id="tuijian_{$i}" src="__HD__/images/test/{$i}.jpg" width="210" height="210">
 	</div>
-	<div id="div_tuijian_{$i}_focus" style="position:absolute;visibility:hidden;width:220px;height:220px;left:{$left}px;top:{$top-3}px;text-align:center;">
-		<img id="tuijian_{$i}_focus" src="" width="216" height="216">
+	<div id="div_tuijian_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+		<img id="tuijian_{$i}_focus" src="" width="220" height="220">
 	</div>
 </for>
 

@@ -49,14 +49,14 @@ var buttons=
 		{id:'search',name:'',action:'',linkImage:'/static/v1/hd/images/Index/allCourse/btn_search.png',focusImage:'/static/v1/hd/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
 		
 		/* 顶级分类（二级栏目） */
-		{id:'class_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'class_2',up:'ch_1',down:'class_5'},
-		{id:'class_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_1',right:'class_3',up:'ch_3',down:'class_6'},
-		{id:'class_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_2',right:'class_4',up:'ch_3',down:'class_7'},
-		{id:'class_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_3',right:'',up:'search',down:'class_8'},
-		{id:'class_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'class_6',up:'class_1',down:''},
-		{id:'class_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_5',right:'class_7',up:'class_2',down:''},
-		{id:'class_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_6',right:'class_8',up:'class_3',down:''},
-		{id:'class_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'class_7',right:'',up:'class_4',down:''},
+		{id:'class_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_260x205.gif',left:'',right:'class_2',up:'ch_1',down:'class_5'},
+		{id:'class_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_260x205.gif',left:'class_1',right:'class_3',up:'ch_3',down:'class_6'},
+		{id:'class_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_260x205.gif',left:'class_2',right:'class_4',up:'ch_3',down:'class_7'},
+		{id:'class_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_260x205.gif',left:'class_3',right:'',up:'search',down:'class_8'},
+		{id:'class_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_260x205.gif',left:'',right:'class_6',up:'class_1',down:''},
+		{id:'class_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_260x205.gif',left:'class_5',right:'class_7',up:'class_2',down:''},
+		{id:'class_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_260x205.gif',left:'class_6',right:'class_8',up:'class_3',down:''},
+		{id:'class_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_260x205.gif',left:'class_7',right:'',up:'class_4',down:''},
 	];
 
 /* 初始化按钮 属性   */
@@ -90,7 +90,7 @@ window.onload=function()
 
 <!-- 静态图片-底部投影效果 -->
 <?php $count = count($class)-4; ?>
-<?php $__FOR_START_23168__=1;$__FOR_END_23168__=$count+1;for($i=$__FOR_START_23168__;$i < $__FOR_END_23168__;$i+=1){ $left = 90 + ($i-1)*280; ?>
+<?php $__FOR_START_4839__=1;$__FOR_END_4839__=$count+1;for($i=$__FOR_START_4839__;$i < $__FOR_END_4839__;$i+=1){ $left = 90 + ($i-1)*280; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
@@ -107,11 +107,11 @@ window.onload=function()
 
 <!-- 顶级分类（二级栏目） -->
 <?php if(is_array($class)): $i = 0; $__LIST__ = $class;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$c): $mod = ($i % 2 );++$i; if($i > 4){ $top = 405; $left = 80 + ($i-5)*280; }else{ $top = 180; $left = 80 + ($i-1)*280; } ?>
-    <div id="div_class_<?php echo ($i); ?>" style="position:absolute;width:280px;height:225px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+    <div id="div_class_<?php echo ($i); ?>" style="position:absolute;width:270px;height:215px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
         <img id="class_<?php echo ($i); ?>" title="<?php echo ($c['linkUrl']); ?>" src="<?php echo ($c['imgUrl']); ?>" width="260" height="205">
     </div>
-    <div id="div_class_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:<?php echo ($left); ?>px;top:<?php echo ($top-3); ?>px;text-align:center;">
-        <img id="class_<?php echo ($i); ?>_focus" src="" width="260" height="205">
+    <div id="div_class_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:280px;height:225px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
+        <img id="class_<?php echo ($i); ?>_focus" src="" width="270" height="215">
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 

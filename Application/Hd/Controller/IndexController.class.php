@@ -106,52 +106,52 @@ class IndexController extends CommonController {
 				array(
 						'id' => 1,
 						'name' => 'aa',
-						'content' => get_upfile_url('__HD__/images/course/my/a.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/a.jpg')
 				),
 				array(
 						'id' => 1,
 						'name' => 'bb',
-						'content' => get_upfile_url('__HD__/images/course/my/b.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/b.jpg')
 				),
 				array(
 						'id' => 1,
 						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
 				),
 				array(
 						'id' => 1,
 						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
 				),
 				array(
 						'id' => 1,
 						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
 				),
 				array(
 						'id' => 1,
 						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
 				),
 				array(
 						'id' => 1,
 						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
 				),
 				array(
 						'id' => 1,
 						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
 				),
 				array(
 						'id' => 1,
 						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
 				),
 				array(
 						'id' => 1,
 						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
+						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
 				),
 		);
 		//print_r($myCourse);
