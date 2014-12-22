@@ -12415,3 +12415,880 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000557s ]
 INFO: [ app_end ] --END-- [ RunTime:0.000657s ]
 
+[ 2014-12-22T21:49:05+08:00 ] 127.0.0.1 /Test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000951s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001152s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001321s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002758s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000108s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000249s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019367s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019574s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000756s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000967s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001395s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001626s ]
+
+[ 2014-12-22T21:49:23+08:00 ] 127.0.0.1 /Test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000996s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000951s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001357s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002572s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000108s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000248s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014557s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014737s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000480s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000623s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000899s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001025s ]
+
+[ 2014-12-22T21:49:25+08:00 ] 127.0.0.1 /?params=%7B%22username%22%3A%20%2200000000%22%2C%20%22epg_full_url%22%3A%20%22/epg_redirect/education/%3FINFO%3D%253CuserId%253E123456789036%253C/userId%253E%253CuserToken%253E03111508256980016640821125101009%253C/userToken%253E%253CTokenExpiretime%253E20140402023516%253C/TokenExpiretime%253E%253CGroupId%253E26%253C/GroupId%253E%253CuserIP%253E10.132.100.143%253C/userIP%253E%253CpetName%253E%253C/petName%253E%253CareaCode%253E00%253C/areaCode%253E%253CTradeId%253Enull%253C/TradeId%253E%253CstbId%253E411001990070119000014C09B4E84B2D%253C/stbId%253E%253Cback_hall_url%253Ehttp%3A//61.160.131.12%3A8296/SPToAms%253C/back_hall_url%253E%253Cfrom%253E000%253C/from%253E%22%2C%20%22c_zsj_userid%22%3A%20%22900176%22%2C%20%22areacode%22%3A%2090017%2C%20%22usertoken%22%3A%20%2203111508256980016640821125101009%22%2C%20%22stbtype%22%3A%20%22ztebw%22%2C%20%22userid%22%3A%20%22123456789036%22%2C%20%22return_url%22%3A%20%22http%3A//61.160.131.12%3A8296/SPToAms%3FINFO%3D%3CuserId%3E02586588234%3C/userId%3E%3CuserToken%3E03111508256980016640821125101009%3C/userToken%3E%3CTokenExpiretime%3E20140402023516%3C/TokenExpiretime%3E%3CGroupId%3E26%3C/GroupId%3E%3CuserIP%3E10.132.100.143%3C/userIP%3E%3CareaCode%3E00%3C/areaCode%3E%3CTradeId%3E%3C/TradeId%3E%3CstbId%3E411001990070119000014C09B4E84B2D%3C/stbId%3E%3CoptFlag%3EGAME%3C/optFlag%3E%3CSPID%3Espa00022%3C/SPID%3E%3Cback_epg_url%3Ehttp%3A//61.160.131.12%3A8296/SPToAms%3C/back_epg_url%3E%22%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000064s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001138s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001389s ]
+NOTIC: [8] Undefined index: REDIRECT_URL E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 15 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001978s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003815s ]
+ERR: Access denied for user 'edu'@'localhost' (using password: NO)
+file: E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Common\functions.php
+line: 61
+trace: #0 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php(55): E('Access denied f...')
+#1 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Db.class.php(166): Think\Db\Driver\Mysql->connect()
+#2 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php(92): Think\Db->initConnect(false)
+#3 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Db\Driver\Mysql.class.php(211): Think\Db\Driver\Mysql->query('SHOW COLUMNS FR...')
+#4 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Model.class.php(130): Think\Db\Driver\Mysql->getFields('t_user')
+#5 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Model.class.php(118): Think\Model->flush()
+#6 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Model.class.php(1264): Think\Model->_checkTableInfo()
+#7 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Model.class.php(95): Think\Model->db(0, '', true)
+#8 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Common\functions.php(482): Think\Model->__construct('User')
+#9 E:\home\code\zendstudio\Education_dev_platform\Application\Api\Controller\UserApiController.class.php(38): D('User')
+#10 [internal function]: Api\Controller\UserApiController->loadByOpUserId('123456789036')
+#11 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Vendor\Hprose\HproseHttpServer.php(185): call_user_func_array(Array, Array)
+#12 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Vendor\Hprose\HproseHttpServer.php(461): HproseHttpServer->doInvoke()
+#13 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Vendor\Hprose\HproseHttpServer.php(480): HproseHttpServer->handle()
+#14 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Controller\HproseController.class.php(50): HproseHttpServer->start()
+#15 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Common\functions.php(561): Think\Controller\HproseController->__construct()
+#16 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\App.class.php(79): A('UserApi')
+#17 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\App.class.php(181): Think\App::exec()
+#18 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Think.class.php(117): Think\App::run()
+#19 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\ThinkPHP.php(94): Think\Think::start()
+#20 E:\home\code\zendstudio\Education_dev_platform\Public\index.php(31): require('E:\home\code\ze...')
+#21 {main}
+
+[ 2014-12-22T21:49:42+08:00 ] 127.0.0.1 /?params=%7B%22username%22%3A%20%2200000000%22%2C%20%22epg_full_url%22%3A%20%22/epg_redirect/education/%3FINFO%3D%253CuserId%253E123456789036%253C/userId%253E%253CuserToken%253E03111508256980016640821125101009%253C/userToken%253E%253CTokenExpiretime%253E20140402023516%253C/TokenExpiretime%253E%253CGroupId%253E26%253C/GroupId%253E%253CuserIP%253E10.132.100.143%253C/userIP%253E%253CpetName%253E%253C/petName%253E%253CareaCode%253E00%253C/areaCode%253E%253CTradeId%253Enull%253C/TradeId%253E%253CstbId%253E411001990070119000014C09B4E84B2D%253C/stbId%253E%253Cback_hall_url%253Ehttp%3A//61.160.131.12%3A8296/SPToAms%253C/back_hall_url%253E%253Cfrom%253E000%253C/from%253E%22%2C%20%22c_zsj_userid%22%3A%20%22900176%22%2C%20%22areacode%22%3A%2090017%2C%20%22usertoken%22%3A%20%2203111508256980016640821125101009%22%2C%20%22stbtype%22%3A%20%22ztebw%22%2C%20%22userid%22%3A%20%22123456789036%22%2C%20%22return_url%22%3A%20%22http%3A//61.160.131.12%3A8296/SPToAms%3FINFO%3D%3CuserId%3E02586588234%3C/userId%3E%3CuserToken%3E03111508256980016640821125101009%3C/userToken%3E%3CTokenExpiretime%3E20140402023516%3C/TokenExpiretime%3E%3CGroupId%3E26%3C/GroupId%3E%3CuserIP%3E10.132.100.143%3C/userIP%3E%3CareaCode%3E00%3C/areaCode%3E%3CTradeId%3E%3C/TradeId%3E%3CstbId%3E411001990070119000014C09B4E84B2D%3C/stbId%3E%3CoptFlag%3EGAME%3C/optFlag%3E%3CSPID%3Espa00022%3C/SPID%3E%3Cback_epg_url%3Ehttp%3A//61.160.131.12%3A8296/SPToAms%3C/back_epg_url%3E%22%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000085s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001733s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002174s ]
+NOTIC: [8] Undefined index: REDIRECT_URL E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 15 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003063s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005874s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+
+[ 2014-12-22T21:49:42+08:00 ] 127.0.0.1 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001174s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001518s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003035s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 55 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 56 行.
+NOTIC: [8] Use of undefined constant name - assumed 'name' E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 57 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000477s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000699s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030693s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030917s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000673s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000880s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001378s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001584s ]
+
+[ 2014-12-22T21:50:00+08:00 ] 127.0.0.1 /Hd/Index/allCourse
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001149s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001951s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003300s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005614s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000208s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000374s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\66360daab730568f0545fbb85a7b7e2a.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034893s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035053s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000920s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001045s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001697s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001839s ]
+
+[ 2014-12-22T21:50:04+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000601s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000787s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001242s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002277s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 113 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, boolean given E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 49 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 50 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 127 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000210s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000351s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025969s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026113s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000542s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000669s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000996s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001159s ]
+
+[ 2014-12-22T21:50:34+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000095s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002020s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002548s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.004663s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007878s ]
+
+[ 2014-12-22T21:50:35+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000091s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002155s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003862s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.006834s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.011356s ]
+
+[ 2014-12-22T21:50:36+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000091s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002163s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005910s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.006032s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012648s ]
+
+[ 2014-12-22T21:50:37+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000079s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001461s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002757s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.004348s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007587s ]
+
+[ 2014-12-22T21:50:38+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000101s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003248s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003926s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007678s ]
+
+[ 2014-12-22T21:50:45+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000096s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002222s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003863s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.007339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012016s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000496s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000770s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.077707s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.078049s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001737s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001965s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002463s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002699s ]
+
+[ 2014-12-22T21:50:48+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/20/stageId/7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001245s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001521s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004280s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000415s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000722s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038823s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.039077s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000954s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001195s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001771s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002025s ]
+
+[ 2014-12-22T22:00:10+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000082s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001662s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002282s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003367s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006308s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000564s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000977s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.075000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.075366s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001459s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001939s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002299s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002655s ]
+
+[ 2014-12-22T22:07:29+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000091s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001905s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002731s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007045s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000383s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000632s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.061201s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.061523s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000997s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001219s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001590s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001819s ]
+
+[ 2014-12-22T22:07:30+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001036s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001215s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001401s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003015s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000382s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000624s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 6 行.
+NOTIC: [8] Undefined variable: age E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 40 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032368s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032633s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000880s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001096s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001539s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001759s ]
+
+[ 2014-12-22T22:09:20+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000065s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001268s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001581s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002430s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004462s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000422s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000704s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 6 行.
+NOTIC: [8] Undefined variable: age E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 40 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034992s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035273s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000916s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001164s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001742s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001983s ]
+
+[ 2014-12-22T22:09:24+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001072s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001667s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002168s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004281s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000239s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000386s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022231s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022449s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000533s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000661s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000917s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001040s ]
+
+[ 2014-12-22T22:09:25+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001118s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001592s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001830s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003923s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000564s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000908s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.050807s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.051275s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001220s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001513s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001930s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002211s ]
+
+[ 2014-12-22T22:17:08+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000973s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001277s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001686s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003302s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000421s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000645s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032212s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032428s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000849s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001052s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001505s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001713s ]
+
+[ 2014-12-22T22:24:15+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000092s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001908s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002436s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003658s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006787s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000262s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000401s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018906s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019048s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000511s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000652s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001021s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001149s ]
+
+[ 2014-12-22T22:24:18+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000067s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001543s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001347s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001833s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003616s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000458s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000784s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035836s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036137s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000658s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000899s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001533s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001780s ]
+
+[ 2014-12-22T22:24:21+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001073s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001698s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002379s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004486s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [8] Undefined index: imgUrl E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 51 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000215s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000376s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 87 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020947s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021088s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000602s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000724s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000936s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001058s ]
+
+[ 2014-12-22T22:24:22+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/20/stageId/7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001351s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002100s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002833s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005408s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000462s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000762s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029908s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030217s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001301s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001572s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002044s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002310s ]
+
+[ 2014-12-22T22:25:30+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/20/stageId/7.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000091s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001689s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002152s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002660s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005544s ]
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000310s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000548s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014585s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014770s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000410s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000540s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000916s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001044s ]
+

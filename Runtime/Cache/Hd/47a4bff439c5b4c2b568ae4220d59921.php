@@ -18,7 +18,7 @@ body {background-color: transparent;}
 
 
 <style>
-    body{ background-image:url(/static/v1/hd/images/timer/bg.jpg); }
+    body{ background-image:url(/static/v1/hd/images/sectionList/primaryschool/bg.jpg); }
 </style>
 
 <script type="text/javascript">
@@ -26,27 +26,27 @@ body {background-color: transparent;}
 var buttons=
 	[
 	 	/* 左边  */
-		{id:'plan',name:'',action:'',linkImage:'/static/v1/hd/images/timer/addplan1.png',focusImage:'/static/v1/hd/images/timer/addplan2.png',selectBox:'',right:'see',down:'order'},
-		{id:'order',name:'',action:'',linkImage:'/static/v1/hd/images/timer/order1.png',focusImage:'/static/v1/hd/images/timer/order2.png',selectBox:'',left:'',right:'see',down:'',up:'plan'},
+		{id:'plan',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/addplan1.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/addplan2.png',selectBox:'',right:'see',down:'order'},
+		{id:'order',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/order1.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/order2.png',selectBox:'',left:'',right:'see',down:'',up:'plan'},
 		
 		/* 上边 */
-		{id:'see',name:'',action:'',linkImage:'/static/v1/hd/images/timer/seeing1.png',focusImage:'/static/v1/hd/images/timer/seeing2.png',selectBox:'',right:'left',left:'plan',up:'',down:'left'},
+		{id:'see',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/seeing1.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/seeing2.png',selectBox:'',right:'left',left:'plan',up:'',down:'left'},
 		
 		/* 页码 */
-		{id:'left',name:'',action:'',linkImage:'/static/v1/hd/images/timer/left1.png',focusImage:'/static/v1/hd/images/timer/left2.png',selectBox:'',right:'right',left:'see',up:'',down:'course_6'},
-		{id:'right',name:'',action:'',linkImage:'/static/v1/hd/images/timer/right1.png',focusImage:'/static/v1/hd/images/timer/right2.png',selectBox:'',left:'left',up:'',down:'course_6'},
+		{id:'left',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/btn_page_up.png',focusImage:'/static/v1/hd/images/common/page/btn_page_up_over.png',selectBox:'',right:'right',left:'see',up:'',down:'course_6'},
+		{id:'right',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/btn_page_down.png',focusImage:'/static/v1/hd/images/common/page/btn_page_down_over.png',selectBox:'',left:'left',up:'',down:'course_6'},
 		
 		/* 下边 */
-		{id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'plan',right:'course_6',up:'left',down:'course_2'},
-		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'plan',right:'course_7',up:'course_1',down:'course_3'},
-		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'order',right:'course_8',up:'course_2',down:'course_4'},
-		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'order',right:'course_9',up:'course_3',down:'course_5'},
-		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'order',right:'course_10',up:'course_4',down:''},
-		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_1',right:'',up:'left',down:'course_7'},
-		{id:'course_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_2',right:'',up:'course_6',down:'course_8'},
-		{id:'course_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_3',right:'',up:'course_7',down:'course_9'},
-		{id:'course_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_4',right:'',up:'course_8',down:'course_10'},
-		{id:'course_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_5',right:'',up:'course_9',down:''},
+		{id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'plan',right:'course_6',up:'left',down:'course_2'},
+		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'plan',right:'course_7',up:'course_1',down:'course_3'},
+		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'order',right:'course_8',up:'course_2',down:'course_4'},
+		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'order',right:'course_9',up:'course_3',down:'course_5'},
+		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'order',right:'course_10',up:'course_4',down:''},
+		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'course_1',right:'',up:'left',down:'course_7'},
+		{id:'course_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'course_2',right:'',up:'course_6',down:'course_8'},
+		{id:'course_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'course_3',right:'',up:'course_7',down:'course_9'},
+		{id:'course_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'course_4',right:'',up:'course_8',down:'course_10'},
+		{id:'course_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'course_5',right:'',up:'course_9',down:''},
 	];
 
 /* 初始化按钮 属性   */
@@ -60,7 +60,7 @@ window.onload=function()
 </script>
 <!-- 图书头像 -->
 <div id="div_book" style="position:absolute;left:90px;top:80px;">
-	<img id='book' title="ddd" src="/static/v1/hd/images/timer/china.jpg" width="216" height="216">
+	<img id='book' title="ddd" src="/static/v1/hd/images/sectionList/primaryschool/china.jpg" width="216" height="216">
 </div>
 <div style="position:absolute;left:90px;top:325px;">
 	共100课时<br>
@@ -68,12 +68,12 @@ window.onload=function()
 </div>
 <!-- 学习计划 -->
 <div id="div_plan" style="position:absolute;left:100px;top:400px;">
-	<img id='plan' title="ddd" src="/static/v1/hd/images/timer/addplan1.png" width="191" height="57">
+	<img id='plan' title="ddd" src="/static/v1/hd/images/sectionList/primaryschool/addplan1.png" width="191" height="57">
 </div>	
 
 <!-- 订购课程 -->
 <div id="div_order" style="position:absolute;left:100px;top:470px;">
-	<img id='order' title="ddd" src="/static/v1/hd/images/timer/order1.png" width="191" height="57">
+	<img id='order' title="ddd" src="/static/v1/hd/images/sectionList/primaryschool/order1.png" width="191" height="57">
 </div>
 
 <!-- 图书标题 -->
@@ -86,9 +86,9 @@ window.onload=function()
 	苏教版二年级语文上册
 </div>
 
-<!-- 翻页左 -->
-<div id="div_left" style="position:absolute;width:40px;height:35px;left:1008px;top:277px;text-align:center;">
-	<img id='left' title="ddd" src="/static/v1/hd/images/timer/left1.png" width="34" height="34">
+<!-- 上一页 -->
+<div id="div_page_up" style="position:absolute;width:40px;height:35px;left:1008px;top:277px;text-align:center;">
+	<img id='page_up' title="ddd" src="/static/v1/hd/images/common/page/btn_page_up.png" width="34" height="34">
 </div>
 
 <!-- 页码 -->
@@ -96,9 +96,9 @@ window.onload=function()
 	4/8
 </div>
 
-<!-- 翻页右 -->
-<div id="div_right" style="position:absolute;width:40px;height:35px;left:1130px;top:277px;text-align:center;">
-	<img id='right' title="ddd" src="/static/v1/hd/images/timer/right1.png" width="34" height="34">
+<!-- 下一页-->
+<div id="div_page_downt" style="position:absolute;width:40px;height:35px;left:1130px;top:277px;text-align:center;">
+	<img id='page_down' title="ddd" src="/static/v1/hd/images/common/page/btn_page_down.png" width="34" height="34">
 </div>
 
 <!-- 观看记录 -->
@@ -108,7 +108,7 @@ window.onload=function()
 
 <!-- 继续观看 -->
 <div id="div_see" style="position:absolute;width:135px;height:42px;left:680px;top:220px;text-align:center;">
-	<img id="see"  src="/static/v1/hd/images/timer/seeing1.png" width="135" height="42">
+	<img id="see"  src="/static/v1/hd/images/sectionList/primaryschool/seeing1.png" width="135" height="42">
 </div>
 
 <?php if(is_array($videoList)): $i = 0; $__LIST__ = $videoList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$videoLists): $mod = ($i % 2 );++$i; if($i<=5){ $left = 440; $top = ($i-1)*60+340; }else{ $left = 820; $top = ($i-6)*60+340; } ?>

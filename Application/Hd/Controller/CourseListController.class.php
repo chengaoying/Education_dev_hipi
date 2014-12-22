@@ -56,7 +56,7 @@ class CourseListController extends CommonController {
 		}	
 	}
 	
-	/* 测试课程列表 */
+	/* 测试--课程列表 */
 	private function getCourseList(){
 		$courseList = array();
 		for($i=0; $i< 10; $i++){

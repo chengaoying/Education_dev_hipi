@@ -48,11 +48,11 @@ body {background-color: transparent;}
         left:60px;
         width: 286px;
         height: 382px;
-        background-image: url(/static/v1/hd/images/course/early/month_aim/<?php echo ($month); ?>.png);
+        background-image: url(/static/v1/hd/images/sectionList/early/month_aim/<?php echo ($month); ?>.png);
     }
     
     /*月份*/
-    <?php if($month>=1 and $month<=12){ $monthbg = '/static/v1/hd/images/course/early/month/1_12_month.png'; }else if($month>=13 and $month<=24){ $monthbg = '/static/v1/hd/images/course/early/month/13_24_month.png'; }else{ $monthbg = '/static/v1/hd/images/course/early/month/25_36_month.png'; } if(in_array($month,array(12,24,36))){ $probgwidth = 1110; $proleft = 1085; }else{ $probgwidth = ($month%12)*86; $proleft = ($month%12)*86+62; } ?>
+    <?php if($month>=1 and $month<=12){ $monthbg = '/static/v1/hd/images/sectionList/early/month/1_12_month.png'; }else if($month>=13 and $month<=24){ $monthbg = '/static/v1/hd/images/sectionList/early/month/13_24_month.png'; }else{ $monthbg = '/static/v1/hd/images/sectionList/early/month/25_36_month.png'; } if(in_array($month,array(12,24,36))){ $probgwidth = 1110; $proleft = 1085; }else{ $probgwidth = ($month%12)*86; $proleft = ($month%12)*86+62; } ?>
     
     .monthbg{
         position: absolute;
@@ -78,7 +78,7 @@ body {background-color: transparent;}
         height:30px;
         top:593px;
         left:<?php echo ($proleft); ?>px;
-        background: url(/static/v1/hd/images/course/early/month/<?php echo ($month); ?>.png) no-repeat;
+        background: url(/static/v1/hd/images/sectionList/early/month/<?php echo ($month); ?>.png) no-repeat;
     }
     
     .probg{
@@ -87,7 +87,7 @@ body {background-color: transparent;}
         height:5px;
         top:625px;
         left:85px;
-        background: url(/static/v1/hd/images/course/early/month/pro_bg.png) no-repeat;
+        background: url(/static/v1/hd/images/sectionList/early/month/pro_bg.png) no-repeat;
     }
 </style>
 <script type="text/javascript">

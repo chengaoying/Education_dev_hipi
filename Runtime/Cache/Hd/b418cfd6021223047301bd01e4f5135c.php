@@ -30,6 +30,16 @@ body {background-color: transparent;}
         background: url(/static/v1/hd/images/sectionList/title_preschool.png) no-repeat;
     }
     
+    .weekinfo{
+        position: absolute;
+        display: block;
+        top:70px;
+        left:885px;
+        width: 57px;
+        height: 26px;
+        background: url(/static/v1/hd/images/course/kinder/weekday/weekinfo.png) no-repeat;
+    }
+    
     /* 幼儿园哪个班 */
     .class{
         position: absolute;
@@ -55,6 +65,11 @@ body {background-color: transparent;}
 
 var buttons=
 	[
+        //三天
+        {id:'day_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'day_2',up:'',down:'video_1'},
+        {id:'day_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_1',right:'day_3',up:'',down:'video_1'},
+        {id:'day_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_2',right:'week_course',up:'',down:'video_1'},
+        
         /*一周课程*/
         {id:'btn_week',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/preschool/btn_week.png',focusImage:'/static/v1/hd/images/sectionList/preschool/btn_week_over.png',selectBox:'',left:'',right:'',up:'',down:['video_5','video_4','video_3','video_2','video_1']},
         
@@ -70,11 +85,25 @@ var buttons=
 		{id:'special_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_360x150.gif',left:'special_1',right:'special_3',up:['video_3','video_2','video_1'],down:''},
 		{id:'special_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_360x150.gif',left:'special_2',right:'',up:['video_5','video_4','video_3','video_2','video_1'],down:''},
 	];
+    
+var daylist = <?php echo ($json_day); ?>;
 
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	//栏目
+	for(var i=0; i<daylist.length; i++)
+	{
+		buttons[i].name = daylist[i].name;
+		buttons[i].linkImage = daylist[i].linkImage;
+		buttons[i].focusImage = daylist[i].focusImage;
+	}
+	
+}
 
 window.onload=function()
 {
-	Epg.btn.init('btn_week',buttons,true);	
+    initButtons();
+	Epg.btn.init('day_3',buttons,true);	
 };
 </script>
 
@@ -83,6 +112,15 @@ window.onload=function()
 
 <!-- 幼儿园哪个班 -->
 <div class="class"></div>
+
+<!-- 三天 -->
+<?php if(is_array($dayList)): $i = 0; $__LIST__ = $dayList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$day): $mod = ($i % 2 );++$i; $left = 945+($i-1)*48; ?>
+    <div id="div_day_<?php echo ($i); ?>" style="position: absolute;width:43px;height:40px;left:<?php echo ($left); ?>px;top:65px;">
+        <img id="day_<?php echo ($i); ?>" src="<?php echo ($day['linkImage']); ?>" width="43" height="40" />
+    </div><?php endforeach; endif; else: echo "" ;endif; ?>
+
+<!-- 星期 -->
+<div class="weekinfo"></div>
 
 <!-- 一周课程 -->
 <div id="div_btn_week" title="<?php echo U('SectionList/week');?>" style="position: absolute;width:98px;height:40px;left:1095px;top:65px;">

@@ -63,6 +63,61 @@ class SectionListController extends CommonController {
 		$this->display('detail_early');
 	}
 	
+	/**
+	 * 幼教--课时列表
+	 * @param unknown_type $chId
+	 * @param unknown_type $chKey
+	 * @param unknown_type $stageId
+	 */
+	private function preschool($chId,$chKey,$stageId){
+		$template = 'detail_preschool';
+		$class = 'big'; //哪个班
+	
+		$dayList = $this->getDayList();
+		$json_day = json_encode($dayList);
+		$this->assign(array(
+			'class' 		=> $class,
+			'videoList' 	=> $this->getVideoList(5),
+			'specialList'	=> $this->getSpecialList(3),
+			'json_day'		=> $json_day,
+			'dayList'		=> $dayList,
+		));
+		$this->display('detail_preschool');
+	}
+	
+	/**
+	 * 通用--课时列表
+	 * @param unknown_type $chId
+	 * @param unknown_type $chKey
+	 * @param unknown_type $stageId
+	 */
+	private function common($chId,$chKey,$stageId){
+		$this->assign(array(
+			'videoList'=>$this->getVideoList(10),
+		));
+		$this->display('detail_primaryschool');
+	}
+	
+	/**
+	 * 一周课程--课时列表
+	 */
+	public function weekAct(){
+		$class = 'big';
+		$weekList = $this->getWeekList();
+		$json_week = json_encode($weekList);
+		$this->assign(array(
+				'class'		=> $class,
+				'videoList' => $this->getVideoList2(),
+				'json_week' => $json_week,
+				'weekList'	=> $weekList,
+		));
+		$this->display();
+	}
+	
+	
+	
+	
+	
 	/* 测试使用 */
 	private function getTopicList($count=6){
 		$topics = array();
@@ -97,106 +152,64 @@ class SectionListController extends CommonController {
 		return $specials;
 	}
 	
-	/**
-	 * 幼教--课时列表
-	 * @param unknown_type $chId
-	 * @param unknown_type $chKey
-	 * @param unknown_type $stageId
-	 */
-	private function preschool($chId,$chKey,$stageId){
-		$template = 'detail_preschool';
-		$class = 'big'; //哪个班
-        //显示哪三天
+	/* 测试使用 */
+	private function getDayList(){
+		//显示哪三天
 		$today = date("w",NOW_TIME);//周几
-        $yesterday = date("w",  strtotime("-1 days", NOW_TIME));
-        $dayBefore = date("w",  strtotime("-2 days", NOW_TIME));
-        $dayList = array();
-        $dayList = array(
-            array(
-                    'id' => $dayBefore,
-                    'name' => $dayBefore,
-                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$dayBefore.'.png'),
-                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$dayBefore.'_over.png'),
-            ),
-            array(
-                    'id' => $yesterday,
-                    'name' => $yesterday,
-                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$yesterday.'.png'),
-                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$yesterday.'_over.png'),
-            ),
-            array(
-                    'id' => $today,
-                    'name' => $today,
-                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$today.'.png'),
-                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$today.'_over.png'),
-            ),
-        );
-        
-        $json_day = json_encode($dayList);
-        
-		$this->assign(array(
-			'class' => $class,
-			'videoList' => $this->getVideoList(5),
-			'specialList' => $this->getSpecialList(3),
-                'json_day' => $json_day,
-                'dayList' => $dayList,
-		));
-		$this->display('detail_preschool');
+		$yesterday = date("w",  strtotime("-1 days", NOW_TIME));
+		$dayBefore = date("w",  strtotime("-2 days", NOW_TIME));
+		$dayList = array();
+		$dayList = array(
+				array(
+						'id' => $dayBefore,
+						'name' => $dayBefore,
+						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$dayBefore.'.png'),
+						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$dayBefore.'_over.png'),
+				),
+				array(
+						'id' => $yesterday,
+						'name' => $yesterday,
+						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$yesterday.'.png'),
+						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$yesterday.'_over.png'),
+				),
+				array(
+						'id' => $today,
+						'name' => $today,
+						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$today.'.png'),
+						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$today.'_over.png'),
+				),
+		);
+		return $dayList;
 	}
 	
-	/**
-	 * 通用--课时列表
-	 * @param unknown_type $chId
-	 * @param unknown_type $chKey
-	 * @param unknown_type $stageId
-	 */
-	private function common($chId,$chKey,$stageId){
-		$this->assign(array(
-			'videoList'=>$this->getVideoList(10),
-		));
-		$this->display('detail_primaryschool');
-	}
-	
-	/**
-	 * 一周课程--课时列表
-	 */
-	public function weekAct(){
-		$class = 'big';
-        //显示哪三周
+	/* 测试使用 */
+	private function getWeekList(){
+		//显示哪三周
 		$thisWeek = date("W",NOW_TIME);//第几周
-        $lastWeek = date("W",  strtotime("-7 days", NOW_TIME));
-        $beforeWeek = date("W",  strtotime("-14 days", NOW_TIME));
-		
-        $weekList = array();
-        $weekList = array(
-            array(
-                    'id' => $beforeWeek,
-                    'name' => $beforeWeek,
-                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$dayBefore.'.png'),
-                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$dayBefore.'_over.png'),
-            ),
-            array(
-                    'id' => $lastWeek,
-                    'name' => $lastWeek,
-                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$yesterday.'.png'),
-                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$yesterday.'_over.png'),
-            ),
-            array(
-                    'id' => $thisWeek,
-                    'name' => $thisWeek,
-                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$today.'.png'),
-                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$today.'_over.png'),
-            ),
-        );
-        
-        $json_week = json_encode($weekList);
-		$this->assign(array(
-			'class' => $class,
-			'videoList' => $this->getVideoList2(),
-                'json_week' => $json_week,
-                'weekList' => $weekList,
-		));
-		$this->display();
+		$lastWeek = date("W",  strtotime("-7 days", NOW_TIME));
+		$beforeWeek = date("W",  strtotime("-14 days", NOW_TIME));
+		$weekList = array();
+		$weekList = array(
+				array(
+						'id' => $beforeWeek,
+						'name' => $beforeWeek,
+						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$beforeWeek.'.png'),
+						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$beforeWeek.'_over.png'),
+				),
+				array(
+						'id' => $lastWeek,
+						'name' => $lastWeek,
+						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$lastWeek.'.png'),
+						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$lastWeek.'_over.png'),
+				),
+				array(
+						'id' => $thisWeek,
+						'name' => $thisWeek,
+						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$thisWeek.'.png'),
+						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$thisWeek.'_over.png'),
+				),
+		);
+		return $weekList;
 	}
 	
 	/* 测试使用 */
