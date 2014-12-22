@@ -10,7 +10,17 @@
         left:85px;
         width: 185px;
         height: 42px;
-        background: url(__HD__/images/course/kinder/ch_logo.png) no-repeat;
+        background: url(__HD__/images/sectionList/title_preschool.png) no-repeat;
+    }
+    
+    .weekinfo{
+        position: absolute;
+        display: block;
+        top:70px;
+        left:885px;
+        width: 57px;
+        height: 26px;
+        background: url(__HD__/images/course/kinder/weekday/weekinfo.png) no-repeat;
     }
     
     /* 幼儿园哪个班 */
@@ -24,34 +34,59 @@
         background: url(__HD__/images/course/kinder/class_{$class}_title.png) no-repeat;
     }
     
-    
+	.shadow{
+        position: absolute;
+        width:1110px;
+        height:50px;
+        top:617px;
+        left:90px;
+        background: url(__HD__/images/common/shadow_3.png) no-repeat;
+    }
 </style>
 
 <script type="text/javascript">
 
-
 var buttons=
 	[
+        //三天
+        {id:'day_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'day_2',up:'',down:'video_1'},
+        {id:'day_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_1',right:'day_3',up:'',down:'video_1'},
+        {id:'day_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_2',right:'week_course',up:'',down:'video_1'},
+        
         /*一周课程*/
-        {id:'week_course',name:'',action:'',linkImage:'__HD__/images/course/kinder/week_course.png',focusImage:'__HD__/images/course/kinder/week_course_over.png',selectBox:'',left:'',right:'video_1',up:'',down:'video_1'},
+        {id:'btn_week',name:'',action:'',linkImage:'__HD__/images/sectionList/preschool/btn_week.png',focusImage:'__HD__/images/sectionList/preschool/btn_week_over.png',selectBox:'',left:'',right:'',up:'',down:['video_5','video_4','video_3','video_2','video_1']},
         
         /*视频列表*/
-	 	{id:'video_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'',right:'video_2',up:'',down:'special_1'},
-        {id:'video_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:'special_1'},
-        {id:'video_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'week_course',down:['special_2','special_1']},
-        {id:'video_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'week_course',down:['special_3','special_2','special_1']},
-        {id:'video_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'video_4',right:'special_1',up:'week_course',down:['special_3','special_2','special_1']},
+	 	{id:'video_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'',right:'video_2',up:'btn_week',down:'special_1'},
+        {id:'video_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'video_1',right:'video_3',up:'btn_week',down:'special_1'},
+        {id:'video_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'video_2',right:'video_4',up:'btn_week',down:['special_2','special_1']},
+        {id:'video_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'video_3',right:'video_5',up:'btn_week',down:['special_3','special_2','special_1']},
+        {id:'video_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'video_4',right:'special_1',up:'btn_week',down:['special_3','special_2','special_1']},
         
         /* 专题列表 */
-        {id:'special_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:['video_5','video_4','video_3','video_2','video_1'],right:'special_2',up:'video_1',down:''},
-		{id:'special_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'special_1',right:'special_3',up:['video_3','video_2','video_1'],down:''},
-		{id:'special_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/select_box_1.png',left:'special_2',right:'',up:['video_5','video_4','video_3','video_2','video_1'],down:''},
+        {id:'special_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_360x150.gif',left:'',right:'special_2',up:'video_1',down:''},
+		{id:'special_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_360x150.gif',left:'special_1',right:'special_3',up:['video_3','video_2','video_1'],down:''},
+		{id:'special_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_360x150.gif',left:'special_2',right:'',up:['video_5','video_4','video_3','video_2','video_1'],down:''},
 	];
+    
+var daylist = {$json_day};
 
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	//栏目
+	for(var i=0; i<daylist.length; i++)
+	{
+		buttons[i].name = daylist[i].name;
+		buttons[i].linkImage = daylist[i].linkImage;
+		buttons[i].focusImage = daylist[i].focusImage;
+	}
+	
+}
 
 window.onload=function()
 {
-	Epg.btn.init('week_course',buttons,true);	
+    initButtons();
+	Epg.btn.init('day_3',buttons,true);	
 };
 </script>
 
@@ -61,34 +96,49 @@ window.onload=function()
 <!-- 幼儿园哪个班 -->
 <div class="class"></div>
 
+<!-- 三天 -->
+<volist name="dayList" id="day" key="i">
+    <php>$left = 945+($i-1)*48;</php>
+    <div id="div_day_{$i}" style="position: absolute;width:43px;height:40px;left:{$left}px;top:65px;">
+        <img id="day_{$i}" src="{$day['linkImage']}" width="43" height="40" />
+    </div>
+</volist>
+
+<!-- 星期 -->
+<div class="weekinfo"></div>
+
 <!-- 一周课程 -->
-<div id="div_week_course" title="{:U('Course/week')}" style="position: absolute;width:98px;height:40px;left:1090px;top:65px;">
-        <img id="week_course" src="__HD__/images/course/kinder/week_course.png" width="98" height="40" />
+<div id="div_btn_week" title="{:U('SectionList/week')}" style="position: absolute;width:98px;height:40px;left:1095px;top:65px;">
+	<img id="btn_week" src="__HD__/images/sectionList/preschool/btn_week.png" width="98" height="40" />
 </div>
 
-<!-- 上面视频列表 -->
+<!-- 视频列表 -->
 <volist name="videoList" id="video" key="i">
     <php>
-         $top = 186; $left = 85 + ($i-1)*225;
+         $top = 180; $left = 85 + ($i-1)*225;
     </php>
-    <div id="div_video_{$i}" style="position:absolute;width:230px;height:210px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="video_{$i}" src="{$video['content']}" width="210" height="270">
+    <div id="div_video_{$i}" style="position:absolute;width:220px;height:280px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="video_{$i}" src="{$video['imgUrl']}" width="210" height="270">
     </div>
-    <div id="div_video_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:{$left}px;top:{$top-3}px;text-align:center;">
-        <img id="video_{$i}_focus" src="" width="216" height="276">
+    <div id="div_video_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:290px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="video_{$i}_focus" src="" width="220" height="280">
     </div>
 </volist>
 
-<!-- 下面专题列表 -->
+<!-- 专题列表 -->
 <volist name="specialList" id="special" key="i">
     <php>
-         $top = 476; $left = 95 + ($i-1)*375;
-         $tipTop = 576;$tipLeft = 360 + ($i-1)*375;
+         $top = 465; $left = 85 + ($i-1)*375;
     </php>
-    <div id="div_special_{$i}" style="position:absolute;width:360px;height:150px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="special_{$i}" src="{$special['content']}" width="360" height="150">
+    <div id="div_special_{$i}" style="position:absolute;width:370px;height:160px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="special_{$i}" src="{$special['imgUrl']}" width="360" height="150">
     </div>
-    <div id="div_special_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:{$left}px;top:{$top-3}px;text-align:center;">
-        <img id="special_{$i}_focus" src="" width="360" height="150">
+    <div id="div_special_{$i}_focus" style="position:absolute;visibility:hidden;width:380px;height:170px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="special_{$i}_focus" src="" width="370" height="160">
     </div>
 </volist>
+
+<!-- 投影 -->
+<div class="shadow"></div>
+
+

@@ -10,7 +10,7 @@
         left:85px;
         width: 235px;
         height: 90px;
-        background: url(__HD__/images/course/early/age/ch_logo.png) no-repeat;
+        background: url(__HD__/images/courseList/title/title_{$chKey}.png) no-repeat;
     }
 </style>
 
@@ -19,13 +19,16 @@
 
 var buttons=
 	[
-        /*年龄*/
+        /*龄段*/
 	 	{id:'stage_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'stage_2',up:'',down:'course_1'},
         {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_1',right:'stage_3',up:'',down:'course_2'},
-        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_2',right:'',up:'',down:'course_2'},
+        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_2',right:'stage_4',up:'',down:'course_2'},
+        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_3',right:'stage_5',up:'',down:'course_2'},
+        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_4',right:'stage_6',up:'',down:'course_2'},
+        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_5',right:'',up:'',down:'course_2'},
         
         /* 课程列表 */
-        {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'stage_1',right:'course_2',up:'stage_1',down:'course_6'},
+        {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'',right:'course_2',up:'stage_1',down:'course_6'},
 		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'course_1',right:'course_3',up:'stage_2',down:['course_7','course_6']},
 		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'course_2',right:'course_4',up:'stage_3',down:['course_8','course_7','course_6']},
 		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'course_3',right:'course_5',up:'stage_3',down:['course_9','course_8','course_7','course_6']},
@@ -41,7 +44,7 @@ var stagelist = {$json_stage};
 
 /* 初始化按钮 属性   */
 var initButtons = function(){
-	//年级
+	//龄段
 	for(var i=0; i<stagelist.length; i++)
 	{
 		buttons[i].name = stagelist[i].name;
@@ -61,11 +64,11 @@ window.onload=function()
 <!-- 左上角的栏目LOGO -->
 <div class="ch_logo"></div>
 
-<!-- 早教龄段列表 -->
+<!-- 龄段列表 -->
 <volist name="stageList" id="stage" key="i">
-    <php>$left = 270+($i-1)*90;</php>
-    <div id="div_stage_{$i}" title="{:U('CourseList/early?stageId='.$i)}" style="position:absolute;width:80px;height:38px;left:{$left}px;top:80px;text-align:center;">
-        <img id="stage_{$i}" src="{$stage['linkImage']}" width="61" height="26">
+    <php>$left = 300+($i-1)*90;</php>
+    <div id="div_stage_{$i}" title="{:U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id'])}" style="position:absolute;width:80px;height:38px;left:{$left}px;top:72px;text-align:center;">
+        <img id="stage_{$i}" src="{$stage['linkImage']}">
     </div>
 </volist>
 
@@ -78,8 +81,8 @@ window.onload=function()
             $top = 182; $left = 80 + ($i-1)*225;
         }
     </php>
-    <div id="div_course_{$i}" title="{:U('SectionList/early')}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="course_{$i}" src="{$course['content']}" width="210" height="210">
+    <div id="div_course_{$i}" title="{:U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'])}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="course_{$i}" src="{$course['imgUrl']}" width="210" height="210">
     </div>
     <div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
         <img id="course_{$i}_focus" src="" width="220" height="220">

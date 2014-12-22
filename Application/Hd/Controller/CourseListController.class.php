@@ -16,527 +16,57 @@ class CourseListController extends CommonController {
 	 */
 	public function indexAct(){
 		//一级分类（二级栏目）的ID
-		$chId = I('chId',''); 
-		//获取该一级分类下的龄段(有可能为空)
-		$stage = get_array_for_fieldval(S('Stage'),'chId',$chId);
+		$chId = I('chId','');
+		$chKey = get_array_keyval(S('Channel'),$chId,'id','chKey');
 		
-		//龄段id
+		//获取该一级分类下的龄段(有可能为空)
+		$stageList = get_array_for_fieldval(S('Stage'),'chId',$chId);
+		$this->initStageList($stageList);
+		
+		//龄段id(id不为空：从单个龄段入口进入)
 		$stageId = I('stageId','');
-		if(!empty($stageId)) $stage = get_array_for_fieldval($stage,'id',$stageId);
+		if(!empty($stageId)) $stageList = get_array_for_fieldval($stageList,'id',$stageId);
+		
+		//龄段列表-json格式
+		$json_stage = get_array_fieldkey($stageList,array('id','name','linkImage','focusImage'));
+		$json_stage = json_encode($json_stage);
 		
 		$this->assign(array(
-			'chId'	     => $chId,
+			'chKey'	     => $chKey,
 			'stageId'    => $stageId,
-			'stage'   	 => $stage,
+			'stageList'  => $stageList,
+			'json_stage' => $json_stage,
 			'courseList' => $this->getCourseList(),	
 		));
 		$this->display();
 	}
 	
+	/**
+	 * 初始化龄段的图片
+	 * @param array $stageList
+	 */
+	private function initStageList(&$stageList){
+		$stageList = array_slice($stageList, 0, count($stageList));
+		foreach ($stageList as $k => $v){
+			if($v['imgUrl']){
+				$imgs = explode(PHP_EOL, $v['imgUrl']);
+				$stageList[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
+				$stageList[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
+			}
+		}	
+	}
+	
+	/* 测试课程列表 */
 	private function getCourseList(){
-		$courseList = array(
-				array(
-						'id' => 1,
-						'name' => 'aa',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/a.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/b.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-		);
+		$courseList = array();
+		for($i=0; $i< 10; $i++){
+			$courseList[$i]['id'] = $i;
+			$courseList[$i]['chId'] = 20;
+			$courseList[$i]['stageIds'] = 7;
+			$courseList[$i]['name'] = 'test';
+			$courseList[$i]['imgUrl'] = get_upfile_url('__HD__/images/index/myCourse/a.jpg');
+		}
 		return $courseList;
 	}
-	
-	
-	/**
-	 * 早教
-	 */
-	public function earlyAct(){
-		$stageId = I('stageId','');
-		if(empty($stageId)){
-			$stageList = array(
-				array(
-					'id' => 1,
-					'name' => 'bb',
-					'linkImage' => get_upfile_url('__HD__/images/course/early/age_1.png'),
-					'focusImage'=> get_upfile_url('__HD__/images/course/early/age_1_over.png'),
-				),
-				array(
-					'id' => 2,
-					'name' => 'bb',
-					'linkImage' => get_upfile_url('__HD__/images/course/early/age_2.png'),
-					'focusImage'=> get_upfile_url('__HD__/images/course/early/age_2_over.png'),
-				),
-				array(
-					'id' => 3,
-					'name' => 'bb',
-					'linkImage' => get_upfile_url('__HD__/images/course/early/age_3.png'),
-					'focusImage'=> get_upfile_url('__HD__/images/course/early/age_3_over.png'),
-				),
-			);
-		}else{
-			$stageList = array(
-				array(
-					'id' => $stageId,
-					'name' => 'bb',
-					'linkImage' => get_upfile_url('__HD__/images/course/early/age_'.$stageId.'.png'),
-					'focusImage'=> get_upfile_url('__HD__/images/course/early/age_'.$stageId.'_over.png'),
-				),
-			);
-		}
-		
-		$json_stage = json_encode($stageList);
-        
-		//课程列表
-		$courseList = array();
-		$courseList = array(
-			array(
-					'id' => 1,
-					'name' => 'aa',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/a.jpg')
-			),
-			array(
-					'id' => 1,
-					'name' => 'bb',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/b.jpg')
-			),
-			array(
-					'id' => 1,
-					'name' => 'cc',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-			),
-			array(
-					'id' => 1,
-					'name' => 'cc',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-			),
-			array(
-					'id' => 1,
-					'name' => 'cc',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-			),
-			array(
-					'id' => 1,
-					'name' => 'cc',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-			),
-			array(
-					'id' => 1,
-					'name' => 'cc',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-			),
-			array(
-					'id' => 1,
-					'name' => 'cc',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-			),
-			array(
-					'id' => 1,
-					'name' => 'cc',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-			),
-			array(
-					'id' => 1,
-					'name' => 'cc',
-					'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-			),
-		);
-		$this->assign(array(
-            'json_stage' => $json_stage,
-            'stageList' => $stageList,
-			'courseList' => $courseList,
-		));
-		$this->display();
-	}
-	
-    
-	/**
-	 * 幼儿园
-	 */
-	public function preschoolAct(){
-		$stageId = I('stageId',''); //龄段id
-		if(!empty($stageId)){
-			$stageList = array(
-				array(
-					'id' => 1,
-					'name' => 'bb',
-					'linkImage' => get_upfile_url('__HD__/images/course/kinder/small_class.png'),
-					'focusImage'=> get_upfile_url('__HD__/images/course/kinder/small_class_over.png'),
-				),
-				array(
-					'id' => 1,
-					'name' => 'bb',
-					'linkImage' => get_upfile_url('__HD__/images/course/kinder/middle_class.png'),
-					'focusImage'=> get_upfile_url('__HD__/images/course/kinder/middle_class_over.png'),
-				),
-				array(
-					'id' => 1,
-					'name' => 'bb',
-					'linkImage' => get_upfile_url('__HD__/images/course/kinder/big_class.png'),
-					'focusImage'=> get_upfile_url('__HD__/images/course/kinder/big_class_over.png'),
-				),
-			);
-		}else{
-			$stageList = array(
-				array(
-					'id' => 1,
-					'name' => 'bb',
-					'linkImage' => get_upfile_url('__HD__/images/course/kinder/small_class.png'),
-					'focusImage'=> get_upfile_url('__HD__/images/course/kinder/small_class_over.png'),
-				),
-			);
-		}
-        
-		$json_stage = json_encode($stageList);
-        
-        
-		//课程列表
-		$courseList = array();
-		$courseList = array(
-				array(
-						'id' => 1,
-						'name' => 'aa',
-						'content' => get_upfile_url('__HD__/images/course/my/a.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'content' => get_upfile_url('__HD__/images/course/my/b.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-		);
-		$this->assign(array(
-                'json_class' => $json_class,
-                'classList' => $classList,
-				'courseList' => $courseList,
-		));
-		$this->display();
-	}
-    
-    /*
-     * 单班
-     * 针对幼儿园
-     */
-    public function preSingleAct() {
-        $class = 'small';
-        //课程列表
-        $courseList = array();
-        $courseList = array(
-            array(
-                'id' => 1,
-                'name' => 'aa',
-                'content' => get_upfile_url('__HD__/images/course/my/a.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'bb',
-                'content' => get_upfile_url('__HD__/images/course/my/b.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-        );
-        $this->assign(array(
-            'class' => $class,
-            'courseList' => $courseList,
-        ));
-        $this->display();
-    }
-	
-	/**
-	 * 小学
-	 */
-	public function primaryschoolAct(){
-		//6个年级
-		$gradeList = array();
-		$gradeList = array(
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'linkImage' => get_upfile_url('__HD__/images/course/grade/grade_1.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/grade/grade_1_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'linkImage' => get_upfile_url('__HD__/images/course/grade/grade_2.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/grade/grade_2_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'linkImage' => get_upfile_url('__HD__/images/course/grade/grade_3.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/grade/grade_3_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'linkImage' => get_upfile_url('__HD__/images/course/grade/grade_4.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/grade/grade_4_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'linkImage' => get_upfile_url('__HD__/images/course/grade/grade_5.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/grade/grade_5_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'linkImage' => get_upfile_url('__HD__/images/course/grade/grade_6.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/grade/grade_6_over.png'),
-				),
-		);
-        
-		$json_grade = json_encode($gradeList);
-		//课程列表
-		$courseList = array();
-		$courseList = array(
-				array(
-						'id' => 1,
-						'name' => 'aa',
-						'content' => get_upfile_url('__HD__/images/course/my/a.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'content' => get_upfile_url('__HD__/images/course/my/b.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-				),
-		);
-		
-		$this->assign(array(
-				'json_grade' => $json_grade,
-				'gradeList' => $gradeList,
-				'courseList' => $courseList,
-		));
-		$this->display();
-	}
-	
-	/*
-     * 单年级
-     * 针对小学
-     */
-    public function primarySingleAct() {
-        $grade = 1;
-        //课程列表
-        $courseList = array();
-        $courseList = array(
-            array(
-                'id' => 1,
-                'name' => 'aa',
-                'content' => get_upfile_url('__HD__/images/course/my/a.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'bb',
-                'content' => get_upfile_url('__HD__/images/course/my/b.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-            array(
-                'id' => 1,
-                'name' => 'cc',
-                'content' => get_upfile_url('__HD__/images/course/my/c.jpg')
-            ),
-        );
-
-        $this->assign(array(
-            'grade' => $grade,
-            'json_grade' => $json_grade,
-            'courseList' => $courseList,
-        ));
-        $this->display();
-    }
 	
 }

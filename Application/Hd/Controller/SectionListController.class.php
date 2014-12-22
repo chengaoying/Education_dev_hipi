@@ -12,10 +12,35 @@ use Common\Controller\CommonController;
 class SectionListController extends CommonController {
 	
 	/**
-	 * 早教--课时列表
+	 * 课时列表统一入口
 	 */
-	public function earlyAct(){
-		$template = 'detail_early';
+	public function indexAct(){
+		$chId 	 = I('chId','');
+		$stageId = I('stageId','');
+
+		$chKey = get_array_keyval(S('Channel'),$chId,'id','chKey');
+		
+		if($chKey == 'early') //早教课时列表
+		{
+			$this->early($chId,$chKey,$stageId);
+		}
+		elseif($chKey == 'preschool') //幼教课时列表
+		{
+			$this->preschool($chId,$chKey,$stageId);
+		}
+		else  //其他通用课时列表
+		{
+			$this->common($chId,$chKey,$stageId);
+		}
+	}
+	
+	/**
+	 *  早教--课时列表 
+	 * @param unknown_type $chId  栏目id
+	 * @param unknown_type $chKey 栏目key
+	 * @param unknown_type $stageId 龄段id
+	 */
+	private function early($chId,$chKey,$stageId){
 		$month = 13;//几个月的小孩
         $age = 2;
 		if($month>=1 and $month<=12){
@@ -27,203 +52,109 @@ class SectionListController extends CommonController {
 		}else{
 			$this->showMessage('参数错误');
 		}
-		//左边栏目列表
-		$chList = array();
-		$chList = array(
-				array(
-						'id' => 1,
-						'name' => 'aa',
-						'linkImage' => get_upfile_url('__HD__/images/course/early/ch_nav/1month/xinshengerhuli.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/early/ch_nav/1month/xinshengerhuli_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'linkImage' => get_upfile_url('__HD__/images/course/early/ch_nav/1month/xinshengerweiyang.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/early/ch_nav/1month/xinshengerweiyang_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'linkImage' => get_upfile_url('__HD__/images/course/early/ch_nav/1month/mamabidu.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/early/ch_nav/1month/mamabidu_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'dd',
-						'linkImage' => get_upfile_url('__HD__/images/course/early/ch_nav/1month/chanfuhuli.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/early/ch_nav/1month/chanfuhuli_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'ee',
-						'linkImage' => get_upfile_url('__HD__/images/course/early/ch_nav/1month/chanhouyinshianpai.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/early/ch_nav/1month/chanhouyinshianpai_over.png'),
-				),
-				array(
-						'id' => 1,
-						'name' => 'ff',
-						'linkImage' => get_upfile_url('__HD__/images/course/early/ch_nav/1month/qinzishenxintiaoli.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/course/early/ch_nav/1month/qinzishenxintiaoli_over.png'),
-				),
-		);
-		//右边视频列表
-		$videoList = array();
-		$videoList = array(
-				array(
-						'id' => 1,
-						'name' => 'aa',
-						'content' => get_upfile_url('__HD__/images/course/early/a.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'content' => get_upfile_url('__HD__/images/course/early/b.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/early/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/early/d.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/early/e.jpg')
-				),
-		);
+
 		$this->assign(array(
-			'month' => $month,
-			'age' => $age,
-			'chList' => $chList,
-			'json_ch' => json_encode($chList),
-			'videoList' => $videoList,
+			'month'  => $month,
+			'chId' 	 => $chId,  
+			'chList' => $this->getTopicList(),
+			'json_ch' => json_encode($this->getTopicList()),
+			'videoList' => $this->getVideoList(),
 		));
-		$this->display($template);
+		$this->display('detail_early');
+	}
+	
+	/* 测试使用 */
+	private function getTopicList($count=6){
+		$topics = array();
+		for($i=0; $i<$count; $i++){
+			$topics[$i]['id'] = $i;
+			$topics[$i]['name'] = 'test';
+			$topics[$i]['linkImage'] = get_upfile_url('__HD__/images/test/1month/chanfuhuli.png');
+			$topics[$i]['focusImage'] = get_upfile_url('__HD__/images/test/1month/chanfuhuli_over.png');
+		}
+		return $topics;
+	}
+	
+	/* 测试使用 */
+	private function getVideoList($count=6){
+		$videos = array();
+		for($i=0; $i<$count; $i++){
+			$videos[$i]['id'] = $i;
+			$videos[$i]['name'] = 'test_'.$i;
+			$videos[$i]['imgUrl'] = get_upfile_url('__HD__/images/test/video/a.jpg');
+		}
+		return $videos;
+	}
+	
+	/* 测试使用 */
+	private function getSpecialList($count=6){
+		$specials = array();
+		for($i=0; $i<$count; $i++){
+			$specials[$i]['id'] = $i;
+			$specials[$i]['name'] = 'test';
+			$specials[$i]['imgUrl'] = get_upfile_url('__HD__/images/test/special/special_1.jpg');
+		}
+		return $specials;
 	}
 	
 	/**
 	 * 幼教--课时列表
+	 * @param unknown_type $chId
+	 * @param unknown_type $chKey
+	 * @param unknown_type $stageId
 	 */
-	public function preschoolAct(){
+	private function preschool($chId,$chKey,$stageId){
 		$template = 'detail_preschool';
 		$class = 'big'; //哪个班
-		$weekDay = 1;//周几
-		
-		//视频列表
-		$videoList = array();
-		$videoList = array(
-				array(
-						'id' => 1,
-						'name' => 'aa',
-						'content' => get_upfile_url('__HD__/images/course/kinder/video_1.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'content' => get_upfile_url('__HD__/images/course/kinder/video_2.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/kinder/video_3.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/kinder/video_4.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/kinder/video_5.jpg')
-				),
-		);
-		
-		//专题列表
-		$specialList = array();
-		$specialList = array(
-				array(
-						'id' => 1,
-						'name' => 'aa',
-						'content' => get_upfile_url('__HD__/images/course/kinder/special_1.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'content' => get_upfile_url('__HD__/images/course/kinder/special_2.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/course/kinder/special_3.jpg')
-				),
-		);
+        //显示哪三天
+		$today = date("w",NOW_TIME);//周几
+        $yesterday = date("w",  strtotime("-1 days", NOW_TIME));
+        $dayBefore = date("w",  strtotime("-2 days", NOW_TIME));
+        $dayList = array();
+        $dayList = array(
+            array(
+                    'id' => $dayBefore,
+                    'name' => $dayBefore,
+                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$dayBefore.'.png'),
+                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$dayBefore.'_over.png'),
+            ),
+            array(
+                    'id' => $yesterday,
+                    'name' => $yesterday,
+                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$yesterday.'.png'),
+                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$yesterday.'_over.png'),
+            ),
+            array(
+                    'id' => $today,
+                    'name' => $today,
+                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$today.'.png'),
+                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$today.'_over.png'),
+            ),
+        );
+        
+        $json_day = json_encode($dayList);
+        
 		$this->assign(array(
-				'class' => $class,
-				'videoList' => $videoList,
-				'specialList' => $specialList,
+			'class' => $class,
+			'videoList' => $this->getVideoList(5),
+			'specialList' => $this->getSpecialList(3),
+                'json_day' => $json_day,
+                'dayList' => $dayList,
 		));
-		$this->display($template);
+		$this->display('detail_preschool');
 	}
 	
 	/**
-	 * 小学--课时列表
+	 * 通用--课时列表
+	 * @param unknown_type $chId
+	 * @param unknown_type $chKey
+	 * @param unknown_type $stageId
 	 */
-	public function primaryschoolAct(){
-		$template = 'detail_primaryschool';
-		$videoList = array();
-		$videoList = array(
-				array(
-						'id' => 1,
-						'name' => '第一课',
-				),
-				array(
-						'id' => 1,
-						'name' => '第二课',
-				),
-				array(
-						'id' => 1,
-						'name' => '第三课',
-				),
-				array(
-						'id' => 1,
-						'name' => '第四课',
-				),
-				array(
-						'id' => 1,
-						'name' => '第五课',
-				),
-				array(
-						'id' => 1,
-						'name' => '第六课',
-				),
-				array(
-						'id' => 1,
-						'name' => '第七课',
-				),
-				array(
-						'id' => 1,
-						'name' => '第八课',
-				),
-				array(
-						'id' => 1,
-						'name' => '第九课',
-				),
-				array(
-						'id' => 1,
-						'name' => '第十课',
-				),
-		);
-		
+	private function common($chId,$chKey,$stageId){
 		$this->assign(array(
-				'videoList'=>$videoList,
+			'videoList'=>$this->getVideoList(10),
 		));
-		$this->display($template);
+		$this->display('detail_primaryschool');
 	}
 	
 	/**
@@ -231,164 +162,58 @@ class SectionListController extends CommonController {
 	 */
 	public function weekAct(){
 		$class = 'big';
-		$videoList = array();
-		$videoList = array(
-				1 => array(
-						array(
-								'id' => 1,
-								'name' => 'aa',
+        //显示哪三周
+		$thisWeek = date("W",NOW_TIME);//第几周
+        $lastWeek = date("W",  strtotime("-7 days", NOW_TIME));
+        $beforeWeek = date("W",  strtotime("-14 days", NOW_TIME));
 		
-						),
-						array(
-								'id' => 2,
-								'name' => 'bb'
-						),
-						array(
-								'id' => 3,
-								'name' => 'cc'
-						),
-						array(
-								'id' => 4,
-								'name' => 'dd'
-						),
-						array(
-								'id' => 5,
-								'name' => 'ee'
-						),
-				),
-				2 => array(
-						array(
-								'id' => 1,
-								'name' => 'aa'
-						),
-						array(
-								'id' => 2,
-								'name' => 'bb'
-						),
-						array(
-								'id' => 3,
-								'name' => 'cc'
-						),
-						array(
-								'id' => 4,
-								'name' => 'dd'
-						),
-						array(
-								'id' => 5,
-								'name' => 'ee'
-						),
-				),
-				3 => array(
-						array(
-								'id' => 1,
-								'name' => 'aa'
-						),
-						array(
-								'id' => 2,
-								'name' => 'bb'
-						),
-						array(
-								'id' => 3,
-								'name' => 'cc'
-						),
-						array(
-								'id' => 4,
-								'name' => 'dd'
-						),
-						array(
-								'id' => 5,
-								'name' => 'ee'
-						),
-				),
-				4 => array(
-						array(
-								'id' => 1,
-								'name' => 'aa'
-						),
-						array(
-								'id' => 2,
-								'name' => 'bb'
-						),
-						array(
-								'id' => 3,
-								'name' => 'cc'
-						),
-						array(
-								'id' => 4,
-								'name' => 'dd'
-						),
-						array(
-								'id' => 5,
-								'name' => 'ee'
-						),
-				),
-				5 => array(
-						array(
-								'id' => 1,
-								'name' => 'aa'
-						),
-						array(
-								'id' => 2,
-								'name' => 'bb'
-						),
-						array(
-								'id' => 3,
-								'name' => 'cc'
-						),
-						array(
-								'id' => 4,
-								'name' => 'dd'
-						),
-						array(
-								'id' => 5,
-								'name' => 'ee'
-						),
-				),
-				6 => array(
-						array(
-								'id' => 1,
-								'name' => 'aa'
-						),
-						array(
-								'id' => 2,
-								'name' => 'bb'
-						),
-						array(
-								'id' => 3,
-								'name' => 'cc'
-						),
-						array(
-								'id' => 4,
-								'name' => 'dd',
-								'content'=>get_upfile_url('__HD__/images/course/kinder/xiaoyingyuan.png'),
-						),
-				),
-				7 => array(
-						array(
-								'id' => 1,
-								'name' => 'aa'
-						),
-						array(
-								'id' => 2,
-								'name' => 'bb'
-						),
-						array(
-								'id' => 3,
-								'name' => 'cc',
-						),
-						array(
-								'id' => 4,
-								'name' => 'dd',
-								'content'=>get_upfile_url('__HD__/images/course/kinder/xingquban.png'),
-						),
-				),
-		);
-		
+        $weekList = array();
+        $weekList = array(
+            array(
+                    'id' => $beforeWeek,
+                    'name' => $beforeWeek,
+                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$dayBefore.'.png'),
+                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$dayBefore.'_over.png'),
+            ),
+            array(
+                    'id' => $lastWeek,
+                    'name' => $lastWeek,
+                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$yesterday.'.png'),
+                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$yesterday.'_over.png'),
+            ),
+            array(
+                    'id' => $thisWeek,
+                    'name' => $thisWeek,
+                    'linkImage' => get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$today.'.png'),
+                    'focusImage'=> get_upfile_url('__HD__/images/course/kinder/weekday/day_'.$today.'_over.png'),
+            ),
+        );
+        
+        $json_week = json_encode($weekList);
 		$this->assign(array(
-				'class' => $class,
-				'videoList' => $videoList,
+			'class' => $class,
+			'videoList' => $this->getVideoList2(),
+                'json_week' => $json_week,
+                'weekList' => $weekList,
 		));
 		$this->display();
 	}
 	
+	/* 测试使用 */
+	private function getVideoList2(){
+		for($i=0;$i<5;$i++){
+			for($j=0;$j<5;$j++){
+				$videoList[$i][$j]['id'] = $i+$j;
+				$videoList[$i][$j]['name'] = 'test'.$i+$j;
+			}
+		}
+		for($m=5;$m<2;$m++){
+			for($n=0;$n<4;$n++){
+				$videoList[$m][$n]['id'] = $m+$n;
+				$videoList[$m][$n]['name'] = 'test'.$m+$n;
+				$videoList[$m][$n]['imgUrl'] = get_upfile_url('__HD__/images/test/xingquban.jpg');
+			}
+		}
+		return $videoList;	
+	}
 }

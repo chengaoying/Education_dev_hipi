@@ -10,7 +10,7 @@
         left:85px;
         width: 185px;
         height: 42px;
-        background: url(__HD__/images/course/kinder/ch_logo.png) no-repeat;
+        background: url(__HD__/images/sectionList/title_preschool.png) no-repeat;
     }
     
     /* 幼儿园哪个班 */
@@ -21,7 +21,7 @@
         left:285px;
         width: 54px;
         height: 29px;
-        background: url(__HD__/images/course/kinder/class_{$class}_title.png) no-repeat;
+        background: url(__HD__/images/courseList/preschool/middle_title.png) no-repeat;
     }
     
     /*一周背景*/
@@ -32,7 +32,17 @@
         left:75px;
         width: 1130px;
         height: 440px;
-        background: url(__HD__/images/course/kinder/week_bg.png) no-repeat;
+        background: url(__HD__/images/sectionList/preschool/week_bg.png) no-repeat;
+    }
+    
+    .week_shadow{
+        position: absolute;
+        display: block;
+        top:620px;
+        left:75px;
+        width: 1130px;
+        height: 49px;
+        background: url(__HD__/images/course/kinder/week_shadow.png) no-repeat;
     }
 </style>
 
@@ -107,7 +117,7 @@ window.onload=function()
         </php>
         <div id="div_video_{$i}_{$key}" style="position:absolute;width:150px;height:70px;left:{$left}px;top:{$top}px;line-height: 70px;text-align:center;color:#666;">
             <if condition="($i eq 6 and $key eq 4) or ($i eq 7 and $key eq 4)">
-                <img id="video_{$i}_{$key}" src="{$video['content']}" width="150" height="139">
+                <img id="video_{$i}_{$key}" src="{$video['imgUrl']}" width="150" height="139">
             <else/>
             <span id="video_{$i}_{$key}">{$video['name']}</span>
             </if>
@@ -118,3 +128,5 @@ window.onload=function()
     </volist>
 </volist>
 
+<!-- 一周投影  -->
+<div class="week_shadow"></div>

@@ -26,7 +26,7 @@ body {background-color: transparent;}
         left:85px;
         width: 150px;
         height: 42px;
-        background-image: url(/static/v1/hd/images/course/early/ch_logo.png);
+        background-image: url(/static/v1/hd/images/sectionList/title_early.png);
     }
     
     /* 哪个年龄段 */
@@ -69,7 +69,7 @@ body {background-color: transparent;}
         height:50px;
         top:630px;
         left:85px;
-        background: url(/static/v1/hd/images/course/early/month/shadow.png) no-repeat;
+        background: url(/static/v1/hd/images/common/shadow_3.png) no-repeat;
     }
     
     .progress{
@@ -96,20 +96,20 @@ body {background-color: transparent;}
 var buttons=
 	[
         /*左边栏目*/
-	 	{id:'aim_ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'',down:'aim_ch_2'},
-        {id:'aim_ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'aim_ch_1',down:'aim_ch_3'},
-        {id:'aim_ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'aim_ch_2',down:'aim_ch_4'},
-        {id:'aim_ch_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'aim_ch_3',down:'aim_ch_5'},
-        {id:'aim_ch_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'aim_ch_4',down:'aim_ch_6'},
-        {id:'aim_ch_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'aim_ch_5',down:'aim_ch_7'},
+	 	{id:'topic_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'',down:'topic_2'},
+        {id:'topic_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'topic_1',down:'topic_3'},
+        {id:'topic_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'topic_2',down:'topic_4'},
+        {id:'topic_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'topic_3',down:'topic_5'},
+        {id:'topic_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'topic_4',down:'topic_6'},
+        {id:'topic_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'topic_5',down:'topic_7'},
         
         /* 右边视频列表 */
-        {id:'video_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'aim_ch_1',right:'video_2',up:'',down:'video_4'},
-		{id:'video_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'video_1',right:'video_3',up:'',down:['video_5','video_4']},
-		{id:'video_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'video_2',right:'video_4',up:'',down:['video_6','video_5','video_4']},
-		{id:'video_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'video_3',right:'video_5',up:'video_1',down:''},
-		{id:'video_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'video_4',right:'video_6',up:'video_2',down:''},
-		{id:'video_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'video_5',right:'',up:'video_3',down:''},
+        {id:'video_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'topic_1',right:'video_2',up:'',down:'video_4'},
+		{id:'video_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'video_1',right:'video_3',up:'',down:['video_5','video_4']},
+		{id:'video_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'video_2',right:'',up:'',down:['video_6','video_5','video_4']},
+		{id:'video_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:['topic_5','topic_4'],right:'video_5',up:'video_1',down:''},
+		{id:'video_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'video_4',right:'video_6',up:'video_2',down:''},
+		{id:'video_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'video_5',right:'',up:'video_3',down:''},
 	];
 
 var chlist = <?php echo ($json_ch); ?>;
@@ -128,7 +128,7 @@ var initButtons = function(){
 window.onload=function()
 {
     initButtons();
-	Epg.btn.init('aim_ch_1',buttons,true);	
+	Epg.btn.init('topic_1',buttons,true);	
 };
 </script>
 
@@ -144,18 +144,18 @@ window.onload=function()
 <!-- 课程目标栏目 -->
 
 <?php if(is_array($chList)): $i = 0; $__LIST__ = $chList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $top = 180+($i-1)*65; ?>
-    <div id="div_aim_ch_<?php echo ($i); ?>" style="position: absolute;height:54px;left:345px;top:<?php echo ($top); ?>px;">
-        <img id="aim_ch_<?php echo ($i); ?>" src="<?php echo ($ch['linkImage']); ?>" height="54" />
+    <div id="div_topic_<?php echo ($i); ?>" style="position: absolute;height:54px;left:345px;top:<?php echo ($top); ?>px;">
+        <img id="topic_<?php echo ($i); ?>" src="<?php echo ($ch['linkImage']); ?>" height="54" />
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 
 <!-- 右边视频列表 -->
 <?php if(is_array($videoList)): $i = 0; $__LIST__ = $videoList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$video): $mod = ($i % 2 );++$i; if($i > 3){ $top = 375; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
-    <div id="div_video_<?php echo ($i); ?>" style="position:absolute;width:230px;height:210px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-        <img id="video_<?php echo ($i); ?>" src="<?php echo ($video['content']); ?>" width="210" height="180">
+    <div id="div_video_<?php echo ($i); ?>" style="position:absolute;width:220px;height:190px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+        <img id="video_<?php echo ($i); ?>" src="<?php echo ($video['imgUrl']); ?>" width="210" height="180">
     </div>
-    <div id="div_video_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:216px;left:<?php echo ($left); ?>px;top:<?php echo ($top-3); ?>px;text-align:center;">
-        <img id="video_<?php echo ($i); ?>_focus" src="" width="216" height="186">
+    <div id="div_video_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:200px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
+        <img id="video_<?php echo ($i); ?>_focus" src="" width="220" height="190">
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 

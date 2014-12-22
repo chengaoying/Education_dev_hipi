@@ -23,10 +23,6 @@ body {background-color: transparent;}
 
 <script type="text/javascript">
 
-//栏目object(json格式数据)
-//var channel = <?php echo ($json_channel); ?>;
-//var ad = <?php echo ($json_ad); ?>;
-
 var buttons=
 	[
 	 	/* 左边  */
@@ -34,23 +30,23 @@ var buttons=
 		{id:'order',name:'',action:'',linkImage:'/static/v1/hd/images/timer/order1.png',focusImage:'/static/v1/hd/images/timer/order2.png',selectBox:'',left:'',right:'see',down:'',up:'plan'},
 		
 		/* 上边 */
-		{id:'see',name:'',action:'',linkImage:'/static/v1/hd/images/timer/seeing1.png',focusImage:'/static/v1/hd/images/timer/seeing2.png',selectBox:'',right:'left',left:'plan',up:'',down:''},
+		{id:'see',name:'',action:'',linkImage:'/static/v1/hd/images/timer/seeing1.png',focusImage:'/static/v1/hd/images/timer/seeing2.png',selectBox:'',right:'left',left:'plan',up:'',down:'left'},
 		
 		/* 页码 */
-		{id:'left',name:'',action:'',linkImage:'/static/v1/hd/images/timer/left1.png',focusImage:'/static/v1/hd/images/timer/left2.png',selectBox:'',right:'right',left:'see',up:'',down:''},
-		{id:'right',name:'',action:'',linkImage:'/static/v1/hd/images/timer/right1.png',focusImage:'/static/v1/hd/images/timer/right2.png',selectBox:'',left:'left',up:'',down:''},
+		{id:'left',name:'',action:'',linkImage:'/static/v1/hd/images/timer/left1.png',focusImage:'/static/v1/hd/images/timer/left2.png',selectBox:'',right:'right',left:'see',up:'',down:'course_6'},
+		{id:'right',name:'',action:'',linkImage:'/static/v1/hd/images/timer/right1.png',focusImage:'/static/v1/hd/images/timer/right2.png',selectBox:'',left:'left',up:'',down:'course_6'},
 		
 		/* 下边 */
-		{id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'t_right_ad',right:'tuijian_2',up:'ch_3',down:'tuijian_4'},
-		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_1',right:'tuijian_3',up:'ch_3',down:'tuijian_5'},
-		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_2',right:'',up:'ch_3',down:'tuijian_6'},
-		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'t_right_ad',right:'tuijian_5',up:'tuijian_1',down:''},
-		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
-		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
-		{id:'course_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
-		{id:'course_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
-		{id:'course_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
-		{id:'course_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
+		{id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'plan',right:'course_6',up:'left',down:'course_2'},
+		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'plan',right:'course_7',up:'course_1',down:'course_3'},
+		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'order',right:'course_8',up:'course_2',down:'course_4'},
+		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'order',right:'course_9',up:'course_3',down:'course_5'},
+		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'order',right:'course_10',up:'course_4',down:''},
+		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_1',right:'',up:'left',down:'course_7'},
+		{id:'course_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_2',right:'',up:'course_6',down:'course_8'},
+		{id:'course_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_3',right:'',up:'course_7',down:'course_9'},
+		{id:'course_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_4',right:'',up:'course_8',down:'course_10'},
+		{id:'course_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/select_box_1.png',left:'course_5',right:'',up:'course_9',down:''},
 	];
 
 /* 初始化按钮 属性   */
@@ -116,8 +112,11 @@ window.onload=function()
 </div>
 
 <?php if(is_array($videoList)): $i = 0; $__LIST__ = $videoList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$videoLists): $mod = ($i % 2 );++$i; if($i<=5){ $left = 440; $top = ($i-1)*60+340; }else{ $left = 820; $top = ($i-6)*60+340; } ?>
-	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:360px;height:50px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-indent:20px; text-align:left;line-height:50px;">
-		<?php echo ($videoLists['name']); ?>
+	<div id="div_course_<?php echo ($i); ?>" style="position:absolute;width:360px;height:50px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-indent:20px; text-align:left;line-height:50px;">
+		<span id="course_<?php echo ($i); ?>" title=""><?php echo ($videoLists['name']); ?></span>
+	</div>
+	<div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;width:160px;height:30px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+		<img id="course_<?php echo ($i); ?>_focus" src="" width="160" height="24">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 

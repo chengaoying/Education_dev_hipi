@@ -85,8 +85,8 @@ class CommonController extends \Think\Controller{
 		foreach ($this->topChannel as $k=>$v){
 			if($v['imgUrl']){
 				$imgs = explode(',', $v['imgUrl']);
-				$this->topChannel[$k]['linkImage']  = get_upfile_url($imgs[0]);
-				$this->topChannel[$k]['focusImage'] = get_upfile_url($imgs[1]);
+				$this->topChannel[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
+				$this->topChannel[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
 			}
 		}
 		
