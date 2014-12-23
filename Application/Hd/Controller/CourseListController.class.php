@@ -61,7 +61,7 @@ class CourseListController extends CommonController {
 		$courseList = array();
 		for($i=0; $i< 10; $i++){
 			$courseList[$i]['id'] = $i;
-			$courseList[$i]['chId'] = 20;
+			$courseList[$i]['chId'] = 19;
 			$courseList[$i]['stageIds'] = 7;
 			$courseList[$i]['name'] = 'test';
 			$courseList[$i]['imgUrl'] = get_upfile_url('__HD__/images/index/myCourse/a.jpg');

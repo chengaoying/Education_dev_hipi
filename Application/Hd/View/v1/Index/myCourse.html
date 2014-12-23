@@ -69,6 +69,8 @@ window.onload=function()
 };
 </script>
 
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
+
 <!-- 顶部-栏目 开始 -->
 <volist name="topChannel" id="ch">
 	<php>
@@ -92,7 +94,7 @@ window.onload=function()
                 $top = 182; $left = 80 + ($i-1)*225;
             }
         </php>
-        <div id="div_course_{$i}" title="{:U('Course/detail')}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
+        <div id="div_course_{$i}" title="{:U('CourseList/index')}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
             <img id="course_{$i}" src="{$course['content']}" width="210" height="210">
         </div>
         <div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">

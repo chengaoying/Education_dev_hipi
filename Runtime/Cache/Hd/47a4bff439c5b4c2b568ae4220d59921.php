@@ -58,6 +58,9 @@ window.onload=function()
 	Epg.btn.init('plan',buttons,true);	
 };
 </script>
+
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+
 <!-- 图书头像 -->
 <div id="div_book" style="position:absolute;left:90px;top:80px;">
 	<img id='book' title="ddd" src="/static/v1/hd/images/sectionList/primaryschool/china.jpg" width="216" height="216">

@@ -106,10 +106,10 @@ class SectionListController extends CommonController {
 		$weekList = $this->getWeekList();
 		$json_week = json_encode($weekList);
 		$this->assign(array(
-				'class'		=> $class,
-				'videoList' => $this->getVideoList2(),
-				'json_week' => $json_week,
-				'weekList'	=> $weekList,
+			'class'		=> $class,
+			'videoList' => $this->getVideoList2(),
+			'json_week' => $json_week,
+			'weekList'	=> $weekList,
 		));
 		$this->display();
 	}
@@ -160,24 +160,24 @@ class SectionListController extends CommonController {
 		$dayBefore = date("w",  strtotime("-2 days", NOW_TIME));
 		$dayList = array();
 		$dayList = array(
-				array(
-						'id' => $dayBefore,
-						'name' => $dayBefore,
-						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$dayBefore.'.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$dayBefore.'_over.png'),
-				),
-				array(
-						'id' => $yesterday,
-						'name' => $yesterday,
-						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$yesterday.'.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$yesterday.'_over.png'),
-				),
-				array(
-						'id' => $today,
-						'name' => $today,
-						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$today.'.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$today.'_over.png'),
-				),
+			array(
+				'id' => $dayBefore,
+				'name' => $dayBefore,
+				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$dayBefore.'.png'),
+				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$dayBefore.'_over.png'),
+			),
+			array(
+				'id' => $yesterday,
+				'name' => $yesterday,
+				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$yesterday.'.png'),
+				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$yesterday.'_over.png'),
+			),
+			array(
+				'id' => $today,
+				'name' => $today,
+				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$today.'.png'),
+				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$today.'_over.png'),
+			),
 		);
 		return $dayList;
 	}
@@ -190,24 +190,24 @@ class SectionListController extends CommonController {
 		$beforeWeek = date("W",  strtotime("-14 days", NOW_TIME));
 		$weekList = array();
 		$weekList = array(
-				array(
-						'id' => $beforeWeek,
-						'name' => $beforeWeek,
-						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$beforeWeek.'.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$beforeWeek.'_over.png'),
-				),
-				array(
-						'id' => $lastWeek,
-						'name' => $lastWeek,
-						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$lastWeek.'.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$lastWeek.'_over.png'),
-				),
-				array(
-						'id' => $thisWeek,
-						'name' => $thisWeek,
-						'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$thisWeek.'.png'),
-						'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$thisWeek.'_over.png'),
-				),
+			array(
+				'id' => $beforeWeek,
+				'name' => $beforeWeek,
+				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$beforeWeek.'.png'),
+				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$beforeWeek.'_over.png'),
+			),
+			array(
+				'id' => $lastWeek,
+				'name' => $lastWeek,
+				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$lastWeek.'.png'),
+				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$lastWeek.'_over.png'),
+			),
+			array(
+				'id' => $thisWeek,
+				'name' => $thisWeek,
+				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$thisWeek.'.png'),
+				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$thisWeek.'_over.png'),
+			),
 		);
 		return $weekList;
 	}
@@ -217,14 +217,14 @@ class SectionListController extends CommonController {
 		for($i=0;$i<5;$i++){
 			for($j=0;$j<5;$j++){
 				$videoList[$i][$j]['id'] = $i+$j;
-				$videoList[$i][$j]['name'] = 'test'.$i+$j;
+				$videoList[$i][$j]['name'] = 'test'.$j;
 			}
 		}
-		for($m=5;$m<2;$m++){
+		for($m=5;$m<7;$m++){
 			for($n=0;$n<4;$n++){
 				$videoList[$m][$n]['id'] = $m+$n;
-				$videoList[$m][$n]['name'] = 'test'.$m+$n;
-				$videoList[$m][$n]['imgUrl'] = get_upfile_url('__HD__/images/test/xingquban.jpg');
+				$videoList[$m][$n]['name'] = 'test'.$n;
+				$videoList[$m][$n]['imgUrl'] = get_upfile_url('__HD__/images/test/xingquban.png');
 			}
 		}
 		return $videoList;	

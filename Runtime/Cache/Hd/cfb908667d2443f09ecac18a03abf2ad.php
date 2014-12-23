@@ -117,7 +117,7 @@ window.onload=function()
 <!-- 静态图片 -->
 <div id="user_info_bg"></div>
 <div id="recently_saw_bg"></div>
-<?php $__FOR_START_1439__=1;$__FOR_END_1439__=6;for($i=$__FOR_START_1439__;$i < $__FOR_END_1439__;$i+=1){ $left = 90 + ($i-1)*225; ?>
+<?php $__FOR_START_11276__=1;$__FOR_END_11276__=6;for($i=$__FOR_START_11276__;$i < $__FOR_END_11276__;$i+=1){ $left = 90 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
@@ -163,7 +163,7 @@ window.onload=function()
 
 <!-- 页面右侧 -->
 	<!-- 推荐的课程 -->
-<?php $__FOR_START_1772__=1;$__FOR_END_1772__=7;for($i=$__FOR_START_1772__;$i < $__FOR_END_1772__;$i+=1){ if($i > 3){ $top = 405; $left = 535 + ($i-4)*225; }else{ $top = 180; $left = 535 + ($i-1)*225; } ?>
+<?php $__FOR_START_6485__=1;$__FOR_END_6485__=7;for($i=$__FOR_START_6485__;$i < $__FOR_END_6485__;$i+=1){ if($i > 3){ $top = 405; $left = 535 + ($i-4)*225; }else{ $top = 180; $left = 535 + ($i-1)*225; } ?>
 	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="tuijian_<?php echo ($i); ?>" src="/static/v1/hd/images/test/<?php echo ($i); ?>.jpg" width="210" height="210">
 	</div>

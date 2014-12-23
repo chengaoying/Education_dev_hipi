@@ -78,6 +78,8 @@ window.onload=function()
 };
 </script>
 
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+
 <!-- 左上角的栏目LOGO -->
 <div class="ch_logo"></div>
 

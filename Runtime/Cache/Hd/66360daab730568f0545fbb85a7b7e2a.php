@@ -86,11 +86,11 @@ window.onload=function()
 };
 </script>
 
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',0);?>" ></a>
 
 <!-- 静态图片-底部投影效果 -->
 <?php $count = count($class)-4; ?>
-<?php $__FOR_START_1613__=1;$__FOR_END_1613__=$count+1;for($i=$__FOR_START_1613__;$i < $__FOR_END_1613__;$i+=1){ $left = 90 + ($i-1)*280; ?>
+<?php $__FOR_START_2879__=1;$__FOR_END_2879__=$count+1;for($i=$__FOR_START_2879__;$i < $__FOR_END_2879__;$i+=1){ $left = 90 + ($i-1)*280; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

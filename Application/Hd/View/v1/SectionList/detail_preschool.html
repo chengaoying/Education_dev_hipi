@@ -20,7 +20,7 @@
         left:885px;
         width: 57px;
         height: 26px;
-        background: url(__HD__/images/course/kinder/weekday/weekinfo.png) no-repeat;
+        background: url(__HD__/images/sectionList/preschool/weekinfo.png) no-repeat;
     }
     
     /* 幼儿园哪个班 */
@@ -28,10 +28,10 @@
         position: absolute;
         display: block;
         top:70px;
-        left:285px;
+        left:290px;
         width: 54px;
         height: 29px;
-        background: url(__HD__/images/course/kinder/class_{$class}_title.png) no-repeat;
+        background: url(__HD__/images/courseList/title/preschool/big_title.png) no-repeat;
     }
     
 	.shadow{
@@ -48,13 +48,16 @@
 
 var buttons=
 	[
+		/* 订购按钮 */	
+		{id:'btn_order',name:'订购',action:'',linkImage:'__HD__/images/common/order/btn_order.png',focusImage:'__HD__/images/common/order/btn_order_over.png',selectBox:'',left:'',right:['day_1','day_2','day_3'],up:'',down:['video_2','video_1']},
+
         //三天
-        {id:'day_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'day_2',up:'',down:'video_1'},
-        {id:'day_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_1',right:'day_3',up:'',down:'video_1'},
-        {id:'day_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_2',right:'week_course',up:'',down:'video_1'},
+        {id:'day_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'btn_order',right:'day_2',up:'',down:'video_4'},
+        {id:'day_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_1',right:'day_3',up:'',down:'video_5'},
+        {id:'day_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_2',right:'btn_week',up:'',down:'video_5'},
         
         /*一周课程*/
-        {id:'btn_week',name:'',action:'',linkImage:'__HD__/images/sectionList/preschool/btn_week.png',focusImage:'__HD__/images/sectionList/preschool/btn_week_over.png',selectBox:'',left:'',right:'',up:'',down:['video_5','video_4','video_3','video_2','video_1']},
+        {id:'btn_week',name:'',action:'',linkImage:'__HD__/images/sectionList/preschool/btn_week.png',focusImage:'__HD__/images/sectionList/preschool/btn_week_over.png',selectBox:'',left:'day_3',right:'',up:'',down:['video_5','video_4','video_3','video_2','video_1']},
         
         /*视频列表*/
 	 	{id:'video_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'',right:'video_2',up:'btn_week',down:'special_1'},
@@ -76,9 +79,9 @@ var initButtons = function(){
 	//栏目
 	for(var i=0; i<daylist.length; i++)
 	{
-		buttons[i].name = daylist[i].name;
-		buttons[i].linkImage = daylist[i].linkImage;
-		buttons[i].focusImage = daylist[i].focusImage;
+		buttons[i+1].name = daylist[i].name;
+		buttons[i+1].linkImage = daylist[i].linkImage;
+		buttons[i+1].focusImage = daylist[i].focusImage;
 	}
 	
 }
@@ -90,11 +93,18 @@ window.onload=function()
 };
 </script>
 
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
+
 <!-- 左上角的栏目LOGO -->
 <div class="ch_logo"></div>
 
 <!-- 幼儿园哪个班 -->
 <div class="class"></div>
+
+<!-- 订购 -->
+<div id="div_btn_order" style="position:absolute;width:100px;height:40px;top:65px;left:365px;">
+	<img id="btn_order" src="__HD__/images/common/order/btn_order.png">
+</div>
 
 <!-- 三天 -->
 <volist name="dayList" id="day" key="i">
