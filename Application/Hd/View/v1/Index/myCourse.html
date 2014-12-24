@@ -94,8 +94,8 @@ window.onload=function()
                 $top = 182; $left = 80 + ($i-1)*225;
             }
         </php>
-        <div id="div_course_{$i}" title="{:U('CourseList/index')}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
-            <img id="course_{$i}" src="{$course['content']}" width="210" height="210">
+        <div id="div_course_{$i}" title="{:U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'])}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
+            <img id="course_{$i}" src="{$course['imgUrl']}" width="210" height="210">
         </div>
         <div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
             <img id="course_{$i}_focus" src="" width="220" height="220">
@@ -103,14 +103,14 @@ window.onload=function()
         
         <!-- 底部背景投影图 -->
         <if condition="$i gt 5">
-            <php>$left = 90 + ($i-6)*225;</php>
+            <php>$left = 85 + ($i-6)*225;</php>
             <div class="shadow" style="left:{$left}px;"></div>
          </if>
     </volist>
 <else /> 
 <!-- 当课程为空的时候提示去选择课程 -->
 <div id="empty_course_bg"></div>
-<div id="div_empty_course" href="{:U('Course/all')}" style="position:absolute;width:98px;height:40px;left:145px;top:300px;text-align:center;">
+<div id="div_empty_course" title="{:U('Index/allCourse')}" style="position:absolute;width:98px;height:40px;left:145px;top:300px;text-align:center;">
 	<img id="empty_course" src="__HD__/images/index/myCourse/select_course.png" width="98" height="40">
 </div>
 </if>

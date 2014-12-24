@@ -38,6 +38,9 @@ class IndexController extends CommonController {
 		//栏目数据json格式-前端js使用
 		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage'));
 		$json_channel = json_encode($json_channel);
+		
+		//角色信息
+		$role = unserialize(Session('role'));
 		 
 		//广告
 		$left_ad   = $this->getAdByasKey('recommend_left');
@@ -60,6 +63,7 @@ class IndexController extends CommonController {
 		$this->assign(array(
 			'json_channel'	=> $json_channel,
 			'topChannel' 	=> $this->topChannel,
+			'role'			=> $role,	
 			'left_ad'		=> $left_ad,
 			'right_ad'		=> $right_ad,
 			'bottom_ad'		=> $bottom_ad,
@@ -100,68 +104,25 @@ class IndexController extends CommonController {
 		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage'));
 		$json_channel = json_encode($json_channel);
 		
-		//我的课程
-		$myCourse = array();
-		$myCourse = array(
-				array(
-						'id' => 1,
-						'name' => 'aa',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/a.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'bb',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/b.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-				array(
-						'id' => 1,
-						'name' => 'cc',
-						'content' => get_upfile_url('__HD__/images/index/myCourse/c.jpg')
-				),
-		);
-		//print_r($myCourse);
 		$this->assign(array(
 			'json_channel'	=> $json_channel,
 			'topChannel' 	=> $this->topChannel,
-			'myCourse'      => $myCourse,
+			'myCourse'      => $this->getCourseList(),
 		));
 		$this->display();
 	}
 	
+	/* 测试--课程列表 */
+	private function getCourseList(){
+		$courseList = array();
+		for($i=0; $i< 10; $i++){
+			$courseList[$i]['id'] = $i;
+			$courseList[$i]['chId'] = 19;
+			$courseList[$i]['stageIds'] = 7;
+			$courseList[$i]['name'] = 'test';
+			$courseList[$i]['imgUrl'] = get_upfile_url('__HD__/images/index/myCourse/a.jpg');
+		}
+		return $courseList;
+	}
 	
 }

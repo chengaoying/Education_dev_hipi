@@ -76,4 +76,87 @@ class LibraryController extends CommonController {
         $this->display($template);
     }
     
+    /*
+     * 错选集
+     */
+    public function wrongAnthologyAct() {
+        $selectLib = I('lib_id',1);
+        $libList = array();
+        $libList = array(
+            array(
+                'id' => 1,
+                'name' => '第1课'
+            ),
+            array(
+                'id' => 2,
+                'name' => '第2课'
+            ),
+            array(
+                'id' => 3,
+                'name' => '第3课'
+            ),
+            array(
+                'id' => 4,
+                'name' => '第4课'
+            ),
+            array(
+                'id' => 5,
+                'name' => '第5课'
+            ),
+            array(
+                'id' => 6,
+                'name' => '第6课'
+            ),
+            array(
+                'id' => 7,
+                'name' => '第7课'
+            ),
+        );
+        $questionList = array();
+        $questionList = array(
+            array(
+                'id' => 1,
+                'name' => '练习题目：下面小于5的是？',
+                'correct'=>1,
+                'myself'=>2
+            ),
+            array(
+                'id' => 1,
+                'name' => '练习题目：下面小于5的是？',
+                'correct'=>1,
+                'myself'=>2
+            ),
+            array(
+                'id' => 1,
+                'name' => '练习题目：下面小于5的是？',
+                'correct'=>1,
+                'myself'=>2
+            ),
+            array(
+                'id' => 1,
+                'name' => '练习题目：下面小于5的是？',
+                'correct'=>1,
+                'myself'=>2
+            ),
+            array(
+                'id' => 1,
+                'name' => '练习题目：下面小于5的是？',
+                'correct'=>1,
+                'myself'=>2
+            ),
+            array(
+                'id' => 1,
+                'name' => '练习题目：下面小于5的是？',
+                'correct'=>1,
+                'myself'=>2
+            ),
+        );
+        $this->assign(array(
+            'selectLib' => $selectLib,
+            'libList' => $libList,
+            'questionList' => $questionList
+        ));
+        $this->display();
+    }
+    
 }

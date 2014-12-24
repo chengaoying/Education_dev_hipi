@@ -19,18 +19,7 @@ body {background-color: transparent;}
 
 <style>
     body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
-
-/* 用户信息背景图  */
-#user_info_bg{
-	position:absolute;
-    display: block;
-    width:210px;
-    height:125px;
-    top:370px;
-    left:90px;	
-    background-image:url(/static/v1/hd/images/index/recommend/user_info_bg.jpg);
-}  
-
+    
 /* 最近观看背景图 */
 #recently_saw_bg{
 	position:absolute;
@@ -38,7 +27,7 @@ body {background-color: transparent;}
     width:210px;
     height:120px;
     top:495px;
-    left:90px;	
+    left:85px;	
     background-image:url(/static/v1/hd/images/index/recommend/recently_saw_bg.png);
 } 
 
@@ -64,13 +53,13 @@ var record = <?php echo ($json_record); ?>;
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:''},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'t_right_ad'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:['t_left_ad','role_info']},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'t_left_ad'},
 		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',down:'t_right_ad'},
 		
 		/* 广告 */
-		//{id:'t_left_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'t_right_ad',up:'ch_1',down:''},
-		{id:'t_right_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x320.gif',left:'',right:'tuijian_1',up:'ch_3',down:'t_bottom_ad'},
+		{id:'t_left_ad',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',right:'t_right_ad',up:'ch_1',down:'role_info'},
+		{id:'t_right_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x320.gif',left:'t_left_ad',right:'tuijian_1',up:'ch_3',down:'t_bottom_ad'},
 		{id:'t_bottom_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x100.gif',left:'record_1',right:'tuijian_4',up:'t_right_ad',down:''},
 		
 		/* 推荐课程 */
@@ -81,8 +70,11 @@ var buttons=
 		{id:'tuijian_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
 		{id:'tuijian_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
 		
-		//最近观看记录		
-		{id:'record_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'',down:'record_2'},
+		/* 角色信息   */
+		{id:'role_info',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'',right:'t_right_ad',up:'t_left_ad',down:'record_1'},
+		
+		/* 最近观看记录 */		
+		{id:'record_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'role_info',down:'record_2'},
 		{id:'record_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'record_1',down:'record_3'},
 		{id:'record_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'record_2',down:''},
 	];
@@ -117,7 +109,7 @@ window.onload=function()
 <!-- 静态图片 -->
 <div id="user_info_bg"></div>
 <div id="recently_saw_bg"></div>
-<?php $__FOR_START_11276__=1;$__FOR_END_11276__=6;for($i=$__FOR_START_11276__;$i < $__FOR_END_11276__;$i+=1){ $left = 90 + ($i-1)*225; ?>
+<?php $__FOR_START_15777__=1;$__FOR_END_15777__=6;for($i=$__FOR_START_15777__;$i < $__FOR_END_15777__;$i+=1){ $left = 85 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
@@ -129,12 +121,46 @@ window.onload=function()
 
 <!-- 页面左侧 -->
 	<!-- 广告 -->
-<div id="div_t_left_ad_1" style="position:absolute;width:230px;height:174px;left:80px;top:180px;text-align:center;">
+<div id="div_t_left_ad" style="position:absolute;width:220px;height:184px;left:80px;top:180px;text-align:center;">
 	<img id="t_left_ad"  src="<?php echo ($left_ad['content']); ?>" width="210" height="174">
 </div>
+<div id="div_t_left_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:194px;left:75px;top:175px;text-align:center;">
+	<img id="t_left_ad_focus" src="" width="220" height="184">
+</div>
+
+<!-- 角色信息按钮 -->
+<div id="div_role_info" style="position:absolute;width:220px;height:135px;left:85px;top:370px;">
+	<img id="role_info"  src="/static/v1/hd/images/index/recommend/user_info_bg.jpg" width="210" height="125">
+</div>
+<div id="div_role_info_focus" style="position:absolute;visibility: hidden;width:220px;height:135px;left:79px;top:367px;text-align:center;">
+	<img id="role_info_focus" src="" width="218" height="130">
+</div>
+<!-- 角色信息 -->
+<div style="position:absolute;width:210px;height:125px;left:85px;top:370px;">
+	<div style="position:inherit;width:80px;height:24px;left:15px;top:15px;color:black;">
+		<?php echo ($role['nickName']); ?>
+	</div>
+	<div style="position:inherit;width:64px;height:30px;left:15px;top:50px;">
+		<img src="/static/v1/hd/images/usercenter/user/big.png">
+	</div>
+	<div style="position:inherit;width:50px;height:30px;left:75px;top:50px;color:black;">
+		Lv<?php echo ($role['level']); ?>
+	</div>
+	<div style="position:inherit;width:18px;height:18px;left:15px;top:85px;">
+		<img src="/static/v1/hd/images/usercenter/user/flower.png">
+	</div>
+	<div style="position:inherit;width:50px;height:24px;left:40px;top:80px;color:black;">
+		<?php echo ($role['point']); ?>
+	</div>
+	<div style="position:inherit;width:95px;height:120px;left:120px;top:0px;">
+		<img src="/static/v1/hd/images/usercenter/user/face_<?php echo ($role['face']); ?>.png">
+	</div>
+</div>
+
+
 
 <!-- 最近观看记录 -->
-<?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$r): $mod = ($i % 2 );++$i; $left = 135; $top = 510 + ($i-1)*30; ?>
+<?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$r): $mod = ($i % 2 );++$i; $left = 130; $top = 510 + ($i-1)*30; ?>
 	<div id="div_record_<?php echo ($i); ?>" style="position:absolute;width:160px;height:30px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;vertical-align: middle;">
 		<span id="record_<?php echo ($i); ?>" title=""><?php echo ($r['name']); ?></span>
 	</div>	
@@ -163,7 +189,7 @@ window.onload=function()
 
 <!-- 页面右侧 -->
 	<!-- 推荐的课程 -->
-<?php $__FOR_START_6485__=1;$__FOR_END_6485__=7;for($i=$__FOR_START_6485__;$i < $__FOR_END_6485__;$i+=1){ if($i > 3){ $top = 405; $left = 535 + ($i-4)*225; }else{ $top = 180; $left = 535 + ($i-1)*225; } ?>
+<?php $__FOR_START_31686__=1;$__FOR_END_31686__=7;for($i=$__FOR_START_31686__;$i < $__FOR_END_31686__;$i+=1){ if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
 	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="tuijian_<?php echo ($i); ?>" src="/static/v1/hd/images/test/<?php echo ($i); ?>.jpg" width="210" height="210">
 	</div>

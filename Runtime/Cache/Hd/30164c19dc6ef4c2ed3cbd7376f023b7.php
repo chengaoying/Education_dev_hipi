@@ -30,7 +30,7 @@ body {background-color: transparent;}
         background: url(/static/v1/hd/images/sectionList/title_preschool.png) no-repeat;
     }
     
-    /* 幼儿园哪个班 */
+    /* 龄段 */
     .class{
         position: absolute;
         display: block;
@@ -136,7 +136,7 @@ window.onload=function()
 <!-- 左上角的栏目LOGO -->
 <div class="ch_logo"></div>
 
-<!-- 幼儿园哪个班 -->
+<!-- 龄段 -->
 <div class="class"></div>
 
 <!-- 订购 -->

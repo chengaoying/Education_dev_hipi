@@ -226,13 +226,18 @@ Epg.Button = Epg.btn =
 			if(prev.linkImage){
 				G(prev.id).src = prev.linkImage;
 			}else{
-				G(prev.id).width  -= 5;
-				G(prev.id).height -= 5;
+				//add 20141224 增加按钮放大缩小控制(按钮buttons中resize属性为-1则不进行放大缩小效果)
+				if(Epg.isEmpty(prev.resize) || prev.resize != -1){ 
+					G(prev.id).width  -= 5;
+					G(prev.id).height -= 5;
+				}
 			}
 			if(prev.selectBox){ //add 20141213    失去焦点后隐藏光标，并把光标的尺寸恢复到原始大小
 				var selectBoxId = prev.id + '_focus';
-				G(selectBoxId).width  -= 5;
-				G(selectBoxId).height -= 5;
+				if(Epg.isEmpty(prev.resize) || prev.resize != -1){
+					G(selectBoxId).width  -= 5;
+					G(selectBoxId).height -= 5;
+				}
 				var divId = 'div_' + prev.id + '_focus';
 				H(divId);
 			}
@@ -243,15 +248,19 @@ Epg.Button = Epg.btn =
 			if(current.focusImage){
 				G(current.id).src = current.focusImage;
 			}else{
-				G(current.id).width  += 5;
-				G(current.id).height += 5;
+				if(Epg.isEmpty(current.resize) || current.resize != -1){
+					G(current.id).width  += 5;
+					G(current.id).height += 5;
+				}
 			}
 			if(current.selectBox){ //add 20141213    增加焦点框选中效果
 				var selectBoxId = current.id + '_focus';
 				var divId = 'div_' + current.id + '_focus';
 				G(selectBoxId).src = current.selectBox;
-				G(selectBoxId).width  += 5;
-				G(selectBoxId).height += 5;
+				if(Epg.isEmpty(current.resize) || current.resize != -1){
+					G(selectBoxId).width  += 5;
+					G(selectBoxId).height += 5;
+				}
 				S(divId);
 			}
 		}

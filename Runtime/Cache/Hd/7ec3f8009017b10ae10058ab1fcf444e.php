@@ -99,20 +99,20 @@ window.onload=function()
 <!-- 我的课程开始 -->
 <?php if(count($myCourse) > 0): ?><!-- 课程列表 -->
     <?php if(is_array($myCourse)): $i = 0; $__LIST__ = $myCourse;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$course): $mod = ($i % 2 );++$i; if($i > 5){ $top = 415; $left = 80 + ($i-6)*225; }else{ $top = 182; $left = 80 + ($i-1)*225; } ?>
-        <div id="div_course_<?php echo ($i); ?>" title="<?php echo U('CourseList/index');?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-            <img id="course_<?php echo ($i); ?>" src="<?php echo ($course['content']); ?>" width="210" height="210">
+        <div id="div_course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds']);?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+            <img id="course_<?php echo ($i); ?>" src="<?php echo ($course['imgUrl']); ?>" width="210" height="210">
         </div>
         <div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
             <img id="course_<?php echo ($i); ?>_focus" src="" width="220" height="220">
         </div>
         
         <!-- 底部背景投影图 -->
-        <?php if($i > 5): $left = 90 + ($i-6)*225; ?>
+        <?php if($i > 5): $left = 85 + ($i-6)*225; ?>
             <div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php endif; endforeach; endif; else: echo "" ;endif; ?>
 <?php else: ?> 
 <!-- 当课程为空的时候提示去选择课程 -->
 <div id="empty_course_bg"></div>
-<div id="div_empty_course" href="<?php echo U('Course/all');?>" style="position:absolute;width:98px;height:40px;left:145px;top:300px;text-align:center;">
+<div id="div_empty_course" title="<?php echo U('Index/allCourse');?>" style="position:absolute;width:98px;height:40px;left:145px;top:300px;text-align:center;">
 	<img id="empty_course" src="/static/v1/hd/images/index/myCourse/select_course.png" width="98" height="40">
 </div><?php endif; ?>
 <!-- 我的课程结束 -->

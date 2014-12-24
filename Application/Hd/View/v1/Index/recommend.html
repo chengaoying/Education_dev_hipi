@@ -2,18 +2,7 @@
 
 <style>
     body{ background-image:url(__HD__/images/common/bg.jpg); }
-
-/* 用户信息背景图  */
-#user_info_bg{
-	position:absolute;
-    display: block;
-    width:210px;
-    height:125px;
-    top:370px;
-    left:90px;	
-    background-image:url(__HD__/images/index/recommend/user_info_bg.jpg);
-}  
-
+    
 /* 最近观看背景图 */
 #recently_saw_bg{
 	position:absolute;
@@ -21,7 +10,7 @@
     width:210px;
     height:120px;
     top:495px;
-    left:90px;	
+    left:85px;	
     background-image:url(__HD__/images/index/recommend/recently_saw_bg.png);
 } 
 
@@ -47,13 +36,13 @@ var record = {$json_record};
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:''},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'t_right_ad'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:['t_left_ad','role_info']},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'t_left_ad'},
 		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',down:'t_right_ad'},
 		
 		/* 广告 */
-		//{id:'t_left_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'t_right_ad',up:'ch_1',down:''},
-		{id:'t_right_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'',right:'tuijian_1',up:'ch_3',down:'t_bottom_ad'},
+		{id:'t_left_ad',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',right:'t_right_ad',up:'ch_1',down:'role_info'},
+		{id:'t_right_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'t_left_ad',right:'tuijian_1',up:'ch_3',down:'t_bottom_ad'},
 		{id:'t_bottom_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x100.gif',left:'record_1',right:'tuijian_4',up:'t_right_ad',down:''},
 		
 		/* 推荐课程 */
@@ -64,8 +53,11 @@ var buttons=
 		{id:'tuijian_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
 		{id:'tuijian_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
 		
-		//最近观看记录		
-		{id:'record_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'',down:'record_2'},
+		/* 角色信息   */
+		{id:'role_info',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'',right:'t_right_ad',up:'t_left_ad',down:'record_1'},
+		
+		/* 最近观看记录 */		
+		{id:'record_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'role_info',down:'record_2'},
 		{id:'record_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'record_1',down:'record_3'},
 		{id:'record_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'record_2',down:''},
 	];
@@ -101,7 +93,7 @@ window.onload=function()
 <div id="user_info_bg"></div>
 <div id="recently_saw_bg"></div>
 <for start="1" end="6" step="1">
-	<php> $left = 90 + ($i-1)*225;</php>
+	<php> $left = 85 + ($i-1)*225;</php>
 	<div class="shadow" style="left:{$left}px;"></div>
 </for>
 
@@ -118,14 +110,48 @@ window.onload=function()
 
 <!-- 页面左侧 -->
 	<!-- 广告 -->
-<div id="div_t_left_ad_1" style="position:absolute;width:230px;height:174px;left:80px;top:180px;text-align:center;">
+<div id="div_t_left_ad" style="position:absolute;width:220px;height:184px;left:80px;top:180px;text-align:center;">
 	<img id="t_left_ad"  src="{$left_ad['content']}" width="210" height="174">
 </div>
+<div id="div_t_left_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:194px;left:75px;top:175px;text-align:center;">
+	<img id="t_left_ad_focus" src="" width="220" height="184">
+</div>
+
+<!-- 角色信息按钮 -->
+<div id="div_role_info" style="position:absolute;width:220px;height:135px;left:85px;top:370px;">
+	<img id="role_info"  src="__HD__/images/index/recommend/user_info_bg.jpg" width="210" height="125">
+</div>
+<div id="div_role_info_focus" style="position:absolute;visibility: hidden;width:220px;height:135px;left:79px;top:367px;text-align:center;">
+	<img id="role_info_focus" src="" width="218" height="130">
+</div>
+<!-- 角色信息 -->
+<div style="position:absolute;width:210px;height:125px;left:85px;top:370px;">
+	<div style="position:inherit;width:80px;height:24px;left:15px;top:15px;color:black;">
+		{$role['nickName']}
+	</div>
+	<div style="position:inherit;width:64px;height:30px;left:15px;top:50px;">
+		<img src="__HD__/images/usercenter/user/big.png">
+	</div>
+	<div style="position:inherit;width:50px;height:30px;left:75px;top:50px;color:black;">
+		Lv{$role['level']}
+	</div>
+	<div style="position:inherit;width:18px;height:18px;left:15px;top:85px;">
+		<img src="__HD__/images/usercenter/user/flower.png">
+	</div>
+	<div style="position:inherit;width:50px;height:24px;left:40px;top:80px;color:black;">
+		{$role['point']}
+	</div>
+	<div style="position:inherit;width:95px;height:120px;left:120px;top:0px;">
+		<img src="__HD__/images/usercenter/user/face_{$role['face']}.png">
+	</div>
+</div>
+
+
 
 <!-- 最近观看记录 -->
 <volist name="record" id="r">
 	<php>
-		$left = 135; $top = 510 + ($i-1)*30;
+		$left = 130; $top = 510 + ($i-1)*30;
 	</php>
 	<div id="div_record_{$i}" style="position:absolute;width:160px;height:30px;left:{$left}px;top:{$top}px;vertical-align: middle;">
 		<span id="record_{$i}" title="">{$r['name']}</span>
@@ -159,9 +185,9 @@ window.onload=function()
 <for start="1" end="7" step="1" name="i">
 	<php>
 		if($i > 3){
-			$top = 405; $left = 535 + ($i-4)*225;
+			$top = 405; $left = 530 + ($i-4)*225;
 		}else{
-			$top = 180; $left = 535 + ($i-1)*225;
+			$top = 180; $left = 530 + ($i-1)*225;
 		}
 	</php>
 	<div id="div_tuijian_{$i}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
