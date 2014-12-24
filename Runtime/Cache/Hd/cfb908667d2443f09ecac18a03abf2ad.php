@@ -47,8 +47,6 @@ body {background-color: transparent;}
 
 //栏目object(json格式数据)
 var channel = <?php echo ($json_channel); ?>;
-var ad = <?php echo ($json_ad); ?>;
-var record = <?php echo ($json_record); ?>;
 
 var buttons=
 	[
@@ -89,14 +87,6 @@ var initButtons = function(){
 		buttons[i].focusImage = channel[i].focusImage;
 	}
 	
-	//广告
-	for(var j=0; j<ad.length; j++)
-	{
-		buttons[j+3].name = ad[j].title;
-		//buttons[j+3].linkImage = ad[j].content;
-		//buttons[j+3].focusImage = ad[j].content;
-	}
-	
 }
 
 window.onload=function()
@@ -109,7 +99,7 @@ window.onload=function()
 <!-- 静态图片 -->
 <div id="user_info_bg"></div>
 <div id="recently_saw_bg"></div>
-<?php $__FOR_START_15777__=1;$__FOR_END_15777__=6;for($i=$__FOR_START_15777__;$i < $__FOR_END_15777__;$i+=1){ $left = 85 + ($i-1)*225; ?>
+<?php $__FOR_START_17000__=1;$__FOR_END_17000__=6;for($i=$__FOR_START_17000__;$i < $__FOR_END_17000__;$i+=1){ $left = 85 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
@@ -189,7 +179,7 @@ window.onload=function()
 
 <!-- 页面右侧 -->
 	<!-- 推荐的课程 -->
-<?php $__FOR_START_31686__=1;$__FOR_END_31686__=7;for($i=$__FOR_START_31686__;$i < $__FOR_END_31686__;$i+=1){ if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
+<?php $__FOR_START_9857__=1;$__FOR_END_9857__=7;for($i=$__FOR_START_9857__;$i < $__FOR_END_9857__;$i+=1){ if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
 	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="tuijian_<?php echo ($i); ?>" src="/static/v1/hd/images/test/<?php echo ($i); ?>.jpg" width="210" height="210">
 	</div>

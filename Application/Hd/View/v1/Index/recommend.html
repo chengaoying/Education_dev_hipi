@@ -30,8 +30,6 @@
 
 //栏目object(json格式数据)
 var channel = {$json_channel};
-var ad = {$json_ad};
-var record = {$json_record};
 
 var buttons=
 	[
@@ -70,14 +68,6 @@ var initButtons = function(){
 		buttons[i].name = channel[i].name;
 		buttons[i].linkImage = channel[i].linkImage;
 		buttons[i].focusImage = channel[i].focusImage;
-	}
-	
-	//广告
-	for(var j=0; j<ad.length; j++)
-	{
-		buttons[j+3].name = ad[j].title;
-		//buttons[j+3].linkImage = ad[j].content;
-		//buttons[j+3].focusImage = ad[j].content;
 	}
 	
 }

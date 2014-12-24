@@ -47,18 +47,10 @@ class IndexController extends CommonController {
 		$right_ad  = $this->getAdByasKey('recommend_right');
 		$bottom_ad = $this->getAdByasKey('recommend_bottom');
 		 
-		//广告数据json格式-前端js使用
-		//$json_ad[0]  = $left_ad;
-		$json_ad[0]  = $right_ad;
-		$json_ad[1]  = $bottom_ad;
-		$json_ad = get_array_fieldkey($json_ad,array('id','title','content'));
-		$json_ad = json_encode($json_ad);
-		
 		//最近观看记录
 		$record[0] = array('id'=>1,name=>'test');
 		$record[1] = array('id'=>2,name=>'test2');
 		$record[2] = array('id'=>3,name=>'test3');
-		$json_record = json_encode($record);
 		 
 		$this->assign(array(
 			'json_channel'	=> $json_channel,
@@ -67,9 +59,7 @@ class IndexController extends CommonController {
 			'left_ad'		=> $left_ad,
 			'right_ad'		=> $right_ad,
 			'bottom_ad'		=> $bottom_ad,
-			'json_ad'		=> $json_ad,
 			'record'		=> $record,
-			'json_record'	=> $json_record,		
 		));
 		$this->display();
 	}

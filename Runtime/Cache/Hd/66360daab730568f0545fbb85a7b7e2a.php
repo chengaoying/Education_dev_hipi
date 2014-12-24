@@ -90,7 +90,7 @@ window.onload=function()
 
 <!-- 静态图片-底部投影效果 -->
 <?php $count = count($class)-4; ?>
-<?php $__FOR_START_14215__=1;$__FOR_END_14215__=$count+1;for($i=$__FOR_START_14215__;$i < $__FOR_END_14215__;$i+=1){ $left = 90 + ($i-1)*280; ?>
+<?php $__FOR_START_572__=1;$__FOR_END_572__=$count+1;for($i=$__FOR_START_572__;$i < $__FOR_END_572__;$i+=1){ $left = 85 + ($i-1)*280; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
