@@ -232,6 +232,7 @@ Epg.Button = Epg.btn =
 					G(prev.id).height -= 5;
 				}
 			}
+			G(prev.id).blur();
 			if(prev.selectBox){ //add 20141213    失去焦点后隐藏光标，并把光标的尺寸恢复到原始大小
 				var selectBoxId = prev.id + '_focus';
 				if(Epg.isEmpty(prev.resize) || prev.resize != -1){
@@ -253,6 +254,7 @@ Epg.Button = Epg.btn =
 					G(current.id).height += 5;
 				}
 			}
+			G(current.id).focus();
 			if(current.selectBox){ //add 20141213    增加焦点框选中效果
 				var selectBoxId = current.id + '_focus';
 				var divId = 'div_' + current.id + '_focus';
@@ -299,7 +301,7 @@ Epg.key=
 	 */
 	keys:
 	{
-		KEY_5:function(){if(debug_mode)location.reload();}//如果是开发模式，按5刷新
+		KEY_5:function(){if(debug_mode)location.reload();},	//如果是开发模式，按5刷新
 	},
 	
 	/**

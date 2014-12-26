@@ -54,11 +54,27 @@ var initButtons = function(){
 	
 }
 
+<php> 
+	$count = count($courses);
+	$count2 = count($stageList);
+</php>
+
 window.onload=function()
 {
+	//光标默认第一个课程上，没有则在龄段上
+	var focus = '';
+    var count = {$count};
+    var count2 = {$count2};
+    if(count > 0){
+    	focus = 'course_1';
+    }else if(count2 > 0){
+    	focus = 'stage_1';
+    }
+ 	  
     initButtons();
-	Epg.btn.init('course_1',buttons,true);
+	Epg.btn.init(focus,buttons,true);
 };
+
 </script>
 
 <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
@@ -75,7 +91,7 @@ window.onload=function()
 </volist>
 
 <!-- 课程列表 -->
-<volist name="courseList" id="course" key="i">
+<volist name="courses" id="course" key="i">
     <php>
         if($i > 5){
             $top = 415; $left = 80 + ($i-6)*225;
@@ -83,16 +99,10 @@ window.onload=function()
             $top = 182; $left = 80 + ($i-1)*225;
         }
     </php>
-    <div id="div_course_{$i}" title="{:U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'])}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="course_{$i}" src="{$course['imgUrl']}" width="210" height="210">
+    <div id="div_course_{$i}" title="{:U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id'])}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="course_{$i}" src="{:get_upfile_url($course['imgUrl'])}" width="210" height="210">
     </div>
     <div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
         <img id="course_{$i}_focus" src="" width="220" height="220">
     </div>
-
-    <!-- 底部背景投影图 -->
-    <if condition="$i gt 5">
-        <php>$left = 90 + ($i-6)*225;</php>
-        <div class="shadow" style="left:{$left}px;"></div>
-     </if>
 </volist>

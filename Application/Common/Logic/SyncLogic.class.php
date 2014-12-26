@@ -37,7 +37,6 @@ class SyncLogic{
 	 */
 	private function saveData($key,$data){
 		S($key,$data);
-		save_log('sync_test',array($key));
 	}
 	
 }

@@ -1,0 +1,140 @@
+<layout name="layout" />
+<style>
+    body{ background-image:url(__HD__/images/usercenter/baseInfo/info_bg.jpg); }
+
+/* 设置弱项  */
+#sex_bg{
+	position:absolute;
+    display: block;
+    width:206px;
+    height:40px;
+    top:100px;
+    left:150px;	
+    background-image:url(__HD__/images/usercenter/baseInfo/advantage.png);
+}
+/* 提示文字  */
+#select_tip{
+	position:absolute;
+    display: block;
+    width:427px;
+    height:22px;
+    top:110px;
+    left:383px;	
+    background-image:url(__HD__/images/usercenter/baseInfo/select_tip_2.png);
+}
+</style>
+
+<script type="text/javascript">
+
+var subject = {$json_subjects}; 
+/* 页面可点击按钮  */
+var buttons=
+	[
+		{id:'music',name:'music',action:'select("music")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',right:'draw',down:'animation'},
+		{id:'draw',name:'draw',action:'select("draw")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'music',right:'handwriting',down:'movie'},
+		{id:'handwriting',name:'handwriting',action:'select("handwriting")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'draw',right:'science',down:'writing'},
+		{id:'science',name:'science',action:'select("science")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'handwriting',right:'dance',down:'handwork'},
+		{id:'dance',name:'dance',action:'select("dance")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'science',down:'math'},
+
+		{id:'animation',name:'animation',action:'select("animation")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',right:'movie',down:'chinese',up:"music"},
+		{id:'movie',name:'movie',action:'select("movie")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'animation',right:'writing',down:'english',up:"draw"},
+		{id:'writing',name:'writing',action:'select("writing")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'movie',right:'handwork',down:'chinese',up:"handwriting"},
+		{id:'handwork',name:'handwork',action:'select("handwork")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'writing',right:'math',down:'english',up:"science"},
+		{id:'math',name:'math',action:'select("math")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'handwork',down:'english',up:"dance"},
+
+		{id:'chinese',name:'chinese',action:'select("chinese")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'writing',right:'english',down:'ok',up:"animation"},
+		{id:'english',name:'english',action:'select("english")',linkImage:'__HD__/images/usercenter/baseInfo/kuang_2.png',focusImage:'__HD__/images/usercenter/baseInfo/kuang_1.png',left:'chinese',down:'ok',up:"movie"},
+		
+		{id:'ok',name:'确定',action:'submit()',linkImage:'__HD__/images/usercenter/baseInfo/confirm_1.png',focusImage:'__HD__/images/usercenter/baseInfo/confirm_2.png',up:'chinese',down:''},
+	];
+
+ var init_subjects = function()
+{
+	for(var key in subject)
+	{
+		G(key+'ID').value=1;
+		G('div_'+key+'_selected').style.visibility = 'visible';
+	}
+} 
+
+window.onload=function()
+{
+	init_subjects(); 
+	Epg.btn.init('music',buttons,true);	
+};
+
+</script>
+
+
+<!-- 静态图片 -->
+<div id="sex_bg"></div>
+<div id="select_tip"></div>
+
+<form id="form" action="{:U(Role/setSex)}" method="post" style="padding:10px">
+	<volist name="subjects" id="subject" key="i">
+		<input type="hidden" id="{$subject}ID" name="{$subject}" value="0"/>
+	</volist>
+</form>
+<volist name="subjects" id="subject" key="i">
+	<php>
+        $left = 150 + (($i-1)%5)*150;
+        if($i==1)
+        {
+        	$top = 200;
+        }
+        else 
+        {
+        	if(($i-1)%5==0)//换行
+        	{
+        		$top+=100;
+        	}
+        }
+	</php>
+
+	<div id="div_{$subject}" style="position:absolute;left:{$left}px;top:{$top}px;">
+		<img id="{$subject}" name="{$subject}" src="__HD__/images/usercenter/baseInfo/kuang_2.png" style="width:110px;height:50px;"/>
+	</div>
+	<div id="div_{$subject}_word" style="position:absolute;left:{$left}px;top:{$top}px;">
+		<img id="{$subject}_word" name="{$subject}_word" src="__HD__/images/usercenter/baseInfo/word_{$subject}.png" style="width:110px;height:50px;"/>
+	</div>
+	<div id="div_{$subject}_selected" style="position:absolute;visibility:hidden;left:{$left+78}px;top:{$top+15}px;">
+		<img id="{$subject}_selected" name="{$subject}_selected" src="__HD__/images/usercenter/baseInfo/right.png" style="width:28px;height:22px;"/>
+	</div>
+</volist>
+
+
+<!-- 确定按钮 -->
+<div id="div_ok" style="position:absolute;width:140px;height:50px;left:150px;top:500px;">
+    <img id="ok" title="" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
+</div>
+
+<script type="text/javascript">
+
+function submit(){
+	G('form').submit();
+}
+
+function select(subject)
+{
+	if(G('div_'+subject+'_selected').style.visibility == 'visible')
+	{
+		G('div_'+subject+'_selected').style.visibility = 'hidden';
+		G(subject+'ID').value=0;
+	}
+	else
+	{
+		G('div_'+subject+'_selected').style.visibility = 'visible'
+		G(subject+'ID').value=1;
+	}
+
+}
+
+</script>
+
+
+
+
+
+
+
+

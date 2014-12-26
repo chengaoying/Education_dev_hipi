@@ -31,6 +31,7 @@ class CommonController extends \Think\Controller{
 		$this->_initUser();
 		//初始化一级栏目
 	    $this->_initTopChannel();
+	    header("Content-Type: text/html;charset=utf-8");
 	}
 	
 	

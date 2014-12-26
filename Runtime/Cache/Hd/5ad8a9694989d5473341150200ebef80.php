@@ -71,11 +71,24 @@ var initButtons = function(){
 	
 }
 
+<?php $count = count($courses); $count2 = count($stageList); ?>
+
 window.onload=function()
 {
+	//光标默认第一个课程上，没有则在龄段上
+	var focus = '';
+    var count = <?php echo ($count); ?>;
+    var count2 = <?php echo ($count2); ?>;
+    if(count > 0){
+    	focus = 'course_1';
+    }else if(count2 > 0){
+    	focus = 'stage_1';
+    }
+ 	  
     initButtons();
-	Epg.btn.init('course_1',buttons,true);
+	Epg.btn.init(focus,buttons,true);
 };
+
 </script>
 
 <a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
@@ -90,16 +103,12 @@ window.onload=function()
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 课程列表 -->
-<?php if(is_array($courseList)): $i = 0; $__LIST__ = $courseList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$course): $mod = ($i % 2 );++$i; if($i > 5){ $top = 415; $left = 80 + ($i-6)*225; }else{ $top = 182; $left = 80 + ($i-1)*225; } ?>
-    <div id="div_course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds']);?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-        <img id="course_<?php echo ($i); ?>" src="<?php echo ($course['imgUrl']); ?>" width="210" height="210">
+<?php if(is_array($courses)): $i = 0; $__LIST__ = $courses;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$course): $mod = ($i % 2 );++$i; if($i > 5){ $top = 415; $left = 80 + ($i-6)*225; }else{ $top = 182; $left = 80 + ($i-1)*225; } ?>
+    <div id="div_course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id']);?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+        <img id="course_<?php echo ($i); ?>" src="<?php echo get_upfile_url($course['imgUrl']);?>" width="210" height="210">
     </div>
     <div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
         <img id="course_<?php echo ($i); ?>_focus" src="" width="220" height="220">
-    </div>
-
-    <!-- 底部背景投影图 -->
-    <?php if($i > 5): $left = 90 + ($i-6)*225; ?>
-        <div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+    </div><?php endforeach; endif; else: echo "" ;endif; ?>
 </body>
 </html>

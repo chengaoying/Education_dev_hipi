@@ -11,7 +11,7 @@
     height:120px;
     top:495px;
     left:85px;	
-    background-image:url(__HD__/images/index/recommend/recently_saw_bg.png);
+    background-image:url(__HD__/images/index/recommend/recorder_bg.png);
 } 
 
 /* 底部投影背景图 */
@@ -91,10 +91,10 @@ window.onload=function()
 <!-- 顶部-栏目 -->
 <volist name="topChannel" id="ch">
 	<php>
-		$left = 90 + ($i-1)*150; $top = 75;
+		$left = 100 + ($i-1)*150; $top = 95;
 	</php>
 	<div id="div_ch_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;">
-		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="95" height="26">
+		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="38">
 	</div>	
 </volist>
 
@@ -109,31 +109,10 @@ window.onload=function()
 
 <!-- 角色信息按钮 -->
 <div id="div_role_info" style="position:absolute;width:220px;height:135px;left:85px;top:370px;">
-	<img id="role_info"  src="__HD__/images/index/recommend/user_info_bg.jpg" width="210" height="125">
+	<img id="role_info"  title="{:U('Role/userInfo')}" src="__HD__/images/index/recommend/user_info_bg.jpg" width="210" height="125">
 </div>
 <div id="div_role_info_focus" style="position:absolute;visibility: hidden;width:220px;height:135px;left:79px;top:367px;text-align:center;">
 	<img id="role_info_focus" src="" width="218" height="130">
-</div>
-<!-- 角色信息 -->
-<div style="position:absolute;width:210px;height:125px;left:85px;top:370px;">
-	<div style="position:inherit;width:80px;height:24px;left:15px;top:15px;color:black;">
-		{$role['nickName']}
-	</div>
-	<div style="position:inherit;width:64px;height:30px;left:15px;top:50px;">
-		<img src="__HD__/images/usercenter/user/big.png">
-	</div>
-	<div style="position:inherit;width:50px;height:30px;left:75px;top:50px;color:black;">
-		Lv{$role['level']}
-	</div>
-	<div style="position:inherit;width:18px;height:18px;left:15px;top:85px;">
-		<img src="__HD__/images/usercenter/user/flower.png">
-	</div>
-	<div style="position:inherit;width:50px;height:24px;left:40px;top:80px;color:black;">
-		{$role['point']}
-	</div>
-	<div style="position:inherit;width:95px;height:120px;left:120px;top:0px;">
-		<img src="__HD__/images/usercenter/user/face_{$role['face']}.png">
-	</div>
 </div>
 
 
@@ -152,27 +131,23 @@ window.onload=function()
 </volist>
 
 
-<!-- 页面中间 -->
-	<!-- 广告 -->
+<!-- 页面中间-课程 -->
 <div id="div_t_right_ad" style="position:absolute;width:220px;height:330px;left:305px;top:180px;text-align:center;">
-	<img id="t_right_ad" title="123"  src="{$right_ad['content']}" width="210" height="320">
+	<img id="t_right_ad" title="{:U('SectionList/index?chId='.$courses1[0]['chId'].'&stageId='.$courses1[0]['stageIds'].'&courseId='.$courses1[0]['id'])}"  src="{:get_upfile_url($courses1[0]['imgUrl'])}" width="210" height="320">
 </div>
 <div id="div_t_right_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:340px;left:300px;top:175px;text-align:center;">
 	<img id="t_right_ad_focus" src="" width="220" height="330">
 </div>
-
-	<!-- 成长指标/推荐课程 -->
 <div id="div_t_bottom_ad" style="position:absolute;width:220px;height:110px;left:305px;top:515px;text-align:center;">
-	<img id="t_bottom_ad" src="{$bottom_ad['content']}" width="210" height="100">
+	<img id="t_bottom_ad" title="{:U('SectionList/index?chId='.$courses1[1]['chId'].'&stageId='.$courses1[1]['stageIds'].'&courseId='.$courses1[1]['id'])}" src="{:get_upfile_url($courses1[1]['imgUrl'])}" width="210" height="100">
 </div>
 <div id="div_t_bottom_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:120px;left:300px;top:510px;text-align:center;">
 	<img id="t_bottom_ad_focus" src="" width="220" height="110">
 </div>
 
 
-<!-- 页面右侧 -->
-	<!-- 推荐的课程 -->
-<for start="1" end="7" step="1" name="i">
+<!-- 页面右侧-推荐课程 -->
+<volist name="courses2" id="course">
 	<php>
 		if($i > 3){
 			$top = 405; $left = 530 + ($i-4)*225;
@@ -181,10 +156,10 @@ window.onload=function()
 		}
 	</php>
 	<div id="div_tuijian_{$i}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
-		<img id="tuijian_{$i}" src="__HD__/images/test/{$i}.jpg" width="210" height="210">
+		<img id="tuijian_{$i}" title="{:U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id'])}" src="{:get_upfile_url($course['imgUrl'])}" width="210" height="210">
 	</div>
 	<div id="div_tuijian_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
 		<img id="tuijian_{$i}_focus" src="" width="220" height="220">
 	</div>
-</for>
+</volist>
 

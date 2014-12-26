@@ -26,10 +26,34 @@ function get_ad($asId){
 }
 
 /**
+ * 获取配置中的配置内容content
+ * @param string $cKey 配置key
+ */
+function get_pro_config_content($cKey){
+	$conf = S('ProConfig');
+	$conf = $conf[$cKey];
+	$content = $conf['content'];
+	return unserialize($content);
+}
+
+/**
  * 用于调试，用好的格式在页面打印数组，易于查看
  * @param unknown_type $array
  */
 function p($array)
 {
 	dump($array, 1, '<pre>', 0);
+}
+
+
+/**
+ * 获取缓存
+ * @param string $key
+ */
+function get_cache($name) {
+	$data = S($name);
+	if (empty($data)) {
+		$data = D($name)->updateCache();
+	}
+	return $data;
 }

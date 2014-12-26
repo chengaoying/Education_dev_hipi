@@ -48,7 +48,7 @@ body {background-color: transparent;}
         left:290px;
         width: 54px;
         height: 29px;
-        background: url(/static/v1/hd/images/courseList/title/preschool/big_title.png) no-repeat;
+        background: url(/static/v1/hd/images/courseList/title/preschool/<?php echo ($sKey); ?>_title.png) no-repeat;
     }
     
 	.shadow{

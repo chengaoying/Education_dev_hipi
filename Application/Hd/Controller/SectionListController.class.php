@@ -15,32 +15,33 @@ class SectionListController extends CommonController {
 	 * 课时列表统一入口
 	 */
 	public function indexAct(){
-		$chId 	 = I('chId','');
-		$stageId = I('stageId','');
+		$chId 	  = I('chId','');
+		$stageId  = I('stageId','');
+		$courseId = I('courseId','');
 
 		$chKey = get_array_keyval(S('Channel'),$chId,'id','chKey');
 		
 		if($chKey == 'early') //早教课时列表
 		{
-			$this->early($chId,$chKey,$stageId);
+			$this->early($chId,$chKey,$stageId,$courseId);
 		}
 		elseif($chKey == 'preschool') //幼教课时列表
 		{
-			$this->preschool($chId,$chKey,$stageId);
+			$this->preschool($chId,$chKey,$stageId,$courseId);
 		}
 		else  //其他通用课时列表
 		{
-			$this->common($chId,$chKey,$stageId);
+			$this->common($chId,$chKey,$stageId,$courseId);
 		}
 	}
 	
 	/**
-	 *  早教--课时列表 
+	 * 早教--课时列表 
 	 * @param unknown_type $chId  栏目id
 	 * @param unknown_type $chKey 栏目key
 	 * @param unknown_type $stageId 龄段id
 	 */
-	private function early($chId,$chKey,$stageId){
+	private function early($chId,$chKey,$stageId,$courseId){
 		$month = 13;//几个月的小孩
         $age = 2;
 		if($month>=1 and $month<=12){
@@ -69,14 +70,15 @@ class SectionListController extends CommonController {
 	 * @param unknown_type $chKey
 	 * @param unknown_type $stageId
 	 */
-	private function preschool($chId,$chKey,$stageId){
-		$template = 'detail_preschool';
-		$class = 'big'; //哪个班
-	
+	private function preschool($chId,$chKey,$stageId,$courseId){
+		$stage = S('Stage');
+		$stage = $stage[$stageId];
+		
 		$dayList = $this->getDayList();
 		$json_day = json_encode($dayList);
+		
 		$this->assign(array(
-			'class' 		=> $class,
+			'sKey'	 		=> $stage['sKey'],
 			'videoList' 	=> $this->getVideoList(5),
 			'specialList'	=> $this->getSpecialList(3),
 			'json_day'		=> $json_day,
@@ -91,7 +93,7 @@ class SectionListController extends CommonController {
 	 * @param unknown_type $chKey
 	 * @param unknown_type $stageId
 	 */
-	private function common($chId,$chKey,$stageId){
+	private function common($chId,$chKey,$stageId,$courseId){
 		$this->assign(array(
 			'videoList'=>$this->getVideoList(10),
 		));

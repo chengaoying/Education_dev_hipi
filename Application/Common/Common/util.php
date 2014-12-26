@@ -239,3 +239,23 @@ function is_json($string){
 	return (json_last_error() == JSON_ERROR_NONE);
 }
 
+/**
+ * 计算当前是一年中的的几周
+ */
+function getCurrentWeek(){
+	return date('W');
+}
+
+/**
+ * 当前是星期几
+ */
+function getCurrentDay(){
+	return date('w');
+}
+
+
+
+
+
+
+

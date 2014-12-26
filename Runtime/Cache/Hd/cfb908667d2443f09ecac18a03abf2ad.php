@@ -28,7 +28,7 @@ body {background-color: transparent;}
     height:120px;
     top:495px;
     left:85px;	
-    background-image:url(/static/v1/hd/images/index/recommend/recently_saw_bg.png);
+    background-image:url(/static/v1/hd/images/index/recommend/recorder_bg.png);
 } 
 
 /* 底部投影背景图 */
@@ -99,14 +99,14 @@ window.onload=function()
 <!-- 静态图片 -->
 <div id="user_info_bg"></div>
 <div id="recently_saw_bg"></div>
-<?php $__FOR_START_17000__=1;$__FOR_END_17000__=6;for($i=$__FOR_START_17000__;$i < $__FOR_END_17000__;$i+=1){ $left = 85 + ($i-1)*225; ?>
+<?php $__FOR_START_8846__=1;$__FOR_END_8846__=6;for($i=$__FOR_START_8846__;$i < $__FOR_END_8846__;$i+=1){ $left = 85 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
 <!-- 顶部-栏目 -->
-<?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 90 + ($i-1)*150; $top = 75; ?>
+<?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*150; $top = 95; ?>
 	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="95" height="26">
+		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="120" height="38">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 页面左侧 -->
@@ -120,31 +120,10 @@ window.onload=function()
 
 <!-- 角色信息按钮 -->
 <div id="div_role_info" style="position:absolute;width:220px;height:135px;left:85px;top:370px;">
-	<img id="role_info"  src="/static/v1/hd/images/index/recommend/user_info_bg.jpg" width="210" height="125">
+	<img id="role_info"  title="<?php echo U('Role/userInfo');?>" src="/static/v1/hd/images/index/recommend/user_info_bg.jpg" width="210" height="125">
 </div>
 <div id="div_role_info_focus" style="position:absolute;visibility: hidden;width:220px;height:135px;left:79px;top:367px;text-align:center;">
 	<img id="role_info_focus" src="" width="218" height="130">
-</div>
-<!-- 角色信息 -->
-<div style="position:absolute;width:210px;height:125px;left:85px;top:370px;">
-	<div style="position:inherit;width:80px;height:24px;left:15px;top:15px;color:black;">
-		<?php echo ($role['nickName']); ?>
-	</div>
-	<div style="position:inherit;width:64px;height:30px;left:15px;top:50px;">
-		<img src="/static/v1/hd/images/usercenter/user/big.png">
-	</div>
-	<div style="position:inherit;width:50px;height:30px;left:75px;top:50px;color:black;">
-		Lv<?php echo ($role['level']); ?>
-	</div>
-	<div style="position:inherit;width:18px;height:18px;left:15px;top:85px;">
-		<img src="/static/v1/hd/images/usercenter/user/flower.png">
-	</div>
-	<div style="position:inherit;width:50px;height:24px;left:40px;top:80px;color:black;">
-		<?php echo ($role['point']); ?>
-	</div>
-	<div style="position:inherit;width:95px;height:120px;left:120px;top:0px;">
-		<img src="/static/v1/hd/images/usercenter/user/face_<?php echo ($role['face']); ?>.png">
-	</div>
 </div>
 
 
@@ -159,33 +138,29 @@ window.onload=function()
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 
-<!-- 页面中间 -->
-	<!-- 广告 -->
+<!-- 页面中间-课程 -->
 <div id="div_t_right_ad" style="position:absolute;width:220px;height:330px;left:305px;top:180px;text-align:center;">
-	<img id="t_right_ad" title="123"  src="<?php echo ($right_ad['content']); ?>" width="210" height="320">
+	<img id="t_right_ad" title="<?php echo U('SectionList/index?chId='.$courses1[0]['chId'].'&stageId='.$courses1[0]['stageIds'].'&courseId='.$courses1[0]['id']);?>"  src="<?php echo get_upfile_url($courses1[0]['imgUrl']);?>" width="210" height="320">
 </div>
 <div id="div_t_right_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:340px;left:300px;top:175px;text-align:center;">
 	<img id="t_right_ad_focus" src="" width="220" height="330">
 </div>
-
-	<!-- 成长指标/推荐课程 -->
 <div id="div_t_bottom_ad" style="position:absolute;width:220px;height:110px;left:305px;top:515px;text-align:center;">
-	<img id="t_bottom_ad" src="<?php echo ($bottom_ad['content']); ?>" width="210" height="100">
+	<img id="t_bottom_ad" title="<?php echo U('SectionList/index?chId='.$courses1[1]['chId'].'&stageId='.$courses1[1]['stageIds'].'&courseId='.$courses1[1]['id']);?>" src="<?php echo get_upfile_url($courses1[1]['imgUrl']);?>" width="210" height="100">
 </div>
 <div id="div_t_bottom_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:120px;left:300px;top:510px;text-align:center;">
 	<img id="t_bottom_ad_focus" src="" width="220" height="110">
 </div>
 
 
-<!-- 页面右侧 -->
-	<!-- 推荐的课程 -->
-<?php $__FOR_START_9857__=1;$__FOR_END_9857__=7;for($i=$__FOR_START_9857__;$i < $__FOR_END_9857__;$i+=1){ if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
+<!-- 页面右侧-推荐课程 -->
+<?php if(is_array($courses2)): $i = 0; $__LIST__ = $courses2;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$course): $mod = ($i % 2 );++$i; if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
 	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-		<img id="tuijian_<?php echo ($i); ?>" src="/static/v1/hd/images/test/<?php echo ($i); ?>.jpg" width="210" height="210">
+		<img id="tuijian_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id']);?>" src="<?php echo get_upfile_url($course['imgUrl']);?>" width="210" height="210">
 	</div>
 	<div id="div_tuijian_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
 		<img id="tuijian_<?php echo ($i); ?>_focus" src="" width="220" height="220">
-	</div><?php } ?>
+	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 
 </body>

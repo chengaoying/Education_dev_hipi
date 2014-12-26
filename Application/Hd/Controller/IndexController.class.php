@@ -42,11 +42,18 @@ class IndexController extends CommonController {
 		//角色信息
 		$role = unserialize(Session('role'));
 		 
-		//广告
+		//左上角广告
 		$left_ad   = $this->getAdByasKey('recommend_left');
-		$right_ad  = $this->getAdByasKey('recommend_right');
-		$bottom_ad = $this->getAdByasKey('recommend_bottom');
-		 
+		
+		//中间两个课程(关键字为首页的课程)
+		$proConfig = get_pro_config_content('proConfig');
+		$index = array_search('首页',$proConfig['keys']);
+		$courses1 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$index,1,2);
+		
+		//右侧推荐课程(关键字为推荐的课程)
+		$key = array_search('推荐',$proConfig['keys']);
+		$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$key,1,6);
+		
 		//最近观看记录
 		$record[0] = array('id'=>1,name=>'test');
 		$record[1] = array('id'=>2,name=>'test2');
@@ -57,8 +64,8 @@ class IndexController extends CommonController {
 			'topChannel' 	=> $this->topChannel,
 			'role'			=> $role,	
 			'left_ad'		=> $left_ad,
-			'right_ad'		=> $right_ad,
-			'bottom_ad'		=> $bottom_ad,
+			'courses1'		=> $courses1,
+			'courses2'		=> $courses2,
 			'record'		=> $record,
 		));
 		$this->display();
