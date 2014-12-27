@@ -11,7 +11,7 @@ namespace Test\Controller;
 class IndexController extends \Think\Controller {
 	
 	public function indexAct(){
-		$this->testLibAct();
+		//$this->testLibAct();
 		
         $this->assign(array(
             'HTTP_HOST' => $_SERVER['HTTP_HOST']
