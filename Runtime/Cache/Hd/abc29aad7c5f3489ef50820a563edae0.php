@@ -56,9 +56,9 @@ body {background-color: transparent;}
 	var faceNum = <?php echo ($face); ?>;
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/usercenter/bottom_select.png',right:'ch_2',down:''}, 
-	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/usercenter/bottom_select.png',left:'ch_1',right:'ch_3',down:''}, 
-	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/usercenter/bottom_select.png',left:'ch_2',down:'nickname'},
+	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'/static/v1/hd/images/usercenter/bottom_select.png',right:'ch_2',down:''}, 
+	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'/static/v1/hd/images/usercenter/bottom_select.png',left:'ch_1',right:'ch_3',down:''}, 
+	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'/static/v1/hd/images/usercenter/bottom_select.png',left:'ch_2',down:'nickname'},
 
 	{id:'nickname',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/nickname_1.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/nickname_2.png',selectBox:'',left:'selectFace',right:'version',up:'ch_3',down:'sex'},
 	{id:'sex',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/sex_1.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/sex_2.png',selectBox:'',left:'selectFace',right:'advantage',up:'nickname',down:'birthday'},
@@ -87,7 +87,7 @@ body {background-color: transparent;}
 <div id="bottom"></div>
 <div id="tip"></div>
 
-
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
 
 <!-- 以下是导航栏 -->
 <!-- 荣誉成就 -->
@@ -96,7 +96,7 @@ body {background-color: transparent;}
 	<img id="ch_1_focus" src="" width="110" height="37">
 </div>
 <div id="div_ch_1" style="position: absolute; left: 100px; top: 75px;">
-	<img id='ch_1' title="/Hd/Role/userInfo"
+	<img id='ch_1' title="/Hd/Glory/index"
 		src="/static/v1/hd/images/usercenter/glory.png" width="110" height="37">
 </div>
 <!-- 学习评估 -->

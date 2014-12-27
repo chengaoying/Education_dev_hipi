@@ -20,25 +20,12 @@ body {background-color: transparent;}
 <style>
     body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
     
-/* 最近观看背景图 */
-#recently_saw_bg{
-	position:absolute;
-    display: block;
-    width:210px;
-    height:120px;
-    top:495px;
-    left:85px;	
-    background-image:url(/static/v1/hd/images/index/recommend/recorder_bg.png);
-} 
-
 /* 底部投影背景图 */
 .shadow{
 	position:absolute;
     display: block;
-    width:210px;
     height:54px;
 	top:615px;
-    background-image:url(/static/v1/hd/images/common/shadow_1.png);
 }
 
 </style>
@@ -51,30 +38,27 @@ var channel = <?php echo ($json_channel); ?>;
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:['t_left_ad','role_info']},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'t_left_ad'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',down:'t_right_ad'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:'user_center'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'banner_center'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',down:'banner_center'},
 		
-		/* 广告 */
-		{id:'t_left_ad',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',right:'t_right_ad',up:'ch_1',down:'role_info'},
-		{id:'t_right_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x320.gif',left:'t_left_ad',right:'tuijian_1',up:'ch_3',down:'t_bottom_ad'},
-		{id:'t_bottom_ad',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x100.gif',left:'record_1',right:'tuijian_4',up:'t_right_ad',down:''},
+		/* 左侧导航 */
+		{id:'user_center',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_160x145.png',right:'banner_center',up:'ch_1',down:'free'},
+		{id:'free',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_160x145.png',left:'t_left_ad',right:'banner_center',up:'user_center',down:'record'},
+		{id:'record',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_160x145.png',left:'record_1',right:'banner_center',up:'free',down:''},
 		
-		/* 推荐课程 */
-		{id:'tuijian_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'t_right_ad',right:'tuijian_2',up:'ch_3',down:'tuijian_4'},
-		{id:'tuijian_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'tuijian_1',right:'tuijian_3',up:'ch_3',down:'tuijian_5'},
-		{id:'tuijian_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'tuijian_2',right:'',up:'ch_3',down:'tuijian_6'},
-		{id:'tuijian_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'t_right_ad',right:'tuijian_5',up:'tuijian_1',down:''},
-		{id:'tuijian_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'tuijian_4',right:'tuijian_6',up:'tuijian_2',down:''},
-		{id:'tuijian_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'tuijian_5',right:'',up:'tuijian_3',down:''},
+		/* 中间横幅 */
+		{id:'banner_center',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_280x445.png',left:'user_center',right:'special_1',up:'ch_2',down:''},
 		
-		/* 角色信息   */
-		{id:'role_info',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'',right:'t_right_ad',up:'t_left_ad',down:'record_1'},
+		/* 右侧上方-专题*/
+		{id:'special_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_445x220.png',left:'banner_center',right:'special_2',up:'ch_3',down:'course_1'},
+		{id:'special_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'special_1',right:'',up:'ch_3',down:'course_3'},
 		
-		/* 最近观看记录 */		
-		{id:'record_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'role_info',down:'record_2'},
-		{id:'record_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'record_1',down:'record_3'},
-		{id:'record_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'',right:'t_bottom_ad',up:'record_2',down:''},
+		/* 右侧下方-推荐课程 */
+		{id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'banner_center',right:'course_2',up:'special_1',down:''},
+		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_1',right:'course_3',up:'special_1',down:''},
+		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_2',right:'',up:'special_2',down:''},
+		
 	];
 
 /* 初始化按钮 属性   */
@@ -96,71 +80,92 @@ window.onload=function()
 };
 </script>
 
-<!-- 静态图片 -->
-<div id="user_info_bg"></div>
-<div id="recently_saw_bg"></div>
-<?php $__FOR_START_8846__=1;$__FOR_END_8846__=6;for($i=$__FOR_START_8846__;$i < $__FOR_END_8846__;$i+=1){ $left = 85 + ($i-1)*225; ?>
-	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
-
-
 <!-- 顶部-栏目 -->
 <?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*150; $top = 95; ?>
 	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
 		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="120" height="38">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
-<!-- 页面左侧 -->
-	<!-- 广告 -->
-<div id="div_t_left_ad" style="position:absolute;width:220px;height:184px;left:80px;top:180px;text-align:center;">
-	<img id="t_left_ad"  src="<?php echo ($left_ad['content']); ?>" width="210" height="174">
+<!-- 页面左侧 -开始-->
+	<!-- 用户中心 -->
+<div id="div_user_center" style="position:absolute;width:160px;height:145px;left:80px;top:180px;text-align:center;">
+	<img id="user_center" title="<?php echo U('Role/userInfo');?>"  src="/static/v1/hd/images/index/recommend/btn_user_center.png" width="150" height="135">
 </div>
-<div id="div_t_left_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:194px;left:75px;top:175px;text-align:center;">
-	<img id="t_left_ad_focus" src="" width="220" height="184">
+<div id="div_user_center_focus" style="position:absolute;visibility: hidden;width:170px;height:155px;left:75px;top:175px;text-align:center;">
+	<img id="user_center_focus" src="" width="160" height="145">
 </div>
-
-<!-- 角色信息按钮 -->
-<div id="div_role_info" style="position:absolute;width:220px;height:135px;left:85px;top:370px;">
-	<img id="role_info"  title="<?php echo U('Role/userInfo');?>" src="/static/v1/hd/images/index/recommend/user_info_bg.jpg" width="210" height="125">
+	<!-- 免费专区 -->
+<div id="div_free" style="position:absolute;width:160px;height:145px;left:80px;top:330px;text-align:center;">
+	<img id="free"  src="/static/v1/hd/images/index/recommend/btn_free.png" width="150" height="135">
 </div>
-<div id="div_role_info_focus" style="position:absolute;visibility: hidden;width:220px;height:135px;left:79px;top:367px;text-align:center;">
-	<img id="role_info_focus" src="" width="218" height="130">
+<div id="div_free_focus" style="position:absolute;visibility: hidden;width:170px;height:155px;left:75px;top:325px;text-align:center;">
+	<img id="free_focus" src="" width="160" height="145">
 </div>
-
-
-
-<!-- 最近观看记录 -->
-<?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$r): $mod = ($i % 2 );++$i; $left = 130; $top = 510 + ($i-1)*30; ?>
-	<div id="div_record_<?php echo ($i); ?>" style="position:absolute;width:160px;height:30px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;vertical-align: middle;">
-		<span id="record_<?php echo ($i); ?>" title=""><?php echo ($r['name']); ?></span>
-	</div>	
-	<div id="div_record_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;width:165px;height:30px;left:<?php echo ($left-10); ?>px;top:<?php echo ($top-2); ?>px;text-align:center;">
-		<img id="record_<?php echo ($i); ?>_focus" src="" width="165" height="24">
-	</div><?php endforeach; endif; else: echo "" ;endif; ?>
+	<!-- 最近观看 -->
+<div id="div_record" style="position:absolute;width:160px;height:145px;left:80px;top:480px;text-align:center;">
+	<img id="record"  src="/static/v1/hd/images/index/recommend/btn_record.png" width="150" height="135">
+</div>
+<div id="div_record_focus" style="position:absolute;visibility: hidden;width:170px;height:155px;left:75px;top:475px;text-align:center;">
+	<img id="record_focus" src="" width="160" height="145">
+</div>
+<!-- 页面左侧-结束 -->
 
 
-<!-- 页面中间-课程 -->
-<div id="div_t_right_ad" style="position:absolute;width:220px;height:330px;left:305px;top:180px;text-align:center;">
-	<img id="t_right_ad" title="<?php echo U('SectionList/index?chId='.$courses1[0]['chId'].'&stageId='.$courses1[0]['stageIds'].'&courseId='.$courses1[0]['id']);?>"  src="<?php echo get_upfile_url($courses1[0]['imgUrl']);?>" width="210" height="320">
-</div>
-<div id="div_t_right_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:340px;left:300px;top:175px;text-align:center;">
-	<img id="t_right_ad_focus" src="" width="220" height="330">
-</div>
-<div id="div_t_bottom_ad" style="position:absolute;width:220px;height:110px;left:305px;top:515px;text-align:center;">
-	<img id="t_bottom_ad" title="<?php echo U('SectionList/index?chId='.$courses1[1]['chId'].'&stageId='.$courses1[1]['stageIds'].'&courseId='.$courses1[1]['id']);?>" src="<?php echo get_upfile_url($courses1[1]['imgUrl']);?>" width="210" height="100">
-</div>
-<div id="div_t_bottom_ad_focus" style="position:absolute;visibility: hidden;width:230px;height:120px;left:300px;top:510px;text-align:center;">
-	<img id="t_bottom_ad_focus" src="" width="220" height="110">
-</div>
 
 
-<!-- 页面右侧-推荐课程 -->
-<?php if(is_array($courses2)): $i = 0; $__LIST__ = $courses2;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$course): $mod = ($i % 2 );++$i; if($i > 3){ $top = 405; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
-	<div id="div_tuijian_<?php echo ($i); ?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-		<img id="tuijian_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id']);?>" src="<?php echo get_upfile_url($course['imgUrl']);?>" width="210" height="210">
+<!-- 页面中间-开始 -->
+<div id="div_banner_center" style="position:absolute;width:280px;height:445px;left:245px;top:180px;text-align:center;">
+	<img id="banner_center" title="<?php echo U('SectionList/index?chId='.$courses1[0]['chId'].'&stageId='.$courses1[0]['stageIds'].'&courseId='.$courses1[0]['id']);?>" src="<?php echo ($courses1[0]['banner']); ?>" width="270" height="435">
+</div>
+<div id="div_banner_center_focus" style="position:absolute;visibility: hidden;width:290px;height:455px;left:240px;top:175px;text-align:center;">
+	<img id="banner_center_focus" src="" width="280" height="445">
+</div>
+<!-- 页面中间-结束-->
+
+
+
+<!-- 页面右侧-开始  -->
+	<!-- 右侧上方--专题 -->
+	<div id="div_special_1_center" style="position:absolute;width:445px;height:220px;left:530px;top:180px;text-align:center;">
+		<img id="special_1" title="<?php echo U('SectionList/index?chId='.$courses1[1]['chId'].'&stageId='.$courses1[1]['stageIds'].'&courseId='.$courses1[1]['id']);?>" src="<?php echo ($courses1[1]['banner']); ?>" width="435" height="210">
 	</div>
-	<div id="div_tuijian_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
-		<img id="tuijian_<?php echo ($i); ?>_focus" src="" width="220" height="220">
-	</div><?php endforeach; endif; else: echo "" ;endif; ?>
+	<div id="div_special_1_focus" style="position:absolute;visibility: hidden;width:455px;height:230px;left:525px;top:175px;text-align:center;">
+		<img id="special_1_focus" src="" width="445" height="220">
+	</div>
+	<!-- 小学以上是课程，小学以下是成长指标 -->
+	<?php if($isEarly == true): ?><div id="div_special_2_center" style="position:absolute;width:220px;height:220px;left:980px;top:180px;text-align:center;">
+			<img id="special_2" title="" src="/static/v1/hd/images/index/recommend/target_<?php echo ($target['stageKey']); ?>.png" width="210" height="210">
+		</div>
+	<?php else: ?>
+		<div id="div_special_2_center" style="position:absolute;width:220px;height:220px;left:980px;top:180px;text-align:center;">
+			<img id="special_2" title="<?php echo U('SectionList/index?chId='.$$target['chId'].'&stageId='.$$target['stageIds'].'&courseId='.$$target['id']);?>" src="<?php echo get_upfile_url($target['imgUrl']);?>" width="210" height="210">
+		</div><?php endif; ?>
+	<div id="div_special_2_focus" style="position:absolute;visibility: hidden;width:230px;height:230px;left:975px;top:175px;text-align:center;">
+		<img id="special_2_focus" src="" width="220" height="220">
+	</div>
+
+	<!-- 右侧下方-推荐课程 -->
+	<?php if(is_array($courses2)): $i = 0; $__LIST__ = $courses2;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$c): $mod = ($i % 2 );++$i; $top = 405; $left = 530 + ($i-1)*225; ?>
+		<div id="div_course_<?php echo ($i); ?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+			<img id="course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$c['chId'].'&stageId='.$c['stageIds'].'&courseId='.$c['id']);?>" src="<?php echo get_upfile_url($c['imgUrl']);?>" width="210" height="210">
+		</div>
+		<div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
+			<img id="course_<?php echo ($i); ?>_focus" src="" width="220" height="220">
+		</div><?php endforeach; endif; else: echo "" ;endif; ?>
+<!-- 页面右侧-结束 -->	
+	
+	
+	
+<!-- 静态图片-->
+<div style="position:absolute;width:74px;height:74px;left:120px;top:200px;text-align:center;">
+	<img id="user_face" src="/static/v1/hd/images/usercenter/face/face_<?php echo ($role['face']); ?>.png" width="64" height="64">
+</div>
+
+<div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x55.png);"></div>
+<div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x55.png);"></div>
+<?php $__FOR_START_16712__=1;$__FOR_END_16712__=4;for($i=$__FOR_START_16712__;$i < $__FOR_END_16712__;$i+=1){ $left = 535 + ($i-1)*225; ?>
+	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x55.png);"></div><?php } ?>
+
 
 
 </body>

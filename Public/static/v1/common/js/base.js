@@ -10,10 +10,10 @@ var	KEY_BACK 		 = 0x0008; 	// 返回/删除
 var KEY_ENTER 		 = 0x000D; 	// 确定
 var KEY_PAGE_UP		 = 0x0021;	// 上页
 var KEY_PAGE_DOWN    = 0x0022;  // 下页
-var KEY_LEFT		 =97;//= 0x0025;   // 左
-var	KEY_UP			 =119;//= 0x0026;   // 上
-var KEY_RIGHT 		 =100;//= 0x0027;	// 右
-var	KEY_DOWN 		 =115;//= 0x0028;	// 下
+var KEY_LEFT		 = 0x0025;   // 左 
+var	KEY_UP			 = 0x0026;   // 上
+var KEY_RIGHT 		 = 0x0027;	// 右
+var	KEY_DOWN 		 = 0x0028;	// 下
 var KEY_0 			 = 0x0030;  // 0       
 var KEY_1 			 = 0x0031;  // 1
 var KEY_2 			 = 0x0032;  // 2
@@ -32,6 +32,11 @@ var KEY_PLAY_PAUSE   = 0x0107;	// >||，播放，暂停
 var KEY_FAST_FORWARD = 0x0108;	// >> ，快进
 var	KEY_FAST_REWIND  = 0x0109;	// << ，快退
 var KEY_IPTV_EVENT   = 0x0300;	// 虚拟事件按键
+
+var KEY_W = 119;
+var KEY_S = 115;
+var KEY_A = 97;
+var KEY_D = 100;
 
 /**
  * 根据ID获取某个元素
@@ -125,6 +130,10 @@ Epg.Button = Epg.btn =
 				KEY_DOWN:'Epg.Button.move("down")',		//下键
 				KEY_BACK:'Epg.Button.defBack()',		//返回键
 				KEY_0:'Epg.Button.defBack()',			//按0返回
+				KEY_A:'Epg.Button.move("left")',		//A
+				KEY_D:'Epg.Button.move("right")',		//D
+				KEY_W:'Epg.Button.move("up")',			//W
+				KEY_S:'Epg.Button.move("down")',		//S
 			});
 		}
 		

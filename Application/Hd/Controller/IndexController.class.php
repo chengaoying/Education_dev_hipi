@@ -42,31 +42,43 @@ class IndexController extends CommonController {
 		//角色信息
 		$role = unserialize(Session('role'));
 		 
-		//左上角广告
-		$left_ad   = $this->getAdByasKey('recommend_left');
-		
-		//中间两个课程(关键字为首页的课程)
 		$proConfig = get_pro_config_content('proConfig');
-		$index = array_search('首页',$proConfig['keys']);
-		$courses1 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$index,1,2);
+		//特别推荐（该课程需要有海报图片）
+		$i = array_search('特别推荐',$proConfig['keys']);
+		$courses1 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$i,1,2);
+		foreach ($courses1 as $k=>$v){
+			if($v['imgUrl']){
+				$imgs = explode(PHP_EOL, $v['imgUrl']);
+				$courses1[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
+				$courses1[$k]['banner']  = get_upfile_url(trim($imgs[1]));
+			}
+		}
 		
-		//右侧推荐课程(关键字为推荐的课程)
-		$key = array_search('推荐',$proConfig['keys']);
-		$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$key,1,6);
+		//一般推荐课程
+		$roleStage = $this->getStage($role['stageId']); //该角色对应的龄段信息
+		$roleGrade = $this->getGrade($roleStage);		//该角色对应的年级信息
+		//判断该角色的年级是不是在早教或幼教阶段
+		//早、幼教首页是1个成长指标+3个一般推荐
+		//小学以上首页是4个一般推荐，
+		$key = array_search('一般推荐',$proConfig['keys']);
+		if(in_array($roleGrade['chKey'], array('early','preschool'))){ 
+			$isEarly = true;
+			$target['stageKey'] = $roleStage['sKey'];
+			$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$key,1,3);
+		}else{
+			$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$key,1,4);
+			$target = $courses2[0];
+			$courses2 = array_slice($courses2, 1, count($courses2)-1);
+		}
 		
-		//最近观看记录
-		$record[0] = array('id'=>1,name=>'test');
-		$record[1] = array('id'=>2,name=>'test2');
-		$record[2] = array('id'=>3,name=>'test3');
-		 
 		$this->assign(array(
 			'json_channel'	=> $json_channel,
 			'topChannel' 	=> $this->topChannel,
 			'role'			=> $role,	
-			'left_ad'		=> $left_ad,
 			'courses1'		=> $courses1,
 			'courses2'		=> $courses2,
-			'record'		=> $record,
+			'isEarly'		=> $isEarly,
+			'target'		=> $target,
 		));
 		$this->display();
 	}
@@ -101,25 +113,14 @@ class IndexController extends CommonController {
 		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage'));
 		$json_channel = json_encode($json_channel);
 		
+		$myCourse = array();
+		
 		$this->assign(array(
 			'json_channel'	=> $json_channel,
 			'topChannel' 	=> $this->topChannel,
-			'myCourse'      => $this->getCourseList(),
+			'myCourse'      => $myCourse,
 		));
 		$this->display();
-	}
-	
-	/* 测试--课程列表 */
-	private function getCourseList(){
-		$courseList = array();
-		for($i=0; $i< 10; $i++){
-			$courseList[$i]['id'] = $i;
-			$courseList[$i]['chId'] = 19;
-			$courseList[$i]['stageIds'] = 7;
-			$courseList[$i]['name'] = 'test';
-			$courseList[$i]['imgUrl'] = get_upfile_url('__HD__/images/index/myCourse/a.jpg');
-		}
-		return $courseList;
 	}
 	
 }

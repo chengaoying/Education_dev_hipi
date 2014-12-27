@@ -7,10 +7,10 @@
 .shadow{
 	position:absolute;
     display: block;
-    width:260px;
+    width:210px;
     height:55px;
-	top:610px;
-    background-image:url(__HD__/images/common/shadow_2.png);
+	top:615px;
+    background-image:url(__HD__/images/common/shadow/shadow_210x55.png);
 }
     
 </style>
@@ -29,17 +29,19 @@ var buttons=
 		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',right:'search',down:'class_2'},
 
 		/* 检索按钮 */
-		{id:'search',name:'',action:'',linkImage:'__HD__/images/Index/allCourse/btn_search.png',focusImage:'__HD__/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
+		//{id:'search',name:'',action:'',linkImage:'__HD__/images/Index/allCourse/btn_search.png',focusImage:'__HD__/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
 		
 		/* 顶级分类（二级栏目） */
-		{id:'class_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_260x205.gif',left:'',right:'class_2',up:'ch_1',down:'class_5'},
-		{id:'class_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_260x205.gif',left:'class_1',right:'class_3',up:'ch_3',down:'class_6'},
-		{id:'class_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_260x205.gif',left:'class_2',right:'class_4',up:'ch_3',down:'class_7'},
-		{id:'class_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_260x205.gif',left:'class_3',right:'',up:'search',down:'class_8'},
-		{id:'class_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_260x205.gif',left:'',right:'class_6',up:'class_1',down:''},
-		{id:'class_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_260x205.gif',left:'class_5',right:'class_7',up:'class_2',down:''},
-		{id:'class_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_260x205.gif',left:'class_6',right:'class_8',up:'class_3',down:''},
-		{id:'class_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_260x205.gif',left:'class_7',right:'',up:'class_4',down:''},
+		{id:'class_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'',right:'class_2',up:'ch_1',down:'class_6'},
+		{id:'class_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_1',right:'class_3',up:'ch_3',down:'class_7'},
+		{id:'class_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_2',right:'class_4',up:'ch_3',down:'class_8'},
+		{id:'class_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_3',right:'class_5',up:['search','ch_3'],down:'class_9'},
+		{id:'class_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_4',right:'',up:['search','ch_3'],down:'class_10'},
+		{id:'class_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'',right:'class_7',up:'class_1',down:''},
+		{id:'class_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_6',right:'class_8',up:'class_2',down:''},
+		{id:'class_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_7',right:'class_9',up:'class_3',down:''},
+		{id:'class_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_8',right:'class_10',up:'class_4',down:''},
+		{id:'class_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_9',right:'',up:'class_5',down:''},
 	];
 
 /* 初始化按钮 属性   */
@@ -71,43 +73,42 @@ window.onload=function()
 
 <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
 
-<!-- 静态图片-底部投影效果 -->
-<php>$count = count($class)-4;</php>
-<for start="1" end="$count+1" step="1">
-	<php> $left = 85 + ($i-1)*280;</php>
-	<div class="shadow" style="left:{$left}px;"></div>
-</for>
-
-
-<!-- 顶部栏目 -->
+<!-- 顶部-栏目 -->
 <volist name="topChannel" id="ch">
 	<php>
-		$left = 90 + ($i-1)*150; $top = 75;
+		$left = 100 + ($i-1)*150; $top = 95;
 	</php>
 	<div id="div_ch_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;">
-		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="95" height="26">
+		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="38">
 	</div>	
 </volist>
 
 <!-- 检索按钮 -->
-<div id="div_search" style="position:absolute;width:130px;height:40px;left:1060px;top:60px;text-align:center;">
+<!-- <div id="div_search" style="position:absolute;width:130px;height:40px;left:1060px;top:60px;text-align:center;">
     <img id="search" title="" src="__HD__/images/Index/allCourse/btn_search.png" width="130" height="40">
-</div>
+</div> -->
 
 <!-- 顶级分类（二级栏目） -->
 <volist name="class" id="c" key="i">
     <php>
-        if($i > 4){
-            $top = 405; $left = 80 + ($i-5)*280;
+        if($i > 5){
+            $top = 405; $left = 80 + ($i-6)*225;
         }else{
-            $top = 180; $left = 80 + ($i-1)*280;
+            $top = 180; $left = 80 + ($i-1)*225;
         }
     </php>
-    <div id="div_class_{$i}" style="position:absolute;width:270px;height:215px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="class_{$i}" title="{$c['linkUrl']}" src="{$c['imgUrl']}" width="260" height="205">
+    <div id="div_class_{$i}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="class_{$i}" title="{$c['linkUrl']}" src="{$c['imgUrl']}" width="210" height="210">
     </div>
-    <div id="div_class_{$i}_focus" style="position:absolute;visibility:hidden;width:280px;height:225px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
-        <img id="class_{$i}_focus" src="" width="270" height="215">
+    <div id="div_class_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="class_{$i}_focus" src="" width="220" height="220">
     </div>
 </volist>
+
+
+<!-- 静态图片-底部投影效果 -->
+<for start="1" end="6" step="1">
+	<php> $left = 85 + ($i-1)*225;</php>
+	<div class="shadow" style="left:{$left}px;"></div>
+</for>
 

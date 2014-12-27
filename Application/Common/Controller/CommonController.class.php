@@ -116,6 +116,25 @@ class CommonController extends \Think\Controller{
 	}
 	
 	/**
+	 * 获取角色对应的龄段信息
+	 * @param obj $role
+	 */
+	public function getStage($stageId){
+		$stages = S('Stage');
+		return $stages[$stageId];
+	}
+	
+	/**
+	 * 根据角色龄段id获取角色对应的年级(顶级分类或二级分类)
+	 * @param unknown_type $roleStage
+	 */
+	public function getGrade($roleStage){
+		$chId = $roleStage['chId'];
+		$class = $this->getClass();
+		return $class[$chId];
+	}
+	
+	/**
 	 * 根据广告位的key获取该广告位下的广告
 	 * @param string $asKey
 	 */

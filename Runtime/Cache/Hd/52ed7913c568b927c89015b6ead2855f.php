@@ -49,6 +49,7 @@ window.onload=function()
 
 </script>
 
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Role/userInfo',1);?>" ></a>
 
 <!-- 静态图片 -->
 <div id="nickname_set"></div>

@@ -182,7 +182,6 @@ class RoleController extends CommonController {
 	public function setNicknameAct()
 	{
 		$role = unserialize(Session('role'));
-		$roleId = $role['id'];
 		if(!IS_POST)
 		{
 			$this->display();
@@ -190,8 +189,8 @@ class RoleController extends CommonController {
 		else
 		{
 			$data = I('post.');
-			$role_data = array('id'=>$roleId,'nickName'=>$data['nickname']);
-			$r = D('Role','Logic')->save($role_data);
+			$role['nickName'] = $data['nickName'];
+			$r = D('Role','Logic')->save($role);
 			if($r['status']){ 
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
@@ -229,7 +228,6 @@ class RoleController extends CommonController {
 	public function setSexAct()
 	{
 		$role = unserialize(Session('role'));
-		$roleId = $role['id'];
 		if(!IS_POST)
 		{
 			$json_sex = json_encode(array('sex'=>$role['sex']));
@@ -242,8 +240,8 @@ class RoleController extends CommonController {
 		else
 		{
 			$data = I('post.');
-			$role_data = array('id'=>$roleId,'sex'=>$data['sex']);
-			$r = D('Role','Logic')->save($role_data);
+			$role['sex'] = $data['sex'];
+			$r = D('Role','Logic')->save($role);
 			if($r['status']){ 
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
@@ -297,8 +295,8 @@ class RoleController extends CommonController {
 				}
 			}
 			$interests_string = implode(",", $interests);
-			$role_data = array('id'=>$roleId,'interests'=>$interests_string);
-			$r = D('Role','Logic')->save($role_data);
+			$role['interests'] = $interests_string;
+			$r = D('Role','Logic')->save($role);
 			if($r['status']){ 
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
@@ -360,8 +358,8 @@ class RoleController extends CommonController {
 				}
 			}
 			$advantage_string = implode(",", $advantage);
-			$role_data = array('id'=>$roleId,'advantage'=>$advantage_string);
-			$r = D('Role','Logic')->save($role_data);
+			$role['advantage'] = $advantage_string;
+			$r = D('Role','Logic')->save($role);
 			if($r['status']){ 
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
@@ -423,8 +421,8 @@ class RoleController extends CommonController {
 				}
 			}
 			$disadvantage_string = implode(",", $disadvantage);
-			$role_data = array('id'=>$roleId,'disAdvantage'=>$disadvantage_string);
-			$r = D('Role','Logic')->save($role_data);
+			$role['disAdvantage'] = $disadvantage_string;
+			$r = D('Role','Logic')->save($role);
 			if($r['status']){ 
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
@@ -449,8 +447,8 @@ class RoleController extends CommonController {
 		{
 			$data = I('post.');
 			$date = implode("-", $data);
-			$role_data = array('id'=>$roleId,'birthday'=>$date);
-			$r = D('Role','Logic')->save($role_data);
+			$role['birthday'] = $date;
+			$r = D('Role','Logic')->save($role);
 			if($r['status']){
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
