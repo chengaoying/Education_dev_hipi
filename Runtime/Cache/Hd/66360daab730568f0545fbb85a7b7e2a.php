@@ -41,9 +41,9 @@ var json_class = <?php echo ($json_class); ?>;
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:'class_1'},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'class_1'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',right:'search',down:'class_2'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',right:'ch_2',down:'class_1'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_1',right:'ch_3',down:'class_1'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_2',right:'search',down:'class_2'},
 
 		/* 检索按钮 */
 		//{id:'search',name:'',action:'',linkImage:'/static/v1/hd/images/Index/allCourse/btn_search.png',focusImage:'/static/v1/hd/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
@@ -94,6 +94,9 @@ window.onload=function()
 <?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*150; $top = 95; ?>
 	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
 		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="120" height="38">
+	</div>	
+	<div id="div_ch_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
+		<img id='ch_<?php echo ($i); ?>_focus' src="<?php echo ($ch['focusImage']); ?>" width="120" height="38">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 检索按钮 -->
@@ -112,7 +115,7 @@ window.onload=function()
 
 
 <!-- 静态图片-底部投影效果 -->
-<?php $__FOR_START_27617__=1;$__FOR_END_27617__=6;for($i=$__FOR_START_27617__;$i < $__FOR_END_27617__;$i+=1){ $left = 85 + ($i-1)*225; ?>
+<?php $__FOR_START_15231__=1;$__FOR_END_15231__=6;for($i=$__FOR_START_15231__;$i < $__FOR_END_15231__;$i+=1){ $left = 85 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

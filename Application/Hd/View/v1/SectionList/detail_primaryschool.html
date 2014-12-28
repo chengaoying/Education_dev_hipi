@@ -97,7 +97,7 @@ window.onload=function()
 	<img id="see"  src="__HD__/images/sectionList/primaryschool/seeing1.png" width="135" height="42">
 </div>
 
-<volist name='videoList' id='videoLists'>
+<volist name='videoList' id='video'>
 	<php>
 		if($i<=5){
 			$left = 440; $top = ($i-1)*60+340;
@@ -106,7 +106,7 @@ window.onload=function()
 		}
 	</php>
 	<div id="div_course_{$i}" style="position:absolute;width:360px;height:50px;left:{$left}px;top:{$top}px;text-indent:20px; text-align:left;line-height:50px;">
-		<span id="course_{$i}" title="">{$videoLists['name']}</span>
+		<span id="course_{$i}" title="{:U('Resource/play?id='.$video['id'])}">{$video['name']}</span>
 	</div>
 	<div id="div_course_{$i}_focus" style="position:absolute;visibility: hidden;width:160px;height:30px;left:{$left}px;top:{$top}px;text-align:center;">
 		<img id="course_{$i}_focus" src="" width="160" height="24">

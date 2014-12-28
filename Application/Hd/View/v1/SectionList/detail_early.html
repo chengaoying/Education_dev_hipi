@@ -170,7 +170,7 @@ window.onload=function()
         }
     </php>
     <div id="div_video_{$i}" style="position:absolute;width:220px;height:190px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="video_{$i}" src="{$video['imgUrl']}" width="210" height="180">
+        <img id="video_{$i}" title="{:U('Resource/play?id='.$video['id'])}" src="{$video['imgUrl']}" width="210" height="180">
     </div>
     <div id="div_video_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:200px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
         <img id="video_{$i}_focus" src="" width="220" height="190">

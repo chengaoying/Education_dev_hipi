@@ -143,13 +143,13 @@ window.onload=function()
             }
         </php>
         <div id="div_video_{$i}_{$j}" style="position:absolute;width:150px;height:{$height}px;left:{$left}px;top:{$top}px;line-height: {$height}px;text-align:center;">
-             <img id="video_{$i}_{$j}" src="__HD__/images/common/transparent.png" width="150" height="{$height}">
+             <img id="video_{$i}_{$j}" title="{:U('Resource/play?id='.$video['id'])}" src="__HD__/images/common/transparent.png" width="150" height="{$height}">
         </div>
         <div id="div_video_{$i}_{$j}" style="position:absolute;width:150px;height:{$height}px;left:{$left}px;top:{$top}px;line-height: {$height}px;text-align:center;color:#666;">
             <if condition="($i eq 6 and $j eq 4) or ($i eq 7 and $j eq 4)">
-                <img id="" src="{$video['imgUrl']}" width="150" height="{$height}">
+                <img src="{$video['imgUrl']}" width="150" height="{$height}">
             <else/>
-            <span id="">{$video['name']}</span>
+            <span>{$video['name']}</span>
             </if>
         </div>
     </volist>

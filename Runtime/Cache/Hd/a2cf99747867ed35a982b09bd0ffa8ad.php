@@ -1,83 +1,143 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>视频播放页面--全屏模式</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="page-view-size" content="1280*720">
+<title><?php echo ($pageTitle); ?></title>
+<link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-    .leftbg{
-        position: absolute;
-        display: block;
-        top:0px;
-        left:0px;
-        width: 185px;
-        height: 720px;
-        background: url(/static/v1/hd/images/play/left_bg.png) no-repeat;
-    }
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
+</style>
+</head>
+<body>
+
+
+<style type="text/css">
+#div_left{
+	position:absolute;
+	width:185px;
+	height:720px;
+	top:0px;
+ 	left:0px;
+	background-image: url(/static/v1/hd/images/play/left_bg.png);
+}
+
+#div_top{
+	position:absolute;
+	width:1280px;
+	height:150px;
+	top:0px;
+ 	left:0px;
+}
+
 </style>
 
 <script type="text/javascript">
     var buttons=
 	[
         /*左边按钮*/
-	 	{id:'prex_video',name:'',action:'',linkImage:'/static/v1/hd/images/play/prex_video.png',focusImage:'/static/v1/hd/images/play/prex_video_over.png',selectBox:'',left:'',right:'anime_preview',up:'anime_preview',down:'current_video'},
-        {id:'current_video',name:'',action:'',linkImage:'/static/v1/hd/images/play/current_video.png',focusImage:'/static/v1/hd/images/play/current_video_over.png',selectBox:'',left:'',right:'',up:'prex_video',down:'next_video'},
-        {id:'next_video',name:'',action:'',linkImage:'/static/v1/hd/images/play/prex_video.png',focusImage:'/static/v1/hd/images/play/next_video_over.png',selectBox:'',left:'',right:'',up:'current_video',down:''},
+	 	{id:'btn_pre',name:'',action:'',linkImage:'/static/v1/hd/images/play/btn_pre.png',focusImage:'/static/v1/hd/images/play/btn_pre_over.png',selectBox:'',left:'',right:['btn_preview','btn_lesson','btn_exercise'],up:'btn_preview',down:'btn_current'},
+        {id:'btn_current',name:'',action:'',linkImage:'/static/v1/hd/images/play/btn_current.png',focusImage:'/static/v1/hd/images/play/btn_current_over.png',selectBox:'',left:'',right:['btn_preview','btn_lesson','btn_exercise'],up:'btn_pre',down:'btn_next'},
+        {id:'btn_next',name:'',action:'',linkImage:'/static/v1/hd/images/play/btn_next.png',focusImage:'/static/v1/hd/images/play/btn_next_over.png',selectBox:'',left:'',right:['btn_preview','btn_lesson','btn_exercise'],up:'btn_current',down:''},
+        
         /*上边按钮*/
-        {id:'anime_preview',name:'',action:'',linkImage:'/static/v1/hd/images/play/anime_preview.png',focusImage:'/static/v1/hd/images/play/anime_preview_over.png',selectBox:'',left:'prex_video',right:'sync_class',up:'',down:'prex_video'},
-        {id:'sync_class',name:'',action:'',linkImage:'/static/v1/hd/images/play/sync_class.png',focusImage:'/static/v1/hd/images/play/sync_class_over.png',selectBox:'',left:'anime_preview',right:'game_preview',up:'',down:'prex_video'},
-        {id:'game_preview',name:'',action:'',linkImage:'/static/v1/hd/images/play/game_preview.png',focusImage:'/static/v1/hd/images/play/game_preview_over.png',selectBox:'',left:'sync_class',right:'',up:'',down:'prex_video'},
+        {id:'btn_preview',name:'',action:'',linkImage:'/static/v1/hd/images/play/btn_preview.png',focusImage:'/static/v1/hd/images/play/btn_preview_over.png',selectBox:'',left:['btn_pre','btn_current','btn_next'],right:'btn_lesson',up:'',down:''},
+        {id:'btn_lesson',name:'',action:'',linkImage:'/static/v1/hd/images/play/btn_lesson.png',focusImage:'/static/v1/hd/images/play/btn_lesson_over.png',selectBox:'',left:['btn_preview','btn_pre','btn_current','btn_next'],right:'btn_exercise',up:'',down:''},
+        {id:'btn_exercise',name:'',action:'',linkImage:'/static/v1/hd/images/play/btn_exercise.png',focusImage:'/static/v1/hd/images/play/btn_exercise_over.png',selectBox:'',left:['btn_lesson','btn_preview','btn_pre','btn_current','btn_next'],right:'',up:'',down:''},
     ];
+    
     window.onload=function()
     {
-        Epg.btn.init('current_video',buttons,true);
+        Epg.btn.init('btn_current',buttons,true);
     };
 </script>    
-</head>
-<body bgcolor="transparent" onUnload="javascript:destory()" onLoad="javascript:init()">
- <!--其他控制-->   
- <!-- 左边背景 -->
- <div class="leftbg"></div>
- 
- <!-- 上一集 -->
- <div id="div_prex_video" title="http://www.baidu.com" style=" position: absolute;left:30px;top:200px;z-index: 1000px;">
-     <img id="prex_video" src="/static/v1/hd/images/play/prex_video.png" width="125" height="50" />
- </div>
- 
- <!-- 正在学习 -->
- <div id="div_current_video" style=" position: absolute;left:30px;top:280px;z-index: 1000px;">
-     <img id="current_video" src="/static/v1/hd/images/play/current_video.png" width="125" height="50" />
- </div>
- 
-  <!-- 下一集 -->
- <div id="div_next_video" style=" position: absolute;left:30px;top:360px;z-index: 1000px;">
-     <img id="next_video" src="/static/v1/hd/images/play/prex_video.png" width="125" height="50" />
- </div>
- 
- <!-- 动漫预习 -->
- <div id="div_anime_preview" style=" position: absolute;left:600px;top:60px;z-index: 1000px;">
-     <img id="anime_preview" src="/static/v1/hd/images/play/anime_preview.png" width="125" height="50" />
- </div>
- 
-  <!-- 同步课堂 -->
- <div id="div_sync_class" style=" position: absolute;left:800px;top:60px;z-index: 1000px;">
-     <img id="sync_class" src="/static/v1/hd/images/play/sync_class.png" width="125" height="50" />
- </div> 
-  
-   <!-- 游戏预习 -->
- <div id="div_game_preview" style=" position: absolute;left:1000px;top:60px;z-index: 1000px;">
-     <img id="game_preview" src="/static/v1/hd/images/play/game_preview.png" width="125" height="50" />
- </div>
-  
- <!--视频控制-->
-<img id="statusimg" style="position:absolute;top:30;left:1150;" src="/static/v1/hd/images/play/play.png" width="54" height="54" />
-<img id="dingwei" src="/static/v1/hd/images/play/video_dingwei.png" style="position:absolute;top:450;left:500;display:none;" />
-<input type="text" id="dingweitime" style="position:absolute;top:470;left:608;width:95px;height:28px;line-height:28px;display:none;background-color:transparent;border:none;color:#ffffff;text-align:center;font-size:22px;z-index:1000;" />
-<img id="showprogress" style="position:absolute;top:600px;left:76px;z-index:-100;" src="/static/v1/hd/images/play/video_progress_bg.png" width="1128" height="68" />
-<div id="showCurTime" style="position:absolute;top:625;left:90; width:120px;height:68px;text-align:center;z-index:1000;"></div>
-<img id="dingweiimg" style="position:absolute;top:628;left:228;z-index:1000;" src="/static/v1/hd/images/play/video_progress.png" width="0" height="11" />
-<img id="dingweitip" style="position:absolute;top:616;left:212;z-index:1000;" src="/static/v1/hd/images/play/video_tip.png" width="35" height="35" />
-<div id="showAllTime" style="position:absolute;top:625;left:990; width:120px;height:68px;text-align:center;z-index:1000;"></div>
 
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+
+<!-- 页面左侧 -->
+<div id="div_left">
+	<!-- 上一集 -->
+	<div id="div_btn_pre" style="position:inherit;width:135px;height:60px;left:25px;top:240px;">
+		<img id="btn_pre" src="/static/v1/hd/images/play/btn_pre.png" width="125" height="50">
+	</div>
+	<!-- 正在学习 -->
+	<div id="div_btn_current" style="position:inherit;width:135px;height:60px;left:25px;top:320px;">
+		<img id="btn_current" src="/static/v1/hd/images/play/btn_current.png" width="125" height="50">
+	</div>
+	<!-- 下一集 -->
+	<div id="div_btn_next" style="position:inherit;width:135px;height:60px;left:25px;top:400px;">
+		<img id="btn_next" src="/static/v1/hd/images/play/btn_next.png" width="125" height="50">
+	</div>
+</div>
+
+<!-- 页面上方 -->
+<div id="div_top">
+	<!-- 预习-->
+	<div id="div_btn_preview" style="position:inherit;width:160px;height:60px;left:720px;top:50px;">
+		<img id="btn_preview" src="/static/v1/hd/images/play/btn_preview.png" width="150" height="50">
+	</div>
+	<!-- 同步课堂-->
+	<div id="div_btn_lesson" style="position:inherit;width:160px;height:60px;left:890px;top:50px;">
+		<img id="btn_lesson" src="/static/v1/hd/images/play/btn_lesson.png" width="150" height="50">
+	</div>
+	<!-- 练习-->
+	<div id="div_btn_exercise" style="position:inherit;width:160px;height:60px;left:1060px;top:50px;">
+		<img id="btn_exercise" src="/static/v1/hd/images/play/btn_exercise.png" width="150" height="50">
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+/**
+ * 左侧菜单滚动效果
+ */
+function scrollMenu()
+{
+	var curId = Epg.btn.current.id;
+	if(curId != 'btn_pre' && curId != 'btn_current' && curId != 'btn_next')
+	{
+		var divLeft = G('div_left');
+		var left = divLeft.style.left.replace("px", "") 
+		if(left > -185)
+			left -= 20;
+		divLeft.style.left = left + "px";
+		
+		/* var divTop = G('div_top');
+		divTop.style.top = "0px"; */
+	}
+	else
+	{
+		var divLeft = G('div_left');
+		divLeft.style.left = "0px";
+		
+		/* var divTop = G('div_top');
+		var top = divTop.style.top.replace("px", "") 
+		if(top > -150)
+			top -= 20;
+		divTop.style.top = top + "px"; */
+	}
+}
+
+setInterval('scrollMenu()',200);
+
+</script>
+
+
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

@@ -7,7 +7,7 @@
 .shadow{
 	position:absolute;
     display: block;
-    height:54px;
+    height:80px;
 	top:615px;
 }
 
@@ -21,9 +21,9 @@ var channel = {$json_channel};
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:'user_center'},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'banner_center'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',down:'banner_center'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',right:'ch_2',down:'user_center'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_1',right:'ch_3',down:'banner_center'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_2',down:'banner_center'},
 		
 		/* 左侧导航 */
 		{id:'user_center',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_160x145.png',right:'banner_center',up:'ch_1',down:'free'},
@@ -68,8 +68,11 @@ window.onload=function()
 	<php>
 		$left = 100 + ($i-1)*150; $top = 95;
 	</php>
-	<div id="div_ch_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;">
+	<div id="div_ch_{$i}" style="position:absolute;visibility: visible;left:{$left}px;top:{$top}px;">
 		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="38">
+	</div>
+	<div id="div_ch_{$i}_focus" style="position:absolute;visibility: hidden;left:{$left}px;top:{$top}px;">
+		<img id='ch_{$i}_focus' src="{$ch['focusImage']}" width="120" height="38">
 	</div>	
 </volist>
 
@@ -154,11 +157,25 @@ window.onload=function()
 	<img id="user_face" src="__HD__/images/usercenter/face/face_{$role['face']}.png" width="64" height="64">
 </div>
 
-<div class="shadow" style="left:85px;width:150px;background-image:url(__HD__/images/common/shadow/shadow_150x55.png);"></div>
-<div class="shadow" style="left:250px;width:270px;background-image:url(__HD__/images/common/shadow/shadow_270x55.png);"></div>
+<div class="shadow" style="left:85px;width:150px;background-image:url(__HD__/images/common/shadow/shadow_150x80.png);"></div>
+<div class="shadow" style="left:250px;width:270px;background-image:url(__HD__/images/common/shadow/shadow_270x80.png);"></div>
 <for start="1" end="4" step="1">
 	<php> $left = 535 + ($i-1)*225;</php>
-	<div class="shadow" style="left:{$left}px;width:210px;background-image:url(__HD__/images/common/shadow/shadow_210x55.png);"></div>
+	<div class="shadow" style="left:{$left}px;width:210px;background-image:url(__HD__/images/common/shadow/shadow_210x80.png);"></div>
 </for>
 
+
+<script type="text/javascript">
+
+function pop(){
+	Epg.popup('div_popup')
+}
+
+function disPop(){
+	Epg.disPopup(buttons,'div_popup')
+}
+
+//setTimeout("pop()",1000);
+//setTimeout("disPop()",5000);
+</script>
 

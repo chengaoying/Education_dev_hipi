@@ -24,9 +24,9 @@ var json_class = {$json_class};
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:'class_1'},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'class_1'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',right:'search',down:'class_2'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',right:'ch_2',down:'class_1'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_1',right:'ch_3',down:'class_1'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_2',right:'search',down:'class_2'},
 
 		/* 检索按钮 */
 		//{id:'search',name:'',action:'',linkImage:'__HD__/images/Index/allCourse/btn_search.png',focusImage:'__HD__/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
@@ -80,6 +80,9 @@ window.onload=function()
 	</php>
 	<div id="div_ch_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;">
 		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="38">
+	</div>	
+	<div id="div_ch_{$i}_focus" style="position:absolute;visibility: hidden;left:{$left}px;top:{$top}px;">
+		<img id='ch_{$i}_focus' src="{$ch['focusImage']}" width="120" height="38">
 	</div>	
 </volist>
 

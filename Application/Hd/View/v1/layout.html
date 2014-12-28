@@ -7,14 +7,24 @@
 <link rel="stylesheet" type="text/css" href="__HD__/css/common.css?__CSSJS_VERSION__">
 <script type="text/javascript" src="__COMMON__/js/base.js?__CSSJS_VERSION__"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:150px;}
-body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(__HD__/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
 {__CONTENT__}
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

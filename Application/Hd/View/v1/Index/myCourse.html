@@ -30,9 +30,9 @@ var channel = {$json_channel};
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:['course_1','empty_course']},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:['course_1','empty_course']},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',down:['course_1','empty_course']},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',right:'ch_2',down:['course_1','empty_course']},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_1',right:'ch_3',down:['course_1','empty_course']},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_2',down:['course_1','empty_course']},
         
         /* 当课程列表不为空 */
         {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'ch_1',right:'course_2',up:'ch_1',down:'course_6'},
@@ -78,6 +78,9 @@ window.onload=function()
 	</php>
 	<div id="div_ch_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;">
 		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="38">
+	</div>	
+	<div id="div_ch_{$i}_focus" style="position:absolute;visibility: hidden;left:{$left}px;top:{$top}px;">
+		<img id='ch_{$i}_focus' src="{$ch['focusImage']}" width="120" height="38">
 	</div>	
 </volist>
 

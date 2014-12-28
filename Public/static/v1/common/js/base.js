@@ -151,6 +151,11 @@ Epg.Button = Epg.btn =
 		// 设置默认获得焦点的按钮
 		this.current = this.get(config.defaultBtnId);
 		
+		if(!Epg.isEmpty(this.current.onFocus)){ //add 20141228   增加焦点的确认状态(按钮的onFocus属性)
+			H('div_'+this.current.id);
+			S('div_'+this.current.id+'_focus');
+		}
+		
 		this.update();
 	},
 	
@@ -230,6 +235,7 @@ Epg.Button = Epg.btn =
 	{
 		var prev = this.previous;
 		var current = this.current;
+		var size = 5;
 		if(prev)
 		{
 			if(prev.linkImage){
@@ -237,16 +243,16 @@ Epg.Button = Epg.btn =
 			}else{
 				//add 20141224 增加按钮放大缩小控制(按钮buttons中resize属性为-1则不进行放大缩小效果)
 				if(Epg.isEmpty(prev.resize) || prev.resize != -1){ 
-					G(prev.id).width  -= 5;
-					G(prev.id).height -= 5;
+					G(prev.id).width  -= size;
+					G(prev.id).height -= size;
 				}
 			}
-			G(prev.id).blur();
+			G(prev.id).blur();//add 20141228   用于from表单失去焦点
 			if(prev.selectBox){ //add 20141213    失去焦点后隐藏光标，并把光标的尺寸恢复到原始大小
 				var selectBoxId = prev.id + '_focus';
 				if(Epg.isEmpty(prev.resize) || prev.resize != -1){
-					G(selectBoxId).width  -= 5;
-					G(selectBoxId).height -= 5;
+					G(selectBoxId).width  -= size;
+					G(selectBoxId).height -= size;
 				}
 				var divId = 'div_' + prev.id + '_focus';
 				H(divId);
@@ -258,46 +264,25 @@ Epg.Button = Epg.btn =
 			if(current.focusImage){
 				G(current.id).src = current.focusImage;
 			}else{
+				//add 20141224 增加按钮放大缩小控制(按钮buttons中resize属性为-1则不进行放大缩小效果)
 				if(Epg.isEmpty(current.resize) || current.resize != -1){
-					G(current.id).width  += 5;
-					G(current.id).height += 5;
+					G(current.id).width  += size;
+					G(current.id).height += size;
 				}
 			}
-			G(current.id).focus();
+			G(current.id).focus();//add 20141228   用于from表单获取焦点
 			if(current.selectBox){ //add 20141213    增加焦点框选中效果
 				var selectBoxId = current.id + '_focus';
 				var divId = 'div_' + current.id + '_focus';
 				G(selectBoxId).src = current.selectBox;
 				if(Epg.isEmpty(current.resize) || current.resize != -1){
-					G(selectBoxId).width  += 5;
-					G(selectBoxId).height += 5;
+					G(selectBoxId).width  += size;
+					G(selectBoxId).height += size;
 				}
 				S(divId);
 			}
 		}
 	}
-};
-
-/**
- * 用于开发时控制台输出信息
- * @param info 
- */
-Epg.debug = function(info)
-{
-	if(debug_mode && typeof console !== undefined && console.log)
-		console.log(info);
-};
-
-/**
- * 跳转
- * @param href 要跳转的url
- * @param f 焦点按钮，默认当前按钮ID
- */
-Epg.jump = function(href,f)
-{
-	if(f === undefined)
-		f = Epg.btn.current.id;
-	window.location.href = href /*+ '&f=' + f*/;
 };
 
 /**
@@ -374,6 +359,49 @@ Epg.key=
 			};
 		}
 	}
+};
+
+/**
+ * 页面弹窗并把页面中的按钮删除
+ * @param popId
+ */
+Epg.popup = function(popId)
+{
+	Epg.btn._buttonStore = {};
+	S(popId);
+}
+
+/**
+ * 隐藏页面弹窗并回复页面中的按钮列表
+ * @param buttons
+ * @param popId
+ */
+Epg.disPopup = function(buttons,popId)
+{
+	Epg.btn.init(Epg.btn.current.id,buttons,true);
+	H(popId);
+}
+
+/**
+ * 用于开发时控制台输出信息
+ * @param info 
+ */
+Epg.debug = function(info)
+{
+	if(debug_mode && typeof console !== undefined && console.log)
+		console.log(info);
+};
+
+/**
+ * 跳转
+ * @param href 要跳转的url
+ * @param f 焦点按钮，默认当前按钮ID
+ */
+Epg.jump = function(href,f)
+{
+	if(f === undefined)
+		f = Epg.btn.current.id;
+	window.location.href = href /*+ '&f=' + f*/;
 };
 
 /**

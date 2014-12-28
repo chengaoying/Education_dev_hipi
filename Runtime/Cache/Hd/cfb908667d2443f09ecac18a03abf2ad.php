@@ -7,11 +7,17 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:150px;}
-body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
@@ -24,7 +30,7 @@ body {background-color: transparent;}
 .shadow{
 	position:absolute;
     display: block;
-    height:54px;
+    height:80px;
 	top:615px;
 }
 
@@ -38,9 +44,9 @@ var channel = <?php echo ($json_channel); ?>;
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',right:'ch_2',down:'user_center'},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_1',right:'ch_3',down:'banner_center'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'ch_2',down:'banner_center'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',right:'ch_2',down:'user_center'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_1',right:'ch_3',down:'banner_center'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_2',down:'banner_center'},
 		
 		/* 左侧导航 */
 		{id:'user_center',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_160x145.png',right:'banner_center',up:'ch_1',down:'free'},
@@ -82,8 +88,11 @@ window.onload=function()
 
 <!-- 顶部-栏目 -->
 <?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*150; $top = 95; ?>
-	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
+	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;visibility: visible;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
 		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="120" height="38">
+	</div>
+	<div id="div_ch_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
+		<img id='ch_<?php echo ($i); ?>_focus' src="<?php echo ($ch['focusImage']); ?>" width="120" height="38">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 页面左侧 -开始-->
@@ -161,12 +170,30 @@ window.onload=function()
 	<img id="user_face" src="/static/v1/hd/images/usercenter/face/face_<?php echo ($role['face']); ?>.png" width="64" height="64">
 </div>
 
-<div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x55.png);"></div>
-<div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x55.png);"></div>
-<?php $__FOR_START_16712__=1;$__FOR_END_16712__=4;for($i=$__FOR_START_16712__;$i < $__FOR_END_16712__;$i+=1){ $left = 535 + ($i-1)*225; ?>
-	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x55.png);"></div><?php } ?>
+<div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x80.png);"></div>
+<div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x80.png);"></div>
+<?php $__FOR_START_24093__=1;$__FOR_END_24093__=4;for($i=$__FOR_START_24093__;$i < $__FOR_END_24093__;$i+=1){ $left = 535 + ($i-1)*225; ?>
+	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x80.png);"></div><?php } ?>
+
+
+<script type="text/javascript">
+
+function pop(){
+	Epg.popup('div_popup')
+}
+
+function disPop(){
+	Epg.disPopup(buttons,'div_popup')
+}
+
+setTimeout("pop()",1000);
+setTimeout("disPop()",5000);
+</script>
 
 
 
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

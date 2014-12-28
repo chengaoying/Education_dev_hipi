@@ -7,11 +7,17 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:150px;}
-body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
@@ -140,7 +146,7 @@ window.onload=function()
 <!-- 视频列表 -->
 <?php if(is_array($videoList)): $i = 0; $__LIST__ = $videoList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$video): $mod = ($i % 2 );++$i; $top = 180; $left = 85 + ($i-1)*225; ?>
     <div id="div_video_<?php echo ($i); ?>" style="position:absolute;width:220px;height:280px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-        <img id="video_<?php echo ($i); ?>" src="<?php echo ($video['imgUrl']); ?>" width="210" height="270">
+        <img id="video_<?php echo ($i); ?>" title="<?php echo U('Resource/play?id='.$video['id']);?>" src="<?php echo ($video['imgUrl']); ?>" width="210" height="270">
     </div>
     <div id="div_video_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:290px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
         <img id="video_<?php echo ($i); ?>_focus" src="" width="220" height="280">
@@ -160,5 +166,9 @@ window.onload=function()
 
 
 
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

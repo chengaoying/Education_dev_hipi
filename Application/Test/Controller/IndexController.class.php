@@ -11,7 +11,6 @@ namespace Test\Controller;
 class IndexController extends \Think\Controller {
 	
 	public function indexAct(){
-		$this->testLibAct();
 		
         $this->assign(array(
             'HTTP_HOST' => $_SERVER['HTTP_HOST']
@@ -40,11 +39,10 @@ class IndexController extends \Think\Controller {
 		var_dump($result); // 结果：
 	}
 	
-	public function testLibAct(){
-		vendor('Hprose.HproseHttpClient');
-		$client = new \HproseHttpClient('http://192.168.0.154:8500/Api/LibraryApi');
-		$result = $client->queryLib(6);
-		dump($result);
+	public function testAct(){
+		$r = readExcelData("http://localhost:8500/upfiles/0/test.xls");
+		dump($r['data']);
+		exit;
 	}
 	
 }

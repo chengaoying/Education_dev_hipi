@@ -150,12 +150,12 @@ window.onload=function()
 <!-- 一周视频列表 -->
 <?php if(is_array($videoList)): $i = 0; $__LIST__ = $videoList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$week): $mod = ($i % 2 );++$i; if(is_array($week)): $j = 0; $__LIST__ = $week;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$video): $mod = ($j % 2 );++$j; $left = 85+($i-1)*160; $top = 261+($j-1)*70; if(($i == 6 && $j == 4) || ($i==7 && $j == 4)){ $height = 139; }else{ $height = 68; } ?>
         <div id="div_video_<?php echo ($i); ?>_<?php echo ($j); ?>" style="position:absolute;width:150px;height:<?php echo ($height); ?>px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;line-height: <?php echo ($height); ?>px;text-align:center;">
-             <img id="video_<?php echo ($i); ?>_<?php echo ($j); ?>" src="/static/v1/hd/images/common/transparent.png" width="150" height="<?php echo ($height); ?>">
+             <img id="video_<?php echo ($i); ?>_<?php echo ($j); ?>" title="<?php echo U('Resource/play?id='.$video['id']);?>" src="/static/v1/hd/images/common/transparent.png" width="150" height="<?php echo ($height); ?>">
         </div>
         <div id="div_video_<?php echo ($i); ?>_<?php echo ($j); ?>" style="position:absolute;width:150px;height:<?php echo ($height); ?>px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;line-height: <?php echo ($height); ?>px;text-align:center;color:#666;">
-            <?php if(($i == 6 and $j == 4) or ($i == 7 and $j == 4)): ?><img id="" src="<?php echo ($video['imgUrl']); ?>" width="150" height="<?php echo ($height); ?>">
+            <?php if(($i == 6 and $j == 4) or ($i == 7 and $j == 4)): ?><img src="<?php echo ($video['imgUrl']); ?>" width="150" height="<?php echo ($height); ?>">
             <?php else: ?>
-            <span id=""><?php echo ($video['name']); ?></span><?php endif; ?>
+            <span><?php echo ($video['name']); ?></span><?php endif; ?>
         </div><?php endforeach; endif; else: echo "" ;endif; endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 一周投影  -->
