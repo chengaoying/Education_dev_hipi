@@ -170,11 +170,18 @@ window.onload=function()
 	<img id="user_face" src="/static/v1/hd/images/usercenter/face/face_<?php echo ($role['face']); ?>.png" width="64" height="64">
 </div>
 
+<<<<<<< HEAD
 <div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x80.png);"></div>
 <div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x80.png);"></div>
 <?php $__FOR_START_24093__=1;$__FOR_END_24093__=4;for($i=$__FOR_START_24093__;$i < $__FOR_END_24093__;$i+=1){ $left = 535 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x80.png);"></div><?php } ?>
 
+=======
+<div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x55.png);"></div>
+<div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x55.png);"></div>
+<?php $__FOR_START_30024__=1;$__FOR_END_30024__=4;for($i=$__FOR_START_30024__;$i < $__FOR_END_30024__;$i+=1){ $left = 535 + ($i-1)*225; ?>
+	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x55.png);"></div><?php } ?>
+>>>>>>> 35472e56c8d5d2391f1014391547d4c78c6bdb9a
 
 <script type="text/javascript">
 
