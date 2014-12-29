@@ -7,11 +7,17 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:150px;}
-body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
@@ -161,5 +167,9 @@ window.onload=function()
 <!-- 一周投影  -->
 <div class="week_shadow"></div>
 
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>
