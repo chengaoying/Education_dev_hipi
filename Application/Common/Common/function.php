@@ -46,14 +46,3 @@ function p($array)
 }
 
 
-/**
- * 获取缓存
- * @param string $key
- */
-function get_cache($name) {
-	$data = S($name);
-	if (empty($data)) {
-		$data = D($name)->updateCache();
-	}
-	return $data;
-}

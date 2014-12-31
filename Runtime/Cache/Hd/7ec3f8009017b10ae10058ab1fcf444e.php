@@ -10,8 +10,19 @@
 .page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
 .page .up	{ width:64px;}
 .page .down	{ width:64px;}
-.page .now	{ width:150px;}
+.page .now	{ width:50px;}
 body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
@@ -35,7 +46,7 @@ body {background-color: transparent;}
         width:210px;
         height:54px;
         top:620px;
-        background-image:url(/static/v1/hd/images/common/shadow_1.png);
+        background-image:url(/static/v1/hd/images/common/shadow/shadow_210x60.png);
     }
 </style>
 <!--上面导航-->
@@ -118,5 +129,9 @@ window.onload=function()
 	<img id="empty_course" src="/static/v1/hd/images/index/myCourse/select_course.png" width="98" height="40">
 </div><?php endif; ?>
 <!-- 我的课程结束 -->
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

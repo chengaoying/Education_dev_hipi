@@ -10,8 +10,19 @@
 .page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
 .page .up	{ width:64px;}
 .page .down	{ width:64px;}
-.page .now	{ width:150px;}
+.page .now	{ width:50px;}
 body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
@@ -27,7 +38,7 @@ body {background-color: transparent;}
     width:210px;
     height:55px;
 	top:615px;
-    background-image:url(/static/v1/hd/images/common/shadow/shadow_210x55.png);
+    background-image:url(/static/v1/hd/images/common/shadow/shadow_210x60.png);
 }
     
 </style>
@@ -115,13 +126,13 @@ window.onload=function()
 
 
 <!-- 静态图片-底部投影效果 -->
-<<<<<<< HEAD
-<?php $__FOR_START_15231__=1;$__FOR_END_15231__=6;for($i=$__FOR_START_15231__;$i < $__FOR_END_15231__;$i+=1){ $left = 85 + ($i-1)*225; ?>
-=======
-<?php $__FOR_START_1263__=1;$__FOR_END_1263__=6;for($i=$__FOR_START_1263__;$i < $__FOR_END_1263__;$i+=1){ $left = 85 + ($i-1)*225; ?>
->>>>>>> 35472e56c8d5d2391f1014391547d4c78c6bdb9a
+<?php $__FOR_START_32007__=1;$__FOR_END_32007__=6;for($i=$__FOR_START_32007__;$i < $__FOR_END_32007__;$i+=1){ $left = 85 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

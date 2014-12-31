@@ -48,93 +48,31 @@ class RoleController extends CommonController {
 		$id = I('id','');
 		$user = unserialize(Session('user'));
 		$role = unserialize(Session('role'));
+		
+		//顶级分类(二级栏目)
+		$class = $this->getClass();
+		//龄段
 		$stage = S('Stage');
+		$chId = $stage[$role['stageId']]['chId'];
+		//得到段龄类型，既早教，幼教，小学等的种类
+		$stageType = $class[$chId]['chKey'];
+		if($stageType == 'early' || $stageType == 'preschool')
+		{
+			$stageType = 'learningEvaluation1';
+		}
+		else
+		{
+			$stageType = 'learningEvaluation2';
+		}
 	
 		if(empty($id))
 		{
-			$interests = explode(",", $role['interests']);
-			if(empty($role['interests']))
-			{
-				$interests = array('去设置');
-			}
-			$advantages = explode(",", $role['advantage']);
-			if(empty($role['advantage']))
-			{
-				$advantages = array('去设置');
-			}
-			$disadvantages = explode(",", $role['disAdvantage']);
-			if(empty($role['disAdvantage']))
-			{
-				$disadvantages = array('去设置');
-			}
-			$phone = (empty($user['phone'])) ?'去设置' : $user['phone'];
-			
-			/* 性别 */
-			$sex=( (empty($role['sex'])) ? ('去设置') :( ($role['sex']=='1') ? '男' : '女') );
-			$userInfo = array(
-						/*学号*/
-						array(
-								'name' => 'num',
-								'content' => array($role['id']),
-							),
-						/*昵称*/
-						array(
-								'name' => 'nickname',
-								'content' => array($role['nickName']),
-								'linkUrl' => '/Hd/Role/setNickname',
-							),
-						/*性别*/
-						array(
-								'name' => 'sex',
-								'content' => array($sex),
-								'linkUrl' => '/Hd/Role/setSex',
-							),
-						/*生日*/
-						array(
-								'name' => 'birthday',
-								'content' => array($role['birthday']),
-								'linkUrl' => '/Hd/Role/setBirthday',
-							),
-						/*年级*/
-						array(
-								'name' => 'stage',
-								'content' => array($stage[$role['stageId']]['name']),
-								'linkUrl' => '/Hd/Role/changeStage',
-							),
-						/*手机*/
-						array(
-								'name' => 'phone',
-								'content' => array($phone),
-								'linkUrl' => '/Hd/Role/setPhone',
-							),
-						/*版本*/
-						array(
-								'name' => 'version',
-								'content' => array(''),
-							),
-						/*强项*/
-						array(
-								'name' => 'advantage',
-								'content' => $advantages,
-								'linkUrl' => '/Hd/Role/setAdvantage',
-							),
-						/*弱项*/
-						array(
-								'name' => 'disadvantage',
-								'content' => $disadvantages,
-								'linkUrl' => '/Hd/Role/setDisadvantage',
-							),
-						/*兴趣*/
-						array(
-								'name' => 'interests',
-								'content' => $interests,
-								'linkUrl' => '/Hd/Role/setInterests',
-							),
-					);
 			$face = (empty($role['face'])) ? '0' : $role['face'];
+			$userInfo = $this->getUserInfo($role);
 			$this->assign(array(
 				'userInfo' => $userInfo,
 				'face' => $face,
+				'stageType' => $stageType,
     		));
 		}
 		else 
@@ -142,6 +80,94 @@ class RoleController extends CommonController {
 			
 		}
 		$this->display();
+	}
+	
+	private function getUserInfo($role){
+		$user = unserialize(Session('user'));
+		//龄段
+		$stage = S('Stage');
+		$interests = explode(",", $role['interests']);
+		if(empty($role['interests']))
+		{
+			$interests = array('去设置');
+		}
+		$advantages = explode(",", $role['advantage']);
+		if(empty($role['advantage']))
+		{
+			$advantages = array('去设置');
+		}
+		$disadvantages = explode(",", $role['disAdvantage']);
+		if(empty($role['disAdvantage']))
+		{
+			$disadvantages = array('去设置');
+		}
+		$phone = (empty($user['phone'])) ?'去设置' : $user['phone'];
+			
+		/* 性别 */
+		$sex=( (empty($role['sex'])) ? ('去设置') :( ($role['sex']=='1') ? '男' : '女') );
+			
+		
+		$userInfo = array(
+				/*学号*/
+				array(
+						'name' => 'num',
+						'content' => array($role['id']),
+				),
+				/*昵称*/
+				array(
+						'name' => 'nickname',
+						'content' => array($role['nickName']),
+						'linkUrl' => '/Hd/Role/setNickname',
+				),
+				/*性别*/
+				array(
+						'name' => 'sex',
+						'content' => array($sex),
+						'linkUrl' => '/Hd/Role/setSex',
+				),
+				/*生日*/
+				array(
+						'name' => 'birthday',
+						'content' => array($role['birthday']),
+						'linkUrl' => '/Hd/Role/setBirthday',
+				),
+				/*年级*/
+				array(
+						'name' => 'stage',
+						'content' => array($stage[$role['stageId']]['name']),
+						'linkUrl' => '/Hd/Role/changeStage',
+				),
+				/*手机*/
+				array(
+						'name' => 'phone',
+						'content' => array($phone),
+						'linkUrl' => '/Hd/Role/setPhone',
+				),
+				/*版本*/
+				array(
+						'name' => 'version',
+						'content' => array(''),
+				),
+				/*强项*/
+				array(
+						'name' => 'advantage',
+						'content' => $advantages,
+						'linkUrl' => '/Hd/Role/setMulchoice?type=advantage',
+				),
+				/*弱项*/
+				array(
+						'name' => 'disadvantage',
+						'content' => $disadvantages,
+						'linkUrl' => '/Hd/Role/setMulchoice?type=disAdvantage',
+				),
+				/*兴趣*/
+				array(
+						'name' => 'interests',
+						'content' => $interests,
+						'linkUrl' => '/Hd/Role/setMulchoice?type=interests',
+				),
+		);
+		return $userInfo;
 	}
 	
 	/*
@@ -189,7 +215,7 @@ class RoleController extends CommonController {
 		else
 		{
 			$data = I('post.');
-			$role['nickName'] = $data['nickName'];
+			$role['nickName'] = $data['nickname'];
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){ 
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
@@ -251,51 +277,106 @@ class RoleController extends CommonController {
 		}
 	}
 	/*
-	 * 设置兴趣
+	 * 多选项
 	*/
-	public function setInterestsAct()
+	public function setMulchoiceAct()
 	{
 		$role = unserialize(Session('role'));
-		$roleId = $role['id'];
-		
-		$interestMap = array('music'=>'音乐','draw'=>'画画','handwriting'=>'书法','science'=>'科学','dance'=>'舞蹈'
-				,'animation'=>'动漫','movie'=>'电影','writing'=>'写作','handwork'=>'手工'
-		);
+		$proConf = get_pro_config_content('proConfig');
+		$subject = $proConf['subject'];
 		if(!IS_POST)
 		{
-			$interest = array('music','draw','handwriting','science','dance','animation','movie','writing','handwork');
-//			$this->interests=$interest;
-			$interest_array = explode(",", $role['interests']);
-			foreach($interest_array as $key => $value)
+			$type = I('type');
+			if($type == 'advantage')
 			{
-				foreach ($interestMap as $key1 => $value1)
+				$subject_remove = explode(",", $role['disAdvantage']);
+				$subject_array = explode(",", $role['advantage']);
+			}
+			if($type == 'disAdvantage')
+			{
+				$subject_remove = explode(",", $role['advantage']);
+				$subject_array = explode(",", $role['disAdvantage']);
+			}
+			if($type == 'interests')
+			{
+				$subject_remove = null;
+				$subject_array = explode(",", $role['interests']);
+			}
+			$index = 0;
+			foreach ($subject as $key => $value)
+			{
+				if(empty($subject_remove))
 				{
-					if($value == $value1)
+					$index++;
+					$subject_display['subject_'.$index] = $key;
+				}
+				else 
+				{
+					$hasEqual = false;
+					foreach ($subject_remove as $key1 => $value1)
 					{
-						$interest_data[$key1] = $key1;
+						if($value == $value1)
+						{
+							$hasEqual = true;
+							break;
+						}
+					}
+					if(!$hasEqual)
+					{
+						$index++;
+						$subject_display['subject_'.$index] = $key;
 					}
 				}
 			}
-//			$this->json_interest = json_encode($interest_data);
+			//获得要显示给用户的科目数组，取配置中科目项的键值作为其值，方便业务处理
+/* 			foreach ($subject as $key => $vaule)
+			{
+				$subject_display[] = $key;
+			} */
+			//获得选中项数组$subject_selected
+//			$subject_array = explode(",", $role['interests']);
+			foreach($subject_array as $key => $value)
+			{
+				foreach ($subject as $key1 => $value1)
+				{
+					if($value == $value1)
+					{
+						$subject_selected['sub'.$key1] = $key1;
+					}
+				}
+			}
+			foreach($subject_selected as $key => $value)
+			{
+				foreach ($subject_display as $key1 => $value1)
+				{
+					if($value == $value1)
+					{
+						unset($subject_selected[$key]);
+						$subject_selected[$key1] = $value1;
+					}
+				}
+			}
 			$this->assign(array(
-					'json_interest'	=> json_encode($interest_data),
-					'interests' => $interest,
-			
+					'json_selected'	=> json_encode($subject_selected),
+					'subjects' => $subject_display,
+					'subjects_json' => json_encode($subject_display),
+					'count_sub' => count($subject_display),
+					'type' => $type,
 			));
 			$this->display();
 		}
 		else
 		{
 			$data = I('post.');
-			foreach ($data as $key => $value)
+			foreach ($data as $key => $value)//分离出选中项
 			{
-				if($value)
+				if($value && $key!='type')
 				{
-					$interests[] = $interestMap[$key];
+					$subject_selected[] = $subject[$value];
 				}
 			}
-			$interests_string = implode(",", $interests);
-			$role['interests'] = $interests_string;
+			$sub = implode(",", $subject_selected);//转换为文字存入数据库
+			$role[$data['type']] = $sub;
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){ 
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
@@ -305,132 +386,7 @@ class RoleController extends CommonController {
 			}
 		}
 	}
-	/*
-	 * 设置强项
-	*/
-	public function setAdvantageAct()
-	{
-		$role = unserialize(Session('role'));
-		$roleId = $role['id'];
-		$proConf = get_pro_config_content('proConfig');
-		$subject = $proConf['subject'];
-		
-		$subjectMap = array('music'=>'音乐','draw'=>'美术','handwriting'=>'书法','science'=>'科学','dance'=>'舞蹈'
-				,'animation'=>'动漫','movie'=>'电影','writing'=>'写作','handwork'=>'手工','math'=>'数学'
-				,'chinese'=>'语文','english' => '英语'
-		);
-		
-		if(!IS_POST)
-		{
-			foreach ($subjectMap as $key => $value)
-			{
-				if(in_array($value, $subject))
-				{
-					$subjectData[] = $key;
-				}
-			}
-			
-			$advantage_array = explode(",", $role['advantage']);
-			foreach($advantage_array as $key => $value)
-			{
-				foreach ($subjectMap as $key1 => $value1)
-				{
-					if($value == $value1)
-					{
-						$advantage_data[$key1] = $key1;
-					}
-				}
-			}
-			$this->assign(array(
-					'json_subjects'	=> json_encode($advantage_data),
-					'subjects' => $subjectData,
-			));
-			$this->display();
-		}
-		else
-		{
-			$data = I('post.');
-			foreach ($data as $key => $value)
-			{
-				if($value)
-				{
-					$advantage[] = $subjectMap[$key];
-				}
-			}
-			$advantage_string = implode(",", $advantage);
-			$role['advantage'] = $advantage_string;
-			$r = D('Role','Logic')->save($role);
-			if($r['status']){ 
-				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				header('location:'.U('Role/userInfo'));
-			}else{
-				$this->showMessage('强项修改失败：'.$r['info']);
-			}
-		}
-	}
-	/*
-	 * 设置弱项
-	*/
-	public function setDisadvantageAct()
-	{
-		$role = unserialize(Session('role'));
-		$roleId = $role['id'];
-		$proConf = get_pro_config_content('proConfig');
-		$subject = $proConf['subject'];
-		
-		$subjectMap = array('music'=>'音乐','draw'=>'美术','handwriting'=>'书法','science'=>'科学','dance'=>'舞蹈'
-				,'animation'=>'动漫','movie'=>'电影','writing'=>'写作','handwork'=>'手工','math'=>'数学'
-				,'chinese'=>'语文','english' => '英语'
-		);
-		
-		if(!IS_POST)
-		{
-			foreach ($subjectMap as $key => $value)
-			{
-				if(in_array($value, $subject))
-				{
-					$subjectData[] = $key;
-				}
-			}
-			
-			$disadvantage_array = explode(",", $role['disAdvantage']);
-			foreach($disadvantage_array as $key => $value)
-			{
-				foreach ($subjectMap as $key1 => $value1)
-				{
-					if($value == $value1)
-					{
-						$disadvantage_data[$key1] = $key1;
-					}
-				}
-			}
-			$this->assign(array(
-					'json_subjects'	=> json_encode($disadvantage_data),
-					'subjects' => $subjectData,
-			));
-			$this->display();
-		}
-		else
-		{
-			$data = I('post.');
-			foreach ($data as $key => $value)
-			{
-				if($value)
-				{
-					$disadvantage[] = $subjectMap[$key];
-				}
-			}
-			$disadvantage_string = implode(",", $disadvantage);
-			$role['disAdvantage'] = $disadvantage_string;
-			$r = D('Role','Logic')->save($role);
-			if($r['status']){ 
-				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				header('location:'.U('Role/userInfo'));
-			}else{
-				$this->showMessage('强项修改失败：'.$r['info']);
-			}
-		}
-	}
+	
 	
 	/*
 	 * 设置生日

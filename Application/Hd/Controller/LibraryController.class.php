@@ -19,68 +19,24 @@ class LibraryController extends CommonController {
         if(!$libId){
             //$this->showMessage('参数错误');
         }
-        $title = '实得分上的阿萨德飞的身份是的范德萨的所发生的实得分上的阿萨德飞的身份是的范德萨的所发生的实得分上的阿萨德飞的';
+        $libId = 1;
+        $answerList = D('Library','Logic')->queryLib(1,1);
+        dump($answerList);exit;
         //题库类型 1为文字 2为图片
-        $libType = 2; //题型
-        $correct = 1; //正确答案
-        switch ($libType) {
-            case 1: //文字类型
-                $template = 'lib_word';
-                $answerList = array(
-                    array(
-                        'id' => 1,
-                        'title' => '实得分上的范德萨发是',
-                    ),
-                    array(
-                        'id' => 2,
-                        'title' => '实得分上的范德萨发是',
-                    ),
-                    array(
-                        'id' => 3,
-                        'title' => '实得分上的范德萨发是',
-                    ),
-                    array(
-                        'id' => 4,
-                        'title' => '实得分上的范德萨发是',
-                    ),
-                );
-                break;
-            case 2: //图片类型
-                $template = 'lib_pic';
-                $answerList = array(
-                    array(
-                        'id' => 1,
-                        'title' => '实得分上的范德萨发是',
-                        'linkImage' => get_upfile_url('__HD__/images/library/pic_1.png')
-                    ),
-                    array(
-                        'id' => 1,
-                        'title' => '实得分上的范德萨发是',
-                        'linkImage' => get_upfile_url('__HD__/images/library/pic_2.png')
-                    ),
-                    array(
-                        'id' => 1,
-                        'title' => '实得分上的范德萨发是',
-                        'linkImage' => get_upfile_url('__HD__/images/library/pic_3.png')
-                    ),
-                );
-                break;
-            default:
-                break;
-        }
+
         $this->assign(array(
-            'title' => $title,
-            'answerList' => $answerList,
-            'correct' => $correct
+            'sectionId' => $libId,
+            'answerList' => json_encode($answerList['content']),
         ));
-        $this->display($template);
+        $this->display();
     }
     
     /*
      * 错选集
      */
     public function wrongAnthologyAct() {
-        $selectLib = I('lib_id',1);
+        $topId = I('topid',1);
+        $page = I('page',1);
         $libList = array();
         $libList = array(
             array(
@@ -152,11 +108,26 @@ class LibraryController extends CommonController {
             ),
         );
         $this->assign(array(
-            'selectLib' => $selectLib,
+            'topId' => $topId,
             'libList' => $libList,
             'questionList' => $questionList
         ));
         $this->display();
     }
     
+    /*
+     * 保存数据
+     */
+    public function saveLibAct() {
+        if(IS_POST){
+            $postData = I('postdata','');
+            $countscore = I('countscore',0);
+            $redgrown = I('redgrown',0);
+            echo $postData;
+            echo $countscore;
+            echo $redgrown;
+            //header("location:".U('SectionList/index'));
+        }
+        
+    }
 }

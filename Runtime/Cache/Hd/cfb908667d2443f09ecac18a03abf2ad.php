@@ -7,6 +7,11 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
+.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
+.page .up	{ width:64px;}
+.page .down	{ width:64px;}
+.page .now	{ width:50px;}
+body {background-color: transparent;}
 
 #div_popup{
 	position:absolute;
@@ -30,7 +35,7 @@
 .shadow{
 	position:absolute;
     display: block;
-    height:80px;
+    height:60px;
 	top:615px;
 }
 
@@ -84,6 +89,7 @@ window.onload=function()
 	initButtons();
 	Epg.btn.init('ch_1',buttons,true);	
 };
+
 </script>
 
 <!-- 顶部-栏目 -->
@@ -170,31 +176,24 @@ window.onload=function()
 	<img id="user_face" src="/static/v1/hd/images/usercenter/face/face_<?php echo ($role['face']); ?>.png" width="64" height="64">
 </div>
 
-<<<<<<< HEAD
-<div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x80.png);"></div>
-<div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x80.png);"></div>
-<?php $__FOR_START_24093__=1;$__FOR_END_24093__=4;for($i=$__FOR_START_24093__;$i < $__FOR_END_24093__;$i+=1){ $left = 535 + ($i-1)*225; ?>
-	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x80.png);"></div><?php } ?>
+<div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x60.png);"></div>
+<div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x60.png);"></div>
+<?php $__FOR_START_5213__=1;$__FOR_END_5213__=4;for($i=$__FOR_START_5213__;$i < $__FOR_END_5213__;$i+=1){ $left = 535 + ($i-1)*225; ?>
+	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x60.png);"></div><?php } ?>
 
-=======
-<div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x55.png);"></div>
-<div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x55.png);"></div>
-<?php $__FOR_START_30024__=1;$__FOR_END_30024__=4;for($i=$__FOR_START_30024__;$i < $__FOR_END_30024__;$i+=1){ $left = 535 + ($i-1)*225; ?>
-	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x55.png);"></div><?php } ?>
->>>>>>> 35472e56c8d5d2391f1014391547d4c78c6bdb9a
 
 <script type="text/javascript">
 
-function pop(){
+/* function pop(){
 	Epg.popup('div_popup')
 }
 
 function disPop(){
 	Epg.disPopup(buttons,'div_popup')
-}
+} */
 
-setTimeout("pop()",1000);
-setTimeout("disPop()",5000);
+//setTimeout("pop()",1000);
+//setTimeout("disPop()",5000);
 </script>
 
 

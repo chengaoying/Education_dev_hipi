@@ -10,8 +10,19 @@
 .page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
 .page .up	{ width:64px;}
 .page .down	{ width:64px;}
-.page .now	{ width:150px;}
+.page .now	{ width:50px;}
 body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
@@ -110,5 +121,9 @@ window.onload=function()
     <div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
         <img id="course_<?php echo ($i); ?>_focus" src="" width="220" height="220">
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

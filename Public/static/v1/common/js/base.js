@@ -101,7 +101,7 @@ var Epg =
 	},
 	isArray: function(o)
 	{
-		return (o instanceof Array); 
+		return ( (o instanceof Array) || (!this.isEmpty(o) && (typeof o!='string') && (typeof o.length==='number')) ); 
 	},
 	isEmpty: function(o)
 	{
@@ -149,7 +149,20 @@ Epg.Button = Epg.btn =
 		}
 		
 		// 设置默认获得焦点的按钮
-		this.current = this.get(config.defaultBtnId);
+		if(typeof config.defaultBtnId=="string")
+			this.current = this.get(config.defaultBtnId);
+		else if(Epg.isArray(config.defaultBtnId))
+		{
+			for(var i=0,max=config.defaultBtnId.length; i<max; ++i)
+			{
+				var button = this.get(config.defaultBtnId[i]);
+				if(button)
+				{
+					this.current = button;
+					break;
+				}
+			}
+		}
 		
 		if(!Epg.isEmpty(this.current.onFocus)){ //add 20141228   增加焦点的确认状态(按钮的onFocus属性)
 			H('div_'+this.current.id);
@@ -207,6 +220,7 @@ Epg.Button = Epg.btn =
 		Epg.call(this.current.action, [this.current]);
 	},
 	
+	
 	/**
 	 * add 20141216  添加页面默认的action操作
 	 * 页面默认action操作（页面跳转），流程：
@@ -216,6 +230,7 @@ Epg.Button = Epg.btn =
 	defAction: function(){
 		var url = G(Epg.btn.current.id).title;
 		if(Epg.isEmpty(url)) url = G('div_' + Epg.btn.current.id).title; 
+		if(Epg.isEmpty(url)) return;
 		Epg.jump(url);
 	},
 	
@@ -298,6 +313,7 @@ Epg.key=
 		KEY_5:function(){if(debug_mode)location.reload();},	//如果是开发模式，按5刷新
 	},
 	
+	
 	/**
 	 * 逐个添加获取批量添加按键配置
 	 */
@@ -350,12 +366,14 @@ Epg.key=
 	init: function()
 	{
 		if(!Epg.eventHandler)//避免重复定义
-		{
+		{	
 			Epg.eventHandler = function(keycode)
 			{
-				for(var i in Epg.key.keys)
-					if(keycode===window[i])
+				for(var i in Epg.key.keys){
+					if(keycode===window[i]){
 						Epg.call(Epg.key.keys[i],keycode);
+					}
+				}
 			};
 		}
 	}
@@ -401,7 +419,8 @@ Epg.jump = function(href,f)
 {
 	if(f === undefined)
 		f = Epg.btn.current.id;
-	window.location.href = href /*+ '&f=' + f*/;
+	var temp = (href.indexOf("?")!=-1) ? ('&preId='+f) : ('?preId='+f);
+	window.location.href = (href+temp);
 };
 
 /**

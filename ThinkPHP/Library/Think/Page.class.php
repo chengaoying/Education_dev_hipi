@@ -21,7 +21,7 @@ class Page{
 
     private $p       = 'p'; //分页参数名
     public $url     = ''; //当前链接URL
-    private $nowPage = 1;
+    public $nowPage = 1;
 
 	// 分页显示定制
     private $config  = array(
@@ -127,7 +127,15 @@ class Page{
             $up_page = '';
         }
         //$up_page = $up_row > 0 ? '<a class="prev" href="' . $this->url($up_row) . '">' . $this->config['prev'] . '</a>' : '';
-
+        if($up_row > 0)
+        {
+	        $up_page =  '<img id="page_prev"  title="' . $this->url($up_row) . '" src="'.$this->config['prev'][0].'" width="25" height="30">';
+        }
+        else 
+        {
+        	$up_page =  '<img id="page_prev" class="prev" title="' . $this->url(1) . '" src="'.$this->config['prev'][0].'" width="25" height="30">';
+        }
+        	
         //下一页
         $down_row  = $this->nowPage + 1;
         if($down_row <= $this->totalPages){
@@ -141,7 +149,15 @@ class Page{
            $down_page = ''; 
         }
         //$down_page = ($down_row <= $this->totalPages) ? '<a class="next" href="' . $this->url($down_row) . '">' . $this->config['next'] . '</a>' : '';
-
+        if($down_row <= $this->totalPages)
+        {
+	        $down_page = '<img id="page_next" class="next" title="' . $this->url($down_row) . '" src="'.$this->config['next'][0].'" width="25" height="30">';
+        }
+        else 
+        {
+        	$down_page = '<img id="page_next" class="next" title="' . $this->url($this->totalPages) . '" src="'.$this->config['next'][0].'" width="25" height="30">';
+        }
+        
         //第一页
         $the_first = '';
         if($this->totalPages > $this->rollPage && ($this->nowPage - $now_cool_page) >= 1){

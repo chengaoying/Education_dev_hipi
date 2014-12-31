@@ -10,8 +10,19 @@
 .page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
 .page .up	{ width:64px;}
 .page .down	{ width:64px;}
-.page .now	{ width:150px;}
+.page .now	{ width:50px;}
 body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
@@ -107,7 +118,7 @@ window.onload=function()
 
 
 <form id="form" action="<?php echo U('Role/changeNum');?>" method="post" style="padding:10px">
-	<?php $__FOR_START_19510__=1;$__FOR_END_19510__=$count+1;for($i=$__FOR_START_19510__;$i < $__FOR_END_19510__;$i+=1){ ?><input type="hidden" id="option_<?php echo ($i); ?>ID" name="option_<?php echo ($i); ?>" value=""/><?php } ?>
+	<?php $__FOR_START_29205__=1;$__FOR_END_29205__=$count+1;for($i=$__FOR_START_29205__;$i < $__FOR_END_29205__;$i+=1){ ?><input type="hidden" id="option_<?php echo ($i); ?>ID" name="option_<?php echo ($i); ?>" value=""/><?php } ?>
 </form>
 
 
@@ -172,5 +183,9 @@ function select(option){
 
 
 
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

@@ -7,6 +7,11 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
+.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
+.page .up	{ width:64px;}
+.page .down	{ width:64px;}
+.page .now	{ width:50px;}
+body {background-color: transparent;}
 
 #div_popup{
 	position:absolute;
@@ -44,17 +49,6 @@
         width: 57px;
         height: 26px;
         background: url(/static/v1/hd/images/sectionList/preschool/weekinfo.png) no-repeat;
-    }
-    
-    /* 幼儿园哪个班 */
-    .class{
-        position: absolute;
-        display: block;
-        top:70px;
-        left:290px;
-        width: 54px;
-        height: 29px;
-        background: url(/static/v1/hd/images/courseList/title/preschool/<?php echo ($sKey); ?>_title.png) no-repeat;
     }
     
 	.shadow{
@@ -120,9 +114,6 @@ window.onload=function()
 
 <!-- 左上角的栏目LOGO -->
 <div class="ch_logo"></div>
-
-<!-- 幼儿园哪个班 -->
-<div class="class"></div>
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:100px;height:40px;top:65px;left:365px;">

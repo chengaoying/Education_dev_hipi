@@ -23,10 +23,6 @@ function get_upfile_url($url, $suffix = '', $path = '') {
 	} elseif (empty($path)) {		
 		$search = array('__COMMON__','__SD__','__HD__','__THEME__');
 		$replace = array($tmpl['__COMMON__'],$tmpl['__SD__'],$tmpl['__HD__'],$tmpl['__THEME__']);
-		foreach(C('ALBUM_TYPE') as $key=>$v){
-			$search[] = 'album'.$key;
-			$replace[] = 'album'.$tmpl[$key];
-		}
 		$url = str_replace($search, $replace, $url);
 		if (substr($url, 0, 1) == '/' || substr($url, 0, 2) == './' || substr($url, 0, 3) == '../' || substr($url, 0, 7) == 'http://' || substr($url, 0, 8) == 'https://' || substr($url, 0, 6) == 'ftp://') {
 			return $url;
@@ -157,7 +153,7 @@ function save_log($type, $data = array(), $debugLog=0,$isTime=1) {
 function get_array_page($data, $pageSize, $imgPath = '', $config = array(), $parameter = '') {
     $page = get_pageHtml(count($data), $pageSize,$config, $imgPath);
     $data = array_slice($data, $page['firstRow'], $pageSize, true);
-    return array('data' => $data, 'pageHtml' => $page['html']);
+    return array('data' => $data, 'totalPages' => $page['totalPages'],'nowPage' => $page['nowPage'],'pageHtml' => $page['html']);
 }
 
 /**
@@ -193,6 +189,8 @@ function get_pageHtml($count, $pageSize, $config = array(), $imgPath = '', $para
     return array(
         'firstRow' => $Page->firstRow,
         'html' => $Page->show(),
+        'nowPage' => $Page->nowPage,
+        'totalPages' => $Page->totalPages,
     );
 }
 

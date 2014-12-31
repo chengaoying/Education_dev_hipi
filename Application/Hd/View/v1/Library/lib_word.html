@@ -17,7 +17,6 @@
 
 <script type="text/javascript">
 
-
 var buttons=
 	[
         /*答题选项*/
@@ -27,8 +26,8 @@ var buttons=
         {id:'answer_4',name:'',action:'answer(4)',linkImage:'__HD__/images/library/word_3.png',focusImage:'__HD__/images/library/word_4_over.png',selectBox:'',left:'',right:'',up:'answer_3',down:'next'},
         
         /* 页码 */
-		{id:'pre',name:'',action:'',linkImage:'__HD__/images/library/pre.png',focusImage:'__HD__/images/library/pre_over.png',selectBox:'',left:'',right:'next',up:['answer_4','answer_3','answer_2','answer_1'],down:''},
-		{id:'next',name:'',action:'',linkImage:'__HD__/images/library/next.png',focusImage:'__HD__/images/library/next_over.png',selectBox:'',left:'pre',right:'back',up:['answer_4','answer_3','answer_2','answer_1'],down:''},
+		{id:'pre',name:'',action:'preAnswer()',linkImage:'__HD__/images/library/pre.png',focusImage:'__HD__/images/library/pre_over.png',selectBox:'',left:'',right:'next',up:['answer_4','answer_3','answer_2','answer_1'],down:''},
+		{id:'next',name:'',action:'nextAnswer()',linkImage:'__HD__/images/library/next.png',focusImage:'__HD__/images/library/next_over.png',selectBox:'',left:'pre',right:'back',up:['answer_4','answer_3','answer_2','answer_1'],down:''},
         
 	 	/*返回*/
         {id:'back',name:'',action:'',linkImage:'__HD__/images/library/back.png',focusImage:'__HD__/images/library/back_over.png',selectBox:'',right:'',left:'next',up:['answer_4','answer_3','answer_2','answer_1'],down:''},
@@ -39,7 +38,9 @@ window.onload=function()
 {
 	Epg.btn.init('answer_1',buttons,true);
 };
-var correct = {$correct};
+
+var correct;//定义当前这道题的正确答案
+var theAnswer = 1; //第几道题目
 function answer(i){
     if(i == correct){
         G('div_error_'+i).style.display="none";
@@ -49,11 +50,19 @@ function answer(i){
         G('div_error_'+i).style.display="block";
     }
 }
-
+var answerlist = {$answerList};
+function initAnswer(theAnswer){ //j是第几道题目
+    var j = theAnswer - 1;
+    for(var i=0;i<answerlist.length;i++){
+        //初始化标题
+        
+        //初始化各选项
+    }
+}
 </script>
 
 <!-- 标题 -->
-<div class="title">{$title}</div>
+<div class="title" id="title">{$title}</div>
 
 <!-- 答题选项答案 -->
 <volist name="answerList" id="ansower" key="i">

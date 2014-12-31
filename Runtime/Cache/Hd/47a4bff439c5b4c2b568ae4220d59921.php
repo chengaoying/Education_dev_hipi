@@ -10,8 +10,19 @@
 .page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
 .page .up	{ width:64px;}
 .page .down	{ width:64px;}
-.page .now	{ width:150px;}
+.page .now	{ width:50px;}
 body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
@@ -114,14 +125,18 @@ window.onload=function()
 	<img id="see"  src="/static/v1/hd/images/sectionList/primaryschool/seeing1.png" width="135" height="42">
 </div>
 
-<?php if(is_array($videoList)): $i = 0; $__LIST__ = $videoList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$videoLists): $mod = ($i % 2 );++$i; if($i<=5){ $left = 440; $top = ($i-1)*60+340; }else{ $left = 820; $top = ($i-6)*60+340; } ?>
+<?php if(is_array($videoList)): $i = 0; $__LIST__ = $videoList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$video): $mod = ($i % 2 );++$i; if($i<=5){ $left = 440; $top = ($i-1)*60+340; }else{ $left = 820; $top = ($i-6)*60+340; } ?>
 	<div id="div_course_<?php echo ($i); ?>" style="position:absolute;width:360px;height:50px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-indent:20px; text-align:left;line-height:50px;">
-		<span id="course_<?php echo ($i); ?>" title=""><?php echo ($videoLists['name']); ?></span>
+		<span id="course_<?php echo ($i); ?>" title="<?php echo U('Resource/play?id='.$video['id']);?>"><?php echo ($video['name']); ?></span>
 	</div>
 	<div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;width:160px;height:30px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="course_<?php echo ($i); ?>_focus" src="" width="160" height="24">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

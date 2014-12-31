@@ -1,0 +1,143 @@
+<layout name="layout" />
+<style>
+    body{ background-image:url(__HD__/images/usercenter/baseInfo/info_bg.jpg); }
+
+/* 设置兴趣  */
+#logo{
+	position:absolute;
+    display: block;
+    width:206px;
+    height:40px;
+    top:100px;
+    left:100px;	
+    background-image:url(__HD__/images/usercenter/mulchoice/{$type}.png);
+}
+/* 提示文字  */
+#select_tip{
+	position:absolute;
+    display: block;
+    width:427px;
+    height:22px;
+    top:110px;
+    left:320px;	
+    background-image:url(__HD__/images/usercenter/baseInfo/select_tip_2.png);
+}
+</style>
+
+<script type="text/javascript">
+var count = {$count_sub};
+var subject_selected = {$json_selected};
+var subjects = {$subjects_json};
+var n = 5;//一行五列
+/* 页面可点击按钮  */
+var buttons= new Array(count+1);
+var initButtons = function()
+{
+	for(var i=1; i<buttons.length; i++)
+	{
+		obj = new Object();
+		
+		obj.id = 'subject_' + i;
+		obj.action = 'select("'  + i + '")';
+		obj.linkImage = "__HD__/images/usercenter/mulchoice/kuang_1.png";
+		obj.focusImage = "__HD__/images/usercenter/mulchoice/kuang_2.png";
+		obj.left = ((i-1)>0) ? 'subject_'+(i-1) : '' ;
+		obj.right = ((i+1)<=count) ? 'subject_'+(i+1) : '' ;
+		obj.up = (i-n>0) ? 'subject_'+(i-n) : '' ; 
+		obj.down = (i+n)>count ? (Math.ceil(i/n)==Math.ceil(count/n) ? 'ok' : '') : 'subject_'+(i+n);
+		
+		buttons[i-1] = obj;
+	}
+	//ok up键值
+	id = (Math.ceil(count/n)-1)*n+1;
+	//第12个元素初始化为ok键
+	buttons[count] = {id:'ok',action:'submit()',linkImage:'__HD__/images/usercenter/mulchoice/confirm_1.png',focusImage:'__HD__/images/usercenter/mulchoice/confirm_2.png',up:('subject_'+id),down:''};
+}
+
+var init_interests = function()
+{
+	for(var key in subject_selected)
+	{
+		G('form_'+key).value = subject_selected[key];
+		G('div_'+key+'_selected').style.visibility = 'visible';
+	}
+}
+
+window.onload=function()
+{
+	initButtons();
+	init_interests();
+	Epg.btn.init('subject_1',buttons,true);	
+};
+
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',1)}" ></a>
+
+<!-- 静态图片 -->
+<div id="logo"></div>
+<div id="select_tip"></div>
+
+<form id="form" action="{:U(Role/setSex)}" method="post" style="padding:10px">
+	<volist name="subjects" id="subject" key="i">
+		<input type="hidden" id="form_subject_{$i}" name="form_{$i}" value=""/>
+	</volist>
+	<input type="hidden" name="type" value="{$type}"/>
+</form>
+
+<volist name="subjects" id="subject" key="i">
+	<php>
+        $left = 100 + (($i-1)%5)*150;
+        $top = 200 + (ceil($i/5)-1)*100;
+	</php>
+	
+	<!-- 背景框，选中为青色，未选中为蓝色 -->
+	<div id="div_subject_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;">
+		<img id="subject_{$i}" src="__HD__/images/usercenter/mulchoice/kuang_1.png" style="width:110px;height:50px;"/>
+	</div>
+	<!-- 科目文字 -->
+	<div style="position:absolute;left:{$left}px;top:{$top}px;">
+		<img   src="__HD__/images/usercenter/mulchoice/subject_{$subject}.png" style="width:110px;height:50px;"/>
+	</div>
+	<!-- 对勾，选中则显示√ -->
+	<div id="div_subject_{$i}_selected" style="position:absolute;visibility:hidden;left:{$left+78}px;top:{$top+15}px;">
+		<img id="subject_{$i}_selected" src="__HD__/images/usercenter/mulchoice/right.png" style="width:28px;height:22px;"/>
+	</div>
+</volist>
+
+
+<!-- 确定按钮 -->
+<div id="div_ok" style="position:absolute;left:100px;top:500px;">
+    <img id="ok" title="" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
+</div>
+
+<script type="text/javascript">
+
+function submit(){
+	G('form').submit();
+}
+
+function select(subject)
+{
+	if(G('div_subject_'+subject+'_selected').style.visibility == 'visible')
+	{
+		G('div_subject_'+subject+'_selected').style.visibility = 'hidden';
+		G('form_subject_'+subject).value = '';
+	}
+	else
+	{
+		G('div_subject_'+subject+'_selected').style.visibility = 'visible'
+		G('form_subject_'+subject).value = subjects['subject_'+subject];
+	}
+
+}
+
+</script>
+
+
+
+
+
+
+
+
