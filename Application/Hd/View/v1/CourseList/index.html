@@ -1,17 +1,28 @@
 <layout name="layout" />
 <style type="text/css">
-    body{ background-image:url(__HD__/images/common/bg.jpg); }
+body{ background-image:url(__HD__/images/common/bg.jpg); }
     
-    /* 左上角栏目logo */
-    .ch_logo{
-        position: absolute;
-        display: block;
-        top:30px;
-        left:85px;
-        width: 235px;
-        height: 90px;
-        background: url(__HD__/images/courseList/title/title_{$chKey}.png) no-repeat;
-    }
+/* 通用logo */
+.ch_logo_common{
+    position: absolute;
+    display: block;
+    top:85px;
+    left:90px;
+    width: 70px;
+    height: 35px;
+    background: url(__HD__/images/courseList/title/title_{$chKey}.png) no-repeat;
+}
+
+/* 早幼教logo */
+.ch_logo_earyle{
+    position: absolute;
+    display: block;
+    top:55px;
+    left:90px;
+    width: 235px;
+    height: 90px;
+    background: url(__HD__/images/courseList/title/title_{$chKey}.png) no-repeat;
+}
 </style>
 
 <script type="text/javascript">
@@ -21,18 +32,21 @@ var buttons=
 	[
         /*龄段*/
 	 	{id:'stage_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'stage_2',up:'',down:'course_1'},
-        {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_1',right:'stage_3',up:'',down:'course_2'},
-        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_2',right:'stage_4',up:'',down:'course_2'},
-        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_3',right:'stage_5',up:'',down:'course_2'},
-        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_4',right:'stage_6',up:'',down:'course_2'},
-        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_5',right:'',up:'',down:'course_2'},
+        {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_1',right:'stage_3',up:'',down:['course_2','course_1']},
+        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_2',right:['stage_4','stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_3',right:['stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_4',right:['stage_6','page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_5',right:['page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+        
+        {id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:['stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],right:'page_next',down:['course_5','course_4','course_3','course_2','course_1']},
+    	{id:'page_next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],down:['course_5','course_4','course_3','course_2','course_1']},
         
         /* 课程列表 */
         {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'',right:'course_2',up:'stage_1',down:'course_6'},
 		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_1',right:'course_3',up:'stage_2',down:['course_7','course_6']},
 		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_2',right:'course_4',up:'stage_3',down:['course_8','course_7','course_6']},
-		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_3',right:'course_5',up:'stage_3',down:['course_9','course_8','course_7','course_6']},
-		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_4',right:'',up:'stage_3',down:['course_10','course_9','course_8','course_7','course_6']},
+		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_3',right:'course_5',up:['page_prev','page_next'],down:['course_9','course_8','course_7','course_6']},
+		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_4',right:'',up:['page_prev','page_next'],down:['course_10','course_9','course_8','course_7','course_6']},
 		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'',right:'course_7',up:'course_1',down:''},
         {id:'course_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_6',right:'course_8',up:'course_2',down:''},
 		{id:'course_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_7',right:'course_9',up:'course_3',down:''},
@@ -54,25 +68,11 @@ var initButtons = function(){
 	
 }
 
-<php> 
-	$count = count($courses);
-	$count2 = count($stageList);
-</php>
-
 window.onload=function()
 {
 	//光标默认第一个课程上，没有则在龄段上
-	var focus = '';
-    var count = {$count};
-    var count2 = {$count2};
-    if(count > 0){
-    	focus = 'course_1';
-    }else if(count2 > 0){
-    	focus = 'stage_1';
-    }
- 	  
     initButtons();
-	Epg.btn.init(focus,buttons,true);
+	Epg.btn.init('course_1',buttons,true);
 };
 
 </script>
@@ -80,12 +80,23 @@ window.onload=function()
 <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
 
 <!-- 左上角的栏目LOGO -->
-<div class="ch_logo"></div>
+<if condition="$isEarly eq 'true'">
+	<div class="ch_logo_earyle"></div>
+<else />
+	<div class="ch_logo_common"></div>
+</if>
+
 
 <!-- 龄段列表 -->
 <volist name="stageList" id="stage" key="i">
-    <php>$left = 300+($i-1)*90;</php>
-    <div id="div_stage_{$i}" title="{:U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id'])}" style="position:absolute;width:80px;height:38px;left:{$left}px;top:72px;text-align:center;">
+    <php>
+    	if($isEarly){
+    		$left = 275+($i-1)*90;
+    	}else{
+    		$left = 225+($i-1)*90;
+    	}
+    </php>
+    <div id="div_stage_{$i}" title="{:U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id'])}" style="position:absolute;width:90px;height:35px;left:{$left}px;top:95px;text-align:center;">
         <img id="stage_{$i}" src="{$stage['linkImage']}">
     </div>
 </volist>
@@ -106,3 +117,8 @@ window.onload=function()
         <img id="course_{$i}_focus" src="" width="220" height="220">
     </div>
 </volist>
+
+<!-- 分页 -->
+<div style="position:absolute; left:1065px; top:90px;">
+	{$pageHtml['pageHtml']}
+</div>

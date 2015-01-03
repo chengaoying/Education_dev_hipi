@@ -7,10 +7,10 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:50px;}
+.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
+.page .up	{ width:25px;}
+.page .down	{ width:25px;}
+.page .now	{ width:60px;}
 body {background-color: transparent;}
 
 #div_popup{
@@ -63,7 +63,7 @@ var buttons=
 		
 		/* 右侧上方-专题*/
 		{id:'special_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_445x220.png',left:'banner_center',right:'special_2',up:'ch_3',down:'course_1'},
-		{id:'special_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'special_1',right:'',up:'ch_3',down:'course_3'},
+		{id:'special_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'special_1',right:'',up:'ch_3',down:['course_3','course_2','course_1']},
 		
 		/* 右侧下方-推荐课程 */
 		{id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'banner_center',right:'course_2',up:'special_1',down:''},
@@ -130,7 +130,7 @@ window.onload=function()
 
 <!-- 页面中间-开始 -->
 <div id="div_banner_center" style="position:absolute;width:280px;height:445px;left:245px;top:180px;text-align:center;">
-	<img id="banner_center" title="<?php echo U('SectionList/index?chId='.$courses1[0]['chId'].'&stageId='.$courses1[0]['stageIds'].'&courseId='.$courses1[0]['id']);?>" src="<?php echo ($courses1[0]['banner']); ?>" width="270" height="435">
+	<img id="banner_center" title="<?php echo U('SectionList/index?chId='.$c1['chId'].'&stageId='.$c1['stageIds'].'&courseId='.$c1['id']);?>" src="<?php echo ($c1['banner']); ?>" width="270" height="435">
 </div>
 <div id="div_banner_center_focus" style="position:absolute;visibility: hidden;width:290px;height:455px;left:240px;top:175px;text-align:center;">
 	<img id="banner_center_focus" src="" width="280" height="445">
@@ -142,7 +142,7 @@ window.onload=function()
 <!-- 页面右侧-开始  -->
 	<!-- 右侧上方--专题 -->
 	<div id="div_special_1_center" style="position:absolute;width:445px;height:220px;left:530px;top:180px;text-align:center;">
-		<img id="special_1" title="<?php echo U('SectionList/index?chId='.$courses1[1]['chId'].'&stageId='.$courses1[1]['stageIds'].'&courseId='.$courses1[1]['id']);?>" src="<?php echo ($courses1[1]['banner']); ?>" width="435" height="210">
+		<img id="special_1" title="<?php echo U('SectionList/index?chId='.$c2['chId'].'&stageId='.$c2['stageIds'].'&courseId='.$c2['id']);?>" src="<?php echo ($c2['banner']); ?>" width="435" height="210">
 	</div>
 	<div id="div_special_1_focus" style="position:absolute;visibility: hidden;width:455px;height:230px;left:525px;top:175px;text-align:center;">
 		<img id="special_1_focus" src="" width="445" height="220">
@@ -153,7 +153,7 @@ window.onload=function()
 		</div>
 	<?php else: ?>
 		<div id="div_special_2_center" style="position:absolute;width:220px;height:220px;left:980px;top:180px;text-align:center;">
-			<img id="special_2" title="<?php echo U('SectionList/index?chId='.$$target['chId'].'&stageId='.$$target['stageIds'].'&courseId='.$$target['id']);?>" src="<?php echo get_upfile_url($target['imgUrl']);?>" width="210" height="210">
+			<img id="special_2" title="<?php echo U('SectionList/index?chId='.$target['chId'].'&stageId='.$target['stageIds'].'&courseId='.$target['id']);?>" src="<?php echo get_upfile_url($target['imgUrl']);?>" width="210" height="210">
 		</div><?php endif; ?>
 	<div id="div_special_2_focus" style="position:absolute;visibility: hidden;width:230px;height:230px;left:975px;top:175px;text-align:center;">
 		<img id="special_2_focus" src="" width="220" height="220">
@@ -178,7 +178,7 @@ window.onload=function()
 
 <div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x60.png);"></div>
 <div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x60.png);"></div>
-<?php $__FOR_START_5213__=1;$__FOR_END_5213__=4;for($i=$__FOR_START_5213__;$i < $__FOR_END_5213__;$i+=1){ $left = 535 + ($i-1)*225; ?>
+<?php $__FOR_START_2304__=1;$__FOR_END_2304__=4;for($i=$__FOR_START_2304__;$i < $__FOR_END_2304__;$i+=1){ $left = 535 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x60.png);"></div><?php } ?>
 
 

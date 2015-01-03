@@ -73,7 +73,7 @@ class LearningController extends CommonController {
 		$progress = array('50','58','70','80','88','90','100','0');
 		$this->assign(array(
 					'stageType' => $stageType,
-					'page' => get_array_page($progress, 3, $imgPath),
+					'page' => get_array_page(count($progress), 3, $imgPath),
 					'preId' => $data_get['preId'],
 				));
 		$this->display();
@@ -102,7 +102,7 @@ class LearningController extends CommonController {
 		$data = array('50','58','70','80','88','90','100','0','50','58','70','80','88','90','100','0','50','58','70','80','88','90','100','0');
 		$this->assign(array(
 				'stageType' => $stageType,
-				'page' => get_array_page($data, 12, $imgPath),
+				'page' => get_array_page(count($data), 12, $imgPath),
 				'preId' => $data_get['preId'],
 		));
 		$this->display();

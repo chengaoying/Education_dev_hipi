@@ -23,7 +23,7 @@ class CourseLogic extends BaseLogic{
 	/**
 	 * 通过关键字查询课程列表
 	 * @param int $stageId	龄段id
-	 * @param int $keys		关键字id
+	 * @param array $keys	关键字id
 	 * @param int $pageNo	页号
 	 * @param int $pageSize	每页记录数
 	 */
@@ -40,4 +40,24 @@ class CourseLogic extends BaseLogic{
 	public function queryCourseListByChId($chId, $pageNo, $pageSize){
 		return $this->client->queryCourseListByChId($chId, $pageNo, $pageSize);
 	}
+	
+	/**
+	 * 通过课程id查找单个课程
+	 * @param int $courseId
+	 */
+	public function queryCourseById($courseId){
+		return $this->client->queryCourseById($courseId);
+	}
+	
+	/**
+	 * 通过课程类型查询课程列表
+	 * @param unknown_type $stageId 龄段id
+	 * @param unknown_type $type 课程类型
+	 * @param unknown_type $pageNo 页号
+	 * @param unknown_type $pageSize 每页记录数
+	 */
+	public function queryCourseListByType($stageId, $type, $pageNo, $pageSize){
+		return $this->client->queryCourseListByType($stageId, $type, $pageNo, $pageSize);
+	}
+	
 }

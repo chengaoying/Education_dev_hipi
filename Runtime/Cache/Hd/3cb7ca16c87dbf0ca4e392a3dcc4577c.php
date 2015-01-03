@@ -7,49 +7,28 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:150px;}
+.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
+.page .up	{ width:25px;}
+.page .down	{ width:25px;}
+.page .now	{ width:60px;}
 body {background-color: transparent;}
+
+#div_popup{
+	position:absolute;
+	visibility:hidden;
+	width:560px;
+	height:357px;
+	top:180px;
+	left:360px;
+	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+}
+
 </style>
 </head>
 <body>
 
 <style type="text/css">
     body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
-    /* 左上角栏目logo */
-    .ch_logo{
-        position: absolute;
-        display: block;
-        top:60px;
-        left:85px;
-        width: 150px;
-        height: 42px;
-        background-image: url(/static/v1/hd/images/sectionList/title_early.png);
-    }
-    
-    /* 哪个年龄段 */
-    .age{
-        position: absolute;
-        display: block;
-        top:70px;
-        left:250px;
-        width: 71px;
-        height: 29px;
-        background: url(/static/v1/hd/images/courseList/title/early/one_title.png) no-repeat;
-    }
-    
-    /* 课程目标 */
-    .aim{
-        position: absolute;
-        display: block;
-        top:180px;
-        left:60px;
-        width: 286px;
-        height: 382px;
-        background-image: url(/static/v1/hd/images/sectionList/early/month_aim/<?php echo ($month); ?>.png);
-    }
     
     /*月份*/
     <?php if($month>=1 and $month<=12){ $monthbg = '/static/v1/hd/images/sectionList/early/month/1_12_month.png'; }else if($month>=13 and $month<=24){ $monthbg = '/static/v1/hd/images/sectionList/early/month/13_24_month.png'; }else{ $monthbg = '/static/v1/hd/images/sectionList/early/month/25_36_month.png'; } if(in_array($month,array(12,24,36))){ $probgwidth = 1110; $proleft = 1085; }else{ $probgwidth = ($month%12)*86; $proleft = ($month%12)*86+62; } ?>
@@ -62,16 +41,6 @@ body {background-color: transparent;}
         left:85px;
         background: url(<?php echo ($monthbg); ?>) no-repeat;
     }
-    
-    .shadow{
-        position: absolute;
-        width:1110px;
-        height:50px;
-        top:630px;
-        left:85px;
-        background: url(/static/v1/hd/images/common/shadow_3.png) no-repeat;
-    }
-    
     .progress{
         position: absolute;
         width:46px;
@@ -95,35 +64,39 @@ body {background-color: transparent;}
 
 var buttons=
 	[
+	 	/* logo */	
+	 	{id:'btn_logo',name:'logo',action:'',linkImage:'/static/v1/hd/images/sectionList/title_early.png',focusImage:'/static/v1/hd/images/sectionList/title_early_over.png',selectBox:'',left:'',right:'btn_order',down:'topic_1'},
+	 	
 	 	/* 订购按钮 */	
-	 	{id:'btn_order',name:'订购',action:'',linkImage:'/static/v1/hd/images/common/order/btn_order.png',focusImage:'/static/v1/hd/images/common/order/btn_order_over.png',selectBox:'',left:'',right:'video_1',up:'',down:'topic_1'},
+	 	{id:'btn_order',name:'订购',action:'',linkImage:'/static/v1/hd/images/common/order/btn_order.png',focusImage:'/static/v1/hd/images/common/order/btn_order_over.png',selectBox:'',left:'btn_logo',right:'',up:'',down:['section_3','section_2','section_1']},
 	 
         /*左侧知识点列表*/
-	 	{id:'topic_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'btn_order',down:'topic_2'},
-        {id:'topic_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'topic_1',down:'topic_3'},
-        {id:'topic_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'topic_2',down:'topic_4'},
-        {id:'topic_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'topic_3',down:'topic_5'},
-        {id:'topic_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'topic_4',down:'topic_6'},
-        {id:'topic_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'topic_5',down:'topic_7'},
+	 	{id:'topic_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_1',up:'btn_logo',down:'topic_2'},
+        {id:'topic_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_1',up:'topic_1',down:'topic_3'},
+        {id:'topic_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_1',up:'topic_2',down:'topic_4'},
+        {id:'topic_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_4',up:'topic_3',down:'topic_5'},
+        {id:'topic_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_4',up:'topic_4',down:'topic_6'},
+        {id:'topic_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_4',up:'topic_5',down:'topic_7'},
         
         /* 右边视频列表 */
-        {id:'video_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'topic_1',right:'video_2',up:'btn_order',down:'video_4'},
-		{id:'video_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'video_1',right:'video_3',up:'btn_order',down:['video_5','video_4']},
-		{id:'video_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'video_2',right:'',up:'btn_order',down:['video_6','video_5','video_4']},
-		{id:'video_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:['topic_5','topic_4'],right:'video_5',up:'video_1',down:''},
-		{id:'video_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'video_4',right:'video_6',up:'video_2',down:''},
-		{id:'video_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x210.gif',left:'video_5',right:'',up:'video_3',down:''},
+        {id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'topic_1',right:'section_2',up:'btn_order',down:'section_4'},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'section_1',right:'section_3',up:'btn_order',down:['section_5','section_4']},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'section_2',right:'',up:'btn_order',down:['section_6','section_5','section_4']},
+		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:['topic_5','topic_4'],right:'section_5',up:'section_1',down:''},
+		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'section_4',right:'section_6',up:'section_2',down:''},
+		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'section_5',right:'',up:'section_3',down:''},
 	];
 
-var chlist = <?php echo ($json_ch); ?>;
+//知识点
+var topics = <?php echo ($json_topic); ?>;
 /* 初始化按钮 属性   */
 var initButtons = function(){
-	//栏目
-	for(var i=0; i<chlist.length; i++)
+	//知识点
+	for(var i=0; i<topics.length; i++)
 	{
-		buttons[i+1].name = chlist[i].name;
-		buttons[i+1].linkImage = chlist[i].linkImage;
-		buttons[i+1].focusImage = chlist[i].focusImage;
+		buttons[i+2].name = topics[i].name;
+		buttons[i+2].linkImage = topics[i].linkImage;
+		buttons[i+2].focusImage = topics[i].focusImage;
 	}
 	
 }
@@ -137,34 +110,35 @@ window.onload=function()
 
 <a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
 
-<!-- 左上角的栏目LOGO -->
-<div class="ch_logo"></div>
+<!-- 栏目LOGO -->
+<div id="div_btn_logo" style="position:absolute;width:225px;height:91px;top:45px;left:85px;">
+	<img id="btn_logo" src="/static/v1/hd/images/sectionList/title_early.png">
+</div>
 
-<!-- 某个年龄 -->
-<div class="age"></div>
-
-<!-- 课程目标 -->
-<div class="aim"></div>
+<!-- 课程横幅图 -->
+<div style="position: absolute;top:180px;left:60px;width: 286px;height:382px;
+        background-image: url(/static/v1/hd/images/sectionList/early/month_aim/<?php echo ($month); ?>.png);">
+</div>
 
 <!-- 订购 -->
-<div id="div_btn_order" style="position:absolute;width:100px;height:40px;top:65px;left:345px;">
+<div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:85px;left:1100px;">
 	<img id="btn_order" src="/static/v1/hd/images/common/order/btn_order.png">
 </div>
 
-<!-- 课程目标栏目 -->
-<?php if(is_array($chList)): $i = 0; $__LIST__ = $chList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $top = 180+($i-1)*65; ?>
+<!-- 知识点列表 -->
+<?php if(is_array($topics)): $i = 0; $__LIST__ = $topics;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$t): $mod = ($i % 2 );++$i; $top = 180+($i-1)*65; ?>
     <div id="div_topic_<?php echo ($i); ?>" style="position: absolute;height:54px;left:345px;top:<?php echo ($top); ?>px;">
-        <img id="topic_<?php echo ($i); ?>" src="<?php echo ($ch['linkImage']); ?>" height="54" />
+        <img id="topic_<?php echo ($i); ?>" src="<?php echo ($t['linkImage']); ?>" height="54" />
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 
-<!-- 右边视频列表 -->
-<?php if(is_array($videoList)): $i = 0; $__LIST__ = $videoList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$video): $mod = ($i % 2 );++$i; if($i > 3){ $top = 375; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
-    <div id="div_video_<?php echo ($i); ?>" style="position:absolute;width:220px;height:190px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-        <img id="video_<?php echo ($i); ?>" src="<?php echo ($video['imgUrl']); ?>" width="210" height="180">
+<!-- 课时列表 -->
+<?php if(is_array($sections)): $i = 0; $__LIST__ = $sections;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$section): $mod = ($i % 2 );++$i; if($i > 3){ $top = 375; $left = 530 + ($i-4)*225; }else{ $top = 180; $left = 530 + ($i-1)*225; } ?>
+    <div id="div_section_<?php echo ($i); ?>" style="position:absolute;width:220px;height:190px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+        <img id="section_<?php echo ($i); ?>" title="<?php echo U('Resource/play?id='.$section['id']);?>" src="<?php echo get_upfile_url($section['imgUrl']);?>" width="210" height="180">
     </div>
-    <div id="div_video_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:200px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
-        <img id="video_<?php echo ($i); ?>_focus" src="" width="220" height="190">
+    <div id="div_section_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:200px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
+        <img id="section_<?php echo ($i); ?>_focus" src="" width="220" height="190">
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 
@@ -174,8 +148,15 @@ window.onload=function()
 <div class="progress"></div>
 <!-- 进度条背景 -->
 <div class="probg"></div>
-<!-- 月份条投影 -->
-<div class="shadow"></div>
 
+<!-- 底部投影 -->
+<div style="position: absolute;width:1110px;height:45px;top:630px;left:85px;
+        background-image: url(/static/v1/hd/images/common/shadow/shadow_1110x45.png);">
+</div>
+
+
+<!-- 弹窗 -->
+<div id="div_popup">
+</div>
 </body>
 </html>

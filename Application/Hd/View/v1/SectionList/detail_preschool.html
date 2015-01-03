@@ -1,140 +1,113 @@
 <layout name="layout" />
 <style type="text/css">
-    body{ background-image:url(__HD__/images/common/bg.jpg); }
-    
-    /* 左上角栏目logo */
-    .ch_logo{
-        position: absolute;
-        display: block;
-        top:60px;
-        left:85px;
-        width: 185px;
-        height: 42px;
-        background: url(__HD__/images/sectionList/title_preschool.png) no-repeat;
-    }
-    
-    .weekinfo{
-        position: absolute;
-        display: block;
-        top:70px;
-        left:885px;
-        width: 57px;
-        height: 26px;
-        background: url(__HD__/images/sectionList/preschool/weekinfo.png) no-repeat;
-    }
-    
-	.shadow{
-        position: absolute;
-        width:1110px;
-        height:50px;
-        top:617px;
-        left:90px;
-        background: url(__HD__/images/common/shadow_3.png) no-repeat;
-    }
+   body{ background-image:url(__HD__/images/common/bg.jpg); }
+   
+.shadow{
+   position: absolute;
+   width:1110px;
+   height:50px;
+   top:617px;
+   background-image: url(__HD__/images/common/shadow/shadow_360x60.png);
+}
+
+#week{
+    position:absolute;
+	width: 66px;
+	height: 21px;
+	top: 100px;
+	left:380px;
+	background-image: url(__HD__/images/sectionList/preschool/week_{$week}.png);
+}
 </style>
 
 <script type="text/javascript">
 
 var buttons=
 	[
-		/* 订购按钮 */	
-		{id:'btn_order',name:'订购',action:'',linkImage:'__HD__/images/common/order/btn_order.png',focusImage:'__HD__/images/common/order/btn_order_over.png',selectBox:'',left:'',right:['day_1','day_2','day_3'],up:'',down:['video_2','video_1']},
-
-        //三天
-        {id:'day_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'btn_order',right:'day_2',up:'',down:'video_4'},
-        {id:'day_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_1',right:'day_3',up:'',down:'video_5'},
-        {id:'day_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'day_2',right:'btn_week',up:'',down:'video_5'},
+		/* logo */	
+		{id:'btn_logo',name:'logo',action:'',linkImage:'__HD__/images/sectionList/title_preschool.png',focusImage:'__HD__/images/sectionList/title_preschool_over.png',selectBox:'',right:'btn_week',down:'section_1'},
+	
+        /*本周课程*/
+        {id:'btn_week',name:'',action:'',linkImage:'__HD__/images/sectionList/preschool/btn_week.png',focusImage:'__HD__/images/sectionList/preschool/btn_week_over.png',selectBox:'',left:'btn_logo',right:'btn_order',up:'',down:['section_5','section_4','section_3','section_2','section_1']},
+		
+        /* 订购按钮 */	
+		{id:'btn_order',name:'订购',action:'',linkImage:'__HD__/images/common/order/btn_order.png',focusImage:'__HD__/images/common/order/btn_order_over.png',selectBox:'',left:'btn_week',down:['section_5','section_4','section_3','section_2','section_1']},
         
-        /*一周课程*/
-        {id:'btn_week',name:'',action:'',linkImage:'__HD__/images/sectionList/preschool/btn_week.png',focusImage:'__HD__/images/sectionList/preschool/btn_week_over.png',selectBox:'',left:'day_3',right:'',up:'',down:['video_5','video_4','video_3','video_2','video_1']},
-        
-        /*视频列表*/
-	 	{id:'video_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'',right:'video_2',up:'btn_week',down:'special_1'},
-        {id:'video_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'video_1',right:'video_3',up:'btn_week',down:'special_1'},
-        {id:'video_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'video_2',right:'video_4',up:'btn_week',down:['special_2','special_1']},
-        {id:'video_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'video_3',right:'video_5',up:'btn_week',down:['special_3','special_2','special_1']},
-        {id:'video_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'video_4',right:'special_1',up:'btn_week',down:['special_3','special_2','special_1']},
+        /*课时列表*/
+	 	{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'',right:'section_2',up:'btn_logo',down:'special_1'},
+        {id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'section_1',right:'section_3',up:'btn_week',down:'special_1'},
+        {id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'section_2',right:'section_4',up:'btn_week',down:['special_2','special_1']},
+        {id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'section_3',right:'section_5',up:'btn_week',down:['special_3','special_2','special_1']},
+        {id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x320.gif',left:'section_4',right:'special_1',up:'btn_order',down:['special_3','special_2','special_1']},
         
         /* 专题列表 */
-        {id:'special_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_360x150.gif',left:'',right:'special_2',up:'video_1',down:''},
-		{id:'special_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_360x150.gif',left:'special_1',right:'special_3',up:['video_3','video_2','video_1'],down:''},
-		{id:'special_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_360x150.gif',left:'special_2',right:'',up:['video_5','video_4','video_3','video_2','video_1'],down:''},
+        {id:'special_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_360x150.gif',left:'',right:'special_2',up:'section_1',down:''},
+		{id:'special_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_360x150.gif',left:'special_1',right:'special_3',up:['section_3','section_2','section_1'],down:''},
+		{id:'special_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_360x150.gif',left:'special_2',right:'',up:['section_5','section_4','section_3','section_2','section_1'],down:''},
 	];
     
-var daylist = {$json_day};
-
 /* 初始化按钮 属性   */
 var initButtons = function(){
-	//栏目
-	for(var i=0; i<daylist.length; i++)
-	{
-		buttons[i+1].name = daylist[i].name;
-		buttons[i+1].linkImage = daylist[i].linkImage;
-		buttons[i+1].focusImage = daylist[i].focusImage;
-	}
 	
 }
 
 window.onload=function()
 {
     initButtons();
-	Epg.btn.init('day_3',buttons,true);	
+	Epg.btn.init('section_1',buttons,true);	
 };
 </script>
 
 <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
 
-<!-- 左上角的栏目LOGO -->
-<div class="ch_logo"></div>
+<!-- 栏目LOGO -->
+<div id="div_btn_logo" style="position:absolute;width:225px;height:91px;top:45px;left:85px;">
+	<img id="btn_logo" src="__HD__/images/sectionList/title_preschool.png">
+</div>
+
+<!-- 星期 -->
+<div id="week"></div>
 
 <!-- 订购 -->
-<div id="div_btn_order" style="position:absolute;width:100px;height:40px;top:65px;left:365px;">
+<div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:100px;left:1105px;">
 	<img id="btn_order" src="__HD__/images/common/order/btn_order.png">
 </div>
 
-<!-- 三天 -->
-<volist name="dayList" id="day" key="i">
-    <php>$left = 945+($i-1)*48;</php>
-    <div id="div_day_{$i}" style="position: absolute;width:43px;height:40px;left:{$left}px;top:65px;">
-        <img id="day_{$i}" src="{$day['linkImage']}" width="43" height="40" />
-    </div>
-</volist>
-
-<!-- 星期 -->
-<div class="weekinfo"></div>
-
-<!-- 一周课程 -->
-<div id="div_btn_week" title="{:U('SectionList/week')}" style="position: absolute;width:98px;height:40px;left:1095px;top:65px;">
-	<img id="btn_week" src="__HD__/images/sectionList/preschool/btn_week.png" width="98" height="40" />
+<!-- 本周课程 -->
+<div id="div_btn_week" title="{:U('SectionList/week?courseId='.$courseId)}" style="position: absolute;width:138px;height:33px;left:950px;top:100px;">
+	<img id="btn_week" src="__HD__/images/sectionList/preschool/btn_week.png" width="138" height="33" />
 </div>
 
-<!-- 视频列表 -->
-<volist name="videoList" id="video" key="i">
+<!-- 课时列表 -->
+<volist name="sections" id="section" key="i">
     <php>
          $top = 180; $left = 85 + ($i-1)*225;
     </php>
-    <div id="div_video_{$i}" style="position:absolute;width:220px;height:280px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="video_{$i}" title="{:U('Resource/play?id='.$video['id'])}" src="{$video['imgUrl']}" width="210" height="270">
+    <div id="div_section_{$i}" style="position:absolute;width:220px;height:310px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="section_{$i}" title="{:U('Resource/play?id='.$section['id'])}" src="{:get_upfile_url($section['imgUrl'])}" width="210" height="300">
     </div>
-    <div id="div_video_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:290px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
-        <img id="video_{$i}_focus" src="" width="220" height="280">
+    <div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:320px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="section_{$i}_focus" src="" width="220" height="310">
     </div>
 </volist>
 
 <!-- 专题列表 -->
 <volist name="specialList" id="special" key="i">
     <php>
-         $top = 465; $left = 85 + ($i-1)*375;
+         $top = 500; $left = 85 + ($i-1)*375;
     </php>
-    <div id="div_special_{$i}" style="position:absolute;width:370px;height:160px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="special_{$i}" src="{$special['imgUrl']}" width="360" height="150">
+    <div id="div_special_{$i}" style="position:absolute;width:370px;height:125px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="special_{$i}" src="{:get_upfile_url($special['imgUrl'])}" width="360" height="115">
     </div>
-    <div id="div_special_{$i}_focus" style="position:absolute;visibility:hidden;width:380px;height:170px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
-        <img id="special_{$i}_focus" src="" width="370" height="160">
+    <div id="div_special_{$i}_focus" style="position:absolute;visibility:hidden;width:380px;height:135px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="special_{$i}_focus" src="" width="370" height="125">
     </div>
 </volist>
 
-<!-- 投影 -->
-<div class="shadow"></div>
+<!-- 底部投影 -->
+<for start="1" end="4" step="1">
+	<php> $left = 90 + ($i-1)*375;</php>
+	<div class="shadow" style="left:{$left}px;"></div>
+</for>
 
 

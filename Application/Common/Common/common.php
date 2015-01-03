@@ -150,8 +150,8 @@ function save_log($type, $data = array(), $debugLog=0,$isTime=1) {
  * @param unknown_type $parameter
  * @return multitype:multitype: Ambigous <NULL, number>
  */
-function get_array_page($data, $pageSize, $imgPath = '', $config = array(), $parameter = '') {
-    $page = get_pageHtml(count($data), $pageSize,$config, $imgPath);
+function get_array_page($count, $pageSize, $imgPath = '', $config = array(), $parameter = '') {
+    $page = get_pageHtml($count, $pageSize,$config, $imgPath);
     $data = array_slice($data, $page['firstRow'], $pageSize, true);
     return array('data' => $data, 'totalPages' => $page['totalPages'],'nowPage' => $page['nowPage'],'pageHtml' => $page['html']);
 }

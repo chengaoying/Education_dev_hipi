@@ -128,8 +128,7 @@ class CommonController extends \Think\Controller{
 	 * 根据角色龄段id获取角色对应的年级(顶级分类或二级分类)
 	 * @param unknown_type $roleStage
 	 */
-	public function getGrade($roleStage){
-		$chId = $roleStage['chId'];
+	public function getGrade($chId){
 		$class = $this->getClass();
 		return $class[$chId];
 	}

@@ -7,10 +7,10 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:50px;}
+.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
+.page .up	{ width:25px;}
+.page .down	{ width:25px;}
+.page .now	{ width:60px;}
 body {background-color: transparent;}
 
 #div_popup{
@@ -28,18 +28,29 @@ body {background-color: transparent;}
 <body>
 
 <style type="text/css">
-    body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
+body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
     
-    /* 左上角栏目logo */
-    .ch_logo{
-        position: absolute;
-        display: block;
-        top:30px;
-        left:85px;
-        width: 235px;
-        height: 90px;
-        background: url(/static/v1/hd/images/courseList/title/title_<?php echo ($chKey); ?>.png) no-repeat;
-    }
+/* 通用logo */
+.ch_logo_common{
+    position: absolute;
+    display: block;
+    top:85px;
+    left:90px;
+    width: 70px;
+    height: 35px;
+    background: url(/static/v1/hd/images/courseList/title/title_<?php echo ($chKey); ?>.png) no-repeat;
+}
+
+/* 早幼教logo */
+.ch_logo_earyle{
+    position: absolute;
+    display: block;
+    top:55px;
+    left:90px;
+    width: 235px;
+    height: 90px;
+    background: url(/static/v1/hd/images/courseList/title/title_<?php echo ($chKey); ?>.png) no-repeat;
+}
 </style>
 
 <script type="text/javascript">
@@ -49,18 +60,21 @@ var buttons=
 	[
         /*龄段*/
 	 	{id:'stage_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'stage_2',up:'',down:'course_1'},
-        {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_1',right:'stage_3',up:'',down:'course_2'},
-        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_2',right:'stage_4',up:'',down:'course_2'},
-        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_3',right:'stage_5',up:'',down:'course_2'},
-        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_4',right:'stage_6',up:'',down:'course_2'},
-        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_5',right:'',up:'',down:'course_2'},
+        {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_1',right:'stage_3',up:'',down:['course_2','course_1']},
+        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_2',right:['stage_4','stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_3',right:['stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_4',right:['stage_6','page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_5',right:['page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+        
+        {id:'page_prev',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',left:['stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],right:'page_next',down:['course_5','course_4','course_3','course_2','course_1']},
+    	{id:'page_next',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],down:['course_5','course_4','course_3','course_2','course_1']},
         
         /* 课程列表 */
         {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'',right:'course_2',up:'stage_1',down:'course_6'},
 		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_1',right:'course_3',up:'stage_2',down:['course_7','course_6']},
 		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_2',right:'course_4',up:'stage_3',down:['course_8','course_7','course_6']},
-		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_3',right:'course_5',up:'stage_3',down:['course_9','course_8','course_7','course_6']},
-		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_4',right:'',up:'stage_3',down:['course_10','course_9','course_8','course_7','course_6']},
+		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_3',right:'course_5',up:['page_prev','page_next'],down:['course_9','course_8','course_7','course_6']},
+		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_4',right:'',up:['page_prev','page_next'],down:['course_10','course_9','course_8','course_7','course_6']},
 		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'',right:'course_7',up:'course_1',down:''},
         {id:'course_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_6',right:'course_8',up:'course_2',down:''},
 		{id:'course_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_220x220.png',left:'course_7',right:'course_9',up:'course_3',down:''},
@@ -82,22 +96,11 @@ var initButtons = function(){
 	
 }
 
-<?php $count = count($courses); $count2 = count($stageList); ?>
-
 window.onload=function()
 {
 	//光标默认第一个课程上，没有则在龄段上
-	var focus = '';
-    var count = <?php echo ($count); ?>;
-    var count2 = <?php echo ($count2); ?>;
-    if(count > 0){
-    	focus = 'course_1';
-    }else if(count2 > 0){
-    	focus = 'stage_1';
-    }
- 	  
     initButtons();
-	Epg.btn.init(focus,buttons,true);
+	Epg.btn.init('course_1',buttons,true);
 };
 
 </script>
@@ -105,11 +108,14 @@ window.onload=function()
 <a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
 
 <!-- 左上角的栏目LOGO -->
-<div class="ch_logo"></div>
+<?php if($isEarly == 'true'): ?><div class="ch_logo_earyle"></div>
+<?php else: ?>
+	<div class="ch_logo_common"></div><?php endif; ?>
+
 
 <!-- 龄段列表 -->
-<?php if(is_array($stageList)): $i = 0; $__LIST__ = $stageList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$stage): $mod = ($i % 2 );++$i; $left = 300+($i-1)*90; ?>
-    <div id="div_stage_<?php echo ($i); ?>" title="<?php echo U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id']);?>" style="position:absolute;width:80px;height:38px;left:<?php echo ($left); ?>px;top:72px;text-align:center;">
+<?php if(is_array($stageList)): $i = 0; $__LIST__ = $stageList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$stage): $mod = ($i % 2 );++$i; if($isEarly){ $left = 275+($i-1)*90; }else{ $left = 225+($i-1)*90; } ?>
+    <div id="div_stage_<?php echo ($i); ?>" title="<?php echo U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id']);?>" style="position:absolute;width:90px;height:35px;left:<?php echo ($left); ?>px;top:95px;text-align:center;">
         <img id="stage_<?php echo ($i); ?>" src="<?php echo ($stage['linkImage']); ?>">
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
@@ -121,6 +127,11 @@ window.onload=function()
     <div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
         <img id="course_<?php echo ($i); ?>_focus" src="" width="220" height="220">
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
+
+<!-- 分页 -->
+<div style="position:absolute; left:1065px; top:90px;">
+	<?php echo ($pageHtml['pageHtml']); ?>
+</div>
 
 <!-- 弹窗 -->
 <div id="div_popup">

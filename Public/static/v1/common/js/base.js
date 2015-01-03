@@ -419,8 +419,8 @@ Epg.jump = function(href,f)
 {
 	if(f === undefined)
 		f = Epg.btn.current.id;
-	var temp = (href.indexOf("?")!=-1) ? ('&preId='+f) : ('?preId='+f);
-	window.location.href = (href+temp);
+	//var temp = (href.indexOf("?")!=-1) ? ('&preId='+f) : ('?preId='+f);
+	window.location.href = href;//(href+temp);
 };
 
 /**

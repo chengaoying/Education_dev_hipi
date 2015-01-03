@@ -7,6 +7,11 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
+.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
+.page .up	{ width:64px;}
+.page .down	{ width:64px;}
+.page .now	{ width:50px;}
+body {background-color: transparent;}
 
 #div_popup{
 	position:absolute;
@@ -52,10 +57,12 @@
 <script type="text/javascript">
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory_1.png',focusImage:'/static/v1/hd/images/usercenter/glory_2.png',selectBox:'',right:'ch_2',down:''}, 
-	{id:'ch_2',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/learning_1.png',focusImage:'/static/v1/hd/images/usercenter/learning_2.png',selectBox:'',left:'ch_1',right:'ch_3',down:''}, 
-	{id:'ch_3',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseinfo_1.png',focusImage:'/static/v1/hd/images/usercenter/baseinfo_2.png',selectBox:'',left:'ch_2',down:'nickname'},
+	{id:'ch_1',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory_1.png',focusImage:'/static/v1/hd/images/usercenter/glory_2.png',selectBox:'',right:'ch_2',down:'viewAll'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/learning_1.png',focusImage:'/static/v1/hd/images/usercenter/learning_2.png',selectBox:'',left:'ch_1',right:'ch_3',down:'viewAll'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseinfo_1.png',focusImage:'/static/v1/hd/images/usercenter/baseinfo_2.png',selectBox:'',left:'ch_2',down:'viewAll'},
 
+	{id:'viewAll',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory/view_1.png',focusImage:'/static/v1/hd/images/usercenter/glory/view_2.png',selectBox:'',right:'reward',up:'ch_1'},
+	{id:'reward',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory/reward_1.png',focusImage:'/static/v1/hd/images/usercenter/glory/reward_2.png',selectBox:'',left:'viewAll',up:'ch_1'},
 	
 	];
 
@@ -64,6 +71,7 @@
 	};
 </script>
 
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Role/userInfo',1);?>" ></a>
 
 <!-- 静态图片 -->
 <div id="bottom"></div>
@@ -89,13 +97,28 @@
 </div>
 
 <!-- 进度条 -->
-<!-- 底部进度条 -->
+<!-- 进度条背景 -->
 <div  style="position: absolute; left: 110px; top: 330px;">
-	<img  src="/static/v1/hd/images/glory/usercenter/progress_1.png" width="361" height="10">
+	<img  src="/static/v1/hd/images/usercenter/glory/progress_1.png" width="361" height="10">
 </div>
 <!-- 当前进度 -->
 <div  style="position: absolute; left: 110px; top: 330px;">
-	<img  src="/static/v1/hd/images/glory/usercenter/progress_2.png" width="<?php echo ($curProgress); ?>" height="10">
+	<img  src="/static/v1/hd/images/usercenter/glory/progress_2.png" width="<?php echo ($curProgress); ?>" height="10">
+</div> 
+
+<!-- 查看全部按钮 -->
+<div id="div_wiewAll" style="position: absolute; left:380px; top:560px;">
+	<img id='viewAll' title="<?php echo U('Glory/view');?>"
+		src="/static/v1/hd/images/usercenter/glory/view_1.png" width="100" height="36">
+</div>
+<!-- 领取奖励 -->
+<div id="div_reward" style="position: absolute; left:1030px; top:530px;">
+	<img id='reward' title=""
+		src="/static/v1/hd/images/usercenter/glory/reward_1.png" width="100" height="36">
+</div>
+<!-- 奖励图标 -->
+<div style="position: absolute; left:265px; top:400px;">
+	<img src="/static/v1/hd/images/usercenter/glory/gift_1.png" width="94" height="134">
 </div>
 
 

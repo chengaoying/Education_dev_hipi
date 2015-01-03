@@ -1,27 +1,6 @@
 <layout name="layout" />
 <style type="text/css">
     body{ background-image:url(__HD__/images/common/bg.jpg); }
-    /* 左上角栏目logo */
-    .ch_logo{
-        position: absolute;
-        display: block;
-        top:60px;
-        left:85px;
-        width: 150px;
-        height: 42px;
-        background-image: url(__HD__/images/sectionList/title_early.png);
-    }
-    
-    /* 课程目标 */
-    .aim{
-        position: absolute;
-        display: block;
-        top:180px;
-        left:60px;
-        width: 286px;
-        height: 382px;
-        background-image: url(__HD__/images/sectionList/early/month_aim/{$month}.png);
-    }
     
     /*月份*/
     <php>
@@ -51,16 +30,6 @@
         left:85px;
         background: url({$monthbg}) no-repeat;
     }
-    
-    .shadow{
-        position: absolute;
-        width:1110px;
-        height:50px;
-        top:630px;
-        left:85px;
-        background: url(__HD__/images/common/shadow_3.png) no-repeat;
-    }
-    
     .progress{
         position: absolute;
         width:46px;
@@ -84,35 +53,39 @@
 
 var buttons=
 	[
+	 	/* logo */	
+	 	{id:'btn_logo',name:'logo',action:'',linkImage:'__HD__/images/sectionList/title_early.png',focusImage:'__HD__/images/sectionList/title_early_over.png',selectBox:'',left:'',right:'btn_order',down:'topic_1'},
+	 	
 	 	/* 订购按钮 */	
-	 	{id:'btn_order',name:'订购',action:'',linkImage:'__HD__/images/common/order/btn_order.png',focusImage:'__HD__/images/common/order/btn_order_over.png',selectBox:'',left:'',right:'video_1',up:'',down:'topic_1'},
+	 	{id:'btn_order',name:'订购',action:'',linkImage:'__HD__/images/common/order/btn_order.png',focusImage:'__HD__/images/common/order/btn_order_over.png',selectBox:'',left:'btn_logo',right:'',up:'',down:['section_3','section_2','section_1']},
 	 
         /*左侧知识点列表*/
-	 	{id:'topic_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'btn_order',down:'topic_2'},
-        {id:'topic_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'topic_1',down:'topic_3'},
-        {id:'topic_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_1',up:'topic_2',down:'topic_4'},
-        {id:'topic_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'topic_3',down:'topic_5'},
-        {id:'topic_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'topic_4',down:'topic_6'},
-        {id:'topic_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'video_4',up:'topic_5',down:'topic_7'},
+	 	{id:'topic_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_1',up:'btn_logo',down:'topic_2'},
+        {id:'topic_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_1',up:'topic_1',down:'topic_3'},
+        {id:'topic_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_1',up:'topic_2',down:'topic_4'},
+        {id:'topic_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_4',up:'topic_3',down:'topic_5'},
+        {id:'topic_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_4',up:'topic_4',down:'topic_6'},
+        {id:'topic_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_4',up:'topic_5',down:'topic_7'},
         
         /* 右边视频列表 */
-        {id:'video_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'topic_1',right:'video_2',up:'btn_order',down:'video_4'},
-		{id:'video_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'video_1',right:'video_3',up:'btn_order',down:['video_5','video_4']},
-		{id:'video_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'video_2',right:'',up:'btn_order',down:['video_6','video_5','video_4']},
-		{id:'video_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:['topic_5','topic_4'],right:'video_5',up:'video_1',down:''},
-		{id:'video_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'video_4',right:'video_6',up:'video_2',down:''},
-		{id:'video_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x210.gif',left:'video_5',right:'',up:'video_3',down:''},
+        {id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'topic_1',right:'section_2',up:'btn_order',down:'section_4'},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_1',right:'section_3',up:'btn_order',down:['section_5','section_4']},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_2',right:'',up:'btn_order',down:['section_6','section_5','section_4']},
+		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:['topic_5','topic_4'],right:'section_5',up:'section_1',down:''},
+		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_4',right:'section_6',up:'section_2',down:''},
+		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_5',right:'',up:'section_3',down:''},
 	];
 
-var chlist = {$json_ch};
+//知识点
+var topics = {$json_topic};
 /* 初始化按钮 属性   */
 var initButtons = function(){
-	//栏目
-	for(var i=0; i<chlist.length; i++)
+	//知识点
+	for(var i=0; i<topics.length; i++)
 	{
-		buttons[i+1].name = chlist[i].name;
-		buttons[i+1].linkImage = chlist[i].linkImage;
-		buttons[i+1].focusImage = chlist[i].focusImage;
+		buttons[i+2].name = topics[i].name;
+		buttons[i+2].linkImage = topics[i].linkImage;
+		buttons[i+2].focusImage = topics[i].focusImage;
 	}
 	
 }
@@ -126,28 +99,32 @@ window.onload=function()
 
 <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
 
-<!-- 左上角的栏目LOGO -->
-<div class="ch_logo"></div>
+<!-- 栏目LOGO -->
+<div id="div_btn_logo" style="position:absolute;width:225px;height:91px;top:45px;left:85px;">
+	<img id="btn_logo" src="__HD__/images/sectionList/title_early.png">
+</div>
 
-<!-- 课程目标 -->
-<div class="aim"></div>
+<!-- 课程横幅图 -->
+<div style="position: absolute;top:180px;left:60px;width: 286px;height:382px;
+        background-image: url(__HD__/images/sectionList/early/month_aim/{$month}.png);">
+</div>
 
 <!-- 订购 -->
-<div id="div_btn_order" style="position:absolute;width:100px;height:40px;top:65px;left:345px;">
+<div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:85px;left:1100px;">
 	<img id="btn_order" src="__HD__/images/common/order/btn_order.png">
 </div>
 
-<!-- 课程目标栏目 -->
-<volist name="chList" id="ch" key="i">
+<!-- 知识点列表 -->
+<volist name="topics" id="t" key="i">
     <php>$top = 180+($i-1)*65;</php>
     <div id="div_topic_{$i}" style="position: absolute;height:54px;left:345px;top:{$top}px;">
-        <img id="topic_{$i}" src="{$ch['linkImage']}" height="54" />
+        <img id="topic_{$i}" src="{$t['linkImage']}" height="54" />
     </div>
 </volist>
 
 
-<!-- 右边视频列表 -->
-<volist name="videoList" id="video" key="i">
+<!-- 课时列表 -->
+<volist name="sections" id="section" key="i">
     <php>
         if($i > 3){
             $top = 375; $left = 530 + ($i-4)*225;
@@ -155,11 +132,11 @@ window.onload=function()
             $top = 180; $left = 530 + ($i-1)*225;
         }
     </php>
-    <div id="div_video_{$i}" style="position:absolute;width:220px;height:190px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="video_{$i}" title="{:U('Resource/play?id='.$video['id'])}" src="{$video['imgUrl']}" width="210" height="180">
+    <div id="div_section_{$i}" style="position:absolute;width:220px;height:190px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="section_{$i}" title="{:U('Resource/play?id='.$section['id'])}" src="{:get_upfile_url($section['imgUrl'])}" width="210" height="180">
     </div>
-    <div id="div_video_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:200px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
-        <img id="video_{$i}_focus" src="" width="220" height="190">
+    <div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:200px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="section_{$i}_focus" src="" width="220" height="190">
     </div>
 </volist>
 
@@ -170,5 +147,8 @@ window.onload=function()
 <div class="progress"></div>
 <!-- 进度条背景 -->
 <div class="probg"></div>
-<!-- 月份条投影 -->
-<div class="shadow"></div>
+
+<!-- 底部投影 -->
+<div style="position: absolute;width:1110px;height:45px;top:630px;left:85px;
+        background-image: url(__HD__/images/common/shadow/shadow_1110x45.png);">
+</div>

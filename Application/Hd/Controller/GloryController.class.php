@@ -49,7 +49,7 @@ class GloryController extends CommonController {
 		$imgPath = '/static/v1/hd/images/common/page';
 		$data = array('1','1','1','1','1','1','1','1','1','1','1','1','1','1','1');
 		$this->assign(array(
-					'page' => get_array_page($data, 10, $imgPath),
+					'page' => get_array_page(count($data), 10, $imgPath),
 				));
 		$this->display();
 	}

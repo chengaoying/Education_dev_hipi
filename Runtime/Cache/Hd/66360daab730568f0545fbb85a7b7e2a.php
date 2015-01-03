@@ -7,10 +7,10 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:50px;}
+.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
+.page .up	{ width:25px;}
+.page .down	{ width:25px;}
+.page .now	{ width:60px;}
 body {background-color: transparent;}
 
 #div_popup{
@@ -126,7 +126,7 @@ window.onload=function()
 
 
 <!-- 静态图片-底部投影效果 -->
-<?php $__FOR_START_32007__=1;$__FOR_END_32007__=6;for($i=$__FOR_START_32007__;$i < $__FOR_END_32007__;$i+=1){ $left = 85 + ($i-1)*225; ?>
+<?php $__FOR_START_31351__=1;$__FOR_END_31351__=6;for($i=$__FOR_START_31351__;$i < $__FOR_END_31351__;$i+=1){ $left = 85 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

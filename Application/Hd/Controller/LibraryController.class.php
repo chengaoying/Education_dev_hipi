@@ -35,7 +35,7 @@ class LibraryController extends CommonController {
      * 错选集
      */
     public function wrongAnthologyAct() {
-        $topId = I('topid',1);
+        $topicId = I('topicId',1);
         $page = I('page',1);
         $libList = array();
         $libList = array(
@@ -108,7 +108,7 @@ class LibraryController extends CommonController {
             ),
         );
         $this->assign(array(
-            'topId' => $topId,
+            'topicId' => $topicId,
             'libList' => $libList,
             'questionList' => $questionList
         ));

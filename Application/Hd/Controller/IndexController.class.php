@@ -44,19 +44,23 @@ class IndexController extends CommonController {
 		 
 		$proConfig = get_pro_config_content('proConfig');
 		//特别推荐（该课程需要有海报图片）
-		$i = array_search('特别推荐',$proConfig['keys']);
-		$courses1 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$i,1,2);
-		foreach ($courses1 as $k=>$v){
+		$k1 = array_search('特别推荐一',$proConfig['keys']);
+		$k2 = array_search('特别推荐二',$proConfig['keys']);
+		$c = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($k1,$k2),1,2);
+		$c = $c['rows'];
+		foreach ($c as $k=>$v){
 			if($v['imgUrl']){
 				$imgs = explode(PHP_EOL, $v['imgUrl']);
-				$courses1[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
-				$courses1[$k]['banner']  = get_upfile_url(trim($imgs[1]));
+				$c[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
+				$c[$k]['banner']  = get_upfile_url(trim($imgs[1]));
 			}
+			if(strpos($v['keys'], strval($k1))) $c1 = $c[$k];//特别推荐课程一
+			if(strpos($v['keys'], strval($k2))) $c2 = $c[$k];//特别推荐课程二
 		}
 		
 		//一般推荐课程
 		$roleStage = $this->getStage($role['stageId']); //该角色对应的龄段信息
-		$roleGrade = $this->getGrade($roleStage);		//该角色对应的年级信息
+		$roleGrade = $this->getGrade($roleStage['chId']);//该角色对应的年级信息
 		//判断该角色的年级是不是在早教或幼教阶段
 		//早、幼教首页是1个成长指标+3个一般推荐
 		//小学以上首页是4个一般推荐，
@@ -64,9 +68,9 @@ class IndexController extends CommonController {
 		if(in_array($roleGrade['chKey'], array('early','preschool'))){ 
 			$isEarly = true;
 			$target['stageKey'] = $roleStage['sKey'];
-			$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$key,1,3);
+			$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key),1,3);
 		}else{
-			$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],$key,1,4);
+			$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key),1,4);
 			$target = $courses2[0];
 			$courses2 = array_slice($courses2, 1, count($courses2)-1);
 		}
@@ -75,8 +79,9 @@ class IndexController extends CommonController {
 			'json_channel'	=> $json_channel,
 			'topChannel' 	=> $this->topChannel,
 			'role'			=> $role,	
-			'courses1'		=> $courses1,
-			'courses2'		=> $courses2,
+			'c1'			=> $c1,
+			'c2'			=> $c2,
+			'courses2'		=> $courses2['rows'],
 			'isEarly'		=> $isEarly,
 			'target'		=> $target,
 		));

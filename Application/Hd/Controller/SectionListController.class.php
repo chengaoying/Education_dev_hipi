@@ -50,16 +50,32 @@ class SectionListController extends CommonController {
 			$year = 2;
 		}else if($month>24 and $month<=36){
 			$year = 3;
-		}else{
-			$this->showMessage('参数错误');
 		}
-
+		
+		$topicId = I('topic','');
+		
+		//该课程知识点列表
+		$topics = D('Topic','Logic')->queryTopicList($courseId,1,10);
+		foreach ($topics['rows'] as $k=>$v){
+			if($v['imgUrl']){
+				$imgs = explode(PHP_EOL, $v['imgUrl']);
+				$topics['rows'][$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
+				$topics['rows'][$k]['focusImage']  = get_upfile_url(trim($imgs[1]));
+			}
+		}
+		
+		//某个知识点下的课时列表
+		if(empty($topicId)) $topicId = $topics['rows'][0]['id'];
+		$sections = D('Section','Logic')->querySectionList($topicId,1,6);
+		
+		$json_topic = get_array_fieldkey($topics['rows'],array('id','name','linkImage','focusImage'));
+		$json_topic = json_encode($json_topic);
 		$this->assign(array(
-			'month'  => $month,
-			'chId' 	 => $chId,  
-			'chList' => $this->getTopicList(),
-			'json_ch' => json_encode($this->getTopicList()),
-			'videoList' => $this->getVideoList(),
+			'month'  	 => $month,
+			'chId' 	 	 => $chId,  
+			'topics' 	 => $topics['rows'],
+			'json_topic' => $json_topic,
+			'sections'   => $sections['rows'],
 		));
 		$this->display('detail_early');
 	}
@@ -74,15 +90,38 @@ class SectionListController extends CommonController {
 		$stage = S('Stage');
 		$stage = $stage[$stageId];
 		
-		$dayList = $this->getDayList();
-		$json_day = json_encode($dayList);
+		$topicId = I('topic','');
+		$week = I('week',date("w"));
+		
+		//该课程知识点列表
+		$topics = D('Topic','Logic')->queryTopicList($courseId,1,10);
+		foreach ($topics['rows'] as $k=>$v){
+			if($v['imgUrl']){
+				$imgs = explode(PHP_EOL, $v['imgUrl']);
+				$topics['rows'][$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
+				$topics['rows'][$k]['focusImage']  = get_upfile_url(trim($imgs[1]));
+			}
+		}
+		
+		//某个知识点下的课时列表
+		if(empty($topicId)) $topicId = $topics['rows'][0]['id'];
+		$sections = D('Section','Logic')->querySectionList($topicId,1,5);
+		
+		$json_topic = get_array_fieldkey($topics['rows'],array('id','name','linkImage','focusImage'));
+		$json_topic = json_encode($json_topic);
+		
+		//专题列表
+		$proConfig = get_pro_config_content('proConfig');
+		$specialKey = array_search('专题', $proConfig['courseType']);
+		$specials = D('Course','Logic')->queryCourseListByType($stageId, $specialKey, 1, 3);
 		
 		$this->assign(array(
 			'sKey'	 		=> $stage['sKey'],
-			'videoList' 	=> $this->getVideoList(5),
-			'specialList'	=> $this->getSpecialList(3),
-			'json_day'		=> $json_day,
-			'dayList'		=> $dayList,
+			'sections' 		=> $sections['rows'],
+			'json_topic'	=> $json_topic,	
+			'specialList'	=> $specials['rows'],
+			'week'			=> $week,	
+			'courseId'		=> $courseId,	
 		));
 		$this->display('detail_preschool');
 	}
@@ -94,8 +133,21 @@ class SectionListController extends CommonController {
 	 * @param unknown_type $stageId
 	 */
 	private function common($chId,$chKey,$stageId,$courseId){
+		$page = I('page',1);
+		$pageSize = 10;
+		
+		$course = D('Course','Logic')->queryCourseById($courseId);
+		$topicIds = explode(',',$course['topicIds']);
+		$topicIds = array_filter($topicIds);
+		$sections = D('Section','Logic')->querySectionList($topicIds,$page,$pageSize);
+		
+		$pageHtml = get_array_page($sections['total'], $pageSize, '/static/v1/hd/images/common/page');
+		
 		$this->assign(array(
-			'videoList'=>$this->getVideoList(10),
+			'course'	=> $course,	
+			'sections'	=> $sections['rows'],
+			'total'		=> $sections['total'],	
+			'pageHtml' 	=> $pageHtml,
 		));
 		$this->display('detail_primaryschool');
 	}
@@ -104,131 +156,26 @@ class SectionListController extends CommonController {
 	 * 一周课程--课时列表
 	 */
 	public function weekAct(){
-		$class = 'big';
-		$weekList = $this->getWeekList();
-		$json_week = json_encode($weekList);
+		$courseId = I('courseId','');
+		//查找该课程的所有课时(本周课时)，不需要把所有知识点查出来，再查课时
+		//方式：把该课程的知识点列表作为一个数组传给接口，就能把该课程的所有课时查询出来
+		$course = D('Course','Logic')->queryCourseById($courseId);
+		$topicIds = explode(',',$course['topicIds']);
+		$topicIds = array_filter($topicIds);
+		$sections = D('Section','Logic')->querySectionList($topicIds,1,31);
+		foreach ($topicIds as $kev=>$val){
+			foreach ($sections['rows'] as $k => $v){
+				if($val == $v['topicId']){
+					$data[$val][] = $v;
+					unset($sections['rows'][$k]);
+				}
+			}
+		}
+		
 		$this->assign(array(
-			'class'		=> $class,
-			'videoList' => $this->getVideoList2(),
-			'json_week' => $json_week,
-			'weekList'	=> $weekList,
+			'sections' => $data,
 		));
 		$this->display();
 	}
 	
-	
-	
-	
-	
-	/* 测试使用 */
-	private function getTopicList($count=6){
-		$topics = array();
-		for($i=0; $i<$count; $i++){
-			$topics[$i]['id'] = $i;
-			$topics[$i]['name'] = 'test';
-			$topics[$i]['linkImage'] = get_upfile_url('__HD__/images/test/1month/chanfuhuli.png');
-			$topics[$i]['focusImage'] = get_upfile_url('__HD__/images/test/1month/chanfuhuli_over.png');
-		}
-		return $topics;
-	}
-	
-	/* 测试使用 */
-	private function getVideoList($count=6){
-		$videos = array();
-		for($i=0; $i<$count; $i++){
-			$videos[$i]['id'] = $i;
-			$videos[$i]['name'] = 'test_'.$i;
-			$videos[$i]['imgUrl'] = get_upfile_url('__HD__/images/test/video/a.jpg');
-		}
-		return $videos;
-	}
-	
-	/* 测试使用 */
-	private function getSpecialList($count=6){
-		$specials = array();
-		for($i=0; $i<$count; $i++){
-			$specials[$i]['id'] = $i;
-			$specials[$i]['name'] = 'test';
-			$specials[$i]['imgUrl'] = get_upfile_url('__HD__/images/test/special/special_1.jpg');
-		}
-		return $specials;
-	}
-	
-	/* 测试使用 */
-	private function getDayList(){
-		//显示哪三天
-		$today = date("w",NOW_TIME);//周几
-		$yesterday = date("w",  strtotime("-1 days", NOW_TIME));
-		$dayBefore = date("w",  strtotime("-2 days", NOW_TIME));
-		$dayList = array();
-		$dayList = array(
-			array(
-				'id' => $dayBefore,
-				'name' => $dayBefore,
-				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$dayBefore.'.png'),
-				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$dayBefore.'_over.png'),
-			),
-			array(
-				'id' => $yesterday,
-				'name' => $yesterday,
-				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$yesterday.'.png'),
-				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$yesterday.'_over.png'),
-			),
-			array(
-				'id' => $today,
-				'name' => $today,
-				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/day_'.$today.'.png'),
-				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/day_'.$today.'_over.png'),
-			),
-		);
-		return $dayList;
-	}
-	
-	/* 测试使用 */
-	private function getWeekList(){
-		//显示哪三周
-		$thisWeek = date("W",NOW_TIME);//第几周
-		$lastWeek = date("W",  strtotime("-7 days", NOW_TIME));
-		$beforeWeek = date("W",  strtotime("-14 days", NOW_TIME));
-		$weekList = array();
-		$weekList = array(
-			array(
-				'id' => $beforeWeek,
-				'name' => $beforeWeek,
-				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$beforeWeek.'.png'),
-				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$beforeWeek.'_over.png'),
-			),
-			array(
-				'id' => $lastWeek,
-				'name' => $lastWeek,
-				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$lastWeek.'.png'),
-				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$lastWeek.'_over.png'),
-			),
-			array(
-				'id' => $thisWeek,
-				'name' => $thisWeek,
-				'linkImage' => get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$thisWeek.'.png'),
-				'focusImage'=> get_upfile_url('__HD__/images/sectionList/preschool/week/day_'.$thisWeek.'_over.png'),
-			),
-		);
-		return $weekList;
-	}
-	
-	/* 测试使用 */
-	private function getVideoList2(){
-		for($i=0;$i<5;$i++){
-			for($j=0;$j<5;$j++){
-				$videoList[$i][$j]['id'] = $i+$j;
-				$videoList[$i][$j]['name'] = 'test'.$j;
-			}
-		}
-		for($m=5;$m<7;$m++){
-			for($n=0;$n<4;$n++){
-				$videoList[$m][$n]['id'] = $m+$n;
-				$videoList[$m][$n]['name'] = 'test'.$n;
-				$videoList[$m][$n]['imgUrl'] = get_upfile_url('__HD__/images/test/xingquban.png');
-			}
-		}
-		return $videoList;	
-	}
 }

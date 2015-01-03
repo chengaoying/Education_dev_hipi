@@ -7318,3 +7318,496 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001217s ]
 INFO: [ app_end ] --END-- [ RunTime:0.001320s ]
 
+[ 2014-12-31T21:37:48+08:00 ] 127.0.0.1 /Test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000098s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002113s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002063s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003270s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005898s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000229s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022817s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023062s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000482s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000739s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000932s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001057s ]
+
+[ 2014-12-31T21:37:53+08:00 ] 127.0.0.1 /?params=%7B%22username%22%3A%20%2200000000%22%2C%20%22epg_full_url%22%3A%20%22/epg_redirect/education/%3FINFO%3D%253CuserId%253E123456789036%253C/userId%253E%253CuserToken%253E03111508256980016640821125101009%253C/userToken%253E%253CTokenExpiretime%253E20140402023516%253C/TokenExpiretime%253E%253CGroupId%253E26%253C/GroupId%253E%253CuserIP%253E10.132.100.143%253C/userIP%253E%253CpetName%253E%253C/petName%253E%253CareaCode%253E00%253C/areaCode%253E%253CTradeId%253Enull%253C/TradeId%253E%253CstbId%253E411001990070119000014C09B4E84B2D%253C/stbId%253E%253Cback_hall_url%253Ehttp%3A//61.160.131.12%3A8296/SPToAms%253C/back_hall_url%253E%253Cfrom%253E000%253C/from%253E%22%2C%20%22c_zsj_userid%22%3A%20%22900176%22%2C%20%22areacode%22%3A%2090017%2C%20%22usertoken%22%3A%20%2203111508256980016640821125101009%22%2C%20%22stbtype%22%3A%20%22ztebw%22%2C%20%22userid%22%3A%20%22123456789036%22%2C%20%22return_url%22%3A%20%22http%3A//61.160.131.12%3A8296/SPToAms%3FINFO%3D%3CuserId%3E02586588234%3C/userId%3E%3CuserToken%3E03111508256980016640821125101009%3C/userToken%3E%3CTokenExpiretime%3E20140402023516%3C/TokenExpiretime%3E%3CGroupId%3E26%3C/GroupId%3E%3CuserIP%3E10.132.100.143%3C/userIP%3E%3CareaCode%3E00%3C/areaCode%3E%3CTradeId%3E%3C/TradeId%3E%3CstbId%3E411001990070119000014C09B4E84B2D%3C/stbId%3E%3CoptFlag%3EGAME%3C/optFlag%3E%3CSPID%3Espa00022%3C/SPID%3E%3Cback_epg_url%3Ehttp%3A//61.160.131.12%3A8296/SPToAms%3C/back_epg_url%3E%22%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000548s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000720s ]
+NOTIC: [8] Undefined index: REDIRECT_URL E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 15 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000983s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001932s ]
+
+[ 2014-12-31T21:37:56+08:00 ] 127.0.0.1 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000839s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000713s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000774s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001692s ]
+NOTIC: [8] Undefined index:  E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Controller\CommonController.class.php 第 134 行.
+NOTIC: [8] Undefined variable: isEarly E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 80 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000279s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000413s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+NOTIC: [8] Undefined variable: 19 E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 156 行.
+NOTIC: [8] Undefined variable: 3 E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 156 行.
+NOTIC: [8] Undefined variable: 3 E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020103s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020229s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000363s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000483s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000850s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000983s ]
+
+[ 2014-12-31T21:38:11+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001079s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001314s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002129s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003759s ]
+
+[ 2014-12-31T21:38:12+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000811s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000946s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001280s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002551s ]
+
+[ 2014-12-31T21:38:13+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000987s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001152s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001705s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003229s ]
+
+[ 2014-12-31T21:38:14+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000851s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000903s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001218s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002422s ]
+
+[ 2014-12-31T21:38:16+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000649s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000713s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001031s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001954s ]
+
+[ 2014-12-31T21:38:26+08:00 ] 127.0.0.1 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001139s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001176s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001677s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003052s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000252s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000380s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021323s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021524s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000862s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000981s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001170s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001290s ]
+
+[ 2014-12-31T21:41:28+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/3/courseId/2.html?preId=special_1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000897s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001085s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001160s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002543s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000255s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000392s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026080s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026225s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000567s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000705s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000879s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000992s ]
+
+[ 2014-12-31T21:42:03+08:00 ] 127.0.0.1 /Hd/SectionList/week.html?preId=btn_week
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000534s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000849s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001335s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002383s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000316s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000454s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\30164c19dc6ef4c2ed3cbd7376f023b7.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024794s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024941s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000605s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000713s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000910s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001080s ]
+
+[ 2014-12-31T21:42:15+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/3/courseId/2.html?preId=special_1&preId=video_3_3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000862s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001132s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002205s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000227s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000350s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019378s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019522s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000676s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000813s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000859s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000968s ]
+
+[ 2014-12-31T21:42:22+08:00 ] 127.0.0.1 /Hd/SectionList/week.html?preId=btn_week&preId=special_1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000584s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000914s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002330s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000337s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000479s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\30164c19dc6ef4c2ed3cbd7376f023b7.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025183s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025328s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000741s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000861s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000984s ]
+
+[ 2014-12-31T21:42:27+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/3/courseId/2.html?preId=special_1&preId=video_3_3&preId=video_3_4
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000587s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000991s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001247s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002459s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000231s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000357s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019889s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020022s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000642s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000761s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000970s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001085s ]
+
+[ 2014-12-31T21:42:27+08:00 ] 127.0.0.1 /Hd/SectionList/week.html?preId=btn_week&preId=special_1&preId=day_3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000697s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000916s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001176s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002310s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000321s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000447s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\30164c19dc6ef4c2ed3cbd7376f023b7.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024652s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024785s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000593s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000722s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000868s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000978s ]
+
+[ 2014-12-31T21:42:28+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/3/courseId/2.html?preId=special_1&preId=video_3_3&preId=video_3_4&preId=btn_order
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001035s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000821s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001093s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002101s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000248s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000389s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019460s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019591s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000586s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000699s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000878s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000989s ]
+
+[ 2014-12-31T21:42:28+08:00 ] 127.0.0.1 /Hd/SectionList/week.html?preId=btn_week&preId=special_1&preId=day_3&preId=day_3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000627s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000912s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001363s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002475s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000290s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000415s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\30164c19dc6ef4c2ed3cbd7376f023b7.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024795s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024928s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000564s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000682s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000846s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000955s ]
+
+[ 2014-12-31T21:42:29+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/3/courseId/2.html?preId=special_1&preId=video_3_3&preId=video_3_4&preId=btn_order&preId=btn_order
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000605s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000872s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001234s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002314s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000248s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000393s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019407s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019541s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000621s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000735s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000942s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001058s ]
+
+[ 2014-12-31T21:42:29+08:00 ] 127.0.0.1 /Hd/SectionList/week.html?preId=btn_week&preId=special_1&preId=day_3&preId=day_3&preId=day_3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000536s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000883s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001114s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002190s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000319s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000448s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\30164c19dc6ef4c2ed3cbd7376f023b7.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025132s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025267s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000562s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000669s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000821s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000958s ]
+
+[ 2014-12-31T21:42:29+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/3/courseId/2.html?preId=special_1&preId=video_3_3&preId=video_3_4&preId=btn_order&preId=btn_order&preId=btn_order
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000816s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001260s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002493s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004190s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000247s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000378s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019233s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019380s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000649s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000765s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000852s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000971s ]
+
+[ 2014-12-31T21:42:30+08:00 ] 127.0.0.1 /Hd/SectionList/week.html?preId=btn_week&preId=special_1&preId=day_3&preId=day_3&preId=day_3&preId=day_3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000661s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000962s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002360s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000291s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000451s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\30164c19dc6ef4c2ed3cbd7376f023b7.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024633s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024764s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000638s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000746s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000851s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000963s ]
+
+[ 2014-12-31T21:42:30+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/3/courseId/2.html?preId=special_1&preId=video_3_3&preId=video_3_4&preId=btn_order&preId=btn_order&preId=btn_order&preId=btn_order
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000555s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000918s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001330s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002466s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000248s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000384s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019411s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019547s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000572s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000686s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000863s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000982s ]
+
+[ 2014-12-31T21:42:31+08:00 ] 127.0.0.1 /Hd/SectionList/week.html?preId=btn_week&preId=special_1&preId=day_3&preId=day_3&preId=day_3&preId=day_3&preId=day_3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000602s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001088s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001244s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002577s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000305s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000437s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\30164c19dc6ef4c2ed3cbd7376f023b7.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025026s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025170s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000655s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000774s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001030s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001154s ]
+
+[ 2014-12-31T21:42:32+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/19/stageId/3/courseId/2.html?preId=special_1&preId=video_3_3&preId=video_3_4&preId=btn_order&preId=btn_order&preId=btn_order&preId=btn_order&preId=btn_order
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000587s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000867s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001202s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002265s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000249s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000386s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b418cfd6021223047301bd01e4f5135c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019675s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019809s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000623s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000737s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000876s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000991s ]
+
+[ 2014-12-31T21:42:50+08:00 ] 127.0.0.1 /Test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000572s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000906s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001341s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002439s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000106s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000250s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014737s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014878s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000576s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000711s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000943s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001072s ]
+
+[ 2014-12-31T22:43:15+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000709s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000854s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001369s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002484s ]
+
