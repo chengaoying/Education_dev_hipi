@@ -126,7 +126,7 @@ window.onload=function()
 
 
 <!-- 静态图片-底部投影效果 -->
-<?php $__FOR_START_3538__=1;$__FOR_END_3538__=6;for($i=$__FOR_START_3538__;$i < $__FOR_END_3538__;$i+=1){ $left = 85 + ($i-1)*225; ?>
+<?php $__FOR_START_28713__=1;$__FOR_END_28713__=6;for($i=$__FOR_START_28713__;$i < $__FOR_END_28713__;$i+=1){ $left = 85 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

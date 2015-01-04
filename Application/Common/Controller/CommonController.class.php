@@ -16,6 +16,8 @@ class CommonController extends \Think\Controller{
 	const ICON_QUESTION = 4; //询问消息
 	const ICON_WARNING	= 5; //警告消息
 	
+	public $user = '';	//当前用户
+	public $role = '';	//当前角色
 	
 	protected $name 	= '';	//控制器名
 	public $topChannel 	= '';	//一级栏目
@@ -67,7 +69,8 @@ class CommonController extends \Think\Controller{
 	private function _initUser(){
 		$r = D('User','Logic')->LoginChecking();
 		if($r['status']){
-			
+			$this->user = unserialize(Session('user'));
+			$this->role = unserialize(Session('role'));
 		}else{
 			//初始化用户信息异常
 			$this->showMessage($r['info'],self::ICON_ERROR);
