@@ -131,6 +131,8 @@ class SectionListController extends CommonController {
 		$pageSize = 10;
 		
 		$course = D('Course','Logic')->queryCourseById($courseId);
+		$imgs = explode(getDelimiterInStr($course['imgUrl']), $course['imgUrl']);
+		$course['imgUrl'] = $imgs[0];
 		$char = getDelimiterInStr($course['topicIds']);
 		$topicIds = explode($char,$course['topicIds']);
 		$topicIds = array_filter($topicIds);
