@@ -119,7 +119,7 @@ body {background-color: transparent;}
 
 
 <!-- progress -->
-<?php $__FOR_START_12921__=1;$__FOR_END_12921__=10;for($i=$__FOR_START_12921__;$i < $__FOR_END_12921__;$i+=1){ $left = 520 + ($i-1)*70; $top = 270; ?>
+<?php $__FOR_START_5860__=1;$__FOR_END_5860__=10;for($i=$__FOR_START_5860__;$i < $__FOR_END_5860__;$i+=1){ $left = 520 + ($i-1)*70; $top = 270; ?>
 	
 	<div  style="position:absolute; left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
 		<img  src="/static/v1/hd/images/usercenter/learnEvaluation1/color_<?php echo ($i); ?>.png" width="45" height="300">

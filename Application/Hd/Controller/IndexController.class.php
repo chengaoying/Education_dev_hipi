@@ -128,12 +128,20 @@ class IndexController extends CommonController {
 		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage'));
 		$json_channel = json_encode($json_channel);
 		
-		$myCourse = array();
+		$myCourse = D('Course','Logic')->queryUserCourseList($this->user['id'], 1, 10);
+		foreach ($myCourse['rows'] as $k=>$v){
+			if($v['courseImg']){
+				$char = getDelimiterInStr($v['courseImg']);
+				$imgs = explode($char, $v['courseImg']);
+				$myCourse['rows'][$k]['courseImg']  = get_upfile_url(trim($imgs[0]));
+				$myCourse['rows'][$k]['banner']  = get_upfile_url(trim($imgs[1]));
+			}
+		}
 		
 		$this->assign(array(
 			'json_channel'	=> $json_channel,
 			'topChannel' 	=> $this->topChannel,
-			'myCourse'      => $myCourse,
+			'myCourse'      => $myCourse['rows'],
 		));
 		$this->display();
 	}

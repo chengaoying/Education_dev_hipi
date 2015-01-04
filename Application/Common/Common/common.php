@@ -151,7 +151,7 @@ function save_log($type, $data = array(), $debugLog=0,$isTime=1) {
  * @return multitype:multitype: Ambigous <NULL, number>
  */
 function get_array_page($count, $pageSize, $imgPath = '', $config = array(), $parameter = '') {
-    $page = get_pageHtml($count, $pageSize,$config, $imgPath);
+    $page = get_pageHtml2($count, $pageSize,$config, $imgPath);
     $data = array_slice($data, $page['firstRow'], $pageSize, true);
     return array('data' => $data, 'totalPages' => $page['totalPages'],'nowPage' => $page['nowPage'],'pageHtml' => $page['html']);
 }
@@ -230,7 +230,7 @@ function get_pageHtml2($count, $pageSize, $config = array(), $imgPath = '', $par
     );
 
     $config = array_merge($dfConfig, $config);
-    $Page = new \Think\Page($count, $pageSize);
+    $Page = new \Think\Page2($count, $pageSize);
     foreach ($config as $key => $cnf) {
         $Page->setConfig($key, $cnf);
     };

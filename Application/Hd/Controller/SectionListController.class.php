@@ -15,37 +15,34 @@ class SectionListController extends CommonController {
 	 * 课时列表统一入口
 	 */
 	public function indexAct(){
-		$chId 	    = I('chId','');
-		$stageId    = I('stageId','');
 		$courseId   = I('courseId','');
-		$courseType = I('courseType','');
-
-		$chKey = get_array_keyval(S('Channel'),$chId,'id','chKey');
+		$course = D('Course','Logic')->queryCourseById($courseId);
+		$chKey = get_array_keyval(S('Channel'),$course['chId'],'id','chKey');
 		
-		if($chKey == 'early' && $courseType != 2) //早教课时列表(非专题)
+		if($chKey == 'early' && $course['typeId'] != 2) //早教课时列表(非专题)
 		{
-			$this->early($chId,$chKey,$stageId,$courseId,$courseType);
+			$this->early($chKey,$course);
 		}
-		elseif($chKey == 'preschool' && $courseType != 2) //幼教课时列表(非专题)
+		elseif($chKey == 'preschool' && $course['typeId'] != 2) //幼教课时列表(非专题)
 		{
-			$this->preschool($chId,$chKey,$stageId,$courseId,$courseType);
+			$this->preschool($chKey,$course);
 		}
 		else  //其他通用课时列表
 		{
-			$this->common($chId,$chKey,$stageId,$courseId,$courseType);
+			$this->common($chKey,$course);
 		}
 	}
 	
 	/**
 	 * 早教--课时列表 
-	 * @param unknown_type $chId  栏目id
-	 * @param unknown_type $chKey 栏目key
-	 * @param unknown_type $stageId 龄段id
+	 * @param int $chId  栏目id
+	 * @param int $chKey 栏目key
+	 * @param int $stageId 龄段id
 	 */
-	private function early($chId,$chKey,$stageId,$courseId,$courseType){
+	private function early($chKey,$course){
 		$topicId = I('topic','');
 		//该课程知识点列表
-		$topics = D('Topic','Logic')->queryTopicList($courseId,1,10);
+		$topics = D('Topic','Logic')->queryTopicList($course['id'],1,10);
 		foreach ($topics['rows'] as $k=>$v){
 			if($v['imgUrl']){
 				$char = getDelimiterInStr($v['imgUrl']);
@@ -62,32 +59,29 @@ class SectionListController extends CommonController {
 		$json_topic = get_array_fieldkey($topics['rows'],array('id','name','linkImage','focusImage'));
 		$json_topic = json_encode($json_topic);
 		$this->assign(array(
-			'chId' 	 	 => $chId,  
 			'topics' 	 => $topics['rows'],
 			'json_topic' => $json_topic,
 			'sections'   => $sections['rows'],
-			'courseId'	 =>	$courseId,	
-			'stageId'	 => $stageId,
-			'courseType' => $courseType,		
+			'courseId'	 =>	$course['id'],	
 		));
 		$this->display('detail_early');
 	}
 	
 	/**
 	 * 幼教--课时列表
-	 * @param unknown_type $chId
-	 * @param unknown_type $chKey
-	 * @param unknown_type $stageId
+	 * @param int $chId
+	 * @param int $chKey
+	 * @param int $stageId
 	 */
-	private function preschool($chId,$chKey,$stageId,$courseId){
+	private function preschool($chKey,$course){
 		$stage = S('Stage');
-		$stage = $stage[$stageId];
+		$stage = $stage[$course['stageIds']];
 		
 		$topicId = I('topic','');
 		$week = I('week',date("w"));
 		
 		//该课程知识点列表
-		$topics = D('Topic','Logic')->queryTopicList($courseId,1,10);
+		$topics = D('Topic','Logic')->queryTopicList($course['id'],1,10);
 		foreach ($topics['rows'] as $k=>$v){
 			if($v['imgUrl']){
 				$char = getDelimiterInStr($v['imgUrl']);
@@ -107,7 +101,7 @@ class SectionListController extends CommonController {
 		//专题列表
 		$proConfig = get_pro_config_content('proConfig');
 		$specialKey = array_search('专题', $proConfig['courseType']);
-		$specials = D('Course','Logic')->queryCourseListByType($stageId, $specialKey, 1, 3);
+		$specials = D('Course','Logic')->queryCourseListByType($course['stageIds'], $specialKey, 1, 3);
 		
 		$this->assign(array(
 			'sKey'	 		=> $stage['sKey'],
@@ -115,22 +109,21 @@ class SectionListController extends CommonController {
 			'json_topic'	=> $json_topic,	
 			'specialList'	=> $specials['rows'],
 			'week'			=> $week,	
-			'courseId'		=> $courseId,	
+			'courseId'		=> $course['id'],	
 		));
 		$this->display('detail_preschool');
 	}
 	
 	/**
 	 * 通用--课时列表
-	 * @param unknown_type $chId
-	 * @param unknown_type $chKey
-	 * @param unknown_type $stageId
+	 * @param int $chId
+	 * @param int $chKey
+	 * @param int $stageId
 	 */
-	private function common($chId,$chKey,$stageId,$courseId){
+	private function common($chKey,$course){
 		$page = I('page',1);
 		$pageSize = 10;
 		
-		$course = D('Course','Logic')->queryCourseById($courseId);
 		$imgs = explode(getDelimiterInStr($course['imgUrl']), $course['imgUrl']);
 		$course['imgUrl'] = $imgs[0];
 		$char = getDelimiterInStr($course['topicIds']);
@@ -172,6 +165,7 @@ class SectionListController extends CommonController {
 		
 		$this->assign(array(
 			'sections' => $data,
+			'courseId' => $courseId,	
 		));
 		$this->display();
 	}

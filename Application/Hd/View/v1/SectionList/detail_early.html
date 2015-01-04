@@ -119,8 +119,9 @@ window.onload=function()
 <volist name="topics" id="t" key="i">
     <php>$top = 180+($i-1)*65;</php>
     <div id="div_topic_{$i}" style="position: absolute;height:54px;left:345px;top:{$top}px;">
-        <img id="topic_{$i}" title="{:U('SectionList/index?chId='.$chId.'&stageId='.$stageId.'&courseId='.$courseId.'&courseType='.$courseType.'&topicId='.$t['id'])}" src="{$t['linkImage']}" height="54" />
-    </div>
+        <!-- <img id="topic_{$i}" title="{:U('SectionList/index?chId='.$chId.'&stageId='.$stageId.'&courseId='.$courseId.'&courseType='.$courseType.'&topicId='.$t['id'])}" src="{$t['linkImage']}" height="54" /> --> 
+        <img id="topic_{$i}" title="{:U('SectionList/index?courseId='.$courseId.'&topicId='.$t['id'])}" src="{$t['linkImage']}" height="54" /> --> 
+   </div>
 </volist>
 
 

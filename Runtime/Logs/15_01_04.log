@@ -20149,3 +20149,1379 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000429s ]
 INFO: [ app_end ] --END-- [ RunTime:0.000522s ]
 
+[ 2015-01-04T23:01:21+08:00 ] 127.0.0.1 /Hd/SectionList/index.html?chId=20&stageId=2&courseId=3001&page=4
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000082s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002629s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001814s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002381s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004642s ]
+NOTIC: [8] unserialize() [<a href='function.unserialize'>function.unserialize</a>]: Error at offset 0 of 5767 bytes E:\home\code\zendstudio\Education_dev_hipi\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 113 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 113 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Controller\CommonController.class.php 第 89 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, boolean given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Controller\CommonController.class.php 第 100 行.
+NOTIC: [8] unserialize() [<a href='function.unserialize'>function.unserialize</a>]: Error at offset 0 of 5767 bytes E:\home\code\zendstudio\Education_dev_hipi\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 53 行.
+NOTIC: [8] Undefined index: preId E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 176 行.
+NOTIC: [8] Undefined index: nextId E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 177 行.
+NOTIC: [8] Undefined index: nowLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 181 行.
+NOTIC: [8] Undefined index: nowTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 181 行.
+NOTIC: [8] Undefined index: preImg E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 183 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 183 行.
+NOTIC: [8] Undefined index: nextImg E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 184 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 184 行.
+NOTIC: [8] Undefined index: preTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 186 行.
+NOTIC: [8] Undefined index: preLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 186 行.
+NOTIC: [8] Undefined index: nextTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 187 行.
+NOTIC: [8] Undefined index: nextLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 187 行.
+NOTIC: [8] Undefined index: p E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 189 行.
+NOTIC: [8] Undefined index: p E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 192 行.
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000662s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001148s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036967s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037253s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001391s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001786s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002053s ]
+
+[ 2015-01-04T23:02:17+08:00 ] 127.0.0.1 /Test
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001144s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001632s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002433s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004468s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000200s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000486s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017139s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017417s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000828s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001081s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001632s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001859s ]
+
+[ 2015-01-04T23:02:22+08:00 ] 127.0.0.1 /?params=%7B%22username%22%3A%20%2200000000%22%2C%20%22epg_full_url%22%3A%20%22/epg_redirect/education/%3FINFO%3D%253CuserId%253E123456789036%253C/userId%253E%253CuserToken%253E03111508256980016640821125101009%253C/userToken%253E%253CTokenExpiretime%253E20140402023516%253C/TokenExpiretime%253E%253CGroupId%253E26%253C/GroupId%253E%253CuserIP%253E10.132.100.143%253C/userIP%253E%253CpetName%253E%253C/petName%253E%253CareaCode%253E00%253C/areaCode%253E%253CTradeId%253Enull%253C/TradeId%253E%253CstbId%253E411001990070119000014C09B4E84B2D%253C/stbId%253E%253Cback_hall_url%253Ehttp%3A//61.160.131.12%3A8296/SPToAms%253C/back_hall_url%253E%253Cfrom%253E000%253C/from%253E%22%2C%20%22c_zsj_userid%22%3A%20%22900176%22%2C%20%22areacode%22%3A%2090017%2C%20%22usertoken%22%3A%20%2203111508256980016640821125101009%22%2C%20%22stbtype%22%3A%20%22ztebw%22%2C%20%22userid%22%3A%20%22123456789036%22%2C%20%22return_url%22%3A%20%22http%3A//61.160.131.12%3A8296/SPToAms%3FINFO%3D%3CuserId%3E02586588234%3C/userId%3E%3CuserToken%3E03111508256980016640821125101009%3C/userToken%3E%3CTokenExpiretime%3E20140402023516%3C/TokenExpiretime%3E%3CGroupId%3E26%3C/GroupId%3E%3CuserIP%3E10.132.100.143%3C/userIP%3E%3CareaCode%3E00%3C/areaCode%3E%3CTradeId%3E%3C/TradeId%3E%3CstbId%3E411001990070119000014C09B4E84B2D%3C/stbId%3E%3CoptFlag%3EGAME%3C/optFlag%3E%3CSPID%3Espa00022%3C/SPID%3E%3Cback_epg_url%3Ehttp%3A//61.160.131.12%3A8296/SPToAms%3C/back_epg_url%3E%22%7D
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000101s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001847s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002348s ]
+NOTIC: [8] Undefined index: REDIRECT_URL E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 15 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003129s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006214s ]
+NOTIC: [8] unserialize() [<a href='function.unserialize'>function.unserialize</a>]: Error at offset 0 of 5767 bytes E:\home\code\zendstudio\Education_dev_hipi\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 113 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 113 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Controller\CommonController.class.php 第 89 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, boolean given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Controller\CommonController.class.php 第 100 行.
+
+[ 2015-01-04T23:02:25+08:00 ] 127.0.0.1 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001049s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001217s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001543s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003187s ]
+NOTIC: [8] unserialize() [<a href='function.unserialize'>function.unserialize</a>]: Error at offset 0 of 5767 bytes E:\home\code\zendstudio\Education_dev_hipi\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 113 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 113 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Controller\CommonController.class.php 第 89 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, boolean given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Controller\CommonController.class.php 第 100 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 127 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 56 行.
+NOTIC: [8] unserialize() [<a href='function.unserialize'>function.unserialize</a>]: Error at offset 0 of 5767 bytes E:\home\code\zendstudio\Education_dev_hipi\ThinkPHP\Library\Think\Cache\Driver\File.class.php 第 104 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 113 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, boolean given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Controller\CommonController.class.php 第 111 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\util.php 第 113 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Controller\CommonController.class.php 第 116 行.
+NOTIC: [8] Undefined offset: 0 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 76 行.
+NOTIC: [8] Undefined index: rows E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 79 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 79 行.
+NOTIC: [8] Undefined index: rows E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 94 行.
+NOTIC: [8] Undefined variable: isEarly E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 95 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000812s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001127s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038061s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038341s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000668s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000916s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001312s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001545s ]
+
+[ 2015-01-04T23:02:43+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001075s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001166s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001565s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003116s ]
+
+[ 2015-01-04T23:02:44+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000088s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001853s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001353s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001991s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003766s ]
+
+[ 2015-01-04T23:02:45+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000086s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001685s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002071s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001686s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004268s ]
+
+[ 2015-01-04T23:02:47+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000126s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001467s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001195s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001737s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003347s ]
+
+[ 2015-01-04T23:02:48+08:00 ] 127.0.0.1 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000091s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001836s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002030s ]
+NOTIC: [8] Undefined index: HTTP_REFERER E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002731s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005430s ]
+
+[ 2015-01-04T23:02:54+08:00 ] 127.0.0.1 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000089s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001945s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002452s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002983s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006221s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 56 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 84 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000289s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000447s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021258s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021424s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000434s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000584s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000746s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000881s ]
+
+[ 2015-01-04T23:03:09+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/9/courseId/1025/courseType/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000062s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001819s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001934s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002358s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004759s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000465s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000749s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 6 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.043865s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044154s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000996s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001252s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001602s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001850s ]
+
+[ 2015-01-04T23:03:32+08:00 ] 127.0.0.1 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001123s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001556s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002419s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004388s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 56 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 84 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000529s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000824s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.061062s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.061322s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001748s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001989s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001650s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001911s ]
+
+[ 2015-01-04T23:03:35+08:00 ] 127.0.0.1 /Hd/Index/allCourse
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000056s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001435s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002450s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004529s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000530s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000838s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\66360daab730568f0545fbb85a7b7e2a.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034902s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035195s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000663s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000890s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001320s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001546s ]
+
+[ 2015-01-04T23:03:39+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000094s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001903s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003198s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.004715s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008685s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined index: preId E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 176 行.
+NOTIC: [8] Undefined index: nextId E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 177 行.
+NOTIC: [8] Undefined index: nowLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 181 行.
+NOTIC: [8] Undefined index: nowTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 181 行.
+NOTIC: [8] Undefined index: preImg E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 183 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 183 行.
+NOTIC: [8] Undefined index: nextImg E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 184 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 184 行.
+NOTIC: [8] Undefined index: preTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 186 行.
+NOTIC: [8] Undefined index: preLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 186 行.
+NOTIC: [8] Undefined index: nextTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 187 行.
+NOTIC: [8] Undefined index: nextLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 187 行.
+NOTIC: [8] Undefined index: p E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 189 行.
+NOTIC: [8] Undefined index: p E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 192 行.
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000502s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000776s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.043377s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.043660s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001006s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001265s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001609s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001857s ]
+
+[ 2015-01-04T23:03:47+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/7/courseId/1001/courseType/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000072s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001418s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001598s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002225s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004367s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000624s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000898s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037881s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038160s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000712s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000945s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001371s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001617s ]
+
+[ 2015-01-04T23:04:00+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000088s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001897s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001686s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003184s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005286s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined index: preId E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 176 行.
+NOTIC: [8] Undefined index: nextId E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 177 行.
+NOTIC: [8] Undefined index: nowLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 181 行.
+NOTIC: [8] Undefined index: nowTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 181 行.
+NOTIC: [8] Undefined index: preImg E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 183 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 183 行.
+NOTIC: [8] Undefined index: nextImg E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 184 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 184 行.
+NOTIC: [8] Undefined index: preTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 186 行.
+NOTIC: [8] Undefined index: preLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 186 行.
+NOTIC: [8] Undefined index: nextTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 187 行.
+NOTIC: [8] Undefined index: nextLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 187 行.
+NOTIC: [8] Undefined index: p E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 189 行.
+NOTIC: [8] Undefined index: p E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 192 行.
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000283s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000447s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020367s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020504s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000450s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000568s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000779s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000897s ]
+
+[ 2015-01-04T23:04:08+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/9/courseId/1043/courseType/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001059s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001356s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001719s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003437s ]
+NOTIC: [8] Undefined index: preId E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 176 行.
+NOTIC: [8] Undefined index: nextId E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 177 行.
+NOTIC: [8] Undefined index: nowLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 181 行.
+NOTIC: [8] Undefined index: nowTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 181 行.
+NOTIC: [8] Undefined index: preImg E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 183 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 183 行.
+NOTIC: [8] Undefined index: nextImg E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 184 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 184 行.
+NOTIC: [8] Undefined index: preTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 186 行.
+NOTIC: [8] Undefined index: preLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 186 行.
+NOTIC: [8] Undefined index: nextTop E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 187 行.
+NOTIC: [8] Undefined index: nextLeft E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 187 行.
+NOTIC: [8] Undefined index: p E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 189 行.
+NOTIC: [8] Undefined index: p E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 192 行.
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000470s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000777s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030982s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031235s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000761s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000999s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001464s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001707s ]
+
+[ 2015-01-04T23:09:38+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/9/courseId/1043/courseType/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000094s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002027s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002108s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002954s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005883s ]
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 227 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 227 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 228 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 228 行.
+NOTIC: [2] array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 232 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 234 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000439s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000724s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033028s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033325s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000997s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001267s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001647s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001903s ]
+
+[ 2015-01-04T23:21:04+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/9/courseId/1043/courseType/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000098s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002370s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002871s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003951s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007601s ]
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000235s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000394s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021287s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021456s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000612s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000749s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000807s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000944s ]
+
+[ 2015-01-04T23:22:50+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/9/courseId/1043/courseType/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000101s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001916s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003078s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003745s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008161s ]
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000477s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000730s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029730s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029977s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000876s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001097s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001458s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001683s ]
+
+[ 2015-01-04T23:22:58+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000079s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000967s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001225s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001432s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003050s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 227 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 227 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 228 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 228 行.
+NOTIC: [2] array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 232 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 234 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000270s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000418s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+NOTIC: [8] Undefined index: pageHtml E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 133 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020701s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020850s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000411s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000550s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000737s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000876s ]
+
+[ 2015-01-04T23:23:00+08:00 ] 127.0.0.1 /Hd/Index/allCourse
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001036s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001240s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001626s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003268s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000405s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000669s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\66360daab730568f0545fbb85a7b7e2a.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030733s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030992s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000617s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000844s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001251s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001475s ]
+
+[ 2015-01-04T23:23:04+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=19
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001404s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001712s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002588s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004830s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 227 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 227 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 228 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 228 行.
+NOTIC: [2] array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 232 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 234 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000272s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000424s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+NOTIC: [8] Undefined index: pageHtml E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 133 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020442s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020595s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000544s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000686s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000792s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000923s ]
+
+[ 2015-01-04T23:23:10+08:00 ] 127.0.0.1 /Hd/Index/allCourse
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001148s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001400s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002177s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003996s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000640s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001111s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\66360daab730568f0545fbb85a7b7e2a.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.111662s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.111950s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001043s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001330s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002167s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002664s ]
+
+[ 2015-01-04T23:23:13+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000967s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001270s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001516s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003197s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 227 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 227 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 228 行.
+NOTIC: [8] Undefined variable: fix E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 228 行.
+NOTIC: [2] array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 232 行.
+NOTIC: [2] Invalid argument supplied for foreach() E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 234 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000693s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001048s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+NOTIC: [8] Undefined index: pageHtml E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 133 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.050934s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.051285s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000981s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001300s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001775s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002094s ]
+
+[ 2015-01-04T23:24:02+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000096s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002558s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002105s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002505s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005354s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000272s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000424s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019970s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020119s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000407s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000541s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000776s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000901s ]
+
+[ 2015-01-04T23:24:10+08:00 ] 127.0.0.1 /Hd/Index/allCourse
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001188s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001450s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003998s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000439s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000721s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\66360daab730568f0545fbb85a7b7e2a.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035628s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035901s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000705s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000937s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001400s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001631s ]
+
+[ 2015-01-04T23:24:15+08:00 ] 127.0.0.1 /Hd/Index/recommend
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001166s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001346s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001798s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003580s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 56 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 84 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000931s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001398s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.068067s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.068533s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001079s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001551s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003204s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004047s ]
+
+[ 2015-01-04T23:24:18+08:00 ] 127.0.0.1 /Hd/Role/userInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000970s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001385s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001594s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003421s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000495s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000757s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\abc29aad7c5f3489ef50820a563edae0.php 第 6 行.
+NOTIC: [8] Undefined index: linkUrl E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\abc29aad7c5f3489ef50820a563edae0.php 第 149 行.
+NOTIC: [8] Undefined index: linkUrl E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\abc29aad7c5f3489ef50820a563edae0.php 第 149 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035743s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036021s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000623s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000849s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001303s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001522s ]
+
+[ 2015-01-04T23:24:20+08:00 ] 127.0.0.1 /Hd/Learning/learningEvaluation1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001118s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001339s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001737s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003544s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000365s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000663s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\d1bba7a5e5b17d522cfa513dd39c922a.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022800s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023108s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000728s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000963s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001424s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001692s ]
+
+[ 2015-01-04T23:24:25+08:00 ] 127.0.0.1 /Hd/Glory/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000554s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000781s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001024s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002101s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000237s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000396s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\2cb9ca2d7a24858b9d2f07f888c7e873.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010849s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011008s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000362s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000479s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000852s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000977s ]
+
+[ 2015-01-04T23:24:27+08:00 ] 127.0.0.1 /Hd/Glory/view.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001266s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001471s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002730s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004636s ]
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000148s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000312s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\b658eb20ea8b1766fd2cdd98d85af8d0.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013561s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013733s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000490s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000628s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000895s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001035s ]
+
+[ 2015-01-04T23:24:30+08:00 ] 127.0.0.1 /Hd/Glory/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001137s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001436s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001840s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003696s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000172s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000321s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\2cb9ca2d7a24858b9d2f07f888c7e873.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012773s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012996s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000394s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000520s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000741s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000868s ]
+
+[ 2015-01-04T23:24:41+08:00 ] 127.0.0.1 /Hd/Learning/learningEvaluation1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000099s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002075s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002625s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001844s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005028s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000379s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000684s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\d1bba7a5e5b17d522cfa513dd39c922a.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022644s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022961s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001798s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002075s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001578s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001853s ]
+
+[ 2015-01-04T23:24:43+08:00 ] 127.0.0.1 /Hd/Role/userInfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001129s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001333s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001782s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003507s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000479s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000766s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\abc29aad7c5f3489ef50820a563edae0.php 第 6 行.
+NOTIC: [8] Undefined index: linkUrl E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\abc29aad7c5f3489ef50820a563edae0.php 第 149 行.
+NOTIC: [8] Undefined index: linkUrl E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\abc29aad7c5f3489ef50820a563edae0.php 第 149 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036274s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036568s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000789s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001034s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001327s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001661s ]
+
+[ 2015-01-04T23:24:46+08:00 ] 127.0.0.1 /Hd/Index/recommend
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000073s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001098s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001414s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001831s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003682s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 56 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 84 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000645s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000971s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.039201s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.039495s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000781s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001065s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001463s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001709s ]
+
+[ 2015-01-04T23:24:58+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/9/courseId/1025/courseType/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000065s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001183s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001313s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002219s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000479s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000763s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 6 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038202s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038513s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000727s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000990s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001444s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001751s ]
+
+[ 2015-01-04T23:25:01+08:00 ] 127.0.0.1 /Hd/Section/index/sectionId/10250103/courseId/1025.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001219s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001352s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001708s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003472s ]
+
+[ 2015-01-04T23:25:02+08:00 ] 127.0.0.1 /Hd/Resource/play/sectionId/10250103.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000061s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001152s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001296s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001721s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003464s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000206s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000369s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\a2cf99747867ed35a982b09bd0ffa8ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011272s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011519s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000454s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000614s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000799s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000930s ]
+
+[ 2015-01-04T23:25:09+08:00 ] 127.0.0.1 /Hd/Library/detail/id/10250103/topicId/102501.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000097s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001823s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002438s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003627s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006878s ]
+ERR: Warning: fopen(./upfiles/) [<a href='function.fopen'>function.fopen</a>]: failed to open stream: No such file or directory in E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Vendor\PHPExcel\PHPExcel\Reader\Abstract.php on line 200
+
+[ 2015-01-04T23:28:14+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/9/courseId/1025/courseType/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000088s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001807s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002449s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003723s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006956s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001520s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002002s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 6 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+NOTIC: [8] Undefined index: linkImage E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\3cb7ca16c87dbf0ca4e392a3dcc4577c.php 第 131 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.163424s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.163855s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002440s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002841s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002550s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002945s ]
+
+[ 2015-01-04T23:28:50+08:00 ] 127.0.0.1 /Hd/Index/recommend
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001528s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002097s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004094s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 56 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\IndexController.class.php 第 84 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000280s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000422s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026283s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026551s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000461s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000583s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000766s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000885s ]
+
+[ 2015-01-04T23:28:53+08:00 ] 127.0.0.1 /Hd/Index/allCourse
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000097s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001986s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001612s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002218s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004285s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000468s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000746s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\66360daab730568f0545fbb85a7b7e2a.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034280s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034574s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000933s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001195s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001517s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001760s ]
+
+[ 2015-01-04T23:28:56+08:00 ] 127.0.0.1 /Hd/CourseList/index?chId=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000056s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001085s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001364s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001699s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003491s ]
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 E:\home\code\zendstudio\Education_dev_hipi\Application\Hd\Controller\CourseListController.class.php 第 44 行.
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000267s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000412s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\5ad8a9694989d5473341150200ebef80.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020564s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020708s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000416s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000545s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000735s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000863s ]
+
+[ 2015-01-04T23:29:01+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/%2C7%2C8%2C9/courseId/1040/courseType/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000958s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001157s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001542s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003087s ]
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000466s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000726s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031591s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031877s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000684s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000927s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001407s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001647s ]
+
+[ 2015-01-04T23:29:07+08:00 ] 127.0.0.1 /Hd/Order/index/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000591s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000849s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001176s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002281s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000119s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000279s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\bc42992bb549bf5130aa43b15db79358.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009262s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009406s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000447s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000583s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000799s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000928s ]
+
+[ 2015-01-04T23:33:44+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/%2C7%2C8%2C9/courseId/1040/courseType/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000100s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001953s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002715s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003536s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006949s ]
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000446s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000726s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033225s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033533s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000875s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001125s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001512s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001770s ]
+
+[ 2015-01-04T23:33:47+08:00 ] 127.0.0.1 /Hd/Order/index/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001101s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001648s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001727s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003772s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000389s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000877s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\bc42992bb549bf5130aa43b15db79358.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027209s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027672s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001068s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001466s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002232s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002657s ]
+
+[ 2015-01-04T23:34:03+08:00 ] 127.0.0.1 /Hd/SectionList/index/chId/18/stageId/%2C7%2C8%2C9/courseId/1040/courseType/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000093s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002420s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002098s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002584s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005372s ]
+NOTIC: [8] Undefined variable: data E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+NOTIC: [2] array_slice() expects parameter 1 to be array, null given E:\home\code\zendstudio\Education_dev_hipi\Application\Common\Common\common.php 第 155 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000461s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000744s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\47a4bff439c5b4c2b568ae4220d59921.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031994s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032282s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000709s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000988s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001314s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001558s ]
+
+[ 2015-01-04T23:34:06+08:00 ] 127.0.0.1 /Hd/Order/index/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000094s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001693s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001997s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002544s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005235s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000242s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000514s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\bc42992bb549bf5130aa43b15db79358.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016419s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016704s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000642s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000889s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001371s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001603s ]
+
+[ 2015-01-04T23:37:22+08:00 ] 127.0.0.1 /Hd/Order/index/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000105s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001929s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001635s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004445s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000394s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000882s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\bc42992bb549bf5130aa43b15db79358.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032894s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033363s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002194s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002676s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002502s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002993s ]
+
+[ 2015-01-04T23:37:36+08:00 ] 127.0.0.1 /Hd/Order/index/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000089s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002007s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002934s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.004019s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007760s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000228s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000480s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\bc42992bb549bf5130aa43b15db79358.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016863s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017115s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000760s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000987s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001489s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001711s ]
+
+[ 2015-01-04T23:38:08+08:00 ] 127.0.0.1 /Hd/Order/index/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000095s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001888s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002204s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002819s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005908s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000481s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000944s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\bc42992bb549bf5130aa43b15db79358.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029941s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030392s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001065s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001479s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002106s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002497s ]
+
+[ 2015-01-04T23:38:40+08:00 ] 127.0.0.1 /Hd/Order/index/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000090s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002051s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002246s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.003016s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006076s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000386s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000829s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\bc42992bb549bf5130aa43b15db79358.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030294s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030748s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001122s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001525s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002225s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002610s ]
+
+[ 2015-01-04T23:38:50+08:00 ] 127.0.0.1 /Hd/Order/index/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000056s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001227s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001685s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004549s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000130s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000280s ]
+NOTIC: [8] Undefined variable: pageTitle E:\home\code\zendstudio\Education_dev_hipi\Runtime\Cache\Hd\bc42992bb549bf5130aa43b15db79358.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009227s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009381s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000348s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000482s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000923s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001056s ]
+
+[ 2015-01-04T23:38:53+08:00 ] 127.0.0.1 /Hd/Order/pay/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000797s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000735s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000814s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001786s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000784s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000987s ]
+
+[ 2015-01-04T23:39:40+08:00 ] 127.0.0.1 /Hd/Order/pay/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000089s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001869s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002630s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.007027s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010396s ]
+
+[ 2015-01-04T23:58:54+08:00 ] 127.0.0.1 /Hd/Order/pay/courseId/1040.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000056s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001137s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001379s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.002167s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003937s ]
+ERR: Think\Model:saveData方法不存在！
+file: E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Common\functions.php
+line: 61
+trace: #0 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Model.class.php(226): E('Think\Model:sav...')
+#1 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Logic\OrderLogic.class.php(23): Think\Model->__call('saveData', Array)
+#2 E:\home\code\zendstudio\Education_dev_platform\Application\Common\Logic\OrderLogic.class.php(23): Think\Model->saveData(Array)
+#3 E:\home\code\zendstudio\Education_dev_platform\Application\Api\Controller\OrderApiController.class.php(19): Common\Logic\OrderLogic->orderCourse('6', '32', '1040')
+#4 [internal function]: Api\Controller\OrderApiController->orderCourse('6', '32', '1040')
+#5 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Vendor\Hprose\HproseHttpServer.php(185): call_user_func_array(Array, Array)
+#6 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Vendor\Hprose\HproseHttpServer.php(461): HproseHttpServer->doInvoke()
+#7 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Vendor\Hprose\HproseHttpServer.php(480): HproseHttpServer->handle()
+#8 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Controller\HproseController.class.php(50): HproseHttpServer->start()
+#9 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Common\functions.php(561): Think\Controller\HproseController->__construct()
+#10 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\App.class.php(79): A('OrderApi')
+#11 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\App.class.php(181): Think\App::exec()
+#12 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\Library\Think\Think.class.php(117): Think\App::run()
+#13 E:\home\code\zendstudio\Education_dev_platform\ThinkPHP\ThinkPHP.php(94): Think\Think::start()
+#14 E:\home\code\zendstudio\Education_dev_platform\Public\index.php(31): require('E:\home\code\ze...')
+#15 {main}
+

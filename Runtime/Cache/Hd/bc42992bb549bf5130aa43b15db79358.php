@@ -37,7 +37,7 @@ body {background-color: transparent;}
 
 var buttons=
 	[
-		{id:'btn_pay',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'',up:'',down:''},
+		{id:'btn_pay',name:'',action:'',linkImage:'/static/v1/hd/images/common/order/btn_order.png',focusImage:'/static/v1/hd/images/common/order/btn_order_over.png',selectBox:'',left:'',right:'',up:'',down:''},
 	];
 
 /* 初始化按钮 属性   */
@@ -46,11 +46,19 @@ var initButtons = function(){}
 window.onload=function()
 {
 	initButtons();
-	//Epg.btn.init('btn_pay',buttons,true);	
+	Epg.btn.init('btn_pay',buttons,true);	
 };
 </script>
 
 <a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+
+<div style="position:absolute;width:280px; height: 120px;top:150px;left:500px;">
+订购课程：<?php echo ($course['name']); ?>
+</div>
+
+<div id="div_btn_pay" style="position:absolute;width:90px;height:34px;top:300px;left:560px;">
+	<img id="btn_pay" title="<?php echo U('Order/pay?courseId='.$course['id']);?>" src="/static/v1/hd/images/common/order/btn_order.png">
+</div>
 
 <!-- 弹窗 -->
 <div id="div_popup">
