@@ -28,6 +28,11 @@ body {background-color: transparent;}
 <body>
 
 
+<style>
+    body{ background-image:url(/static/v1/hd/images/test/video/bj.jpg); }
+    
+</style>
+
 <style type="text/css">
 #div_left{
 	position:absolute;
@@ -98,7 +103,7 @@ body {background-color: transparent;}
 	</div>
 	<!-- 练习-->
 	<div id="div_btn_exercise" style="position:inherit;width:160px;height:60px;left:1060px;top:50px;">
-		<img id="btn_exercise" src="/static/v1/hd/images/play/btn_exercise.png" width="150" height="50">
+		<img id="btn_exercise" title="<?php echo U('Library/detail?id='.$sectionId.'&topicId='.$topicId);?>" src="/static/v1/hd/images/play/btn_exercise.png" width="150" height="50">
 	</div>
 </div>
 
@@ -135,7 +140,7 @@ function scrollMenu()
 	}
 }
 
-setInterval('scrollMenu()',200);
+setInterval('scrollMenu()',100);
 
 </script>
 

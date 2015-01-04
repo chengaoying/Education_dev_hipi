@@ -15,17 +15,22 @@ class LibraryController extends CommonController {
      * 单一题目
      */
 	public function detailAct() {
-        $libId = I('id',0);
-        if(!$libId){
+        $topicId = I('topicId',0);
+        $sectionId = I('id',0);
+        if(!$topicId || !$sectionId){
             //$this->showMessage('参数错误');
         }
-        $libId = 1;
+        $roleId = 1;
+        $topicId = 1;
+        $sectionId = 1;
         $answerList = D('Library','Logic')->queryLib(1,1);
-        dump($answerList);exit;
+        
         //题库类型 1为文字 2为图片
 
         $this->assign(array(
-            'sectionId' => $libId,
+            'roleId' => $roleId,
+            'topicId' => $topicId,
+            'sectionId' => $sectionId,
             'answerList' => json_encode($answerList['content']),
         ));
         $this->display();
@@ -35,82 +40,62 @@ class LibraryController extends CommonController {
      * 错选集
      */
     public function wrongAnthologyAct() {
+        $roleId = 1;
         $topicId = I('topicId',1);
-        $page = I('page',1);
-        $libList = array();
-        $libList = array(
-            array(
-                'id' => 1,
-                'name' => '第1课'
-            ),
-            array(
-                'id' => 2,
-                'name' => '第2课'
-            ),
-            array(
-                'id' => 3,
-                'name' => '第3课'
-            ),
-            array(
-                'id' => 4,
-                'name' => '第4课'
-            ),
-            array(
-                'id' => 5,
-                'name' => '第5课'
-            ),
-            array(
-                'id' => 6,
-                'name' => '第6课'
-            ),
-            array(
-                'id' => 7,
-                'name' => '第7课'
-            ),
+        $topicId = 100101;
+        $sectionId = 10010101;
+        
+        $s_page = I('spage',1); //课时页数
+        $s_pageSize = 7;
+        
+        $l_page = I('lpage',1);//题目页数
+        $l_pageSize = 6;
+        
+        $wrongLib = D('Library','Logic')->queryRoleWrongLib($roleId,$topicId,$sectionId,$s_page,$s_pageSize,$l_page,$l_pageSize);
+        //print_r($wrongLib);
+        $libList = $wrongLib['sectionList']['rows'];
+        
+        $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images';
+        $config = array(
+            'p' => 'spage',
+            'preId'=>'up',
+            'nextId' => 'down',
+            'preTop' => 550,
+            'preLeft' => 100,
+            'nextTop' => 550,
+            'nextLeft' => 170,
+            'preImg' => $imgPath .'/library/wrong_anthology/up.png',
+            'nextImg' => $imgPath .'/library/wrong_anthology/down.png',
+            'nowIsShow' => 0,
         );
-        $questionList = array();
-        $questionList = array(
-            array(
-                'id' => 1,
-                'name' => '练习题目：下面小于5的是？',
-                'correct'=>1,
-                'myself'=>2
-            ),
-            array(
-                'id' => 1,
-                'name' => '练习题目：下面小于5的是？',
-                'correct'=>1,
-                'myself'=>2
-            ),
-            array(
-                'id' => 1,
-                'name' => '练习题目：下面小于5的是？',
-                'correct'=>1,
-                'myself'=>2
-            ),
-            array(
-                'id' => 1,
-                'name' => '练习题目：下面小于5的是？',
-                'correct'=>1,
-                'myself'=>2
-            ),
-            array(
-                'id' => 1,
-                'name' => '练习题目：下面小于5的是？',
-                'correct'=>1,
-                'myself'=>2
-            ),
-            array(
-                'id' => 1,
-                'name' => '练习题目：下面小于5的是？',
-                'correct'=>1,
-                'myself'=>2
-            ),
+        $s_html = get_pageHtml($wrongLib['sectionList']['total'], $s_pageSize, $config,array('sectionId'=>$sectionId));
+        //print_r($s_html);
+        
+        $questionList = $wrongLib['rows'];
+        $config2 = array(
+            'p' => 'lpage',
+            'preId'=>'pre',
+            'nextId' => 'next',
+            'preTop' => 550,
+            'preLeft' => 1000,
+            'nowTop' => 550,
+            'nowLeft' => 1030,
+            'nextTop' => 550,
+            'nextLeft' => 1130,
+            'preImg' => $imgPath .'/library/wrong_anthology/pre.png',
+            'nextImg' => $imgPath .'/library/wrong_anthology/next.png',
+            'nowIsShow' => 1,
         );
+        //$l_html = get_pageHtml($wrongLib['total'], $l_pageSize, $config2);
+        $l_html = get_pageHtml(40, $l_pageSize, $config2);
+        //print_r($libList);
         $this->assign(array(
             'topicId' => $topicId,
+            'sectionId' => $sectionId,
             'libList' => $libList,
-            'questionList' => $questionList
+            'questionList' => $questionList,
+            's_html' => $s_html['html'],
+            'l_html' => $l_html['html'],
         ));
         $this->display();
     }
@@ -121,12 +106,27 @@ class LibraryController extends CommonController {
     public function saveLibAct() {
         if(IS_POST){
             $postData = I('postdata','');
-            $countscore = I('countscore',0);
-            $redgrown = I('redgrown',0);
-            echo $postData;
-            echo $countscore;
-            echo $redgrown;
-            //header("location:".U('SectionList/index'));
+            $postData = html_entity_decode($postData);
+            $topicId = I('topicid',0);
+            $sectionId = I('sectionid',0);
+            $countScore = I('countscore',0);
+            $redFlower = I('redflower',0);
+            
+            //echo $countscore;
+            //echo $redgrown;
+            $libData = json_decode($postData, true);
+            $data['topicId'] = $topicId;
+            $data['sectionId'] = $sectionId;
+            $data['score'] = $countScore;
+            $data['redFlower'] = $redFlower;
+            $data['lib'] = $libData;
+            $result = D('Library','Logic')->saveRoleLib(1,$data);
+            if($result['status'] == 1){
+                $this->addFloatMessage('保存成功！', get_back_url('Index/recommend',1,0,1));
+            }else{
+                $this->addFloatMessage('保存失败！');
+            }
+            
         }
         
     }

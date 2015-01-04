@@ -85,9 +85,11 @@ class CommonController extends \Think\Controller{
 		//把栏目的图片数组拆开
 		foreach ($this->topChannel as $k=>$v){
 			if($v['imgUrl']){
-				$imgs = explode(',', $v['imgUrl']);
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
 				$this->topChannel[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
 				$this->topChannel[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
+				$this->topChannel[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
 			}
 		}
 		

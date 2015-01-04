@@ -50,7 +50,8 @@ class IndexController extends CommonController {
 		$c = $c['rows'];
 		foreach ($c as $k=>$v){
 			if($v['imgUrl']){
-				$imgs = explode(PHP_EOL, $v['imgUrl']);
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
 				$c[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
 				$c[$k]['banner']  = get_upfile_url(trim($imgs[1]));
 			}
@@ -68,11 +69,20 @@ class IndexController extends CommonController {
 		if(in_array($roleGrade['chKey'], array('early','preschool'))){ 
 			$isEarly = true;
 			$target['stageKey'] = $roleStage['sKey'];
-			$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key),1,3);
+			$target['linkUrl']  = '';
+			$courses = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key),1,3);
 		}else{
-			$courses2 = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key),1,4);
-			$target = $courses2[0];
-			$courses2 = array_slice($courses2, 1, count($courses2)-1);
+			$courses = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key),1,4);
+			$target = $courses[0];
+			$courses = array_slice($courses, 1, count($courses)-1);
+		}
+		foreach ($courses['rows'] as $k=>$v){
+			if($v['imgUrl']){
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
+				$courses['rows'][$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
+				$courses['rows'][$k]['banner']  = get_upfile_url(trim($imgs[1]));
+			}
 		}
 		
 		$this->assign(array(
@@ -81,7 +91,7 @@ class IndexController extends CommonController {
 			'role'			=> $role,	
 			'c1'			=> $c1,
 			'c2'			=> $c2,
-			'courses2'		=> $courses2['rows'],
+			'courses'		=> $courses['rows'],
 			'isEarly'		=> $isEarly,
 			'target'		=> $target,
 		));

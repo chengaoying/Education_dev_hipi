@@ -70,10 +70,10 @@ window.onload=function()
 		$left = 100 + ($i-1)*150; $top = 95;
 	</php>
 	<div id="div_ch_{$i}" style="position:absolute;visibility: visible;left:{$left}px;top:{$top}px;">
-		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="38">
+		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="110" height="33">
 	</div>
 	<div id="div_ch_{$i}_focus" style="position:absolute;visibility: hidden;left:{$left}px;top:{$top}px;">
-		<img id='ch_{$i}_focus' src="{$ch['focusImage']}" width="120" height="38">
+		<img id='ch_{$i}_focus' src="{$ch['titleImage']}" width="110" height="33">
 	</div>	
 </volist>
 
@@ -106,7 +106,7 @@ window.onload=function()
 
 <!-- 页面中间-开始 -->
 <div id="div_banner_center" style="position:absolute;width:280px;height:445px;left:245px;top:180px;text-align:center;">
-	<img id="banner_center" title="{:U('SectionList/index?chId='.$c1['chId'].'&stageId='.$c1['stageIds'].'&courseId='.$c1['id'])}" src="{$c1['banner']}" width="270" height="435">
+	<img id="banner_center" title="{:U('SectionList/index?chId='.$c1['chId'].'&stageId='.$c1['stageIds'].'&courseId='.$c1['id'].'&courseType='.$c1['typeId'])}" src="{$c1['banner']}" width="270" height="435">
 </div>
 <div id="div_banner_center_focus" style="position:absolute;visibility: hidden;width:290px;height:455px;left:240px;top:175px;text-align:center;">
 	<img id="banner_center_focus" src="" width="280" height="445">
@@ -118,7 +118,7 @@ window.onload=function()
 <!-- 页面右侧-开始  -->
 	<!-- 右侧上方--专题 -->
 	<div id="div_special_1_center" style="position:absolute;width:445px;height:220px;left:530px;top:180px;text-align:center;">
-		<img id="special_1" title="{:U('SectionList/index?chId='.$c2['chId'].'&stageId='.$c2['stageIds'].'&courseId='.$c2['id'])}" src="{$c2['banner']}" width="435" height="210">
+		<img id="special_1" title="{:U('SectionList/index?chId='.$c2['chId'].'&stageId='.$c2['stageIds'].'&courseId='.$c2['id'].'&courseType='.$c2['typeId'])}" src="{$c2['banner']}" width="435" height="210">
 	</div>
 	<div id="div_special_1_focus" style="position:absolute;visibility: hidden;width:455px;height:230px;left:525px;top:175px;text-align:center;">
 		<img id="special_1_focus" src="" width="445" height="220">
@@ -126,11 +126,11 @@ window.onload=function()
 	<!-- 小学以上是课程，小学以下是成长指标 -->
 	<if condition="$isEarly eq true">
 		<div id="div_special_2_center" style="position:absolute;width:220px;height:220px;left:980px;top:180px;text-align:center;">
-			<img id="special_2" title="" src="__HD__/images/index/recommend/target_{$target['stageKey']}.png" width="210" height="210">
+			<img id="special_2" title="{$target['linkUrl']}" src="__HD__/images/index/recommend/target_{$target['stageKey']}.png" width="210" height="210">
 		</div>
 	<else />
 		<div id="div_special_2_center" style="position:absolute;width:220px;height:220px;left:980px;top:180px;text-align:center;">
-			<img id="special_2" title="{:U('SectionList/index?chId='.$target['chId'].'&stageId='.$target['stageIds'].'&courseId='.$target['id'])}" src="{:get_upfile_url($target['imgUrl'])}" width="210" height="210">
+			<img id="special_2" title="{:U('SectionList/index?chId='.$target['chId'].'&stageId='.$target['stageIds'].'&courseId='.$target['id'].'&courseType='.$target['typeId'])}" src="{:get_upfile_url($target['imgUrl'])}" width="210" height="210">
 		</div>
 	</if>
 	<div id="div_special_2_focus" style="position:absolute;visibility: hidden;width:230px;height:230px;left:975px;top:175px;text-align:center;">
@@ -138,12 +138,12 @@ window.onload=function()
 	</div>
 
 	<!-- 右侧下方-推荐课程 -->
-	<volist name="courses2" id="c" >
+	<volist name="courses" id="c" >
 		<php>
 			$top = 405; $left = 530 + ($i-1)*225;
 		</php>
 		<div id="div_course_{$i}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
-			<img id="course_{$i}" title="{:U('SectionList/index?chId='.$c['chId'].'&stageId='.$c['stageIds'].'&courseId='.$c['id'])}" src="{:get_upfile_url($c['imgUrl'])}" width="210" height="210">
+			<img id="course_{$i}" title="{:U('SectionList/index?chId='.$c['chId'].'&stageId='.$c['stageIds'].'&courseId='.$c['id'].'&courseType='.$c['typeId'])}" src="{:get_upfile_url($c['imgUrl'])}" width="210" height="210">
 		</div>
 		<div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
 			<img id="course_{$i}_focus" src="" width="220" height="220">

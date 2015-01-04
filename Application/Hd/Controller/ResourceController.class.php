@@ -9,15 +9,19 @@ namespace Hd\Controller;
 use Common\Controller\CommonController;
 
 class ResourceController extends CommonController {
-    
+	
     public function playAct() {
     	
-    	
-        $areacode = C('AREA_CODE');
+    	$sectionId = I('sectionId','');
+    	$section = D('Section','Logic')->querySectionById($sectionId);
         
-        $template = 'play'.$areacode;
+    	$areacode = C('AREA_CODE');
+        
+    	$template = 'play'.$areacode;
         $this->assign(array(
-            'areacode' => $areacode,
+            'areacode' 	=> $areacode,
+        	'sectionId'	=> $sectionId,
+        	'topicId'	=> $section['topicId'],		
         ));
         $this->display($template);
     }

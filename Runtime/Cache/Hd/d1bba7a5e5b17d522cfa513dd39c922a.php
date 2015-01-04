@@ -7,10 +7,10 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:50px;}
+.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
+.page .up	{ width:25px;}
+.page .down	{ width:25px;}
+.page .now	{ width:60px;}
 body {background-color: transparent;}
 
 #div_popup{
@@ -119,7 +119,7 @@ body {background-color: transparent;}
 
 
 <!-- progress -->
-<?php $__FOR_START_16564__=1;$__FOR_END_16564__=10;for($i=$__FOR_START_16564__;$i < $__FOR_END_16564__;$i+=1){ $left = 520 + ($i-1)*70; $top = 270; ?>
+<?php $__FOR_START_12921__=1;$__FOR_END_12921__=10;for($i=$__FOR_START_12921__;$i < $__FOR_END_12921__;$i+=1){ $left = 520 + ($i-1)*70; $top = 270; ?>
 	
 	<div  style="position:absolute; left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
 		<img  src="/static/v1/hd/images/usercenter/learnEvaluation1/color_<?php echo ($i); ?>.png" width="45" height="300">

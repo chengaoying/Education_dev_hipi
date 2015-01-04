@@ -1,0 +1,25 @@
+<layout name="layout" />
+
+<style>
+    body{ background-image:url(__HD__/images/common/bg.jpg); }
+</style>
+
+
+<script type="text/javascript">
+
+var buttons=
+	[
+		{id:'btn_pay',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'',up:'',down:''},
+	];
+
+/* 初始化按钮 属性   */
+var initButtons = function(){}
+
+window.onload=function()
+{
+	initButtons();
+	//Epg.btn.init('btn_pay',buttons,true);	
+};
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>

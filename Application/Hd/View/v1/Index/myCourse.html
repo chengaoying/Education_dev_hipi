@@ -76,11 +76,11 @@ window.onload=function()
 	<php>
 		$left = 100 + ($i-1)*150; $top = 95;
 	</php>
-	<div id="div_ch_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;">
-		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="38">
-	</div>	
+	<div id="div_ch_{$i}" style="position:absolute;visibility: visible;left:{$left}px;top:{$top}px;">
+		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="110" height="33">
+	</div>
 	<div id="div_ch_{$i}_focus" style="position:absolute;visibility: hidden;left:{$left}px;top:{$top}px;">
-		<img id='ch_{$i}_focus' src="{$ch['focusImage']}" width="120" height="38">
+		<img id='ch_{$i}_focus' src="{$ch['titleImage']}" width="110" height="33">
 	</div>	
 </volist>
 
@@ -96,7 +96,7 @@ window.onload=function()
 	            $top = 180; $left = 80 + ($i-1)*225;
 	        }
         </php>
-        <div id="div_course_{$i}" title="{:U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id'])}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
+        <div id="div_course_{$i}" title="{:U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id'].'&courseType='.$course['typeId'])}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
             <img id="course_{$i}" src="{$course['imgUrl']}" width="210" height="210">
         </div>
         <div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">

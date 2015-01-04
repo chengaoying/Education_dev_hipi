@@ -28,12 +28,12 @@ return array (
 		'__SD__'		=> '/static/v1/sd',	 	//标清公共资源路径
 		'__HD__'		=> '/static/v1/hd',		//高清公共资源路径
 		'__THEME__' 	=> '/static/v1', 		//分组模块资源路径
-		'__UPFILE__'	=> 'http://192.168.0.60:8500/upfiles',	//附件访问地址,请使用绝对地址(正式环境不要使用localhost)
+		'__UPFILE__'	=> 'http://192.168.0.152:8500/upfiles',	//附件访问地址,请使用绝对地址(正式环境不要使用localhost)
         '__CSSJS_VERSION__'=>'20140208173232',  //CSS和JS版本
 
 	),
 	
 	//与教育平台通讯参数
-	'PLATFORM_URL'	=>	'http://192.168.0.60:8500',	//平台地址
+	'PLATFORM_URL'	=>	'http://192.168.0.152:8500',	//平台地址
 	'CHECK_CODE'	=>	'2014edu!@#',					//校验码
 );

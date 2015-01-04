@@ -19,7 +19,7 @@ class Page{
     public $rollPage   = 11;// 分页栏每页显示的页数
 	public $lastSuffix = true; // 最后一页是否显示总页数
 
-    //public $p       = 'p'; //分页参数名
+    private $p       = 'p'; //分页参数名
     public $url     = ''; //当前链接URL
     public $nowPage = 1;
 
@@ -39,11 +39,8 @@ class Page{
      * @param array $listRows  每页显示记录数
      * @param array $parameter  分页跳转的参数
      */
-    public function __construct($totalRows, $listRows, $parameter = array(),$p='') {
-        $this->p = $p;
-        if(!$this->p && C('VAR_PAGE')){
-            $this->p = C('VAR_PAGE'); //设置分页参数名称
-        }
+    public function __construct($totalRows, $listRows, $parameter = array()) {
+        C('VAR_PAGE') && $this->p = C('VAR_PAGE'); //设置分页参数名称
         /* 基础设置 */
         $this->totalRows  = $totalRows; //设置总记录数
         $this->listRows   = $listRows;  //设置每页显示行数
@@ -121,9 +118,8 @@ class Page{
         $up_row  = $this->nowPage - 1;
         if($up_row > 0){
             if(is_array($this->config['prev'])){
-                $up_page = '<div class="'.$this->config['prev']['preId'].'" id="div_'.$this->config['prev']['preId'].'" title="'.str_replace('[PAGE]',$up_row,$this->url($up_row)).'" style="position:absolute;left:'.$this->config['prev']['preLeft'].'px;top:'.$this->config['prev']['preTop'].'px;">
-                    <img id="'.$this->config['prev']['preId'].'" src="'.$this->config['prev']['preImg'].'" />
-                </div>';
+        		$prev = "<img id='img_page_prev' src='".$this->config['prev'][0]."'/>";
+        		$up_page     =   "<a id='a_page_prev' href='".str_replace('[PAGE]',$up_row,$this->url($up_row))."' onmouseover=\"changeImage('#img_page_prev','".$this->config['prev'][1]."')\" onmouseout=\"changeImage('#img_page_prev','".$this->config['prev'][0]."')\" >".$prev."</a>";
         	}else{
         		$up_page     =    '<a class="prev" href="' . $this->url($up_row) . '">' . $this->config['prev'] . '</a>';
         	}   
@@ -131,15 +127,21 @@ class Page{
             $up_page = '';
         }
         //$up_page = $up_row > 0 ? '<a class="prev" href="' . $this->url($up_row) . '">' . $this->config['prev'] . '</a>' : '';
-        
+        if($up_row > 0)
+        {
+	        $up_page =  '<img id="page_prev"  title="' . $this->url($up_row) . '" src="'.$this->config['prev'][0].'" width="25" height="30">';
+        }
+        else 
+        {
+        	$up_page =  '<img id="page_prev" class="prev" title="' . $this->url(1) . '" src="'.$this->config['prev'][0].'" width="25" height="30">';
+        }
         	
         //下一页
         $down_row  = $this->nowPage + 1;
         if($down_row <= $this->totalPages){
             if(is_array($this->config['next'])){
-                $down_page = '<div class="'.$this->config['next']['nextId'].'" id="div_'.$this->config['next']['nextId'].'" title="'.str_replace('[PAGE]',$down_row,$this->url($down_row)).'" style="position:absolute;left:'.$this->config['next']['nextLeft'].'px;top:'.$this->config['next']['nextTop'].'px;">
-                    <img id="'.$this->config['next']['nextId'].'" src="'.$this->config['next']['nextImg'].'" />
-                </div>';  
+        		$next = "<img id='img_page_next' src='".$this->config['next'][0]."'/>";
+        		$down_page     =   "<a id='a_page_next' href='".str_replace('[PAGE]',$down_row,$this->url($down_row))."' onmouseover=\"changeImage('#img_page_next','".$this->config['next'][1]."')\" onmouseout=\"changeImage('#img_page_next','".$this->config['next'][0]."')\" >".$next."</a>";
         	}else{
         		$down_page     =   '<a class="next" href="' . $this->url($down_row) . '">' . $this->config['next'] . '</a>';
         	}  
@@ -147,7 +149,14 @@ class Page{
            $down_page = ''; 
         }
         //$down_page = ($down_row <= $this->totalPages) ? '<a class="next" href="' . $this->url($down_row) . '">' . $this->config['next'] . '</a>' : '';
-        
+        if($down_row <= $this->totalPages)
+        {
+	        $down_page = '<img id="page_next" class="next" title="' . $this->url($down_row) . '" src="'.$this->config['next'][0].'" width="25" height="30">';
+        }
+        else 
+        {
+        	$down_page = '<img id="page_next" class="next" title="' . $this->url($this->totalPages) . '" src="'.$this->config['next'][0].'" width="25" height="30">';
+        }
         
         //第一页
         $the_first = '';

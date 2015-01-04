@@ -156,6 +156,7 @@ function get_array_page($count, $pageSize, $imgPath = '', $config = array(), $pa
     return array('data' => $data, 'totalPages' => $page['totalPages'],'nowPage' => $page['nowPage'],'pageHtml' => $page['html']);
 }
 
+
 /**
  * 生成分页页码
  * @param int $count	总记录数
@@ -163,7 +164,56 @@ function get_array_page($count, $pageSize, $imgPath = '', $config = array(), $pa
  * @param array $config	配制参数 
  * @param string $parameter 其它连接参数
  */
-function get_pageHtml($count, $pageSize, $config = array(), $imgPath = '', $parameter = '',$url='') {
+function get_pageHtml($count, $pageSize, $config = array(),$parameter = '',$imgPath = '',$url='') {
+    if (empty($imgPath) || strlen($imgPath)==1) {
+        if(strlen($imgPath)==1) $fix = $imgPath.'_';
+        $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images';
+    }else if(!strstr($imgPath,'/')){
+        $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images/'.$imgPath;
+    }else{
+        $fix = '';
+    }
+    $preId = $config['preId'] ? $config['preId']:'page_prev';
+    $nextId = $config['nextId'] ? $config['nextId']:'page_next';
+    $nowIsShow = isset($config['nowIsShow'])? $config['nowIsShow']:1;
+    $nowHtml = '';
+    if($nowIsShow){
+        $nowHtml = '<div class="now" style="position:absolute;left:'.$config['nowLeft'].'px;top:'.$config['nowTop'].'px;">%NOW_PAGE%/%TOTAL_PAGE%</div>';
+    }
+    $config['preImg'] = $config['preImg']?$config['preImg']:$imgPath . '/'.$fix.'page_prev.png';
+    $config['nextImg'] = $config['nextImg']?$config['nextImg']:$imgPath . '/'.$fix.'page_next.png';
+    $dfConfig = array(
+        'prev' => array('preId'=>$preId,'preTop'=>$config['preTop'],'preLeft'=>$config['preLeft'],'preImg'=>$config['preImg']),
+        'next' => array('nextId'=>$nextId,'nextTop'=>$config['nextTop'],'nextLeft'=>$config['nextLeft'],'nextImg'=>$config['nextImg']),
+        'theme' => '%UP_PAGE%'.$nowHtml.'%DOWN_PAGE%',
+        'p' => $config['p']
+    );
+    //print_r($dfConfig);
+    $Page = new \Think\Page($count, $pageSize,$parameter,$config['p']);
+    foreach ($dfConfig as $key => $cnf) {
+        $Page->setConfig($key, $cnf);
+    };
+    
+    $Page->parameter = $parameter;
+    $Page->url = $url;
+    
+    return array(
+        'firstRow' => $Page->firstRow,
+        'html' => $Page->show(),
+        'nowPage' => $Page->nowPage,
+        'totalPages' => $Page->totalPages,
+    );
+}
+
+
+/**
+ * 生成分页页码
+ * @param int $count	总记录数
+ * @param int $pageSize 每页记录数
+ * @param array $config	配制参数 
+ * @param string $parameter 其它连接参数
+ */
+function get_pageHtml2($count, $pageSize, $config = array(), $imgPath = '', $parameter = '',$url='') {
     if (empty($imgPath) || strlen($imgPath)==1) {
         if(strlen($imgPath)==1) $fix = $imgPath.'_';
         $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images';

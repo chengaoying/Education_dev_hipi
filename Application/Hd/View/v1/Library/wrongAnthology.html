@@ -70,6 +70,15 @@
         height: 19px;
         background: url(__HD__/images/library/wrong_anthology/answer_bg.png) no-repeat;
     }
+    .now{
+        width:100px;
+        height:30px;
+        line-height: 30px;
+        font-size:26px;
+        font-weight: 500;
+        text-align:center;
+        color: #000
+    }
 </style>
 
 <script type="text/javascript">
@@ -77,13 +86,13 @@
 var buttons=
 	[
         /*课题列表*/
-        {id:'lib_1',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'',down:'lib_2'},
-        {id:'lib_2',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_1',down:'lib_3'},
-        {id:'lib_3',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_2',down:'lib_4'},
-        {id:'lib_4',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_3',down:'lib_5'},
-        {id:'lib_5',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_4',down:'lib_6'},
-        {id:'lib_6',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_5',down:'lib_7'},
-        {id:'lib_7',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_6',down:'up'},
+        {id:'lib_1',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'',down:['lib_2','up','down']},
+        {id:'lib_2',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_1',down:['lib_3','up','down']},
+        {id:'lib_3',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_2',down:['lib_4','up','down']},
+        {id:'lib_4',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_3',down:['lib_5','up','down']},
+        {id:'lib_5',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_4',down:['lib_6','up','down']},
+        {id:'lib_6',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_5',down:['lib_7','up','down']},
+        {id:'lib_7',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_6',down:['up','down']},
         
         /* 页码 */
 		{id:'pre',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/pre.png',focusImage:'__HD__/images/library/wrong_anthology/pre_over.png',selectBox:'',left:'re_answer',right:'next',up:'re_answer',down:''},
@@ -92,13 +101,13 @@ var buttons=
 		{id:'down',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/down.png',focusImage:'__HD__/images/library/wrong_anthology/down_over.png',selectBox:'',left:'up',right:'re_answer',up:['lib_7','lib_6','lib_5','lib_4','lib_3','lib_2','lib_1'],down:''},
         
 	 	/*重新答题*/
-        {id:'re_answer',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/re_answer.png',focusImage:'__HD__/images/library/wrong_anthology/re_answer_over.png',selectBox:'',right:'pre',left:'lib_1',up:'',down:''},
+        {id:'re_answer',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/re_answer.png',focusImage:'__HD__/images/library/wrong_anthology/re_answer_over.png',selectBox:'',right:['pre','next'],left:'lib_1',up:'',down:''},
         
 	];
 
 window.onload=function()
 {
-	Epg.btn.init('lib_{$topicId}',buttons,true);
+	Epg.btn.init('lib_1',buttons,true);
 };
 
 </script>
@@ -124,17 +133,13 @@ window.onload=function()
         <img id="lib_{$i}" src="" width="140" height="50" />
 	</div>
     <div id="div_lib_{$i}_focus" style="position:absolute;left:125px;top:{$top-2}px;z-index: 1000;">
-        <span id="lib_{$i}_focus" style=" display: block;height: 48px;line-height: 48px; font-size: 22px;color:#f65074;">{$lib['name']}</span>
+        <span id="lib_{$i}_focus" style=" display: block;height: 48px;line-height: 48px; font-size: 22px;color:#f65074;z-index: 9999">{:msubstr($lib['sectionName'],0,3)}</span>
 	</div>
 </volist>
 
 <!-- 上下分页 -->
-<div id="div_up" title="" style="position:absolute;width:34px;height:30px;left:100px;top:550px;text-align:center;">
-	<img id="up" src="__HD__/images/library/wrong_anthology/up.png" width="34" height="30">
-</div>
-<div id="div_down" style="position:absolute;width:34px;height:30px;left:170px;top:550px;text-align:center;">
-	<img id="down" src="__HD__/images/library/wrong_anthology/down.png" width="34" height="30">
-</div>
+
+{$s_html}
 
 
 <!-- 练习题分 -->
@@ -154,12 +159,12 @@ window.onload=function()
 		$top = 228 + ($i-1)*50;
 	</php>
     <div id="div_question_{$i}" style="position:absolute;left:280px;top:{$top-2}px;z-index: 1000;">
-        <span id="question_{$i}" style=" display: block;height: 48px;line-height: 48px; font-size: 20px;color:#333;">{$question['name']}</span>
+        <span id="question_{$i}" style=" display: block;height: 48px;line-height: 48px; font-size: 20px;color:#333;">{$question['title']}</span>
 	</div>
     
     <!-- 你的答案 -->
     <div id="div_myself_{$i}" style="position:absolute;left:1020px;top:{$top+10}px;z-index: 1000;">
-        <img id="myself_{$i}" src="__HD__/images/library/wrong_anthology/{$question['myself']}_over.png" width='13' height='18' />
+        <img id="myself_{$i}" src="__HD__/images/library/wrong_anthology/{$question['wrong']}_over.png" width='13' height='18' />
 	</div>
     
     <!-- 正确答案 -->
@@ -170,17 +175,4 @@ window.onload=function()
 
 <!-- 分页 -->
 
-<!-- 上一页 -->
-<div id="div_pre" style="position:absolute;width:26px;height:30px;left:1000px;top:550px;text-align:center;">
-	<img id="pre" src="__HD__/images/library/wrong_anthology/pre.png" width="26" height="30">
-</div>
-
-<!-- 页码 -->
-<div style="position:absolute;width:100px;height:30px;line-height: 30px;left:1030px;top:550px;font-size:26px;font-weight: 500;text-align:center;color: #000">
-	8/30
-</div>
-
-<!-- 下一页-->
-<div id="div_next" style="position:absolute;width:26px;height:30px;left:1130px;top:550px;text-align:center;">
-	<img id="next" src="__HD__/images/library/wrong_anthology/next.png" width="26" height="30">
-</div>
+{$l_html}

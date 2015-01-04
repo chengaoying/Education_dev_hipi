@@ -42,22 +42,22 @@ body {background-color: transparent;}
 var buttons=
 	[
 	 	/* 左边  */
-		{id:'btn_favor',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_favor.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_favor_over.png',selectBox:'',right:['section_2','section_1'],up:'btn_record',down:'btn_order'},
-		{id:'btn_order',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_order.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['section_3','section_2','section_1'],up:'btn_favor'},
+		{id:'btn_order',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_order.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['section_2','section_1'],up:'btn_record',down:'btn_favor'},
+		{id:'btn_favor',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_favor.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_favor_over.png',selectBox:'',right:['section_3','section_2','section_1'],up:'btn_order',},
 		
 		/* 上边 */
-		{id:'btn_record',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_record.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_record_over.png',selectBox:'',right:'page_prev',left:'btn_favor',up:'',down:'section_1'},
+		{id:'btn_record',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_record.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_record_over.png',selectBox:'',right:'page_prev',left:'btn_order',up:'',down:'section_1'},
 		
 		/* 分页按钮 */
 		{id:'page_prev',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',left:'btn_record',right:'page_next',down:['section_6']},
     	{id:'page_next',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:['page_prev'],down:['section_6']},
         
 		/* 下边 */
-		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_favor',right:'section_6',up:'btn_record',down:'section_2'},
-		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_favor',right:'section_7',up:'section_1',down:'section_3'},
-		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_order',right:'section_8',up:'section_2',down:'section_4'},
-		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_order',right:'section_9',up:'section_3',down:'section_5'},
-		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_order',right:'section_10',up:'section_4',down:''},
+		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_order',right:'section_6',up:'btn_record',down:'section_2'},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_order',right:'section_7',up:'section_1',down:'section_3'},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_favor',right:'section_8',up:'section_2',down:'section_4'},
+		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_favor',right:'section_9',up:'section_3',down:'section_5'},
+		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_favor',right:'section_10',up:'section_4',down:''},
 		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'section_1',right:'',up:'page_prev',down:'section_7'},
 		{id:'section_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'section_2',right:'',up:'section_6',down:'section_8'},
 		{id:'section_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'section_3',right:'',up:'section_7',down:'section_9'},
@@ -71,7 +71,7 @@ var initButtons = function(){}
 window.onload=function()
 {
 	initButtons();
-	Epg.btn.init('btn_favor',buttons,true);	
+	Epg.btn.init('btn_order',buttons,true);	
 };
 </script>
 
@@ -86,13 +86,13 @@ window.onload=function()
 	已有1000人在学习该课程
 </div>
 <!-- 学习计划 -->
-<div id="div_'btn_favor'" style="position:absolute;left:100px;top:400px;">
+<div id="div_'btn_favor'" style="position:absolute;left:100px;top:470px;">
 	<img id='btn_favor' title="ddd" src="/static/v1/hd/images/sectionList/primaryschool/btn_favor.png" width="191" height="57">
 </div>	
 
 <!-- 订购课程 -->
-<div id="div_btn_order" style="position:absolute;left:100px;top:470px;">
-	<img id='btn_order' title="ddd" src="/static/v1/hd/images/sectionList/primaryschool/btn_order.png" width="191" height="57">
+<div id="div_btn_order" style="position:absolute;left:100px;top:400px;">
+	<img id='btn_order' title="<?php echo U('Order/index?courseId='.$course['id']);?>" src="/static/v1/hd/images/sectionList/primaryschool/btn_order.png" width="191" height="57">
 </div>
 
 <!-- 课程标题 -->

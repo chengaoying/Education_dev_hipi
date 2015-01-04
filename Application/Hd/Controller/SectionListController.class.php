@@ -15,23 +15,24 @@ class SectionListController extends CommonController {
 	 * 课时列表统一入口
 	 */
 	public function indexAct(){
-		$chId 	  = I('chId','');
-		$stageId  = I('stageId','');
-		$courseId = I('courseId','');
+		$chId 	    = I('chId','');
+		$stageId    = I('stageId','');
+		$courseId   = I('courseId','');
+		$courseType = I('courseType','');
 
 		$chKey = get_array_keyval(S('Channel'),$chId,'id','chKey');
 		
-		if($chKey == 'early') //早教课时列表
+		if($chKey == 'early' && $courseType != 2) //早教课时列表(非专题)
 		{
-			$this->early($chId,$chKey,$stageId,$courseId);
+			$this->early($chId,$chKey,$stageId,$courseId,$courseType);
 		}
-		elseif($chKey == 'preschool') //幼教课时列表
+		elseif($chKey == 'preschool' && $courseType != 2) //幼教课时列表(非专题)
 		{
-			$this->preschool($chId,$chKey,$stageId,$courseId);
+			$this->preschool($chId,$chKey,$stageId,$courseId,$courseType);
 		}
 		else  //其他通用课时列表
 		{
-			$this->common($chId,$chKey,$stageId,$courseId);
+			$this->common($chId,$chKey,$stageId,$courseId,$courseType);
 		}
 	}
 	
@@ -41,24 +42,14 @@ class SectionListController extends CommonController {
 	 * @param unknown_type $chKey 栏目key
 	 * @param unknown_type $stageId 龄段id
 	 */
-	private function early($chId,$chKey,$stageId,$courseId){
-		$month = 13;//几个月的小孩
-        $age = 2;
-		if($month>=1 and $month<=12){
-			$year = 1;
-		}else if($month>12 and $month<=24){
-			$year = 2;
-		}else if($month>24 and $month<=36){
-			$year = 3;
-		}
-		
+	private function early($chId,$chKey,$stageId,$courseId,$courseType){
 		$topicId = I('topic','');
-		
 		//该课程知识点列表
 		$topics = D('Topic','Logic')->queryTopicList($courseId,1,10);
 		foreach ($topics['rows'] as $k=>$v){
 			if($v['imgUrl']){
-				$imgs = explode(PHP_EOL, $v['imgUrl']);
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
 				$topics['rows'][$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
 				$topics['rows'][$k]['focusImage']  = get_upfile_url(trim($imgs[1]));
 			}
@@ -71,11 +62,13 @@ class SectionListController extends CommonController {
 		$json_topic = get_array_fieldkey($topics['rows'],array('id','name','linkImage','focusImage'));
 		$json_topic = json_encode($json_topic);
 		$this->assign(array(
-			'month'  	 => $month,
 			'chId' 	 	 => $chId,  
 			'topics' 	 => $topics['rows'],
 			'json_topic' => $json_topic,
 			'sections'   => $sections['rows'],
+			'courseId'	 =>	$courseId,	
+			'stageId'	 => $stageId,
+			'courseType' => $courseType,		
 		));
 		$this->display('detail_early');
 	}
@@ -97,8 +90,9 @@ class SectionListController extends CommonController {
 		$topics = D('Topic','Logic')->queryTopicList($courseId,1,10);
 		foreach ($topics['rows'] as $k=>$v){
 			if($v['imgUrl']){
-				$imgs = explode(PHP_EOL, $v['imgUrl']);
-				$topics['rows'][$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
+				$topics['rows'][$k]['linkImage']   = get_upfile_url(trim($imgs[0]));
 				$topics['rows'][$k]['focusImage']  = get_upfile_url(trim($imgs[1]));
 			}
 		}
@@ -137,7 +131,8 @@ class SectionListController extends CommonController {
 		$pageSize = 10;
 		
 		$course = D('Course','Logic')->queryCourseById($courseId);
-		$topicIds = explode(',',$course['topicIds']);
+		$char = getDelimiterInStr($course['topicIds']);
+		$topicIds = explode($char,$course['topicIds']);
 		$topicIds = array_filter($topicIds);
 		$sections = D('Section','Logic')->querySectionList($topicIds,$page,$pageSize);
 		
@@ -160,7 +155,8 @@ class SectionListController extends CommonController {
 		//查找该课程的所有课时(本周课时)，不需要把所有知识点查出来，再查课时
 		//方式：把该课程的知识点列表作为一个数组传给接口，就能把该课程的所有课时查询出来
 		$course = D('Course','Logic')->queryCourseById($courseId);
-		$topicIds = explode(',',$course['topicIds']);
+		$char = getDelimiterInStr($course['topicIds']);
+		$topicIds = explode($char,$course['topicIds']);
 		$topicIds = array_filter($topicIds);
 		$sections = D('Section','Logic')->querySectionList($topicIds,1,31);
 		foreach ($topicIds as $kev=>$val){

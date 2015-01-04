@@ -30,12 +30,14 @@ class LibraryLogic extends BaseLogic{
      * @param int $roleId 角色ID
 	 * @param int $topicId 知识点ID
      * @param int $sectionId 课时ID
-     * @param int $pageNo 页号
-     * @param int $pageSize 每页记录数
+     * @param int $s_pageNo 课时页号
+     * @param int $s_pageSize 课时每页记录数
+     * @param int $l_pageNo 题目页号
+     * @param int $l_pageSize 题目每页记录数
      * @return array $data 查询的数组
      */
-    public function queryRoleWrongLib($roleId,$topicId,$sectionId,$pageNo,$pageSize) {
-        return $this->client->queryRoleWrongLib($roleId,$topicId,$sectionId,$pageNo,$pageSize);
+    public function queryRoleWrongLib($roleId,$topicId,$sectionId,$s_pageNo,$s_pageSize,$l_pageNo,$l_pageSize) {
+        return $this->client->queryRoleWrongLib($roleId,$topicId,$sectionId,$s_pageNo,$s_pageSize,$l_pageNo,$l_pageSize);
     }
     
     /**

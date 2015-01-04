@@ -32,7 +32,7 @@ body {background-color: transparent;}
    
 .shadow{
    position: absolute;
-   width:1110px;
+   width:360px;
    height:50px;
    top:617px;
    background-image: url(/static/v1/hd/images/common/shadow/shadow_360x60.png);
@@ -82,7 +82,7 @@ var initButtons = function(){
 window.onload=function()
 {
     initButtons();
-	Epg.btn.init('section_1',buttons,true);	
+	Epg.btn.init('btn_order',buttons,true);	
 };
 </script>
 
@@ -98,7 +98,7 @@ window.onload=function()
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:100px;left:1105px;">
-	<img id="btn_order" src="/static/v1/hd/images/common/order/btn_order.png">
+	<img id="btn_order" title="<?php echo U('Order/index?courseId='.$courseId);?>" src="/static/v1/hd/images/common/order/btn_order.png">
 </div>
 
 <!-- 本周课程 -->
@@ -125,7 +125,7 @@ window.onload=function()
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 底部投影 -->
-<?php $__FOR_START_13430__=1;$__FOR_END_13430__=4;for($i=$__FOR_START_13430__;$i < $__FOR_END_13430__;$i+=1){ $left = 90 + ($i-1)*375; ?>
+<?php $__FOR_START_14405__=1;$__FOR_END_14405__=4;for($i=$__FOR_START_14405__;$i < $__FOR_END_14405__;$i+=1){ $left = 90 + ($i-1)*375; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

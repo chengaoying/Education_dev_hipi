@@ -7,10 +7,10 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:50px;}
+.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
+.page .up	{ width:25px;}
+.page .down	{ width:25px;}
+.page .now	{ width:60px;}
 body {background-color: transparent;}
 
 #div_popup{
@@ -101,18 +101,18 @@ window.onload=function()
 
 <!-- 顶部-栏目 -->
 <?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*150; $top = 95; ?>
-	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="120" height="38">
-	</div>	
+	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;visibility: visible;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
+		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="110" height="33">
+	</div>
 	<div id="div_ch_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>_focus' src="<?php echo ($ch['focusImage']); ?>" width="120" height="38">
+		<img id='ch_<?php echo ($i); ?>_focus' src="<?php echo ($ch['titleImage']); ?>" width="110" height="33">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 
 <!-- 我的课程开始 -->
 <?php if(count($myCourse) > 0): ?><!-- 课程列表 -->
     <?php if(is_array($myCourse)): $i = 0; $__LIST__ = $myCourse;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$course): $mod = ($i % 2 );++$i; if($i > 5){ $top = 405; $left = 80 + ($i-6)*225; }else{ $top = 180; $left = 80 + ($i-1)*225; } ?>
-        <div id="div_course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id']);?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+        <div id="div_course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id'].'&courseType='.$course['typeId']);?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
             <img id="course_<?php echo ($i); ?>" src="<?php echo ($course['imgUrl']); ?>" width="210" height="210">
         </div>
         <div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">

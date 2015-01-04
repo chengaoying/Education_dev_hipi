@@ -4,7 +4,7 @@
    
 .shadow{
    position: absolute;
-   width:1110px;
+   width:360px;
    height:50px;
    top:617px;
    background-image: url(__HD__/images/common/shadow/shadow_360x60.png);
@@ -54,7 +54,7 @@ var initButtons = function(){
 window.onload=function()
 {
     initButtons();
-	Epg.btn.init('section_1',buttons,true);	
+	Epg.btn.init('btn_order',buttons,true);	
 };
 </script>
 
@@ -70,7 +70,7 @@ window.onload=function()
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:100px;left:1105px;">
-	<img id="btn_order" src="__HD__/images/common/order/btn_order.png">
+	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId)}" src="__HD__/images/common/order/btn_order.png">
 </div>
 
 <!-- 本周课程 -->

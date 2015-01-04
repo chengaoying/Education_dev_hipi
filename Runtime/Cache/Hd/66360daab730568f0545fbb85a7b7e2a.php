@@ -103,11 +103,11 @@ window.onload=function()
 
 <!-- 顶部-栏目 -->
 <?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*150; $top = 95; ?>
-	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="120" height="38">
-	</div>	
+	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;visibility: visible;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
+		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="110" height="33">
+	</div>
 	<div id="div_ch_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>_focus' src="<?php echo ($ch['focusImage']); ?>" width="120" height="38">
+		<img id='ch_<?php echo ($i); ?>_focus' src="<?php echo ($ch['titleImage']); ?>" width="110" height="33">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 检索按钮 -->
@@ -126,7 +126,7 @@ window.onload=function()
 
 
 <!-- 静态图片-底部投影效果 -->
-<?php $__FOR_START_31351__=1;$__FOR_END_31351__=6;for($i=$__FOR_START_31351__;$i < $__FOR_END_31351__;$i+=1){ $left = 85 + ($i-1)*225; ?>
+<?php $__FOR_START_3538__=1;$__FOR_END_3538__=6;for($i=$__FOR_START_3538__;$i < $__FOR_END_3538__;$i+=1){ $left = 85 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

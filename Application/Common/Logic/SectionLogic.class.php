@@ -11,6 +11,14 @@ class SectionLogic extends BaseLogic{
 	}
 	
 	/**
+	 * 根据课时id查找单个课时
+	 * @param int $sectionId
+	 */
+	public function querySectionById($sectionId){
+		return $this->client->querySectionById($sectionId);
+	}
+	
+	/**
 	 * 根据知识点id查找该知识点下的课时列表
 	 * @param arr $topicIds	知识点id数组
 	 * @param int $pageNo 页号

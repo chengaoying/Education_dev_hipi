@@ -95,10 +95,10 @@ window.onload=function()
 <!-- 顶部-栏目 -->
 <?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*150; $top = 95; ?>
 	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;visibility: visible;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="120" height="38">
+		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="110" height="33">
 	</div>
 	<div id="div_ch_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>_focus' src="<?php echo ($ch['focusImage']); ?>" width="120" height="38">
+		<img id='ch_<?php echo ($i); ?>_focus' src="<?php echo ($ch['titleImage']); ?>" width="110" height="33">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 页面左侧 -开始-->
@@ -130,7 +130,7 @@ window.onload=function()
 
 <!-- 页面中间-开始 -->
 <div id="div_banner_center" style="position:absolute;width:280px;height:445px;left:245px;top:180px;text-align:center;">
-	<img id="banner_center" title="<?php echo U('SectionList/index?chId='.$c1['chId'].'&stageId='.$c1['stageIds'].'&courseId='.$c1['id']);?>" src="<?php echo ($c1['banner']); ?>" width="270" height="435">
+	<img id="banner_center" title="<?php echo U('SectionList/index?chId='.$c1['chId'].'&stageId='.$c1['stageIds'].'&courseId='.$c1['id'].'&courseType='.$c1['typeId']);?>" src="<?php echo ($c1['banner']); ?>" width="270" height="435">
 </div>
 <div id="div_banner_center_focus" style="position:absolute;visibility: hidden;width:290px;height:455px;left:240px;top:175px;text-align:center;">
 	<img id="banner_center_focus" src="" width="280" height="445">
@@ -142,27 +142,27 @@ window.onload=function()
 <!-- 页面右侧-开始  -->
 	<!-- 右侧上方--专题 -->
 	<div id="div_special_1_center" style="position:absolute;width:445px;height:220px;left:530px;top:180px;text-align:center;">
-		<img id="special_1" title="<?php echo U('SectionList/index?chId='.$c2['chId'].'&stageId='.$c2['stageIds'].'&courseId='.$c2['id']);?>" src="<?php echo ($c2['banner']); ?>" width="435" height="210">
+		<img id="special_1" title="<?php echo U('SectionList/index?chId='.$c2['chId'].'&stageId='.$c2['stageIds'].'&courseId='.$c2['id'].'&courseType='.$c2['typeId']);?>" src="<?php echo ($c2['banner']); ?>" width="435" height="210">
 	</div>
 	<div id="div_special_1_focus" style="position:absolute;visibility: hidden;width:455px;height:230px;left:525px;top:175px;text-align:center;">
 		<img id="special_1_focus" src="" width="445" height="220">
 	</div>
 	<!-- 小学以上是课程，小学以下是成长指标 -->
 	<?php if($isEarly == true): ?><div id="div_special_2_center" style="position:absolute;width:220px;height:220px;left:980px;top:180px;text-align:center;">
-			<img id="special_2" title="" src="/static/v1/hd/images/index/recommend/target_<?php echo ($target['stageKey']); ?>.png" width="210" height="210">
+			<img id="special_2" title="<?php echo ($target['linkUrl']); ?>" src="/static/v1/hd/images/index/recommend/target_<?php echo ($target['stageKey']); ?>.png" width="210" height="210">
 		</div>
 	<?php else: ?>
 		<div id="div_special_2_center" style="position:absolute;width:220px;height:220px;left:980px;top:180px;text-align:center;">
-			<img id="special_2" title="<?php echo U('SectionList/index?chId='.$target['chId'].'&stageId='.$target['stageIds'].'&courseId='.$target['id']);?>" src="<?php echo get_upfile_url($target['imgUrl']);?>" width="210" height="210">
+			<img id="special_2" title="<?php echo U('SectionList/index?chId='.$target['chId'].'&stageId='.$target['stageIds'].'&courseId='.$target['id'].'&courseType='.$target['typeId']);?>" src="<?php echo get_upfile_url($target['imgUrl']);?>" width="210" height="210">
 		</div><?php endif; ?>
 	<div id="div_special_2_focus" style="position:absolute;visibility: hidden;width:230px;height:230px;left:975px;top:175px;text-align:center;">
 		<img id="special_2_focus" src="" width="220" height="220">
 	</div>
 
 	<!-- 右侧下方-推荐课程 -->
-	<?php if(is_array($courses2)): $i = 0; $__LIST__ = $courses2;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$c): $mod = ($i % 2 );++$i; $top = 405; $left = 530 + ($i-1)*225; ?>
+	<?php if(is_array($courses)): $i = 0; $__LIST__ = $courses;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$c): $mod = ($i % 2 );++$i; $top = 405; $left = 530 + ($i-1)*225; ?>
 		<div id="div_course_<?php echo ($i); ?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-			<img id="course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$c['chId'].'&stageId='.$c['stageIds'].'&courseId='.$c['id']);?>" src="<?php echo get_upfile_url($c['imgUrl']);?>" width="210" height="210">
+			<img id="course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$c['chId'].'&stageId='.$c['stageIds'].'&courseId='.$c['id'].'&courseType='.$c['typeId']);?>" src="<?php echo get_upfile_url($c['imgUrl']);?>" width="210" height="210">
 		</div>
 		<div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
 			<img id="course_<?php echo ($i); ?>_focus" src="" width="220" height="220">
@@ -178,7 +178,7 @@ window.onload=function()
 
 <div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x60.png);"></div>
 <div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x60.png);"></div>
-<?php $__FOR_START_2304__=1;$__FOR_END_2304__=4;for($i=$__FOR_START_2304__;$i < $__FOR_END_2304__;$i+=1){ $left = 535 + ($i-1)*225; ?>
+<?php $__FOR_START_5057__=1;$__FOR_END_5057__=4;for($i=$__FOR_START_5057__;$i < $__FOR_END_5057__;$i+=1){ $left = 535 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x60.png);"></div><?php } ?>
 
 

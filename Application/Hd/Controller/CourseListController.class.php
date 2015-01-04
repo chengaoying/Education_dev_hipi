@@ -38,12 +38,13 @@ class CourseListController extends CommonController {
 		}
 		foreach ($courses['rows'] as $k=>$v){
 			if($v['imgUrl']){
-				$imgs = explode(PHP_EOL, $v['imgUrl']);
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
 				$courses['rows'][$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
 				$courses['rows'][$k]['banner']  = get_upfile_url(trim($imgs[1]));
 			}
 		}
-		
+
 		$pageHtml = get_array_page($courses['total'], $pageSize, '/static/v1/hd/images/common/page');
 		
 		//龄段列表-json格式
@@ -76,7 +77,8 @@ class CourseListController extends CommonController {
 		$stageList = array_slice($stageList, 0, count($stageList));
 		foreach ($stageList as $k => $v){
 			if($v['imgUrl']){
-				$imgs = explode(PHP_EOL, $v['imgUrl']);
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
 				$stageList[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
 				$stageList[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
 			}

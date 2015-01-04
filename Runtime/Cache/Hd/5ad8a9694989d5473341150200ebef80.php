@@ -45,10 +45,10 @@ body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
 .ch_logo_earyle{
     position: absolute;
     display: block;
-    top:55px;
-    left:90px;
-    width: 235px;
-    height: 90px;
+    top:45px;
+    left:85px;
+    width: 225px;
+    height: 91px;
     background: url(/static/v1/hd/images/courseList/title/title_<?php echo ($chKey); ?>.png) no-repeat;
 }
 </style>
@@ -114,14 +114,14 @@ window.onload=function()
 
 
 <!-- 龄段列表 -->
-<?php if(is_array($stageList)): $i = 0; $__LIST__ = $stageList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$stage): $mod = ($i % 2 );++$i; if($isEarly){ $left = 275+($i-1)*90; }else{ $left = 225+($i-1)*90; } ?>
+<?php if(is_array($stageList)): $i = 0; $__LIST__ = $stageList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$stage): $mod = ($i % 2 );++$i; if($isEarly){ $left = 300+($i-1)*90; }else{ $left = 225+($i-1)*90; } ?>
     <div id="div_stage_<?php echo ($i); ?>" title="<?php echo U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id']);?>" style="position:absolute;width:90px;height:35px;left:<?php echo ($left); ?>px;top:95px;text-align:center;">
         <img id="stage_<?php echo ($i); ?>" src="<?php echo ($stage['linkImage']); ?>">
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 课程列表 -->
 <?php if(is_array($courses)): $i = 0; $__LIST__ = $courses;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$course): $mod = ($i % 2 );++$i; if($i > 5){ $top = 415; $left = 80 + ($i-6)*225; }else{ $top = 182; $left = 80 + ($i-1)*225; } ?>
-    <div id="div_course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id']);?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
+    <div id="div_course_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$course['chId'].'&stageId='.$course['stageIds'].'&courseId='.$course['id'].'&courseType='.$course['typeId']);?>" style="position:absolute;width:220px;height:220px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
         <img id="course_<?php echo ($i); ?>" src="<?php echo get_upfile_url($course['imgUrl']);?>" width="210" height="210">
     </div>
     <div id="div_course_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
