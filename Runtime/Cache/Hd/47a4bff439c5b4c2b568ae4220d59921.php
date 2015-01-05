@@ -13,17 +13,33 @@
 .page .now	{ width:60px;}
 body {background-color: transparent;}
 
-#div_popup{
-	position:absolute;
+#default_tip{
+	position: absolute;
+	top: 310px;
+	left: 490px;
+	width: 300px;
+	height: 60px;
+	color:#F8E391;
+	text-align: center;
+	line-height:30px;
+	background-color:saddlebrown;
 	visibility:hidden;
-	width:560px;
-	height:357px;
-	top:180px;
-	left:360px;
-	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+	z-index:99;
 }
 
 </style>
+<script type="text/javascript">
+
+<?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
+
+/* 弹窗信息  */
+var popup = function(){
+	var msg = "<?php echo ($floatMsg); ?>";
+	Epg.tip(msg);
+}
+
+</script>
+
 </head>
 <body>
 
@@ -53,16 +69,16 @@ var buttons=
     	{id:'page_next',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:['page_prev'],down:['section_6']},
         
 		/* 下边 */
-		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_order',right:'section_6',up:'btn_record',down:'section_2'},
-		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_order',right:'section_7',up:'section_1',down:'section_3'},
-		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_favor',right:'section_8',up:'section_2',down:'section_4'},
-		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_favor',right:'section_9',up:'section_3',down:'section_5'},
-		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'btn_favor',right:'section_10',up:'section_4',down:''},
-		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'section_1',right:'',up:'page_prev',down:'section_7'},
-		{id:'section_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'section_2',right:'',up:'section_6',down:'section_8'},
-		{id:'section_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'section_3',right:'',up:'section_7',down:'section_9'},
-		{id:'section_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'section_4',right:'',up:'section_8',down:'section_10'},
-		{id:'section_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_370x60.gif',left:'section_5',right:'',up:'section_9',down:''},
+		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_order',right:'section_6',up:'btn_record',down:'section_2'},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_order',right:'section_7',up:'section_1',down:'section_3'},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_favor',right:'section_8',up:'section_2',down:'section_4'},
+		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_favor',right:'section_9',up:'section_3',down:'section_5'},
+		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_favor',right:'section_10',up:'section_4',down:''},
+		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_1',right:'',up:'page_prev',down:'section_7'},
+		{id:'section_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_2',right:'',up:'section_6',down:'section_8'},
+		{id:'section_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_3',right:'',up:'section_7',down:'section_9'},
+		{id:'section_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_4',right:'',up:'section_8',down:'section_10'},
+		{id:'section_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_5',right:'',up:'section_9',down:''},
 	];
 
 /* 初始化按钮 属性   */
@@ -71,6 +87,7 @@ var initButtons = function(){}
 window.onload=function()
 {
 	initButtons();
+	popup();
 	Epg.btn.init('btn_order',buttons,true);	
 };
 </script>
@@ -132,6 +149,10 @@ window.onload=function()
 
 <!-- 弹窗 -->
 <div id="div_popup">
+</div>
+
+<!-- 默认的提示 -->
+<div id="default_tip" class="default_tip">
 </div>
 </body>
 </html>

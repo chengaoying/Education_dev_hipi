@@ -13,23 +13,39 @@
 .page .now	{ width:60px;}
 body {background-color: transparent;}
 
-#div_popup{
-	position:absolute;
+#default_tip{
+	position: absolute;
+	top: 310px;
+	left: 490px;
+	width: 300px;
+	height: 60px;
+	color:#F8E391;
+	text-align: center;
+	line-height:30px;
+	background-color:saddlebrown;
 	visibility:hidden;
-	width:560px;
-	height:357px;
-	top:180px;
-	left:360px;
-	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+	z-index:99;
 }
 
 </style>
+<script type="text/javascript">
+
+<?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
+
+/* 弹窗信息  */
+var popup = function(){
+	var msg = "<?php echo ($floatMsg); ?>";
+	Epg.tip(msg);
+}
+
+</script>
+
 </head>
 <body>
 
 
 <style>
-    body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
+    body{ background-image:url(/static/v1/hd/images/common/order/order_bg.png); }
 </style>
 
 
@@ -37,7 +53,9 @@ body {background-color: transparent;}
 
 var buttons=
 	[
-		{id:'btn_pay',name:'',action:'',linkImage:'/static/v1/hd/images/common/order/btn_order.png',focusImage:'/static/v1/hd/images/common/order/btn_order_over.png',selectBox:'',left:'',right:'',up:'',down:''},
+		{id:'btn_pay',name:'',action:'',linkImage:'/static/v1/hd/images/common/order/btn_pay.png',focusImage:'/static/v1/hd/images/common/order/btn_pay_over.png',selectBox:'',left:'',right:'btn_pay_2',up:'btn_pay_2',down:''},
+		{id:'btn_pay_1',name:'',action:'',linkImage:'/static/v1/hd/images/common/order/btn_pay.png',focusImage:'/static/v1/hd/images/common/order/btn_pay_over.png',selectBox:'',left:'btn_pay',right:'',up:'',down:'btn_pay_2'},
+		{id:'btn_pay_2',name:'',action:'',linkImage:'/static/v1/hd/images/common/order/btn_pay.png',focusImage:'/static/v1/hd/images/common/order/btn_pay_over.png',selectBox:'',left:'btn_pay',right:'',up:'btn_pay_1',down:'btn_pay'},
 	];
 
 /* 初始化按钮 属性   */
@@ -52,16 +70,34 @@ window.onload=function()
 
 <a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
 
-<div style="position:absolute;width:280px; height: 120px;top:150px;left:500px;">
-订购课程：<?php echo ($course['name']); ?>
+<!-- 单课程单包月 -->
+<div id="div_btn_pay" style="position:absolute;width:140px;height:45px;top:560px;left:460px;">
+	<img id="btn_pay" title="<?php echo U('Order/pay?courseId='.$course['id']);?>" src="/static/v1/hd/images/common/order/btn_pay.png">
+</div>
+<div id="div_title" style="position:absolute;width:212px;height:31px;top:568px;left:120px;">
+	<img id="title" src="/static/v1/hd/images/common/order/title_gradeone_1.png">
 </div>
 
-<div id="div_btn_pay" style="position:absolute;width:90px;height:34px;top:300px;left:560px;">
-	<img id="btn_pay" title="<?php echo U('Order/pay?courseId='.$course['id']);?>" src="/static/v1/hd/images/common/order/btn_order.png">
+<!-- 全课程单包月 -->
+<div id="div_btn_pay_1" style="position:absolute;width:140px;height:45px;top:225px;left:1000px;">
+	<img id="btn_pay_1" title="<?php echo U('Order/pay?courseId='.$course['id']);?>" src="/static/v1/hd/images/common/order/btn_pay.png">
 </div>
+
+<!-- 全课程半年包 -->
+<div id="div_btn_pay_2" style="position:absolute;width:140px;height:45px;top:285px;left:1000px;">
+	<img id="btn_pay_2" title="<?php echo U('Order/pay?courseId='.$course['id']);?>" src="/static/v1/hd/images/common/order/btn_pay.png">
+</div>
+<div id="div_title_all" style="position:absolute;width:317px;height:72px;top:120px;left:800px;">
+	<img id="title_all" src="/static/v1/hd/images/common/order/title_gradeone_all.png">
+</div>
+
 
 <!-- 弹窗 -->
 <div id="div_popup">
+</div>
+
+<!-- 默认的提示 -->
+<div id="default_tip" class="default_tip">
 </div>
 </body>
 </html>

@@ -21,12 +21,14 @@ class LibraryController extends CommonController {
             //$this->showMessage('参数错误');
         }
         $roleId = 1;
-        $topicId = 1;
-        $sectionId = 1;
-        $answerList = D('Library','Logic')->queryLib(1,1);
-        
+        $topicId = 100101;
+        $sectionId = 10010101;
+        $answerList = D('Library','Logic')->queryLib($sectionId);
+        if($answerList['status']==0){
+             $this->showMessage($answerList['info'],self::ICON_ERROR,'','Public:message');
+        }
         //题库类型 1为文字 2为图片
-
+        
         $this->assign(array(
             'roleId' => $roleId,
             'topicId' => $topicId,
@@ -52,7 +54,10 @@ class LibraryController extends CommonController {
         $l_pageSize = 6;
         
         $wrongLib = D('Library','Logic')->queryRoleWrongLib($roleId,$topicId,$sectionId,$s_page,$s_pageSize,$l_page,$l_pageSize);
-        //print_r($wrongLib);
+        if($wrongLib['status']==0){
+        	$this->showMessage($wrongLib['info'],self::ICON_ERROR,'','Public:message');
+        }
+        //         print_r($wrongLib);
         $libList = $wrongLib['sectionList']['rows'];
         
         $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images';
@@ -87,13 +92,13 @@ class LibraryController extends CommonController {
             'nowIsShow' => 1,
         );
         //$l_html = get_pageHtml($wrongLib['total'], $l_pageSize, $config2);
-        $l_html = get_pageHtml(40, $l_pageSize, $config2);
         //print_r($libList);
         $this->assign(array(
             'topicId' => $topicId,
             'sectionId' => $sectionId,
             'libList' => $libList,
             'questionList' => $questionList,
+            'score' => $wrongLib['score'],
             's_html' => $s_html['html'],
             'l_html' => $l_html['html'],
         ));

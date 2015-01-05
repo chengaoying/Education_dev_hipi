@@ -77,7 +77,7 @@ class Page{
      * @return string
      */
     public function show() {
-        if(0 == $this->totalRows) return '<table align="center" class="page"><tr><td class="up"></td><td class="now">0/0</td><td class="down"></td></tr></table>';
+        if(0 == $this->totalRows) return '';
         //if(0 == $this->totalRows) return '';
         
         ////////////////XZT 2014-04-16////////////////////////

@@ -13,17 +13,33 @@
 .page .now	{ width:60px;}
 body {background-color: transparent;}
 
-#div_popup{
-	position:absolute;
+#default_tip{
+	position: absolute;
+	top: 310px;
+	left: 490px;
+	width: 300px;
+	height: 60px;
+	color:#F8E391;
+	text-align: center;
+	line-height:30px;
+	background-color:saddlebrown;
 	visibility:hidden;
-	width:560px;
-	height:357px;
-	top:180px;
-	left:360px;
-	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+	z-index:99;
 }
 
 </style>
+<script type="text/javascript">
+
+<?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
+
+/* 弹窗信息  */
+var popup = function(){
+	var msg = "<?php echo ($floatMsg); ?>";
+	Epg.tip(msg);
+}
+
+</script>
+
 </head>
 <body>
 
@@ -41,6 +57,16 @@ body {background-color: transparent;}
 	left: 85px;
 	background-image: url(/static/v1/hd/images/usercenter/bottom.png);
 }
+/* 用户中心 */
+#usercenter{
+	position: absolute;
+	display: block;
+	width: 134px;
+	height: 34px;
+	top: 85px;
+	left: 90px;
+	background-image: url(/static/v1/hd/images/usercenter/channel/usercenter.png);
+}
 /* 界面 */
 #gloryinfo{
 	position: absolute;
@@ -57,9 +83,9 @@ body {background-color: transparent;}
 <script type="text/javascript">
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory_1.png',focusImage:'/static/v1/hd/images/usercenter/glory_2.png',selectBox:'',right:'ch_2',down:'viewAll'}, 
-	{id:'ch_2',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/learning_1.png',focusImage:'/static/v1/hd/images/usercenter/learning_2.png',selectBox:'',left:'ch_1',right:'ch_3',down:'viewAll'}, 
-	{id:'ch_3',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseinfo_1.png',focusImage:'/static/v1/hd/images/usercenter/baseinfo_2.png',selectBox:'',left:'ch_2',down:'viewAll'},
+	{id:'ch_1',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/channel/glory_1.png',focusImage:'/static/v1/hd/images/usercenter/channel/glory_2.png',onFocus:'1',selectBox:'',right:'ch_2',down:'viewAll'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/channel/learning_1.png',focusImage:'/static/v1/hd/images/usercenter/channel/learning_2.png',onFocus:'1',selectBox:'',left:'ch_1',right:'ch_3',down:'viewAll'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/channel/baseInfo_1.png',focusImage:'/static/v1/hd/images/usercenter/channel/baseInfo_2.png',onFocus:'1',selectBox:'',left:'ch_2',down:'viewAll'},
 
 	{id:'viewAll',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory/view_1.png',focusImage:'/static/v1/hd/images/usercenter/glory/view_2.png',selectBox:'',right:'reward',up:'ch_1'},
 	{id:'reward',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory/reward_1.png',focusImage:'/static/v1/hd/images/usercenter/glory/reward_2.png',selectBox:'',left:'viewAll',up:'ch_1'},
@@ -76,24 +102,34 @@ body {background-color: transparent;}
 <!-- 静态图片 -->
 <div id="bottom"></div>
 <div id="gloryinfo"></div>
+<div id="usercenter"></div>
 
 
 
 <!-- 以下是导航栏 -->
 <!-- 荣誉成就 -->
-<div id="div_ch_1" style="position: absolute; left: 100px; top: 75px;">
+<div id="div_ch_1" style="position:absolute;visibility:visible;left:300px;top:95px;">
 	<img id='ch_1' title="/Hd/Glory/index"
-		src="/static/v1/hd/images/usercenter/glory_1.png" width="92" height="26">
+		src="/static/v1/hd/images/usercenter/channel/glory_1.png" width="110" height="33">
+</div>
+<div id="div_ch_1_focus" style="position:absolute; visibility:hidden;left:300px;top:95px; text-align:center;">
+	<img id="ch_1_focus" src="/static/v1/hd/images/usercenter/channel/glory_2.png" width="110" height="33">
 </div>
 <!-- 学习评估 -->
-<div id="div_ch_2" style="position: absolute; left: 250px; top: 75px;">
+<div id="div_ch_2" style="position:absolute;visibility:visible;left:450px; top:95px;">
 	<img id='ch_2' title="/Hd/Learning/<?php echo ($stageType); ?>"
-		src="/static/v1/hd/images/usercenter/learning_1.png" width="92" height="26">
+		src="/static/v1/hd/images/usercenter/channel/learning_1.png" width="110" height="33">
+</div>
+<div id="div_ch_2_focus" style="position:absolute; visibility:hidden; left:450px; top:95px; text-align:center;">
+	<img id="ch_2_focus" src="/static/v1/hd/images/usercenter/channel/learning_2.png" width="110" height="33">
 </div>
 <!-- 基本信息 -->
-<div id="div_ch_3" style="position: absolute; left: 400px; top: 75px;">
+<div id="div_ch_3" style="position:absolute;visibility:visible;left:600px; top:95px;">
 	<img id='ch_3' title="/Hd/Role/userInfo"
-		src="/static/v1/hd/images/usercenter/baseinfo_1.png" width="92" height="26">
+		src="/static/v1/hd/images/usercenter/channel/baseInfo_1.png" width="110" height="33">
+</div>
+<div id="div_ch_3_focus" style="position:absolute; visibility:hidden; left:600px; top:95px; text-align:center;">
+	<img id="ch_3_focus" src="/static/v1/hd/images/usercenter/channel/baseInfo_2.png" width="110" height="33">
 </div>
 
 <!-- 进度条 -->
@@ -124,6 +160,10 @@ body {background-color: transparent;}
 
 <!-- 弹窗 -->
 <div id="div_popup">
+</div>
+
+<!-- 默认的提示 -->
+<div id="default_tip" class="default_tip">
 </div>
 </body>
 </html>

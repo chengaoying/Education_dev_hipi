@@ -19,7 +19,7 @@ class LibraryLogic extends BaseLogic{
      * @param int $libId  题目ID
      * @param int $correct 正确答案
      * @param int $wrong 错误答案
-     * @return int $status 保存状态 
+     * @return array
      */
     public function saveRoleLib($roleId,$data = array()) {
         return $this->client->saveRoleLib($roleId,$data);
@@ -42,12 +42,11 @@ class LibraryLogic extends BaseLogic{
     
     /**
      * 查询题库
-     * @param int $topicId 知识点id
      * @param int $sectionId 课程id
      * @return array 返回题库内容
      */
-    public function queryLib($topicId,$sectionId) {
-    	return $this->client->queryLib($topicId,$sectionId);
+    public function queryLib($sectionId) {
+    	return $this->client->queryLib($sectionId);
     }
     
 }

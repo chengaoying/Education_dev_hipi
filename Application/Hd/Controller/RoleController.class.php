@@ -303,7 +303,7 @@ class RoleController extends CommonController {
 				$subject_array = explode(",", $role['interests']);
 			}
 			$index = 0;
-			foreach ($subject as $key => $value)
+			foreach ($subject as $key => $value)//获得将来要显示的多选项
 			{
 				if(empty($subject_remove))
 				{
@@ -328,24 +328,25 @@ class RoleController extends CommonController {
 					}
 				}
 			}
-			//获得要显示给用户的科目数组，取配置中科目项的键值作为其值，方便业务处理
-/* 			foreach ($subject as $key => $vaule)
-			{
-				$subject_display[] = $key;
-			} */
-			//获得选中项数组$subject_selected
-//			$subject_array = explode(",", $role['interests']);
+			//获得被选中项
 			foreach($subject_array as $key => $value)
 			{
 				foreach ($subject as $key1 => $value1)
 				{
 					if($value == $value1)
 					{
-						$subject_selected['sub'.$key1] = $key1;
+						foreach($subject_display as $key2 => $value2)
+						{
+							if($key1 == $value2)
+							{
+								$subject_selected[$key2] = $value2;
+							}
+						}
+//						$subject_selected['sub'.$key1] = $key1;
 					}
 				}
 			}
-			foreach($subject_selected as $key => $value)
+/* 			foreach($subject_selected as $key => $value)
 			{
 				foreach ($subject_display as $key1 => $value1)
 				{
@@ -355,7 +356,7 @@ class RoleController extends CommonController {
 						$subject_selected[$key1] = $value1;
 					}
 				}
-			}
+			} */
 			$this->assign(array(
 					'json_selected'	=> json_encode($subject_selected),
 					'subjects' => $subject_display,
@@ -514,5 +515,46 @@ class RoleController extends CommonController {
 				$this->showMessage('角色切换失败：'.$u['info']);
 			}
 		}
+	}
+	
+	/*
+	 * 成长指标
+	 */
+	public function growthIndexAct()
+	{
+		$role = unserialize(Session('role'));
+		$yourdate=$role['birthday'];
+		if(empty($yourdate))
+		{
+			$this->showMessage('日期不能为空，请去用户中心设置日期！');
+		}
+		$yourdate_array = explode("-", $yourdate);
+		if(!is_numeric($yourdate_array[0]) || !is_numeric($yourdate_array[1]) || !is_numeric($yourdate_array[2]))
+		{
+			$this->showMessage('日期不正确，日期应为数字');
+		}
+		
+		$yourdate_unix=strtotime($yourdate);
+		if($yourdate_unix === false)
+		{
+			$this->showMessage('日期不正确,日期范围应在1901-12-15<br/>到2038-1-19。如果年份为两位数字则: 0-69 <br/>表示 2000-2069,70-100 表示1970-2000');
+		}
+		$m = (date("Y")-date("Y",$yourdate_unix))*12+date("m")-date("m",$yourdate_unix);
+		if(date("d")>=date("d",$yourdate_unix))
+		{
+			$m += 1;
+		}
+		//确保月份在1-12
+		if($m<=0)
+		{
+			$m = 1;
+		}elseif ($m > 12)
+		{
+			$m = 12;
+		}
+		$this->assign(array(
+					'm' => $m,
+				));
+		$this->display();
 	}
 }

@@ -94,6 +94,7 @@ var initButtons = function(){
 window.onload=function()
 {
     initButtons();
+    popup();
 	Epg.btn.init('btn_order',buttons,true);	
 };
 </script>
@@ -120,7 +121,7 @@ window.onload=function()
     <php>$top = 180+($i-1)*65;</php>
     <div id="div_topic_{$i}" style="position: absolute;height:54px;left:345px;top:{$top}px;">
         <!-- <img id="topic_{$i}" title="{:U('SectionList/index?chId='.$chId.'&stageId='.$stageId.'&courseId='.$courseId.'&courseType='.$courseType.'&topicId='.$t['id'])}" src="{$t['linkImage']}" height="54" /> --> 
-        <img id="topic_{$i}" title="{:U('SectionList/index?courseId='.$courseId.'&topicId='.$t['id'])}" src="{$t['linkImage']}" height="54" /> --> 
+        <img id="topic_{$i}" title="{:U('SectionList/index?courseId='.$courseId.'&topicId='.$t['id'])}" src="{$t['linkImage']}" height="54" />
    </div>
 </volist>
 

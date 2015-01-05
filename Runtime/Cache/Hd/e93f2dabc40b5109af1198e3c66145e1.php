@@ -7,18 +7,39 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
+.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
+.page .up	{ width:25px;}
+.page .down	{ width:25px;}
+.page .now	{ width:60px;}
+body {background-color: transparent;}
 
-#div_popup{
-	position:absolute;
+#default_tip{
+	position: absolute;
+	top: 310px;
+	left: 490px;
+	width: 300px;
+	height: 60px;
+	color:#F8E391;
+	text-align: center;
+	line-height:30px;
+	background-color:saddlebrown;
 	visibility:hidden;
-	width:560px;
-	height:357px;
-	top:180px;
-	left:360px;
-	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+	z-index:99;
 }
 
 </style>
+<script type="text/javascript">
+
+<?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
+
+/* 弹窗信息  */
+var popup = function(){
+	var msg = "<?php echo ($floatMsg); ?>";
+	Epg.tip(msg);
+}
+
+</script>
+
 </head>
 <body>
 
@@ -27,6 +48,10 @@
 
 <!-- 弹窗 -->
 <div id="div_popup">
+</div>
+
+<!-- 默认的提示 -->
+<div id="default_tip" class="default_tip">
 </div>
 </body>
 </html>

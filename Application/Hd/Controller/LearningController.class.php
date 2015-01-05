@@ -52,6 +52,8 @@ class LearningController extends CommonController {
 	 */
 	public function learningEvaluation2Act()
 	{
+		$page = I('page',1);
+		$pageSize = 5;
 		$role = unserialize(Session('role'));
 		//顶级分类(二级栏目)
 		$class = $this->getClass();
@@ -70,11 +72,13 @@ class LearningController extends CommonController {
 		}
 		$data_get = I('get.');
 		$imgPath = '/static/v1/hd/images/common/page';
-		$progress = array('50','58','70','80','88','90','100','0');
+		$progress = array('50','58','70');
+		$progeress = 8;
 		$this->assign(array(
 					'stageType' => $stageType,
-					'page' => get_array_page(count($progress), 3, $imgPath),
+					'pageHtml' => get_array_page(3, 3, $imgPath),
 					'preId' => $data_get['preId'],
+					'datas' => $progress,
 				));
 		$this->display();
 	}
@@ -99,11 +103,12 @@ class LearningController extends CommonController {
 		}
 		$data_get = I('get.');
 		$imgPath = '/static/v1/hd/images/common/page';
-		$data = array('50','58','70','80','88','90','100','0','50','58','70','80','88','90','100','0','50','58','70','80','88','90','100','0');
+		$data = array('50','58','70','80','88','90','100','0','50','58');
 		$this->assign(array(
 				'stageType' => $stageType,
 				'page' => get_array_page(count($data), 12, $imgPath),
 				'preId' => $data_get['preId'],
+				'datas' => $data,
 		));
 		$this->display();
 	}

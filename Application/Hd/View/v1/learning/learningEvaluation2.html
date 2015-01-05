@@ -13,6 +13,16 @@
 	left: 85px;
 	background-image: url(__HD__/images/usercenter/bottom.png);
 }
+/* 用户中心 */
+#usercenter{
+	position: absolute;
+	display: block;
+	width: 134px;
+	height: 34px;
+	top: 85px;
+	left: 90px;
+	background-image: url(__HD__/images/usercenter/channel/usercenter.png);
+}
 /* 小女孩 */
 #girl{
 	position: absolute;
@@ -38,18 +48,21 @@
 
 <script type="text/javascript">
 
-var nowpage = {$page['nowPage']};
-var totalpage = {$page['totalPages']};
+/* var nowpage = {$page['nowPage']};
+var totalpage = {$page['totalPages']}; */
 var preBtn = "{$preId}";
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'__HD__/images/usercenter/glory_1.png',focusImage:'__HD__/images/usercenter/glory_2.png',selectBox:'',right:'ch_2',down:'detail_1'}, 
-	{id:'ch_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learning_1.png',focusImage:'__HD__/images/usercenter/learning_2.png',selectBox:'',left:'ch_1',right:'ch_3',down:'detail_1'}, 
-	{id:'ch_3',name:'',action:'',linkImage:'__HD__/images/usercenter/baseinfo_1.png',focusImage:'__HD__/images/usercenter/baseinfo_2.png',selectBox:'',left:'ch_2',down:'detail_1'},
+	{id:'ch_1',name:'',action:'',linkImage:'__HD__/images/usercenter/channel/glory_1.png',focusImage:'__HD__/images/usercenter/channel/glory_2.png',onFocus:'1',selectBox:'',right:'ch_2',down:'detail_1'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'__HD__/images/usercenter/channel/learning_1.png',focusImage:'__HD__/images/usercenter/channel/learning_2.png',onFocus:'1',selectBox:'',left:'ch_1',right:'ch_3',down:'detail_1'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'__HD__/images/usercenter/channel/baseInfo_1.png',focusImage:'__HD__/images/usercenter/channel/baseInfo_2.png',onFocus:'1',selectBox:'',left:'ch_2',down:'detail_1'},
 
-	{id:'detail_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learnEvaluation2/detail_1.png',focusImage:'__HD__/images/usercenter/learnEvaluation2/detail_2.png',selectBox:'',left:'',down:['detail_2','page_prev','page_next'],up:'ch_2'},
-	{id:'detail_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learnEvaluation2/detail_1.png',focusImage:'__HD__/images/usercenter/learnEvaluation2/detail_2.png',selectBox:'',left:'',down:['detail_3','page_prev','page_next'],up:'detail_1'},
-	{id:'detail_3',name:'',action:'',linkImage:'__HD__/images/usercenter/learnEvaluation2/detail_1.png',focusImage:'__HD__/images/usercenter/learnEvaluation2/detail_2.png',selectBox:'',left:'',down:['page_prev','page_next'],up:'detail_2'},
+	{id:'detail_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learnEvaluation2/detail_1.png',focusImage:'__HD__/images/usercenter/learnEvaluation2/detail_2.png',selectBox:'',right:'wrong_1',down:['detail_2','page_prev','page_next'],up:'ch_2'},
+	{id:'detail_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learnEvaluation2/detail_1.png',focusImage:'__HD__/images/usercenter/learnEvaluation2/detail_2.png',selectBox:'',right:'wrong_2',down:['detail_3','page_prev','page_next'],up:'detail_1'},
+	{id:'detail_3',name:'',action:'',linkImage:'__HD__/images/usercenter/learnEvaluation2/detail_1.png',focusImage:'__HD__/images/usercenter/learnEvaluation2/detail_2.png',selectBox:'',right:'wrong_3',down:['page_prev','page_next'],up:'detail_2'},
+	{id:'wrong_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learnEvaluation2/wrong_1.png',focusImage:'__HD__/images/usercenter/learnEvaluation2/wrong_2.png',selectBox:'',left:'detail_1',down:['wrong_2','page_prev','page_next'],up:'ch_2'},
+	{id:'wrong_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learnEvaluation2/wrong_1.png',focusImage:'__HD__/images/usercenter/learnEvaluation2/wrong_2.png',selectBox:'',left:'detail_2',down:['wrong_3','page_prev','page_next'],up:'wrong_1'},
+	{id:'wrong_3',name:'',action:'',linkImage:'__HD__/images/usercenter/learnEvaluation2/wrong_1.png',focusImage:'__HD__/images/usercenter/learnEvaluation2/wrong_2.png',selectBox:'',left:'detail_3',down:['page_prev','page_next'],up:'wrong_2'},
 
 	{id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:['detail_3','detail_2','detail_1']},
 	{id:'page_next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:['detail_3','detail_2','detail_1']},
@@ -58,14 +71,16 @@ var preBtn = "{$preId}";
 	];
 
 	window.onload = function() {
-		if(preBtn=='page_prev' || preBtn=='page_next')
+/* 		if(preBtn=='page_prev' || preBtn=='page_next')
 		{
 			Epg.btn.init(preBtn, buttons, true);
 		}
 		else
 		{
 			Epg.btn.init('ch_2', buttons, true);
-		}
+		} */
+		Epg.btn.init('ch_2', buttons, true);
+
 	};
 </script>
 
@@ -75,28 +90,37 @@ var preBtn = "{$preId}";
 <div id="bottom"></div>
 <div id="girl"></div>
 <div id="word"></div>
+<div id="usercenter"></div>
 
 
 <!-- 以下是导航栏 -->
 <!-- 荣誉成就 -->
-<div id="div_ch_1" style="position: absolute; left: 100px; top: 75px;">
+<div id="div_ch_1" style="position:absolute;visibility:visible;left:300px;top:95px;">
 	<img id='ch_1' title="/Hd/Glory/index"
-		src="__HD__/images/usercenter/glory_1.png" width="92" height="26">
+		src="__HD__/images/usercenter/channel/glory_1.png" width="110" height="33">
+</div>
+<div id="div_ch_1_focus" style="position:absolute; visibility:hidden;left:300px;top:95px; text-align:center;">
+	<img id="ch_1_focus" src="__HD__/images/usercenter/channel/glory_2.png" width="110" height="33">
 </div>
 <!-- 学习评估 -->
-<div id="div_ch_2" style="position: absolute; left: 250px; top: 75px;">
+<div id="div_ch_2" style="position:absolute;visibility:visible;left:450px; top:95px;">
 	<img id='ch_2' title="/Hd/Learning/{$stageType}"
-		src="__HD__/images/usercenter/learning_1.png" width="92" height="26">
+		src="__HD__/images/usercenter/channel/learning_1.png" width="110" height="33">
+</div>
+<div id="div_ch_2_focus" style="position:absolute; visibility:hidden; left:450px; top:95px; text-align:center;">
+	<img id="ch_2_focus" src="__HD__/images/usercenter/channel/learning_2.png" width="110" height="33">
 </div>
 <!-- 基本信息 -->
-<div id="div_ch_3" style="position: absolute; left: 400px; top: 75px;">
+<div id="div_ch_3" style="position:absolute;visibility:visible;left:600px; top:95px;">
 	<img id='ch_3' title="/Hd/Role/userInfo"
-		src="__HD__/images/usercenter/baseinfo_1.png" width="92" height="26">
+		src="__HD__/images/usercenter/channel/baseInfo_1.png" width="110" height="33">
+</div>
+<div id="div_ch_3_focus" style="position:absolute; visibility:hidden; left:600px; top:95px; text-align:center;">
+	<img id="ch_3_focus" src="__HD__/images/usercenter/channel/baseInfo_2.png" width="110" height="33">
 </div>
 
 
-
-<volist name="page['data']" id="data" key="i">
+<volist name="datas" id="data" key="i">
 	<php>
 		$left = 160;
 		$top = 270 + ($i-1)*95;
@@ -113,14 +137,14 @@ var preBtn = "{$preId}";
 	<div id="div_detail_{$i}" style="position:absolute; left:{$left+810}px; top:{$top+20}px;">
 		<img id="detail_{$i}" title="{:U('Learning/detail')}" src="__HD__/images/usercenter/learnEvaluation2/detail_1.png" width="59" height="36">
 	</div>
-	<!-- default -->
-	<div id="div_default_{$i}" style="position:absolute; left:{$left+880}px; top:{$top+20}px;">
-		<img id="default_{$i}" title="{:U('Learning/learningEvaluation2')}" src="__HD__/images/usercenter/learnEvaluation2/default_1.png" width="63" height="36">
+	<!-- 错题集 -->
+	<div id="div_wrong_{$i}" style="position:absolute; left:{$left+880}px; top:{$top+20}px;">
+		<img id="wrong_{$i}" title="{:U('Library/wrongAnthology')}" src="__HD__/images/usercenter/learnEvaluation2/wrong_1.png" width="63" height="36">
 	</div>
 </volist>
 
 <!-- 分页 -->
 <div style="position:absolute; left:920px; top:560px;">
-	{$page['pageHtml']}
+	{$pageHtml['pageHtml']}
 </div>
 

@@ -13,17 +13,33 @@
 .page .now	{ width:60px;}
 body {background-color: transparent;}
 
-#div_popup{
-	position:absolute;
+#default_tip{
+	position: absolute;
+	top: 310px;
+	left: 490px;
+	width: 300px;
+	height: 60px;
+	color:#F8E391;
+	text-align: center;
+	line-height:30px;
+	background-color:saddlebrown;
 	visibility:hidden;
-	width:560px;
-	height:357px;
-	top:180px;
-	left:360px;
-	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+	z-index:99;
 }
 
 </style>
+<script type="text/javascript">
+
+<?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
+
+/* 弹窗信息  */
+var popup = function(){
+	var msg = "<?php echo ($floatMsg); ?>";
+	Epg.tip(msg);
+}
+
+</script>
+
 </head>
 <body>
 
@@ -121,9 +137,9 @@ body {background-color: transparent;}
     var buttons =
             [
                 /*文字答题选项*/
-                {id: 'answer_1', name: '', action: 'answer(1)', linkImage: '/static/v1/hd/images/library/word_1.png', focusImage: '/static/v1/hd/images/library/word_1_over.png', selectBox: '', left: '', right: '', up: '', down:['answer_2', 'next']},
-                {id: 'answer_2', name: '', action: 'answer(2)', linkImage: '/static/v1/hd/images/library/word_2.png', focusImage: '/static/v1/hd/images/library/word_2_over.png', selectBox: '', left: '', right: '', up: 'answer_1', down:['answer_3', 'next']},
-                {id: 'answer_3', name: '', action: 'answer(3)', linkImage: '/static/v1/hd/images/library/word_3.png', focusImage: '/static/v1/hd/images/library/word_3_over.png', selectBox: '', left: '', right: '', up: 'answer_2', down:['answer_4', 'next']},
+                {id: 'answer_1', name: '', action: 'answer(1)', linkImage: '/static/v1/hd/images/library/word_1.png', focusImage: '/static/v1/hd/images/library/word_1_over.png', selectBox: '', left: '', right: '', up: '', down:['answer_2','next']},
+                {id: 'answer_2', name: '', action: 'answer(2)', linkImage: '/static/v1/hd/images/library/word_2.png', focusImage: '/static/v1/hd/images/library/word_5_over.png', selectBox: '', left: '', right: '', up: 'answer_1', down:['answer_3','next']},
+                {id: 'answer_3', name: '', action: 'answer(3)', linkImage: '/static/v1/hd/images/library/word_3.png', focusImage: '/static/v1/hd/images/library/word_3_over.png', selectBox: '', left: '', right: '', up: 'answer_2', down:['answer_4','next']},
                 {id: 'answer_4', name: '', action: 'answer(4)', linkImage: '/static/v1/hd/images/library/word_3.png', focusImage: '/static/v1/hd/images/library/word_4_over.png', selectBox: '', left: '', right: '', up: 'answer_3', down: 'next'},
                 /*答题选项*/
                 {id: 'answer2_1', name: '', action: 'answer(1)', linkImage: '', focusImage: '', selectBox: '/static/v1/hd/images/library/pic_item_bg_over.png', resize:'-1', left: '', right: 'answer2_2', up: '', down: 'next'},
@@ -196,6 +212,7 @@ body {background-color: transparent;}
     //item是第几道题目
     function initAnswer(item) {
         theAnswer = item;
+        G('now_page').innerHTML = theAnswer+'/'+countlib;
         html = '';
         var n = item - 1;
 
@@ -340,8 +357,8 @@ body {background-color: transparent;}
 </div>
 
 <!-- 页码 -->
-<div style="position:absolute;width:100px;height:67px;line-height: 67px;left:500px;top:585px;font-size:30px;font-weight: 500;text-align:center;">
-    8/30
+<div id="now_page" style="position:absolute;width:100px;height:67px;line-height: 67px;left:500px;top:585px;font-size:30px;font-weight: 500;text-align:center;">
+    
 </div>
 
 <!-- 下一页-->
@@ -384,6 +401,10 @@ body {background-color: transparent;}
 
 <!-- 弹窗 -->
 <div id="div_popup">
+</div>
+
+<!-- 默认的提示 -->
+<div id="default_tip" class="default_tip">
 </div>
 </body>
 </html>

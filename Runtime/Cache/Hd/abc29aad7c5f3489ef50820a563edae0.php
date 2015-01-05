@@ -13,17 +13,33 @@
 .page .now	{ width:60px;}
 body {background-color: transparent;}
 
-#div_popup{
-	position:absolute;
+#default_tip{
+	position: absolute;
+	top: 310px;
+	left: 490px;
+	width: 300px;
+	height: 60px;
+	color:#F8E391;
+	text-align: center;
+	line-height:30px;
+	background-color:saddlebrown;
 	visibility:hidden;
-	width:560px;
-	height:357px;
-	top:180px;
-	left:360px;
-	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+	z-index:99;
 }
 
 </style>
+<script type="text/javascript">
+
+<?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
+
+/* 弹窗信息  */
+var popup = function(){
+	var msg = "<?php echo ($floatMsg); ?>";
+	Epg.tip(msg);
+}
+
+</script>
+
 </head>
 <body>
 
@@ -40,6 +56,16 @@ body {background-color: transparent;}
 	top: 180px;
 	left: 85px;
 	background-image: url(/static/v1/hd/images/usercenter/bottom.png);
+}
+/* 用户中心 */
+#usercenter{
+	position: absolute;
+	display: block;
+	width: 134px;
+	height: 34px;
+	top: 85px;
+	left: 90px;
+	background-image: url(/static/v1/hd/images/usercenter/channel/usercenter.png);
 }
 /* 提示*/
 #tip{
@@ -67,9 +93,9 @@ body {background-color: transparent;}
 	var faceNum = <?php echo ($face); ?>;
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory_1.png',focusImage:'/static/v1/hd/images/usercenter/glory_2.png',resize:'-1',selectBox:'',right:'ch_2',down:''}, 
-	{id:'ch_2',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/learning_1.png',focusImage:'/static/v1/hd/images/usercenter/learning_2.png',resize:'-1',selectBox:'',left:'ch_1',right:'ch_3',down:''}, 
-	{id:'ch_3',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseinfo_1.png',focusImage:'/static/v1/hd/images/usercenter/baseinfo_2.png',resize:'-1',selectBox:'',left:'ch_2',down:'nickname'},
+	{id:'ch_1',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/channel/glory_1.png',focusImage:'/static/v1/hd/images/usercenter/channel/glory_2.png',onFocus:'1',resize:'-1',selectBox:'',right:'ch_2',down:'nickname'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/channel/learning_1.png',focusImage:'/static/v1/hd/images/usercenter/channel/learning_2.png',onFocus:'1',resize:'-1',selectBox:'',left:'ch_1',right:'ch_3',down:'nickname'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/channel/baseInfo_1.png',focusImage:'/static/v1/hd/images/usercenter/channel/baseInfo_2.png',onFocus:'1',resize:'-1',selectBox:'',left:'ch_2',down:'nickname'},
 
 	{id:'nickname',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/nickname_1.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/nickname_2.png',selectBox:'',left:'selectFace',right:'version',up:'ch_3',down:'sex'},
 	{id:'sex',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/sex_1.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/sex_2.png',selectBox:'',left:'selectFace',right:'advantage',up:'nickname',down:'birthday'},
@@ -82,7 +108,7 @@ body {background-color: transparent;}
 	{id:'disadvantage',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/disadvantage_1.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/disadvantage_2.png',left:'birthday',right:'',up:'advantage',down:'interests'},
 	{id:'interests',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/interests_1.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/interests_2.png',selectBox:'',left:'stage',up:'disadvantage',down:''},
 
-	{id:'selectFace',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'/static/v1/hd/images/usercenter/baseInfo/face_kuang.png',right:'nickname',up:'',down:'changeNum'},
+	{id:'selectFace',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'/static/v1/hd/images/usercenter/baseInfo/face_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
 	{id:'changeNum',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/change_1.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/change_2.png',selectBox:'',right:'birthday',up:'selectFace',down:''},
 
 	
@@ -97,51 +123,35 @@ body {background-color: transparent;}
 <!-- 静态图片 -->
 <div id="bottom"></div>
 <div id="tip"></div>
+<div id="usercenter"></div>
 
 <a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
 
-<!-- 以下是导航栏 -->
-<!-- 
-<div id="div_ch_1_focus"
-	style="position: absolute; visibility: hidden; left: 100px; top: 75px; text-align: center; width: 110px; height: 37;">
-	<img id="ch_1_focus" src="" width="110" height="37">
-</div>
-<div id="div_ch_1" style="position: absolute; left: 100px; top: 75px;">
-	<img id='ch_1' title="/Hd/Glory/index"
-		src="/static/v1/hd/images/usercenter/glory.png" width="110" height="37">
-</div>
-<div id="div_ch_2_focus"
-	style="position: absolute; visibility: hidden; left: 250px; top: 75px; text-align: center; width: 110px; height: 37;">
-	<img id="ch_2_focus" src="" width="110" height="37">
-</div>
-<div id="div_ch_2" style="position: absolute; left: 250px; top: 75px;">
-	<img id='ch_2' title="/Hd/Role/userInfo"
-		src="/static/v1/hd/images/usercenter/learning_evaluation.png" width="110" height="37">
-</div>
-<div id="div_ch_3_focus"
-	style="position: absolute; visibility: hidden; left: 400px; top: 75px; text-align: center; width: 110px; height: 37;">
-	<img id="ch_3_focus" src="" width="110" height="37">
-</div>
-<div id="div_ch_3" style="position: absolute; left: 400px; top: 75px;">
-	<img id='ch_3' title="/Hd/Role/userInfo"
-		src="/static/v1/hd/images/usercenter/info_base.png" width="110" height="37">
-</div> -->
 
 <!-- 以下是导航栏 -->
 <!-- 荣誉成就 -->
-<div id="div_ch_1" style="position: absolute; left: 100px; top: 75px;">
+<div id="div_ch_1" style="position:absolute;visibility:visible;left:300px;top:95px;">
 	<img id='ch_1' title="/Hd/Glory/index"
-		src="/static/v1/hd/images/usercenter/glory_1.png" width="92" height="26">
+		src="/static/v1/hd/images/usercenter/channel/glory_1.png" width="110" height="33">
+</div>
+<div id="div_ch_1_focus" style="position:absolute; visibility:hidden;left:300px;top:95px; text-align:center;">
+	<img id="ch_1_focus" src="/static/v1/hd/images/usercenter/channel/glory_2.png" width="110" height="33">
 </div>
 <!-- 学习评估 -->
-<div id="div_ch_2" style="position: absolute; left: 250px; top: 75px;">
+<div id="div_ch_2" style="position:absolute;visibility:visible;left:450px; top:95px;">
 	<img id='ch_2' title="/Hd/Learning/<?php echo ($stageType); ?>"
-		src="/static/v1/hd/images/usercenter/learning_1.png" width="92" height="26">
+		src="/static/v1/hd/images/usercenter/channel/learning_1.png" width="110" height="33">
+</div>
+<div id="div_ch_2_focus" style="position:absolute; visibility:hidden; left:450px; top:95px; text-align:center;">
+	<img id="ch_2_focus" src="/static/v1/hd/images/usercenter/channel/learning_2.png" width="110" height="33">
 </div>
 <!-- 基本信息 -->
-<div id="div_ch_3" style="position: absolute; left: 400px; top: 75px;">
+<div id="div_ch_3" style="position:absolute;visibility:visible;left:600px; top:95px;">
 	<img id='ch_3' title="/Hd/Role/userInfo"
-		src="/static/v1/hd/images/usercenter/baseinfo_1.png" width="92" height="26">
+		src="/static/v1/hd/images/usercenter/channel/baseInfo_1.png" width="110" height="33">
+</div>
+<div id="div_ch_3_focus" style="position:absolute; visibility:hidden; left:600px; top:95px; text-align:center;">
+	<img id="ch_3_focus" src="/static/v1/hd/images/usercenter/channel/baseInfo_2.png" width="110" height="33">
 </div>
 
 <?php if(is_array($userInfo)): $i = 0; $__LIST__ = $userInfo;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$info): $mod = ($i % 2 );++$i; if($i > 5){ $left = 670; $top = 300 + ($i-6)*50; }else{ $left = 370; $top = 300 + ($i-1)*50; } ?>
@@ -171,6 +181,10 @@ body {background-color: transparent;}
 
 <!-- 弹窗 -->
 <div id="div_popup">
+</div>
+
+<!-- 默认的提示 -->
+<div id="default_tip" class="default_tip">
 </div>
 </body>
 </html>

@@ -112,6 +112,8 @@ window.onload=function()
 
 </script>
 
+<a id="a_back" style="display:none;" href="{:get_back_url('Learning/learningEvaluation2',1)}" ></a>
+
 <!-- 课程名称 -->
 <div class="course_title">小学一年级语文（上）</div>
 
@@ -144,10 +146,10 @@ window.onload=function()
 
 <!-- 练习题分 -->
 <div class="score_bg"></div>
-<div class="score">88</div>
+<div class="score">{$score}</div>
 
 <!-- 重新答题 -->
-<div id="div_re_answer" style="position:absolute;width:100px;height:36px;left:480px;top:175px;text-align:center;">
+<div id="div_re_answer" title="{:U('Library/detail')}" style="position:absolute;width:100px;height:36px;left:480px;top:175px;text-align:center;">
 	<img id="re_answer" src="__HD__/images/library/wrong_anthology/re_answer.png" width="100" height="36">
 </div>
 <!-- 答案背景 -->

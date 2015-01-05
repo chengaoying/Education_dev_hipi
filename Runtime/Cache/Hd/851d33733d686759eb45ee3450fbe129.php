@@ -7,23 +7,39 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#000;font-weight: 600; font-size:22px;}
-.page .up	{ width:64px;}
-.page .down	{ width:64px;}
-.page .now	{ width:50px;}
+.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
+.page .up	{ width:25px;}
+.page .down	{ width:25px;}
+.page .now	{ width:60px;}
 body {background-color: transparent;}
 
-#div_popup{
-	position:absolute;
+#default_tip{
+	position: absolute;
+	top: 310px;
+	left: 490px;
+	width: 300px;
+	height: 60px;
+	color:#F8E391;
+	text-align: center;
+	line-height:30px;
+	background-color:saddlebrown;
 	visibility:hidden;
-	width:560px;
-	height:357px;
-	top:180px;
-	left:360px;
-	background-image: url(/static/v1/hd/images/common/popup/info_bg.png);
+	z-index:99;
 }
 
 </style>
+<script type="text/javascript">
+
+<?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
+
+/* 弹窗信息  */
+var popup = function(){
+	var msg = "<?php echo ($floatMsg); ?>";
+	Epg.tip(msg);
+}
+
+</script>
+
 </head>
 <body>
 
@@ -118,7 +134,7 @@ window.onload=function()
 
 
 <form id="form" action="<?php echo U('Role/changeNum');?>" method="post" style="padding:10px">
-	<?php $__FOR_START_29205__=1;$__FOR_END_29205__=$count+1;for($i=$__FOR_START_29205__;$i < $__FOR_END_29205__;$i+=1){ ?><input type="hidden" id="option_<?php echo ($i); ?>ID" name="option_<?php echo ($i); ?>" value=""/><?php } ?>
+	<?php $__FOR_START_29532__=1;$__FOR_END_29532__=$count+1;for($i=$__FOR_START_29532__;$i < $__FOR_END_29532__;$i+=1){ ?><input type="hidden" id="option_<?php echo ($i); ?>ID" name="option_<?php echo ($i); ?>" value=""/><?php } ?>
 </form>
 
 
@@ -186,6 +202,10 @@ function select(option){
 
 <!-- 弹窗 -->
 <div id="div_popup">
+</div>
+
+<!-- 默认的提示 -->
+<div id="default_tip" class="default_tip">
 </div>
 </body>
 </html>

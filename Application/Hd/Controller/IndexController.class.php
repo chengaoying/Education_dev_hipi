@@ -41,12 +41,12 @@ class IndexController extends CommonController {
 		
 		//角色信息
 		$role = unserialize(Session('role'));
-		 
+		
 		$proConfig = get_pro_config_content('proConfig');
 		//特别推荐（该课程需要有海报图片）
 		$k1 = array_search('特别推荐一',$proConfig['keys']);
 		$k2 = array_search('特别推荐二',$proConfig['keys']);
-		$c = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($k1,$k2),1,2);
+		$c = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($k1,$k2),1,5);
 		$c = $c['rows'];
 		foreach ($c as $k=>$v){
 			if($v['imgUrl']){
@@ -55,8 +55,8 @@ class IndexController extends CommonController {
 				$c[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
 				$c[$k]['banner']  = get_upfile_url(trim($imgs[1]));
 			}
-			if(strpos($v['keys'], strval($k1))) $c1 = $c[$k];//特别推荐课程一
-			if(strpos($v['keys'], strval($k2))) $c2 = $c[$k];//特别推荐课程二
+			if(strchr($v['keys'], strval($k1))) $c1 = $c[$k];//特别推荐课程一
+			if(strchr($v['keys'], strval($k2))) $c2 = $c[$k];//特别推荐课程二
 		}
 		
 		//一般推荐课程
@@ -69,7 +69,7 @@ class IndexController extends CommonController {
 		if(in_array($roleGrade['chKey'], array('early','preschool'))){ 
 			$isEarly = true;
 			$target['stageKey'] = $roleStage['sKey'];
-			$target['linkUrl']  = '';
+			$target['linkUrl']  = U("Role/growthIndex");
 			$courses = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key),1,3);
 		}else{
 			$courses = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key),1,4);
