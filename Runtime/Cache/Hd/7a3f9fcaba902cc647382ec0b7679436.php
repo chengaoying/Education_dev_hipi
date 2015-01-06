@@ -159,7 +159,7 @@ window.onload=function()
 
 
 <form id="form" action="<?php echo U(Role/selectFace);?>" method="post" style="padding:10px">
-	<?php $__FOR_START_15653__=0;$__FOR_END_15653__=13;for($i=$__FOR_START_15653__;$i < $__FOR_END_15653__;$i+=1){ ?><input type="hidden" id="face_<?php echo ($i); ?>ID" name="face_<?php echo ($i); ?>" value=""/><?php } ?>
+	<?php $__FOR_START_31764__=0;$__FOR_END_31764__=13;for($i=$__FOR_START_31764__;$i < $__FOR_END_31764__;$i+=1){ ?><input type="hidden" id="face_<?php echo ($i); ?>ID" name="face_<?php echo ($i); ?>" value=""/><?php } ?>
 </form>
 
 <!-- 默认  -->
@@ -169,7 +169,7 @@ window.onload=function()
 <div id="div_face_0_focus" style="position:absolute;visibility:hidden;left:140px;top:210px;text-align:center;">
 	<img id="face_0_focus" src="" width="125" height="165">
 </div>
-<?php $__FOR_START_32506__=1;$__FOR_END_32506__=13;for($i=$__FOR_START_32506__;$i < $__FOR_END_32506__;$i+=1){ if($i > 6){ $top = 400; $left = 320 + ($i-7)*140; }else{ $top = 210; $left = 320 + ($i-1)*140; } ?>
+<?php $__FOR_START_7357__=1;$__FOR_END_7357__=13;for($i=$__FOR_START_7357__;$i < $__FOR_END_7357__;$i+=1){ if($i > 6){ $top = 400; $left = 320 + ($i-7)*140; }else{ $top = 210; $left = 320 + ($i-1)*140; } ?>
 	<div id="div_face_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="face_<?php echo ($i); ?>" src="/static/v1/hd/images/usercenter/baseInfo/face_<?php echo ($i); ?>.png" width="130" height="170">
 	</div>

@@ -20,8 +20,7 @@ class ResourceController extends CommonController {
     	$template = 'play'.$areacode;
         $this->assign(array(
             'areacode' 	=> $areacode,
-        	'sectionId'	=> $sectionId,
-        	'topicId'	=> $section['topicId'],		
+        	'section'	=> $section,
         ));
         $this->display($template);
     }

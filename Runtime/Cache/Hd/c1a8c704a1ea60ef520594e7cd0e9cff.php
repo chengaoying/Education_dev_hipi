@@ -178,7 +178,7 @@ var preBtn = "<?php echo ($preId); ?>";
 	</div>
 	<!-- 错题集 -->
 	<div id="div_wrong_<?php echo ($i); ?>" style="position:absolute; left:<?php echo ($left+880); ?>px; top:<?php echo ($top+20); ?>px;">
-		<img id="wrong_<?php echo ($i); ?>" title="<?php echo U('Library/wrongAnthology');?>" src="/static/v1/hd/images/usercenter/learnEvaluation2/wrong_1.png" width="63" height="36">
+		<img id="wrong_<?php echo ($i); ?>" title="<?php echo U('Library/wrongAnthology?topicId=100101&sectionId=10010101');?>" src="/static/v1/hd/images/usercenter/learnEvaluation2/wrong_1.png" width="63" height="36">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 分页 -->

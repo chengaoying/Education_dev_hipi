@@ -102,7 +102,7 @@ window.onload=function()
 		}
 	</php>
 	<div id="div_section_{$i}" style="position:absolute;width:360px;height:50px;left:{$left}px;top:{$top}px;text-indent:20px; text-align:left;line-height:50px;">
-		<span id="section_{$i}" title="{:U('Resource/play?id='.$section['id'])}">{$section['name']}</span>
+		<span id="section_{$i}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$course['id'])}">{$section['name']}</span>
 	</div>
 	<div id="div_section_{$i}_focus" style="position:absolute;visibility: hidden;width:370px;height:60px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
 		<img id="section_{$i}_focus" src="" width="360" height="50">

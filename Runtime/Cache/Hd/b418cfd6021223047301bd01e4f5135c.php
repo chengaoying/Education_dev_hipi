@@ -99,7 +99,7 @@ window.onload=function()
 {
     initButtons();
     popup();
-	Epg.btn.init('btn_order',buttons,true);	
+	Epg.btn.init('section_1',buttons,true);	
 };
 </script>
 
@@ -126,7 +126,7 @@ window.onload=function()
 <!-- 课时列表 -->
 <?php if(is_array($sections)): $i = 0; $__LIST__ = $sections;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$section): $mod = ($i % 2 );++$i; $top = 180; $left = 85 + ($i-1)*225; ?>
     <div id="div_section_<?php echo ($i); ?>" style="position:absolute;width:220px;height:310px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-        <img id="section_<?php echo ($i); ?>" title="<?php echo U('Resource/play?id='.$section['id']);?>" src="<?php echo get_upfile_url($section['imgUrl']);?>" width="210" height="300">
+        <img id="section_<?php echo ($i); ?>" title="<?php echo U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId);?>" src="<?php echo get_upfile_url($section['imgUrl']);?>" width="210" height="300">
     </div>
     <div id="div_section_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:320px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
         <img id="section_<?php echo ($i); ?>_focus" src="" width="220" height="310">
@@ -142,7 +142,7 @@ window.onload=function()
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 底部投影 -->
-<?php $__FOR_START_20235__=1;$__FOR_END_20235__=4;for($i=$__FOR_START_20235__;$i < $__FOR_END_20235__;$i+=1){ $left = 90 + ($i-1)*375; ?>
+<?php $__FOR_START_20901__=1;$__FOR_END_20901__=4;for($i=$__FOR_START_20901__;$i < $__FOR_END_20901__;$i+=1){ $left = 90 + ($i-1)*375; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

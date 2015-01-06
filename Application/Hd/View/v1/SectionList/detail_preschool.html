@@ -55,7 +55,7 @@ window.onload=function()
 {
     initButtons();
     popup();
-	Epg.btn.init('btn_order',buttons,true);	
+	Epg.btn.init('section_1',buttons,true);	
 };
 </script>
 
@@ -85,7 +85,7 @@ window.onload=function()
          $top = 180; $left = 85 + ($i-1)*225;
     </php>
     <div id="div_section_{$i}" style="position:absolute;width:220px;height:310px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="section_{$i}" title="{:U('Resource/play?id='.$section['id'])}" src="{:get_upfile_url($section['imgUrl'])}" width="210" height="300">
+        <img id="section_{$i}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId)}" src="{:get_upfile_url($section['imgUrl'])}" width="210" height="300">
     </div>
     <div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:320px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
         <img id="section_{$i}_focus" src="" width="220" height="310">

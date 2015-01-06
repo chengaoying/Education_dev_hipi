@@ -139,7 +139,7 @@ window.onload=function()
 
 <?php if(is_array($sections)): $i = 0; $__LIST__ = $sections;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$section): $mod = ($i % 2 );++$i; if($i<=5){ $left = 440; $top = ($i-1)*60+340; }else{ $left = 820; $top = ($i-6)*60+340; } ?>
 	<div id="div_section_<?php echo ($i); ?>" style="position:absolute;width:360px;height:50px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-indent:20px; text-align:left;line-height:50px;">
-		<span id="section_<?php echo ($i); ?>" title="<?php echo U('Resource/play?id='.$section['id']);?>"><?php echo ($section['name']); ?></span>
+		<span id="section_<?php echo ($i); ?>" title="<?php echo U('Section/index?sectionId='.$section['id'].'&courseId='.$course['id']);?>"><?php echo ($section['name']); ?></span>
 	</div>
 	<div id="div_section_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;width:370px;height:60px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
 		<img id="section_<?php echo ($i); ?>_focus" src="" width="360" height="50">

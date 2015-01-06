@@ -341,6 +341,9 @@ var popup = function(){
     }
 </script>
 
+<!--返回-->
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+
 <!-- 标题 -->
 <div class="title" id="title"><?php echo ($title); ?></div>
 

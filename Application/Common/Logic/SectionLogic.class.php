@@ -28,4 +28,12 @@ class SectionLogic extends BaseLogic{
 		return $this->client->querySectionList($topicIds, $pageNo, $pageSize);
 	}
 	
+	/**
+	 * 分页查找所有课时
+	 * @param int $sectionId
+	 */
+	public function querySectionByPrivilege($privilege, $pageNo, $pageSize){
+		return $this->client->querySectionListByPrivilege($privilege,$pageNo, $pageSize);
+	}
+	
 }

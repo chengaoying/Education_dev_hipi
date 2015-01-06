@@ -58,7 +58,6 @@ class IndexController extends CommonController {
 			if(strchr($v['keys'], strval($k1))) $c1 = $c[$k];//特别推荐课程一
 			if(strchr($v['keys'], strval($k2))) $c2 = $c[$k];//特别推荐课程二
 		}
-		
 		//一般推荐课程
 		$roleStage = $this->getStage($role['stageId']); //该角色对应的龄段信息
 		$roleGrade = $this->getGrade($roleStage['chId']);//该角色对应的年级信息

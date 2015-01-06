@@ -120,9 +120,9 @@ var popup = function(){
 		<img id="btn_lesson" src="/static/v1/hd/images/play/btn_lesson.png" width="150" height="50">
 	</div>
 	<!-- 练习-->
-	<div id="div_btn_exercise" style="position:absolute;width:160px;height:60px;left:1060px;top:50px;">
-		<img id="btn_exercise" title="<?php echo U('Library/detail?id='.$sectionId.'&topicId='.$topicId);?>" src="/static/v1/hd/images/play/btn_exercise.png" width="150" height="50">
-	</div>
+	<?php if($section['libId'] != ''): ?><div id="div_btn_exercise" style="position:absolute;width:160px;height:60px;left:1060px;top:50px;">
+			<img id="btn_exercise" title="<?php echo U('Library/detail?sectionId='.$section['id'].'&topicId='.$section['topicId']);?>" src="/static/v1/hd/images/play/btn_exercise.png" width="150" height="50">
+		</div><?php endif; ?>
 </div>
 
 

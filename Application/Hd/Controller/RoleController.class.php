@@ -522,7 +522,7 @@ class RoleController extends CommonController {
 	 */
 	public function growthIndexAct()
 	{
-		$role = unserialize(Session('role'));
+/* 		$role = unserialize(Session('role'));
 		$yourdate=$role['birthday'];
 		if(empty($yourdate))
 		{
@@ -543,7 +543,11 @@ class RoleController extends CommonController {
 		if(date("d")>=date("d",$yourdate_unix))
 		{
 			$m += 1;
-		}
+		} */
+		$role = unserialize(Session('role'));
+		$birthday=$role['birthday'];
+		$data = monthNum($birthday);
+		$m = $data['data']['monthNum'];
 		//确保月份在1-12
 		if($m<=0)
 		{

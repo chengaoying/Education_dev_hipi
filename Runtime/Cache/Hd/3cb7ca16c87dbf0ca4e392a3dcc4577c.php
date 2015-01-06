@@ -121,7 +121,7 @@ window.onload=function()
 {
     initButtons();
     popup();
-	Epg.btn.init('btn_order',buttons,true);	
+	Epg.btn.init('section_1',buttons,true);	
 };
 </script>
 
@@ -145,7 +145,6 @@ window.onload=function()
 <!-- 知识点列表 -->
 <?php if(is_array($topics)): $i = 0; $__LIST__ = $topics;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$t): $mod = ($i % 2 );++$i; $top = 180+($i-1)*65; ?>
     <div id="div_topic_<?php echo ($i); ?>" style="position: absolute;height:54px;left:345px;top:<?php echo ($top); ?>px;">
-        <!-- <img id="topic_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?chId='.$chId.'&stageId='.$stageId.'&courseId='.$courseId.'&courseType='.$courseType.'&topicId='.$t['id']);?>" src="<?php echo ($t['linkImage']); ?>" height="54" /> --> 
         <img id="topic_<?php echo ($i); ?>" title="<?php echo U('SectionList/index?courseId='.$courseId.'&topicId='.$t['id']);?>" src="<?php echo ($t['linkImage']); ?>" height="54" />
    </div><?php endforeach; endif; else: echo "" ;endif; ?>
 

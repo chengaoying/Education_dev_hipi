@@ -16,13 +16,11 @@ class LibraryController extends CommonController {
      */
 	public function detailAct() {
         $topicId = I('topicId',0);
-        $sectionId = I('id',0);
+        $sectionId = I('sectionId',0);
         if(!$topicId || !$sectionId){
-            //$this->showMessage('参数错误');
+            $this->showMessage('参数错误');
         }
-        $roleId = 1;
-        $topicId = 100101;
-        $sectionId = 10010101;
+        $roleId = $this->role['id'];
         $answerList = D('Library','Logic')->queryLib($sectionId);
         if($answerList['status']==0){
              $this->showMessage($answerList['info'],self::ICON_ERROR,'','Public:message');
@@ -42,11 +40,12 @@ class LibraryController extends CommonController {
      * 错选集
      */
     public function wrongAnthologyAct() {
-        $roleId = 1;
-        $topicId = I('topicId',1);
-        $topicId = 100101;
-        $sectionId = 10010101;
-        
+        $roleId = $this->role['id'];;
+        $topicId = I('topicId',0);
+        $sectionId = I('sectionId',0);       
+        if(!$topicId || !$sectionId){
+            $this->showMessage('参数错误');
+        }
         $s_page = I('spage',1); //课时页数
         $s_pageSize = 7;
         
@@ -54,10 +53,7 @@ class LibraryController extends CommonController {
         $l_pageSize = 6;
         
         $wrongLib = D('Library','Logic')->queryRoleWrongLib($roleId,$topicId,$sectionId,$s_page,$s_pageSize,$l_page,$l_pageSize);
-        if($wrongLib['status']==0){
-        	$this->showMessage($wrongLib['info'],self::ICON_ERROR,'','Public:message');
-        }
-        //         print_r($wrongLib);
+        //print_r($wrongLib);
         $libList = $wrongLib['sectionList']['rows'];
         
         $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images';
@@ -125,11 +121,11 @@ class LibraryController extends CommonController {
             $data['score'] = $countScore;
             $data['redFlower'] = $redFlower;
             $data['lib'] = $libData;
-            $result = D('Library','Logic')->saveRoleLib(1,$data);
+            $result = D('Library','Logic')->saveRoleLib($this->role['id'],$data);
             if($result['status'] == 1){
-                $this->addFloatMessage('保存成功！', get_back_url('Index/recommend',1,0,1));
+                $this->addFloatMessage('保存成功！',get_back_url('Index/recommend',1,0,1));
             }else{
-                $this->addFloatMessage('保存失败！');
+                $this->showMessage('保存失败！');
             }
             
         }

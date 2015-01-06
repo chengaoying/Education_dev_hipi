@@ -123,7 +123,7 @@ window.onload=function()
             }
         </php>
         <div id="div_section_{$i}_{$j}" style="position:absolute;width:150px;height:{$height}px;left:{$left}px;top:{$top}px;line-height: {$height}px;text-align:center;">
-             <img id="section_{$i}_{$j}" title="{:U('Resource/play?id='.$section['id'])}" src="__HD__/images/common/transparent.png" width="150" height="{$height}">
+             <img id="section_{$i}_{$j}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId)}" src="__HD__/images/common/transparent.png" width="150" height="{$height}">
         </div>
         <div id="div_section_{$i}_{$j}" style="position:absolute;width:150px;height:{$height}px;left:{$left}px;top:{$top}px;text-align:left;vertical-align: middle;">
             <span style="color:#666;font-size:16px;">{$section['name']}</span>
