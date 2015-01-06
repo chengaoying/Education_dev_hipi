@@ -175,7 +175,7 @@ window.onload=function()
     <div id="div_lib_<?php echo ($i); ?>" style="position:absolute;height:50px;left:85px;top:<?php echo ($top); ?>px;z-index: 100">
         <img id="lib_<?php echo ($i); ?>" src="" width="140" height="50" />
 	</div>
-    <div id="div_lib_<?php echo ($i); ?>_focus" style="position:absolute;left:125px;top:<?php echo ($top-2); ?>px;z-index: 1000;">
+    <div id="div_lib_<?php echo ($i); ?>_focus" style="position:absolute;left:115px;top:<?php echo ($top-2); ?>px;z-index: 1000;">
         <span id="lib_<?php echo ($i); ?>_focus" style=" display: block;height: 48px;line-height: 48px; font-size: 22px;color:#f65074;z-index: 9999"><?php echo msubstr($lib['sectionName'],0,3);?></span>
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
@@ -189,7 +189,7 @@ window.onload=function()
 <div class="score"><?php echo ($score); ?></div>
 
 <!-- 重新答题 -->
-<div id="div_re_answer" title="<?php echo U('Library/detail');?>" style="position:absolute;width:100px;height:36px;left:480px;top:175px;text-align:center;">
+<div id="div_re_answer" title="<?php echo U('Library/detail',array('topicId'=>$topicId,'sectionId'=>$sectionId));?>" style="position:absolute;width:100px;height:36px;left:480px;top:175px;text-align:center;">
 	<img id="re_answer" src="/static/v1/hd/images/library/wrong_anthology/re_answer.png" width="100" height="36">
 </div>
 <!-- 答案背景 -->

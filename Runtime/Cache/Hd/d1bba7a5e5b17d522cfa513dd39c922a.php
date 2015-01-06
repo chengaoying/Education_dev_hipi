@@ -155,7 +155,7 @@ var popup = function(){
 
 
 <!-- progress -->
-<?php $__FOR_START_4657__=1;$__FOR_END_4657__=10;for($i=$__FOR_START_4657__;$i < $__FOR_END_4657__;$i+=1){ $left = 520 + ($i-1)*70; $top = 270; ?>
+<?php $__FOR_START_1457__=1;$__FOR_END_1457__=10;for($i=$__FOR_START_1457__;$i < $__FOR_END_1457__;$i+=1){ $left = 520 + ($i-1)*70; $top = 270; ?>
 	
 	<div  style="position:absolute; left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
 		<img  src="/static/v1/hd/images/usercenter/learnEvaluation1/color_<?php echo ($i); ?>.png" width="45" height="300">

@@ -127,14 +127,14 @@ window.onload=function()
 </div>
 	<!-- 免费专区 -->
 <div id="div_free" style="position:absolute;width:160px;height:145px;left:80px;top:330px;text-align:center;">
-	<img id="free"  src="/static/v1/hd/images/index/recommend/btn_free.png" width="150" height="135">
+	<img id="free"  title="<?php echo U('FreeZone/index');?>" src="/static/v1/hd/images/index/recommend/btn_free.png" width="150" height="135">
 </div>
 <div id="div_free_focus" style="position:absolute;visibility: hidden;width:170px;height:155px;left:75px;top:325px;text-align:center;">
 	<img id="free_focus" src="" width="160" height="145">
 </div>
 	<!-- 最近观看 -->
 <div id="div_record" style="position:absolute;width:160px;height:145px;left:80px;top:480px;text-align:center;">
-	<img id="record"  src="/static/v1/hd/images/index/recommend/btn_record.png" width="150" height="135">
+	<img id="record"  title="<?php echo U('RecentlyWatch/index');?>" src="/static/v1/hd/images/index/recommend/btn_record.png" width="150" height="135">
 </div>
 <div id="div_record_focus" style="position:absolute;visibility: hidden;width:170px;height:155px;left:75px;top:475px;text-align:center;">
 	<img id="record_focus" src="" width="160" height="145">
@@ -194,7 +194,7 @@ window.onload=function()
 
 <div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x60.png);"></div>
 <div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x60.png);"></div>
-<?php $__FOR_START_31145__=1;$__FOR_END_31145__=4;for($i=$__FOR_START_31145__;$i < $__FOR_END_31145__;$i+=1){ $left = 535 + ($i-1)*225; ?>
+<?php $__FOR_START_11589__=1;$__FOR_END_11589__=4;for($i=$__FOR_START_11589__;$i < $__FOR_END_11589__;$i+=1){ $left = 535 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x60.png);"></div><?php } ?>
 
 
