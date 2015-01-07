@@ -284,6 +284,7 @@ class RoleController extends CommonController {
 		$role = unserialize(Session('role'));
 		$proConf = get_pro_config_content('proConfig');
 		$subject = $proConf['subject'];
+		//$interest = $proConf['interest']; //TODO 兴趣和科目配置分开
 		if(!IS_POST)
 		{
 			$type = I('type');

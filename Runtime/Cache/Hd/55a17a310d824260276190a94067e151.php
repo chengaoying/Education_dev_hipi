@@ -55,7 +55,7 @@ var popup = function(){
 	height: 410px;
 	top: 165px;
 	left: 100px;
-	background-image: url(/static/v1/hd/images/freeZone/bottom.png);
+	background-image: url(/static/v1/hd/images/recentlyWatch/bottom.png);
 }
 /* logo */
 #logo{
@@ -65,7 +65,7 @@ var popup = function(){
 	height: 56px;
 	top: 85px;
 	left: 100px;
-	background-image: url(/static/v1/hd/images/freeZone/logo.png);
+	background-image: url(/static/v1/hd/images/recentlyWatch/logo.png);
 }
 /* 推荐 */
 #recommend{
@@ -75,7 +75,7 @@ var popup = function(){
 	height: 25px;
 	top: 110px;
 	left: 965px;
-	background-image: url(/static/v1/hd/images/freeZone/recommend.png);
+	background-image: url(/static/v1/hd/images/recentlyWatch/view.png);
 }
 
 </style>
@@ -105,10 +105,9 @@ var popup = function(){
 			if(i%colnum==0&&i>8) obj.right = 'optionRecmd_2';
 			if(i==buttons.length-4&&i<=8) obj.right = 'optionRecmd_1';
 			if(i==buttons.length-4&&i>8) obj.right = 'optionRecmd_2';
-			
 			buttons[i-1] = obj;
 		}
-		if(count>=1) buttons[buttons.length-4-1]['down'] = 'page_prev';	
+		if(count>=1) buttons[buttons.length-4-1]['down'] = 'page_prev';
 		if(count>=2) buttons[buttons.length-4-2]['down'] = 'page_prev';
 		
 		buttons[buttons.length-4] = {id:'optionRecmd_1',linkImage:img1,selectBox:'/static/v1/hd/images/freeZone/kuang_big.png',resize:'-1',left:['option_4','option_2','option_1'],down:'optionRecmd_2'};		
@@ -134,24 +133,24 @@ var popup = function(){
 <?php if(is_array($datas)): $i = 0; $__LIST__ = $datas;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i; $left = 95 + (($i-1)%2)*414; $top = 160 + (ceil($i/2)-1)*60; ?>
 	
 	<div id="div_option_<?php echo ($i); ?>" style="position:absolute;visibility:hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-		<img id="option_<?php echo ($i); ?>" title="<?php echo U('Resource/play?sectionId='.$data['id']);?>" src="" width="370" height="60">
+		<img id="option_<?php echo ($i); ?>" title="<?php echo ($data['url']); ?>" src="" width="370" height="60">
 	</div>
 	<div id="div_option_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="option_<?php echo ($i); ?>_focus" title="" src="" width="370" height="60">
 	</div>
 	<!-- 文字 -->
 	<div style="position:absolute;width:330px;height:30px;left:<?php echo ($left+20); ?>px;top:<?php echo ($top+10); ?>px;line-height:30px;text-align:center;">
-		<span ><?php echo ($data['name']); ?></span>
+		<span ><?php echo ($data['title']); ?></span>
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 	<div id="div_optionRecmd_1" style="position:absolute;left:965px;top:165px;text-align:center;">
-		<img id="optionRecmd_1" title="<?php echo U('SectionList/index?courseId='.$url_recommend1);?>" src="<?php echo ($img_recommend1); ?>" width="210" height="210">
+		<img id="optionRecmd_1" title="<?php echo U('Resource/play?courseId='.$url_recommend1);?>" src="<?php echo ($img_recommend1); ?>" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_1_focus" style="position:absolute;visibility:hidden;left:960px;top:160px;text-align:center;">
 		<img id="optionRecmd_1_focus" src="/static/v1/hd/images/freeZone/kuang_big.png" width="220" height="220">
 	</div>
 	<div id="div_optionRecmd_2" style="position:absolute;left:965px;top:395px;text-align:center;">
-		<img id="optionRecmd_2" title="<?php echo U('SectionList/index?courseId='.$url_recommend2);?>" src="<?php echo ($img_recommend2); ?>" width="210" height="210">
+		<img id="optionRecmd_2" title="<?php echo U('Resource/play?courseId='.$url_recommend2);?>" src="<?php echo ($img_recommend2); ?>" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_2_focus" style="position:absolute;visibility:hidden;left:960px;top:390px;text-align:center;">
 		<img id="optionRecmd_2_focus" src="/static/v1/hd/images/freeZone/kuang_big.png" width="220" height="220">

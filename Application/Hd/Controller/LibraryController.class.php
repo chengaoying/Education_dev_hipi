@@ -42,18 +42,19 @@ class LibraryController extends CommonController {
     public function wrongAnthologyAct() {
         $roleId = $this->role['id'];;
         $topicId = I('topicId',0);
-        $sectionId = I('sectionId',0);       
+        $sectionId = I('sectionId',0);  
+        $index = I('index',1);
         if(!$topicId || !$sectionId){
             $this->showMessage('参数错误');
         }
-        $s_page = I('spage',1); //课时页数
+        $s_page = (int)I('spage',1); //课时页数
         $s_pageSize = 7;
         
-        $l_page = I('lpage',1);//题目页数
+        $l_page = (int)I('lpage',1);//题目页数
         $l_pageSize = 6;
         
-        $wrongLib = D('Library','Logic')->queryRoleWrongLib($roleId,$topicId,$sectionId,$s_page,$s_pageSize,$l_page,$l_pageSize);
-        //print_r($wrongLib);
+        $wrongLib = D('Library','Logic')->queryRoleWrongLib($roleId,$topicId,$sectionId,$s_page,$index,$s_pageSize,$l_page,$l_pageSize);
+//         print_r($wrongLib);exit;
         $libList = $wrongLib['sectionList']['rows'];
         
         $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images';
@@ -69,8 +70,8 @@ class LibraryController extends CommonController {
             'nextImg' => $imgPath .'/library/wrong_anthology/down.png',
             'nowIsShow' => 0,
         );
-        $s_html = get_pageHtml($wrongLib['sectionList']['total'], $s_pageSize, $config,array('sectionId'=>$sectionId));
-        //print_r($s_html);
+        $s_html = get_pageHtml($wrongLib['sectionList']['total'], $s_pageSize, $config,array('topicId'=>$topicId,'sectionId'=>$sectionId,'index'=>1));
+//         print_r($s_html);
         
         $questionList = $wrongLib['rows'];
         $config2 = array(
@@ -87,7 +88,7 @@ class LibraryController extends CommonController {
             'nextImg' => $imgPath .'/library/wrong_anthology/next.png',
             'nowIsShow' => 1,
         );
-        //$l_html = get_pageHtml($wrongLib['total'], $l_pageSize, $config2);
+        $l_html = get_pageHtml($wrongLib['total'], $l_pageSize, $config2,array('topicId'=>$topicId,'sectionId'=>$sectionId,'index'=>$index,'spage'=>$s_page));
         //print_r($libList);
         $this->assign(array(
             'topicId' => $topicId,
@@ -97,6 +98,8 @@ class LibraryController extends CommonController {
             'score' => $wrongLib['score'],
             's_html' => $s_html['html'],
             'l_html' => $l_html['html'],
+        	'index'=>$index,
+        	's_page'=>$s_page,
         ));
         $this->display();
     }

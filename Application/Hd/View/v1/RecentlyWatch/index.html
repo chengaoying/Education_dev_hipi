@@ -11,7 +11,7 @@
 	height: 410px;
 	top: 165px;
 	left: 100px;
-	background-image: url(__HD__/images/freeZone/bottom.png);
+	background-image: url(__HD__/images/recentlyWatch/bottom.png);
 }
 /* logo */
 #logo{
@@ -21,7 +21,7 @@
 	height: 56px;
 	top: 85px;
 	left: 100px;
-	background-image: url(__HD__/images/freeZone/logo.png);
+	background-image: url(__HD__/images/recentlyWatch/logo.png);
 }
 /* 推荐 */
 #recommend{
@@ -31,7 +31,7 @@
 	height: 25px;
 	top: 110px;
 	left: 965px;
-	background-image: url(__HD__/images/freeZone/recommend.png);
+	background-image: url(__HD__/images/recentlyWatch/view.png);
 }
 
 </style>
@@ -61,10 +61,9 @@
 			if(i%colnum==0&&i>8) obj.right = 'optionRecmd_2';
 			if(i==buttons.length-4&&i<=8) obj.right = 'optionRecmd_1';
 			if(i==buttons.length-4&&i>8) obj.right = 'optionRecmd_2';
-			
 			buttons[i-1] = obj;
 		}
-		if(count>=1) buttons[buttons.length-4-1]['down'] = 'page_prev';	
+		if(count>=1) buttons[buttons.length-4-1]['down'] = 'page_prev';
 		if(count>=2) buttons[buttons.length-4-2]['down'] = 'page_prev';
 		
 		buttons[buttons.length-4] = {id:'optionRecmd_1',linkImage:img1,selectBox:'__HD__/images/freeZone/kuang_big.png',resize:'-1',left:['option_4','option_2','option_1'],down:'optionRecmd_2'};		
@@ -94,25 +93,25 @@
 	</php>
 	
 	<div id="div_option_{$i}" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
-		<img id="option_{$i}" title="{:U('Resource/play?sectionId='.$data['id'])}" src="" width="370" height="60">
+		<img id="option_{$i}" title="{$data['url']}" src="" width="370" height="60">
 	</div>
 	<div id="div_option_{$i}_focus" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
 		<img id="option_{$i}_focus" title="" src="" width="370" height="60">
 	</div>
 	<!-- 文字 -->
 	<div style="position:absolute;width:330px;height:30px;left:{$left+20}px;top:{$top+10}px;line-height:30px;text-align:center;">
-		<span >{$data['name']}</span>
+		<span >{$data['title']}</span>
 	</div>
 </volist>
 
 	<div id="div_optionRecmd_1" style="position:absolute;left:965px;top:165px;text-align:center;">
-		<img id="optionRecmd_1" title="{:U('SectionList/index?courseId='.$url_recommend1)}" src="{$img_recommend1}" width="210" height="210">
+		<img id="optionRecmd_1" title="{:U('Resource/play?courseId='.$url_recommend1)}" src="{$img_recommend1}" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_1_focus" style="position:absolute;visibility:hidden;left:960px;top:160px;text-align:center;">
 		<img id="optionRecmd_1_focus" src="__HD__/images/freeZone/kuang_big.png" width="220" height="220">
 	</div>
 	<div id="div_optionRecmd_2" style="position:absolute;left:965px;top:395px;text-align:center;">
-		<img id="optionRecmd_2" title="{:U('SectionList/index?courseId='.$url_recommend2)}" src="{$img_recommend2}" width="210" height="210">
+		<img id="optionRecmd_2" title="{:U('Resource/play?courseId='.$url_recommend2)}" src="{$img_recommend2}" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_2_focus" style="position:absolute;visibility:hidden;left:960px;top:390px;text-align:center;">
 		<img id="optionRecmd_2_focus" src="__HD__/images/freeZone/kuang_big.png" width="220" height="220">
