@@ -142,7 +142,7 @@ window.onload=function()
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 底部投影 -->
-<?php $__FOR_START_18191__=1;$__FOR_END_18191__=4;for($i=$__FOR_START_18191__;$i < $__FOR_END_18191__;$i+=1){ $left = 90 + ($i-1)*375; ?>
+<?php $__FOR_START_11070__=1;$__FOR_END_11070__=4;for($i=$__FOR_START_11070__;$i < $__FOR_END_11070__;$i+=1){ $left = 90 + ($i-1)*375; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

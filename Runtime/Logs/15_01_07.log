@@ -4804,3 +4804,299 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000622s ]
 INFO: [ app_end ] --END-- [ RunTime:0.000737s ]
 
+[ 2015-01-07T19:05:43+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000980s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000651s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000731s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001562s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000666s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000788s ]
+
+[ 2015-01-07T19:06:15+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000365s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000469s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000495s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001142s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000667s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000877s ]
+
+[ 2015-01-07T19:06:15+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000550s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000867s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000558s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001683s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000522s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000663s ]
+
+[ 2015-01-07T19:06:16+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000821s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000568s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000943s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001747s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000626s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000764s ]
+
+[ 2015-01-07T19:06:16+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000573s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000766s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001542s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000650s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000806s ]
+
+[ 2015-01-07T19:06:16+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000585s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000523s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000709s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001418s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000560s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000683s ]
+
+[ 2015-01-07T19:06:30+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000993s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000483s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000665s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001353s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000699s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000848s ]
+
+[ 2015-01-07T19:06:31+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000746s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000819s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000792s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001965s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000578s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000704s ]
+
+[ 2015-01-07T19:06:43+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000505s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000642s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000773s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001600s ]
+
+[ 2015-01-07T19:06:43+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000365s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000434s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000558s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001158s ]
+
+[ 2015-01-07T19:06:43+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000492s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000618s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000655s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001517s ]
+
+[ 2015-01-07T19:06:43+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000362s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000414s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000526s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001112s ]
+
+[ 2015-01-07T19:06:43+08:00 ] 192.168.0.152 /Api/Sync
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000404s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000451s ]
+NOTIC: [8] Undefined index: HTTP_REFERER D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Common\Behaviors\AppBeginBehavior.class.php 第 13 行.
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000522s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001140s ]
+
+[ 2015-01-07T19:06:45+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000423s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000572s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000627s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001418s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001294s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001450s ]
+
+[ 2015-01-07T19:11:07+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000504s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000873s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000779s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001936s ]
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined variable: c1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 62 行.
+NOTIC: [8] Undefined variable: c2 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 63 行.
+NOTIC: [8] Undefined variable: courses D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 64 行.
+NOTIC: [8] Undefined variable: isEarly D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 65 行.
+NOTIC: [8] Undefined variable: target D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 66 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000224s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000374s ]
+NOTIC: [8] Undefined variable: pageTitle D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016960s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017071s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000268s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000379s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000500s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000594s ]
+
+[ 2015-01-07T19:11:13+08:00 ] 192.168.0.152 /Hd/FreeZone/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001288s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000867s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000963s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002196s ]
+NOTIC: [8] Undefined offset: 0 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\FreeZoneController.class.php 第 44 行.
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\FreeZoneController.class.php 第 45 行.
+NOTIC: [8] Undefined offset: 0 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\FreeZoneController.class.php 第 46 行.
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\FreeZoneController.class.php 第 47 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000166s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000314s ]
+NOTIC: [8] Undefined variable: pageTitle D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Runtime\Cache\Hd\894673d2dbfbf23a88768fe74361b2d3.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011609s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011735s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000205s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000306s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000442s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000536s ]
+
+[ 2015-01-07T19:11:16+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000749s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000885s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000965s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002188s ]
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined variable: c1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 62 行.
+NOTIC: [8] Undefined variable: c2 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 63 行.
+NOTIC: [8] Undefined variable: courses D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 64 行.
+NOTIC: [8] Undefined variable: isEarly D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 65 行.
+NOTIC: [8] Undefined variable: target D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 66 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000216s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000357s ]
+NOTIC: [8] Undefined variable: pageTitle D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015898s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016022s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000204s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000302s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000457s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000549s ]
+
+[ 2015-01-07T19:11:17+08:00 ] 192.168.0.152 /Hd/Index/allCourse
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000508s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000600s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.000778s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001634s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000175s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000289s ]
+NOTIC: [8] Undefined variable: pageTitle D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Runtime\Cache\Hd\66360daab730568f0545fbb85a7b7e2a.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031364s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031520s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000257s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000366s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000522s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000627s ]
+
+[ 2015-01-07T19:11:19+08:00 ] 192.168.0.152 /Hd/Index/recommend.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000086s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001147s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000922s ]
+INFO: Run Common\Behaviors\AppBeginBehavior [ RunTime:0.001161s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002470s ]
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined offset: 1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined variable: c1 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 62 行.
+NOTIC: [8] Undefined variable: c2 D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 63 行.
+NOTIC: [8] Undefined variable: courses D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 64 行.
+NOTIC: [8] Undefined variable: isEarly D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 65 行.
+NOTIC: [8] Undefined variable: target D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Application\Hd\Controller\IndexController.class.php 第 66 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000217s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000340s ]
+NOTIC: [8] Undefined variable: pageTitle D:\home\coding\zendstudio\edu\Education_dev_hipi\branches\v1.0\Runtime\Cache\Hd\cfb908667d2443f09ecac18a03abf2ad.php 第 6 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016186s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016322s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000375s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000494s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000452s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000549s ]
+

@@ -95,7 +95,7 @@ window.onload=function()
 <div id="baobao"></div>
 
 
-<?php $__FOR_START_10051__=1;$__FOR_END_10051__=7;for($i=$__FOR_START_10051__;$i < $__FOR_END_10051__;$i+=1){ $left = 650; $top = 195 + ($i - 1)*70; ?>
+<?php $__FOR_START_11939__=1;$__FOR_END_11939__=7;for($i=$__FOR_START_11939__;$i < $__FOR_END_11939__;$i+=1){ $left = 650; $top = 195 + ($i - 1)*70; ?>
 	<div id="div_option_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="option_<?php echo ($i); ?>" src="/static/v1/hd/images/usercenter/growthIndex/option_<?php echo ($i); ?>.png" width="150" height="34">
 	</div><?php } ?>

@@ -22,8 +22,8 @@ class LibraryController extends CommonController {
         }
         $roleId = $this->role['id'];
         $answerList = D('Library','Logic')->queryLib($sectionId);
-        if($answerList['status']==0){
-             $this->showMessage($answerList['info'],self::ICON_ERROR,'','Public:message');
+        if($answerList==null){
+             $this->showMessage('题库不存在！',self::ICON_ERROR,'','Public:message');
         }
         //题库类型 1为文字 2为图片
         
@@ -55,6 +55,9 @@ class LibraryController extends CommonController {
         
         $wrongLib = D('Library','Logic')->queryRoleWrongLib($roleId,$topicId,$sectionId,$s_page,$index,$s_pageSize,$l_page,$l_pageSize);
 //         print_r($wrongLib);exit;
+		if($wrongLib==null){
+             $this->showMessage('题库不存在！',self::ICON_ERROR,'','Public:message');
+		}
         $libList = $wrongLib['sectionList']['rows'];
         
         $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images';

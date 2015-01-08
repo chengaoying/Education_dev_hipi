@@ -43,34 +43,47 @@ class IndexController extends CommonController {
 		$stage = $this->getStage($this->role['stageId']);
 		$grade = $this->getGrade($stage['chId']);
 		
-		switch ($grade['chKey']){
-			case 'early': //早教
-				$this->earlyRecommend();
-				break;
-			case 'preschool': //幼教
-				$this->preschoolRecommend();
-				break;
-			default: //其他年级
-				$this->commonRecommend();
-				break;
+		$data['json_channel'] = $json_channel;
+		$data['topChannel']   = $this->topChannel;
+		$data['role']		  = $this->role;
+		if($this->role['stageId'] == 99){ //游客
+			$this->touristRecommend($data);
+		}else{//有帐号
+			switch ($grade['chKey']){
+				case 'early': //早教
+					//计算角色月龄
+					//如果角色没有设置出生年月，则默认月龄为1个月
+					$m = monthNum($this->role['birthday']);
+					$roleMonthNum = $m['status'] ? $m['data']['monthNum'] : 1;
+					$value = '.'.$roleMonthNum.'月'; //特别推荐一匹配的月龄
+					$this->earlyOrPreschoolRecommend($data,$value);
+					break;
+				case 'preschool': //幼教
+					$value = '第'.date('w').'周'; //特别推荐一匹配的周数
+					$this->earlyOrPreschoolRecommend($data,$value);
+					break;
+				default: //其他年级
+					$this->commonRecommend($data);
+					break;
+			}
 		}
+		
+		$this->assign($data);
+		$this->display();
 	}
 	
 	/**
-	 * 早教推荐:
-	 * 根据角色月龄来推荐
+	 * 游客推荐首页处理逻辑
+	 * 课程推荐方式为随机推荐
+	 * @param array $data 前端使用的数据
 	 */
-	private function earlyRecommend(){
-		
-		$m = monthNum($this->role['birthday']);
-		$roleMonthNum = $m['status']?$m['data']['monthNum']:0;
-		
+	private function touristRecommend(&$data){
 		$proConfig = get_pro_config_content('proConfig');
-		//特别推荐（该课程需要有海报图片）
+		//随机推荐（该课程需要有海报图片）
 		$k1 = array_search('特别推荐一',$proConfig['keys']);
 		$k2 = array_search('特别推荐二',$proConfig['keys']);
-		$c = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($k1,$k2),1,5);
-		$c = $c['rows'];
+		$k3 = array_search('一般推荐',$proConfig['keys']);
+		$c = D('Course','Logic')->queryRandomRecommendCourse(array($k1,$k2,$k3));
 		foreach ($c as $k=>$v){
 			if($v['imgUrl']){
 				$char = getDelimiterInStr($v['imgUrl']);
@@ -78,56 +91,101 @@ class IndexController extends CommonController {
 				$c[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
 				$c[$k]['banner']  = get_upfile_url(trim($imgs[1]));
 			}
-			if(strchr($v['keys'], strval($k1))) $c1 = $c[$k];//特别推荐课程一
-			if(strchr($v['keys'], strval($k2))) $c2 = $c[$k];//特别推荐课程二
 		}
-		//一般推荐课程
-		$roleStage = $this->getStage($this->role['stageId']); //该角色对应的龄段信息
-		$roleGrade = $this->getGrade($roleStage['chId']);//该角色对应的年级信息
-		//判断该角色的年级是不是在早教或幼教阶段
-		//早、幼教首页是1个成长指标+3个一般推荐
-		//小学以上首页是4个一般推荐，
-		$key = array_search('一般推荐',$proConfig['keys']);
-		if(in_array($roleGrade['chKey'], array('early','preschool'))){
-			$isEarly = true;
-			$target['stageKey'] = $roleStage['sKey'];
-			$target['linkUrl']  = U("Role/growthIndex");
-			$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,3);
-		}else{
-			$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,4);
-			$target = $courses[0];
-			$courses = array_slice($courses, 1, count($courses)-1);
-		}
-		foreach ($courses['rows'] as $k=>$v){
+		if(!empty($c[1])) $data['c1'] = $c[1];//特别推荐课程一
+		if(!empty($c[2])) $data['c2'] = $c[2];//特别推荐课程二
+		$data['target']  = $c[3][0];
+		$data['courses'] = array_slice($c[3], 1, count($c[3])-1);
+	}
+	
+	/**
+	 * 早、幼教推荐:
+	 * 早教根据角色月龄来推荐
+	 * 幼教根据当前的周来推荐
+	 * @param $data array 前端使用的数据
+	 * @param $value int  特别推荐的匹配值（早教月龄，幼教周课程）
+	 */
+	private function earlyOrPreschoolRecommend(&$data,$value){
+		$proConfig = get_pro_config_content('proConfig');
+		//特别推荐（该课程需要有海报图片）
+		$k1 = array_search('特别推荐一',$proConfig['keys']);
+		$k2 = array_search('特别推荐二',$proConfig['keys']);
+		$param = array($k1=>$value,$k2=>'');
+		$c = D('Course','Logic')->queryRecommendCourse($this->role['stageId'],$param);
+		foreach ($c as $k=>$v){
 			if($v['imgUrl']){
 				$char = getDelimiterInStr($v['imgUrl']);
 				$imgs = explode($char, $v['imgUrl']);
-				$courses['rows'][$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
-				$courses['rows'][$k]['banner']  = get_upfile_url(trim($imgs[1]));
+				$c[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
+				$c[$k]['banner']  = get_upfile_url(trim($imgs[1]));
 			}
 		}
+		if(!empty($c[1])) $data['c1'] = $c[1];//特别推荐课程一
+		if(!empty($c[2])) $data['c2'] = $c[2];//特别推荐课程二
 		
-		$this->assign(array(
-			'json_channel'	=> $json_channel,
-			'topChannel' 	=> $this->topChannel,
-			'role'			=> $this->role,
-			'c1'			=> $c1,
-			'c2'			=> $c2,
-			'courses'		=> $courses['rows'],
-			'isEarly'		=> $isEarly,
-			'target'		=> $target,
-		));
-		$this->display();
+		//一般推荐课程
+		//早、幼教首页是1个成长指标+3个一般推荐
+		$roleStage = $this->getStage($this->role['stageId']); //该角色对应的龄段信息
+		$roleGrade = $this->getGrade($roleStage['chId']);//该角色对应的年级信息
+		$key = array_search('一般推荐',$proConfig['keys']);
+		$data['isEarly'] = true;
+		$target['stageKey'] = $roleStage['sKey'];
+		$target['linkUrl']  = U("Role/growthIndex");
+		$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,3);
+		$courses = $courses['rows'];
+		foreach ($courses as $k=>$v){
+			if($v['imgUrl']){
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
+				$courses[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
+				$courses[$k]['banner']  = get_upfile_url(trim($imgs[1]));
+			}
+		}
+		$data['target']  = $target;
+		$data['courses'] = $courses;
 	}
 	
-	/* 幼教推荐 */
-	private function preschoolRecommend(){
+	/**
+	 *  其他通用推荐
+	 * @param $data array 前端使用的数据
+	 */
+	private function commonRecommend(&$data){
+		$proConfig = get_pro_config_content('proConfig');
+		//特别推荐（该课程需要有海报图片）
+		$k1 = array_search('特别推荐一',$proConfig['keys']);
+		$k2 = array_search('特别推荐二',$proConfig['keys']);
+		$param = array($k1=>'',$k2=>'');
+		$c = D('Course','Logic')->queryRecommendCourse($this->role['stageId'],$param);
+		foreach ($c as $k=>$v){
+			if($v['imgUrl']){
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
+				$c[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
+				$c[$k]['banner']  = get_upfile_url(trim($imgs[1]));
+			}
+		}
+		if(!empty($c[1])) $data['c1'] = $c[1];//特别推荐课程一
+		if(!empty($c[2])) $data['c2'] = $c[2];//特别推荐课程二
 		
-	}
-	
-	/* 其他通用推荐 */
-	private function commonRecommend(){
-		
+		//一般推荐课程
+		$roleStage = $this->getStage($this->role['stageId']); //该角色对应的龄段信息
+		$roleGrade = $this->getGrade($roleStage['chId']);//该角色对应的年级信息
+		//小学以上首页是4个一般推荐，
+		$key = array_search('一般推荐',$proConfig['keys']);
+		$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,4);
+		$courses = $courses['rows'];
+		$target = $courses[0];
+		$courses = array_slice($courses, 1, count($courses)-1);
+		foreach ($courses as $k=>$v){
+			if($v['imgUrl']){
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
+				$courses[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
+				$courses[$k]['banner']  = get_upfile_url(trim($imgs[1]));
+			}
+		}
+		$data['target']  = $target;
+		$data['courses'] = $courses;
 	}
 	
 	/**

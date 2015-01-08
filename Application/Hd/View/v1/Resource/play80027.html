@@ -1,5 +1,5 @@
 <layout name="layout" />
-
+<script type="text/javascript" src="__COMMON__/js/play/play{$areacode}.js?__CSSJS_VERSION__"></script>
 <style>
     body{ background-image:url(__HD__/images/test/video/bj.jpg); }
     
@@ -119,6 +119,10 @@ function scrollMenu()
 }
 
 setInterval('scrollMenu()',100);
+
+var intiMedia = {$json_lesson};
+
+
 
 var play = function()
 {
