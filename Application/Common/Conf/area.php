@@ -9,6 +9,8 @@ return array (
 	'AREA_CODE' 		=> '80027',	//地区编码
 	'PARENT_MODULE'     => 'Hd',	//父类分组模块
 	'SERVER_IP'			=> '',		//服务器IP
+	'RTSP_VIDEO_URL'	=> 'rtsp://192.168.0.5:8554/videos/',
+	'IS_ENV'			=> 1,
 
 	//附件上传
 	'UPFILE_ISREMOTE'	=> false,		//是否保存到远程文件服务器

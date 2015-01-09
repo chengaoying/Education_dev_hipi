@@ -15,9 +15,8 @@ class RoleController extends CommonController {
 	 * 创建角色
 	 */
 	public function createRoleAct(){
-		$id = I('id','');
-		$user = unserialize(Session('user'));
-		if(empty($id)){
+		$stageId = I('stageId','');
+		if(empty($stageId)){
 			//顶级分类(二级栏目)
 			$class = $this->getClass();	
 			//龄段
@@ -25,14 +24,14 @@ class RoleController extends CommonController {
 			foreach ($stage as $k=>$v){
 				$data[$class[$v['chId']]['chKey']][$v['id']] = $v;
 			}
-			$this->assign(array('stage' => $data));
+			$this->assign(array('stage' => $data, 'role' => $this->role));
 		}else{
-			$role = array('stageId'=>$id,'userId'=>$user['id'],'status'=>1);
+			$role = array('id'=>I('id',''),'stageId'=>$stageId,'userId'=>$this->user['id'],'status'=>1);
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){ //创建成功跳转至首页
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				D('Role','Logic')->changeRole($r['data']['id']);//改变当前角色
-				header('location:'.U('Index/index'));
+				header('location:'.U('Index/recommend'));
 			}else{
 				$this->showMessage('角色创建失败：'.$r['info']);
 			}

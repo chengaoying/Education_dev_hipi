@@ -14,10 +14,10 @@ class IndexController extends CommonController {
 	public function indexAct(){
 		//欢迎页，如果有跳转至欢迎页
 		
-		//检查用户是否有角色帐号，没有则跳转至创建角色页面
-		//有则使用用户最近使用的角色帐号进入产品首页(推荐课程页)
+		//检查用户是否有角色帐号或者用户只用一个角色，但该角色为游客，则跳转至创建角色页面(选择龄段页面)
+		//其他情况则让用户使用最后一次使用的角色帐号进入产品首页(推荐课程页)
 		$roleList = Session('roleList');
-		if(count($roleList) < 1){
+		if((empty($roleList)) || (count($roleList) == 1 && $this->role['stageId'] == 99)){
 			header('location:'.U('Role/createRole'));
 		}else{
 			header('location:'.U('Index/recommend'));
@@ -67,7 +67,6 @@ class IndexController extends CommonController {
 					break;
 			}
 		}
-		
 		$this->assign($data);
 		$this->display();
 	}

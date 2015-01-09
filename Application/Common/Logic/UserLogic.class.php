@@ -44,7 +44,6 @@ class UserLogic extends BaseLogic{
 		$params = I('params');
 		if(!empty($params)){ //EPG登入产品
 			$result = $this->LoginOrReg($params);
-			
 		}else{
 			$userId = I('userId','');
 			$sign	= I('sign','');

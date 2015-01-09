@@ -30,8 +30,6 @@ class CourseListController extends CommonController {
 		//龄段id(id不为空：从单个龄段入口进入)
 		$stageId = I('stageId','');
 		if(!empty($stageId)) {
-			$stageList = get_array_for_fieldval($stageList,'id',$stageId);
-			$stageList = array_slice($stageList, 0, count($stageList));
 			$courses = D('Course','Logic')->queryCourseListByKeys($stageId, '', $page, $pageSize);
 		}else{
 			$courses = D('Course','Logic')->queryCourseListByChId($chId, $page, $pageSize);

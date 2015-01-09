@@ -156,7 +156,7 @@ window.onload=function()
 <!-- 一周课时列表 -->
 <?php if(is_array($sections)): $i = 0; $__LIST__ = $sections;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$week): $mod = ($i % 2 );++$i; if(is_array($week)): $j = 0; $__LIST__ = $week;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$section): $mod = ($j % 2 );++$j; $left = 85+($i-1)*160; if(($i == 6) || ($i==7)){ $height = 99; $top = 309+($j-1)*101; }else{ $height = 68; $top = 261+($j-1)*70; } ?>
         <div id="div_section_<?php echo ($i); ?>_<?php echo ($j); ?>" style="position:absolute;width:150px;height:<?php echo ($height); ?>px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;line-height: <?php echo ($height); ?>px;text-align:center;">
-             <img id="section_<?php echo ($i); ?>_<?php echo ($j); ?>" title="<?php echo U('Resource/play?id='.$section['id']);?>" src="/static/v1/hd/images/common/transparent.png" width="150" height="<?php echo ($height); ?>">
+             <img id="section_<?php echo ($i); ?>_<?php echo ($j); ?>" title="<?php echo U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId);?>" src="/static/v1/hd/images/common/transparent.png" width="150" height="<?php echo ($height); ?>">
         </div>
         <div id="div_section_<?php echo ($i); ?>_<?php echo ($j); ?>" style="position:absolute;width:150px;height:<?php echo ($height); ?>px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:left;vertical-align: middle;">
             <span style="color:#666;font-size:16px;"><?php echo ($section['name']); ?></span>

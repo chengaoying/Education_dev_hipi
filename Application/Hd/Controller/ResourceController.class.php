@@ -20,8 +20,10 @@ class ResourceController extends CommonController {
         
         
     	$sectionId = I('sectionId','');
+    	
+    	$library = D('Library','Logic')->queryLibraryInfo($sectionId);
     	$section = D('Section','Logic')->querySectionById($sectionId);
-        //print_r($section);
+//         print_r($library);exit;
         $playList = array();
         if($section['previewList']){
             $playList = explode(',', $section['previewList']);
@@ -29,9 +31,9 @@ class ResourceController extends CommonController {
         $lessonList = explode(',', $section['lessonList']);
         $playList = array_merge($playList,$lessonList); //将预习与课堂进行组合
         $playList = array_filter($playList); //去除数组中空值
-        //print_r($playList);
+//         print_r($playList);
         $playResource = D('Resource','Logic')->queryResourceList($playList,'id,content');
-        //print_r($playResource);
+//         print_r($playResource);
         
         $videoId = I('videoId','');
         if(!$videoId){  //如果没有选择第一个视频
@@ -41,7 +43,7 @@ class ResourceController extends CommonController {
         $areaPlayCode = 'getPlayCode'.$areacode;
         $playData = $this->getPlayList($areacode,$playUrl,$playResource,$videoId,$sectionId,$section['topicId'],$section['libId'],$preSection,$nextSection);
         
-        //print_r($playLessionList);
+//         print_r($areaPlayCode);
         //将课时资源进行json格式化
         
     	$template = 'play'.$areacode;
@@ -50,6 +52,7 @@ class ResourceController extends CommonController {
         	'sectionId'	=> $sectionId,
             'section' => $section,
             'playData' => $playData,
+        	'library' => $library,
         ));
         $this->display($template);
     }

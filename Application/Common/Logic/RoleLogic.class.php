@@ -41,8 +41,11 @@ class RoleLogic extends BaseLogic{
 		//查询用户的角色列表
 		$user = unserialize(Session('user'));
 		$roleList = $this->queryRoleList($user['id']);
-		
-		if(empty($roleList) || count($roleList) < 1) return;
+		if(empty($roleList) || count($roleList) < 1) {
+			Session('role',null);
+			Session('roleList',null);
+			return;
+		}
 		$_rid = $roleList[0]['id'];
 		
 		//把角色列表数组的key改为角色的ID

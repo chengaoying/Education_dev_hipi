@@ -104,6 +104,8 @@ var buttons=
 	];
 
 
+var stageId = "<?php echo ($role['stageId']); ?>";
+
 window.onload=function()
 {
 	//Epg.tip('');//显示info信息，3秒后自动隐藏，如果info为空将不会显示
@@ -122,7 +124,7 @@ window.onload=function()
 <!-- 小学 -->
 <?php if(is_array($stage['primaryschool'])): $i = 0; $__LIST__ = $stage['primaryschool'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$s1): $mod = ($i % 2 );++$i; if($i > 3){ $top = 270; $left = 730 + ($i-4)*125; }else{ $top = 200; $left = 730 + ($i-1)*125; } ?>
 	<div style="position:absolute;top:<?php echo ($top); ?>px;left:<?php echo ($left); ?>px;">
-		<img id="s1_<?php echo ($i); ?>" title="<?php echo U('Role/createRole');?>?id=<?php echo ($s1['id']); ?>" src="/static/v1/hd/images/usercenter/btn.png" width="110" height="50">
+		<img id="s1_<?php echo ($i); ?>" title="<?php echo U('Role/createRole?id='.$role['id'].'&stageId='.$s1['id']);?>" src="/static/v1/hd/images/usercenter/btn.png" width="110" height="50">
 	</div>
 	<div style="position:absolute;top:<?php echo ($top); ?>px;left:<?php echo ($left); ?>px;">
 		<img src="/static/v1/hd/images/usercenter/primary_<?php echo ($s1['sKey']); ?>.png" width="110" height="50">
@@ -131,7 +133,7 @@ window.onload=function()
 <!-- 幼儿园 -->
 <?php if(is_array($stage['preschool'])): $i = 0; $__LIST__ = $stage['preschool'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$s2): $mod = ($i % 2 );++$i; $top = 360; $left = 730 + ($i-1)*125; ?>
 	<div style="position:absolute;top:<?php echo ($top); ?>px;left:<?php echo ($left); ?>px;">
-		<img id="s2_<?php echo ($i); ?>" title="<?php echo U('Role/createRole');?>?id=<?php echo ($s2['id']); ?>" src="/static/v1/hd/images/usercenter/btn.png" width="110" height="50">
+		<img id="s2_<?php echo ($i); ?>" title="<?php echo U('Role/createRole?id='.$role['id'].'&stageId='.$s2['id']);?>" src="/static/v1/hd/images/usercenter/btn.png" width="110" height="50">
 	</div>
 	<div style="position:absolute;top:<?php echo ($top); ?>px;left:<?php echo ($left); ?>px;;">
 		<img src="/static/v1/hd/images/usercenter/preschool_<?php echo ($s2['sKey']); ?>.png" width="110" height="50">
@@ -140,7 +142,7 @@ window.onload=function()
 <!-- 早教 -->
 <?php if(is_array($stage['early'])): $i = 0; $__LIST__ = $stage['early'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$s3): $mod = ($i % 2 );++$i; $top = 450; $left = 730 + ($i-1)*125; ?>
 	<div style="position:absolute;top:<?php echo ($top); ?>px;left:<?php echo ($left); ?>px;">
-		<img id="s3_<?php echo ($i); ?>" title="<?php echo U('Role/createRole');?>?id=<?php echo ($s3['id']); ?>" src="/static/v1/hd/images/usercenter/btn.png" width="110" height="50">
+		<img id="s3_<?php echo ($i); ?>" title="<?php echo U('Role/createRole?id='.$role['id'].'&stageId='.$s3['id']);?>" src="/static/v1/hd/images/usercenter/btn.png" width="110" height="50">
 	</div>
 	<div style="position:absolute;top:<?php echo ($top); ?>px;left:<?php echo ($left); ?>px;">
 		<img src="/static/v1/hd/images/usercenter/early_<?php echo ($s3['sKey']); ?>.png" width="110" height="50">
@@ -148,7 +150,7 @@ window.onload=function()
 
 <!-- 跳过 -->
 <div style="position:absolute;left:970px;top:580px;">
-	<img id="skip" title="<?php echo U('Role/createRole');?>?id=99" src="/static/v1/hd/images/usercenter/btn_skip.png" width="170" height="40">
+	<img id="skip" title="<?php echo U('Role/createRole?id='.$role['id'].'&stageId=99');?>" src="/static/v1/hd/images/usercenter/btn_skip.png" width="170" height="40">
 </div>
 
 

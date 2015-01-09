@@ -49,4 +49,12 @@ class LibraryLogic extends BaseLogic{
     	return $this->client->queryLib($sectionId);
     }
     
+    /**
+     * 查询该$sectionId的题库信息
+     * @param int $sectionId
+     */
+    public function queryLibraryInfo($sectionId){
+    	return $this->client->queryLibraryInfo($sectionId);
+    }
+    
 }
