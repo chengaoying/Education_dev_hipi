@@ -113,7 +113,7 @@ var preBtn = "{$preId}";
 <!-- 基本信息 -->
 <div id="div_ch_3" style="position:absolute;visibility:visible;left:600px; top:95px;">
 	<img id='ch_3' title="/Hd/Role/userInfo"
-		src="0" width="110" height="33">
+		src="__HD__/images/usercenter/channel/baseInfo_1.png" width="110" height="33">
 </div>
 <div id="div_ch_3_focus" style="position:absolute; visibility:hidden; left:600px; top:95px; text-align:center;">
 	<img id="ch_3_focus" src="__HD__/images/usercenter/channel/baseInfo_2.png" width="110" height="33">
@@ -124,18 +124,21 @@ var preBtn = "{$preId}";
 	<php>
 		$left = 160;
 		$top = 270 + ($i-1)*95;
-		$progress = $data*390/100;
 	</php>
 	<div style="position:absolute; left:{$left}px; top:{$top}px;">
 		<img src="__HD__/images/usercenter/learnEvaluation2/evaluation_bottom.jpg" width="960" height="80">
 	</div>
+	<!-- title -->
+	<div style="position:absolute; left:{$left+20}px; top:{$top+20}px;width:180px;height:37px;line-height:37px;text-align:center;border-style:solid">
+		<span>{$data['name']}</span>
+	</div>
 	<!-- progress bar -->
 	<div style="position:absolute; left:{$left+410}px; top:{$top+50}px;">
-		<img src="__HD__/images/usercenter/learnEvaluation2/progress.jpg" width="{$progress}" height="10">
+		<img src="__HD__/images/usercenter/learnEvaluation2/progress.jpg" width="{$data['length']}" height="10">
 	</div>
 	<!-- detail -->
 	<div id="div_detail_{$i}" style="position:absolute; left:{$left+810}px; top:{$top+20}px;">
-		<img id="detail_{$i}" title="{:U('Learning/detail')}" src="__HD__/images/usercenter/learnEvaluation2/detail_1.png" width="59" height="36">
+		<img id="detail_{$i}" title="{:U('Learning/detail?courseId='.$data['id'].'&courseName='.$data['name'])}" src="__HD__/images/usercenter/learnEvaluation2/detail_1.png" width="59" height="36">
 	</div>
 	<!-- 错题集 -->
 	<div id="div_wrong_{$i}" style="position:absolute; left:{$left+880}px; top:{$top+20}px;">
@@ -145,6 +148,6 @@ var preBtn = "{$preId}";
 
 <!-- 分页 -->
 <div style="position:absolute; left:920px; top:560px;">
-	{$pageHtml['pageHtml']}
+	{$pageHtml}
 </div>
 

@@ -43,9 +43,8 @@ var popup = function(){
 </head>
 <body>
 
-
+<script type="text/javascript" src="/static/v1/common/js/play/play<?php echo ($areacode); ?>.js?20140208173232"></script>
 <style>
-    body{ background-image:url(/static/v1/hd/images/test/video/bj.jpg); }
     
 </style>
 
@@ -91,7 +90,7 @@ var popup = function(){
     };
 </script>    
 
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+<a id="a_back" style="display:none;" onclick="distroyss();" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
 
 <!-- 页面左侧 -->
 <div id="div_left">
@@ -120,7 +119,7 @@ var popup = function(){
 		<img id="btn_lesson" src="/static/v1/hd/images/play/btn_lesson.png" width="150" height="50">
 	</div>
 	<!-- 练习-->
-	<?php if($section['libId'] != ''): ?><div id="div_btn_exercise" style="position:absolute;width:160px;height:60px;left:1060px;top:50px;">
+	<?php if($library['libUrl'] != ''): ?><div id="div_btn_exercise" style="position:absolute;width:160px;height:60px;left:1060px;top:50px;">
 			<img id="btn_exercise" title="<?php echo U('Library/detail?sectionId='.$section['id'].'&topicId='.$section['topicId']);?>" src="/static/v1/hd/images/play/btn_exercise.png" width="150" height="50">
 		</div><?php endif; ?>
 </div>
@@ -131,25 +130,25 @@ var popup = function(){
 /**
  * 左侧菜单滚动效果
  */
-function scrollMenu()
-{
-	var curId = Epg.btn.current.id;
-	if(curId != 'btn_pre' && curId != 'btn_current' && curId != 'btn_next')
-	{
-		var divLeft = G('div_left');
-		var left = divLeft.style.left.replace("px", "") 
-		if(left > -185)
-			left -= 20;
-		divLeft.style.left = left + "px"; 
+//function scrollMenu()
+//{
+	//var curId = Epg.btn.current.id;
+	//if(curId != 'btn_pre' && curId != 'btn_current' && curId != 'btn_next')
+	//{
+		//var divLeft = G('div_left');
+		//var left = divLeft.style.left.replace("px", "") 
+		//if(left > -185)
+			//left -= 20;
+		//divLeft.style.left = left + "px"; 
 		//H('div_left');
 		
 		/* var divTop = G('div_top');
 		divTop.style.top = "0px"; */
-	}
-	else
-	{
-		var divLeft = G('div_left');
-		divLeft.style.left = "0px";  
+	//}
+	//else
+	//{
+	//	var divLeft = G('div_left');
+	//	divLeft.style.left = "0px";  
 		//S('div_left');
 		
 		/* var divTop = G('div_top');
@@ -157,19 +156,36 @@ function scrollMenu()
 		if(top > -150)
 			top -= 20;
 		divTop.style.top = top + "px"; */
-	}
-}
+	//}
+//}
 
-setInterval('scrollMenu()',100);
+//setInterval('scrollMenu()',100);
+
+//var intiMedia = <?php echo ($json_lesson); ?>;
+
+
 
 var play = function()
 {
-	var rtsp = "rtsp://192.168.0.5:8554/videos/prog00000002a1270023000008654266.ts";
+	var rtsp = "rtsp://192.168.0.5:8554/videos/prog00000002a9417711000008654004.ts";
 	Epg.Mp.init(true);//true表示启用默认的遥控器提示功能
 	Epg.Mp.fullscreenPlay(rtsp);
-}
+};
 
-//setTimeout("play()", 500);
+var back = function() 
+{
+	alert(1259);
+	//Epg.Mp.destroy();
+};
+
+setTimeout("play()", 500);
+
+Epg.key.set({KEY_1:"back()"});
+
+Epg.Button.defBack = function(){
+	window.location = G('a_back').href;
+	Epg.Mp.destroy();
+}
 
 </script>
 

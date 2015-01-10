@@ -38,8 +38,7 @@ class IndexController extends CommonController {
 		//栏目数据json格式-前端js使用
 		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage'));
 		$json_channel = json_encode($json_channel);
-		
-		//角色信息，根据角色年级推荐不同的课程
+		//角色信息，根据角色不同龄段推荐不同的课程
 		$stage = $this->getStage($this->role['stageId']);
 		$grade = $this->getGrade($stage['chId']);
 		
@@ -93,8 +92,9 @@ class IndexController extends CommonController {
 		}
 		if(!empty($c[1])) $data['c1'] = $c[1];//特别推荐课程一
 		if(!empty($c[2])) $data['c2'] = $c[2];//特别推荐课程二
-		$data['target']  = $c[3][0];
-		$data['courses'] = array_slice($c[3], 1, count($c[3])-1);
+		
+		$data['target']  = $c[3][0];  //成长指标推荐位
+		$data['courses'] = array_slice($c[3], 1, count($c[3])-1); //一般推荐课程推荐位
 	}
 	
 	/**
@@ -126,10 +126,10 @@ class IndexController extends CommonController {
 		//早、幼教首页是1个成长指标+3个一般推荐
 		$roleStage = $this->getStage($this->role['stageId']); //该角色对应的龄段信息
 		$roleGrade = $this->getGrade($roleStage['chId']);//该角色对应的年级信息
-		$key = array_search('一般推荐',$proConfig['keys']);
 		$data['isEarly'] = true;
 		$target['stageKey'] = $roleStage['sKey'];
 		$target['linkUrl']  = U("Role/growthIndex");
+		$key = array_search('一般推荐',$proConfig['keys']);
 		$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,3);
 		$courses = $courses['rows'];
 		foreach ($courses as $k=>$v){
@@ -140,8 +140,8 @@ class IndexController extends CommonController {
 				$courses[$k]['banner']  = get_upfile_url(trim($imgs[1]));
 			}
 		}
-		$data['target']  = $target;
-		$data['courses'] = $courses;
+		$data['target']  = $target;  //成长指标推荐位
+		$data['courses'] = $courses; //一般推荐课程推荐位
 	}
 	
 	/**
@@ -183,9 +183,9 @@ class IndexController extends CommonController {
 				$courses[$k]['banner']  = get_upfile_url(trim($imgs[1]));
 			}
 		}
-		$data['target']  = $target;
-		$data['courses'] = $courses;
-	}
+		$data['target']  = $target;  //成长指标推荐位
+		$data['courses'] = $courses; //一般推荐课程推荐位
+	} 
 	
 	/**
 	 * 全部课程首页

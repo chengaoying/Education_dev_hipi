@@ -149,21 +149,24 @@ var preBtn = "<?php echo ($preId); ?>";
 	<img id="ch_3_focus" src="/static/v1/hd/images/usercenter/channel/baseInfo_2.png" width="110" height="33">
 </div>
 
-
-<?php if(is_array($datas)): $i = 0; $__LIST__ = $datas;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i; if($i%2==0) { $left = 650; $top= 270 + ($i/2-1)*50; } else { $left = 100; $top= 270 + (($i+1)/2-1)*50; } $progress = $data*390/100; ?>
-	<div style="position:absolute; left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
-		文字
+<!-- 课程名字 -->
+<div style="position:absolute;left:100px;top:198px;width:250px;height:37px;line-height:37px;text-align:left;border-style:solid">
+	<span><?php echo ($courseName); ?></span>
+</div>
+<?php if(is_array($datas)): $i = 0; $__LIST__ = $datas;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i; if($i%2==0) { $left = 650; $top= 270 + ($i/2-1)*50; } else { $left = 100; $top= 270 + (($i+1)/2-1)*50; } ?>
+	<div style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top-10); ?>px;width:180px;height:37px;line-height:37px;text-align:left;border-style:solid">
+		<span><?php echo ($data['name']); ?></span>
 	</div>
 	<div style="position:absolute; left:<?php echo ($left+210); ?>px; top:<?php echo ($top+5); ?>px;">
 		<img src="/static/v1/hd/images/usercenter/detail/bottom.png" width="293" height="11">
 	</div>
 	<div style="position:absolute; left:<?php echo ($left+210); ?>px; top:<?php echo ($top+5); ?>px;">
-		<img src="/static/v1/hd/images/usercenter/detail/progress.png" width="293" height="11">
+		<img src="/static/v1/hd/images/usercenter/detail/progress.png" width="<?php echo ($data['length']); ?>" height="11">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 分页 -->
 <div style="position:absolute; left:980px; top:560px;">
-	<?php echo ($page['pageHtml']); ?>
+	<?php echo ($pageHtml); ?>
 </div>
 
 

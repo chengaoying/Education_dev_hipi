@@ -40,7 +40,7 @@ class SectionListController extends CommonController {
 	 * @param int $stageId 龄段id
 	 */
 	private function early($chKey,$course){
-		$topicId = I('topic','');
+		$topicId = I('topicId','');
 		//该课程知识点列表
 		$topics = D('Topic','Logic')->queryTopicList($course['id'],1,10);
 		foreach ($topics['rows'] as $k=>$v){
@@ -74,42 +74,50 @@ class SectionListController extends CommonController {
 	 * @param int $stageId
 	 */
 	private function preschool($chKey,$course){
-		$stage = S('Stage');
-		$stage = $stage[$course['stageIds']];
-		
-		$topicId = I('topic','');
-		$week = I('week',date("w"));
-		
 		//该课程知识点列表
 		$topics = D('Topic','Logic')->queryTopicList($course['id'],1,10);
-		foreach ($topics['rows'] as $k=>$v){
+		$topics = $topics['rows'];
+		foreach ($topics as $k=>$v){
 			if($v['imgUrl']){
 				$char = getDelimiterInStr($v['imgUrl']);
 				$imgs = explode($char, $v['imgUrl']);
-				$topics['rows'][$k]['linkImage']   = get_upfile_url(trim($imgs[0]));
-				$topics['rows'][$k]['focusImage']  = get_upfile_url(trim($imgs[1]));
+				$topics[$k]['linkImage']   = get_upfile_url(trim($imgs[0]));
+				$topics[$k]['focusImage']  = get_upfile_url(trim($imgs[1]));
 			}
 		}
 		
-		//某个知识点下的课时列表
-		if(empty($topicId)) $topicId = $topics['rows'][0]['id'];
+		$topicId = I('topicId','');
+		//计算上一个课时id，下一个课时id
+		if(empty($topicId)){
+			$i = (date('w')-1) < 0 ? 6 : (date('w')-1);
+			$topicId = $topics[$i]['id'];
+		} 
+		$k = get_arraykey($topics, 'id', $topicId);
+		$prev = $k - 1;
+		$next = $k + 1;
+		if($prev < 0) $prev = 0;
+		if($next > 6) $next = 6;
+		$week = $k + 1;
+		$week = $week>6 ? 0 : $week;
+		$prevTopicId = $topics[$prev]['id'];
+		$nextTopicId = $topics[$next]['id'];
+		
 		$sections = D('Section','Logic')->querySectionList($topicId,1,5);
-		
-		$json_topic = get_array_fieldkey($topics['rows'],array('id','name','linkImage','focusImage'));
-		$json_topic = json_encode($json_topic);
-		
+
 		//专题列表
 		$proConfig = get_pro_config_content('proConfig');
-		$specialKey = array_search('专题', $proConfig['courseType']);
-		$specials = D('Course','Logic')->queryCourseListByType($course['stageIds'], $specialKey, 1, 3);
+		$key = array_search('嗨皮幼儿园推荐',$proConfig['keys']);
+		$char = getDelimiterInStr($course['stageIds']);
+		$ids = explode($char, $course['stageIds']);
+		$specials = D('Course','Logic')->queryCourseListByKeys($ids[0], array($key), 1, 3);
 		
 		$this->assign(array(
-			'sKey'	 		=> $stage['sKey'],
 			'sections' 		=> $sections['rows'],
-			'json_topic'	=> $json_topic,	
 			'specialList'	=> $specials['rows'],
-			'week'			=> $week,	
 			'courseId'		=> $course['id'],	
+			'week'			=> $week,	
+			'prevTopicId'	=> $prevTopicId,
+			'nextTopicId'	=> $nextTopicId,		
 		));
 		$this->display('detail_preschool');
 	}
@@ -147,9 +155,16 @@ class SectionListController extends CommonController {
 	 */
 	public function weekAct(){
 		$courseId = I('courseId','');
+		$week = I('week','');
+		if(!empty($courseId)) 
+			$course = D('Course','Logic')->queryCourseById($courseId);
+		else{
+			$course = D('Course','Logic')->queryRecommendCourse('',array('第'.$week.'周'));
+			$course = $course[0];
+		} 
+				
 		//查找该课程的所有课时(本周课时)，不需要把所有知识点查出来，再查课时
 		//方式：把该课程的知识点列表作为一个数组传给接口，就能把该课程的所有课时查询出来
-		$course = D('Course','Logic')->queryCourseById($courseId);
 		$char = getDelimiterInStr($course['topicIds']);
 		$topicIds = explode($char,$course['topicIds']);
 		$topicIds = array_filter($topicIds);
@@ -163,9 +178,20 @@ class SectionListController extends CommonController {
 			}
 		}
 		
+		//计算周数
+		$name = $course['name'];
+		if(empty($week))
+			//课程当前周数，从课程名中获取
+			$week = preg_replace('/\D/s', '', $name);
+		$prevWeek = ($week-1)<1 ? 1 : ($week-1);
+		$nextWeek = ($week+1)>52 ? 52 : ($week+1);
+		
 		$this->assign(array(
 			'sections' => $data,
-			'courseId' => $courseId,	
+			'courseId' => $courseId,
+			'week'	   => $week,
+			'prevWeek' => $prevWeek,
+			'nextWeek' => $nextWeek,						
 		));
 		$this->display();
 	}

@@ -59,7 +59,7 @@ var popup = function(){
 	width: 66px;
 	height: 21px;
 	top: 100px;
-	left:380px;
+	left:385px;
 	background-image: url(/static/v1/hd/images/sectionList/preschool/week_<?php echo ($week); ?>.png);
 }
 </style>
@@ -69,18 +69,22 @@ var popup = function(){
 var buttons=
 	[
 		/* logo */	
-		{id:'btn_logo',name:'logo',action:'',linkImage:'/static/v1/hd/images/sectionList/title_preschool.png',focusImage:'/static/v1/hd/images/sectionList/title_preschool_over.png',selectBox:'',right:'btn_week',down:'section_1'},
+		{id:'btn_logo',name:'logo',action:'',linkImage:'/static/v1/hd/images/sectionList/title_preschool.png',focusImage:'/static/v1/hd/images/sectionList/title_preschool_over.png',selectBox:'',right:'btn_prev_day',down:'section_1'},
+			
+		/* 前一天 /后一天 */
+		{id:'btn_prev_day',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',left:'btn_logo',right:'btn_next_day',down:'section_2'},
+		{id:'btn_next_day',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:'btn_prev_day',right:'btn_week',down:'section_2'},
 	
         /*本周课程*/
-        {id:'btn_week',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/preschool/btn_week.png',focusImage:'/static/v1/hd/images/sectionList/preschool/btn_week_over.png',selectBox:'',left:'btn_logo',right:'btn_order',up:'',down:['section_5','section_4','section_3','section_2','section_1']},
+        {id:'btn_week',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/preschool/btn_week.png',focusImage:'/static/v1/hd/images/sectionList/preschool/btn_week_over.png',selectBox:'',left:'btn_next_day',right:'btn_order',up:'',down:['section_5','section_4','section_3','section_2','section_1']},
 		
         /* 订购按钮 */	
 		{id:'btn_order',name:'订购',action:'',linkImage:'/static/v1/hd/images/common/order/btn_order.png',focusImage:'/static/v1/hd/images/common/order/btn_order_over.png',selectBox:'',left:'btn_week',down:['section_5','section_4','section_3','section_2','section_1']},
         
         /*课时列表*/
 	 	{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x300.png',left:'',right:'section_2',up:'btn_logo',down:'special_1'},
-        {id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x300.png',left:'section_1',right:'section_3',up:'btn_week',down:'special_1'},
-        {id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x300.png',left:'section_2',right:'section_4',up:'btn_week',down:['special_2','special_1']},
+        {id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x300.png',left:'section_1',right:'section_3',up:'btn_prev_day',down:'special_1'},
+        {id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x300.png',left:'section_2',right:'section_4',up:'btn_next_day',down:['special_2','special_1']},
         {id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x300.png',left:'section_3',right:'section_5',up:'btn_week',down:['special_3','special_2','special_1']},
         {id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_210x300.png',left:'section_4',right:'special_1',up:'btn_order',down:['special_3','special_2','special_1']},
         
@@ -112,6 +116,14 @@ window.onload=function()
 
 <!-- 星期 -->
 <div id="week"></div>
+<!-- 前一天 -->
+<div id="div_btn_prev_day" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
+    <img id="btn_prev_day" title="<?php echo U('SectionList/index').'?courseId='.$courseId.'&topicId='.$prevTopicId;?>" src="/static/v1/hd/images/common/page/page_prev.png" width="20" height="26">
+</div>
+<!-- 后一天 -->
+<div id="div_btn_next_day" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
+    <img id="btn_next_day" title="<?php echo U('SectionList/index').'?courseId='.$courseId.'&topicId='.$nextTopicId;?>" src="/static/v1/hd/images/common/page/page_next.png" width="20" height="26">
+</div>
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:100px;left:1105px;">
@@ -142,7 +154,7 @@ window.onload=function()
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 底部投影 -->
-<?php $__FOR_START_26223__=1;$__FOR_END_26223__=4;for($i=$__FOR_START_26223__;$i < $__FOR_END_26223__;$i+=1){ $left = 90 + ($i-1)*375; ?>
+<?php $__FOR_START_19897__=1;$__FOR_END_19897__=4;for($i=$__FOR_START_19897__;$i < $__FOR_END_19897__;$i+=1){ $left = 90 + ($i-1)*375; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

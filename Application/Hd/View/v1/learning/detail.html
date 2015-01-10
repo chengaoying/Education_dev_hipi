@@ -105,7 +105,10 @@ var preBtn = "{$preId}";
 	<img id="ch_3_focus" src="__HD__/images/usercenter/channel/baseInfo_2.png" width="110" height="33">
 </div>
 
-
+<!-- 课程名字 -->
+<div style="position:absolute;left:100px;top:198px;width:250px;height:37px;line-height:37px;text-align:left;border-style:solid">
+	<span>{$courseName}</span>
+</div>
 <volist name="datas" id="data" key="i">
 	<php>
 		if($i%2==0)
@@ -118,22 +121,21 @@ var preBtn = "{$preId}";
 			$left = 100;
 			$top= 270 + (($i+1)/2-1)*50;
 		}
-		$progress = $data*390/100;
 	</php>
-	<div style="position:absolute; left:{$left}px; top:{$top}px;">
-		文字
+	<div style="position:absolute;left:{$left}px;top:{$top-10}px;width:180px;height:37px;line-height:37px;text-align:left;border-style:solid">
+		<span>{$data['name']}</span>
 	</div>
 	<div style="position:absolute; left:{$left+210}px; top:{$top+5}px;">
 		<img src="__HD__/images/usercenter/detail/bottom.png" width="293" height="11">
 	</div>
 	<div style="position:absolute; left:{$left+210}px; top:{$top+5}px;">
-		<img src="__HD__/images/usercenter/detail/progress.png" width="293" height="11">
+		<img src="__HD__/images/usercenter/detail/progress.png" width="{$data['length']}" height="11">
 	</div>
 	
 </volist>
 
 <!-- 分页 -->
 <div style="position:absolute; left:980px; top:560px;">
-	{$page['pageHtml']}
+	{$pageHtml}
 </div>
 

@@ -77,6 +77,16 @@ var popup = function(){
         height: 49px;
         background: url(/static/v1/hd/images/common/shadow_3.png) no-repeat;
     }
+    
+    .week{
+		position:absolute;
+		width:100px;
+		height:30px;
+		left:367px;
+		top:95px;
+		text-align:center;
+		line-height:30px;	
+    }
 </style>
 
 <script type="text/javascript">
@@ -86,22 +96,22 @@ var buttons=
 	[
 	 	
         /*课时列表*/
-	 	{id:'section_1_1',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_1',up:'btn_order',down:'section_1_2'},
+	 	{id:'section_1_1',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_1',up:'btn_prev_week',down:'section_1_2'},
         {id:'section_1_2',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_2',up:'section_1_1',down:'section_1_3'},
         {id:'section_1_3',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_3',up:'section_1_2',down:'section_1_4'},
         {id:'section_1_4',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_4',up:'section_1_3',down:'section_1_5'},
         {id:'section_1_5',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_5',up:'section_1_4',down:''},
-        {id:'section_2_1',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_2.png',left:'section_1_1',right:'section_3_1',up:'btn_order',down:'section_2_2'},
+        {id:'section_2_1',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_2.png',left:'section_1_1',right:'section_3_1',up:'btn_prev_week',down:'section_2_2'},
         {id:'section_2_2',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_2.png',left:'section_1_2',right:'section_3_2',up:'section_2_1',down:'section_2_3'},
         {id:'section_2_3',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_2.png',left:'section_1_3',right:'section_3_3',up:'section_2_2',down:'section_2_4'},
         {id:'section_2_4',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_2.png',left:'section_1_4',right:'section_3_4',up:'section_2_3',down:'section_2_5'},
         {id:'section_2_5',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_2.png',left:'section_1_5',right:'section_3_5',up:'section_2_4',down:''},
-        {id:'section_3_1',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_3.png',left:'section_2_1',right:'section_4_1',up:'btn_order',down:'section_3_2'},
+        {id:'section_3_1',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_3.png',left:'section_2_1',right:'section_4_1',up:'btn_next_week',down:'section_3_2'},
         {id:'section_3_2',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_3.png',left:'section_2_2',right:'section_4_2',up:'section_3_1',down:'section_3_3'},
         {id:'section_3_3',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_3.png',left:'section_2_3',right:'section_4_3',up:'section_3_2',down:'section_3_4'},
         {id:'section_3_4',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_3.png',left:'section_2_4',right:'section_4_4',up:'section_3_3',down:'section_3_5'},
         {id:'section_3_5',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_3.png',left:'section_2_5',right:'section_4_5',up:'section_3_4',down:''},
-        {id:'section_4_1',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_4.png',left:'section_3_1',right:'section_5_1',up:'btn_order',down:'section_4_2'},
+        {id:'section_4_1',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_4.png',left:'section_3_1',right:'section_5_1',up:'btn_next_week',down:'section_4_2'},
         {id:'section_4_2',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_4.png',left:'section_3_2',right:'section_5_2',up:'section_4_1',down:'section_4_3'},
         {id:'section_4_3',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_4.png',left:'section_3_3',right:'section_5_3',up:'section_4_2',down:'section_4_4'},
         {id:'section_4_4',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_4.png',left:'section_3_4',right:'section_5_4',up:'section_4_3',down:'section_4_5'},
@@ -119,7 +129,12 @@ var buttons=
         {id:'section_7_3',name:'',action:'',focusImage:'/static/v1/hd/images/sectionList/preschool/week/select_box_7.png',left:'section_6_3',right:'',up:'section_7_2',down:'section_7_4'},
         
 	 	/* 订购按钮 */	
-	 	{id:'btn_order',name:'订购',action:'',linkImage:'/static/v1/hd/images/common/order/btn_order.png',focusImage:'/static/v1/hd/images/common/order/btn_order_over.png',left:'',right:'',up:'',down:'section_7_1'},
+	 	{id:'btn_order',name:'订购',action:'',linkImage:'/static/v1/hd/images/common/order/btn_order.png',focusImage:'/static/v1/hd/images/common/order/btn_order_over.png',left:'btn_next_week',right:'',up:'',down:'section_7_1'},
+	 	
+	 	/* 前一天 /后一天 */
+		{id:'btn_prev_week',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',left:'',right:'btn_next_week',down:'section_2_1'},
+		{id:'btn_next_week',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:'btn_prev_week',right:'btn_order',down:'section_3_1'},
+	
 	];
 
 /* 初始化按钮 属性   */
@@ -144,6 +159,17 @@ window.onload=function()
 
 <!-- 左上角的栏目LOGO -->
 <div class="ch_logo"></div>
+
+<!-- 周数 -->
+<div class="week">第<?php echo ($week); ?>周</div>
+<!-- 前一周 -->
+<div id="div_btn_prev_week" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
+    <img id="btn_prev_week" title="<?php echo U('SectionList/week').'?week='.$prevWeek;?>" src="/static/v1/hd/images/common/page/page_prev.png" width="20" height="26">
+</div>
+<!-- 后一周 -->
+<div id="div_btn_next_week" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
+    <img id="btn_next_week" title="<?php echo U('SectionList/week').'?week='.$nextWeek;?>" src="/static/v1/hd/images/common/page/page_next.png" width="20" height="26">
+</div>
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:90px;left:1100px;">

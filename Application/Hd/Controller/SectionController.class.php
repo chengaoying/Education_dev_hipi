@@ -18,8 +18,34 @@ class SectionController extends CommonController {
     	
     	$courseId  = I('courseId','');
     	$sectionId = I('sectionId','');
+    	$sort = I('sort','');
+    	$total = I('total','');
     	
-    	header('location:'.U('Resource/play?sectionId='.$sectionId));
+		$course = D('Course','Logic')->queryCourseById($courseId);
+		$char = getDelimiterInStr($course['topicIds']);
+		$topicIds = explode($char,$course['topicIds']);
+		$topicIds = array_filter($topicIds);
+		
+		$isExistPreVideo = false;
+		$isExitsNextVideo = false;
+		if($sort>1){
+			$isExitPreVideo = true;
+			$sorts[] = $sort-1;
+		}
+		$sorts[] = (int)$sort;
+		if($sort<$total){
+			$isExitsNextVideo = true;
+			$sorts[] = $sort+1;
+		}
+		$threeVideo = D('Section','Logic')->querySectionListBySort($topicIds,$sorts);
+		$jumpUrl = 'Resource/play?sectionId='.$sectionId.'&sort='.$sort.'&total='.$total;
+		if($isExitPreVideo){
+			$jumpUrl.='&preSectionId='.$threeVideo['rows'][0]['id'];
+		}
+		if($isExitsNextVideo){
+			$jumpUrl.='&nextSectionId='.$threeVideo['rows'][2]['id'];
+		}
+    	header('location:'.U($jumpUrl));
     	exit;
     	
     	$role = unserialize(Session('role'));

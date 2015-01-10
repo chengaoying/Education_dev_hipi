@@ -134,7 +134,7 @@ window.onload=function()
 
 
 <form id="form" action="<?php echo U('Role/changeNum');?>" method="post" style="padding:10px">
-	<?php $__FOR_START_27252__=1;$__FOR_END_27252__=$count+1;for($i=$__FOR_START_27252__;$i < $__FOR_END_27252__;$i+=1){ ?><input type="hidden" id="option_<?php echo ($i); ?>ID" name="option_<?php echo ($i); ?>" value=""/><?php } ?>
+	<?php $__FOR_START_26907__=1;$__FOR_END_26907__=$count+1;for($i=$__FOR_START_26907__;$i < $__FOR_END_26907__;$i+=1){ ?><input type="hidden" id="option_<?php echo ($i); ?>ID" name="option_<?php echo ($i); ?>" value=""/><?php } ?>
 </form>
 
 

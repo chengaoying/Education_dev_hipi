@@ -10,7 +10,7 @@
         height: 100px;
         color:#000;
         font-size: 22px;
-        line-height: 45px;
+        line-height: 35px;
         font-weight: 590;
     }
     /*弹窗*/
@@ -100,7 +100,8 @@
                 /*答题选项*/
                 {id: 'answer2_1', name: '', action: 'answer(1)', linkImage: '', focusImage: '', selectBox: '__HD__/images/library/pic_item_bg_over.png', resize:'-1', left: '', right: 'answer2_2', up: '', down: 'next'},
                 {id: 'answer2_2', name: '', action: 'answer(2)', linkImage: '', focusImage: '', selectBox: '__HD__/images/library/pic_item_bg_over.png', resize:'-1', left: 'answer2_1', right: ['answer2_3', 'next'], up: '', down: 'next'},
-                {id: 'answer2_3', name: '', action: 'answer(3)', linkImage: '', focusImage: '', selectBox: '__HD__/images/library/pic_item_bg_over.png', resize:'-1', left: 'answer2_2', right: 'next', up: '', down: 'back'},
+                {id: 'answer2_3', name: '', action: 'answer(3)', linkImage: '', focusImage: '', selectBox: '__HD__/images/library/pic_item_bg_over.png', resize:'-1', left: 'answer2_2', right: ['answer2_4', 'next'], up: '', down: 'back'},
+                {id: 'answer2_4', name: '', action: 'answer(4)', linkImage: '', focusImage: '', selectBox: '__HD__/images/library/pic_item_bg_over.png', resize:'-1', left: 'answer2_3', right: 'next', up: '', down: 'back'},
                 /* 页码 */
                 {id: 'pre', name: '', action: 'preAnswer()', linkImage: '__HD__/images/library/pre.png', focusImage: '__HD__/images/library/pre_over.png', selectBox: '', left: '', right: 'next', up: '', down: ''},
                 {id: 'next', name: '', action: 'nextAnswer()', linkImage: '__HD__/images/library/next.png', focusImage: '__HD__/images/library/next_over.png', selectBox: '', left: '', right: 'back', up: '', down: ''},
@@ -117,6 +118,7 @@
     var topicid = {$topicId}; //知识点ID
     var sectionid = {$sectionId}; //课时ID
     var answerlist = {$answerList};
+    var countlib = answerlist.length;
     var itemid; //题目ID
     var countscore = 0;//获取总分数
     var kind; //该题类型
@@ -130,7 +132,6 @@
     var wrongnum = 0;
     var rednum = 0;
     var status;
-    var countlib = answerlist.length;
 
     function answer(i) {
         var data = {};

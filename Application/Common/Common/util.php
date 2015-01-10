@@ -133,6 +133,18 @@ function get_array_fieldkey($arr,$require){
 	return $arr;
 }
 
+/**
+ * 获取二维数组中的key值,根据
+ * @param $arr $arr
+ * @param $int $key
+ * @param $int $val
+ */
+function get_arraykey($arr, $key, $val){
+	foreach ($arr as $k => $v){
+		if($v[$key] == $val) return $k;
+	}
+	return null;
+}
 
 /**
  * 从数组中取某列值替换数组的键名

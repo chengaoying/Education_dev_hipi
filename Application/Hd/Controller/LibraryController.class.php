@@ -25,6 +25,11 @@ class LibraryController extends CommonController {
         if($answerList==null){
              $this->showMessage('题库不存在！',self::ICON_ERROR,'','Public:message');
         }
+        foreach($answerList['content'] as $key=>$value){
+        	$value['title'] = str_replace('|','<br>',$value['title']);
+        	$answerList['content'][$key]['title'] = $value['title'];
+        }
+        
         //题库类型 1为文字 2为图片
         
         $this->assign(array(
@@ -129,6 +134,8 @@ class LibraryController extends CommonController {
             $data['lib'] = $libData;
             $result = D('Library','Logic')->saveRoleLib($this->role['id'],$data);
             if($result['status'] == 1){
+            	$this->role['point'] = (int)$this->role['point']+(int)$data['redFlower'];
+            	Session('role',serialize($this->role));
                 $this->addFloatMessage('保存成功！',get_back_url('Index/recommend',1,0,1));
             }else{
                 $this->showMessage('保存失败！');

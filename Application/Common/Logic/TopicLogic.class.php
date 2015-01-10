@@ -20,4 +20,12 @@ class TopicLogic extends BaseLogic{
 		return $this->client->queryTopicList($courseId, $pageNo, $pageSize);
 	}
 	
+	/**
+	 * 通过知识点id查找单个知识点
+	 * @param int $topicId
+	 */
+	public function queryTopicById($topicId){
+		return $this->client->queryTopicById($topicId);
+	}
+	
 }

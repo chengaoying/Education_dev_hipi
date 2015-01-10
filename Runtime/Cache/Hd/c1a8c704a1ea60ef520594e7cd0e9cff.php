@@ -157,24 +157,28 @@ var preBtn = "<?php echo ($preId); ?>";
 <!-- 基本信息 -->
 <div id="div_ch_3" style="position:absolute;visibility:visible;left:600px; top:95px;">
 	<img id='ch_3' title="/Hd/Role/userInfo"
-		src="0" width="110" height="33">
+		src="/static/v1/hd/images/usercenter/channel/baseInfo_1.png" width="110" height="33">
 </div>
 <div id="div_ch_3_focus" style="position:absolute; visibility:hidden; left:600px; top:95px; text-align:center;">
 	<img id="ch_3_focus" src="/static/v1/hd/images/usercenter/channel/baseInfo_2.png" width="110" height="33">
 </div>
 
 
-<?php if(is_array($datas)): $i = 0; $__LIST__ = $datas;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i; $left = 160; $top = 270 + ($i-1)*95; $progress = $data*390/100; ?>
+<?php if(is_array($datas)): $i = 0; $__LIST__ = $datas;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i; $left = 160; $top = 270 + ($i-1)*95; ?>
 	<div style="position:absolute; left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
 		<img src="/static/v1/hd/images/usercenter/learnEvaluation2/evaluation_bottom.jpg" width="960" height="80">
 	</div>
+	<!-- title -->
+	<div style="position:absolute; left:<?php echo ($left+20); ?>px; top:<?php echo ($top+20); ?>px;width:180px;height:37px;line-height:37px;text-align:center;border-style:solid">
+		<span><?php echo ($data['name']); ?></span>
+	</div>
 	<!-- progress bar -->
 	<div style="position:absolute; left:<?php echo ($left+410); ?>px; top:<?php echo ($top+50); ?>px;">
-		<img src="/static/v1/hd/images/usercenter/learnEvaluation2/progress.jpg" width="<?php echo ($progress); ?>" height="10">
+		<img src="/static/v1/hd/images/usercenter/learnEvaluation2/progress.jpg" width="<?php echo ($data['length']); ?>" height="10">
 	</div>
 	<!-- detail -->
 	<div id="div_detail_<?php echo ($i); ?>" style="position:absolute; left:<?php echo ($left+810); ?>px; top:<?php echo ($top+20); ?>px;">
-		<img id="detail_<?php echo ($i); ?>" title="<?php echo U('Learning/detail');?>" src="/static/v1/hd/images/usercenter/learnEvaluation2/detail_1.png" width="59" height="36">
+		<img id="detail_<?php echo ($i); ?>" title="<?php echo U('Learning/detail?courseId='.$data['id'].'&courseName='.$data['name']);?>" src="/static/v1/hd/images/usercenter/learnEvaluation2/detail_1.png" width="59" height="36">
 	</div>
 	<!-- 错题集 -->
 	<div id="div_wrong_<?php echo ($i); ?>" style="position:absolute; left:<?php echo ($left+880); ?>px; top:<?php echo ($top+20); ?>px;">
@@ -183,7 +187,7 @@ var preBtn = "<?php echo ($preId); ?>";
 
 <!-- 分页 -->
 <div style="position:absolute; left:920px; top:560px;">
-	<?php echo ($pageHtml['pageHtml']); ?>
+	<?php echo ($pageHtml); ?>
 </div>
 
 
