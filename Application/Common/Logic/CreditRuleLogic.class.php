@@ -11,11 +11,11 @@ class CreditRuleLogic extends BaseLogic{
 	}
 	
 	/**
-	 * 通过rulekey查询积分规则
-	 * @param string $rulekey
+	 * 通过key查询积分规则
+	 * @param string $key
 	 */
-	public function selectOneByRuleKey($ruleKey){
-		return $this->client->selectOneByRuleKey($ruleKey);
+	public function selectOneByKey($key){
+		return $this->client->selectOneByRuleKey($key);
 	}
 	
 }

@@ -169,7 +169,7 @@ class IndexController extends \Think\Controller {
 	
 	public function awardAct()
 	{
-		$result = D('Credit','Logic') -> award('practise');
+		$result = D('Credit','Logic') -> award('perfectInfo');
 		dump($result);
 		exit; 
 	}

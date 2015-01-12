@@ -164,11 +164,6 @@ Epg.Button = Epg.btn =
 			}
 		}
 		
-		if(!Epg.isEmpty(this.current.onFocus)){ //add 20141228   增加焦点的确认状态(按钮的onFocus属性)
-			H('div_'+this.current.id);
-			S('div_'+this.current.id+'_focus');
-		}
-		
 		this.update();
 	},
 	
@@ -262,7 +257,6 @@ Epg.Button = Epg.btn =
 					G(prev.id).height -= size;
 				}
 			}
-			G(prev.id).blur();//add 20141228   用于from表单失去焦点
 			if(prev.selectBox){ //add 20141213    失去焦点后隐藏光标，并把光标的尺寸恢复到原始大小
 				var selectBoxId = prev.id + '_focus';
 				if(Epg.isEmpty(prev.resize) || prev.resize != -1){
@@ -273,6 +267,8 @@ Epg.Button = Epg.btn =
 				H(divId);
 			}
 			
+			G(prev.id).blur();//add 20141228   用于from表单失去焦点
+			Epg.call(prev.blurHandler, [prev]); //add 20150112 增加按钮失去焦点处理功能
 		}
 		if(current)
 		{
@@ -285,7 +281,6 @@ Epg.Button = Epg.btn =
 					G(current.id).height += size;
 				}
 			}
-			G(current.id).focus();//add 20141228   用于from表单获取焦点
 			if(current.selectBox){ //add 20141213    增加焦点框选中效果
 				var selectBoxId = current.id + '_focus';
 				var divId = 'div_' + current.id + '_focus';
@@ -296,6 +291,9 @@ Epg.Button = Epg.btn =
 				}
 				S(divId);
 			}
+			
+			G(current.id).focus();//add 20141228   用于from表单获取焦点
+			Epg.call(current.focusHandler, [current]); //add 20150112 增加按钮获取焦点处理功能
 		}
 	}
 };

@@ -17,33 +17,34 @@ class SectionController extends CommonController {
     public function indexAct() {
     	
     	$courseId  = I('courseId','');
+        $topicId = I('$topicId','');
     	$sectionId = I('sectionId','');
-    	$sort = I('sort','');
-    	$total = I('total','');
-    	
+        
 		$course = D('Course','Logic')->queryCourseById($courseId);
-		$char = getDelimiterInStr($course['topicIds']);
+        $char = getDelimiterInStr($course['topicIds']);
 		$topicIds = explode($char,$course['topicIds']);
 		$topicIds = array_filter($topicIds);
-		
-		$isExistPreVideo = false;
-		$isExitsNextVideo = false;
-		if($sort>1){
-			$isExitPreVideo = true;
-			$sorts[] = $sort-1;
+		$sections = D('Section','Logic')->querySectionList($topicIds,$page,1000);
+        //print_r($sections);exit;
+        $preSection = $nextSection = '';
+        foreach ($sections['rows'] as $key => $value) {
+            if($value['id'] == $sectionId){
+                if($sections['rows'][$key-1]){
+                    $preSection = $sections['rows'][$key-1]['id'];
+                }
+                if($sections['rows'][$key+1]){
+                    $nextSection = $sections['rows'][$key+1]['id'];
+                }
+                break;
+            }
+        }
+        
+		$jumpUrl = 'Resource/play?courseId='.$courseId.'&topicId='.$topicId.'&sectionId='.$sectionId;
+		if($preSection){
+			$jumpUrl.='&preSection='.$preSection;
 		}
-		$sorts[] = (int)$sort;
-		if($sort<$total){
-			$isExitsNextVideo = true;
-			$sorts[] = $sort+1;
-		}
-		$threeVideo = D('Section','Logic')->querySectionListBySort($topicIds,$sorts);
-		$jumpUrl = 'Resource/play?sectionId='.$sectionId.'&sort='.$sort.'&total='.$total;
-		if($isExitPreVideo){
-			$jumpUrl.='&preSectionId='.$threeVideo['rows'][0]['id'];
-		}
-		if($isExitsNextVideo){
-			$jumpUrl.='&nextSectionId='.$threeVideo['rows'][2]['id'];
+		if($nextSection){
+			$jumpUrl.='&nextSection='.$nextSection;
 		}
     	header('location:'.U($jumpUrl));
     	exit;

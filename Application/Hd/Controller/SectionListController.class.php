@@ -130,7 +130,7 @@ class SectionListController extends CommonController {
 	 */
 	private function common($chKey,$course){
 		$page = I('page',1);
-		$pageSize = 10;
+		$pageSize = 12;
 		
 		$imgs = explode(getDelimiterInStr($course['imgUrl']), $course['imgUrl']);
 		$course['imgUrl'] = $imgs[0];

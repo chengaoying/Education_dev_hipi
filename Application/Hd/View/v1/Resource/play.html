@@ -4,11 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="page-view-size" content="1280*720">
         <title></title>
-        <!--<script type="text/javascript" src="__COMMON__/js/base.js?__CSSJS_VERSION__"></script>-->
+        <script type="text/javascript" src="__COMMON__/js/base.js?__CSSJS_VERSION__"></script>
         <script type="text/javascript" src="__COMMON__/js/play/play{$areacode}.js?__CSSJS_VERSION__"></script>
         <style type="text/css">
             body{ 
-                background-image:url(__HD__/images/test/video/bj.jpg); 
+                background:transparent;
             }
 
             #div_left{
@@ -90,11 +90,13 @@
             var initPlay = function() {
                 play(videoContent, 1280, 720, 0, 0);
             }
-
+            var curPlayTime;
+            var totalPlayTime;
             //自动播放
             var autoPlay = function() {
-                //var curPlayTime = getCurrentTime();//获取当前播放时间
-                //var totalPlayTime = getTotalTime();
+                curPlayTime = getCurrentTime();//获取当前播放时间
+                //totalPlayTime = getTotalTime();
+                totalPlayTime = 20;
                 if ((curPlayTime >= totalPlayTime) && (curPlayTime != 0) && (totalPlayTime != 0)) {
                     if (nextUrl) {
                         window.location = nextUrl;
@@ -105,63 +107,62 @@
                 }
             }
 
-            //var timeAutoPlay;
-            //timeAutoPlay = setInterval("autoPlay()",1000);
+            var timeAutoPlay;
+            timeAutoPlay = setInterval("autoPlay()", 1000);
 
 
             window.onload = function() {
-                initPlay();
                 Epg.btn.init('btn_current', buttons, true);
-
+                initPlay();
             }
 
             window.onUnload = function() {
-                //destoryMP();
+                destory();
             }
 
+
+            //按键监控
             /*
-             //按键监控
-             document.onkeypress = function(keyEvent){
-             keyEvent = keyEvent ? keyEvent : window.event;
-             var keyval = keyEvent.which ? keyEvent.which : keyEvent.keyCode;
-             if ( keyval == 8 || keyval == -31){  //返回
-             window.location = backUrl;
-             } 	
-             else if(keyval == 0x000D){
-             mplay();
-             }
-             else if(keyval == 263 || keyval == 13){ //播放/暂停
-             mplay();
-             }
-             else if(keyval == 270){ //停止
-             pause();
-             }
-             else if(keyval == 260){ //音量-
-             volDown();
-             }
-             else if(keyval == 259){ //音量+
-             volUp();
-             }
-             else if(keyval == 264 || keyval == 39){ //快进
-             fastForward(); 	 	 
-             }
-             else if(keyval == 265 || keyval == 37){ //快退
-             fastRewind();
-             }else{			 
-             //window.location = backUrl;
-             }
-             }*/
+            document.onkeypress = function(keyEvent) {
+                keyEvent = keyEvent ? keyEvent : window.event;
+                var keyval = keyEvent.which ? keyEvent.which : keyEvent.keyCode;
+                if (keyval == 8 || keyval == -31) {  //返回
+                    window.location = backUrl;
+                }
+                else if (keyval == 0x000D) {
+                    mplay();
+                }
+                else if (keyval == 263 || keyval == 13) { //播放/暂停
+                    mplay();
+                }
+                else if (keyval == 270) { //停止
+                    pause();
+                }
+                else if (keyval == 260) { //音量-
+                    volDown();
+                }
+                else if (keyval == 259) { //音量+
+                    volUp();
+                }
+                else if (keyval == 264 || keyval == 39) { //快进
+                    fastForward();
+                }
+                else if (keyval == 265 || keyval == 37) { //快退
+                    fastRewind();
+                } else {
+                    //window.location = backUrl;
+                }
+            }*/
 
 
         </script>    
     </head>
     <body onUnload="javascript:destory()" onLoad="javascript:initPlay()">
         <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
-
         <!-- 页面左侧 -->
         <div id="div_left">
             <!-- 上一集 -->
-            <div id="div_btn_pre" title="{$playData['prevUrl']}" style="position:absolute;width:135px;height:60px;left:35px;top:240px;">
+            <div id="div_btn_pre" title="{$playData['prevUrl']}" style="position:absolute;width:135px;height:60px;left:35px;top:240px;z-index: 1000;">
                 <img id="btn_pre" src="__HD__/images/play/btn_pre.png" width="125" height="50">
             </div>
             <!-- 正在学习 -->

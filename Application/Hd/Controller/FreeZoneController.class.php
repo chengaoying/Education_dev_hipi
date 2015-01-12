@@ -20,7 +20,7 @@ class FreeZoneController extends CommonController {
 		$total = $data['total'];
 		$imgPath = '/static/v1/hd/images/common/page';
 		$page = get_pageHtml2($total,14,array(),$imgPath);
-		$data = D('Section','Logic')->querySectionByPrivilege('0',$page['firstRow'],14);
+		$data = D('Section','Logic')->querySectionByPrivilege('0',$page['nowPage'],14);
 		
 		//角色信息
 		$role = unserialize(Session('role'));

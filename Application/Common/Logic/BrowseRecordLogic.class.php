@@ -25,12 +25,13 @@ class BrowseRecordLogic extends BaseLogic{
 	 * 根据type(浏览类型(1-视频，2-课程，3-题库),keys查找浏览记录
 	 * @param int $type	浏览类型
 	 * @param int &keys 关键字
+	 * @param array $date 日期范围，不需要置null
 	 * @param int $pageNo 页号
 	 * @param int $pageSize 每页记录数
 	 */
-	public function queryBrowseRecordListByKeys($type, $keys, $pageNo, $pageSize)
+	public function queryBrowseRecordListByKeys($type, $keys, $date, $pageNo, $pageSize)
 	{
-		return $this->client->queryBrowseRecordListByKeys($type, $keys, $pageNo, $pageSize);
+		return $this->client->queryBrowseRecordListByKeys($type, $keys, $date,$pageNo, $pageSize);
 	}
 	
 }

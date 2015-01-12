@@ -39,8 +39,13 @@ class LearningController extends CommonController {
 		$resource = D('Resource','Logic') -> queryResourceListByKeyList($tags,null,null,'keyList');//查出keyList中包含能力标签中的项
 		$total = $this -> getCount($resource['rows'],'keyList');
 		
-		//查出keyList中包含能力标签中的项
-		$BrowseRecord = D('BrowseRecord','Logic') -> queryBrowseRecordListByKeys(1, $tags);
+		$dataGet = I('Get.');
+		
+		$arrange = $dataGet['arrange'];
+		$dateArrange = ($arrange == 'month') ? $this->getMonthDate() : null;
+		//查出t_role_browse表中中包含能力标签的项
+		$BrowseRecord = D('BrowseRecord','Logic') -> queryBrowseRecordListByKeys(1, $tags, $dateArrange);
+//		p($BrowseRecord);exit;
 		$finish = $this -> getCount($BrowseRecord['rows'],'keys');
 		
 		$length = $this -> getProgressOfEarly($total, $finish, $tags);
@@ -55,6 +60,20 @@ class LearningController extends CommonController {
 	}
 	
 	/*
+	 * 得到本月其实日期和结束日期时间点
+	 * @return array $date 包含开始日期和结束日期时间点
+	 */
+	private function getMonthDate()
+	{
+		date_default_timezone_set('Etc/GMT-8');     //这里设置了时区
+		
+		$startDate = date('Y-m').'-01 00:00:00';
+		$endDate = date('Y-m-d H:i:s');//get now time
+		return array($startDate, $endDate);
+	}
+	
+	
+	/*
 	 * 得到早教各项能力进度
 	 */
 	private function getProgressOfEarly($total, $finish, $tags)
@@ -65,6 +84,7 @@ class LearningController extends CommonController {
 			if(in_array($value, array_keys($total)))
 			{
 				if($total[$value] == 0) $length[$value] = 302;
+				if($finish[$value] > $total[$value]) $finish[$value] = $total[$value]; 
 				$finish[$value] = empty($finish[$value]) ? 0 : $finish[$value];
 				$length[$value] = ($total[$value]-$finish[$value])*302/$total[$value];
 			}

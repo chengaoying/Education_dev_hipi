@@ -36,7 +36,7 @@ class IndexController extends CommonController {
 	 */
 	public function recommendAct(){
 		//栏目数据json格式-前端js使用
-		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage'));
+		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage','titleImage'));
 		$json_channel = json_encode($json_channel);
 		//角色信息，根据角色不同龄段推荐不同的课程
 		$stage = $this->getStage($this->role['stageId']);
@@ -192,7 +192,7 @@ class IndexController extends CommonController {
 	 */
 	public function allCourseAct(){
 		//栏目数据json格式-前端js使用
-		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage'));
+		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage','titleImage'));
 		$json_channel = json_encode($json_channel);
 		 
 		//一级分类（二级栏目）
@@ -214,7 +214,7 @@ class IndexController extends CommonController {
 	 */
 	public function myCourseAct(){
 		//栏目数据json格式-前端js使用
-		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage'));
+		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage','titleImage'));
 		$json_channel = json_encode($json_channel);
 		
 		$myCourse = D('Course','Logic')->queryUserCourseList($this->user['id'], 1, 10);

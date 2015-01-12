@@ -22,7 +22,7 @@ class RecentlyWatchController extends CommonController {
 		$total = $data['total'];
 		$imgPath = '/static/v1/hd/images/common/page';
 		$page = get_pageHtml2(1,14,array(),$imgPath);
-		$data = D('BrowseRecord','Logic')->queryBrowseRecordList($role['id'],$page['firstRow'],14);
+		$data = D('BrowseRecord','Logic')->queryBrowseRecordList($role['id'],$page['nowPage'],14);
 		//角色信息	
 		$role = unserialize(Session('role'));
 		$proConfig = get_pro_config_content('proConfig');
