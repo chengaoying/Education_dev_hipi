@@ -43,7 +43,7 @@ class LearningController extends CommonController {
 		
 		$arrange = $dataGet['arrange'];
 		$dateArrange = ($arrange == 'month') ? $this->getMonthDate() : null;
-		//查出t_role_browse表中中包含能力标签的项
+		//查出t_role_browse表中中包含能力标签的项 1-视频
 		$BrowseRecord = D('BrowseRecord','Logic') -> queryBrowseRecordListByKeys(1, $tags, $dateArrange);
 //		p($BrowseRecord);exit;
 		$finish = $this -> getCount($BrowseRecord['rows'],'keys');
@@ -168,7 +168,7 @@ class LearningController extends CommonController {
 		}
 		$data_get = I('get.');
 		
-		//分页查找数据
+		//分页查找数据,$role['stageId']得到段龄,第二个参数typeid没有用到，值0，查询时忽略该字段
 		$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 0, 1, 14);
 		$total = $course['total'];
 		$page = get_pageHtml2($total,3,array(),'/static/v1/hd/images/common/page');

@@ -246,9 +246,10 @@ Epg.Button = Epg.btn =
 		var prev = this.previous;
 		var current = this.current;
 		var size = 5;
+		
 		if(prev)
-		{
-			if(prev.linkImage){
+		{   
+			if(prev.linkImage && !current.focusHandler){//修改于 20150113  添加!current.focusHandler控制
 				G(prev.id).src = prev.linkImage;
 			}else{
 				//add 20141224 增加按钮放大缩小控制(按钮buttons中resize属性为-1则不进行放大缩小效果)
@@ -270,9 +271,9 @@ Epg.Button = Epg.btn =
 			G(prev.id).blur();//add 20141228   用于from表单失去焦点
 			Epg.call(prev.blurHandler, [prev]); //add 20150112 增加按钮失去焦点处理功能
 		}
-		if(current)
+		if(this.current)
 		{
-			if(current.focusImage){
+			if(current.focusImage && !current.focusHandler){//修改于 20150113  添加!current.focusHandler控制
 				G(current.id).src = current.focusImage;
 			}else{
 				//add 20141224 增加按钮放大缩小控制(按钮buttons中resize属性为-1则不进行放大缩小效果)

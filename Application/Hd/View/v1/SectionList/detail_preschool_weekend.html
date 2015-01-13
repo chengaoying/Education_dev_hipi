@@ -1,0 +1,91 @@
+<layout name="layout" />
+<style type="text/css">
+   body{ background-image:url(__HD__/images/sectionList/preschool/weekend/bg{$week}.jpg); }
+   
+.shadow{
+   position: absolute;
+   width:360px;
+   height:50px;
+   top:617px;
+   background-image: url(__HD__/images/common/shadow/shadow_360x60.png);
+}
+
+#week{
+    position:absolute;
+	width: 66px;
+	height: 21px;
+	top: 650px;
+	left:855px;
+	background-image: url(__HD__/images/sectionList/preschool/week_{$week}.png);
+}
+</style>
+
+<script type="text/javascript">
+
+var buttons=
+	[
+		/*课时列表*/
+		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_240x330.png',left:'',right:'section_2',down:['btn_prev_day','btn_next_day']},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_240x330.png',left:'section_1',right:'section_3',down:['btn_prev_day','btn_next_day']},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_240x330.png',left:'section_2',right:'',down:['btn_prev_day','btn_next_day']},
+
+		/* 前一天 /后一天 */
+		{id:'btn_prev_day',name:'',action:'',linkImage:'__HD__/images/sectionList/preschool/weekend/page_prev.png',focusImage:'__HD__/images/sectionList/preschool/weekend/page_prev_over.png',selectBox:'',left:'btn_logo',right:'btn_next_day',up:'section_3'},
+		{id:'btn_next_day',name:'',action:'',linkImage:'__HD__/images/sectionList/preschool/weekend/page_next.png',focusImage:'__HD__/images/sectionList/preschool/weekend/page_next_over.png',selectBox:'',left:'btn_prev_day',right:'btn_week',up:'section_3'},
+
+		/*本周课程*/
+        {id:'btn_week',name:'',action:'',linkImage:'__HD__/images/sectionList/preschool/weekend/btn_week.png',focusImage:'__HD__/images/sectionList/preschool/weekend/btn_week_over.png',selectBox:'',left:['btn_next_day','btn_prev_day'],right:'btn_order',up:'section_3',down:''},
+		
+        /* 订购按钮 */	
+		{id:'btn_order',name:'订购',action:'',linkImage:'__HD__/images/sectionList/preschool/weekend/btn_order.png',focusImage:'__HD__/images/sectionList/preschool/weekend/btn_order_over.png',selectBox:'',left:'btn_week',up:'section_3',down:''},
+        
+    ];
+    
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	
+}
+
+window.onload=function()
+{
+    initButtons();
+    popup();
+	Epg.btn.init('section_1',buttons,true);	
+};
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
+
+<!-- 星期 -->
+<div id="week"></div>
+<!-- 前一天 -->
+<div id="div_btn_prev_day" style="position:absolute;width:22px;height:26px;left:820px;top:650px;text-align:center;">
+    <img id="btn_prev_day" title="{:U('SectionList/index').'?courseId='.$courseId.'&topicId='.$prevTopicId.'&chId='.$chId}" src="__HD__/images/sectionList/preschool/weekend/page_prev.png" width="22" height="26">
+</div>
+<!-- 后一天 -->
+<div id="div_btn_next_day" style="position:absolute;width:22px;height:26px;left:935px;top:650px;text-align:center;">
+    <img id="btn_next_day" title="{:U('SectionList/index').'?courseId='.$courseId.'&topicId='.$nextTopicId.'&chId='.$chId}" src="__HD__/images/sectionList/preschool/weekend/page_next.png" width="22" height="26">
+</div>
+
+<!-- 订购 -->
+<div id="div_btn_order" style="position:absolute;width:88px;height:30px;top:645px;left:1125px;">
+	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId)}" src="__HD__/images/sectionList/preschool/weekend/btn_order.png">
+</div>
+
+<!-- 本周课程 -->
+<div id="div_btn_week" title="{:U('SectionList/week?courseId='.$courseId)}" style="position: absolute;width:142px;height:31px;left:970px;top:645px;">
+	<img id="btn_week" src="__HD__/images/sectionList/preschool/weekend/btn_week.png" width="138" height="33" />
+</div>
+
+<!-- 课时列表 -->
+<volist name="sections" id="section" key="i">
+    <php>
+         $top = 265; $left = 265 + ($i-1)*260;
+    </php>
+    <div id="div_section_{$i}" style="position:absolute;width:230px;height:320px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="section_{$i}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId)}" src="{:get_upfile_url($section['imgUrl'])}" width="220" height="310">
+    </div>
+    <div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:320px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="section_{$i}_focus" src="" width="235" height="325">
+    </div>
+</volist>

@@ -63,6 +63,7 @@ class CourseListController extends CommonController {
 			'courses' 	 => $courses['rows'],	
 			'pageHtml' 	 => $pageHtml,
 			'isEarly'	 => $isEarly,
+			'chId'		 => $chId,
 		));
 		$this->display();
 	}

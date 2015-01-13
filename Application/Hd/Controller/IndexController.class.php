@@ -29,7 +29,7 @@ class IndexController extends CommonController {
 	/**
 	 * 欢迎页
 	 */
-	public function wecomeAct(){}
+	public function welcomeAct(){}
 	
 	/**
 	 * 推荐课程首页
@@ -217,7 +217,7 @@ class IndexController extends CommonController {
 		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage','titleImage'));
 		$json_channel = json_encode($json_channel);
 		
-		$myCourse = D('Course','Logic')->queryUserCourseList($this->user['id'], 1, 10);
+		$myCourse = D('RoleCourse','Logic')->queryRoleCourseList($this->role['id'], 1, 10);
 		foreach ($myCourse['rows'] as $k=>$v){
 			if($v['courseImg']){
 				$char = getDelimiterInStr($v['courseImg']);

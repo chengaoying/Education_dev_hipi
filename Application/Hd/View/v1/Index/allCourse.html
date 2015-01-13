@@ -24,9 +24,9 @@ var json_class = {$json_class};
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',right:'ch_2',down:'class_1'},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',blurHandler:'blurHandler()',left:'ch_1',right:'ch_3',down:'class_1'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_2',right:'search',down:'class_2'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',right:'ch_2',down:'class_1'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',blurHandler:'blurHandler()',left:'ch_1',right:'ch_3',down:'class_1'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_2',right:'search',down:'class_2'},
 
 		/* 检索按钮 */
 		//{id:'search',name:'',action:'',linkImage:'__HD__/images/Index/allCourse/btn_search.png',focusImage:'__HD__/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
@@ -119,8 +119,6 @@ window.onload=function()
 function blurHandler(){
 	if(Epg.btn.current.id != "ch_1" && Epg.btn.current.id != "ch_3"){
 		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
-	}else{
-		Epg.btn.click();
 	}
 }
 

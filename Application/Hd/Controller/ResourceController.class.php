@@ -19,12 +19,11 @@ class ResourceController extends CommonController {
         }
         $playUrl = C('RTSP_VIDEO_URL'); //流媒体ip地址
         $courseId = I('courseId', '');
-        $topicId = I('$topicId','');
         $sectionId = I('sectionId', '');
         $preSection = I('preSection','');
         $nextSection = I('nextSection','');
         $section = D('Section', 'Logic')->querySectionById($sectionId);
-        //print_r($section);
+        //print_r($section);exit;
         $playList = array();
         if ($section['previewList']) {
             $playList = explode(',', $section['previewList']);
@@ -78,7 +77,7 @@ class ResourceController extends CommonController {
                     $playData['prevUrl'] = U('Resource/play', array('courseId'=>$courseId, 'sectionId' => $sectionId, 'videoId' => $playResource[$key - 1]['id']));
                 } else {
                     if ($preSection) {
-                        $playData['prevUrl'] = U('Resource/play', array('courseId'=>$courseId,'sectionId' => $preSection));
+                        $playData['prevUrl'] = U('Section/index', array('courseId'=>$courseId,'sectionId' => $preSection));
                     } else {
                         $playData['prevUrl'] = '';
                     }
@@ -87,13 +86,12 @@ class ResourceController extends CommonController {
                     $playData['nextUrl'] = U('Resource/play', array('courseId'=>$courseId,'sectionId' => $sectionId, 'videoId' => $playResource[$key + 1]['id']));
                 } else {
                     if ($libId) {//判断是否有预习题目
-                        $playData['nextUrl'] = U('Library/detail', array('courseId'=>$courseId,'sectionId' => $sectionId, 'topicId' => $topicId));
+                        $playData['libUrl'] = U('Library/detail', array('courseId'=>$courseId,'sectionId' => $sectionId, 'topicId' => $topicId));
+                    }
+                    if ($nextSection) {
+                        $playData['nextUrl'] = U('Section/index', array('courseId'=>$courseId,'sectionId' => $nextSection));
                     } else {
-                        if ($nextSection) {
-                            $playData['nextUrl'] = U('Resource/play', array('courseId'=>$courseId,'sectionId' => $nextSection));
-                        } else {
-                            $playData['nextUrl'] = '';
-                        }
+                        $playData['nextUrl'] = '';
                     }
                 }
             }

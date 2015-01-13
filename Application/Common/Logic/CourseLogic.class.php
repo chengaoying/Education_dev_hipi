@@ -10,15 +10,6 @@ class CourseLogic extends BaseLogic{
 		parent::__construct('/Api/CourseApi');
 	}
 	
-	/**
-	 * 查询用户购买的课程列表
-	 * @param int $userId	用户id
-	 * @param int $pageNo	页号
-	 * @param int $pageSize	每页记录数
-	 */
-	public function queryUserCourseList($userId, $pageNo, $pageSize){
-		return $this->client->queryUserCourseList($userId, $pageNo, $pageSize);
-	}
 	
 	/**
 	 * 通过关键字查询课程列表

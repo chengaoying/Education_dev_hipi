@@ -14,9 +14,9 @@
 var buttons=
 	[
 		/* 上边 */
-		{id:'btn_record',name:'',action:'',linkImage:'__HD__/images/sectionList/primaryschool/btn_record.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_record_over.png',selectBox:'',right:'btn_favor',left:'',up:'',down:'section_1'},
-		{id:'btn_favor',name:'',action:'',linkImage:'__HD__/images/sectionList/primaryschool/btn_favor.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_favor_over.png',selectBox:'',right:'btn_order',left:'btn_record' ,down:'section_1',},
-		{id:'btn_order',name:'',action:'',linkImage:'__HD__/images/sectionList/primaryschool/btn_order.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['page_prev','page_next'],left:'btn_favor',up:'',down:['page_prev','page_next']},
+		{id:'btn_record',name:'',action:'',linkImage:'__HD__/images/sectionList/primaryschool/btn_record.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_record_over.png',selectBox:'',right:'btn_plan',left:'',up:'',down:'section_1'},
+		{id:'btn_plan',name:'',action:'',linkImage:'__HD__/images/sectionList/primaryschool/btn_plan.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_plan_over.png',selectBox:'',right:'btn_order',left:'btn_record' ,down:'section_1',},
+		{id:'btn_order',name:'',action:'',linkImage:'__HD__/images/sectionList/primaryschool/btn_order.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['page_prev','page_next'],left:'btn_plan',up:'',down:['page_prev','page_next']},
 		
 		/* 分页按钮 */
 		{id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'btn_order',right:'page_next',down:['section_7'],up:'btn_order'},
@@ -66,13 +66,13 @@ window.onload=function()
 </div>
 
 <!-- 加入学习计划 -->
-<div id="div_'btn_favor'" style="position:absolute;left:560px;top:230px;">
-	<img id='btn_favor' title="ddd" src="__HD__/images/sectionList/primaryschool/btn_favor.png" width="159" height="38">
+<div id="div_btn_plan" style="position:absolute;left:560px;top:230px;">
+	<img id="btn_plan" title="{:U('Role/addCourse').'?courseId='.$course['id'].'&courseName='.$course['name'].'&courseImg='.$course['imgUrl']}" src="__HD__/images/sectionList/primaryschool/btn_plan.png" width="159" height="38">
 </div>	
 
 <!-- 订购该课程 -->
 <div id="div_btn_order" style="position:absolute;left:737px;top:230px;">
-	<img id='btn_order' title="{:U('Order/index?courseId='.$course['id'])}" src="__HD__/images/sectionList/primaryschool/btn_order.png" width="147" height="38">
+	<img id="btn_order" title="{:U('Order/index?courseId='.$course['id'])}" src="__HD__/images/sectionList/primaryschool/btn_order.png" width="147" height="38">
 </div>
 
 <!-- 观看记录 -->
@@ -104,13 +104,15 @@ window.onload=function()
 		}
 	</php>
 	<div id="div_section_{$i}" style="position:absolute;width:390px;height:50px;left:{$left}px;top:{$top}px;text-indent:20px; text-align:left;line-height:50px;">
-		<span id="section_{$i}" title="{:U('Section/index?courseId='.$courseId.'&topicId='.$topicId.'&sectionId='.$section['id'].'&courseId='.$course['id'])}">{$section['name']}</span>
+		<span id="section_{$i}" title="{:U('Section/index?courseId='.$course['id'].'&sectionId='.$section['id'])}">{$section['name']}</span>
 	</div>
 	<div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden; width:390px;height:50px;left:{$left+3}px;top:{$top-1}px;">
 		<img id="section_{$i}_focus" src="" width='385' height='45'>
 	</div>
-	<div id="div_section_{$i}_free" style="position:absolute;width:46px;height:24px;left:{$left+320}px;top:{$top+4}px;">
-		<img id="section_{$i}_free" src="__HD__/images/sectionList/primaryschool/free.png" width='46' height='24'>
-	</div>
+	<if condition="$section['privilege'] eq 0">
+		<div id="div_section_{$i}_free" style="position:absolute;width:46px;height:24px;left:{$left+320}px;top:{$top+4}px;">
+			<img id="section_{$i}_free" src="__HD__/images/sectionList/primaryschool/free.png" width='46' height='24'>
+		</div>
+	</if>
 </volist>
 

@@ -21,9 +21,9 @@ var channel = {$json_channel};
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',blurHandler:'blurHandler()',right:'ch_2',down:'user_center'},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'banner_center'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_2',down:'banner_center'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',resize:'-1',blurHandler:'blurHandler()',right:'ch_2',down:'user_center'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'banner_center'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_2',down:'banner_center'},
 		
 		/* 左侧导航 */
 		{id:'user_center',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_160x145.png',right:'banner_center',up:'ch_1',down:'free'},
@@ -170,8 +170,6 @@ window.onload=function()
 function blurHandler(){
 	if(Epg.btn.current.id != "ch_2" && Epg.btn.current.id != "ch_3"){
 		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
-	}else{
-		Epg.btn.click();
 	}
 }
 

@@ -561,4 +561,23 @@ class RoleController extends CommonController {
 				));
 		$this->display();
 	}
+	
+	
+	/**
+	 * 加入学习计划
+	 */
+	public function addCourseAct(){
+		$courseId = I('courseId','');
+		$courseName = I('courseName','');
+		$courseImg = I('courseImg','');
+		$r = D('RoleCourse','Logic')->addCourse($this->role['id'],$courseId,$courseName,$courseImg);
+		if($r['status']){
+			$this->addFloatMessage("加入学习计划成功！",U('SectionList/index?courseId='.$courseId));
+		}else{
+			$this->addFloatMessage($r['info'],U('SectionList/index?courseId='.$courseId));
+		}
+	}
+	
+	
+	
 }

@@ -87,6 +87,7 @@ class SectionListController extends CommonController {
 		}
 		
 		$topicId = I('topicId','');
+		$chId = I('chId','');
 		//计算上一个课时id，下一个课时id
 		if(empty($topicId)){
 			$i = (date('w')-1) < 0 ? 6 : (date('w')-1);
@@ -117,9 +118,15 @@ class SectionListController extends CommonController {
 			'courseId'		=> $course['id'],	
 			'week'			=> $week,	
 			'prevTopicId'	=> $prevTopicId,
-			'nextTopicId'	=> $nextTopicId,		
+			'nextTopicId'	=> $nextTopicId,
+			'chId'			=> $chId,		
 		));
-		$this->display('detail_preschool');
+		if($week==6||$week==0){
+			$template = 'detail_preschool_weekend';
+		}else{
+			$template = 'detail_preschool_workday';
+		}
+		$this->display($template);
 	}
 	
 	/**
