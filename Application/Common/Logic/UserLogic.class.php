@@ -42,15 +42,27 @@ class UserLogic extends BaseLogic{
 	 */
 	public function LoginChecking(){
 		$params = I('params');
-		if(!empty($params)){ //EPG登入产品
+		if(!empty($params)){ //1.EPG登入产品
 			$result = $this->LoginOrReg($params);
+			//登入成功并且产品有包月功能，则进行产品鉴权
+			if($result['status'] && is_monthly_order()){
+				$user = unserialize(Session('user'));
+				$r = D('Order','Logic')->auth($user['id']);
+				if($r['status']){
+					//更新用户类型状态
+					$data = $r['data'];
+					$type = $data['userType'];
+					$user['userType'] = $type;
+					Session('user',serialize($user));
+				}
+			} 
 		}else{
 			$userId = I('userId','');
 			$sign	= I('sign','');
-			if(!empty($userId)){ //其他产品登入该产品
+			if(!empty($userId)){ //2.其他产品登入该产品
 				//TODO
 				
-			}else{//产品内部页面跳转
+			}else{//3.产品内部页面跳转
 				$user = unserialize(Session('user'));
 				if(!$user) {
 					$result = result_data(0,'用户信息已过期，请重新登入产品！');
@@ -99,14 +111,15 @@ class UserLogic extends BaseLogic{
 		//加载用户的角色信息，并指定用户最近使用的角色
 		D('Role','Logic')->initUserRoleInfo();
 		
-		return result_data(1,'',$_user);
+		return result_data(1,'');
 	}
 	
 	/**
 	 * 重新载入用户信息
 	 */
 	public function reloadUser(){
-		$_user = $this->load(USER_ID);
+		$u = unserialize(Session('user'));
+		$_user = $this->load($u['id']);
 		Session('user',serialize($_user));
 		return $_user;
 	}

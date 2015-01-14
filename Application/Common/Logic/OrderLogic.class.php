@@ -11,6 +11,14 @@ class OrderLogic extends BaseLogic{
 	}
 	
 	/**
+	 * 产品鉴权
+	 * @param $userId 用户id
+	 */
+	public function auth($userId){
+		$result = $this->client->auth($userId);
+	}
+	
+	/**
 	 * 订购课程
 	 * @param int $userId	用户id
 	 * @param int $roleId	角色id

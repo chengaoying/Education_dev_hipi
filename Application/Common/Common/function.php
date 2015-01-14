@@ -5,6 +5,20 @@
  */
 
 /**
+ * 判断产品是否支持包月订购
+ * 判断方式：后台计费管理中设置并启用了包月计费模式
+ */
+function is_monthly_order(){
+	$chargeMode = S('ChargeMode');
+	$type = get_pro_config_content('proConfig','charge');
+	$key = array_search('包月', $type);
+	foreach ($chargeMode as $k => $v){
+		if ($v['type'] == $key) return true;
+	}
+	return false;
+}
+
+/**
  * 根据广告位的key获取单个广告位
  * @param string $asKey
  */
@@ -28,12 +42,14 @@ function get_ad($asId){
 /**
  * 获取配置中的配置内容content
  * @param string $cKey 配置key
+ * @param string $field 字段key
  */
-function get_pro_config_content($cKey){
+function get_pro_config_content($cKey,$field=''){
 	$conf = S('ProConfig');
 	$conf = $conf[$cKey];
-	$content = $conf['content'];
-	return unserialize($content);
+	$content = unserialize($conf['content']);
+	if(!empty($field)) return $content[$field];
+	return $content;
 }
 
 /**

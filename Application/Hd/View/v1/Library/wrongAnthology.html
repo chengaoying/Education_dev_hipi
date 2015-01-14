@@ -1,34 +1,23 @@
 <layout name="layout" />
 <style type="text/css">
-    body{ background-image:url(__HD__/images/library/wrong_anthology/bg.jpg); }
+    body{ background-image:url(__HD__/images/common/bg.jpg); }
     
     .course_title{
         position: absolute;
         display: block;
-        top:65px;
-        left:65px;
+        top:67px;
+        left:260px;
         font-size: 22px;
     }
     
     .ch_logo{
         position: absolute;
         display: block;
-        top:55px;
-        left:305px;
-        width: 116px;
-        height: 43px;
+        top:70px;
+        left:100px;
+        width: 154px;
+        height: 28px;
         background: url(__HD__/images/library/wrong_anthology/ch_logo.png) no-repeat;
-    }
-    
-    .lib_big_bg{
-        position: absolute;
-        display: block;
-        top:160px;
-        left:76px;
-        width: 1110px;
-        height: 435px;
-        background: url(__HD__/images/library/wrong_anthology/lib_big_bg.png) no-repeat;
-        z-index: 0;
     }
     
     .lib_bg{
@@ -36,49 +25,48 @@
         display: block;
         top:178px;
         left:85px;
-        width: 140px;
-        height: 350px;
+        width: 250px;
+        height: 420px;
         background: url(__HD__/images/library/wrong_anthology/lib_bg.png) no-repeat;
         z-index: 2;
     }
     .score_bg{
         position: absolute;
         display: block;
-        top:178px;
-        left:280px;
-        width: 104px;
-        height: 23px;
+        top:165px;
+        left:380px;
+        width: 790px;
+        height: 47px;
         background: url(__HD__/images/library/wrong_anthology/score.png) no-repeat;
     }
-    
+    .title_bg{
+        position: absolute;
+        display: block;
+        top:220px;
+        left:360px;
+        width: 810px;
+        height: 332px;
+        background: url(__HD__/images/library/wrong_anthology/title_bg.png) no-repeat;
+    }    
     .score{
         position: absolute;
         display: block;
-        top:175px;
-        left:400px;
+        top:165px;
+        left:420px;
         width: 80px;
         color:#f65074;
         font-size: 24px;
         font-weight: 600;
     }
-    .answer_bg{
-        position: absolute;
-        display: block;
-        top:178px;
-        left:980px;
-        width: 183px;
-        height: 19px;
-        background: url(__HD__/images/library/wrong_anthology/answer_bg.png) no-repeat;
-    }
     .now{
         width:100px;
         height:30px;
         line-height: 30px;
-        font-size:26px;
+        font-size:24px;
         font-weight: 500;
         text-align:center;
         color: #000
-    }
+    }  
 </style>
 
 <script type="text/javascript">
@@ -95,8 +83,8 @@ var buttons=
         {id:'lib_7',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_6',down:['up','down']},
         
         /* 页码 */
-		{id:'pre',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/pre.png',focusImage:'__HD__/images/library/wrong_anthology/pre_over.png',selectBox:'',left:['down','up','re_answer'],right:'next',up:'re_answer',down:''},
-		{id:'next',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/next.png',focusImage:'__HD__/images/library/wrong_anthology/next_over.png',selectBox:'',left:['pre','down','up','re_answer'],right:'',up:'re_answer',down:''},
+		{id:'pre',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:['down','up','re_answer'],right:'next',up:'re_answer',down:''},
+		{id:'next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['pre','down','up','re_answer'],right:'',up:'re_answer',down:''},
         {id:'up',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/up.png',focusImage:'__HD__/images/library/wrong_anthology/up_over.png',selectBox:'',left:'',right:['down','pre','next','re_answer'],up:['lib_7','lib_6','lib_5','lib_4','lib_3','lib_2','lib_1'],down:''},
 		{id:'down',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/down.png',focusImage:'__HD__/images/library/wrong_anthology/down_over.png',selectBox:'',left:'up',right:['pre','next','re_answer'],up:['lib_7','lib_6','lib_5','lib_4','lib_3','lib_2','lib_1'],down:''},
         
@@ -107,7 +95,7 @@ var buttons=
 
 window.onload=function()
 {
-	var index = "<?php echo $index ?>";
+	var index = {$index};
 	Epg.btn.init('lib_'+index,buttons,true);
 };
 
@@ -121,22 +109,19 @@ window.onload=function()
 <!-- 上面栏目 -->
 <div class="ch_logo"></div>
 
-<!-- 中间白色背景 -->
-<div class="lib_big_bg"></div>
-
 <!-- 左边黑色背景 -->
 <div class="lib_bg"></div>
 
 <!-- 左边课程 -->
 <volist name="libList" id="lib">
 	<php>
-		$top = 178 + ($i-1)*50;
+		$top = 178 + ($i-1)*55;
 	</php>
-    <div id="div_lib_{$i}" title="{:U('Library/wrongAnthology',array('topicId'=>$topicId,'sectionId'=>$sectionId,'index'=>$i,'spage'=>$s_page))}" style="position:absolute;height:50px;left:85px;top:{$top}px;z-index: 100">
-        <img id="lib_{$i}" src="" width="140" height="50" />
+    <div id="div_lib_{$i}" title="{:U('Library/wrongAnthology',array('topicId'=>$topicId,'sectionId'=>$sectionId,'index'=>$i,'spage'=>$s_page))}" style="position:absolute;height:55px;left:85px;top:{$top+6}px;z-index: 100">
+        <img id="lib_{$i}" src="__HD__/images/common/transparent.png" width="250" height="55" />
 	</div>
-    <div id="div_lib_{$i}_focus" style="position:absolute;left:115px;top:{$top-2}px;z-index: 1000;">
-        <span id="lib_{$i}_focus" style=" display: block;height: 48px;line-height: 48px; font-size: 22px;color:#f65074;z-index: 9999">{:msubstr($lib['sectionName'],0,3)}</span>
+    <div id="div_lib_{$i}_focus" style="position:absolute;left:90px;top:{$top+5}px;z-index: 1000;">
+        <span id="lib_{$i}_focus" style="display: block;height: 55px;width:250px; line-height: 55px; font-size: 22px;color:#fff;text-align:center; z-index: 9999">{:msubstr($lib['sectionName'],0,10)}</span>
 	</div>
 </volist>
 
@@ -150,29 +135,30 @@ window.onload=function()
 <div class="score">{$score}</div>
 
 <!-- 重新答题 -->
-<div id="div_re_answer" title="{:U('Library/detail',array('topicId'=>$topicId,'sectionId'=>$sectionId))}" style="position:absolute;width:100px;height:36px;left:480px;top:175px;text-align:center;">
+<div id="div_re_answer" title="{:U('Library/detail',array('topicId'=>$topicId,'sectionId'=>$sectionId))}" style="position:absolute;width:100px;height:36px;left:550px;top:165px;text-align:center;">
 	<img id="re_answer" src="__HD__/images/library/wrong_anthology/re_answer.png" width="100" height="36">
 </div>
-<!-- 答案背景 -->
-<div class='answer_bg'></div>
+
+<!-- 题目背景 -->
+<div class="title_bg"></div>
 
 <!-- 题目列表 -->
 <volist name="questionList" id="question">
 	<php>
-		$top = 228 + ($i-1)*50;
+		$top = 228 + ($i-1)*55;
 	</php>
-    <div id="div_question_{$i}" style="position:absolute;left:280px;top:{$top-2}px;z-index: 1000;">
-        <span id="question_{$i}" style=" display: block;height: 48px;line-height: 48px; font-size: 20px;color:#333;">{$question['title']}</span>
+    <div id="div_question_{$i}" style="position:absolute;left:365px;top:{$top-2}px;z-index: 1000;">
+        <span id="question_{$i}" style=" display: block;height: 48px;line-height: 48px; font-size: 15px;color:#fff;">{:msubstr($question['title'],0,50)}</span>
 	</div>
     
     <!-- 你的答案 -->
-    <div id="div_myself_{$i}" style="position:absolute;left:1020px;top:{$top+10}px;z-index: 1000;">
-        <img id="myself_{$i}" src="__HD__/images/library/wrong_anthology/{$question['wrong']}_over.png" width='13' height='18' />
+    <div id="div_myself_{$i}" style="position:absolute;left:1030px;top:{$top+10}px;z-index: 1000;">
+        <img id="myself_{$i}" src="__HD__/images/library/wrong_anthology/{$question['wrong']}.png" width='30' height='30' />
 	</div>
     
     <!-- 正确答案 -->
     <div id="div_correct_{$i}" style="position:absolute;left:1120px;top:{$top+10}px;z-index: 1000;">
-        <img id="correct_{$i}" src="__HD__/images/library/wrong_anthology/{$question['correct']}.png" width='13' height='18' />
+        <img id="correct_{$i}" src="__HD__/images/library/wrong_anthology/{$question['correct']}.png" width='30' height='30' />
 	</div>
 </volist>
 

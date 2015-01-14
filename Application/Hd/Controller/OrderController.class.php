@@ -12,14 +12,24 @@ use Common\Controller\CommonController;
 class OrderController extends CommonController {
 	
 	/**
-	 * 首页
+	 * 订购处理，流程：
+	 * 1.处理产品支持订购的模式（包月，按龄段，按课程）
 	 */
 	public function indexAct(){
+		//订购处理
+		//1.产品包月的订购模式(如果为包月，其他订购模式暂不支持)
+		if(is_monthly_order()){
+			//TODO	
+		}else{
+			$chargeMode = S('ChargeMode');
+			dump($chargeMode);exit;
+		}
+		
 		$courseId = I('courseId','');
 		$course = D('Course','Logic')->queryCourseById($courseId);
 		
 		$this->assign(array(
-			'course'	=>	$course,
+			'course' =>	$course,
 		));
 		$this->display();
 	}
