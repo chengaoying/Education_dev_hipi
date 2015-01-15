@@ -133,7 +133,7 @@ var popup = function(){
 <?php if(is_array($datas)): $i = 0; $__LIST__ = $datas;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i; $left = 95 + (($i-1)%2)*414; $top = 160 + (ceil($i/2)-1)*60; ?>
 	
 	<div id="div_option_<?php echo ($i); ?>" style="position:absolute;visibility:hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-		<img id="option_<?php echo ($i); ?>" title="<?php echo ($data['url']); ?>" src="" width="370" height="60">
+		<img id="option_<?php echo ($i); ?>" title="<?php echo U('Resource/play?sectionId='.$data['sectionId']);?>" src="" width="370" height="60">
 	</div>
 	<div id="div_option_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="option_<?php echo ($i); ?>_focus" title="" src="" width="370" height="60">
@@ -144,27 +144,22 @@ var popup = function(){
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 	<div id="div_optionRecmd_1" style="position:absolute;left:965px;top:165px;text-align:center;">
-		<img id="optionRecmd_1" title="<?php echo U('Resource/play?courseId='.$url_recommend1);?>" src="<?php echo ($img_recommend1); ?>" width="210" height="210">
+		<img id="optionRecmd_1" title="<?php echo U('SectionList/index?courseId='.$id_recommend1);?>" src="<?php echo ($img_recommend1); ?>" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_1_focus" style="position:absolute;visibility:hidden;left:960px;top:160px;text-align:center;">
 		<img id="optionRecmd_1_focus" src="/static/v1/hd/images/freeZone/kuang_big.png" width="220" height="220">
 	</div>
 	<div id="div_optionRecmd_2" style="position:absolute;left:965px;top:395px;text-align:center;">
-		<img id="optionRecmd_2" title="<?php echo U('Resource/play?courseId='.$url_recommend2);?>" src="<?php echo ($img_recommend2); ?>" width="210" height="210">
+		<img id="optionRecmd_2" title="<?php echo U('SectionList/index?courseId='.$id_recommend2);?>" src="<?php echo ($img_recommend2); ?>" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_2_focus" style="position:absolute;visibility:hidden;left:960px;top:390px;text-align:center;">
 		<img id="optionRecmd_2_focus" src="/static/v1/hd/images/freeZone/kuang_big.png" width="220" height="220">
 	</div>
 
-<!-- 分页 -->
-<div style="position:absolute; left:765px; top:600px;">
-	<?php echo ($pageHtml); ?>
-</div>
 
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">

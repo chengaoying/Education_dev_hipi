@@ -1,0 +1,106 @@
+<layout name="layout" />
+
+<style>
+
+	body{ background-image:url(__HD__/images/usercenter/bg.jpg); }
+/* 用户信息背景底框 */
+#bottom{
+	position: absolute;
+	display: block;
+	width: 790px;
+	height: 433px;
+	top: 160px;
+	left: 390px;
+	background-image: url(__HD__/images/usercenter/learningEarly/bottom.png);
+}
+
+</style>
+
+<script type="text/javascript">
+	var faceNum = {$face};
+	var channel = {$json_channel};
+	var buttons = [
+	/* 栏目  */
+	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'changeNum',down:'ch_2',right:'option_1'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_1',down:'ch_3',right:'option_1'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_2',right:'option_1'},
+
+	{id:'selectFace',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'__HD__/images/usercenter/leftNavigation/title_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
+	{id:'changeNum',name:'',action:'',linkImage:'__HD__/images/usercenter/leftNavigation/change_account.png',focusImage:'__HD__/images/usercenter/leftNavigation/change_account_over.png',selectBox:'',right:'sex',up:'selectFace',down:'ch_1'},
+
+	{id:'option_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learningEarly/month.png',focusImage:'__HD__/images/usercenter/learningEarly/month_over.png',selectBox:'',left:'ch_2',down:'option_2'},
+	{id:'option_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learningEarly/all.png',focusImage:'__HD__/images/usercenter/learningEarly/all_over.png',selectBox:'',left:'ch_2',up:'option_1'},
+
+	];
+	
+	var initButtons = function()
+	{
+ 		for(var i=0; i<channel.length; i++)
+		{
+			buttons[i].name = channel[i].name;
+			buttons[i].linkImage = channel[i].linkImage;
+			buttons[i].focusImage = channel[i].focusImage;
+		} 
+	}
+	window.onload = function() {
+		initButtons();
+		Epg.btn.init('ch_2', buttons, true);
+	};
+</script>
+
+
+<!-- 静态图片 -->
+<div id="bottom"></div>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
+
+
+<!-- 以下是导航栏 -->
+<volist name="channels" id="channel" key="i">
+	<php>
+     	$left = 120; $top = 430 + ($i-1)*60;
+    </php>
+    <div id="div_ch_{$i}" style="position:absolute;visibility:visible;left:{$left}px; top:{$top}px;">
+		<img id='ch_{$i}' title="{$channel['linkUrl']}"
+			src="{$channel['linkImage']}" width="170" height="50">
+	</div>
+</volist>
+
+<!-- progress -->
+<for start="1" end="10" step="1" name="i">
+
+	<php>
+		$left = 600 + ($i-1)*65;
+		$top = 253;
+	</php>
+	
+<!-- 	<div  style="position:absolute; left:{$left}px; top:{$top}px;">
+		<img  src="__HD__/images/usercenter/learnEvaluation1/color_{$i}.png" width="45" height="300">
+	</div> -->
+	<div  style="position:absolute; left:{$left}px; top:{$top}px;">
+		<img  src="__HD__/images/usercenter/learningEarly/progress.png" width="45" height="{$curProgress[$i-1]}">
+	</div>
+	
+</for>
+
+<!-- 选择按钮"本月 总体" -->
+<div id="div_option_1" style="position: absolute; left: 400px; top: 250px;">
+	<img id='option_1' title="/Hd/Learning/learningEarly?arrange=month"
+		src="__HD__/images/usercenter/learningEarly/month.png" width="140" height="40">
+</div>
+<div id="div_option_2" style="position: absolute; left:400px; top:300px;">
+	<img id='option_2' title="/Hd/Learning/learningEarly?arrange=all"
+		src="__HD__/images/usercenter/learningEarly/all.png" width="140" height="40">
+</div>
+
+<!-- 选择头像  -->
+<div id="div_selectFace" style="position:absolute;width:130px;height:170px;left:90px;top:80px;text-align:center;">
+	<img id="selectFace" title="{:U('Role/selectFace')}" src="__HD__/images/usercenter/baseInfo/face_{$face}.png" width="130" height="170">
+</div>
+<div id="div_selectFace_focus" style="position:absolute;visibility:hidden;width:130px;height:170px;left:90px;top:80px;text-align:center;">
+	<img id="selectFace_focus" title="" src="" width="125" height="165">
+</div>
+<!-- 切换账号  -->
+<div id="div_changeNum" style="position:absolute;left:95px;top:322px;text-align:center;">
+	<img id="changeNum" title="{:U('Role/changeNum')}" src="__HD__/images/usercenter/leftNavigation/change_account.png" width="110" height="25">
+</div>

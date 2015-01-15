@@ -31,8 +31,8 @@ var buttons=
 	[
 	 	/* 栏目  */
 		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',right:'ch_2',down:['course_1','empty_course']},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:['course_1','empty_course']},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',blurHandler:'blurHandler()',left:'ch_2',down:['course_1','empty_course']},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',blurHandler:'blurHandler()',left:'ch_1',right:'ch_3',down:['course_1','empty_course']},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_2',down:['course_1','empty_course']},
         
         /* 当课程列表不为空 */
         {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'ch_1',right:'course_2',up:'ch_1',down:'course_6'},
@@ -66,7 +66,7 @@ var initButtons = function(){
 window.onload=function()
 {
 	initButtons();
-	Epg.btn.init('ch_3',buttons,true);	
+	Epg.btn.init('ch_2',buttons,true);	
 };
 </script>
 
@@ -120,15 +120,15 @@ window.onload=function()
 
 //失去时焦点处理（目前主要用于栏目按钮）
 function blurHandler(){
-	if(Epg.btn.current.id != "ch_1" && Epg.btn.current.id != "ch_2"){
+	if(Epg.btn.current.id != "ch_1" && Epg.btn.current.id != "ch_3"){
 		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
 	}
 }
 
 //获取焦点时处理（目前主要用于栏目按钮）
 function focusHandler(){
-	if(Epg.btn.current.id != "ch_3"){
-		Epg.btn.click();
+	if(Epg.btn.current.id != "ch_2"){
+		setTimeout("Epg.btn.click()",50)
 	}
 }
 

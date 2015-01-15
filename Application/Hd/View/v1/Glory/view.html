@@ -14,37 +14,33 @@
 	background-image: url(__HD__/images/usercenter/bottom.png);
 }
 /* 文字介绍 */
-#word{
+#word_view{
 	position: absolute;
 	display: block;
-	width: 439px;
-	height: 24px;
-	top: 75px;
-	left: 80px;
-	background-image: url(__HD__/images/usercenter/glory/word.png);
+	width: 614px;
+	height: 74px;
+	top: 90px;
+	left: 110px;
+	background-image: url(__HD__/images/usercenter/glory/word_view.png);
 }
 
 </style>
 
 <script type="text/javascript">
-	var nowpage = {$page['nowPage']};
-	var totalpage = {$page['totalPages']};
 	var buttons = [
 
-	          	{id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:''},
+/* 	          	{id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:''},
 	        	{id:'page_next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:''},
-	 
+ */	 
 				];
 
 	window.onload = function() {
-		if(nowpage == totalpage)
-		{
-			Epg.btn.init('page_prev', buttons, true);
-		}
-		else
-		{
-			Epg.btn.init('page_next', buttons, true);
-		}
+		Epg.key.init();
+		Epg.key.set(
+				{
+					KEY_BACK:'Epg.Button.defBack()',		//返回键
+					KEY_0:'Epg.Button.defBack()',			//按0返回
+				});
 		
 	};
 </script>
@@ -52,23 +48,28 @@
 <a id="a_back" style="display:none;" href="{:get_back_url('Glory/index',1)}" ></a>
 
 <!-- 静态图片 -->
-<div id="bottom"></div>
-<div id="word"></div>
+<!-- <div id="bottom"></div> -->
+<div id="word_view"></div>
 
-<volist name="page['data']" id="data" key="i">
+<for start="1" end="11" step="1" name="i">
 	<php>
-		$left = 110 + (($i-1)%5)*220;
-		$top = 200 + (ceil($i/5)-1)*200;
+		$left = 130 + (($i-1)%5)*210;
+		$top = 210 + (ceil($i/5)-1)*210;
 	</php>
-		<div style="position:absolute; left:{$left}px; top:{$top}px;">
-		<img src="__HD__/images/usercenter/glory/gift{$data}.jpg" width="190" height="190">
+	<!-- 礼物底  -->
+	<div style="position:absolute; left:{$left}px; top:{$top}px;">
+		<img src="__HD__/images/usercenter/glory/bottom_gift.png" width="190" height="190">
 	</div>
-</volist>
+	<!-- 礼物  -->
+	<div style="position:absolute; left:{$left}px; top:{$top}px;">
+		<img src="__HD__/images/usercenter/glory/gift/gift_0.png" width="190" height="190">
+	</div>
+</for>
 
 <!-- 分页 -->
-<div style="position:absolute; left:920px; top:105px;">
+<!-- <div style="position:absolute; left:920px; top:105px;">
 	{$page['pageHtml']}
-</div>
+</div> -->
 
 
 

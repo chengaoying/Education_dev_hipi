@@ -14,24 +14,11 @@ class LearningController extends CommonController {
 	/**
 	 * 显示早教学习评价
 	 */
-	public function learningEvaluation1Act()
+	public function learningEarlyAct()
 	{
 		$role = unserialize(Session('role'));
-		//顶级分类(二级栏目)
-		$class = $this->getClass();
-		//龄段
-		$stage = S('Stage');
-		$chId = $stage[$role['stageId']]['chId'];
-		//得到段龄类型，既早教，幼教，小学等的种类
-		$stageType = $class[$chId]['chKey'];
-		if($stageType == 'early' || $stageType == 'preschool')
-		{
-			$stageType = 'learningEvaluation1';
-		}
-		else 
-		{
-			$stageType = 'learningEvaluation2';
-		}
+		$channel = $this->initUserCenterChannel();
+		$json_encode = json_encode($channel);
 		
 		$proConf = get_pro_config_content('proConfig');//获得配置文件
 		$tags = array_values($proConf['tags']);//获得能力标签并从0编号
@@ -40,22 +27,79 @@ class LearningController extends CommonController {
 		$total = $this -> getCount($resource['rows'],'keyList');
 		
 		$dataGet = I('Get.');
-		
 		$arrange = $dataGet['arrange'];
 		$dateArrange = ($arrange == 'month') ? $this->getMonthDate() : null;
 		//查出t_role_browse表中中包含能力标签的项 1-视频
-		$BrowseRecord = D('BrowseRecord','Logic') -> queryBrowseRecordListByKeys(1, $tags, $dateArrange);
-//		p($BrowseRecord);exit;
+		$BrowseRecord = D('BrowseRecord','Logic') -> queryBrowseRecordListByKeys($role['id'], 1, null, $dateArrange);
 		$finish = $this -> getCount($BrowseRecord['rows'],'keys');
 		
 		$length = $this -> getProgressOfEarly($total, $finish, $tags);
 		$length = array_values($length);
 		$this->assign(array(
-					'stageType' => $stageType,	//用于导航栏中学习评价
 					'curProgress' => $length,
 					'face' => $role['face'],
 					'name' => empty($role['nickName']) ? $role['id'] : $role['nickName'],
+					'channels' => $channel,
+					'json_channel' => $json_encode,
 				));
+		$this->display();
+	}
+	
+	/**
+	 * 显示小学学习评价
+	 */
+	public function learningPreschoolAct()
+	{
+		$role = unserialize(Session('role'));
+		
+		$channel = $this->initUserCenterChannel();
+		$json_encode = json_encode($channel);
+		
+		$data_get = I('get.');
+	
+		//分页查找数据,$role['stageId']得到段龄,第二个参数typeid没有用到，值0，查询时忽略该字段
+		$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 1, 1, 14);
+		$total = $course['total'];
+		$page = get_pageHtml2($total,3,array(),'/static/v1/hd/images/common/page');
+		$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 1, $page['nowPage'], 3);
+		foreach($course['rows'] as $key => $value)
+		{
+			$data[$key]['name'] = $value['name'];
+			$data[$key]['id'] = $value['id'];
+			$d = $this -> getData($value['id']);
+			$data[$key]['length'] = $this -> getProgressCounrse($d,270);
+		}
+		
+		$this->assign(array(
+				'pageHtml' => $page['html'],
+				'datas' => $data,
+				'channels' => $channel,
+				'json_channel' => $json_encode,
+				'face' => $role['face'],
+		));
+		$this->display();
+	}
+	
+	/*
+	 * 详情页面
+	*/
+	public function detailAct()
+	{
+		$role = unserialize(Session('role'));
+	
+		$data_get = I('get.');
+	
+		//分页查找
+		$topic = D('Topic','Logic') -> queryTopicList($data_get['courseId']);
+		$total = $topic['total'];
+		$page = get_pageHtml2($total,12,array(),'/static/v1/hd/images/common/page');
+		$data = $this -> getData($data_get['courseId'], $page['nowPage'], 12);
+		
+		$this->assign(array(
+				'pageHtml' => $page['html'],
+				'datas' => $data,
+				'courseName' => $data_get['courseName'],
+		));
 		$this->display();
 	}
 	
@@ -83,14 +127,14 @@ class LearningController extends CommonController {
 		{
 			if(in_array($value, array_keys($total)))
 			{
-				if($total[$value] == 0) $length[$value] = 302;
+				if($total[$value] == 0) $length[$value] = 300;
 				if($finish[$value] > $total[$value]) $finish[$value] = $total[$value]; 
 				$finish[$value] = empty($finish[$value]) ? 0 : $finish[$value];
-				$length[$value] = ($total[$value]-$finish[$value])*302/$total[$value];
+				$length[$value] = ($total[$value]-$finish[$value])*300/$total[$value];
 			}
 			else 
 			{
-				$length[$value] = 302;
+				$length[$value] = 300;
 			}
 		}
 		return $length;
@@ -143,51 +187,8 @@ class LearningController extends CommonController {
 		}
 		return $count;
 	}
-	/**
-	 * 显示小学学习评价
-	 */
-	public function learningEvaluation2Act()
-	{
-		$page = I('page',1);
-		$pageSize = 5;
-		$role = unserialize(Session('role'));
-		//顶级分类(二级栏目)
-		$class = $this->getClass();
-		//龄段
-		$stage = S('Stage');
-		$chId = $stage[$role['stageId']]['chId'];
-		//得到段龄类型，既早教，幼教，小学等的种类
-		$stageType = $class[$chId]['chKey'];
-		if($stageType == 'early' || $stageType == 'preschool')
-		{
-			$stageType = 'learningEvaluation1';
-		}
-		else 
-		{
-			$stageType = 'learningEvaluation2';
-		}
-		$data_get = I('get.');
-		
-		//分页查找数据,$role['stageId']得到段龄,第二个参数typeid没有用到，值0，查询时忽略该字段
-		$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 0, 1, 14);
-		$total = $course['total'];
-		$page = get_pageHtml2($total,3,array(),'/static/v1/hd/images/common/page');
-		$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 0, $page['nowPage'], 3);
-		foreach($course['rows'] as $key => $value)
-		{
-			$data[$key]['name'] = $value['name'];
-			$data[$key]['id'] = $value['id'];
-			$d = $this -> getData($value['id']);
-			$data[$key]['length'] = $this -> getProgressCounrse($d,390);
-		}
-		$this->assign(array(
-					'pageHtml' => $page['html'],
-					'datas' => $data,
-					'stageType' => $stageType,//用于导航栏中学习评价
-					'preId' => $data_get['preId'],
-				));
-		$this->display();
-	}
+	
+
 	
 	//得到知识点总进度
 	private function getProgressCounrse($course,$length)
@@ -195,8 +196,9 @@ class LearningController extends CommonController {
 		foreach ($course as $key => $value)
 		{
 			$total += $value['total'];
-			$finish += $value['finish'];
+			$finish += (($value['finish']>$value['total'])?$value['total']:$value['finish']);
 		}
+		if($finish>$total) $finish = $total;
 		if(empty($total))
 		{
 			return 0;
@@ -205,46 +207,6 @@ class LearningController extends CommonController {
 		{
 			return $finish*$length/$total;
 		}
-	}
-	
-	/*
-	 * 详情页面
-	 */
-	public function detailAct()
-	{
-		$role = unserialize(Session('role'));
-		//顶级分类(二级栏目)
-		$class = $this->getClass();
-		//龄段
-		$stage = S('Stage');
-		$chId = $stage[$role['stageId']]['chId'];
-		//得到段龄类型，既早教，幼教，小学等的种类
-		$stageType = $class[$chId]['chKey'];
-		if($stageType == 'early' || $stageType == 'preschool')
-		{
-			$stageType = 'learningEvaluation1';
-		}
-		else
-		{
-			$stageType = 'learningEvaluation2';
-		}
-		
-		$data_get = I('get.');
-		
-		//分页查找
-		$topic = D('Topic','Logic') -> queryTopicList($data_get['courseId']);
-		$total = $topic['total'];
- 		$page = get_pageHtml2($total,12,array(),'/static/v1/hd/images/common/page');
-		$data = $this -> getData($data_get['courseId'], $page['nowPage'], 12);
-
-		$this->assign(array(
-					'pageHtml' => $page['html'],
-					'datas' => $data,
-					'courseName' => $data_get['courseName'],
-				
-					'stageType' => $stageType,//用于导航栏中学习评价
-		));
-		$this->display();
 	}
 	
 	/*
@@ -276,7 +238,7 @@ class LearningController extends CommonController {
 		$count = 0;
 		$proConf = get_pro_config_content('proConfig');
 		if($proConf['sectionVideo'] == 1)//此时一个课时对应一个视频，可根据t_topic中lessonList字段中课时id个数判断视频总个数
-		{
+		{	
 			$sectionIds = $topic['sectionIds'];
 			$count = $this -> getCountOfStr($sectionIds);
 		}
@@ -296,9 +258,9 @@ class LearningController extends CommonController {
 	/*
 	 *获得知识点中完成视频数
 	*/
-	private function getFinishNum($topicId)
+	private function getFinishNum($roleId, $topicId)
 	{
-		$browseRecord = D('BrowseRecord','Logic') -> queryBrowseRecordList($topicId);
+		$browseRecord = D('BrowseRecord','Logic') -> queryBrowseRecordList($roleId, $topicId);
 		return $browseRecord['total'];
 	}
 	
@@ -309,15 +271,15 @@ class LearningController extends CommonController {
 	 * @param $pageNo 	页码
 	 * @return $data	
 	 */
- 	private function getData($courseId,$pageNo=null,$pageSize=null)
+ 	private function getData($courseId,$pageNo='',$pageSize='')
 	{
 		$topic = D('Topic','Logic') -> queryTopicList($courseId,$pageNo, $pageSize);
 		foreach($topic[rows] as $key => $value)
 		{
 			$data[$key]['name'] = $value['name'];
 			$data[$key]['total'] = $this -> getTotal($value);//知识点中包含视频总个数
-			$data[$key]['finish'] = $this->getFinishNum($value['id']);//已观看改知识点的视频个数
-			$data[$key]['length'] = $this -> getProgressTopic($data[$key]['total'],$data[$key]['finish'],293);
+			$data[$key]['finish'] = $this->getFinishNum($this->role['id'],$value['id']);//已观看改知识点的视频个数
+			$data[$key]['length'] = $this -> getProgressTopic($data[$key]['total'],$data[$key]['finish'],300);
 		}
 		return $data;
 	} 
@@ -334,5 +296,51 @@ class LearningController extends CommonController {
 		{
 			return $finish*$length/$total;
 		}
+	}
+	
+	/**
+	 * 初始化用户中心导航栏
+	 */
+	private function initUserCenterChannel(){
+		$channel = S('Channel');
+		$topChannel = get_array_for_fieldval($channel, 'chKey','usercenter');
+		$topChannel = array_slice($topChannel,0,count($topChannel));
+		$id = $topChannel[0]['id'];
+		$channel = get_array_for_fieldval($channel, 'pId',$id);
+		$channel = get_array_for_fieldval($channel,'isShow','1');
+	
+		//角色信息，根据角色不同龄段推荐不同的课程
+		$stage = $this->getStage($this->role['stageId']);
+		$grade = $this->getGrade($stage['chId']);
+		//因为学习评价有两种，所以此处匹配
+		foreach($channel as $key => $value)
+		{
+			if($value['chKey'] == 'learning')
+			{
+				if($grade['chKey']=='early' || $grade['chKey']=='preschool')
+				{
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month';
+				}
+				else
+				{
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool';
+				}
+			}
+		}
+		//把栏目的图片数组拆开
+		foreach ($channel as $k=>$v){
+			if($v['imgUrl']){
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
+				$channel[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
+				$channel[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
+				//				$userCenter[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
+			}
+		}
+	
+		//把栏目key值初始为从0开始的递增的值，前端按钮调用统一
+		$channel = array_slice($channel,0,count($channel));
+		$channel = get_array_fieldkey($channel,array('id','name','linkImage','focusImage','linkUrl'));
+		return $channel;
 	}
 }

@@ -46,121 +46,129 @@ var popup = function(){
 
 <style>
 
-	body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
-/* 用户信息背景底框 */
-#bottom{
+	body{ background-image:url(/static/v1/hd/images/usercenter/bg.jpg); }
+/* 用户积分规则 */
+#down{
 	position: absolute;
 	display: block;
-	width: 1110px;
-	height: 435px;
-	top: 180px;
-	left: 85px;
-	background-image: url(/static/v1/hd/images/usercenter/bottom.png);
+	width: 800px;
+	height: 260px;
+	top: 340px;
+	left: 390px;
+	background-image: url(/static/v1/hd/images/usercenter/glory/down.png);
 }
-/* 用户中心 */
-#usercenter{
+/* 用户等级 */
+#up{
 	position: absolute;
 	display: block;
-	width: 134px;
-	height: 34px;
-	top: 85px;
-	left: 90px;
-	background-image: url(/static/v1/hd/images/usercenter/channel/usercenter.png);
+	width: 800px;
+	height: 190px;
+	top: 130px;
+	left: 390px;
+	background-image: url(/static/v1/hd/images/usercenter/glory/up.png);
 }
-/* 界面 */
-#gloryinfo{
+/* 底部进度条 */
+#progressBottom{
 	position: absolute;
 	display: block;
-	width: 1110px;
-	height: 435px;
-	top: 180px;
-	left: 85px;
-	background-image: url(/static/v1/hd/images/usercenter/glory/ui.png);
+	width: 390px;
+	height: 14px;
+	top: 260px;
+	left: 490px;
+	background-image: url(/static/v1/hd/images/usercenter/glory/progress_bottom.png);
 }
+
 
 </style>
 
 <script type="text/javascript">
+	var faceNum = <?php echo ($face); ?>;
+	var channel = <?php echo ($json_channel); ?>;
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/channel/glory_1.png',focusImage:'/static/v1/hd/images/usercenter/channel/glory_2.png',onFocus:'1',selectBox:'',right:'ch_2',down:'viewAll'}, 
-	{id:'ch_2',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/channel/learning_1.png',focusImage:'/static/v1/hd/images/usercenter/channel/learning_2.png',onFocus:'1',selectBox:'',left:'ch_1',right:'ch_3',down:'viewAll'}, 
-	{id:'ch_3',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/channel/baseInfo_1.png',focusImage:'/static/v1/hd/images/usercenter/channel/baseInfo_2.png',onFocus:'1',selectBox:'',left:'ch_2',down:'viewAll'},
+	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'changeNum',down:'ch_2',right:'reward'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_1',down:'ch_3',right:'reward'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_2',right:'reward'},
 
-	{id:'viewAll',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory/view_1.png',focusImage:'/static/v1/hd/images/usercenter/glory/view_2.png',selectBox:'',right:'reward',up:'ch_1'},
-	{id:'reward',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory/reward_1.png',focusImage:'/static/v1/hd/images/usercenter/glory/reward_2.png',selectBox:'',left:'viewAll',up:'ch_1'},
+	{id:'selectFace',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'/static/v1/hd/images/usercenter/leftNavigation/title_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
+	{id:'changeNum',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/leftNavigation/change_account.png',focusImage:'/static/v1/hd/images/usercenter/leftNavigation/change_account_over.png',selectBox:'',right:'sex',up:'selectFace',down:'ch_1'},
+
+	{id:'viewAll',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory/view.png',focusImage:'/static/v1/hd/images/usercenter/glory/view_over.png',selectBox:'',left:'reward',up:'ch_1'},
+	{id:'reward',name:'',action:'',linkImage:'/static/v1/hd/images/usercenter/glory/award.png',focusImage:'/static/v1/hd/images/usercenter/glory/award_over.png',selectBox:'',left:'ch_2',right:'viewAll',up:'ch_1'},
 	
 	];
-
+	
+	var initButtons = function()
+	{
+ 		for(var i=0; i<channel.length; i++)
+		{
+			buttons[i].name = channel[i].name;
+			buttons[i].linkImage = channel[i].linkImage;
+			buttons[i].focusImage = channel[i].focusImage;
+		} 
+	}
 	window.onload = function() {
+		initButtons();
 		Epg.btn.init('ch_1', buttons, true);
 	};
 </script>
 
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Role/userInfo',1);?>" ></a>
 
 <!-- 静态图片 -->
-<div id="bottom"></div>
-<div id="gloryinfo"></div>
-<div id="usercenter"></div>
+<div id="down"></div>
+<div id="up"></div>
+<div id="progressBottom"></div>
+<!-- <div id="word"></div> -->
 
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
 
 
 <!-- 以下是导航栏 -->
-<!-- 荣誉成就 -->
-<div id="div_ch_1" style="position:absolute;visibility:visible;left:300px;top:95px;">
-	<img id='ch_1' title="/Hd/Glory/index"
-		src="/static/v1/hd/images/usercenter/channel/glory_1.png" width="110" height="33">
+<?php if(is_array($channels)): $i = 0; $__LIST__ = $channels;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$channel): $mod = ($i % 2 );++$i; $left = 120; $top = 430 + ($i-1)*60; ?>
+    <div id="div_ch_<?php echo ($i); ?>" style="position:absolute;visibility:visible;left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
+		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($channel['linkUrl']); ?>"
+			src="<?php echo ($channel['linkImage']); ?>" width="170" height="50">
+	</div><?php endforeach; endif; else: echo "" ;endif; ?>
+
+
+<!-- 选择头像  -->
+<div id="div_selectFace" style="position:absolute;width:130px;height:170px;left:90px;top:80px;text-align:center;">
+	<img id="selectFace" title="<?php echo U('Role/selectFace');?>" src="/static/v1/hd/images/usercenter/baseInfo/face_<?php echo ($face); ?>.png" width="130" height="170">
 </div>
-<div id="div_ch_1_focus" style="position:absolute; visibility:hidden;left:300px;top:95px; text-align:center;">
-	<img id="ch_1_focus" src="/static/v1/hd/images/usercenter/channel/glory_2.png" width="110" height="33">
+<div id="div_selectFace_focus" style="position:absolute;visibility:hidden;width:130px;height:170px;left:90px;top:80px;text-align:center;">
+	<img id="selectFace_focus" title="" src="" width="125" height="165">
 </div>
-<!-- 学习评估 -->
-<div id="div_ch_2" style="position:absolute;visibility:visible;left:450px; top:95px;">
-	<img id='ch_2' title="/Hd/Learning/<?php echo ($stageType); ?>"
-		src="/static/v1/hd/images/usercenter/channel/learning_1.png" width="110" height="33">
-</div>
-<div id="div_ch_2_focus" style="position:absolute; visibility:hidden; left:450px; top:95px; text-align:center;">
-	<img id="ch_2_focus" src="/static/v1/hd/images/usercenter/channel/learning_2.png" width="110" height="33">
-</div>
-<!-- 基本信息 -->
-<div id="div_ch_3" style="position:absolute;visibility:visible;left:600px; top:95px;">
-	<img id='ch_3' title="/Hd/Role/userInfo"
-		src="/static/v1/hd/images/usercenter/channel/baseInfo_1.png" width="110" height="33">
-</div>
-<div id="div_ch_3_focus" style="position:absolute; visibility:hidden; left:600px; top:95px; text-align:center;">
-	<img id="ch_3_focus" src="/static/v1/hd/images/usercenter/channel/baseInfo_2.png" width="110" height="33">
+<!-- 切换账号  -->
+<div id="div_changeNum" style="position:absolute;left:95px;top:322px;text-align:center;">
+	<img id="changeNum" title="<?php echo U('Role/changeNum');?>" src="/static/v1/hd/images/usercenter/leftNavigation/change_account.png" width="110" height="25">
 </div>
 
-<!-- 进度条 -->
-<!-- 进度条背景 -->
-<div  style="position: absolute; left: 110px; top: 330px;">
-	<img  src="/static/v1/hd/images/usercenter/glory/progress_1.png" width="361" height="10">
-</div>
 <!-- 当前进度 -->
-<div  style="position: absolute; left: 110px; top: 330px;">
-	<img  src="/static/v1/hd/images/usercenter/glory/progress_2.png" width="<?php echo ($curProgress); ?>" height="10">
+<div  style="position: absolute; left: 490px; top: 260px;">
+	<img  src="/static/v1/hd/images/usercenter/glory/progress.png" width="<?php echo ($curProgress); ?>" height="14">
 </div> 
 
 <!-- 查看全部按钮 -->
-<div id="div_wiewAll" style="position: absolute; left:380px; top:560px;">
+<div id="div_wiewAll" style="position: absolute; left:1070px; top:265px;">
 	<img id='viewAll' title="<?php echo U('Glory/view');?>"
-		src="/static/v1/hd/images/usercenter/glory/view_1.png" width="100" height="36">
+		src="/static/v1/hd/images/usercenter/glory/view.png" width="100" height="36">
 </div>
 <!-- 领取奖励 -->
-<div id="div_reward" style="position: absolute; left:1030px; top:530px;">
+<div id="div_reward" style="position: absolute; left:430px; top:520px;">
 	<img id='reward' title=""
-		src="/static/v1/hd/images/usercenter/glory/reward_1.png" width="100" height="36">
+		src="/static/v1/hd/images/usercenter/glory/award.png" width="100" height="36">
 </div>
 <!-- 奖励图标 -->
-<div style="position: absolute; left:265px; top:400px;">
-	<img src="/static/v1/hd/images/usercenter/glory/gift_1.png" width="94" height="134">
+<div style="position: absolute; left:940px; top:190px;">
+	<img src="/static/v1/hd/images/usercenter/glory/gift_1.png" width="110" height="110">
 </div>
+
+
+
 
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">

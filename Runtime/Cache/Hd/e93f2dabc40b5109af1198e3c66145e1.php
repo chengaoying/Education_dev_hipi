@@ -47,8 +47,7 @@ var popup = function(){
 <img src="/static/v1/hd/images/common/no_page.png" width="1280" height="720" />
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">

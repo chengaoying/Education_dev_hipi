@@ -22,7 +22,6 @@ class CommonController extends \Think\Controller{
 	protected $name 	= '';	//控制器名
 	public $topChannel 	= '';	//一级栏目
 	
-	
 	public function _initialize(){
 		//控制器名
 		$className = explode('\\', get_class($this));
@@ -99,7 +98,6 @@ class CommonController extends \Think\Controller{
 		//把栏目key值初始为从0开始的递增的值，前端按钮调用统一
 		$this->topChannel = array_slice($this->topChannel,0,count($this->topChannel));
 	}
-	
 	
 	/**
 	 * 获取龄段顶级分类(顶级栏目-全部课程下的二级栏目)

@@ -193,8 +193,7 @@ var preBtn = "<?php echo ($preId); ?>";
 
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">

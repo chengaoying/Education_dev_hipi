@@ -24,13 +24,14 @@ class RoleController extends CommonController {
 			foreach ($stage as $k=>$v){
 				$data[$class[$v['chId']]['chKey']][$v['id']] = $v;
 			}
-			$this->assign(array('stage' => $data, 'role' => $this->role));
+			$info['stage'] = $data;
+			if($this->role['stageId'] == 99) $info['role'] = $this->role;
+			$this->assign($info);
 		}else{
 			$role = array('id'=>I('id',''),'stageId'=>$stageId,'userId'=>$this->user['id'],'status'=>1);
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){ //创建成功跳转至首页
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				D('Role','Logic')->changeRole($r['data']['id']);//改变当前角色
 				header('location:'.U('Index/recommend'));
 			}else{
 				$this->showMessage('角色创建失败：'.$r['info']);
@@ -43,26 +44,15 @@ class RoleController extends CommonController {
 	 * 用户信息模块
 	 */
 	public function userInfoAct()
-	{	//protected $fileType = array(1=>'image',2=>'J2ME',3=>'Other');
+	{	
 		$id = I('id','');
 		$user = unserialize(Session('user'));
 		$role = unserialize(Session('role'));
 		
-		//顶级分类(二级栏目)
-		$class = $this->getClass();
-		//龄段
-		$stage = S('Stage');
-		$chId = $stage[$role['stageId']]['chId'];
-		//得到段龄类型，既早教，幼教，小学等的种类
-		$stageType = $class[$chId]['chKey'];
-		if($stageType == 'early' || $stageType == 'preschool')
-		{
-			$stageType = 'learningEvaluation1';
-		}
-		else
-		{
-			$stageType = 'learningEvaluation2';
-		}
+		$channel = $this->initUserCenterChannel();
+		$json_encode = json_encode($channel);
+/* 		p($channel);
+		p($json_encode);exit; */
 	
 		if(empty($id))
 		{
@@ -71,7 +61,9 @@ class RoleController extends CommonController {
 			$this->assign(array(
 				'userInfo' => $userInfo,
 				'face' => $face,
-				'stageType' => $stageType,
+				'channels' => $channel,
+				'json_channel' => $json_encode,
+				'roleId' => $role['id'],
     		));
 		}
 		else 
@@ -108,10 +100,10 @@ class RoleController extends CommonController {
 		
 		$userInfo = array(
 				/*学号*/
-				array(
+/* 				array(
 						'name' => 'num',
 						'content' => array($role['id']),
-				),
+				), */
 				/*昵称*/
 				array(
 						'name' => 'nickname',
@@ -174,9 +166,9 @@ class RoleController extends CommonController {
 	 */
 	public function changeStageAct()
 	{
-		$id = I('id','');
+		$stageId = I('stageId','');
 		$role = unserialize(Session('role'));
-		if(empty($id))
+		if(empty($stageId))
 		{
 			//顶级分类(二级栏目)
 			$class = $this->getClass();
@@ -190,7 +182,12 @@ class RoleController extends CommonController {
 		}
 		else 
 		{
-			$role['stageId'] = $id;
+			if($stageId == 99)//此时为不设置，跳过选项
+			{
+				header('location:'.U('Role/userInfo'));
+				return;
+			}
+			$role['stageId'] = $stageId;
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
@@ -289,16 +286,19 @@ class RoleController extends CommonController {
 			$type = I('type');
 			if($type == 'advantage')
 			{
+				$subject = $proConf['subject'];
 				$subject_remove = explode(",", $role['disAdvantage']);
 				$subject_array = explode(",", $role['advantage']);
 			}
 			if($type == 'disAdvantage')
 			{
+				$subject = $proConf['subject'];
 				$subject_remove = explode(",", $role['advantage']);
 				$subject_array = explode(",", $role['disAdvantage']);
 			}
 			if($type == 'interests')
 			{
+				$subject = $proConf['interest'];
 				$subject_remove = null;
 				$subject_array = explode(",", $role['interests']);
 			}
@@ -346,17 +346,6 @@ class RoleController extends CommonController {
 					}
 				}
 			}
-/* 			foreach($subject_selected as $key => $value)
-			{
-				foreach ($subject_display as $key1 => $value1)
-				{
-					if($value == $value1)
-					{
-						unset($subject_selected[$key]);
-						$subject_selected[$key1] = $value1;
-					}
-				}
-			} */
 			$this->assign(array(
 					'json_selected'	=> json_encode($subject_selected),
 					'subjects' => $subject_display,
@@ -522,28 +511,6 @@ class RoleController extends CommonController {
 	 */
 	public function growthIndexAct()
 	{
-/* 		$role = unserialize(Session('role'));
-		$yourdate=$role['birthday'];
-		if(empty($yourdate))
-		{
-			$this->showMessage('日期不能为空，请去用户中心设置日期！');
-		}
-		$yourdate_array = explode("-", $yourdate);
-		if(!is_numeric($yourdate_array[0]) || !is_numeric($yourdate_array[1]) || !is_numeric($yourdate_array[2]))
-		{
-			$this->showMessage('日期不正确，日期应为数字');
-		}
-		
-		$yourdate_unix=strtotime($yourdate);
-		if($yourdate_unix === false)
-		{
-			$this->showMessage('日期不正确,日期范围应在1901-12-15<br/>到2038-1-19。如果年份为两位数字则: 0-69 <br/>表示 2000-2069,70-100 表示1970-2000');
-		}
-		$m = (date("Y")-date("Y",$yourdate_unix))*12+date("m")-date("m",$yourdate_unix);
-		if(date("d")>=date("d",$yourdate_unix))
-		{
-			$m += 1;
-		} */
 		$role = unserialize(Session('role'));
 		$birthday=$role['birthday'];
 		$data = monthNum($birthday);
@@ -578,6 +545,50 @@ class RoleController extends CommonController {
 		}
 	}
 	
+	/**
+	 * 初始化用户中心channel
+	 */
+	private function initUserCenterChannel(){
+		$channel = S('Channel');
+		$topChannel = get_array_for_fieldval($channel, 'chKey','usercenter');
+		$topChannel = array_slice($topChannel,0,count($topChannel));
+		$id = $topChannel[0]['id'];
+		$channel = get_array_for_fieldval($channel, 'pId',$id);
+		$channel = get_array_for_fieldval($channel,'isShow','1');
+		
+		//角色信息，根据角色不同龄段推荐不同的课程
+		$stage = $this->getStage($this->role['stageId']);
+		$grade = $this->getGrade($stage['chId']);
+		//因为学习评价有两种，所以此处匹配
+		foreach($channel as $key => $value)
+		{
+			if($value['chKey'] == 'learning')
+			{
+				if($grade['chKey']=='early' || $grade['chKey']=='preschool')
+				{
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month';
+				}
+				else 
+				{
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool';
+				}
+			}
+		}
+		//把栏目的图片数组拆开
+		foreach ($channel as $k=>$v){
+			if($v['imgUrl']){
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
+				$channel[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
+				$channel[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
+				//				$userCenter[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
+			}
+		}
 	
+		//把栏目key值初始为从0开始的递增的值，前端按钮调用统一
+		$channel = array_slice($channel,0,count($channel));
+		$channel = get_array_fieldkey($channel,array('id','name','linkImage','focusImage','linkUrl'));
+		return $channel;
+	}
 	
 }

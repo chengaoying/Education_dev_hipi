@@ -8,19 +8,8 @@ body{ background-image:url(__HD__/images/common/bg.jpg); }
     display: block;
     top:85px;
     left:90px;
-    width: 70px;
-    height: 35px;
-    background: url(__HD__/images/courseList/title/title_{$chKey}.png) no-repeat;
-}
-
-/* 早幼教logo */
-.ch_logo_earyle{
-    position: absolute;
-    display: block;
-    top:45px;
-    left:85px;
-    width: 225px;
-    height: 91px;
+    width: 135px;
+    height: 36px;
     background: url(__HD__/images/courseList/title/title_{$chKey}.png) no-repeat;
 }
 </style>
@@ -31,12 +20,12 @@ body{ background-image:url(__HD__/images/common/bg.jpg); }
 var buttons=
 	[
         /*龄段*/
-	 	{id:'stage_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'stage_2',up:'',down:'course_1'},
-        {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_1',right:'stage_3',up:'',down:['course_2','course_1']},
-        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_2',right:['stage_4','stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
-        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_3',right:['stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
-        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_4',right:['stage_6','page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
-        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'stage_5',right:['page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+	 	{id:'stage_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:'stage_2',up:'',down:'course_1'},
+        {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_1',right:'stage_3',up:'',down:['course_2','course_1']},
+        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_2',right:['stage_4','stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_3',right:['stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_4',right:['stage_6','page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_5',right:['page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
         
         {id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:['stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],right:'page_next',down:['course_5','course_4','course_3','course_2','course_1']},
     	{id:'page_next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],down:['course_5','course_4','course_3','course_2','course_1']},
@@ -56,6 +45,8 @@ var buttons=
 
 var stagelist = {$json_stage};
 
+var cur_stage = "stage_1";  //页面当前龄段
+
 /* 初始化按钮 属性   */
 var initButtons = function(){
 	//龄段
@@ -64,6 +55,12 @@ var initButtons = function(){
 		buttons[i].name = stagelist[i].name;
 		buttons[i].linkImage = stagelist[i].linkImage;
 		buttons[i].focusImage = stagelist[i].focusImage;
+		buttons[i].titleImage = stagelist[i].titleImage;
+		
+		//判断当前栏目
+		if(stagelist[i].id == "{$stageId}"){
+			cur_stage = buttons[i].id;
+		}
 	}
 	
 }
@@ -72,20 +69,15 @@ window.onload=function()
 {
 	//光标默认第一个课程上，没有则在龄段上
     initButtons();
-	Epg.btn.init('course_1',buttons,true);
+	Epg.btn.init([cur_stage,'course_1'],buttons,true);
 };
 
 </script>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/allCourse',0)}" ></a>
 
 <!-- 左上角的栏目LOGO -->
-<if condition="$isEarly eq 'true'">
-	<div class="ch_logo_earyle"></div>
-<else />
-	<div class="ch_logo_common"></div>
-</if>
-
+<div class="ch_logo_common"></div>
 
 <!-- 龄段列表 -->
 <volist name="stageList" id="stage" key="i">
@@ -122,3 +114,25 @@ window.onload=function()
 <div style="position:absolute; left:1065px; top:90px;">
 	{$pageHtml['pageHtml']}
 </div>
+
+<script type="text/javascript">
+
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "stage_1" && Epg.btn.current.id != "stage_2"
+	   && Epg.btn.current.id != "stage_3" && Epg.btn.current.id != "stage_4"
+	   && Epg.btn.current.id != "stage_5" && Epg.btn.current.id != "stage_6"){
+			G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != cur_stage){
+		setTimeout("Epg.btn.click()",50)
+	}
+}
+
+</script>
+

@@ -16,20 +16,22 @@ class OrderController extends CommonController {
 	 * 1.处理产品支持订购的模式（包月，按龄段，按课程）
 	 */
 	public function indexAct(){
+		
+		$courseId = I('courseId','');
+		$course = D('Course','Logic')->queryCourseById($courseId);
 		//订购处理
 		//1.产品包月的订购模式(如果为包月，其他订购模式暂不支持)
 		if(is_monthly_order()){
 			//TODO	
+			
 		}else{
 			$chargeMode = S('ChargeMode');
-			dump($chargeMode);exit;
+			$chargeMode = array_slice($chargeMode, 0, count($chargeMode));
 		}
 		
-		$courseId = I('courseId','');
-		$course = D('Course','Logic')->queryCourseById($courseId);
-		
 		$this->assign(array(
-			'course' =>	$course,
+			'course'     =>	$course,
+			'chargeMode' => $chargeMode,	
 		));
 		$this->display();
 	}
@@ -38,9 +40,16 @@ class OrderController extends CommonController {
 	 * 订购支付
 	 */
 	public function payAct(){
-		$courseId = I('courseId','');
-		$r = D('Order','Logic')->orderCourse($this->user['id'],$this->role['id'],$courseId);
-		if($r['status']){
+		$courseId 	 = I('courseId','');
+		$courseStage = I('courseStage','');
+		$chargeId 	 = I('chargeId','');
+		
+		$chargeMode = S('ChargeMode');
+		$chargeMode = $chargeMode[$chargeId];
+		//dump($chargeMode);exit;
+		
+		//$r = D('Order','Logic')->orderCourse($this->user['id'],$this->role['id'],$courseId);
+		if(true){
 			$this->addFloatMessage("订购成功！",get_back_url('Index/recommend',1,0,1));
 		}else{
 			$this->addFloatMessage("订购失败，原因：".$r['info'],get_back_url('Index/recommend',1,0,1));

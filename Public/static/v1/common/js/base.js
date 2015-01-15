@@ -249,7 +249,7 @@ Epg.Button = Epg.btn =
 		
 		if(prev)
 		{   
-			if(prev.linkImage && !current.focusHandler){//修改于 20150113  添加!current.focusHandler控制
+			if(prev.linkImage){
 				G(prev.id).src = prev.linkImage;
 			}else{
 				//add 20141224 增加按钮放大缩小控制(按钮buttons中resize属性为-1则不进行放大缩小效果)
@@ -273,7 +273,7 @@ Epg.Button = Epg.btn =
 		}
 		if(this.current)
 		{
-			if(current.focusImage && !current.focusHandler){//修改于 20150113  添加!current.focusHandler控制
+			if(current.focusImage){
 				G(current.id).src = current.focusImage;
 			}else{
 				//add 20141224 增加按钮放大缩小控制(按钮buttons中resize属性为-1则不进行放大缩小效果)
@@ -293,7 +293,7 @@ Epg.Button = Epg.btn =
 				S(divId);
 			}
 			
-			G(current.id).focus();//add 20141228   用于from表单获取焦点
+			G(current.id).focus();//add 20141228   用于form表单获取焦点
 			Epg.call(current.focusHandler, [current]); //add 20150112 增加按钮获取焦点处理功能
 		}
 	}
@@ -717,7 +717,7 @@ Epg.debug = function(info)
  */
 Epg.jump = function(href,f)
 {
-	if(f === undefined)
+	if(f === undefined && Epg.btn.current)
 		f = Epg.btn.current.id;
 	//var temp = (href.indexOf("?")!=-1) ? ('&preId='+f) : ('?preId='+f);
 	window.location.href = href;//(href+temp);

@@ -32,8 +32,8 @@ class ResourceController extends CommonController {
         $playList = array_merge($playList, $lessonList); //将预习与课堂进行组合
         $playList = array_filter($playList); //去除数组中空值
         //print_r($playList);
-        $playResourceData = D('Resource', 'Logic')->queryResourceList($playList, 'id,content');
-        //print_r($playResourceData);
+        $playResourceData = D('Resource', 'Logic')->queryResourceList($playList, 'id,content,keyList');
+        print_r($playResourceData);
         $playResource = array();
         foreach ($playList as $value) {
             $playResource[] = array('id' => $value, 'content' => get_array_keyval($playResourceData, $value, 'id', 'content'));
@@ -49,6 +49,16 @@ class ResourceController extends CommonController {
 
 //         print_r($areaPlayCode);
         //将课时资源进行json格式化
+        
+        //添加浏览记录
+        $browser['roleId'] = $this->role['id'];
+        $browser['title'] = $section['name'];
+        $browser['courseId'] = $courseId;
+        $browser['topicId']  = $section['topicId'];
+        $browser['sectionId']= $section['id'];
+        $browser['keys'] = $playResourceData[0]['keyList'];
+        $browser['type'] = 1;
+        $res = D('BrowseRecord','Logic')->saveBrowseRecord($browser);
 
         $template = 'play' . $areacode;
         $this->assign(array(

@@ -57,28 +57,29 @@ var popup = function(){
 
 var buttons=
 	[
-	 	/* 左边  */
-		{id:'btn_order',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_order.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['section_2','section_1'],up:'btn_record',down:'btn_favor'},
-		{id:'btn_favor',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_favor.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_favor_over.png',selectBox:'',right:['section_3','section_2','section_1'],up:'btn_order',},
-		
 		/* 上边 */
-		{id:'btn_record',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_record.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_record_over.png',selectBox:'',right:'page_prev',left:'btn_order',up:'',down:'section_1'},
+		{id:'btn_record',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_record.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_record_over.png',selectBox:'',right:'btn_plan',left:'',up:'',down:'section_1'},
+		{id:'btn_plan',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_plan.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_plan_over.png',selectBox:'',right:'btn_order',left:'btn_record' ,down:'section_1',},
+		{id:'btn_order',name:'',action:'',linkImage:'/static/v1/hd/images/sectionList/primaryschool/btn_order.png',focusImage:'/static/v1/hd/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['page_prev','page_next'],left:'btn_plan',up:'',down:['page_prev','page_next']},
 		
 		/* 分页按钮 */
-		{id:'page_prev',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',left:'btn_record',right:'page_next',down:['section_6']},
-    	{id:'page_next',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:['page_prev'],down:['section_6']},
+		{id:'page_prev',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',left:'btn_order',right:'page_next',down:['section_7'],up:'btn_order'},
+    	{id:'page_next',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','btn_order'],down:['section_7'],up:'btn_order'},
         
 		/* 下边 */
-		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_order',right:'section_6',up:'btn_record',down:'section_2'},
-		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_order',right:'section_7',up:'section_1',down:'section_3'},
-		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_favor',right:'section_8',up:'section_2',down:'section_4'},
-		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_favor',right:'section_9',up:'section_3',down:'section_5'},
-		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'btn_favor',right:'section_10',up:'section_4',down:''},
-		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_1',right:'',up:'page_prev',down:'section_7'},
-		{id:'section_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_2',right:'',up:'section_6',down:'section_8'},
-		{id:'section_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_3',right:'',up:'section_7',down:'section_9'},
-		{id:'section_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_4',right:'',up:'section_8',down:'section_10'},
-		{id:'section_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x60.png',left:'section_5',right:'',up:'section_9',down:''},
+		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'',right:'section_7',up:'btn_record',down:'section_2'},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'',right:'section_8',up:'section_1',down:'section_3'},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'',right:'section_9',up:'section_2',down:'section_4'},
+		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'',right:'section_10',up:'section_3',down:'section_5'},
+		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'',right:'section_11',up:'section_4',down:'section_6'},
+		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'',right:'section_12',up:'section_5',down:''},
+		
+		{id:'section_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'section_1',right:'',up:['page_prev','page_next'],down:'section_8'},
+		{id:'section_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'section_2',right:'',up:'section_7',down:'section_9'},
+		{id:'section_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'section_3',right:'',up:'section_8',down:'section_10'},
+		{id:'section_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'section_4',right:'',up:'section_9',down:'section_11'},
+		{id:'section_11',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'section_5',right:'',up:'section_10',down:'section_12'},
+		{id:'section_12',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_390x50.png',left:'section_6',right:'',up:'section_11',down:''},
 	];
 
 /* 初始化按钮 属性   */
@@ -88,7 +89,7 @@ window.onload=function()
 {
 	initButtons();
 	popup();
-	Epg.btn.init('btn_order',buttons,true);	
+	Epg.btn.init('btn_record',buttons,true);	
 };
 </script>
 
@@ -102,14 +103,25 @@ window.onload=function()
 	共<?php echo ($total); ?>课时<br>
 	已有1000人在学习该课程
 </div>
-<!-- 学习计划 -->
-<div id="div_'btn_favor'" style="position:absolute;left:100px;top:470px;">
-	<img id='btn_favor' title="ddd" src="/static/v1/hd/images/sectionList/primaryschool/btn_favor.png" width="191" height="57">
+
+<!-- 继续观看 -->
+<div id="div_btn_record" style="position:absolute;width:122px;height:38px;left:420px;top:230px;text-align:center;">
+	<img id="btn_record"  src="/static/v1/hd/images/sectionList/primaryschool/btn_record.png" width="122" height="38">
+</div>
+
+<!-- 加入学习计划 -->
+<div id="div_btn_plan" style="position:absolute;left:560px;top:230px;">
+	<img id="btn_plan" title="<?php echo U('Role/addCourse').'?courseId='.$course['id'].'&courseName='.$course['name'].'&courseImg='.$course['imgUrl'];?>" src="/static/v1/hd/images/sectionList/primaryschool/btn_plan.png" width="159" height="38">
 </div>	
 
-<!-- 订购课程 -->
-<div id="div_btn_order" style="position:absolute;left:100px;top:400px;">
-	<img id='btn_order' title="<?php echo U('Order/index?courseId='.$course['id']);?>" src="/static/v1/hd/images/sectionList/primaryschool/btn_order.png" width="191" height="57">
+<!-- 订购该课程 -->
+<div id="div_btn_order" style="position:absolute;left:737px;top:230px;">
+	<img id="btn_order" title="<?php echo U('Order/index?courseId='.$course['id']);?>" src="/static/v1/hd/images/sectionList/primaryschool/btn_order.png" width="147" height="38">
+</div>
+
+<!-- 观看记录 -->
+<div style="position:absolute;width:180px;height:35px;left:510px;top:292px;text-align:left;">
+	无观看记录
 </div>
 
 <!-- 课程标题 -->
@@ -127,29 +139,21 @@ window.onload=function()
 	<?php echo ($pageHtml['pageHtml']); ?>
 </div>
 
-<!-- 观看记录 -->
-<div style="position:absolute;width:130px;height:35px;left:510px;top:230px;text-align:center;">
-	无观看记录
-</div>
-
-<!-- 继续观看 -->
-<div id="div_btn_record" style="position:absolute;width:135px;height:42px;left:680px;top:220px;text-align:center;">
-	<img id="btn_record"  src="/static/v1/hd/images/sectionList/primaryschool/btn_record.png" width="135" height="42">
-</div>
-
-<?php if(is_array($sections)): $i = 0; $__LIST__ = $sections;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$section): $mod = ($i % 2 );++$i; if($i<=5){ $left = 440; $top = ($i-1)*60+340; }else{ $left = 820; $top = ($i-6)*60+340; } ?>
-	<div id="div_section_<?php echo ($i); ?>" style="position:absolute;width:360px;height:50px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-indent:20px; text-align:left;line-height:50px;">
-		<span id="section_<?php echo ($i); ?>" title="<?php echo U('Section/index?sectionId='.$section['id'].'&courseId='.$course['id']);?>"><?php echo ($section['name']); ?></span>
+<?php if(is_array($sections)): $i = 0; $__LIST__ = $sections;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$section): $mod = ($i % 2 );++$i; if($i<=6){ $left = 412; $top = ($i-1)*50+343; }else{ $left = 817; $top = ($i-7)*50+343; } ?>
+	<div id="div_section_<?php echo ($i); ?>" style="position:absolute;width:390px;height:50px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-indent:20px; text-align:left;line-height:50px;">
+		<span id="section_<?php echo ($i); ?>" title="<?php echo U('Section/index?courseId='.$course['id'].'&sectionId='.$section['id']);?>"><?php echo ($section['name']); ?></span>
 	</div>
-	<div id="div_section_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;width:370px;height:60px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
-		<img id="section_<?php echo ($i); ?>_focus" src="" width="360" height="50">
-	</div><?php endforeach; endif; else: echo "" ;endif; ?>
+	<div id="div_section_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden; width:390px;height:50px;left:<?php echo ($left+3); ?>px;top:<?php echo ($top-1); ?>px;">
+		<img id="section_<?php echo ($i); ?>_focus" src="" width='385' height='45'>
+	</div>
+	<?php if($section['privilege'] == 0): ?><div id="div_section_<?php echo ($i); ?>_free" style="position:absolute;width:46px;height:24px;left:<?php echo ($left+320); ?>px;top:<?php echo ($top+4); ?>px;">
+			<img id="section_<?php echo ($i); ?>_free" src="/static/v1/hd/images/sectionList/primaryschool/free.png" width='46' height='24'>
+		</div><?php endif; endforeach; endif; else: echo "" ;endif; ?>
 
 
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">

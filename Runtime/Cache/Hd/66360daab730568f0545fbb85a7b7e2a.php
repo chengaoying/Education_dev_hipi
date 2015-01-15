@@ -68,9 +68,9 @@ var json_class = <?php echo ($json_class); ?>;
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',right:'ch_2',down:'class_1'},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_1',right:'ch_3',down:'class_1'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',onFocus:'1',left:'ch_2',right:'search',down:'class_2'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',right:'ch_2',down:'class_1'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'class_1'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',blurHandler:'blurHandler()',left:'ch_2',right:'search',down:'class_2'},
 
 		/* 检索按钮 */
 		//{id:'search',name:'',action:'',linkImage:'/static/v1/hd/images/Index/allCourse/btn_search.png',focusImage:'/static/v1/hd/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
@@ -96,6 +96,7 @@ var initButtons = function(){
 		buttons[i].name = channel[i].name;
 		buttons[i].linkImage = channel[i].linkImage;
 		buttons[i].focusImage = channel[i].focusImage;
+		buttons[i].titleImage = channel[i].titleImage;
 	}
 	
 	//顶级分类（二级栏目）
@@ -111,7 +112,7 @@ var initButtons = function(){
 window.onload=function()
 {
 	initButtons();
-	Epg.btn.init('ch_2',buttons,true);	
+	Epg.btn.init('ch_3',buttons,true);	
 };
 </script>
 
@@ -121,9 +122,6 @@ window.onload=function()
 <?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*150; $top = 95; ?>
 	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;visibility: visible;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
 		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="110" height="33">
-	</div>
-	<div id="div_ch_<?php echo ($i); ?>_focus" style="position:absolute;visibility: hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>_focus' src="<?php echo ($ch['focusImage']); ?>" width="110" height="33">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 检索按钮 -->
@@ -142,14 +140,32 @@ window.onload=function()
 
 
 <!-- 静态图片-底部投影效果 -->
-<?php $__FOR_START_9726__=1;$__FOR_END_9726__=6;for($i=$__FOR_START_9726__;$i < $__FOR_END_9726__;$i+=1){ $left = 85 + ($i-1)*225; ?>
+<?php $__FOR_START_18481__=1;$__FOR_END_18481__=6;for($i=$__FOR_START_18481__;$i < $__FOR_END_18481__;$i+=1){ $left = 85 + ($i-1)*225; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
+
+<script type="text/javascript">
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "ch_1" && Epg.btn.current.id != "ch_2"){
+		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != "ch_3"){
+		setTimeout("Epg.btn.click()",50)
+	}
+}
+
+</script>
+
 
 
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">

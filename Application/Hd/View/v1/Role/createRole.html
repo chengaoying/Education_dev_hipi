@@ -87,7 +87,7 @@ window.onload=function()
 		}
 	</php>
 	<div style="position:absolute;top:{$top}px;left:{$left}px;">
-		<img id="s1_{$i}" title="{:U('Role/createRole?id='.$role['id'].'&stageId='.$s1['id'])}" src="__HD__/images/usercenter/btn.png" width="110" height="50">
+		<img id="s1_{$i}" title="{:U('Role/createRole?stageId='.$s1['id'].'&id='.$role['id'])}" src="__HD__/images/usercenter/btn.png" width="110" height="50">
 	</div>
 	<div style="position:absolute;top:{$top}px;left:{$left}px;">
 		<img src="__HD__/images/usercenter/primary_{$s1['sKey']}.png" width="110" height="50">
@@ -100,7 +100,7 @@ window.onload=function()
 		$top = 360; $left = 730 + ($i-1)*125;
 	</php>
 	<div style="position:absolute;top:{$top}px;left:{$left}px;">
-		<img id="s2_{$i}" title="{:U('Role/createRole?id='.$role['id'].'&stageId='.$s2['id'])}" src="__HD__/images/usercenter/btn.png" width="110" height="50">
+		<img id="s2_{$i}" title="{:U('Role/createRole?stageId='.$s2['id'].'&id='.$role['id'])}" src="__HD__/images/usercenter/btn.png" width="110" height="50">
 	</div>
 	<div style="position:absolute;top:{$top}px;left:{$left}px;;">
 		<img src="__HD__/images/usercenter/preschool_{$s2['sKey']}.png" width="110" height="50">
@@ -113,7 +113,7 @@ window.onload=function()
 		$top = 450; $left = 730 + ($i-1)*125;
 	</php>
 	<div style="position:absolute;top:{$top}px;left:{$left}px;">
-		<img id="s3_{$i}" title="{:U('Role/createRole?id='.$role['id'].'&stageId='.$s3['id'])}" src="__HD__/images/usercenter/btn.png" width="110" height="50">
+		<img id="s3_{$i}" title="{:U('Role/createRole?stageId='.$s3['id'].'&id='.$role['id'])}" src="__HD__/images/usercenter/btn.png" width="110" height="50">
 	</div>
 	<div style="position:absolute;top:{$top}px;left:{$left}px;">
 		<img src="__HD__/images/usercenter/early_{$s3['sKey']}.png" width="110" height="50">
@@ -122,7 +122,7 @@ window.onload=function()
 
 <!-- 跳过 -->
 <div style="position:absolute;left:970px;top:580px;">
-	<img id="skip" title="{:U('Role/createRole?id='.$role['id'].'&stageId=99')}" src="__HD__/images/usercenter/btn_skip.png" width="170" height="40">
+	<img id="skip" title="{:U('Role/createRole?stageId=99'.'&id='.$role['id'])}" src="__HD__/images/usercenter/btn_skip.png" width="170" height="40">
 </div>
 
 

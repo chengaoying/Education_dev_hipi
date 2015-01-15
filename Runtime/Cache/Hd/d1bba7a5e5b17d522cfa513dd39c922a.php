@@ -138,7 +138,7 @@ var popup = function(){
 </div>
 <!-- 学习评估 -->
 <div id="div_ch_2" style="position:absolute;visibility:visible;left:450px; top:95px;">
-	<img id='ch_2' title="/Hd/Learning/<?php echo ($stageType); ?>"
+	<img id='ch_2' title="/Hd/Learning/<?php echo ($stageType); ?>?arrange=month"
 		src="/static/v1/hd/images/usercenter/channel/learning_1.png" width="110" height="33">
 </div>
 <div id="div_ch_2_focus" style="position:absolute; visibility:hidden; left:450px; top:95px; text-align:center;">
@@ -155,7 +155,7 @@ var popup = function(){
 
 
 <!-- progress -->
-<?php $__FOR_START_1898__=1;$__FOR_END_1898__=10;for($i=$__FOR_START_1898__;$i < $__FOR_END_1898__;$i+=1){ $left = 520 + ($i-1)*70; $top = 270; ?>
+<?php $__FOR_START_30789__=1;$__FOR_END_30789__=10;for($i=$__FOR_START_30789__;$i < $__FOR_END_30789__;$i+=1){ $left = 520 + ($i-1)*70; $top = 270; ?>
 	
 	<div  style="position:absolute; left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
 		<img  src="/static/v1/hd/images/usercenter/learnEvaluation1/color_<?php echo ($i); ?>.png" width="45" height="300">
@@ -166,11 +166,11 @@ var popup = function(){
 
 <!-- 选择按钮"本月 总体" -->
 <div id="div_option_1" style="position: absolute; left: 520px; top: 200px;">
-	<img id='option_1' title="/Hd/Role/userInfo"
+	<img id='option_1' title="/Hd/Learning/<?php echo ($stageType); ?>?arrange=month"
 		src="/static/v1/hd/images/usercenter/learnEvaluation1/month_1.png" width="100" height="40">
 </div>
 <div id="div_option_2" style="position: absolute; left:630px; top:200px;">
-	<img id='option_2' title="/Hd/Role/userInfo"
+	<img id='option_2' title="/Hd/Learning/<?php echo ($stageType); ?>?arrange=all"
 		src="/static/v1/hd/images/usercenter/learnEvaluation1/total_1.png" width="100" height="40">
 </div>
 
@@ -188,8 +188,7 @@ var popup = function(){
 
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">

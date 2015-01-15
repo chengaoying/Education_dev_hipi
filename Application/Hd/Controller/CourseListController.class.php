@@ -23,17 +23,21 @@ class CourseListController extends CommonController {
 		$chId = I('chId','');
 		$chKey = get_array_keyval(S('Channel'),$chId,'id','chKey');
 		
-		//获取该一级分类下的龄段(有可能为空)
+		//获取该一级分类（二级栏目）下的龄段(有可能为空)
 		$stageList = get_array_for_fieldval(S('Stage'),'chId',$chId);
 		$this->initStageList($stageList);
 		
-		//龄段id(id不为空：从单个龄段入口进入)
-		$stageId = I('stageId','');
-		if(!empty($stageId)) {
+		if(count($stageList) > 0){  //有龄段的一级分类（二级栏目）
+			//龄段id(id不为空：从单个龄段入口进入)
+			$stageId = I('stageId','');
+			if(empty($stageId)) {
+				$stageId = $stageList[0]['id'];
+			}
 			$courses = D('Course','Logic')->queryCourseListByKeys($stageId, '', $page, $pageSize);
-		}else{
+		}else{  //没有龄段的一级分类，直接查询该一级分类（二级栏目）下的课程
 			$courses = D('Course','Logic')->queryCourseListByChId($chId, $page, $pageSize);
 		}
+		
 		foreach ($courses['rows'] as $k=>$v){
 			if($v['imgUrl']){
 				$char = getDelimiterInStr($v['imgUrl']);
@@ -46,14 +50,14 @@ class CourseListController extends CommonController {
 		$pageHtml = get_array_page($courses['total'], $pageSize, '/static/v1/hd/images/common/page');
 		
 		//龄段列表-json格式
-		$json_stage = get_array_fieldkey($stageList,array('id','name','linkImage','focusImage'));
+		$json_stage = get_array_fieldkey($stageList,array('id','name','linkImage','focusImage','titleImage'));
 		$json_stage = json_encode($json_stage);
 		
 		//判断一级分类的入口是不是早教和幼教
 		//早教和幼教课程列表的logo都是图片logo，其他为文字logo
-		$roleGrade = $this->getGrade($chId);
+		/* $roleGrade = $this->getGrade($chId);
 		if(in_array($roleGrade['chKey'], array('early','preschool')))
-			$isEarly = true;
+			$isEarly = true; */
 		
 		$this->assign(array(
 			'chKey'	     => $chKey,
@@ -62,7 +66,6 @@ class CourseListController extends CommonController {
 			'json_stage' => $json_stage,
 			'courses' 	 => $courses['rows'],	
 			'pageHtml' 	 => $pageHtml,
-			'isEarly'	 => $isEarly,
 			'chId'		 => $chId,
 		));
 		$this->display();
@@ -80,6 +83,7 @@ class CourseListController extends CommonController {
 				$imgs = explode($char, $v['imgUrl']);
 				$stageList[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
 				$stageList[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
+				$stageList[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
 			}
 		}	
 	}

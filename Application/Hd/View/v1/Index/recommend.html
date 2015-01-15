@@ -176,7 +176,7 @@ function blurHandler(){
 //获取焦点时处理（目前主要用于栏目按钮）
 function focusHandler(){
 	if(Epg.btn.current.id != "ch_1"){
-		Epg.btn.click();
+		setTimeout("Epg.btn.click()",50)
 	}
 }
 

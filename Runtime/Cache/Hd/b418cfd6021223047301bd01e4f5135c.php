@@ -154,7 +154,7 @@ window.onload=function()
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 底部投影 -->
-<?php $__FOR_START_19897__=1;$__FOR_END_19897__=4;for($i=$__FOR_START_19897__;$i < $__FOR_END_19897__;$i+=1){ $left = 90 + ($i-1)*375; ?>
+<?php $__FOR_START_8018__=1;$__FOR_END_8018__=4;for($i=$__FOR_START_8018__;$i < $__FOR_END_8018__;$i+=1){ $left = 90 + ($i-1)*375; ?>
 	<div class="shadow" style="left:<?php echo ($left); ?>px;"></div><?php } ?>
 
 

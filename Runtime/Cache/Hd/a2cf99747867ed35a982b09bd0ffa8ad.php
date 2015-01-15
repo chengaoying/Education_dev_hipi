@@ -172,18 +172,19 @@ var play = function()
 	Epg.Mp.fullscreenPlay(rtsp);
 };
 
-var back = function() 
-{
-	alert(1259);
-	//Epg.Mp.destroy();
-};
-
 setTimeout("play()", 500);
 
-Epg.key.set({KEY_1:"back()"});
+//Epg.key.set({KEY_1:"back()"});
 
 Epg.Button.defBack = function(){
 	window.location = G('a_back').href;
+	Epg.Mp.destroy();
+}
+
+Epg.Button.defAction = function(){
+	var url = G(Epg.btn.current.id).title;
+	if(Epg.isEmpty(url)) url = G('div_' + Epg.btn.current.id).title; 
+	Epg.jump(url);
 	Epg.Mp.destroy();
 }
 
@@ -192,8 +193,7 @@ Epg.Button.defBack = function(){
 
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">

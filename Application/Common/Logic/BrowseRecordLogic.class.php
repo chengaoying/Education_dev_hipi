@@ -21,25 +21,37 @@ class BrowseRecordLogic extends BaseLogic{
 	
 	/**
 	 * 根据知识点id查找浏览记录
+	 * @param int $roleId $roleId
 	 * @param int $topictId 知识点id
 	 * @param int $pageNo 页号
 	 * @param int $pageSize 每页记录数
 	 */
-	public function queryBrowseRecordList($topictId, $pageNo, $pageSize){
-		return $this->client->queryBrowseRecordList($topictId, $pageNo, $pageSize);
+	public function queryBrowseRecordList($roleId, $topictId, $pageNo, $pageSize){
+		return $this->client->queryBrowseRecordList($roleId, $topictId, $pageNo, $pageSize);
 	}
+	/**
+	 * 根据角色id查找最近浏览记录
+	 * @param int $roleId 角色id
+	 * @param int $pageNo 页号
+	 * @param int $pageSize 每页记录数
+	 */
+	public function queryBrowseRecordListRecentlyWatch($roleId, $pageNo, $pageSize){
+		return $this->client->queryBrowseRecordListRecentlyWatch($roleId, $pageNo, $pageSize);
+	}
+	
 	
 	/**
 	 * 根据type(浏览类型(1-视频，2-课程),keys查找浏览记录
+	 * @param int $roleId 角色id
 	 * @param int $type	浏览类型
 	 * @param int &keys 关键字
 	 * @param array $date 日期范围，不需要置null
 	 * @param int $pageNo 页号
 	 * @param int $pageSize 每页记录数
 	 */
-	public function queryBrowseRecordListByKeys($type, $keys, $date, $pageNo, $pageSize)
+	public function queryBrowseRecordListByKeys($roleId, $type, $keys, $date, $pageNo, $pageSize)
 	{
-		return $this->client->queryBrowseRecordListByKeys($type, $keys, $date,$pageNo, $pageSize);
+		return $this->client->queryBrowseRecordListByKeys($roleId, $type, $keys, $date,$pageNo, $pageSize);
 	}
 	
 }

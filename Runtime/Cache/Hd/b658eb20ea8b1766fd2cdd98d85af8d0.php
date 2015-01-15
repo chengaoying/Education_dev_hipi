@@ -58,37 +58,33 @@ var popup = function(){
 	background-image: url(/static/v1/hd/images/usercenter/bottom.png);
 }
 /* 文字介绍 */
-#word{
+#word_view{
 	position: absolute;
 	display: block;
-	width: 439px;
-	height: 24px;
-	top: 75px;
-	left: 80px;
-	background-image: url(/static/v1/hd/images/usercenter/glory/word.png);
+	width: 614px;
+	height: 74px;
+	top: 90px;
+	left: 110px;
+	background-image: url(/static/v1/hd/images/usercenter/glory/word_view.png);
 }
 
 </style>
 
 <script type="text/javascript">
-	var nowpage = <?php echo ($page['nowPage']); ?>;
-	var totalpage = <?php echo ($page['totalPages']); ?>;
 	var buttons = [
 
-	          	{id:'page_prev',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:''},
+/* 	          	{id:'page_prev',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:''},
 	        	{id:'page_next',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:''},
-	 
+ */	 
 				];
 
 	window.onload = function() {
-		if(nowpage == totalpage)
-		{
-			Epg.btn.init('page_prev', buttons, true);
-		}
-		else
-		{
-			Epg.btn.init('page_next', buttons, true);
-		}
+		Epg.key.init();
+		Epg.key.set(
+				{
+					KEY_BACK:'Epg.Button.defBack()',		//返回键
+					KEY_0:'Epg.Button.defBack()',			//按0返回
+				});
 		
 	};
 </script>
@@ -96,18 +92,23 @@ var popup = function(){
 <a id="a_back" style="display:none;" href="<?php echo get_back_url('Glory/index',1);?>" ></a>
 
 <!-- 静态图片 -->
-<div id="bottom"></div>
-<div id="word"></div>
+<!-- <div id="bottom"></div> -->
+<div id="word_view"></div>
 
-<?php if(is_array($page['data'])): $i = 0; $__LIST__ = $page['data'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i; $left = 110 + (($i-1)%5)*220; $top = 200 + (ceil($i/5)-1)*200; ?>
-		<div style="position:absolute; left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
-		<img src="/static/v1/hd/images/usercenter/glory/gift<?php echo ($data); ?>.jpg" width="190" height="190">
-	</div><?php endforeach; endif; else: echo "" ;endif; ?>
+<?php $__FOR_START_21441__=1;$__FOR_END_21441__=11;for($i=$__FOR_START_21441__;$i < $__FOR_END_21441__;$i+=1){ $left = 130 + (($i-1)%5)*210; $top = 210 + (ceil($i/5)-1)*210; ?>
+	<!-- 礼物底  -->
+	<div style="position:absolute; left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
+		<img src="/static/v1/hd/images/usercenter/glory/bottom_gift.png" width="190" height="190">
+	</div>
+	<!-- 礼物  -->
+	<div style="position:absolute; left:<?php echo ($left); ?>px; top:<?php echo ($top); ?>px;">
+		<img src="/static/v1/hd/images/usercenter/glory/gift/gift_0.png" width="190" height="190">
+	</div><?php } ?>
 
 <!-- 分页 -->
-<div style="position:absolute; left:920px; top:105px;">
+<!-- <div style="position:absolute; left:920px; top:105px;">
 	<?php echo ($page['pageHtml']); ?>
-</div>
+</div> -->
 
 
 
@@ -115,8 +116,7 @@ var popup = function(){
 
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">

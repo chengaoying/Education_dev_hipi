@@ -17,27 +17,15 @@ class GloryController extends CommonController {
 	public function indexAct()
 	{
 		$role = unserialize(Session('role'));
-		//顶级分类(二级栏目)
-		$class = $this->getClass();
-		//龄段
-		$stage = S('Stage');
-		$chId = $stage[$role['stageId']]['chId'];
-		//得到段龄类型，既早教，幼教，小学等的种类
-		$stageType = $class[$chId]['chKey'];
-		if($stageType == 'early' || $stageType == 'preschool')
-		{
-			$stageType = 'learningEvaluation1';
-		}
-		else 
-		{
-			$stageType = 'learningEvaluation2';
-		}
+		$channel = $this->initUserCenterChannel();
+		$json_encode = json_encode($channel);
 		
 		$curProgress = 60;
 		$this->assign(array(
-					'curProgress' => $curProgress*361/100,
-					'stageType' => $stageType,
-					
+					'curProgress' => $curProgress*390/100,
+					'channels' => $channel,
+					'face' => $role['face'],
+					'json_channel' => $json_encode,
 				));
 		$this->display();
 	}
@@ -47,11 +35,57 @@ class GloryController extends CommonController {
 	public function viewAct()
 	{
 		$imgPath = '/static/v1/hd/images/common/page';
-		$data = array('1','1','1','1','1','1','1','1','1','1','1','1','1','1','1');
+		$data = array('1','1','1','1','1','1','1','1','1');
 		$this->assign(array(
-					'page' => get_array_page(count($data), 10, $imgPath),
+					'datas' => $data,
 				));
 		$this->display();
+	}
+	
+	/**
+	 * 初始化用户中心导航栏
+	 */
+	private function initUserCenterChannel(){
+		$channel = S('Channel');
+		$topChannel = get_array_for_fieldval($channel, 'chKey','usercenter');
+		$topChannel = array_slice($topChannel,0,count($topChannel));
+		$id = $topChannel[0]['id'];
+		$channel = get_array_for_fieldval($channel, 'pId',$id);
+		$channel = get_array_for_fieldval($channel,'isShow','1');
+	
+		//角色信息，根据角色不同龄段推荐不同的课程
+		$stage = $this->getStage($this->role['stageId']);
+		$grade = $this->getGrade($stage['chId']);
+		//因为学习评价有两种，所以此处匹配
+		foreach($channel as $key => $value)
+		{
+			if($value['chKey'] == 'learning')
+			{
+				if($grade['chKey']=='early' || $grade['chKey']=='preschool')
+				{
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month';
+				}
+				else
+				{
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool';
+				}
+			}
+		}
+		//把栏目的图片数组拆开
+		foreach ($channel as $k=>$v){
+			if($v['imgUrl']){
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
+				$channel[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
+				$channel[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
+				//				$userCenter[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
+			}
+		}
+	
+		//把栏目key值初始为从0开始的递增的值，前端按钮调用统一
+		$channel = array_slice($channel,0,count($channel));
+		$channel = get_array_fieldkey($channel,array('id','name','linkImage','focusImage','linkUrl'));
+		return $channel;
 	}
 	
 	

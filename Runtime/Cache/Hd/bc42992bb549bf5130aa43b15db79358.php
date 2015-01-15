@@ -72,7 +72,7 @@ window.onload=function()
 
 <!-- 单课程单包月 -->
 <div id="div_btn_pay" style="position:absolute;width:140px;height:45px;top:560px;left:460px;">
-	<img id="btn_pay" title="<?php echo U('Order/pay?courseId='.$course['id']);?>" src="/static/v1/hd/images/common/order/btn_pay.png">
+	<img id="btn_pay" title="<?php echo U('Order/pay?courseId='.$course['id'].'&chargeId='.$chargeMode[2]['id'].'&courseStage='.$course['stageIds']);?>" src="/static/v1/hd/images/common/order/btn_pay.png">
 </div>
 <div id="div_title" style="position:absolute;width:212px;height:31px;top:568px;left:120px;">
 	<img id="title" src="/static/v1/hd/images/common/order/title_gradeone_1.png">
@@ -80,21 +80,21 @@ window.onload=function()
 
 <!-- 全课程单包月 -->
 <div id="div_btn_pay_1" style="position:absolute;width:140px;height:45px;top:225px;left:1000px;">
-	<img id="btn_pay_1" title="<?php echo U('Order/pay?courseId='.$course['id']);?>" src="/static/v1/hd/images/common/order/btn_pay.png">
+	<img id="btn_pay_1" title="<?php echo U('Order/pay?courseId='.$course['id'].'&chargeId='.$chargeMode[0]['id'].'&courseStage='.$course['stageIds']);?>" src="/static/v1/hd/images/common/order/btn_pay.png">
 </div>
 
 <!-- 全课程半年包 -->
 <div id="div_btn_pay_2" style="position:absolute;width:140px;height:45px;top:285px;left:1000px;">
-	<img id="btn_pay_2" title="<?php echo U('Order/pay?courseId='.$course['id']);?>" src="/static/v1/hd/images/common/order/btn_pay.png">
+	<img id="btn_pay_2" title="<?php echo U('Order/pay?courseId='.$course['id'].'&chargeId='.$chargeMode[1]['id'].'&courseStage='.$course['stageIds']);?>" src="/static/v1/hd/images/common/order/btn_pay.png">
 </div>
+
 <div id="div_title_all" style="position:absolute;width:317px;height:72px;top:120px;left:800px;">
 	<img id="title_all" src="/static/v1/hd/images/common/order/title_gradeone_all.png">
 </div>
 
 
 <!-- 弹窗 -->
-<div id="div_popup">
-</div>
+<div id="div_popup"></div>
 
 <!-- 默认的提示 -->
 <div id="default_tip" class="default_tip">
