@@ -17,8 +17,9 @@ class SectionListController extends CommonController {
 	public function indexAct(){
 		$courseId   = I('courseId','');
 		$course = D('Course','Logic')->queryCourseById($courseId);
-		$length = strlen($course['chId']);
-		$chKey = get_array_keyval(S('Channel'),substr($course['chId'],0,$length-1),'id','chKey');
+		$char = getDelimiterInStr($course['chId']);
+		$chId = explode($char, $course['chId']);
+		$chKey = get_array_keyval(S('Channel'),$chId[0],'id','chKey');
 		if($chKey == 'early' && $course['typeId'] != 2) //早教课时列表(非专题)
 		{
 			$this->early($chKey,$course);

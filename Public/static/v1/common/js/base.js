@@ -268,7 +268,6 @@ Epg.Button = Epg.btn =
 				H(divId);
 			}
 			
-			G(prev.id).blur();//add 20141228   用于from表单失去焦点
 			Epg.call(prev.blurHandler, [prev]); //add 20150112 增加按钮失去焦点处理功能
 		}
 		if(this.current)
@@ -293,7 +292,6 @@ Epg.Button = Epg.btn =
 				S(divId);
 			}
 			
-			G(current.id).focus();//add 20141228   用于form表单获取焦点
 			Epg.call(current.focusHandler, [current]); //add 20150112 增加按钮获取焦点处理功能
 		}
 	}

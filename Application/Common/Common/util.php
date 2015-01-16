@@ -255,7 +255,9 @@ function is_json($string){
  * 计算当前是一年中的的几周
  */
 function getCurrentWeek(){
-	return date('W');
+	$week = date('W');
+	$week = intval($week);
+	return $week;
 }
 
 /**

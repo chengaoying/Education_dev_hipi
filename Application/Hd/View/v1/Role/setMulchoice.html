@@ -28,6 +28,7 @@
 var count = {$count_sub};
 var subject_selected = {$json_selected};
 var subjects = {$subjects_json};
+var isEmpty = {$isEmpty};
 var n = 5;//一行五列
 /* 页面可点击按钮  */
 var buttons= new Array(count+1);
@@ -53,8 +54,8 @@ var initButtons = function()
 	//第12个元素初始化为ok键
 	buttons[count] = {id:'ok',action:'submit()',linkImage:'__HD__/images/usercenter/mulchoice/confirm_1.png',focusImage:'__HD__/images/usercenter/mulchoice/confirm_2.png',up:('subject_'+id),down:''};
 }
-
-var init_interests = function()
+//选中的显示对号
+var init_subjects = function()
 {
 	for(var key in subject_selected)
 	{
@@ -66,8 +67,15 @@ var init_interests = function()
 window.onload=function()
 {
 	initButtons();
-	init_interests();
-	Epg.btn.init('subject_1',buttons,true);	
+	init_subjects();
+	if(isEmpty)
+	{	
+		Epg.btn.init('ok',buttons,true);	
+	}
+	else
+	{
+		Epg.btn.init('subject_1',buttons,true);	
+	}
 };
 
 </script>

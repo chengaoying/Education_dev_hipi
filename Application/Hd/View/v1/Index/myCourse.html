@@ -2,24 +2,15 @@
 <style type="text/css">
     body{ background-image:url(__HD__/images/common/bg.jpg); }
     
-    #empty_course_bg{
-        position:absolute;
-        display: block;
-        width:210px;
-        height:210px;
-        top:182px;
-        left:90px;	
-        background-image:url(__HD__/images/index/myCourse/empty_bg.png);
-    }
-    /* 底部投影背景图 */
-    .shadow{
-        position:absolute;
-        display: block;
-        width:210px;
-        height:54px;
-        top:620px;
-        background-image:url(__HD__/images/common/shadow/shadow_210x60.png);
-    }
+/* 底部投影背景图 */
+.shadow{
+	position:absolute;
+    display: block;
+    width:210px;
+    height:55px;
+	top:615px;
+    background-image:url(__HD__/images/common/shadow/shadow_210x60.png);
+}
 </style>
 <!--上面导航-->
 <script type="text/javascript">
@@ -30,9 +21,9 @@ var channel = {$json_channel};
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',right:'ch_2',down:['course_1','empty_course']},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',blurHandler:'blurHandler()',left:'ch_1',right:'ch_3',down:['course_1','empty_course']},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_2',down:['course_1','empty_course']},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',right:'ch_2',down:['course_1','empty_course']},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',blurHandler:'blurHandler()',left:'ch_1',right:'ch_3',down:['course_1','empty_course']},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_2',down:['course_1','empty_course']},
         
         /* 当课程列表不为空 */
         {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'ch_1',right:'course_2',up:'ch_1',down:'course_6'},
@@ -75,13 +66,33 @@ window.onload=function()
 <!-- 顶部-栏目 -->
 <volist name="topChannel" id="ch">
 	<php>
-		$left = 100 + ($i-1)*150; $top = 95;
+		$left = 100 + ($i-1)*170; $top = 95;
 	</php>
 	<div id="div_ch_{$i}" style="position:absolute;visibility: visible;left:{$left}px;top:{$top}px;">
-		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="110" height="33">
+		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="41">
 	</div>
 </volist>
 
+<!-- 课程背景图片 -->
+<for start="1" end="11" name="j">
+	<php>
+	 	if($j > 5){
+	        $t = 405; $l = 80 + ($j-6)*225;
+	    }else{
+	        $t = 180; $l = 80 + ($j-1)*225;
+	    }
+	</php>
+
+	<div id="div_empty_png_{$j}" style="position:absolute;width:220px;height:220px;left:{$l}px;top:{$t}px;text-align:center;">
+	    <img id="empty_png_{$j}" src="__HD__/images/index/myCourse/empty_bg.png" width="210" height="210">
+	</div>
+</for>
+
+<!-- 静态图片-底部投影效果 -->
+<for start="1" end="6" step="1">
+	<php> $lt = 85 + ($i-1)*225;</php>
+	<div class="shadow" style="left:{$lt}px;"></div>
+</for>
 
 <!-- 我的课程开始 -->
 <if condition="count($myCourse) gt 0">
@@ -100,19 +111,12 @@ window.onload=function()
         <div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
             <img id="course_{$i}_focus" src="" width="220" height="220">
         </div>
-        
-        <!-- 底部背景投影图 -->
-        <if condition="$i gt 5">
-            <php>$left = 85 + ($i-6)*225;</php>
-            <div class="shadow" style="left:{$left}px;"></div>
-         </if>
     </volist>
 <else /> 
-<!-- 当课程为空的时候提示去选择课程 -->
-<div id="empty_course_bg"></div>
-<div id="div_empty_course" title="{:U('Index/allCourse')}" style="position:absolute;width:98px;height:40px;left:145px;top:335px;text-align:center;">
-	<img id="empty_course" src="__HD__/images/index/myCourse/select_course.png" width="98" height="40">
-</div>
+	<!-- 当课程为空的时候提示去选择课程 -->
+	<div id="div_empty_course" title="{:U('Index/allCourse')}" style="position:absolute;width:98px;height:40px;left:145px;top:335px;text-align:center;">
+		<img id="empty_course" src="__HD__/images/index/myCourse/select_course.png" width="98" height="40">
+	</div>
 </if>
 <!-- 我的课程结束 -->
 

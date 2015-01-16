@@ -58,7 +58,7 @@ class IndexController extends CommonController {
 					$this->earlyOrPreschoolRecommend($data,$value);
 					break;
 				case 'preschool': //幼教
-					$value = '第'.date('w').'周'; //特别推荐一匹配的周数
+					$value = '第'.getCurrentWeek().'周'; //特别推荐一匹配的周数
 					$this->earlyOrPreschoolRecommend($data,$value);
 					break;
 				default: //其他年级

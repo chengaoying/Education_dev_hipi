@@ -24,9 +24,9 @@ var json_class = {$json_class};
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',right:'ch_2',down:'class_1'},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'class_1'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',blurHandler:'blurHandler()',left:'ch_2',right:'search',down:'class_2'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',right:'ch_2',down:'class_1'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'class_1'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',blurHandler:'blurHandler()',left:'ch_2',right:'search',down:'class_2'},
 
 		/* 检索按钮 */
 		//{id:'search',name:'',action:'',linkImage:'__HD__/images/Index/allCourse/btn_search.png',focusImage:'__HD__/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
@@ -77,10 +77,10 @@ window.onload=function()
 <!-- 顶部-栏目 -->
 <volist name="topChannel" id="ch">
 	<php>
-		$left = 100 + ($i-1)*150; $top = 95;
+		$left = 100 + ($i-1)*170; $top = 95;
 	</php>
 	<div id="div_ch_{$i}" style="position:absolute;visibility: visible;left:{$left}px;top:{$top}px;">
-		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="110" height="33">
+		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="41">
 	</div>
 </volist>
 

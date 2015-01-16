@@ -51,8 +51,6 @@ class RoleController extends CommonController {
 		
 		$channel = $this->initUserCenterChannel();
 		$json_encode = json_encode($channel);
-/* 		p($channel);
-		p($json_encode);exit; */
 	
 		if(empty($id))
 		{
@@ -273,7 +271,7 @@ class RoleController extends CommonController {
 		}
 	}
 	/*
-	 * 多选项
+	 * 多选项;用户中心所有属于多选操作的调用此控制器
 	*/
 	public function setMulchoiceAct()
 	{
@@ -312,16 +310,7 @@ class RoleController extends CommonController {
 				}
 				else 
 				{
-					$hasEqual = false;
-					foreach ($subject_remove as $key1 => $value1)
-					{
-						if($value == $value1)
-						{
-							$hasEqual = true;
-							break;
-						}
-					}
-					if(!$hasEqual)
+					if(!in_array($value, $subject_remove))
 					{
 						$index++;
 						$subject_display['subject_'.$index] = $key;
@@ -333,7 +322,7 @@ class RoleController extends CommonController {
 			{
 				foreach ($subject as $key1 => $value1)
 				{
-					if($value == $value1)
+					if($value == $value1)//此项被选中
 					{
 						foreach($subject_display as $key2 => $value2)
 						{
@@ -342,13 +331,14 @@ class RoleController extends CommonController {
 								$subject_selected[$key2] = $value2;
 							}
 						}
-//						$subject_selected['sub'.$key1] = $key1;
 					}
 				}
 			}
+			$isEmpty = empty($subject_display) ? 1 : 0;
 			$this->assign(array(
 					'json_selected'	=> json_encode($subject_selected),
 					'subjects' => $subject_display,
+					'isEmpty' => $isEmpty,
 					'subjects_json' => json_encode($subject_display),
 					'count_sub' => count($subject_display),
 					'type' => $type,
