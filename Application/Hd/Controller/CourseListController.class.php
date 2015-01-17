@@ -47,17 +47,13 @@ class CourseListController extends CommonController {
 			}
 		}
 
-		$pageHtml = get_array_page($courses['total'], $pageSize, '/static/v1/hd/images/common/page');
+		//计算总页数
+		$pageCount = intval($courses['total']/$pageSize);
+		$pageCount = $courses['total']%$pageSize>0 ? $pageCount+1 : $pageCount;
 		
 		//龄段列表-json格式
 		$json_stage = get_array_fieldkey($stageList,array('id','name','linkImage','focusImage','titleImage'));
 		$json_stage = json_encode($json_stage);
-		
-		//判断一级分类的入口是不是早教和幼教
-		//早教和幼教课程列表的logo都是图片logo，其他为文字logo
-		/* $roleGrade = $this->getGrade($chId);
-		if(in_array($roleGrade['chKey'], array('early','preschool')))
-			$isEarly = true; */
 		
 		$this->assign(array(
 			'chKey'	     => $chKey,
@@ -65,8 +61,10 @@ class CourseListController extends CommonController {
 			'stageList'  => $stageList,
 			'json_stage' => $json_stage,
 			'courses' 	 => $courses['rows'],	
-			'pageHtml' 	 => $pageHtml,
 			'chId'		 => $chId,
+			'page'		 => $page,
+			'pageCount'	 => $pageCount,
+			'focus'		 => I('focus',''),	
 		));
 		$this->display();
 	}

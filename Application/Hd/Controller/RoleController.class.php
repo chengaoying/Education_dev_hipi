@@ -529,9 +529,9 @@ class RoleController extends CommonController {
 		$courseImg = I('courseImg','');
 		$r = D('RoleCourse','Logic')->addCourse($this->role['id'],$courseId,$courseName,$courseImg);
 		if($r['status']){
-			$this->addFloatMessage("加入学习计划成功！",U('SectionList/index?courseId='.$courseId));
+			$this->addFloatMessage("加入学习计划成功！",HTTP_REFERER);
 		}else{
-			$this->addFloatMessage($r['info'],U('SectionList/index?courseId='.$courseId));
+			$this->addFloatMessage($r['info'],HTTP_REFERER);
 		}
 	}
 	

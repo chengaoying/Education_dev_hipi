@@ -45,6 +45,7 @@ class IndexController extends CommonController {
 		$data['json_channel'] = $json_channel;
 		$data['topChannel']   = $this->topChannel;
 		$data['role']		  = $this->role;
+		$data['focus']		  = I('focus','');
 		if($this->role['stageId'] == 99){ //游客
 			$this->touristRecommend($data);
 		}else{//有帐号
@@ -205,6 +206,7 @@ class IndexController extends CommonController {
 			'topChannel' 	=> $this->topChannel,
 			'class'			=> $class,
 			'json_class'	=> $json_class,
+			'focus'			=> I('focus',''),
 		));
 		$this->display();
 	}
@@ -213,11 +215,14 @@ class IndexController extends CommonController {
 	 * 我的课程首页
 	 */
 	public function myCourseAct(){
+		$page 	  = I('page',1);
+		$pageSize = 10;
+		
 		//栏目数据json格式-前端js使用
 		$json_channel = get_array_fieldkey($this->topChannel,array('id','name','linkImage','focusImage','titleImage'));
 		$json_channel = json_encode($json_channel);
 		
-		$myCourse = D('RoleCourse','Logic')->queryRoleCourseList($this->role['id'], 1, 10);
+		$myCourse = D('RoleCourse','Logic')->queryRoleCourseList($this->role['id'], $page, $pageSize);
 		foreach ($myCourse['rows'] as $k=>$v){
 			if($v['courseImg']){
 				$char = getDelimiterInStr($v['courseImg']);
@@ -227,10 +232,17 @@ class IndexController extends CommonController {
 			}
 		}
 		
+		//计算总页数
+		$pageCount = intval($myCourse['total']/$pageSize);
+		$pageCount = $myCourse['total']%$pageSize>0 ? $pageCount+1 : $pageCount;
+		
 		$this->assign(array(
 			'json_channel'	=> $json_channel,
 			'topChannel' 	=> $this->topChannel,
 			'myCourse'      => $myCourse['rows'],
+			'page'		    => $page,
+			'pageCount'	    => $pageCount,
+			'focus'			=> I('focus',''),	
 		));
 		$this->display();
 	}

@@ -20,32 +20,33 @@ body{ background-image:url(__HD__/images/common/bg.jpg); }
 var buttons=
 	[
         /*龄段*/
-	 	{id:'stage_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:'stage_2',up:'',down:'course_1'},
-        {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_1',right:'stage_3',up:'',down:['course_2','course_1']},
-        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_2',right:['stage_4','stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
-        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_3',right:['stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
-        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_4',right:['stage_6','page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
-        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_5',right:['page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+	 	{id:'stage_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:'stage_2',up:'',down:'course_1'},
+        {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_1',right:'stage_3',up:'',down:['course_2','course_1']},
+        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_2',right:['stage_4','stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_3',right:['stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_4',right:['stage_6','page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_5',right:['page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
         
         {id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:['stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],right:'page_next',down:['course_5','course_4','course_3','course_2','course_1']},
     	{id:'page_next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],down:['course_5','course_4','course_3','course_2','course_1']},
         
         /* 课程列表 */
-        {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'',right:'course_2',up:'stage_1',down:'course_6'},
+        {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'pageUp()',right:'course_2',up:'stage_1',down:'course_6'},
 		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_1',right:'course_3',up:'stage_2',down:['course_7','course_6']},
 		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_2',right:'course_4',up:'stage_3',down:['course_8','course_7','course_6']},
 		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_3',right:'course_5',up:['page_prev','page_next'],down:['course_9','course_8','course_7','course_6']},
-		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_4',right:'',up:['page_prev','page_next'],down:['course_10','course_9','course_8','course_7','course_6']},
-		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'',right:'course_7',up:'course_1',down:''},
+		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_4',right:'pageDown()',up:['page_prev','page_next'],down:['course_10','course_9','course_8','course_7','course_6']},
+		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'pageUp()',right:'course_7',up:'course_1',down:''},
         {id:'course_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_6',right:'course_8',up:'course_2',down:''},
 		{id:'course_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_7',right:'course_9',up:'course_3',down:''},
 		{id:'course_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_8',right:'course_10',up:'course_4',down:''},
-		{id:'course_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_9',right:'',up:'course_5',down:''},
+		{id:'course_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_9',right:'pageDown()',up:'course_5',down:''},
 	];
 
 var stagelist = {$json_stage};
 
-var cur_stage = "stage_1";  //页面当前龄段
+var cur_stage = "stage_1";      //页面当前龄段
+var curr_stage_title_img = "";	//当前龄段的titleImage
 
 /* 初始化按钮 属性   */
 var initButtons = function(){
@@ -60,16 +61,52 @@ var initButtons = function(){
 		//判断当前栏目
 		if(stagelist[i].id == "{$stageId}"){
 			cur_stage = buttons[i].id;
+			curr_stage_title_img = buttons[i].titleImage;
 		}
 	}
 	
 }
 
+var url = "{:U('CourseList/index').'?chId='.$chId.'&stageId='.$stageId.'&page='}";
+
+//上一页
+function pageUp()
+{
+	Epg.page(url,{$page}-1,{$pageCount});
+}
+
+//下一页
+function pageDown()
+{
+	Epg.page(url,{$page}+1,{$pageCount});
+}
+
+
 window.onload=function()
 {
-	//光标默认第一个课程上，没有则在龄段上
     initButtons();
-	Epg.btn.init([cur_stage,'course_1'],buttons,true);
+    
+    //处理页面跳转时的焦点定位:
+    //如果上一个页面是全部课程栏目首页(focus参数值包含class_)则定位在第一个龄段上
+    //否则，按翻页的方式设置默认焦点
+    var defaultId = "{$focus}";
+    if(defaultId.indexOf("class_") === 0){
+    	defaultId = cur_stage;
+    }else{
+    	if(Epg.isEmpty(G(defaultId))) 
+    		defaultId = "course_1";
+    	G(cur_stage).src = curr_stage_title_img;
+    }
+   
+	Epg.btn.init([defaultId,'course_1'],buttons,true);
+	
+	//设置翻页键翻页事件
+	Epg.key.set(
+	{
+		KEY_PAGE_UP:'pageUp()',
+		KEY_PAGE_DOWN:'pageDown()',
+	});
+
 };
 
 </script>
@@ -81,13 +118,7 @@ window.onload=function()
 
 <!-- 龄段列表 -->
 <volist name="stageList" id="stage" key="i">
-    <php>
-    	if($isEarly){
-    		$left = 300+($i-1)*90;
-    	}else{
-    		$left = 225+($i-1)*90;
-    	}
-    </php>
+    <php> $left = 225+($i-1)*90; </php>
     <div id="div_stage_{$i}" title="{:U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id'])}" style="position:absolute;width:90px;height:35px;left:{$left}px;top:95px;text-align:center;">
         <img id="stage_{$i}" src="{$stage['linkImage']}">
     </div>
@@ -110,13 +141,20 @@ window.onload=function()
     </div>
 </volist>
 
-<!-- 分页 -->
-<div style="position:absolute; left:1065px; top:90px;">
-	{$pageHtml['pageHtml']}
-</div>
+<!-- 上一页/下一页 -->
+<if condition="$page gt 1">
+	<div id="div_btn_prev" style="position:absolute;width:25px;height:44px;left:45px;top:380px;">
+	    <img id="btn_prev" src="__HD__/images/common/page/btn_prev.png" width="25" height="44">
+	</div>
+</if>
+<if condition="$page lt $pageCount">
+	<div id="div_btn_next" style="position:absolute;width:25px;height:44px;left:1210px;top:380px;">
+	    <img id="btn_next" src="__HD__/images/common/page/btn_next.png" width="25" height="44">
+	</div>
+</if>
+
 
 <script type="text/javascript">
-
 
 //失去时焦点处理（目前主要用于栏目按钮）
 function blurHandler(){

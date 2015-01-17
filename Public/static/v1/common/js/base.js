@@ -33,6 +33,10 @@ var KEY_FAST_FORWARD = 0x0108;	// >> ，快进
 var	KEY_FAST_REWIND  = 0x0109;	// << ，快退
 var KEY_IPTV_EVENT   = 0x0300;	// 虚拟事件按键
 
+// 天津广电
+var KEY_BACK_TJ      = 640;   //天津广电返回键
+
+// PC
 var KEY_W = 119;
 var KEY_S = 115;
 var KEY_A = 97;
@@ -129,6 +133,7 @@ Epg.Button = Epg.btn =
 				KEY_UP:'Epg.Button.move("up")',			//上键
 				KEY_DOWN:'Epg.Button.move("down")',		//下键
 				KEY_BACK:'Epg.Button.defBack()',		//返回键
+				KEY_BACK_TJ:'Epg.Button.defBack()',		//返回键
 				KEY_0:'Epg.Button.defBack()',			//按0返回
 				KEY_A:'Epg.Button.move("left")',		//A
 				KEY_D:'Epg.Button.move("right")',		//D
@@ -180,6 +185,11 @@ Epg.Button = Epg.btn =
 	move: function(dir)
 	{
 		if(undefined == this.current[dir]) return; //update 20141213   修改bug:如果移动方向的值没设置，则不进行移动操作
+		
+		//add 20150117  添加方向键的翻页功能
+		if(this.current[dir] == 'pageUp()' || this.current[dir] == 'pageDown()')
+			Epg.call(this.current[dir], [this.current]);
+		
 		var button;
 		var nextButtonId = this.current[dir];
 		if(typeof nextButtonId == "string")//如果是字符串，强制改为数组，简化代码
@@ -283,12 +293,12 @@ Epg.Button = Epg.btn =
 			}
 			if(current.selectBox){ //add 20141213    增加焦点框选中效果
 				var selectBoxId = current.id + '_focus';
-				var divId = 'div_' + current.id + '_focus';
 				G(selectBoxId).src = current.selectBox;
 				if(Epg.isEmpty(current.resize) || current.resize != -1){
 					G(selectBoxId).width  += size;
 					G(selectBoxId).height += size;
 				}
+				var divId = 'div_' + current.id + '_focus';
 				S(divId);
 			}
 			
@@ -343,13 +353,13 @@ Epg.key=
 	{
 		if(typeof obj!=='object')
 		{
-			alert("删除批量按键配置的类型错误！");
+			alert("删除批量按键配置的类型 错误！");
 			return;
 		}
-		for(var i=0; i<obj.length; i++)
+		for(var i in obj)
 		{
-			if(this.keys[obj[i]])
-				this.keys[obj[i]]='Epg.key.emptyFn()';
+			if(this.keys[i])
+				this.keys[i]='Epg.key.emptyFn()';
 		}
 		return this;
 	},
@@ -409,7 +419,7 @@ Epg.Mp = Epg.mp = (function()
 			mp.setAllowTrickmodeFlag(0); //0-允许 TrickMode 操做 ,1-不允许 TrickMode 操作 (默认值) 
 		},
 		
-		initOfZTE: function(defaultTip){//add 2014-08-27 by xuc
+		initOfZTE: function(defaultTip){//add 2014-08-27 
 			this.defaultTip = defaultTip;
 			mp = new MediaPlayer();
 			mp.bindNativePlayerInstance(0);
@@ -709,6 +719,23 @@ Epg.debug = function(info)
 };
 
 /**
+ * 分页方法
+ * @param url 要跳转的url，必须页码必须是最后一个参数，且“=”结尾
+ * @param idx 要跳转的页码
+ * @param pageCount 总页数，只有下一页时才用到
+ */
+Epg.page=function(url,idx,pageCount)
+{
+	idx=parseInt(idx);
+	if(idx<1)
+		Epg.tip('已经是第一页了！');
+	else if(pageCount!==undefined&&idx>parseInt(pageCount))
+		Epg.tip('已经是最后一页了！');
+	else
+		Epg.jump(url+idx);
+};
+
+/**
  * 跳转
  * @param href 要跳转的url
  * @param f 焦点按钮，默认当前按钮ID
@@ -717,8 +744,17 @@ Epg.jump = function(href,f)
 {
 	if(f === undefined && Epg.btn.current)
 		f = Epg.btn.current.id;
-	//var temp = (href.indexOf("?")!=-1) ? ('&preId='+f) : ('?preId='+f);
-	window.location.href = href;//(href+temp);
+	
+	//处理焦点参数重复的问题：
+	if(href.indexOf('focus=') != -1){
+		href = href.substr(0,href.indexOf('focus=')-1);
+	}
+	if(href.indexOf('?') != -1){
+		href = href + '&focus=' + f;
+	}else{
+		href = href + '?focus=' + f;
+	}
+	window.location.href = href;
 };
 
 /**

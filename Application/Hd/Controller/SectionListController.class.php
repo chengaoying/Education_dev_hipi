@@ -63,7 +63,9 @@ class SectionListController extends CommonController {
 			'topics' 	 => $topics['rows'],
 			'json_topic' => $json_topic,
 			'sections'   => $sections['rows'],
-			'courseId'	 =>	$course['id'],	
+			'courseId'	 =>	$course['id'],
+			'topicId'	 => $topicId,		
+			'focus'		 => I('focus',''),	
 		));
 		$this->display('detail_early');
 	}
@@ -89,6 +91,7 @@ class SectionListController extends CommonController {
 		
 		$topicId = I('topicId','');
 		$chId = I('chId','');
+		
 		//计算上一个课时id，下一个课时id
 		if(empty($topicId)){
 			$i = (date('w')-1) < 0 ? 6 : (date('w')-1);
@@ -119,7 +122,8 @@ class SectionListController extends CommonController {
 			'week'			=> $week,	
 			'prevTopicId'	=> $prevTopicId,
 			'nextTopicId'	=> $nextTopicId,
-			'chId'			=> $chId,		
+			'chId'			=> $chId,	
+			'focus'		 => I('focus',''),
 		));
 		if($week==6||$week==0){
 			$template = 'detail_preschool_weekend';
@@ -153,6 +157,7 @@ class SectionListController extends CommonController {
 			'sections'	=> $sections['rows'],
 			'total'		=> $sections['total'],	
 			'pageHtml' 	=> $pageHtml,
+			'focus'		=> I('focus',''),
 		));
 		$this->display('detail_primaryschool');
 	}
@@ -198,7 +203,8 @@ class SectionListController extends CommonController {
 			'courseId' => $courseId,
 			'week'	   => $week,
 			'prevWeek' => $prevWeek,
-			'nextWeek' => $nextWeek,						
+			'nextWeek' => $nextWeek,
+			'focus'		 => I('focus',''),
 		));
 		$this->display();
 	}

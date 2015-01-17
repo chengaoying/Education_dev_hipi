@@ -32,6 +32,7 @@ class OrderController extends CommonController {
 		$this->assign(array(
 			'course'     =>	$course,
 			'chargeMode' => $chargeMode,	
+			'backUrl'    => HTTP_REFERER,	
 		));
 		$this->display();
 	}
@@ -43,6 +44,7 @@ class OrderController extends CommonController {
 		$courseId 	 = I('courseId','');
 		$courseStage = I('courseStage','');
 		$chargeId 	 = I('chargeId','');
+		$backUrl     = I('backUrl','');
 		
 		$chargeMode = S('ChargeMode');
 		$chargeMode = $chargeMode[$chargeId];
@@ -50,9 +52,9 @@ class OrderController extends CommonController {
 		
 		//$r = D('Order','Logic')->orderCourse($this->user['id'],$this->role['id'],$courseId);
 		if(true){
-			$this->addFloatMessage("订购成功！",get_back_url('Index/recommend',1,0,1));
+			$this->addFloatMessage("订购成功！",$backUrl);
 		}else{
-			$this->addFloatMessage("订购失败，原因：".$r['info'],get_back_url('Index/recommend',1,0,1));
+			$this->addFloatMessage("订购失败，原因：".$r['info'],$backUrl);
 		}
 	}
 }
