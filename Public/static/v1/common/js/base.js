@@ -707,21 +707,22 @@ Epg.popup_2=function(info,second,type,okAction,cancelAction)
 	second = second === undefined ? 3 : second;
 	
 	if(!Epg.isEmpty(type)){
-		
+		G('popup_2_info').style.top = "310px";
+		G('popup_2_info_bg').style.backgroundImage = "url(/static/v1/hd/images/common/popup/info_bg_2.png)";
 	}
 	
 	var width = info.length * 20;
 	G('popup_2_info').style.width = width + "px";
-	var left = 640 - width/2;
+	var left = 560 - width/2;
 	G('popup_2_info').style.left = left + "px";
-	G('popup_2_info').innerHTML=info;
 	
+	G('popup_2_info').innerHTML=info;
 	S('popup_2');
 	if(second>0)
 	{
 		if(Epg._popup_2_timer)//如果上次执行过setTimeout，那么强行停止
 			clearTimeout(Epg._popup_2_timer);
-		Epg._popup_2_timer=setTimeout('H("popup_2")',second*1000);
+		//Epg._popup_2_timer=setTimeout('H("popup_2")',second*1000);
 	}
 };
 

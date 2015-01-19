@@ -60,11 +60,24 @@ var initButtons = function(){
 window.onload=function()
 {
 	initButtons();
+	popup(2);
 	Epg.btn.init(['ch_1'],buttons,true);	
 	
 };
 
 </script>
+
+<!-- 静态图片-->
+<div style="position:absolute;width:74px;height:74px;left:120px;top:200px;text-align:center;">
+	<img id="user_face" src="__HD__/images/usercenter/face/face_{$role['face']}.png" width="64" height="64">
+</div>
+
+<div class="shadow" style="left:85px;width:150px;background-image:url(__HD__/images/common/shadow/shadow_150x60.png);"></div>
+<div class="shadow" style="left:250px;width:270px;background-image:url(__HD__/images/common/shadow/shadow_270x60.png);"></div>
+<for start="1" end="4" step="1">
+	<php> $left = 535 + ($i-1)*225;</php>
+	<div class="shadow" style="left:{$left}px;width:210px;background-image:url(__HD__/images/common/shadow/shadow_210x60.png);"></div>
+</for>
 
 <!-- 顶部-栏目 -->
 <volist name="topChannel" id="ch">
@@ -150,21 +163,6 @@ window.onload=function()
 	</volist>
 <!-- 页面右侧-结束 -->	
 	
-	
-	
-<!-- 静态图片-->
-<div style="position:absolute;width:74px;height:74px;left:120px;top:200px;text-align:center;">
-	<img id="user_face" src="__HD__/images/usercenter/face/face_{$role['face']}.png" width="64" height="64">
-</div>
-
-<div class="shadow" style="left:85px;width:150px;background-image:url(__HD__/images/common/shadow/shadow_150x60.png);"></div>
-<div class="shadow" style="left:250px;width:270px;background-image:url(__HD__/images/common/shadow/shadow_270x60.png);"></div>
-<for start="1" end="4" step="1">
-	<php> $left = 535 + ($i-1)*225;</php>
-	<div class="shadow" style="left:{$left}px;width:210px;background-image:url(__HD__/images/common/shadow/shadow_210x60.png);"></div>
-</for>
-
-
 <script type="text/javascript">
 
 //失去时焦点处理（目前主要用于栏目按钮）
@@ -181,16 +179,5 @@ function focusHandler(){
 	}
 }
 
-
-/* function pop(){
-	Epg.popup('div_popup')
-}
-
-function disPop(){
-	Epg.disPopup(buttons,'div_popup')
-} */
-
-//setTimeout("pop()",1000);
-//setTimeout("disPop()",5000);
 </script>
 

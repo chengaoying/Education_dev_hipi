@@ -12,6 +12,16 @@ body{ background-image:url(__HD__/images/common/bg.jpg); }
     height: 36px;
     background: url(__HD__/images/courseList/title/title_{$chKey}.png) no-repeat;
 }
+
+/* 底部投影背景图 */
+.shadow{
+	position:absolute;
+    display: block;
+    width:210px;
+    height:55px;
+	top:615px;
+    background-image:url(__HD__/images/common/shadow/shadow_210x60.png);
+}
 </style>
 
 <script type="text/javascript">
@@ -125,13 +135,34 @@ window.onload=function()
     </div>
 </volist>
 
+<!-- 课程背景图片 -->
+<for start="1" end="11" name="j">
+	<php>
+	 	if($j > 5){
+	        $t = 405; $l = 80 + ($j-6)*225;
+	    }else{
+	        $t = 180; $l = 80 + ($j-1)*225;
+	    }
+	</php>
+
+	<div id="div_empty_png_{$j}" style="position:absolute;width:220px;height:220px;left:{$l}px;top:{$t}px;text-align:center;">
+	    <img id="empty_png_{$j}" src="__HD__/images/index/myCourse/empty_bg.png" width="210" height="210">
+	</div>
+</for>
+
+<!-- 静态图片-底部投影效果 -->
+<for start="1" end="6" step="1">
+	<php> $lt = 85 + ($i-1)*225;</php>
+	<div class="shadow" style="left:{$lt}px;"></div>
+</for>
+
 <!-- 课程列表 -->
 <volist name="courses" id="course" key="i">
     <php>
         if($i > 5){
-            $top = 415; $left = 80 + ($i-6)*225;
+            $top = 405; $left = 80 + ($i-6)*225;
         }else{
-            $top = 182; $left = 80 + ($i-1)*225;
+            $top = 180; $left = 80 + ($i-1)*225;
         }
     </php>
     <div id="div_course_{$i}" title="{:U('SectionList/index?courseId='.$course['id'].'&chId='.$chId)}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
