@@ -21,3 +21,65 @@ a:hover { color:#fff;}
 
 .none	{ display:none;}
 
+.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
+.page .up	{ width:25px;}
+.page .down	{ width:25px;}
+.page .now	{ width:60px;}
+body {background-color: transparent;}
+
+#popup_1{
+	position: absolute;
+	top: 310px;
+	left: 490px;
+	width: 300px;
+	height: 35px;
+	color:#F8E391;
+	text-align: center;
+	line-height:30px;
+	background-color:saddlebrown;
+	visibility:hidden;
+	z-index:99;
+}
+#popup_2{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-image:url(__HD__/images/common/popup/bg.jpg);
+	visibility:hidden;
+	z-index:99;
+}
+
+#popup_2_info{
+	position:absolute;
+	top:180px;
+	left:360px;
+	width:561px;
+	height:365px;
+	background-image: url(__HD__/images/common/popup/info_bg.jpg);
+}
+
+#popup_2_info{
+	position: absolute;
+	top: 180px;
+	left: 360px;
+	width: 561px;
+	height: 365px;
+	color:#F8E391;
+	text-align: center;
+	line-height:30px;
+	/* visibility:hidden; */
+	z-index:99;
+}
+
+#btn_ok{
+	position: absolute;
+	visibility:hidden;
+}
+
+#btn_cancel{
+	position: absolute;
+	visibility:hidden;
+}
+
+
+

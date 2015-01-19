@@ -277,7 +277,6 @@ Epg.Button = Epg.btn =
 				var divId = 'div_' + prev.id + '_focus';
 				H(divId);
 			}
-			
 			Epg.call(prev.blurHandler, [prev]); //add 20150112 增加按钮失去焦点处理功能
 		}
 		if(this.current)
@@ -668,45 +667,65 @@ Epg.Mp = Epg.mp = (function()
 
 
 /**
- * 默认提示方法
+ * 通用弹窗一：无背景图片无操作
  * @param info 提示文字
  * @param second 显示的秒数，默认3秒，如果为0那么永久显示
  */
-Epg.tip=function(info,second)
+Epg.popup_1=function(info,second)
 {
-	if(info===undefined||info==='')//info为空时不产生任何效果
+	if(Epg.isEmpty(info))//info为空时不产生任何效果
 		return;
 	second = second === undefined ? 3 : second;
-	G('default_tip').innerHTML=info;
-	S('default_tip');
+	
+	var width = info.length * 20;
+	G('popup_1').style.width = width + "px";
+	var left = 640 - width/2;
+	G('popup_1').style.left = left + "px";
+	
+	G('popup_1').innerHTML=info;
+	S('popup_1');
 	if(second>0)
 	{
-		if(Epg._tip_timer)//如果上次执行过setTimeout，那么强行停止
-			clearTimeout(Epg._tip_timer);
-		Epg._tip_timer=setTimeout('H("default_tip")',second*1000);
+		if(Epg._popup_1_timer)//如果上次执行过setTimeout，那么强行停止
+			clearTimeout(Epg._popup_1_timer);
+		Epg._popup_1_timer=setTimeout('H("popup_1")',second*1000);
 	}
 };
 
 /**
- * 页面弹窗并把页面中的按钮删除
- * @param popId
+ * 通用弹窗二：有背景图片
+ * @param info 提示文字
+ * @param second 显示的秒数，默认3秒，如果为0那么永久显示
+ * @param type 类型：0-无操作，1-有操作
+ * @param okAction 当操作类型为1时，确定按钮执行的js函数（在需要用到的页面上定义）
+ * @param cancelAction 当操作类型为1时，取消按钮执行的js函数
  */
-Epg.popup = function(popId)
+Epg.popup_2=function(info,second,type,okAction,cancelAction)
 {
-	Epg.btn._buttonStore = {};
-	S(popId);
-}
+	if(Epg.isEmpty(info))//info为空时不产生任何效果
+		return;
+	second = second === undefined ? 3 : second;
+	
+	if(!Epg.isEmpty(type)){
+		
+	}
+	
+	var width = info.length * 20;
+	G('popup_2_info').style.width = width + "px";
+	var left = 640 - width/2;
+	G('popup_2_info').style.left = left + "px";
+	G('popup_2_info').innerHTML=info;
+	
+	S('popup_2');
+	if(second>0)
+	{
+		if(Epg._popup_2_timer)//如果上次执行过setTimeout，那么强行停止
+			clearTimeout(Epg._popup_2_timer);
+		Epg._popup_2_timer=setTimeout('H("popup_2")',second*1000);
+	}
+};
 
-/**
- * 隐藏页面弹窗并回复页面中的按钮列表
- * @param buttons
- * @param popId
- */
-Epg.disPopup = function(buttons,popId)
-{
-	Epg.btn.init(Epg.btn.current.id,buttons,true);
-	H(popId);
-}
+
 
 /**
  * 用于开发时控制台输出信息
@@ -720,7 +739,7 @@ Epg.debug = function(info)
 
 /**
  * 分页方法
- * @param url 要跳转的url，必须页码必须是最后一个参数，且“=”结尾
+ * @param url 要跳转的url，页码必须是最后一个参数，且“=”结尾
  * @param idx 要跳转的页码
  * @param pageCount 总页数，只有下一页时才用到
  */
@@ -728,9 +747,9 @@ Epg.page=function(url,idx,pageCount)
 {
 	idx=parseInt(idx);
 	if(idx<1)
-		Epg.tip('已经是第一页了！');
-	else if(pageCount!==undefined&&idx>parseInt(pageCount))
-		Epg.tip('已经是最后一页了！');
+		Epg.popup_1('已经是第一页了！');
+	else if(pageCount!==undefined && idx>parseInt(pageCount))
+		Epg.popup_1('已经是最后一页了！');
 	else
 		Epg.jump(url+idx);
 };
@@ -766,6 +785,11 @@ Epg.trim = function(str)
 		return str.replace(/^\s*(.*?)\s*$/g,'$1');
 };
 
+trace = function(info)
+{
+	window.location.href = "/Debug/Index/test";
+	return;
+}
 /** 事件处理 */
 var event_handler = function(e)
 {
@@ -787,6 +811,7 @@ var event_handler = function(e)
 };
 
 //按键处理
+//document.onkeyup = event_handler;
 document.onkeypress = event_handler;
 
 //增加别名

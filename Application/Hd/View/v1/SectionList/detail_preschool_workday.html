@@ -42,7 +42,7 @@ var buttons=
         {id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x300.png',left:'section_1',right:'section_3',up:'btn_prev_day',down:'special_1'},
         {id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x300.png',left:'section_2',right:'section_4',up:'btn_next_day',down:['special_2','special_1']},
         {id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x300.png',left:'section_3',right:'section_5',up:'btn_week',down:['special_3','special_2','special_1']},
-        {id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x300.png',left:'section_4',right:'special_1',up:'btn_order',down:['special_3','special_2','special_1']},
+        {id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_210x300.png',left:'section_4',right:'',up:'btn_order',down:['special_3','special_2','special_1']},
         
         /* 专题列表 */
         {id:'special_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_370x125.png',left:'',right:'special_2',up:'section_1',down:''},
@@ -104,23 +104,24 @@ window.onload=function()
     </div>
 </volist>
 
+<!-- 底部投影 -->
+<for start="1" end="4" step="1">
+	<php> $left = 90 + ($i-1)*375;</php>
+	<div class="shadow" style="left:{$left}px;"></div>
+</for>
+
 <!-- 专题列表 -->
 <volist name="specialList" id="special" key="i">
     <php>
          $top = 500; $left = 85 + ($i-1)*375;
     </php>
     <div id="div_special_{$i}" style="position:absolute;width:370px;height:125px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="special_{$i}" title="{:U('SectionList/index?courseId='.$special['id'])}" src="{$t['linkImage']}" src="{:get_upfile_url($special['imgUrl'])}" width="360" height="115">
+        <img id="special_{$i}" title="{:U('SectionList/index?courseId='.$special['id'])}" src="{:get_upfile_url($special['imgUrl'])}" width="360" height="115">
     </div>
     <div id="div_special_{$i}_focus" style="position:absolute;visibility:hidden;width:380px;height:135px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
         <img id="special_{$i}_focus" src="" width="370" height="125">
     </div>
 </volist>
 
-<!-- 底部投影 -->
-<for start="1" end="4" step="1">
-	<php> $left = 90 + ($i-1)*375;</php>
-	<div class="shadow" style="left:{$left}px;"></div>
-</for>
 
 

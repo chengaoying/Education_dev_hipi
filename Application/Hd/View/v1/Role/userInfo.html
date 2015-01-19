@@ -11,7 +11,7 @@
 	height: 285px;
 	top: 225px;
 	left: 410px;
-	background-image: url(__HD__/images/usercenter/baseInfo1/bottom.png);
+	background-image: url(__HD__/images/usercenter/baseInfo/bottom_baseInfo.png);
 }
 </style>
 
@@ -24,16 +24,16 @@
 	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_1',down:'ch_3',right:'nickname'}, 
 	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_2',right:'nickname'},
 
-	{id:'nickname',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo1/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo1/kuang_long_over.png',resize:'-1',left:'selectFace',right:'version',down:'sex'},
-	{id:'sex',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo1/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo1/kuang_long_over.png',resize:'-1',left:'changeNum',right:'advantage',up:'nickname',down:'birthday'},
-	{id:'birthday',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo1/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo1/kuang_long_over.png',resize:'-1',left:'changeNum',right:'disadvantage',up:'sex',down:'stage'},
-	{id:'stage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo1/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo1/kuang_long_over.png',resize:'-1',left:'ch_3',right:'interests',up:'birthday',down:''},
+	{id:'nickname',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'selectFace',right:'version',down:'sex'},
+	{id:'sex',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'advantage',up:'nickname',down:'birthday'},
+	{id:'birthday',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'disadvantage',up:'sex',down:'stage'},
+	{id:'stage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_3',right:'interests',up:'birthday',down:''},
 
-	{id:'phone',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo1/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo1/kuang_long_over.png',resize:'-1',left:'nickname',up:'ch_3',down:'version'},
-	{id:'version',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo1/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo1/kuang_long_over.png',resize:'-1',left:'nickname',up:'phone',down:'advantage'},
-	{id:'advantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo1/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo1/kuang_short_over.png',resize:'-1',left:'sex',up:'version',down:'disadvantage'},
-	{id:'disadvantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo1/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo1/kuang_short_over.png',resize:'-1',left:'birthday',right:'',up:'advantage',down:'interests'},
-	{id:'interests',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo1/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo1/kuang_short_over.png',resize:'-1',left:'stage',up:'disadvantage',down:''},
+	{id:'phone',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'nickname',up:'ch_3',down:'version'},
+	{id:'version',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'nickname',up:'phone',down:'advantage'},
+	{id:'advantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'sex',up:'version',down:'disadvantage'},
+	{id:'disadvantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'birthday',right:'',up:'advantage',down:'interests'},
+	{id:'interests',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'stage',up:'disadvantage',down:''},
 
 	{id:'selectFace',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'__HD__/images/usercenter/leftNavigation/title_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
 	{id:'changeNum',name:'',action:'',linkImage:'__HD__/images/usercenter/leftNavigation/change_account.png',focusImage:'__HD__/images/usercenter/leftNavigation/change_account_over.png',selectBox:'',right:'sex',up:'selectFace',down:'ch_1'},
@@ -59,7 +59,7 @@
 <!-- 静态图片 -->
 <div id="bottom"></div>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
 
 
 <!-- 以下是导航栏 -->
@@ -117,10 +117,10 @@
         	}
 		</php>
 		<div id="div_{$info['name']}" style="position:absolute;left:{$left_content}px;top:{$top_content}px;text-align:center;">
-			<img id="{$info['name']}" title="{$info['linkUrl']}" src="__HD__/images/usercenter/baseInfo1/{$bottom}" width={$width} height="46">
+			<img id="{$info['name']}" title="{$info['linkUrl']}" src="__HD__/images/usercenter/baseInfo/{$bottom}" width={$width} height="46">
 		</div>
 		<div id="div_{$info['name']}_focus" style="position:absolute;visibility:hidden;left:{$left_content}px;top:{$top_content}px;text-align:center;">
-			<img id="{$info['name']}_focus" src="__HD__/images/usercenter/baseInfo1/{$bottom_over}" width={$width} height="46">
+			<img id="{$info['name']}_focus" src="__HD__/images/usercenter/baseInfo/{$bottom_over}" width={$width} height="46">
 		</div>
 		<div id="div_{$info['name']}_content" style="position:absolute;line-height:46px;width:{$width-5}px;height:46px;left:{$left_content}px;top:{$top_content}px;text-align:center;border-style:none;color:black">
 			<span style="color:black;text-align:center;">{$content}</span>

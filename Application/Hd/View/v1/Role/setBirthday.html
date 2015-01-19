@@ -60,9 +60,9 @@
 /* 页面可点击按钮  */
 var buttons=
 	[
-		{id:'year',name:'year',action:'',linkImage:'',focusImage:'',right:'mouth',down:'ok'},
-		{id:'mouth',name:'mouth',action:'',linkImage:'',focusImage:'',right:'day',left:'year',down:'ok'},
-		{id:'day',name:'day',action:'',linkImage:'',focusImage:'',right:'',left:'mouth',down:'ok'},
+		{id:'year',name:'year',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandlerY()',focusHandler:'focusHandlerY()',right:'mouth',down:'ok'},
+		{id:'mouth',name:'mouth',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandlerM()',focusHandler:'focusHandlerM()',right:'day',left:'year',down:'ok'},
+		{id:'day',name:'day',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandlerD()',focusHandler:'focusHandlerD()',right:'',left:'mouth',down:'ok'},
 
 		{id:'ok',name:'确定',action:'submit()',linkImage:'__HD__/images/usercenter/baseInfo/confirm_1.png',focusImage:'__HD__/images/usercenter/baseInfo/confirm_2.png',up:'year',down:''},
 	];
@@ -70,7 +70,7 @@ var buttons=
 
 window.onload=function()
 {
-	//Epg.tip('');//显示info信息，3秒后自动隐藏，如果info为空将不会显示
+	popup();
 	Epg.btn.init('year',buttons,true);	
 };
 
@@ -107,6 +107,27 @@ function submit(){
 	G('form').submit();
 }
 
+function focusHandlerY(){
+	G('year').focus();
+}
+
+function blurHandlerY(){
+	G('year').blur();
+}
+function focusHandlerM(){
+	G('mouth').focus();
+}
+
+function blurHandlerM(){
+	G('mouth').blur();
+}
+function focusHandlerD(){
+	G('day').focus();
+}
+
+function blurHandlerD(){
+	G('day').blur();
+}
 </script>
 
 

@@ -273,17 +273,7 @@ function url_data($url,$data,$type='post'){
  * @param string $message
  */
 function add_float_message($message, $url = '') {
-    $floatMessage = Session('floatMessage');
-    if(!empty($message)){
-        if(strpos($message, '@@') != false){
-            $mesArr = explode('@@', $message);
-            $floatMessage .= "<div class='float_message_div' style='font-size:24px;'>".str_replace('"', '\"', $mesArr[0]) . "</div>";
-            $floatMessage .= "<div class='float_message_div' style='font-size:24px;'>".str_replace('"', '\"', $mesArr[1]) . "</div>";
-        }else{
-            $floatMessage .= "<div class='float_message_div' style='font-size:24px;'>".str_replace('"', '\"', $message) . "</div>";
-        }
-    }
-    Session('floatMessage', $floatMessage);
+    Session('floatMessage', $message);
     if (!empty($url)) {
         header('LOCATION:' . $url);
         exit;

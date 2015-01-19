@@ -19,7 +19,7 @@
 /* 页面可点击按钮  */
 var buttons=
 	[
-		{id:'phone',name:'phone',action:'',linkImage:'',focusImage:'',right:'',down:'ok'},
+		{id:'phone',name:'phone',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'',down:'ok'},
 		{id:'ok',name:'确定',action:'submit()',linkImage:'__HD__/images/usercenter/baseInfo/confirm_1.png',focusImage:'__HD__/images/usercenter/baseInfo/confirm_2.png',up:'phone',down:''},
 	];
 
@@ -27,6 +27,7 @@ var buttons=
 window.onload=function()
 {
 	//Epg.tip('');//显示info信息，3秒后自动隐藏，如果info为空将不会显示
+	popup();
 	Epg.btn.init('phone',buttons,true);	
 };
 
@@ -54,6 +55,13 @@ function submit(){
 	G('form').submit();
 }
 
+function focusHandler(){
+	G('phone').focus();
+}
+
+function blurHandler(){
+	G('phone').blur();
+}
 </script>
 
 

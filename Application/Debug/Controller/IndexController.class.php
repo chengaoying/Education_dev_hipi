@@ -17,4 +17,8 @@ class IndexController extends \Think\Controller {
 		$this->display();
 	}
 	
+	public function testAct()
+	{
+		$this->display();
+	}
 }

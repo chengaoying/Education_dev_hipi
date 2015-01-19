@@ -161,7 +161,6 @@ class CommonController extends \Think\Controller{
 	/**
 	 * 添加浮动消息
 	 * @param string $message
-     * $sign 0为失败 1为成功 2为警告
 	 */
 	public function addFloatMessage($message,$url=''){
 		add_float_message($message,$url);		
@@ -182,6 +181,15 @@ class CommonController extends \Think\Controller{
 		if(empty($template)) $template = 'Public:message';
 		$this->display($template);
 		exit;
+	}
+	
+	/*
+	 * 当前页面弹窗弹浮动床
+	 * $message 提示信息
+	 */
+	public function popUp($message)
+	{
+		add_float_message($message,U(CONTROLLER_NAME.'/'.ACTION_NAME));
 	}
 	
 	

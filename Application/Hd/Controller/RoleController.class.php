@@ -211,9 +211,14 @@ class RoleController extends CommonController {
 			$data = I('post.');
 			$role['nickName'] = $data['nickname'];
 			$r = D('Role','Logic')->save($role);
-			if($r['status']){ 
+			if($r['status']){
+				if($role['nickName'])
+				{
+					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'nickname', '设置角色昵称');
+				}
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
+				
 			}else{
 				$this->showMessage('昵称更新失败：'.$r['info']);
 			}
@@ -232,15 +237,43 @@ class RoleController extends CommonController {
 		else
 		{
 			$data = I('post.');
+			$result = $this -> judgePhone($data['phone']);
+			if(!$result['status'])
+			{
+				$this->popUp($result['info']);
+				return;
+			}
 			$user['phone'] = $data['phone'];
 			$u = D('User','Logic')->save($user);
-			if($u['status']){ 
+			if($u['status']){
+				if($user['phone'])
+				{
+					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'phone', '添加电话号码');
+				}
 				Session('user',serialize($user));//更新sessions
 				header('location:'.U('Role/userInfo'));
 			}else{
 				$this->showMessage('昵称更新失败：'.$u['info']);
 			}
 		}
+	}
+	
+	private function judgePhone($phone)
+	{
+		if(!empty($phone))
+		{
+			if(!is_numeric($phone))
+			{
+				$info = '手机号应为数字';
+				return result_data(0, $info);
+			}
+			if(strlen($phone) != 11)
+			{
+				$info = '手机号应为11位';
+				return result_data(0, $info);
+			}
+		}
+		return result_data(1, '操作成功');
 	}
 	/*
 	 * 设置性别
@@ -263,6 +296,10 @@ class RoleController extends CommonController {
 			$role['sex'] = $data['sex'];
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){ 
+				if($role['sex'])
+				{
+					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'sex', '设置角色sex');
+				}
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
 			}else{
@@ -287,18 +324,21 @@ class RoleController extends CommonController {
 				$subject = $proConf['subject'];
 				$subject_remove = explode(",", $role['disAdvantage']);
 				$subject_array = explode(",", $role['advantage']);
+				$width_logo = 206;
 			}
 			if($type == 'disAdvantage')
 			{
 				$subject = $proConf['subject'];
 				$subject_remove = explode(",", $role['advantage']);
 				$subject_array = explode(",", $role['disAdvantage']);
+				$width_logo = 206;
 			}
 			if($type == 'interests')
 			{
 				$subject = $proConf['interest'];
 				$subject_remove = null;
 				$subject_array = explode(",", $role['interests']);
+				$width_logo = 143;
 			}
 			$index = 0;
 			foreach ($subject as $key => $value)//获得将来要显示的多选项
@@ -342,6 +382,7 @@ class RoleController extends CommonController {
 					'subjects_json' => json_encode($subject_display),
 					'count_sub' => count($subject_display),
 					'type' => $type,
+					'width_logo' => $width_logo,
 			));
 			$this->display();
 		}
@@ -359,6 +400,10 @@ class RoleController extends CommonController {
 			$role[$data['type']] = $sub;
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){ 
+				if(count($data)>1)
+				{
+					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], $data['type'], '设置角色'+$data['type']);
+				}
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
 			}else{
@@ -375,6 +420,7 @@ class RoleController extends CommonController {
 	{
 		$role = unserialize(Session('role'));
 		$roleId = $role['id'];
+		
 		if(!IS_POST)
 		{
 			$this->display();
@@ -383,15 +429,56 @@ class RoleController extends CommonController {
 		{
 			$data = I('post.');
 			$date = implode("-", $data);
+			if(strlen($date)>2)
+			{
+				$result = $this -> judgeDate($date);
+				if(!$result['status'])
+				{
+					$this->popUp($result['info']);
+					return;
+				}
+			}
+			else 
+			{
+				$date = '';
+			}
+
 			$role['birthday'] = $date;
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){
+				if($role['birthday'])
+				{
+					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'birthday', '设置角色birthday');
+				}
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Role/userInfo'));
 			}else{
 				$this->showMessage('昵称更新失败：'.$r['info']);
 			}
 		}
+	}
+	
+	private function judgeDate($birthday)
+	{
+
+		if(!empty($birthday))
+		{
+			$birthday_array = explode("-", $birthday);
+			if(!is_numeric($birthday_array[0]) || !is_numeric($birthday_array[1]) || !is_numeric($birthday_array[2]))
+			{
+				$info = '日期不正确，日期应为数字';
+				return result_data(0, $info);
+			}
+			
+			$birthday_unix = strtotime($birthday);
+			if($birthday_unix === false)
+			{
+				//			$info = '日期不正确,日期范围应在1901-12-15<br/>到2038-1-19。如果年份为两位数字则: 0-69 <br/>表示 2000-2069,70-100 表示1970-2000';
+				$info = '日期输入错误，请重新输入';
+				return result_data(0, $info);
+			}
+		}
+		return result_data(1, '输入成功');
 	}
 	
 	/*

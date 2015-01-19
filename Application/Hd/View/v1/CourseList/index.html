@@ -45,7 +45,7 @@ var buttons=
 
 var stagelist = {$json_stage};
 
-var cur_stage = "stage_1";      //页面当前龄段
+var cur_stage = "";      //页面当前龄段(默认为页面中的第一个龄段)
 var curr_stage_title_img = "";	//当前龄段的titleImage
 
 /* 初始化按钮 属性   */
@@ -95,7 +95,8 @@ window.onload=function()
     }else{
     	if(Epg.isEmpty(G(defaultId))) 
     		defaultId = "course_1";
-    	G(cur_stage).src = curr_stage_title_img;
+    	if(!Epg.isEmpty(G(cur_stage))) 
+    		G(cur_stage).src = curr_stage_title_img;
     }
    
 	Epg.btn.init([defaultId,'course_1'],buttons,true);

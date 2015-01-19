@@ -115,6 +115,14 @@ class SectionListController extends CommonController {
 		$char = getDelimiterInStr($course['stageIds']);
 		$ids = explode($char, $course['stageIds']);
 		$specials = D('Course','Logic')->queryCourseListByKeys($ids[0], array($key), 1, 3);
+		foreach ($specials['rows'] as $k=>$v){
+			if($v['imgUrl']){
+				$char = getDelimiterInStr($v['imgUrl']);
+				$imgs = explode($char, $v['imgUrl']);
+				$specials['rows'][$k]['imgUrl']  = get_upfile_url(trim($imgs[count($imgs)-1]));
+			}
+		}
+		
 		$this->assign(array(
 			'sections' 		=> $sections['rows'],
 			'specialList'	=> $specials['rows'],
@@ -123,7 +131,7 @@ class SectionListController extends CommonController {
 			'prevTopicId'	=> $prevTopicId,
 			'nextTopicId'	=> $nextTopicId,
 			'chId'			=> $chId,	
-			'focus'		 => I('focus',''),
+			'focus'		    => I('focus',''),
 		));
 		if($week==6||$week==0){
 			$template = 'detail_preschool_weekend';
@@ -193,8 +201,7 @@ class SectionListController extends CommonController {
 		//计算周数
 		$name = $course['name'];
 		if(empty($week))
-			//课程当前周数，从课程名中获取
-			$week = preg_replace('/\D/s', '', $name);
+			$week = preg_replace('/\D/s', '', $name);//课程当前周数，从课程名中获取
 		$prevWeek = ($week-1)<1 ? 1 : ($week-1);
 		$nextWeek = ($week+1)>52 ? 52 : ($week+1);
 		

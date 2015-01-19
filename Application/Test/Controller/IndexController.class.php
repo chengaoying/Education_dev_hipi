@@ -151,5 +151,13 @@ class IndexController extends \Think\Controller {
 		exit; 
 	}
 	
+	public function everydayLoginAct()
+	{
+//		$result = D('Credit','Logic') -> everydayLogin($userId = 6,$roleId = 32,$ruleKey = 'everydayLogin',$info = '');
+		$result = D('Credit','Logic') -> incOrDec($userId = 6,$roleId = 32,array('point'=>10),$info = '');
+		dump($result);
+		exit;
+	}
+	
 	
 }
