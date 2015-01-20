@@ -35,6 +35,7 @@ var KEY_IPTV_EVENT   = 0x0300;	// 虚拟事件按键
 
 // 天津广电
 var KEY_BACK_TJ      = 640;   //天津广电返回键
+var KEY_PLAY_PAUSE_TJ = 0x0F18;
 
 // PC
 var KEY_W = 119;
@@ -667,65 +668,43 @@ Epg.Mp = Epg.mp = (function()
 
 
 /**
- * 通用弹窗一：无背景图片无操作
- * @param info 提示文字
+ * 通用弹窗：
+ * @param info 提示信息
  * @param second 显示的秒数，默认3秒，如果为0那么永久显示
+ * @param type 弹窗类型：1-无图片的提示信息，2-为有图片的提示信息，不设置则默认为1
  */
-Epg.popup_1=function(info,second)
+Epg.popup=function(info,second,type)
 {
 	if(Epg.isEmpty(info))//info为空时不产生任何效果
 		return;
-	second = second === undefined ? 3 : second;
+	second = Epg.isEmpty(second) ? 3 : second;
+	type = Epg.isEmpty(type) ? 1 : type;
 	
-	var width = info.length * 20;
-	G('popup_1').style.width = width + "px";
-	var left = 640 - width/2;
-	G('popup_1').style.left = left + "px";
+	var popupId = '';
+	if(type == 1){
+		popupId = 'popup_1';
+		var width = info.length * 20;
+		var left = 640 - width/2;
+		G(popupId).style.width = width + "px";
+		G(popupId).style.left = left + "px";
+		G(popupId).innerHTML = info;
+	}else{
+		popupId = 'popup_2';
+		var width = info.length * 30;
+		var left = 560 - width/2;
+		G('popup_2_info').style.width = width + "px";
+		G('popup_2_info').style.left = left + "px";
+		G('popup_2_info').innerHTML = info;
+	}
+	S(popupId);
 	
-	G('popup_1').innerHTML=info;
-	S('popup_1');
 	if(second>0)
 	{
-		if(Epg._popup_1_timer)//如果上次执行过setTimeout，那么强行停止
-			clearTimeout(Epg._popup_1_timer);
-		Epg._popup_1_timer=setTimeout('H("popup_1")',second*1000);
+		if(Epg._popup_timer)//如果上次执行过setTimeout，那么强行停止
+			clearTimeout(Epg._popup_timer);
+		Epg._popup_timer=setTimeout('H("'+popupId+'")',second*1000);
 	}
 };
-
-/**
- * 通用弹窗二：有背景图片
- * @param info 提示文字
- * @param second 显示的秒数，默认3秒，如果为0那么永久显示
- * @param type 类型：0-无操作，1-有操作
- * @param okAction 当操作类型为1时，确定按钮执行的js函数（在需要用到的页面上定义）
- * @param cancelAction 当操作类型为1时，取消按钮执行的js函数
- */
-Epg.popup_2=function(info,second,type,okAction,cancelAction)
-{
-	if(Epg.isEmpty(info))//info为空时不产生任何效果
-		return;
-	second = second === undefined ? 3 : second;
-	
-	if(!Epg.isEmpty(type)){
-		G('popup_2_info').style.top = "310px";
-		G('popup_2_info_bg').style.backgroundImage = "url(/static/v1/hd/images/common/popup/info_bg_2.png)";
-	}
-	
-	var width = info.length * 20;
-	G('popup_2_info').style.width = width + "px";
-	var left = 560 - width/2;
-	G('popup_2_info').style.left = left + "px";
-	
-	G('popup_2_info').innerHTML=info;
-	S('popup_2');
-	if(second>0)
-	{
-		if(Epg._popup_2_timer)//如果上次执行过setTimeout，那么强行停止
-			clearTimeout(Epg._popup_2_timer);
-		//Epg._popup_2_timer=setTimeout('H("popup_2")',second*1000);
-	}
-};
-
 
 
 /**
@@ -748,9 +727,9 @@ Epg.page=function(url,idx,pageCount)
 {
 	idx=parseInt(idx);
 	if(idx<1)
-		Epg.popup_1('已经是第一页了！');
+		Epg.popup('已经是第一页了！');
 	else if(pageCount!==undefined && idx>parseInt(pageCount))
-		Epg.popup_1('已经是最后一页了！');
+		Epg.popup('已经是最后一页了！');
 	else
 		Epg.jump(url+idx);
 };

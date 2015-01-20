@@ -74,6 +74,12 @@ window.onload=function()
 
 <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
 
+<!-- 静态图片-底部投影效果 -->
+<for start="1" end="6" step="1">
+	<php> $left = 85 + ($i-1)*225;</php>
+	<div class="shadow" style="left:{$left}px;"></div>
+</for>
+
 <!-- 顶部-栏目 -->
 <volist name="topChannel" id="ch">
 	<php>
@@ -106,12 +112,6 @@ window.onload=function()
     </div>
 </volist>
 
-
-<!-- 静态图片-底部投影效果 -->
-<for start="1" end="6" step="1">
-	<php> $left = 85 + ($i-1)*225;</php>
-	<div class="shadow" style="left:{$left}px;"></div>
-</for>
 
 <script type="text/javascript">
 

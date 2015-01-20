@@ -17,30 +17,25 @@ Session('floatMessage',null);
 
 /**
  * 页面弹窗，弹窗类型：
- * @param type 弹窗类型
+ * @param type 弹窗类型：1-无图片的提示信息，2-为有图片的提示信息，不设置则默认为1
  */
 var popup = function(type){
-	if(Epg.isEmpty(type) || type === 1)
-		Epg.popup_1("{$floatMsg}");
-	else if(type === 2)
-		Epg.popup_2("test,werwer",3,2);
+	Epg.popup("{$floatMsg}",3,type);
 }	
 
 </script>
 
 </head>
-<body>
+<body >
 {__CONTENT__}
 
-<!-- 1.无背景图无操作的文字提示 -->
+<!-- 1.无背景图的文字提示 -->
 <div id="popup_1"></div>
 
 <!-- 2.有背景图的文字提示 -->
 <div id="popup_2">
 	<div id="popup_2_info_bg"></div>
 	<div id="popup_2_info"></div>
-	<div id="btn_ok"></div>
-	<div id="btn_cancel"></div>
 </div>
 
 </body>

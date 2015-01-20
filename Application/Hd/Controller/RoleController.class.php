@@ -34,7 +34,7 @@ class RoleController extends CommonController {
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				header('location:'.U('Index/recommend'));
 			}else{
-				$this->showMessage('角色创建失败：'.$r['info']);
+				$this->addFloatMessage('角色创建失败：'.$r['info'],U('Role/userInfo'));
 			}
 		}
 		$this->display();
@@ -189,9 +189,10 @@ class RoleController extends CommonController {
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				header('location:'.U('Role/userInfo'));
+				$this->addFloatMessage('修改龄段成功',U('Role/userInfo'));
+				//header('location:'.U('Role/userInfo'));
 			}else{
-				$this->showMessage('昵称更新失败：'.$r['info']);
+				$this->addFloatMessage('昵称更新失败：'.$r['info'],U('Role/userInfo'));
 			}
 		}
 	}
@@ -217,10 +218,10 @@ class RoleController extends CommonController {
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'nickname', '设置角色昵称');
 				}
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				header('location:'.U('Role/userInfo'));
-				
+				$this->addFloatMessage('修改昵称成功',U('Role/userInfo'));
+				//header('location:'.U('Role/userInfo'));
 			}else{
-				$this->showMessage('昵称更新失败：'.$r['info']);
+				$this->addFloatMessage('昵称更新失败：'.$r['info'],U('Role/userInfo'));
 			}
 		}
 	}
@@ -251,9 +252,10 @@ class RoleController extends CommonController {
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'phone', '添加电话号码');
 				}
 				Session('user',serialize($user));//更新sessions
-				header('location:'.U('Role/userInfo'));
+				$this->addFloatMessage('修改手机号成功',U('Role/userInfo'));
+				//header('location:'.U('Role/userInfo'));
 			}else{
-				$this->showMessage('昵称更新失败：'.$u['info']);
+				$this->addFloatMessage('昵称更新失败：'.$u['info'],U('Role/userInfo'));
 			}
 		}
 	}
@@ -301,9 +303,10 @@ class RoleController extends CommonController {
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'sex', '设置角色sex');
 				}
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				header('location:'.U('Role/userInfo'));
+				$this->addFloatMessage('修改性别成功',U('Role/userInfo'));
+				//header('location:'.U('Role/userInfo'));
 			}else{
-				$this->showMessage('性别修改失败：'.$r['info']);
+				$this->addFloatMessage('性别修改失败：'.$r['info'],U('Role/userInfo'));
 			}
 		}
 	}
@@ -405,9 +408,10 @@ class RoleController extends CommonController {
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], $data['type'], '设置角色'+$data['type']);
 				}
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				header('location:'.U('Role/userInfo'));
+				$this->addFloatMessage('修改成功',U('Role/userInfo'));
+				//header('location:'.U('Role/userInfo'));
 			}else{
-				$this->showMessage('兴趣修改失败：'.$r['info']);
+				$this->addFloatMessage('兴趣修改失败：'.$r['info'],U('Role/userInfo'));
 			}
 		}
 	}
@@ -451,9 +455,10 @@ class RoleController extends CommonController {
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'birthday', '设置角色birthday');
 				}
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				header('location:'.U('Role/userInfo'));
+				$this->addFloatMessage('修改生日成功',U('Role/userInfo'));
+				//header('location:'.U('Role/userInfo'));
 			}else{
-				$this->showMessage('昵称更新失败：'.$r['info']);
+				$this->addFloatMessage('昵称更新失败：'.$r['info'],U('Role/userInfo'));
 			}
 		}
 	}
@@ -509,9 +514,10 @@ class RoleController extends CommonController {
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				header('location:'.U('Role/userInfo'));
+				$this->addFloatMessage('修改头像成功',U('Role/userInfo'));
+				//header('location:'.U('Role/userInfo'));
 			}else{
-				$this->showMessage('头像更新失败：'.$r['info']);
+				$this->addFloatMessage('头像更新失败：'.$r['info'],U('Role/userInfo'));
 			}
 		}
 	}
@@ -571,14 +577,18 @@ class RoleController extends CommonController {
 					break;
 				}
 			}
-			$u = D('User','Logic')->save($user);
-			if($u['status']){
-				Session('user',serialize($user));//更新user对应的session
-				$roleList = Session('roleList');
-				Session('role',serialize($roleList[$user['usedRoleID']]));//更新role对应的session
-				header('location:'.U('Role/userInfo'));
+			
+			$r = D('Role','Logic')->changeRole($user['usedRoleID']);
+			//$u = D('User','Logic')->save($user);
+			if($r['status']){
+				$this->addFloatMessage('角色切换成功',U('Role/userInfo'));
+				//Session('user',serialize($user));//更新user对应的session
+				//$roleList = Session('roleList');
+				//Session('role',serialize($roleList[$user['usedRoleID']]));//更新role对应的session
+				//header('location:'.U('Role/userInfo'));
 			}else{
-				$this->showMessage('角色切换失败：'.$u['info']);
+				$this->addFloatMessage('角色切换失败：'.$r['info'],U('Role/userInfo'));
+				//$this->showMessage('角色切换失败：'.$u['info']);
 			}
 		}
 	}

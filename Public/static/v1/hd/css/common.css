@@ -3,7 +3,7 @@ body {
 	padding:0;
 	width: 1280px;
 	height: 720px;
-	font-size: 18px;
+	font-size: 20px;
 	font-family: "Microsoft YaHei";
 	background-repeat:no-repeat;
 	color: #FFFFFF;
@@ -14,18 +14,6 @@ img {
 	padding:0;
 	border: 0px;
 }
-
-
-a {	text-decoration:none; color:#fff;}
-a:hover { color:#fff;}
-
-.none	{ display:none;}
-
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
 
 #popup_1{
 	position: absolute;
@@ -73,16 +61,6 @@ body {background-color: transparent;}
 	line-height:30px;
 	/* visibility:hidden; */
 	z-index:99;
-}
-
-#btn_ok{
-	position: absolute;
-	visibility:hidden;
-}
-
-#btn_cancel{
-	position: absolute;
-	visibility:hidden;
 }
 
 

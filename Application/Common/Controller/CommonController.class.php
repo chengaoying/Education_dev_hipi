@@ -182,15 +182,4 @@ class CommonController extends \Think\Controller{
 		$this->display($template);
 		exit;
 	}
-	
-	/*
-	 * 当前页面弹窗弹浮动床
-	 * $message 提示信息
-	 */
-	public function popUp($message)
-	{
-		add_float_message($message,U(CONTROLLER_NAME.'/'.ACTION_NAME));
-	}
-	
-	
 }

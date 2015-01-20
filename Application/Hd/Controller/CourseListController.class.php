@@ -48,8 +48,7 @@ class CourseListController extends CommonController {
 		}
 
 		//计算总页数
-		$pageCount = intval($courses['total']/$pageSize);
-		$pageCount = $courses['total']%$pageSize>0 ? $pageCount+1 : $pageCount;
+		$pageCount = get_page_count($courses['total'], $pageSize);
 		
 		//龄段列表-json格式
 		$json_stage = get_array_fieldkey($stageList,array('id','name','linkImage','focusImage','titleImage'));

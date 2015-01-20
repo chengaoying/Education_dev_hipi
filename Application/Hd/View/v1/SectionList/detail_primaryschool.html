@@ -1,12 +1,32 @@
 <layout name="layout" />
 
 <style>
-    body{ background-image:url(__HD__/images/sectionList/primaryschool/bg.jpg); }
+body{ background-image:url(__HD__/images/sectionList/primaryschool/bg.jpg); }
+
+.page_prev{
+	position:absolute;
+	width:20px;
+	height:26px;
+	left:1077px;
+	top:275px;
+}
+.text{
+	position:absolute;
+	width:80px;
+	height:30px;
+	left:1097px;
+	top:275px;
+	text-align:center;
+}
+.page_next{
+	position:absolute;
+	width:20px;
+	height:26px;
+	left:1177px;
+	top:275px;
+}
     
-.page td	{ height:35px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:32px;}
-.page .down	{ width:32px;}
-.page .now	{ width:88px;}    
+    
 </style>
 
 <script type="text/javascript">
@@ -19,8 +39,8 @@ var buttons=
 		{id:'btn_order',name:'',action:'',linkImage:'__HD__/images/sectionList/primaryschool/btn_order.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['page_prev','page_next'],left:'btn_plan',up:'',down:['page_prev','page_next']},
 		
 		/* 分页按钮 */
-		{id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'btn_order',right:'page_next',down:['section_7'],up:'btn_order'},
-    	{id:'page_next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','btn_order'],down:['section_7'],up:'btn_order'},
+		{id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'btn_order',right:'page_next',down:['section_7'],up:'btn_order'},
+    	{id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','btn_order'],down:['section_7'],up:'btn_order'},
         
 		/* 下边 */
 		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_390x50.png',left:'',right:'section_7',up:'btn_record',down:'section_2'},
@@ -41,11 +61,32 @@ var buttons=
 /* 初始化按钮 属性   */
 var initButtons = function(){}
 
+var url = "{:U('SectionList/index').'?courseId='.$course['id'].'&page='}";
+
+//上一页
+function pageUp()
+{
+	Epg.page(url,{$page}-1,{$pageCount});
+}
+
+//下一页
+function pageDown()
+{
+	Epg.page(url,{$page}+1,{$pageCount});
+}
+
 window.onload=function()
 {
 	initButtons();
 	popup();
 	Epg.btn.init('btn_record',buttons,true);	
+	
+	//设置翻页键翻页事件
+	Epg.key.set(
+	{
+		KEY_PAGE_UP:'pageUp()',
+		KEY_PAGE_DOWN:'pageDown()',
+	});
 };
 </script>
 
@@ -90,10 +131,8 @@ window.onload=function()
 	{$course['description']}
 </div>
 
-<!-- 分页 -->
-<div style="position:absolute; left:1007px; top:275px;">
-	{$pageHtml['pageHtml']}
-</div>
+<!-- 上一页/下一页 -->
+{$pageHtml}
 
 <volist name='sections' id='section'>
 	<php>

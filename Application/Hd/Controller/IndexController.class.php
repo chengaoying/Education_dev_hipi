@@ -233,8 +233,7 @@ class IndexController extends CommonController {
 		}
 		
 		//计算总页数
-		$pageCount = intval($myCourse['total']/$pageSize);
-		$pageCount = $myCourse['total']%$pageSize>0 ? $pageCount+1 : $pageCount;
+		$pageCount = get_page_count($myCourse['total'], $pageSize);
 		
 		$this->assign(array(
 			'json_channel'	=> $json_channel,

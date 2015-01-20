@@ -16,11 +16,18 @@ class FreeZoneController extends CommonController {
 	 */
 	public function IndexAct()
 	{
-		$data = D('Section','Logic')->querySectionByPrivilege('0',1,14);
-		$total = $data['total'];
+		$page = I('page',1);
+		$pageSize = 14;
+		
+		$data = D('Section','Logic')->querySectionByPrivilege('0',$page,$pageSize);
+		//分页
+		$pageCount = get_page_count($data['total'], $pageSize);
+		$pageHtml = get_page_html($page, $pageCount);
+		
+		/* $total = $data['total'];
 		$imgPath = '/static/v1/hd/images/common/page';
 		$page = get_pageHtml2($total,14,array(),$imgPath);
-		$data = D('Section','Logic')->querySectionByPrivilege('0',$page['nowPage'],14);
+		$data = D('Section','Logic')->querySectionByPrivilege('0',$page['nowPage'],14); */
 		
 		//角色信息
 		$role = unserialize(Session('role'));
@@ -38,9 +45,11 @@ class FreeZoneController extends CommonController {
 		}
 		
 		$this->assign(array(
-					'pageHtml' => $page['html'],
+					'pageHtml' => $pageHtml,
 					'datas' => $data['rows'],
-					'count' => count($data['rows']),
+					'count' => $data['total'],
+					'page'	=> $page,
+					'pageCount'=>$pageCount,
 					'img_recommend1' => $c[0]['imgUrl'],
 					'img_recommend2' => $c[1]['imgUrl'],
 					'url_recommend1' => $c[0]['id'],

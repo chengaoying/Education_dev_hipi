@@ -92,7 +92,7 @@ function resume(){
 }
 
 function mplay(){ //播放/暂停
-	if(mp.getPlaybackMode().indexOf("Pause")>0){
+	if(mp.getPlaybackMode().indexOf("pause")>0){
 		resume();
 		mp.play();
 	}else{

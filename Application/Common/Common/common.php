@@ -143,21 +143,6 @@ function save_log($type, $data = array(), $debugLog=0,$isTime=1) {
 }
 
 /**
- * 对数组进行分页
- * @param array $data
- * @param int $pageSize 
- * @param unknown_type $config
- * @param unknown_type $parameter
- * @return multitype:multitype: Ambigous <NULL, number>
- */
-function get_array_page($count, $pageSize, $imgPath = '', $config = array(), $parameter = '') {
-    $page = get_pageHtml2($count, $pageSize,$config, $imgPath);
-    $data = array_slice($data, $page['firstRow'], $pageSize, true);
-    return array('data' => $data, 'totalPages' => $page['totalPages'],'nowPage' => $page['nowPage'],'pageHtml' => $page['html']);
-}
-
-
-/**
  * 生成分页页码
  * @param int $count	总记录数
  * @param int $pageSize 每页记录数
@@ -205,43 +190,33 @@ function get_pageHtml($count, $pageSize, $config = array(),$parameter = '',$imgP
     );
 }
 
-
 /**
- * 生成分页页码
- * @param int $count	总记录数
- * @param int $pageSize 每页记录数
- * @param array $config	配制参数 
- * @param string $parameter 其它连接参数
+ * 新版获取分页html代码
+ * @param int $page  当前页面
+ * @param int $pageCount 总页数
+ * @return string
  */
-function get_pageHtml2($count, $pageSize, $config = array(), $imgPath = '', $parameter = '',$url='') {
-    if (empty($imgPath) || strlen($imgPath)==1) {
-        if(strlen($imgPath)==1) $fix = $imgPath.'_';
-        $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images';
-    }else if(!strstr($imgPath,'/')){
-        $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images/'.$imgPath;
-    }else{
-        $fix = '';
-    }
-    
-    $dfConfig = array(
-        'prev' => array($imgPath . '/'.$fix.'page_prev.png', $imgPath . '/'.$fix.'page_prev_over.png'),
-        'next' => array($imgPath . '/'.$fix.'page_next.png', $imgPath . '/'.$fix.'page_next_over.png'),
-        'theme' => '<table align="center" class="page"><tr><td class="up">%UP_PAGE%</td><td class="now">%NOW_PAGE%/%TOTAL_PAGE%</td><td class="down">%DOWN_PAGE%</td></tr></table>',
-    );
-
-    $config = array_merge($dfConfig, $config);
-    $Page = new \Think\Page2($count, $pageSize);
-    foreach ($config as $key => $cnf) {
-        $Page->setConfig($key, $cnf);
-    };
-    $Page->parameter = $parameter;
-    $Page->url = $url;
-    return array(
-        'firstRow' => $Page->firstRow,
-        'html' => $Page->show(),
-        'nowPage' => $Page->nowPage,
-        'totalPages' => $Page->totalPages,
-    );
+function get_page_html($page, $pageCount){
+	
+	//上一页
+	if($page > 1){
+		$pageHtml .= '<div id="div_page_prev" class="page_prev">
+	    			<img id="page_prev" src="/static/v1/hd/images/common/page/page_prev.png" width="20" height="26"></div>';
+	}else{
+		$pageHtml .= '<div class="page_prev">
+	    			<img src="/static/v1/hd/images/common/page/page_prev_none.png" width="20" height="26"></div>';
+	}
+	//页号
+	$pageHtml .= '<div class="text">'.$page.'/'.$pageCount.'</div>';
+	//下一页
+	if($page < $pageCount){
+		$pageHtml .= '<div id="div_page_next" class="page_next">
+	    			  <img id="page_next" src="/static/v1/hd/images/common/page/page_next.png" width="20" height="26"></div>';
+	}else{
+		$pageHtml .= '<div class="page_next">
+	   	             <img src="/static/v1/hd/images/common/page/page_next_none.png" width="20" height="26"></div>';
+	}
+	return $pageHtml;
 }
 
 
@@ -267,6 +242,17 @@ function url_data($url,$data,$type='post'){
 	return $result;
 }
 
+
+/**
+ * 计算页数
+ * @param int $total    总记录数
+ * @param int $pageSize 每页记录数
+ */
+function get_page_count($total,$pageSize){
+	$pageCount = intval($total/$pageSize);
+	$pageCount = $total%$pageSize>0 ? $pageCount+1 : $pageCount;
+	return $pageCount;
+}
 
 /**
  * 添加浮动消息

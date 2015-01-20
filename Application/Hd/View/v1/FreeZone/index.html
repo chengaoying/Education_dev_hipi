@@ -34,6 +34,30 @@
 	background-image: url(__HD__/images/freeZone/recommend.png);
 }
 
+/* 分页 */
+.page_prev{
+	position:absolute;
+	width:20px;
+	height:26px;
+	left:765px;
+	top:600px;
+}
+.text{
+	position:absolute;
+	width:60px;
+	height:30px;
+	left:785px;
+	top:600px;
+	text-align:center;
+}
+.page_next{
+	position:absolute;
+	width:20px;
+	height:26px;
+	left:845px;
+	top:600px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -70,17 +94,39 @@
 		buttons[buttons.length-4] = {id:'optionRecmd_1',linkImage:img1,selectBox:'__HD__/images/freeZone/kuang_big.png',resize:'-1',left:['option_4','option_2','option_1'],down:'optionRecmd_2'};		
 		buttons[buttons.length-3] = {id:'optionRecmd_2',linkImage:img2,selectBox:'__HD__/images/freeZone/kuang_big.png',resize:'-1',left:['option_12','option_10','option_8','option_4','option_2','option_1'],up:'optionRecmd_1'};		
 		
-		buttons[buttons.length-2] = {id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:buttons[buttons.length-4-1]['id']};
-		buttons[buttons.length-1] = {id:'page_next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:buttons[buttons.length-4-1]['id']};
+		buttons[buttons.length-2] = {id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:buttons[buttons.length-4-1]['id']};
+		buttons[buttons.length-1] = {id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:buttons[buttons.length-4-1]['id']};
 
 	}
 	window.onload = function() {
 		initbuttons();
 		Epg.btn.init('option_1', buttons, true);
+		
+		//设置翻页键翻页事件
+		Epg.key.set(
+		{
+			KEY_PAGE_UP:'pageUp()',
+			KEY_PAGE_DOWN:'pageDown()',
+		});
 	};
+	
+	
+	var url = "{:U('FreeZone/index').'?page='}";
+	//上一页
+	function pageUp()
+	{
+		Epg.page(url,{$page}-1,{$pageCount});
+	}
+
+	//下一页
+	function pageDown()
+	{
+		Epg.page(url,{$page}+1,{$pageCount});
+	}
+	
 </script>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
 
 <!-- 静态图片 -->
 <div id="bottom"></div>
@@ -119,6 +165,7 @@
 	</div>
 
 <!-- 分页 -->
-<div style="position:absolute; left:765px; top:600px;">
+{$pageHtml}
+<!-- <div style="position:absolute; left:765px; top:600px;">
 	{$pageHtml}
-</div>
+</div> -->

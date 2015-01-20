@@ -74,11 +74,14 @@ class RoleLogic extends BaseLogic{
 	public function changeRole($roleId){
 		$user = unserialize(Session('user'));
 		$user['usedRoleID'] = $roleId;
-		D('User','Logic')->save($user);
-		Session('user',serialize($user));
-		
-		$roleList = Session('roleList');
-		Session('role',serialize($roleList[$roleId]));
+		$r = D('User','Logic')->save($user);
+		if($r['status']){
+			Session('user',serialize($user));
+			$roleList = Session('roleList');
+			Session('role',serialize($roleList[$roleId]));
+			return result_data(1,'',unserialize(Session('role')));
+		}
+		return $r;
 	} 
 	
 }

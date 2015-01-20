@@ -33,7 +33,7 @@ class ResourceController extends CommonController {
         $playList = array_filter($playList); //去除数组中空值
         //print_r($playList);
         $playResourceData = D('Resource', 'Logic')->queryResourceList($playList, 'id,content,keyList');
-        print_r($playResourceData);
+//         print_r($playResourceData);
         $playResource = array();
         foreach ($playList as $value) {
             $playResource[] = array('id' => $value, 'content' => get_array_keyval($playResourceData, $value, 'id', 'content'));

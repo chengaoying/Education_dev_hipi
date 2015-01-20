@@ -158,12 +158,15 @@ class SectionListController extends CommonController {
 		$topicIds = array_filter($topicIds);
 		$sections = D('Section','Logic')->querySectionList($topicIds,$page,$pageSize);
 		
-		$pageHtml = get_array_page($sections['total'], $pageSize, '/static/v1/hd/images/common/page');
+		$pageCount = get_page_count($sections['total'], $pageSize);
+		$pageHtml = get_page_html($page, $pageCount);
 		
 		$this->assign(array(
 			'course'	=> $course,	
 			'sections'	=> $sections['rows'],
 			'total'		=> $sections['total'],	
+			'page'		=> $page,
+			'pageCount'	=> $pageCount,		
 			'pageHtml' 	=> $pageHtml,
 			'focus'		=> I('focus',''),
 		));
