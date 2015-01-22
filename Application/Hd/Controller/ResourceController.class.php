@@ -11,6 +11,8 @@ use Common\Controller\CommonController;
 
 class ResourceController extends CommonController {
 
+	private $award=array(3);
+	
     public function playAct() {
         if (C('IS_ENV')) {
             $areacode = C('AREA_CODE');
@@ -46,7 +48,16 @@ class ResourceController extends CommonController {
         //获取各地区播放预地址
         $areaPlayCode = 'getPlayCode' . $areacode;
         $playData = $this->getPlayList($areacode, $playUrl, $playResource, $videoId, $courseId, $sectionId, $section['topicId'], $section['libId'], $preSection, $nextSection);
-
+        $playData['awardInfo'] =null;
+		//if($playData['nextSection']==1){
+			$awardNum = D('Award','Logic')->getResourceAward($this->award);
+			if($awardNum){
+				$awardInfo = D('Award','Logic')->getAwardInfo($awardNum);
+				if($awardInfo['status']==1){
+					$playData['awardInfo'] = json_encode($awardInfo['data']);
+				}
+			}
+		//}
 //         print_r($areaPlayCode);
         //将课时资源进行json格式化
         
@@ -66,9 +77,23 @@ class ResourceController extends CommonController {
             'sectionId' => $sectionId,
             'section' => $section,
             'playData' => $playData,
-            'library' => $library,
+        	'awardInfo'=>$awardInfo['data'],
         ));
         $this->display($template);
+    }
+    
+    public function getAndJumpAct(){
+		$user = unserialize(Session('user'));
+		$userId = $user['id'];
+    	$roleId = $this->role['id'];
+    	$itemId = I('awardId','');
+    	$returnUrl = I('returnUrl','');
+    	dump($returnUrl);
+    	$num = 1;
+    	$info = "观看视频获取！";
+    	$data = D('Award','Logic')->sendItem($userId,$roleId,$itemId,$num,$info);
+    	header('location:'.$returnUrl);
+    	exit;
     }
 
     /*
@@ -76,7 +101,8 @@ class ResourceController extends CommonController {
      */
 
     protected function getPlayList($areacode, $playUrl, $playResource, $videoId, $courseId, $sectionId, $topicId, $libId, $preSection, $nextSection) {
-        if (empty($playUrl) || !$playResource)
+    	
+    	if (empty($playUrl) || !$playResource)
             return;
         $areaCodeFun = 'getPlayCode' . $areacode;
         $playData = array();
@@ -95,6 +121,7 @@ class ResourceController extends CommonController {
                 if ($key < (count($playResource) - 1)) {
                     $playData['nextUrl'] = U('Resource/play', array('courseId'=>$courseId,'sectionId' => $sectionId, 'videoId' => $playResource[$key + 1]['id']));
                 } else {
+                    $playData['nextSection'] = 1;
                     if ($libId) {//判断是否有预习题目
                         $playData['libUrl'] = U('Library/detail', array('courseId'=>$courseId,'sectionId' => $sectionId, 'topicId' => $topicId));
                     }

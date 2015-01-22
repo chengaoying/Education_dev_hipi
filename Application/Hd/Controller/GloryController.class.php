@@ -20,12 +20,18 @@ class GloryController extends CommonController {
 		$channel = $this->initUserCenterChannel();
 		$json_encode = json_encode($channel);
 		
+		$todayCredit = D('Credit','Logic') -> queryTodayCredit($this->user['id'], $this->role['id']);
+		$todayCredit = empty($todayCredit) ? 0 : $todayCredit;
+		$totalCredit = $this->user['point'] + $this->role['point'];
+		
 		$curProgress = 60;
 		$this->assign(array(
 					'curProgress' => $curProgress*390/100,
 					'channels' => $channel,
 					'face' => $role['face'],
 					'json_channel' => $json_encode,
+					'todayCredit' => $todayCredit,
+					'totalCredit' => $totalCredit,
 				));
 		$this->display();
 	}

@@ -19,7 +19,33 @@ class IndexController extends \Think\Controller {
 	
 	
 	public function testAct(){
-		dump(is_monthly_order());
+		$url = "http://192.168.0.152:8500/Api/TestApi/test";
+		vendor('Hprose.HproseHttpClient');
+		$client = new \HproseHttpClient($url);
+		$result = $client->test();
+		dump($result);
+	}
+	
+	public function phpRPCAct(){
+		Vendor('phpRPC.phprpc_client');
+		$client = new \PHPRPC_Client('http://localhost:8500/Api/RpcTest');
+		$result = $client->test();
+		dump($result);
+	}
+	
+	public function hproseAct(){
+		vendor('Hprose.HproseHttpClient');
+		$client = new \HproseHttpClient('http://localhost:8500/Api/UserApi');
+		$result = $client->add(array('id'=>1));
+		dump($result);
+	}
+	
+	public function jsonRPCAct(){
+		vendor('jsonRPC.jsonRPCClient');
+		$client = new \jsonRPCClient('http://localhost:8008/Sd/Server');
+		dump($client);
+		$result = $client->test();
+		var_dump($result); // 结果：
 	}
 	
 	
@@ -153,8 +179,8 @@ class IndexController extends \Think\Controller {
 	
 	public function everydayLoginAct()
 	{
-//		$result = D('Credit','Logic') -> everydayLogin($userId = 6,$roleId = 32,$ruleKey = 'everydayLogin',$info = '');
-		$result = D('Credit','Logic') -> incOrDec($userId = 6,$roleId = 32,array('point'=>10),$info = '');
+		$result = D('Credit','Logic') -> everydayLogin($userId = 6,$roleId = 32,$info = '每日登陆login');
+//		$result = D('Credit','Logic') -> ruleIncOrDec($userId = 6,$roleId = 32,'spring',$info = '春节奖励ss');
 		dump($result);
 		exit;
 	}

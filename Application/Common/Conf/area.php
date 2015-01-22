@@ -10,7 +10,7 @@ return array (
 	'PARENT_MODULE'     => 'Hd',	//父类分组模块
 	'SERVER_IP'			=> '',		//服务器IP
 	'RTSP_VIDEO_URL'	=> 'rtsp://192.168.0.5:8554/videos/',
-	'IS_ENV'			=> 1,
+	'IS_ENV'			=> 0,
 
 	//附件上传
 	'UPFILE_ISREMOTE'	=> false,		//是否保存到远程文件服务器
@@ -34,6 +34,9 @@ return array (
         '__CSSJS_VERSION__'=>'20140208173232',  //CSS和JS版本
 
 	),
+	
+	//首页成长指标配置参数(成长指标是针对早幼教龄段的用户)，0-关闭, 1-开启
+	'OPEN_TARGET'	=>	0, 
 	
 	//与教育平台通讯参数
 	'PLATFORM_URL'	=>	'http://192.168.0.152:8500',	//平台地址

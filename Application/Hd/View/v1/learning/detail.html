@@ -25,19 +25,63 @@
 	background-image: url(__HD__/images/usercenter/detail/word.png);
 }
 
+/* 分页 */
+.page_prev{
+	position:absolute;
+	width:20px;
+	height:26px;
+	left:1065px;
+	top:620px;
+}
+.text{
+	position:absolute;
+	width:80px;
+	height:30px;
+	left:1085px;
+	top:620px;
+	text-align:center;
+}
+.page_next{
+	position:absolute;
+	width:20px;
+	height:26px;
+	left:1165px;
+	top:620px;
+}
+
 </style>
 
 <script type="text/javascript">
 	var buttons = [
 	/* 栏目  */
-	{id:'page_prev',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:['wrong_3','wrong_2','wrong_1'],left:'ch_2'},
-	{id:'page_next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:['wrong_3','wrong_2','wrong_1']},
+	{id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:['wrong_3','wrong_2','wrong_1'],left:'ch_2'},
+	{id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:['wrong_3','wrong_2','wrong_1']},
 
 	];
 	
 	window.onload = function() {
 		Epg.btn.init('page_next', buttons, true);
+		
+		//设置翻页键翻页事件
+		Epg.key.set(
+		{
+			KEY_PAGE_UP:'pageUp()',
+			KEY_PAGE_DOWN:'pageDown()',
+		});
 	};
+	
+	var url = "{:U('Learning/learningPreschool').'?page='}";
+	//上一页
+	function pageUp()
+	{
+		Epg.page(url,{$page}-1,{$pageCount});
+	}
+
+	//下一页
+	function pageDown()
+	{
+		Epg.page(url,{$page}+1,{$pageCount});
+	}
 </script>
 
 
@@ -79,6 +123,7 @@
 
 
 <!-- 分页 -->
-<div style="position:absolute; left:1030px; top:620px;">
+<!-- <div style="position:absolute; left:1030px; top:620px;">
 	{$pageHtml}
-</div>
+</div> -->
+{$pageHtml}

@@ -41,13 +41,12 @@ class FreeZoneController extends CommonController {
 				$imgs = explode($char, $v['imgUrl']);
 				$c[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
 			}
-//			$course[$k]['imgUrl'] = $c[$k]['imgUrl'];
 		}
 		
 		$this->assign(array(
 					'pageHtml' => $pageHtml,
 					'datas' => $data['rows'],
-					'count' => $data['total'],
+					'count' => count($data['rows']),
 					'page'	=> $page,
 					'pageCount'=>$pageCount,
 					'img_recommend1' => $c[0]['imgUrl'],

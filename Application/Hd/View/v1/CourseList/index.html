@@ -6,10 +6,10 @@ body{ background-image:url(__HD__/images/common/bg.jpg); }
 .ch_logo_common{
     position: absolute;
     display: block;
-    top:85px;
+    top:90px;
     left:90px;
-    width: 135px;
-    height: 36px;
+    width: 118px;
+    height: 41px;
     background: url(__HD__/images/courseList/title/title_{$chKey}.png) no-repeat;
 }
 
@@ -41,11 +41,11 @@ var buttons=
     	{id:'page_next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],down:['course_5','course_4','course_3','course_2','course_1']},
         
         /* 课程列表 */
-        {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'pageUp()',right:'course_2',up:'stage_1',down:'course_6'},
+        {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'pageUp()',right:'course_2',up:['stage_1'],down:'course_6'},
 		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_1',right:'course_3',up:'stage_2',down:['course_7','course_6']},
-		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_2',right:'course_4',up:'stage_3',down:['course_8','course_7','course_6']},
-		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_3',right:'course_5',up:['page_prev','page_next'],down:['course_9','course_8','course_7','course_6']},
-		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_4',right:'pageDown()',up:['page_prev','page_next'],down:['course_10','course_9','course_8','course_7','course_6']},
+		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_2',right:'course_4',up:['stage_4','stage_3'],down:['course_8','course_7','course_6']},
+		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_3',right:'course_5',up:['stage_6','stage_3'],down:['course_9','course_8','course_7','course_6']},
+		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_4',right:'pageDown()',up:['stage_6','stage_3'],down:['course_10','course_9','course_8','course_7','course_6']},
 		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'pageUp()',right:'course_7',up:'course_1',down:''},
         {id:'course_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_6',right:'course_8',up:'course_2',down:''},
 		{id:'course_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_7',right:'course_9',up:'course_3',down:''},
@@ -129,9 +129,9 @@ window.onload=function()
 
 <!-- 龄段列表 -->
 <volist name="stageList" id="stage" key="i">
-    <php> $left = 225+($i-1)*90; </php>
-    <div id="div_stage_{$i}" title="{:U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id'])}" style="position:absolute;width:90px;height:35px;left:{$left}px;top:95px;text-align:center;">
-        <img id="stage_{$i}" src="{$stage['linkImage']}">
+    <php> $left = 230+($i-1)*110; </php>
+    <div id="div_stage_{$i}" title="{:U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id'])}" style="position:absolute;width:90px;height:37px;left:{$left}px;top:95px;text-align:center;">
+        <img id="stage_{$i}" src="{$stage['linkImage']}" width="90" height="37">
     </div>
 </volist>
 

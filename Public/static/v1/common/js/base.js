@@ -36,6 +36,7 @@ var KEY_IPTV_EVENT   = 0x0300;	// 虚拟事件按键
 // 天津广电
 var KEY_BACK_TJ      = 640;   //天津广电返回键
 var KEY_PLAY_PAUSE_TJ = 0x0F18;
+var KEY_DINGWEI = 271;
 
 // PC
 var KEY_W = 119;
@@ -765,6 +766,9 @@ Epg.trim = function(str)
 		return str.replace(/^\s*(.*?)\s*$/g,'$1');
 };
 
+/*用于调试
+ * @param info string 要输出的信息
+ */
 trace = function(info)
 {
 	window.location.href = "/Debug/Index/test";

@@ -68,7 +68,7 @@ function p($array)
  */
 function monthNum($birthday)
 {
-	$info = '';
+	date_default_timezone_set('Etc/GMT-8');     //这里设置了时区
 	if(empty($birthday))
 	{
 		$info = '日期不能为空，请去用户中心设置日期！';

@@ -54,7 +54,7 @@ class IndexController extends CommonController {
 					//计算角色月龄
 					//如果角色没有设置出生年月，则默认月龄为1个月
 					$m = monthNum($this->role['birthday']);
-					$roleMonthNum = $m['status'] ? $m['data']['monthNum'] : 1;
+					$roleMonthNum = $m['status'] ? $m['data']['monthNum'] : $this->getDefMonth($this->role['stageId']);
 					$value = '.'.$roleMonthNum.'月'; //特别推荐一匹配的月龄
 					$this->earlyOrPreschoolRecommend($data,$value);
 					break;
@@ -124,15 +124,22 @@ class IndexController extends CommonController {
 		if(!empty($c[2])) $data['c2'] = $c[2];//特别推荐课程二
 		
 		//一般推荐课程
-		//早、幼教首页是1个成长指标+3个一般推荐
+		//早、幼教首页是1个成长指标+3个一般推荐(配置中OPEN_TARGET是否设置开启成长指标)
 		$roleStage = $this->getStage($this->role['stageId']); //该角色对应的龄段信息
 		$roleGrade = $this->getGrade($roleStage['chId']);//该角色对应的年级信息
-		$data['isEarly'] = true;
-		$target['stageKey'] = $roleStage['sKey'];
-		$target['linkUrl']  = U("Role/growthIndex");
 		$key = array_search('一般推荐',$proConfig['keys']);
-		$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,3);
-		$courses = $courses['rows'];
+		if(C('OPEN_TARGET')){
+			$data['isEarly'] = true;
+			$target['stageKey'] = $roleStage['sKey'];
+			$target['linkUrl']  = U("Role/growthIndex");
+			$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,3);
+			$courses = $courses['rows'];
+		}else{
+			$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,4);
+			$courses = $courses['rows'];
+			$target = $courses[0];
+			$courses = array_slice($courses, 1, count($courses)-1);
+		}
 		foreach ($courses as $k=>$v){
 			if($v['imgUrl']){
 				$char = getDelimiterInStr($v['imgUrl']);

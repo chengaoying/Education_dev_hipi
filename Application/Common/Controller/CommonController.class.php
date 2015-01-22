@@ -137,6 +137,20 @@ class CommonController extends \Think\Controller{
 	}
 	
 	/**
+	 * 获取龄段的默认月龄
+	 * @param $stageId 龄段id
+	 */
+	public function getDefMonth($stageId){
+		$stage = $this->getStage($stageId);
+		if($stage['sKey'] == 'three') 
+			return 25;
+		elseif($stage['sKey'] == 'two')
+			return 13;
+		else
+			return 1;
+	}
+	
+	/**
 	 * 根据广告位的key获取该广告位下的广告
 	 * @param string $asKey
 	 */

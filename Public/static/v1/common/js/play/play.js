@@ -84,6 +84,9 @@ function pause(){
 	mp.pause();
 }
 
+function playByTime(bytime){
+	return mp.playByTime(1,bytime,0);
+}
 
 function resume(){
 	speed = 1;

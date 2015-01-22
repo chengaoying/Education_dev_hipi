@@ -60,9 +60,9 @@
 /* 页面可点击按钮  */
 var buttons=
 	[
-		{id:'year',name:'year',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandlerY()',focusHandler:'focusHandlerY()',right:'mouth',down:'ok'},
-		{id:'mouth',name:'mouth',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandlerM()',focusHandler:'focusHandlerM()',right:'day',left:'year',down:'ok'},
-		{id:'day',name:'day',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandlerD()',focusHandler:'focusHandlerD()',right:'',left:'mouth',down:'ok'},
+		{id:'year',name:'year',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'mouth',down:'ok'},
+		{id:'mouth',name:'mouth',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'day',left:'year',down:'ok'},
+		{id:'day',name:'day',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'',left:'mouth',down:'ok'},
 
 		{id:'ok',name:'确定',action:'submit()',linkImage:'__HD__/images/usercenter/baseInfo/confirm_1.png',focusImage:'__HD__/images/usercenter/baseInfo/confirm_2.png',up:'year',down:''},
 	];
@@ -70,13 +70,19 @@ var buttons=
 
 window.onload=function()
 {
-	popup();
+	popup(2);
 	Epg.btn.init('year',buttons,true);	
+	
+	//删除0键返回事件
+/* 	Epg.key.del(
+	{
+		KEY_0:'',
+	}); */
 };
 
 </script>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',1)}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',0)}" ></a>
 
 <!-- 静态图片 -->
 <div id="birthday_set"></div>
@@ -107,26 +113,12 @@ function submit(){
 	G('form').submit();
 }
 
-function focusHandlerY(){
-	G('year').focus();
+function focusHandler(){
+	G(Epg.btn.current.id).focus();
 }
 
-function blurHandlerY(){
-	G('year').blur();
-}
-function focusHandlerM(){
-	G('mouth').focus();
-}
-
-function blurHandlerM(){
-	G('mouth').blur();
-}
-function focusHandlerD(){
-	G('day').focus();
-}
-
-function blurHandlerD(){
-	G('day').blur();
+function blurHandler(){
+	G(Epg.btn.current.id).blur();
 }
 </script>
 

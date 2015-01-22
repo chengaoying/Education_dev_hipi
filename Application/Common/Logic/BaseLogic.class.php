@@ -11,6 +11,7 @@ class BaseLogic {
 	public function __construct($uri) {
 		$url = C('PLATFORM_URL').$uri;
 		$this->client = $this->initHproseObject($url);
+		//$this->client = $this->initJsonRpcObject($url);
 	}
 	
 	/**
@@ -46,5 +47,16 @@ class BaseLogic {
 		$client = new \HproseHttpClient($url);
 		return $client;
 	}
+	
+	/**
+	 * 获取jsonRPC客户端对象
+	 * @param string $url
+	 */
+	public function initJsonRpcObject($url){
+		vendor('jsonRPC.jsonRPCClient');
+		$client = new \jsonRPCClient($url);
+		return $client;
+	}
+	
 	
 }

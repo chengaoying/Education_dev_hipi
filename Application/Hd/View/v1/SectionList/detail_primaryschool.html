@@ -90,7 +90,7 @@ window.onload=function()
 };
 </script>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/index'))}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/index','/Resource/play'))}" ></a>
 
 <!-- 课程iconcourse_icon -->
 <div id="div_course_icon" style="position:absolute;left:90px;top:80px;">
@@ -108,7 +108,7 @@ window.onload=function()
 
 <!-- 加入学习计划 -->
 <div id="div_btn_plan" style="position:absolute;left:560px;top:230px;">
-	<img id="btn_plan" title="{:U('Role/addCourse').'?courseId='.$course['id'].'&courseName='.$course['name'].'&courseImg='.$course['imgUrl']}" src="__HD__/images/sectionList/primaryschool/btn_plan.png" width="159" height="38">
+	<img id="btn_plan" title="{:U('Role/addCourse').'?courseId='.$course['id'].'&courseName='.urlencode($course['name']).'&courseImg='.$course['imgUrl']}" src="__HD__/images/sectionList/primaryschool/btn_plan.png" width="159" height="38">
 </div>	
 
 <!-- 订购该课程 -->

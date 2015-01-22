@@ -77,12 +77,13 @@ var initButtons = function(){
 window.onload=function()
 {
 	initButtons();
+	popup(2);
 	Epg.btn.init('option_1',buttons,true);	
 };
 
 </script>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',1)}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',0)}" ></a>
 
 <!-- 静态图片 -->
 <div id="selectFace_set"></div>

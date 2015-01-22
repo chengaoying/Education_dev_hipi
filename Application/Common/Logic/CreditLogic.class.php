@@ -42,9 +42,19 @@ class CreditLogic extends BaseLogic{
 	* @param string $ruleKey 规则KEY
 	* @param string $info 备注信息
 	*/
-	public function everydayLogin($userId = 0,$roleId = 0,$ruleKey = '',$info = '')
+	public function everydayLogin($userId = 0,$roleId = 0,$info = '')
 	{
-		return $this->client->everydayLogin($userId, $roleId, $ruleKey, $info);
+		return $this->client->everydayLogin($userId, $roleId, $info);
+	}
+	
+	/*
+	* 根据规则更新积分写日志
+	* @param int $userId 用户ID
+	* @param int $roleId 角色ID
+	*/
+	public function queryTodayCredit($userId = 0,$roleId = 0)
+	{
+		return $this->client->queryTodayCredit($userId,$roleId);
 	}
 	
    /*

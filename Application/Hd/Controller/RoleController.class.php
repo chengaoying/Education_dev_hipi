@@ -16,6 +16,12 @@ class RoleController extends CommonController {
 	 */
 	public function createRoleAct(){
 		$stageId = I('stageId','');
+		
+		$roleList = Session('roleList');
+		if(count($roleList) >= 10)
+		{
+			$this->addFloatMessage('您创建的角色超过10个，</br>不能再创建',U('Role/changeNum'));
+		}
 		if(empty($stageId)){
 			//顶级分类(二级栏目)
 			$class = $this->getClass();	
@@ -32,7 +38,18 @@ class RoleController extends CommonController {
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){ //创建成功跳转至首页
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				header('location:'.U('Index/recommend'));
+				
+				$stage = $this->getStage($role['stageId']);//根据stageId得到段龄信息；
+				$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
+				if($grade['chKey'] === 'early')
+				{
+					$this->addFloatMessage('创建角色成功',U('Role/setBirthday'));
+				}
+				else
+				{
+					$this->addFloatMessage('创建角色成功',U('Index/recommend'));
+				}
+//				header('location:'.U('Index/recommend'));
 			}else{
 				$this->addFloatMessage('角色创建失败：'.$r['info'],U('Role/userInfo'));
 			}
@@ -166,6 +183,7 @@ class RoleController extends CommonController {
 	{
 		$stageId = I('stageId','');
 		$role = unserialize(Session('role'));
+
 		if(empty($stageId))
 		{
 			//顶级分类(二级栏目)
@@ -189,7 +207,17 @@ class RoleController extends CommonController {
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				$this->addFloatMessage('修改龄段成功',U('Role/userInfo'));
+				
+				$stage = $this->getStage($role['stageId']);//根据stageId得到段龄信息；
+				$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
+				if($grade['chKey'] === 'early')
+				{
+					$this->addFloatMessage('修改龄段成功',U('Role/setBirthday'));
+				}
+				else 
+				{
+					$this->addFloatMessage('修改龄段成功',U('Role/userInfo'));
+				}
 				//header('location:'.U('Role/userInfo'));
 			}else{
 				$this->addFloatMessage('昵称更新失败：'.$r['info'],U('Role/userInfo'));
@@ -241,7 +269,7 @@ class RoleController extends CommonController {
 			$result = $this -> judgePhone($data['phone']);
 			if(!$result['status'])
 			{
-				$this->popUp($result['info']);
+				$this->addFloatMessage($result['info'],U('Role/setPhone'));;
 				return;
 			}
 			$user['phone'] = $data['phone'];
@@ -317,32 +345,32 @@ class RoleController extends CommonController {
 	{
 		$role = unserialize(Session('role'));
 		$proConf = get_pro_config_content('proConfig');
-		$subject = $proConf['subject'];
+		
+		$type = I('type');
+		if($type == 'advantage')
+		{
+			$subject = $proConf['subject'];
+			$subject_remove = explode(",", $role['disAdvantage']);
+			$subject_array = explode(",", $role['advantage']);
+			$width_logo = 206;
+		}
+		if($type == 'disAdvantage')
+		{
+			$subject = $proConf['subject'];
+			$subject_remove = explode(",", $role['advantage']);
+			$subject_array = explode(",", $role['disAdvantage']);
+			$width_logo = 206;
+		}
+		if($type == 'interests')
+		{
+			$subject = $proConf['interest'];
+			$subject_remove = null;
+			$subject_array = explode(",", $role['interests']);
+			$width_logo = 143;
+		}
 		//$interest = $proConf['interest']; //TODO 兴趣和科目配置分开
 		if(!IS_POST)
 		{
-			$type = I('type');
-			if($type == 'advantage')
-			{
-				$subject = $proConf['subject'];
-				$subject_remove = explode(",", $role['disAdvantage']);
-				$subject_array = explode(",", $role['advantage']);
-				$width_logo = 206;
-			}
-			if($type == 'disAdvantage')
-			{
-				$subject = $proConf['subject'];
-				$subject_remove = explode(",", $role['advantage']);
-				$subject_array = explode(",", $role['disAdvantage']);
-				$width_logo = 206;
-			}
-			if($type == 'interests')
-			{
-				$subject = $proConf['interest'];
-				$subject_remove = null;
-				$subject_array = explode(",", $role['interests']);
-				$width_logo = 143;
-			}
 			$index = 0;
 			foreach ($subject as $key => $value)//获得将来要显示的多选项
 			{
@@ -416,7 +444,6 @@ class RoleController extends CommonController {
 		}
 	}
 	
-	
 	/*
 	 * 设置生日
 	*/
@@ -438,7 +465,7 @@ class RoleController extends CommonController {
 				$result = $this -> judgeDate($date);
 				if(!$result['status'])
 				{
-					$this->popUp($result['info']);
+					$this->addFloatMessage($result['info'],U('Role/setBirthday'));
 					return;
 				}
 			}
@@ -469,7 +496,7 @@ class RoleController extends CommonController {
 		if(!empty($birthday))
 		{
 			$birthday_array = explode("-", $birthday);
-			if(!is_numeric($birthday_array[0]) || !is_numeric($birthday_array[1]) || !is_numeric($birthday_array[2]))
+			if(!empty($birthday_array[0])&&!is_numeric($birthday_array[0]) || !empty($birthday_array[1])&&!is_numeric($birthday_array[1]) || !empty($birthday_array[2])&&!is_numeric($birthday_array[2]))
 			{
 				$info = '日期不正确，日期应为数字';
 				return result_data(0, $info);
@@ -478,9 +505,28 @@ class RoleController extends CommonController {
 			$birthday_unix = strtotime($birthday);
 			if($birthday_unix === false)
 			{
-				//			$info = '日期不正确,日期范围应在1901-12-15<br/>到2038-1-19。如果年份为两位数字则: 0-69 <br/>表示 2000-2069,70-100 表示1970-2000';
-				$info = '日期输入错误，请重新输入';
+				//$info = '日期不正确,日期范围应在1901-12-15<br/>到2038-1-19。如果年份为两位数字则: 0-69 <br/>表示 2000-2069,70-100 表示1970-2000';
+				$info = '日期不正确，请重新输入';
 				return result_data(0, $info);
+			}
+			
+			$stage = $this->getStage($this->role['stageId']);//根据stageId得到段龄信息；
+			$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
+			if($grade['chKey'] === 'early')
+			{
+				$monthAge = monthNum($birthday);
+				if($monthAge['status'])
+				{
+					if($monthAge['data']['monthNum'] > 36)
+					{
+						$this->addFloatMessage('你家小朋友不在该龄段</br>内哦，请返回选择其它龄段',U('Role/setBirthday'));
+					}
+					else
+					{
+						$this->addFloatMessage('修改生日成功',U('Index/recommend'));
+					}
+				}
+				exit;
 			}
 		}
 		return result_data(1, '输入成功');
@@ -536,22 +582,22 @@ class RoleController extends CommonController {
 			$roleList = Session('roleList');
 			$roleList = array_values($roleList);//建立数字索引
 			$page = empty($page) ? 0 : $page;
-			for($i=$page*3; ($i<$page*3+4)&&($i<count($roleList)); $i++)
+			$pageSize = 4;//每页显示数目
+			for($i=$page*$pageSize; ($i<$page*$pageSize+$pageSize)&&($i<count($roleList)); $i++)
 			{
-				$list[$i-$page*3]['id'] = $roleList[$i]['id'];
-				$list[$i-$page*3]['name'] = empty($roleList[$i]['nickName']) ? $roleList[$i]['id'] : $roleList[$i]['nickName'];
-				$list[$i-$page*3]['stage'] = $stage[$roleList[$i]['stageId']]['sKey'];
-				$list[$i-$page*3]['face'] = $roleList[$i]['face'];
+				$list[$i-$page*$pageSize]['id'] = $roleList[$i]['id'];
+				$list[$i-$page*$pageSize]['name'] = empty($roleList[$i]['nickName']) ? $roleList[$i]['id'] : $roleList[$i]['nickName'];
+				$list[$i-$page*$pageSize]['stage'] = $stage[$roleList[$i]['stageId']]['sKey'];
+				$list[$i-$page*$pageSize]['face'] = $roleList[$i]['face'];
 			}
 			$count = count($list);
-			if($count < 4)
+			if($count < $pageSize)
 			{
 				$list[$count]['id'] = '';
 				$list[$count]['name'] = '';
 				$list[$count]['stage'] = '';
 				$list[$count]['face'] = 'add';
 			}
-
 			
 			$left = ($page==0) ? 0 : 1;//可以向左移动则显示左号
 			$right = (($page+1)*3<count($roleList)) ? 1 : 0;
@@ -579,16 +625,10 @@ class RoleController extends CommonController {
 			}
 			
 			$r = D('Role','Logic')->changeRole($user['usedRoleID']);
-			//$u = D('User','Logic')->save($user);
 			if($r['status']){
 				$this->addFloatMessage('角色切换成功',U('Role/userInfo'));
-				//Session('user',serialize($user));//更新user对应的session
-				//$roleList = Session('roleList');
-				//Session('role',serialize($roleList[$user['usedRoleID']]));//更新role对应的session
-				//header('location:'.U('Role/userInfo'));
 			}else{
 				$this->addFloatMessage('角色切换失败：'.$r['info'],U('Role/userInfo'));
-				//$this->showMessage('角色切换失败：'.$u['info']);
 			}
 		}
 	}
@@ -601,7 +641,16 @@ class RoleController extends CommonController {
 		$role = unserialize(Session('role'));
 		$birthday=$role['birthday'];
 		$data = monthNum($birthday);
-		$m = $data['data']['monthNum'];
+		
+		if($data['status'])
+		{
+			$m = $data['data']['monthNum'];
+		}
+		else 
+		{
+			$this->showMessage('月份获取失败：'.$data['info']);
+		}
+		
 		//确保月份在1-12
 		if($m<=0)
 		{
@@ -611,7 +660,7 @@ class RoleController extends CommonController {
 			$m = 12;
 		}
 		$this->assign(array(
-					'm' => $m,
+					'm' => 1,
 				));
 		$this->display();
 	}

@@ -83,10 +83,10 @@ window.onload=function()
 <!-- 顶部-栏目 -->
 <volist name="topChannel" id="ch">
 	<php>
-		$left = 100 + ($i-1)*170; $top = 95;
+		$left = 100 + ($i-1)*180; $top = 95;
 	</php>
 	<div id="div_ch_{$i}" style="position:absolute;visibility: visible;left:{$left}px;top:{$top}px;">
-		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="120" height="41">
+		<img id='ch_{$i}' title="{$ch['linkUrl']}" src="{$ch['linkImage']}" width="130" height="44">
 	</div>
 </volist>
 

@@ -35,12 +35,15 @@ class LearningController extends CommonController {
 		
 		$length = $this -> getProgressOfEarly($total, $finish, $tags);
 		$length = array_values($length);
+		
+		$monthAge = $this->getMonthAge();
 		$this->assign(array(
 					'curProgress' => $length,
 					'face' => $role['face'],
 					'name' => empty($role['nickName']) ? $role['id'] : $role['nickName'],
 					'channels' => $channel,
 					'json_channel' => $json_encode,
+					'monthAge' => $monthAge-1,
 				));
 		$this->display();
 	}
@@ -50,6 +53,9 @@ class LearningController extends CommonController {
 	 */
 	public function learningPreschoolAct()
 	{
+		$page = I('page',1);
+		$pageSize = 3;
+		
 		$role = unserialize(Session('role'));
 		
 		$channel = $this->initUserCenterChannel();
@@ -58,10 +64,12 @@ class LearningController extends CommonController {
 		$data_get = I('get.');
 	
 		//分页查找数据,$role['stageId']得到段龄,第二个参数typeid没有用到，值0，查询时忽略该字段
-		$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 1, 1, 14);
-		$total = $course['total'];
-		$page = get_pageHtml2($total,3,array(),'/static/v1/hd/images/common/page');
-		$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 1, $page['nowPage'], 3);
+		$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 1, $page, $pageSize);
+		//$total = $course['total'];
+		$pageCount = get_page_count($course['total'], $pageSize);
+		$pageHtml = get_page_html($page, $pageCount);
+		//$page = get_pageHtml2($total,3,array(),'/static/v1/hd/images/common/page');
+		//$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 1, $page['nowPage'], 3);
 		foreach($course['rows'] as $key => $value)
 		{
 			$data[$key]['name'] = $value['name'];
@@ -71,11 +79,13 @@ class LearningController extends CommonController {
 		}
 		
 		$this->assign(array(
-				'pageHtml' => $page['html'],
+				'pageHtml' => $pageHtml,//$page['html'],
 				'datas' => $data,
 				'channels' => $channel,
 				'json_channel' => $json_encode,
 				'face' => $role['face'],
+				'page' => $page,
+				'pageCount' => $pageCount,
 		));
 		$this->display();
 	}
@@ -85,20 +95,27 @@ class LearningController extends CommonController {
 	*/
 	public function detailAct()
 	{
+		$page = I('page',1);
+		$pageSize = 12;
+		
 		$role = unserialize(Session('role'));
 	
 		$data_get = I('get.');
 	
 		//分页查找
 		$topic = D('Topic','Logic') -> queryTopicList($data_get['courseId']);
-		$total = $topic['total'];
-		$page = get_pageHtml2($total,12,array(),'/static/v1/hd/images/common/page');
-		$data = $this -> getData($data_get['courseId'], $page['nowPage'], 12);
+		//$total = $topic['total'];
+		$pageCount = get_page_count($topic['total'], $pageSize);
+		$pageHtml = get_page_html($page, $pageCount);
+		//$page = get_pageHtml2($total,12,array(),'/static/v1/hd/images/common/page');
+		$data = $this -> getData($data_get['courseId'], $page/* $page['nowPage'] */, $pageSize);
 		
 		$this->assign(array(
-				'pageHtml' => $page['html'],
+				'pageHtml' => $pageHtml,//$page['html'],
 				'datas' => $data,
 				'courseName' => $data_get['courseName'],
+				'page'	=> $page,
+				'pageCount' => $pageCount,
 		));
 		$this->display();
 	}
@@ -112,8 +129,48 @@ class LearningController extends CommonController {
 		date_default_timezone_set('Etc/GMT-8');     //这里设置了时区
 		
 		$startDate = date('Y-m').'-01 00:00:00';
+/* 		$birthdayStamp = strtotime($this->role['birthday']);
+		if($birthdayStamp === false)
+		{
+			$this->showMessage('生日设置有误：'.$this->role['birthday']);
+		}
+		
+		echo NOW_TIME;
+		dump(date('Y-m-d H:i:s',strtotime('+1 months', strtotime('2015-01-32 17:35:12'))));exit;
+		if(strtotime(date('Y-m',$birthdayStamp)) == strtotime(date('Y-m')))
+		{
+			dump(strtotime(date('Y-m')));exit;
+		}
+		echo 11;exit;
+		dump(date('Y-m-d H:i:s',strtotime('+1 days', NOW_TIME)));exit;
+		dump('11');exit;
+		$startM = date('m')-1;
+		if($startM == 0)
+		{
+			$startM = 12;
+			$startY = date('Y')-1;
+		} */
 		$endDate = date('Y-m-d H:i:s');//get now time
 		return array($startDate, $endDate);
+	}
+	
+	/*根据用户中心生日得到月龄
+	 *@return  
+	 */
+	private function getMonthAge()
+	{
+		$birthday=$this->role['birthday'];
+		$data = monthNum($birthday);//根据生日计算出生月数
+		
+		if($data['status'])
+		{
+			$m = $data['data']['monthNum'];
+		}
+		else
+		{
+			$this->showMessage('月份获取失败：'.$data['info']);
+		}
+		return $m;
 	}
 	
 	
