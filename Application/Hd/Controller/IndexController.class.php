@@ -214,6 +214,7 @@ class IndexController extends CommonController {
 			'class'			=> $class,
 			'json_class'	=> $json_class,
 			'focus'			=> I('focus',''),
+			'preFocus'		=> I('preFocus',''),
 		));
 		$this->display();
 	}

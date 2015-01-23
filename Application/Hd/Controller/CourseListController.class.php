@@ -54,6 +54,12 @@ class CourseListController extends CommonController {
 		$json_stage = get_array_fieldkey($stageList,array('id','name','linkImage','focusImage','titleImage'));
 		$json_stage = json_encode($json_stage);
 		
+		//返回处理（焦点参数）
+		$backUrl = get_back_url('Index/allCourse',0);
+		if(strpos($backUrl, '&preFocus'))
+			$backUrl = substr($backUrl, 0, strpos($backUrl, '&preFocus'));
+		$backUrl .= '&preFocus='.I('preFocus','');
+		
 		$this->assign(array(
 			'chKey'	     => $chKey,
 			'stageId'    => $stageId,
@@ -64,6 +70,8 @@ class CourseListController extends CommonController {
 			'page'		 => $page,
 			'pageCount'	 => $pageCount,
 			'focus'		 => I('focus',''),	
+			'preFocus'	 => I('preFocus',''),
+			'backUrl'	=> $backUrl,
 		));
 		$this->display();
 	}

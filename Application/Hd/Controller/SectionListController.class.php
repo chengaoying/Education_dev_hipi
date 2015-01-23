@@ -161,8 +161,11 @@ class SectionListController extends CommonController {
 		$pageCount = get_page_count($sections['total'], $pageSize);
 		$pageHtml = get_page_html($page, $pageCount);
 		
+		//返回处理（焦点参数）
 		$backUrl = get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/index','/Resource/play'));
-		//$backUrl .= '&preFocus='.I('preFocus','');
+		if(strpos($backUrl, '&preFocus'))
+			$backUrl = substr($backUrl, 0, strpos($backUrl, '&preFocus'));
+		$backUrl .= '&preFocus='.I('preFocus','');
 		
 		$this->assign(array(
 			'course'	=> $course,	

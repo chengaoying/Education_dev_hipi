@@ -152,7 +152,7 @@ Epg.Button = Epg.btn =
 				KEY_RIGHT_XJ:'Epg.Button.move("right")',	//右键
 				KEY_UP_XJ:'Epg.Button.move("up")',			//上键
 				KEY_DOWN_XJ:'Epg.Button.move("down")',		//下键
-				KEY_ENTER_XJ:'Epg.Button.click()',			//确定键
+				//KEY_ENTER_XJ:'Epg.Button.click()',			//确定键
 			});
 		}
 		
@@ -236,6 +236,7 @@ Epg.Button = Epg.btn =
 	{
 		if(Epg.isEmpty(this.current.action)) //add 20141216  添加页面按钮默认的action函数
 			this.current.action = "Epg.btn.defAction()";
+		alert(1);
 		Epg.call(this.current.action, [this.current]);
 	},
 	
@@ -844,8 +845,8 @@ var event_handler = function(e)
 };
 
 //按键处理
-document.onkeypress = document.onkeyup = event_handler;
-//document.onkeypress = event_handler;
+//document.onkeypress = document.onkeyup = event_handler;
+document.onkeypress = event_handler;
 
 //增加别名
 window.EPG = window.epg = Epg;

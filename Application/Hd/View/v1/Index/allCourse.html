@@ -64,12 +64,14 @@ var initButtons = function(){
 	
 }
 
-var defaultId = "{$focus}";
+var defaultId = "{$preFocus}";
 
 window.onload=function()
 {
 	initButtons();
 	
+	//处理页面跳转时的焦点定位:
+	defaultId = Epg.isEmpty(defaultId) ? "{$focus}" : defaultId;
 	G('ch_3').src = buttons[2].titleImage;
 	Epg.btn.init([defaultId,'ch_3'],buttons,true);	
 };
@@ -108,7 +110,7 @@ window.onload=function()
         }
     </php>
     <div id="div_class_{$i}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="class_{$i}" title="{$c['linkUrl']}" src="{$c['imgUrl']}" width="210" height="210">
+        <img id="class_{$i}" title="{$c['linkUrl']}&preFocus=class_{$i}" src="{$c['imgUrl']}" width="210" height="210">
     </div>
     <div id="div_class_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
         <img id="class_{$i}_focus" src="" width="220" height="220">

@@ -58,19 +58,20 @@ var buttons=
 /* 初始化按钮 属性   */
 var initButtons = function(){}
 
-var url = "{:U('SectionList/index').'?courseId='.$course['id'].'&preFocus='.$preFocus.'&page='}";
+var url = "{:U('SectionList/index').'?courseId='.$course['id'].'&preFocus='.$preFocus}";
 
 //上一页
 function pageUp()
 {
-	//url += "&focus="+Epg.btn.current.id+"&page=";
+	url += "&focus="+Epg.btn.current.id+"&page=";
+	//alert(url);
 	Epg.page(url,{$page}-1,{$pageCount});
 }
 
 //下一页
 function pageDown()
 {
-	//url += "&focus="+Epg.btn.current.id+"&page=";
+	url += "&focus="+Epg.btn.current.id+"&page=";
 	//alert(url);
 	Epg.page(url,{$page}+1,{$pageCount});
 }
