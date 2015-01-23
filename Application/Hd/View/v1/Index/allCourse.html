@@ -64,11 +64,14 @@ var initButtons = function(){
 	
 }
 
+var defaultId = "{$focus}";
 
 window.onload=function()
 {
 	initButtons();
-	Epg.btn.init(['ch_3'],buttons,true);	
+	
+	G('ch_3').src = buttons[2].titleImage;
+	Epg.btn.init([defaultId,'ch_3'],buttons,true);	
 };
 </script>
 

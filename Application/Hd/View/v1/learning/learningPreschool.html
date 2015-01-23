@@ -56,9 +56,9 @@
 	var channel = {$json_channel};
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'changeNum',down:'ch_2',right:'detail_1'}, 
-	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_1',down:'ch_3',right:'detail_1'}, 
-	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_2',right:'detail_1'},
+	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'changeNum',down:'ch_2',right:'detail_1'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_1',down:'ch_3',right:'detail_1'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',blurHandler:'blurHandler()',up:'ch_2',right:'detail_1'},
 
 	{id:'selectFace',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'__HD__/images/usercenter/leftNavigation/title_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
 	{id:'changeNum',name:'',action:'',linkImage:'__HD__/images/usercenter/leftNavigation/change_account.png',focusImage:'__HD__/images/usercenter/leftNavigation/change_account_over.png',selectBox:'',right:'sex',up:'selectFace',down:'ch_1'},
@@ -82,11 +82,12 @@
 			buttons[i].name = channel[i].name;
 			buttons[i].linkImage = channel[i].linkImage;
 			buttons[i].focusImage = channel[i].focusImage;
+			buttons[i].titleImage = channel[i].titleImage;
 		} 
 	}
 	window.onload = function() {
 		initButtons();
-		Epg.btn.init('ch_2', buttons, true);
+		Epg.btn.init('ch_3', buttons, true);
 		
 		//设置翻页键翻页事件
 		Epg.key.set(
@@ -121,11 +122,11 @@
 <!-- 以下是导航栏 -->
 <volist name="channels" id="channel" key="i">
 	<php>
-     	$left = 120; $top = 430 + ($i-1)*60;
+     	$left = 0; $top = 340 + ($i-1)*70;
     </php>
     <div id="div_ch_{$i}" style="position:absolute;visibility:visible;left:{$left}px; top:{$top}px;">
 		<img id='ch_{$i}' title="{$channel['linkUrl']}"
-			src="{$channel['linkImage']}" width="170" height="50">
+			src="{$channel['linkImage']}" width="290" height="70">
 	</div>
 </volist>
 
@@ -138,8 +139,8 @@
 	<img id="selectFace_focus" title="" src="" width="125" height="165">
 </div>
 <!-- 切换账号  -->
-<div id="div_changeNum" style="position:absolute;left:95px;top:322px;text-align:center;">
-	<img id="changeNum" title="{:U('Role/changeNum')}" src="__HD__/images/usercenter/leftNavigation/change_account.png" width="110" height="25">
+<div id="div_changeNum" style="position:absolute;left:95px;top:260px;text-align:center;">
+	<img id="changeNum" title="{:U('Role/changeNum')}" src="__HD__/images/usercenter/leftNavigation/change_account.png" width="120" height="35">
 </div>
 
 
@@ -174,3 +175,22 @@
 	{$pageHtml}
 </div> -->
 {$pageHtml}
+
+
+<script type="text/javascript">
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "ch_2" && Epg.btn.current.id != "ch_1"){
+		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != "ch_3"){
+		setTimeout("Epg.btn.click()",50);
+	}
+}
+
+</script>

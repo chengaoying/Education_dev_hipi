@@ -35,15 +35,26 @@ class LearningController extends CommonController {
 		
 		$length = $this -> getProgressOfEarly($total, $finish, $tags);
 		$length = array_values($length);
-		
+		//获得段龄
 		$monthAge = $this->getMonthAge();
+		if($monthAge==-1)
+		{
+			$monthAge = '本月';
+		}
+		else 
+		{
+			$monthAge = ($monthAge-1).'月龄';
+		}
+		
+		$focus = $dataGet['focus'];
 		$this->assign(array(
 					'curProgress' => $length,
 					'face' => $role['face'],
 					'name' => empty($role['nickName']) ? $role['id'] : $role['nickName'],
 					'channels' => $channel,
 					'json_channel' => $json_encode,
-					'monthAge' => $monthAge-1,
+					'monthAge' => $monthAge,
+					'focus' => $focus,
 				));
 		$this->display();
 	}
@@ -168,7 +179,7 @@ class LearningController extends CommonController {
 		}
 		else
 		{
-			$this->showMessage('月份获取失败：'.$data['info']);
+			$m = -1;
 		}
 		return $m;
 	}
@@ -391,13 +402,37 @@ class LearningController extends CommonController {
 				$imgs = explode($char, $v['imgUrl']);
 				$channel[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
 				$channel[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
-				//				$userCenter[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
+				$channel[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
 			}
 		}
 	
 		//把栏目key值初始为从0开始的递增的值，前端按钮调用统一
 		$channel = array_slice($channel,0,count($channel));
-		$channel = get_array_fieldkey($channel,array('id','name','linkImage','focusImage','linkUrl'));
+		$channel = get_array_fieldkey($channel,array('id','name','linkImage','focusImage','titleImage','linkUrl'));
 		return $channel;
+	}
+	
+	/*获取上个页面焦点
+	 *
+	*/
+	private function getFocus()
+	{
+		$baseInfo = 'ch_3';//在http_refferr中没有focuse参数时的默认焦点
+		$url = HTTP_REFERER;//上页面索引，根据focus值得到默认焦点
+		//得到开始坐标
+		$startPos = strpos($url,'focus');
+		if($startPos===false) return $baseInfo;
+		$startPos += 6;
+		//得到结束坐标
+		$endPos1 = strpos($url, '&', $startPos);
+		$endPos2 = strpos($url, '/', $startPos);
+		$endPos = $endPos1 || $endPos2;
+		$endPos = $endPos===false ? strlen($url) : $endPos;
+		//得到长度
+		$len = $endPos - $startPos;
+		//得到focus
+		$act = substr($url,$startPos,$len);
+		if($act === false) return $baseInfo;
+		return $act;
 	}
 }

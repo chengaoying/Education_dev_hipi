@@ -46,13 +46,18 @@ window.onload=function()
 
 <form id="form" action="{:U(Role/setNickname)}" method="post" style="padding:10px">
 	<div id="div_phone" style="position:absolute;left:150px;top:200px;">
-		<input type="text" id="phone" name="phone" value="" style="width:200px;height:40px;font-size:30px;"/><br/><br/>
+		<input type="text" id="phone" name="phone" value="{$phone}" maxlength="11" style="width:200px;height:40px;font-size:30px;"/><br/><br/>
 	</div>
 </form>
 
 <!-- 确定按钮 -->
  <div id="div_ok" style="position:absolute;width:140px;height:50px;left:150px;top:300px;">
-    <img id="ok" title="" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
+    <!-- <img id="ok" title="" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50"> -->
+	<a id="focus" style="display:block" href="javascript:submit();" onclick="editSubmit()"
+			onmouseover="changeImage('#btn_ok','__HD__/images/usercenter/baseInfo/confirm_2.png')" 
+			onmouseout="changeImage('#btn_ok','__HD__/images/usercenter/baseInfo/confirm_1.png')"><img 
+			id="btn_ok" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
+	</a>
 </div>
 
 <script type="text/javascript">
@@ -62,11 +67,11 @@ function submit(){
 }
 
 function focusHandler(){
-	G('phone').focus();
+//	G('phone').focus();
 }
 
 function blurHandler(){
-	G('phone').blur();
+//	G('phone').blur();
 }
 </script>
 

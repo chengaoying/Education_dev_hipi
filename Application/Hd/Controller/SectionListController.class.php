@@ -149,7 +149,7 @@ class SectionListController extends CommonController {
 	 */
 	private function common($chKey,$course){
 		$page = I('page',1);
-		$pageSize = 12;
+		$pageSize = 10;
 		
 		$imgs = explode(getDelimiterInStr($course['imgUrl']), $course['imgUrl']);
 		$course['imgUrl'] = $imgs[0];
@@ -161,6 +161,9 @@ class SectionListController extends CommonController {
 		$pageCount = get_page_count($sections['total'], $pageSize);
 		$pageHtml = get_page_html($page, $pageCount);
 		
+		$backUrl = get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/index','/Resource/play'));
+		//$backUrl .= '&preFocus='.I('preFocus','');
+		
 		$this->assign(array(
 			'course'	=> $course,	
 			'sections'	=> $sections['rows'],
@@ -169,6 +172,8 @@ class SectionListController extends CommonController {
 			'pageCount'	=> $pageCount,		
 			'pageHtml' 	=> $pageHtml,
 			'focus'		=> I('focus',''),
+			'preFocus'	=> I('preFocus',''),	
+			'backUrl'	=> $backUrl,	
 		));
 		$this->display('detail_primaryschool');
 	}

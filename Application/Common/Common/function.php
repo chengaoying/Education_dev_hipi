@@ -84,7 +84,8 @@ function monthNum($birthday)
 	$birthday_unix=strtotime($birthday);
 	if($birthday_unix === false)
 	{
-		$info = '日期不正确,日期范围应在1901-12-15<br/>到2038-1-19。如果年份为两位数字则: 0-69 <br/>表示 2000-2069,70-100 表示1970-2000';
+//		$info = '日期不正确,日期范围应在1901-12-15<br/>到2038-1-19。如果年份为两位数字则: 0-69 <br/>表示 2000-2069,70-100 表示1970-2000';
+		$info = '生日输入错误';
 		return result_data(0, $info);
 	}
 	$m = (date("Y")-date("Y",$birthday_unix))*12+date("m")-date("m",$birthday_unix);

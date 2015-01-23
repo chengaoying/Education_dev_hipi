@@ -81,6 +81,8 @@
 			obj.left = (i>1) ? 'option_'+(i-1) : '' ; 
 			obj.down = (i+colnum<=count) ? 'option_'+(i+colnum) : '';
 			obj.up = (i-colnum>0) ? 'option_'+(i-colnum) : '' ; 
+			obj.focusHandler='focusHandler()';
+			obj.blurHandler='blurHandler()';
 			
 			if(i%colnum==0&&i<=8) obj.right = 'optionRecmd_1';
 			if(i%colnum==0&&i>8) obj.right = 'optionRecmd_2';
@@ -154,8 +156,8 @@
 		<img id="option_{$i}_focus" title="" src="" width="370" height="60">
 	</div>
 	<!-- 免费专区文字 -->
-	<div style="position:absolute;width:330px;height:37px;left:{$left+20}px;top:{$top+10}px;line-height:37px;text-align:left;border-style:none">
-		<span style="font-size:30px">{$data['name']}</span>
+	<div id="option_{$i}_text" style="position:absolute;width:350px;height:37px;left:{$left+10}px;top:{$top+10}px;line-height:37px;text-align:left;border-style:none">
+		{$data['name']}
 	</div>
 </volist>
 	<!-- 最新推荐 -->
@@ -174,3 +176,20 @@
 
 <!-- 分页 -->
 {$pageHtml}
+
+<script type="text/javascript">
+
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	Epg.marquee.stop();
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	var id = Epg.btn.current.id + '_text';
+	Epg.marquee.start(16,id);
+}
+
+
+</script>

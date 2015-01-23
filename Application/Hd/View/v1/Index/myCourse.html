@@ -68,13 +68,14 @@ function pageDown()
 	Epg.page(url,{$page}+1,{$pageCount});
 }
 
+var defaultId = "{$preFocus}";
 
 window.onload=function()
 {
 	initButtons();
 	
 	//处理页面跳转时的焦点定位:
-	var defaultId = "{$focus}";
+	defaultId = Epg.isEmpty(defaultId) ? "{$focus}" : defaultId;
 	if(Epg.isEmpty(G(defaultId))) 
 		defaultId = "course_1";
 	G('ch_2').src = buttons[1].titleImage;
@@ -86,12 +87,6 @@ window.onload=function()
 	{
 		KEY_PAGE_UP:'pageUp()',
 		KEY_PAGE_DOWN:'pageDown()',
-	});
-
-	//设置删除0键返回事件
-	Epg.key.del(
-	{
-		//KEY_0:'',//按0返回
 	});
 };
 
@@ -141,7 +136,7 @@ window.onload=function()
 	            $top = 180; $left = 80 + ($i-1)*225;
 	        }
         </php>
-        <div id="div_course_{$i}" title="{:U('SectionList/index?courseId='.$c['courseId'])}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
+        <div id="div_course_{$i}" title="{:U('SectionList/index?courseId='.$c['courseId'].'&preFocus=course_'.$i)}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
             <img id="course_{$i}" src="{$c['courseImg']}" width="210" height="210">
         </div>
         <div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">

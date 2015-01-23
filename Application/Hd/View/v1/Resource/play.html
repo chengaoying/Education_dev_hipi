@@ -7,10 +7,10 @@
         <script type="text/javascript" src="__COMMON__/js/base.js?__CSSJS_VERSION__"></script>
         <script type="text/javascript" src="__COMMON__/js/play/play{$areacode}.js?__CSSJS_VERSION__"></script>
         <style type="text/css">
-            body{ 
+            body{
                 background:transparent;
+                background-color: white;            	
             }
-
             #div_control{
                 position:absolute;
                 width:332px;
@@ -20,17 +20,15 @@
                 visibility:hidden;
                 background-image: url(__HD__/images/play/handle_bg.png);
             }
-
             #div_top{
                 position:absolute;
-                width:290px;
-                height:56px;
+                width:282px;
+                height:57px;
                 top:60px;
                 left:100px;
                 visibility:visible;
                 background-image: url(__HD__/images/play/exercise_bg.png);            
             }
-            
             #div_back{
                 position:absolute;
                 width:434px;
@@ -40,27 +38,24 @@
                 display:none;
                 background-image: url(__HD__/images/play/back_bg.png);            	
             }
-
             #div_gift{
                 position:absolute;
                 width:669px;
                 height:424px;
                 top:148px;
                 left:305px;
-                visibility:hidden;
+                display:none;
                 background-image: url(__HD__/images/play/gift_bg.png);            	
             }
-            
             #back_transparent_bg{
                 position:absolute;
                 width:1280px;
                 height:720px;
                 top:0px;
                 left:0px;
-                visibility:hidden;
+                display:none;
                 background-image: url(__HD__/images/common/popup/bg.png);            	
             }
-            
         </style>
 
         <script type="text/javascript">
@@ -70,7 +65,7 @@
                         {id: 'btn_pre', name: '', action: 'prevPlay()', linkImage: '__HD__/images/play/btn_pre.png', focusImage: '__HD__/images/play/btn_pre_over.png', selectBox: '', left: '', right: 'btn_current', up: 'btn_exercise', down: ''},
                         {id: 'btn_current', name: '', action: '', linkImage: '__HD__/images/play/btn_current.png', focusImage: '__HD__/images/play/btn_current_over.png', selectBox: '', left: 'btn_pre', right: 'btn_next', up: 'btn_exercise', down: ''},
                         {id: 'btn_next', name: '', action: 'nextPlay()', linkImage: '__HD__/images/play/btn_next.png', focusImage: '__HD__/images/play/btn_next_over.png', selectBox: '', left: 'btn_current', right: '', up: 'btn_exercise', down: ''},
-                        /*上边按钮*/
+                        /*游戏练习*/
                         {id: 'btn_exercise', name: '', action: '', linkImage: '__HD__/images/play/btn_exercise.png', focusImage: '__HD__/images/play/btn_exercise_over.png', selectBox: '', left: '', right: '', up: '', down: 'btn_current'},
                     	/*返回弹窗上的按钮*/
                         {id: 'btn_see', name: '', action: 'closeBackDiv()', linkImage: '__HD__/images/play/btn_see.png', focusImage: '__HD__/images/play/btn_see_over.png', selectBox: '', left: '', right: '', up: '', down: 'btn_no_see'},
@@ -78,12 +73,8 @@
                         /*收入囊中*/
                         {id: 'btn_get', name: '', action: 'getAndJump()', linkImage: '__HD__/images/play/btn_get.png', focusImage: '__HD__/images/play/btn_get_over.png', selectBox: '', left: '', right: '', up: '', down: ''},
                     ];
-
-            //视频销毁
-            function destory() {
-                destoryMP();
-            }
             
+            //返回上一页
             function backUpPage(){
             	window.location = "{:get_back_url('Index/recommend',1)}";
             }
@@ -110,56 +101,15 @@
             var nextUrl = '{$playData[nextUrl]}';
             var libUrl = '{$playData[libUrl]}';
             var backUrl = "{:get_back_url('Index/recommend',1)}";
+            var libId =	"{$section['libId']}";
             var timer = '';
-            var initPlay = function() {
-                play(videoContent, 1280, 720, 0, 0);
-            }
             var curPlayTime;
             var totalPlayTime;
             var returnUrl = '';
             var haveWindow = false;
-            //自动播放
-            var autoPlay = function() {
-                curPlayTime = getCurrentTime();//获取当前播放时间
-                //totalPlayTime = getTotalTime();
-                totalPlayTime = 20;
-                if ((curPlayTime >= totalPlayTime) && (curPlayTime != 0) && (totalPlayTime != 0)) {
-                	//if(nextSection==1){
-                		haveWindow = true;
-                		G('back_transparent_bg').style.display = 'block';
-                		G('div_gift').style.display = 'block';
-                        Epg.Button.set('btn_get');
-                		clearInterval(timeAutoPlay);
-                        if(libUrl){
-                        	returnUrl = libUrl;
-                        }else if (nextUrl) {
-                        	returnUrl = nextUrl;
-                        } else {
-                            returnUrl = backUrl;
-                        }
-                		return;
-                	//}
-                    if(libUrl){
-                        window.location = libUrl;
-                    }else if (nextUrl) {
-                        window.location = nextUrl;
-                    } else {
-                        destory();
-                        window.location = backUrl;
-                    }
-                }
-            }
-
-            var timeAutoPlay;
-            timeAutoPlay = setInterval("autoPlay()", 1000);
             
             window.onload = function() {
                 Epg.btn.init('btn_exercise', buttons, true);
-                initPlay();
-            }
-
-            window.onUnload = function() {
-                destory();
             }
 
             Epg.key.set({KEY_PLAY_PAUSE:"playOrStop()"});
@@ -168,15 +118,14 @@
             Epg.key.set({KEY_FAST_FORWARD:"fastForward()"});
             Epg.key.set({KEY_FAST_REWIND:"fastRewind()"});
             Epg.key.set({KEY_DINGWEI:"showDingwei()"});
-            //Epg.Button.set({KEY_ENTER_TJ:"click()"});
             
             function fastForward1(){
             	if(G('div_back').style.display == 'block')return ;
-            	fastForward();
+            	//fastForward();
             }
             function fastRewind1(){
             	if(G('div_back').style.display == 'block')return ;
-            	fastRewind();
+            	//fastRewind();
             }
             function closeBackDiv(){
             	G('div_back').style.display = 'none';
@@ -185,19 +134,19 @@
             Epg.Button.defBack = function(){
             	if(haveWindow) return;
             	if(G('div_back').style.display == 'block'){
-            		resume();
+            		//resume();
             		G('btn_current').src="__HD__/images/play/btn_current_over.png";
             		buttons[1]['linkImage'] = '__HD__/images/play/btn_current.png';
             		buttons[1]['focusImage'] = '__HD__/images/play/btn_current_over.png';
                 	G('div_back').style.display = 'none';
                     Epg.Button.set('btn_exercise');
             	}else{
+                    //pause();
             		G('btn_current').src="__HD__/images/play/btn_current_stop_over.png";
             		buttons[1]['linkImage'] = '__HD__/images/play/btn_current_stop.png';
             		buttons[1]['focusImage'] = '__HD__/images/play/btn_current_stop_over.png';         		
             		G('div_back').style.display = 'block';
                     Epg.Button.set('btn_see');
-                    pause();
             	}
             }
             
@@ -208,14 +157,14 @@
         			if((document.getElementById("dingweitime").value != '')){
         				var dingweitime = document.getElementById("dingweitime").value;
         				if(parseInt(dingweitime*60) <= alltime){
-        					playByTime(parseInt(dingweitime*60));
+        					//playByTime(parseInt(dingweitime*60));
         				}
         			}
             	}else{
             		var url = G(Epg.btn.current.id).title;
             		if(url==''||url==null){
                 		if(playStat=='play'){
-                        	pause();
+                        	//pause();
                 			if(timer!=''){
                 				clearTimeout(timer);
                 			}
@@ -223,7 +172,7 @@
                 			buttons[1]['linkImage'] = '__HD__/images/play/btn_current_stop.png';
                 			buttons[1]['focusImage'] = '__HD__/images/play/btn_current_stop_over.png';
                 		}else{
-                			resume();
+                			//resume();
                 			if(timer!=''){
                 				clearTimeout(timer);
                 			}
@@ -242,7 +191,7 @@
             	if(G('div_back').style.display == 'block')return ;
         		showMenu(true);
             	if(playStat=='play'){
-                    pause();
+                    //pause();
             		if(timer!=''){
             			clearTimeout(timer);
             		}
@@ -251,7 +200,7 @@
             		buttons[1]['linkImage'] = '__HD__/images/play/btn_current_stop.png';
             		buttons[1]['focusImage'] = '__HD__/images/play/btn_current_stop_over.png';
             	}else{
-            		resume();
+            		//resume();
             		if(timer!=''){
             			clearTimeout(timer);
             		}
@@ -274,11 +223,11 @@
             	//alltime = getTotalTime();
             	alltime = 20;
             	document.getElementById("showAllTime").innerHTML = formatTime(alltime);
-            	curtime = getCurrentTime();
-            	if((curtime >= alltime) && (curtime != 0) && (alltime != 0)){
-            		destoryMP();
-            	    window.location =  next_url;
-            	}
+            	//curtime = getCurrentTime();
+            	//if((curtime >= alltime) && (curtime != 0) && (alltime != 0)){
+            		//destoryMP();
+            	//    window.location =  next_url;
+            	//}
             	document.getElementById("showCurTime").innerHTML = formatTime(curtime);
             	var fudu = width/alltime;
             	document.getElementById("dingweiimg").style.width = parseInt(curtime*fudu)+"px";
@@ -311,16 +260,9 @@
             	 window.location = "{:U('Resource/getAndJump')}?awardId="+award['id']+"&returnUrl="+returnUrl;
             }
             
-            /**
-            document.onkeypress = function(keyEvent){
-            	keyEvent = keyEvent ? keyEvent : window.event;
-            	var keyval = keyEvent.which ? keyEvent.which : keyEvent.keyCode;
-            	G('ppp').innerHTML = proCurTime+'U'+hidetime+'U'+progress;
-            	
-            }**/
         </script>    
     </head>
-    <body onUnload="javascript:destory()" onLoad="javascript:initPlay()">
+    <body>
         <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
         <!-- 页面左侧 -->
         <div id="div_control">
@@ -342,9 +284,9 @@
 		
         <!-- 练习-->
         <if condition="$section['libId'] neq ''">
-        	<div id="div_top" title="{$playData[libUrl]}">
-                <div id="div_btn_exercise" style="position:absolute;width:138px;height:44px;left:142px;top:2px;">
-                    <img id="btn_exercise" title="{:U('Library/detail?sectionId='.$section['id'].'&topicId='.$section['topicId'])}" src="__HD__/images/play/btn_exercise.png" width="138" height="44">
+        	<div id="div_top">
+                <div id="div_btn_exercise" style="position:absolute;width:137px;height:42px;left:141px;top:3px;">
+                    <img id="btn_exercise" title="{:U('Library/detail?sectionId='.$section['id'].'&topicId='.$section['topicId'])}" src="__HD__/images/play/btn_exercise.png" width="137" height="42">
                 </div>
         	</div>
         </if>

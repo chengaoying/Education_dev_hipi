@@ -38,6 +38,13 @@ var KEY_BACK_TJ      = 640;   //天津广电返回键
 var KEY_PLAY_PAUSE_TJ = 0x0F18;
 var KEY_DINGWEI = 271;
 
+//新疆广电
+var KEY_LEFT_XJ		 	= 3;   // 左 
+var	KEY_UP_XJ			= 1;   // 上
+var KEY_RIGHT_XJ 		= 4;	// 右
+var	KEY_DOWN_XJ 		= 2;	// 下
+var KEY_ENTER_XJ 		 = 13; 	// 确定
+
 // PC
 var KEY_W = 119;
 var KEY_S = 115;
@@ -141,6 +148,11 @@ Epg.Button = Epg.btn =
 				KEY_D:'Epg.Button.move("right")',		//D
 				KEY_W:'Epg.Button.move("up")',			//W
 				KEY_S:'Epg.Button.move("down")',		//S
+				KEY_LEFT_XJ:'Epg.Button.move("left")',		//左键
+				KEY_RIGHT_XJ:'Epg.Button.move("right")',	//右键
+				KEY_UP_XJ:'Epg.Button.move("up")',			//上键
+				KEY_DOWN_XJ:'Epg.Button.move("down")',		//下键
+				KEY_ENTER_XJ:'Epg.Button.click()',			//确定键
 			});
 		}
 		
@@ -684,7 +696,7 @@ Epg.popup=function(info,second,type)
 	var popupId = '';
 	if(type == 1){
 		popupId = 'popup_1';
-		var width = info.length * 20;
+		var width = info.length * 30;
 		var left = 640 - width/2;
 		G(popupId).style.width = width + "px";
 		G(popupId).style.left = left + "px";
@@ -742,18 +754,6 @@ Epg.page=function(url,idx,pageCount)
  */
 Epg.jump = function(href,f)
 {
-	if(f === undefined && Epg.btn.current)
-		f = Epg.btn.current.id;
-	
-	//处理焦点参数重复的问题：
-	if(href.indexOf('focus=') != -1){
-		href = href.substr(0,href.indexOf('focus=')-1);
-	}
-	if(href.indexOf('?') != -1){
-		href = href + '&focus=' + f;
-	}else{
-		href = href + '?focus=' + f;
-	}
 	window.location.href = href;
 };
 
@@ -766,14 +766,63 @@ Epg.trim = function(str)
 		return str.replace(/^\s*(.*?)\s*$/g,'$1');
 };
 
+/**
+ * 滚动字幕方法
+ * add 20150122
+ */
+Epg.marquee =
+{
+	/**
+	 * 将div里面的某段静态文字变成滚动字幕，add 20150122
+	 * @param id div的ID
+	 * @param max_length 最长的文字个数，这里忽略英文、数字和中文之间的差别，统一按个数来算
+	 * @param amount 时间
+	 * @param delay 延时
+	 * @param dir 方向，默认left
+	 * @param behavior 滚动方式，alternate为左右来回滚动，scroll为循环滚动
+	 */
+	start: function(max_length,id,amount,delay,dir,behavior)
+	{
+		max_length = max_length || 16;
+		id = id || Epg.Button.current.id;
+		amount = amount || 2;
+		delay = delay || 50;
+		dir = dir || 'left';
+		behavior = behavior || 'alternate';
+		if(!this.rollId)
+		{
+			var html = Epg.trim(G(id).innerHTML);
+			if(max_length!==undefined&&html.length>max_length)
+			{
+				this.rollId = id;
+				this.innerHTML = html;
+				G(id).innerHTML = '<marquee id="'+id+'_marquee'+'" behavior="'+behavior+'" direction="'+dir+'" scrollamount="'+amount+'" scrolldelay="'+delay+'">'+html+'</marquee>';
+			}
+		}
+	},
+	/**
+	 * 停止滚动字幕
+	 */
+	stop: function()
+	{
+		if(this.rollId)
+		{
+			G(this.rollId).innerHTML = this.innerHTML;
+			this.rollId = undefined;
+		}
+	}
+};
+
+
 /*用于调试
  * @param info string 要输出的信息
  */
-trace = function(info)
+Epg.trace = function(info)
 {
-	window.location.href = "/Debug/Index/test";
+	window.location.href = "/Debug/Index/index?info="+info;
 	return;
 }
+
 /** 事件处理 */
 var event_handler = function(e)
 {
@@ -795,8 +844,8 @@ var event_handler = function(e)
 };
 
 //按键处理
-//document.onkeyup = event_handler;
-document.onkeypress = event_handler;
+document.onkeypress = document.onkeyup = event_handler;
+//document.onkeypress = event_handler;
 
 //增加别名
 window.EPG = window.epg = Epg;

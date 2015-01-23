@@ -56,6 +56,8 @@
 			obj.left = (i>1) ? 'option_'+(i-1) : '' ; 
 			obj.down = (i+colnum<=buttons.length-4) ? 'option_'+(i+colnum) : '';
 			obj.up = (i-colnum>0) ? 'option_'+(i-colnum) : '' ; 
+			obj.focusHandler='focusHandler()';
+			obj.blurHandler='blurHandler()';
 			
 			if(i%colnum==0&&i<=8) obj.right = 'optionRecmd_1';
 			if(i%colnum==0&&i>8) obj.right = 'optionRecmd_2';
@@ -92,15 +94,18 @@
 		$top = 160 + (ceil($i/2)-1)*60;
 	</php>
 	
-	<div id="div_option_{$i}" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
+	<div id="option_{$i}" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
 		<img id="option_{$i}" title="{:U('Resource/play?sectionId='.$data['sectionId'])}" src="" width="370" height="60">
 	</div>
 	<div id="div_option_{$i}_focus" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
 		<img id="option_{$i}_focus" title="" src="" width="370" height="60">
 	</div>
 	<!-- 文字 -->
-	<div style="position:absolute;width:330px;height:30px;left:{$left+20}px;top:{$top+10}px;line-height:30px;text-align:center;">
+	<!--<div style="position:absolute;width:330px;height:30px;left:{$left+20}px;top:{$top+10}px;line-height:30px;text-align:center;">
 		<span >{$data['title']}</span>
+	</div> -->
+	<div id="option_{$i}_text" style="position:absolute;width:350px;height:37px;left:{$left+10}px;top:{$top+10}px;line-height:37px;text-align:left;">
+		{$data['title']}
 	</div>
 </volist>
 
@@ -117,3 +122,19 @@
 		<img id="optionRecmd_2_focus" src="__HD__/images/freeZone/kuang_big.png" width="220" height="220">
 	</div>
 
+<script type="text/javascript">
+
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	Epg.marquee.stop();
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	var id = Epg.btn.current.id + '_text';
+	Epg.marquee.start(16,id);
+}
+
+
+</script>

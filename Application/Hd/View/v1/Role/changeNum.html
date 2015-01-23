@@ -60,6 +60,7 @@ var initButtons = function(){
 		buttons[0].left = '';
 		buttons[0].linkImage = "__HD__/images/usercenter/changeNum/left_1.png";
 		buttons[0].focusImage = "__HD__/images/usercenter/changeNum/left_2.png";
+		buttons[0].focusHandler = 'focusHandler()';
 		buttons[0].selectBox = '';
 	}
 	if(!isRight)
@@ -71,6 +72,7 @@ var initButtons = function(){
 		buttons[countButton-1].right = '';
 		buttons[countButton-1].linkImage = "__HD__/images/usercenter/changeNum/right_1.png";
 		buttons[countButton-1].focusImage = "__HD__/images/usercenter/changeNum/right_2.png";
+		buttons[countButton-1].focusHandler = 'focusHandler()';
 		buttons[countButton-1].selectBox = '';
 	}
 }
@@ -130,13 +132,13 @@ window.onload=function()
 <!-- 左分页符号 -->
 <if condition="$leftDir">
 	<div id="div_option_0" style="position:absolute;left:50px;top:345px;text-align:center;">
-		<img id="option_0" src="__HD__/images/usercenter/changeNum/left_1.png" width="25" height="30">
+		<img id="option_0" title="{:U('Role/changeNum?page='.($page-1))}"  src="__HD__/images/usercenter/changeNum/left_1.png" width="25" height="30">
 	</div>
 </if>
 <!-- 右分页符号 -->
 <if condition="$rightDir">
 	<div id="div_option_{$count+1}" style="position:absolute;left:1200px;top:345px;text-align:center;">
-		<img id="option_{$count+1}" title="{:U(Role/changeNum)}" src="__HD__/images/usercenter/changeNum/right_1.png" width="25" height="30">
+		<img id="option_{$count+1}" title="{:U('Role/changeNum?page='.($page+1))}" src="__HD__/images/usercenter/changeNum/right_1.png" width="25" height="30">
 	</div>
 </if>
 
@@ -163,6 +165,9 @@ function select(option){
 	}
 }
 
+function focusHandler(){
+	setTimeout("Epg.btn.click()",50)
+}
 </script>
 
 

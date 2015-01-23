@@ -91,6 +91,7 @@ function pageDown()
 	Epg.page(url,{$page}+1,{$pageCount});
 }
 
+var defaultId = "{$focus}";
 
 window.onload=function()
 {
@@ -99,7 +100,6 @@ window.onload=function()
     //处理页面跳转时的焦点定位:
     //如果上一个页面是全部课程栏目首页(focus参数值包含class_)则定位在第一个龄段上
     //否则，按翻页的方式设置默认焦点
-    var defaultId = "{$focus}";
     if(defaultId.indexOf("class_") === 0){
     	defaultId = cur_stage;
     }else{

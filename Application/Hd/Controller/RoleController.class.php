@@ -38,6 +38,7 @@ class RoleController extends CommonController {
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){ //创建成功跳转至首页
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
+				D('Role','Logic')->changeRole($r['data']['id']);//改变当前角色
 				
 				$stage = $this->getStage($role['stageId']);//根据stageId得到段龄信息；
 				$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
@@ -68,17 +69,19 @@ class RoleController extends CommonController {
 		
 		$channel = $this->initUserCenterChannel();
 		$json_encode = json_encode($channel);
-	
 		if(empty($id))
 		{
 			$face = (empty($role['face'])) ? '0' : $role['face'];
 			$userInfo = $this->getUserInfo($role);
+			
+			$focus = $this->getFocus();//获得焦点位置
 			$this->assign(array(
 				'userInfo' => $userInfo,
 				'face' => $face,
 				'channels' => $channel,
 				'json_channel' => $json_encode,
 				'roleId' => $role['id'],
+				'focus' => $focus,
     		));
 		}
 		else 
@@ -111,7 +114,8 @@ class RoleController extends CommonController {
 			
 		/* 性别 */
 		$sex=( (empty($role['sex'])) ? ('去设置') :( ($role['sex']=='1') ? '男' : '女') );
-			
+		$nickName = empty($role['nickName']) ? '去设置' : $role['nickName'];	
+		$birthday = empty($role['birthday']) ? '去设置' : $role['birthday'];	
 		
 		$userInfo = array(
 				/*学号*/
@@ -122,7 +126,7 @@ class RoleController extends CommonController {
 				/*昵称*/
 				array(
 						'name' => 'nickname',
-						'content' => array($role['nickName']),
+						'content' => array($nickName),
 						'linkUrl' => '/Hd/Role/setNickname',
 				),
 				/*性别*/
@@ -134,7 +138,7 @@ class RoleController extends CommonController {
 				/*生日*/
 				array(
 						'name' => 'birthday',
-						'content' => array($role['birthday']),
+						'content' => array($birthday),
 						'linkUrl' => '/Hd/Role/setBirthday',
 				),
 				/*年级*/
@@ -150,10 +154,10 @@ class RoleController extends CommonController {
 						'linkUrl' => '/Hd/Role/setPhone',
 				),
 				/*版本*/
-				array(
+/* 				array(
 						'name' => 'version',
 						'content' => array(''),
-				),
+				), */
 				/*强项*/
 				array(
 						'name' => 'advantage',
@@ -174,6 +178,71 @@ class RoleController extends CommonController {
 				),
 		);
 		return $userInfo;
+	}
+	
+	/*获取上个页面操作名
+	 * 
+	 */
+	private function getFocus()
+	{
+		$baseInfo = 'ch_3';//在http_refferr中没有focuse参数时的默认焦点
+ 		$url = HTTP_REFERER;//上页面索引，根据focus值得到默认焦点
+ 		//得到开始坐标
+ 		$startPos = strpos($url,'focus');
+ 		if($startPos===false) return $baseInfo;
+ 		$startPos += 6;
+ 		//得到结束坐标
+ 		$endPos1 = strpos($url, '&', $startPos);
+ 		$endPos2 = strpos($url, '/', $startPos);
+ 		$endPos = $endPos1 || $endPos2;
+ 		$endPos = $endPos===false ? strlen($url) : $endPos;
+ 		//得到长度
+ 		$len = $endPos - $startPos;
+ 		//得到focus
+ 		$act = substr($url,$startPos,$len);
+ 		if($act === false) return $baseInfo;
+ 		return $act;
+/*		$startPos = strpos($url,'/Role');
+		if($startPos===false)
+		{
+			return $baseInfo;
+		}
+		$startPos += 6;
+		$endPos = strpos($url,'?');
+		$endPos = $endPos===false ? strlen($url) : $endPos;
+
+		$len = $endPos - $startPos;//操作长度
+		
+		$act = substr($url,$startPos,$len);
+		if($act === false) return $baseInfo;
+		
+		switch($act)
+		{
+			case 'setNickname':
+				return 'nickname';
+			case 'setSex':
+				return 'sex';
+			case 'setBirthday':
+				return 'birthday';
+			case 'changeStage':
+				return 'stage';
+			case 'setPhone':
+				return 'phone';
+			case 'setVersion':
+				return 'version';
+			case 'setMulchoice':
+				
+				break;
+			case 'setAdvantage':
+				return 'advantage';
+			case 'setDisadvantage':
+				return 'disadvantage';
+			case 'setInterests':
+				return 'interests';
+			default:
+				return $baseInfo;
+		}
+		 */
 	}
 	
 	/*
@@ -233,6 +302,9 @@ class RoleController extends CommonController {
 		$role = unserialize(Session('role'));
 		if(!IS_POST)
 		{
+			$nickName = $role['nickName'];
+			if(empty($nickName)) $nickName = '';
+			$this->assign(array('nickName' => $nickName));
 			$this->display();
 		}
 		else
@@ -261,6 +333,9 @@ class RoleController extends CommonController {
 		$user = unserialize(Session('user'));
 		if(!IS_POST)
 		{
+			$phone = $user['phone'];
+			if(empty($phone)) $phone = '';
+			$this->assign(array('phone' => $phone));
 			$this->display();
 		}
 		else
@@ -269,6 +344,8 @@ class RoleController extends CommonController {
 			$result = $this -> judgePhone($data['phone']);
 			if(!$result['status'])
 			{
+/* 				echo '</br>';
+				dump('结果为：'.$result['info']);exit; */
 				$this->addFloatMessage($result['info'],U('Role/setPhone'));;
 				return;
 			}
@@ -290,7 +367,7 @@ class RoleController extends CommonController {
 	
 	private function judgePhone($phone)
 	{
-		if(!empty($phone))
+		if(!empty($phone)||$phone==='0')
 		{
 			if(!is_numeric($phone))
 			{
@@ -452,8 +529,25 @@ class RoleController extends CommonController {
 		$role = unserialize(Session('role'));
 		$roleId = $role['id'];
 		
+		$stage = $this->getStage($this->role['stageId']);//根据stageId得到段龄信息；
+		$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
+		$stageAge = $grade['chKey'];
+		
 		if(!IS_POST)
 		{
+			$birthday = $role['birthday'];
+			$birthday_array = explode("-", $birthday);
+			for($i=0; $i<3; $i++)//处理生日为空时，确保数组长度也为3，且为0
+			{
+				if(empty($birthday_array[$i])) 
+				{
+					$birthday_array[$i] = '';
+				}
+			}
+			
+			$this->assign(array(
+				'birthday' => $birthday_array,
+			)); 
 			$this->display();
 		}
 		else
@@ -462,7 +556,7 @@ class RoleController extends CommonController {
 			$date = implode("-", $data);
 			if(strlen($date)>2)
 			{
-				$result = $this -> judgeDate($date);
+				$result = $this -> judgeDate($date,$stageAge);
 				if(!$result['status'])
 				{
 					$this->addFloatMessage($result['info'],U('Role/setBirthday'));
@@ -473,7 +567,6 @@ class RoleController extends CommonController {
 			{
 				$date = '';
 			}
-
 			$role['birthday'] = $date;
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){
@@ -482,7 +575,17 @@ class RoleController extends CommonController {
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'birthday', '设置角色birthday');
 				}
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
-				$this->addFloatMessage('修改生日成功',U('Role/userInfo'));
+				
+				//保存成功弹框
+				if($stageAge==='early' && !empty($role['birthday']))//早教跳转到推荐页
+				{
+					$this->addFloatMessage('修改生日成功',U('Index/recommend'));
+				}
+				else 
+				{
+					$this->addFloatMessage('修改生日成功',U('Role/userInfo'));
+				}
+				
 				//header('location:'.U('Role/userInfo'));
 			}else{
 				$this->addFloatMessage('昵称更新失败：'.$r['info'],U('Role/userInfo'));
@@ -490,7 +593,7 @@ class RoleController extends CommonController {
 		}
 	}
 	
-	private function judgeDate($birthday)
+	private function judgeDate($birthday, $stageAge)
 	{
 
 		if(!empty($birthday))
@@ -512,21 +615,16 @@ class RoleController extends CommonController {
 			
 			$stage = $this->getStage($this->role['stageId']);//根据stageId得到段龄信息；
 			$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
-			if($grade['chKey'] === 'early')
+			if($stageAge === 'early')
 			{
 				$monthAge = monthNum($birthday);
 				if($monthAge['status'])
 				{
 					if($monthAge['data']['monthNum'] > 36)
 					{
-						$this->addFloatMessage('你家小朋友不在该龄段</br>内哦，请返回选择其它龄段',U('Role/setBirthday'));
-					}
-					else
-					{
-						$this->addFloatMessage('修改生日成功',U('Index/recommend'));
+						return result_data(0, '你家小朋友不在该龄段</br>内哦，请返回选择其它龄段');
 					}
 				}
-				exit;
 			}
 		}
 		return result_data(1, '输入成功');
@@ -600,7 +698,7 @@ class RoleController extends CommonController {
 			}
 			
 			$left = ($page==0) ? 0 : 1;//可以向左移动则显示左号
-			$right = (($page+1)*3<count($roleList)) ? 1 : 0;
+			$right = (($page+1)*$pageSize<count($roleList)) ? 1 : 0;
 			
 			$this->assign(array(
 						'lists' => $list,
@@ -674,10 +772,21 @@ class RoleController extends CommonController {
 		$courseName = I('courseName','');
 		$courseImg = I('courseImg','');
 		$r = D('RoleCourse','Logic')->addCourse($this->role['id'],$courseId,$courseName,$courseImg);
+		
+		//处理焦点
+		$url = HTTP_REFERER; 
+		if(strpos($url, '?'))
+			$url .= '&focus=btn_plan';
+		else 
+			$url .= '?focus=btn_plan';
+		/* dump(strpos($url, '?'));
+		dump($url);
+		exit; */
+		
 		if($r['status']){
-			$this->addFloatMessage("加入学习计划成功！",HTTP_REFERER);
+			$this->addFloatMessage("加入学习计划成功！",$url);
 		}else{
-			$this->addFloatMessage($r['info'],HTTP_REFERER);
+			$this->addFloatMessage($r['info'],$url);
 		}
 	}
 	
@@ -717,13 +826,13 @@ class RoleController extends CommonController {
 				$imgs = explode($char, $v['imgUrl']);
 				$channel[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
 				$channel[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
-				//				$userCenter[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
+				$channel[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
 			}
 		}
 	
 		//把栏目key值初始为从0开始的递增的值，前端按钮调用统一
 		$channel = array_slice($channel,0,count($channel));
-		$channel = get_array_fieldkey($channel,array('id','name','linkImage','focusImage','linkUrl'));
+		$channel = get_array_fieldkey($channel,array('id','name','linkImage','focusImage','titleImage','linkUrl'));
 		return $channel;
 	}
 	

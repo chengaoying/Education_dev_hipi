@@ -7,10 +7,10 @@
 #bottom{
 	position: absolute;
 	display: block;
-	width: 351px;
-	height: 285px;
-	top: 225px;
-	left: 410px;
+	width: 380px;
+	height: 351px;
+	top: 190px;
+	left: 400px;
 	background-image: url(__HD__/images/usercenter/baseInfo/bottom_baseInfo.png);
 }
 </style>
@@ -18,20 +18,21 @@
 <script type="text/javascript">
 	var faceNum = {$face};
 	var channel = {$json_channel};
+	var focus = '{$focus}';
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'changeNum',down:'ch_2',right:'nickname'}, 
-	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_1',down:'ch_3',right:'nickname'}, 
-	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',up:'ch_2',right:'nickname'},
+	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',blurHandler:'blurHandler()',up:'changeNum',down:'ch_2',right:'nickname'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_1',down:'ch_3',right:'nickname'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_2',right:'nickname'},
 
-	{id:'nickname',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'selectFace',right:'version',down:'sex'},
+	{id:'nickname',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'selectFace',right:'phone',down:'sex'},
 	{id:'sex',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'advantage',up:'nickname',down:'birthday'},
 	{id:'birthday',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'disadvantage',up:'sex',down:'stage'},
 	{id:'stage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_3',right:'interests',up:'birthday',down:''},
 
-	{id:'phone',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'nickname',up:'ch_3',down:'version'},
+	{id:'phone',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'nickname',up:'ch_3',down:'advantage'},
 	{id:'version',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'nickname',up:'phone',down:'advantage'},
-	{id:'advantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'sex',up:'version',down:'disadvantage'},
+	{id:'advantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'sex',up:'phone',down:'disadvantage'},
 	{id:'disadvantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'birthday',right:'',up:'advantage',down:'interests'},
 	{id:'interests',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'stage',up:'disadvantage',down:''},
 
@@ -47,12 +48,20 @@
 			buttons[i].name = channel[i].name;
 			buttons[i].linkImage = channel[i].linkImage;
 			buttons[i].focusImage = channel[i].focusImage;
+			buttons[i].titleImage = channel[i].titleImage;
 		} 
 	}
+	
+	var filterFocus = function()
+	{
+		if(focus==='ch_3' || focus==='ch_2') focus = 'ch_1';
+	}
+	
 	window.onload = function() {
 		initButtons();
 		popup(2);
-		Epg.btn.init('ch_3', buttons, true);
+		filterFocus();
+		Epg.btn.init(focus, buttons, true);
 	};
 </script>
 
@@ -66,13 +75,14 @@
 <!-- 以下是导航栏 -->
 <volist name="channels" id="channel" key="i">
 	<php>
-     	$left = 120; $top = 430 + ($i-1)*60;
+     	$left = 0; $top = 340 + ($i-1)*70;
     </php>
     <div id="div_ch_{$i}" style="position:absolute;visibility:visible;left:{$left}px; top:{$top}px;">
 		<img id='ch_{$i}' title="{$channel['linkUrl']}"
-			src="{$channel['linkImage']}" width="170" height="50">
+			src="{$channel['linkImage']}" width="290" height="70">
 	</div>
 </volist>
+
 <!-- 选择头像  -->
 <div id="div_selectFace" style="position:absolute;width:130px;height:170px;left:90px;top:80px;text-align:center;">
 	<img id="selectFace" title="{:U('Role/selectFace')}" src="__HD__/images/usercenter/baseInfo/face_{$face}.png" width="130" height="170">
@@ -81,23 +91,23 @@
 	<img id="selectFace_focus" title="" src="" width="125" height="165">
 </div>
 <!-- 切换账号  -->
-<div id="div_changeNum" style="position:absolute;left:95px;top:322px;text-align:center;">
-	<img id="changeNum" title="{:U('Role/changeNum')}" src="__HD__/images/usercenter/leftNavigation/change_account.png" width="110" height="25">
+<div id="div_changeNum" style="position:absolute;left:95px;top:260px;text-align:center;">
+	<img id="changeNum" title="{:U('Role/changeNum')}" src="__HD__/images/usercenter/leftNavigation/change_account.png" width="120" height="35">
 </div>
 
 
 
 <!-- 学号  -->
-<div style="position:absolute;line-height:46px;width:156px;height:46px;left:480px;top:217px;text-align:center;border-style:none;color:black">
-	<span style="color:black;text-align:center;">{$roleId}</span>
+<div style="position:absolute;line-height:56px;width:196px;height:56px;left:460px;top:175px;text-align:center;border-style:none;color:black">
+	<span style="color:white;text-align:center;">{$roleId}</span>
 </div>
 <!-- 用户信息 -->
 <volist name="userInfo" id="info" key="i">
 	<php>
      	if($i > 4){
-          	$left = 780; $top = 213 + ($i-5)*65;
+          	$left = 800; $top = 255 + ($i-5)*80;
        	}else{
-           	$left = 480; $top = 282 + ($i-1)*65;
+           	$left = 480; $top = 255 + ($i-1)*80;
         }
     </php>
 	
@@ -106,27 +116,44 @@
 			if($info['name']=="advantage" || $info['name']=="disadvantage" || $info['name']=="interests"){
           		$bottom = 'kuang_short.png';
           		$bottom_over = 'kuang_short_over.png';
-          		$width = 76;
-          		$left_content = $left + (($j-1)%4)*80;
+          		$width = 96;
+          		$left_content = $left + (($j-1)%4)*100;
           		$top_content = $top;
        		}else{
            		$bottom = 'kuang_long.png';
            		$bottom_over = 'kuang_long_over.png';
-           		$width = 156;
+           		$width = 176;
            		$left_content = $left;
            		$top_content = $top; 
         	}
 		</php>
 		<div id="div_{$info['name']}" style="position:absolute;left:{$left_content}px;top:{$top_content}px;text-align:center;">
-			<img id="{$info['name']}" title="{$info['linkUrl']}" src="__HD__/images/usercenter/baseInfo/{$bottom}" width={$width} height="46">
+			<img id="{$info['name']}" title="{$info['linkUrl']}" src="__HD__/images/usercenter/baseInfo/{$bottom}" width={$width} height="56">
 		</div>
 		<div id="div_{$info['name']}_focus" style="position:absolute;visibility:hidden;left:{$left_content}px;top:{$top_content}px;text-align:center;">
-			<img id="{$info['name']}_focus" src="__HD__/images/usercenter/baseInfo/{$bottom_over}" width={$width} height="46">
+			<img id="{$info['name']}_focus" src="__HD__/images/usercenter/baseInfo/{$bottom_over}" width={$width} height="56">
 		</div>
-		<div id="div_{$info['name']}_content" style="position:absolute;line-height:46px;width:{$width-5}px;height:46px;left:{$left_content}px;top:{$top_content}px;text-align:center;border-style:none;color:black">
+		<div id="div_{$info['name']}_content" style="position:absolute;line-height:56px;width:{$width-5}px;height:56px;left:{$left_content}px;top:{$top_content}px;text-align:center;border-style:none;color:black">
 			<span style="color:black;text-align:center;">{$content}</span>
 		</div>
 	</volist>
 	
 </volist>
 
+<script type="text/javascript">
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "ch_2" && Epg.btn.current.id != "ch_3"){
+		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != "ch_1"){
+		setTimeout("Epg.btn.click()",50);
+	}
+}
+
+</script>

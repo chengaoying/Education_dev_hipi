@@ -84,13 +84,13 @@ class GloryController extends CommonController {
 				$imgs = explode($char, $v['imgUrl']);
 				$channel[$k]['linkImage']  = get_upfile_url(trim($imgs[0]));
 				$channel[$k]['focusImage'] = get_upfile_url(trim($imgs[1]));
-				//				$userCenter[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
+				$channel[$k]['titleImage'] = get_upfile_url(trim($imgs[2]));
 			}
 		}
 	
 		//把栏目key值初始为从0开始的递增的值，前端按钮调用统一
 		$channel = array_slice($channel,0,count($channel));
-		$channel = get_array_fieldkey($channel,array('id','name','linkImage','focusImage','linkUrl'));
+		$channel = get_array_fieldkey($channel,array('id','name','linkImage','focusImage','titleImage','linkUrl'));
 		return $channel;
 	}
 	

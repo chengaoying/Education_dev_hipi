@@ -249,6 +249,7 @@ class IndexController extends CommonController {
 			'page'		    => $page,
 			'pageCount'	    => $pageCount,
 			'focus'			=> I('focus',''),	
+			'preFocus'		=> I('preFocus',''),	
 		));
 		$this->display();
 	}

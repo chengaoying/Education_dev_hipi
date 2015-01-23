@@ -15,11 +15,13 @@ class LibraryController extends CommonController {
      * 单一题目
      */
 	public function detailAct() {
+    	get_back_url('Index/recommend',1);
         $topicId = I('topicId',0);
         $sectionId = I('sectionId',0);
         if(!$topicId || !$sectionId){
             $this->showMessage('参数错误');
         }
+        $section = D('Section', 'Logic')->querySectionById($sectionId);
         $roleId = $this->role['id'];
         $answerList = D('Library','Logic')->queryLib($sectionId);
         if($answerList==null){
@@ -41,6 +43,7 @@ class LibraryController extends CommonController {
             'roleId' => $roleId,
             'topicId' => $topicId,
             'sectionId' => $sectionId,
+        	'sectionName'=>$section['name'],
             'answerList' => json_encode($answerList['content']),
         ));
         $this->display();

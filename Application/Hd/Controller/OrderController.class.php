@@ -29,10 +29,17 @@ class OrderController extends CommonController {
 			$chargeMode = array_slice($chargeMode, 0, count($chargeMode));
 		}
 		
+		//处理焦点
+		$url = HTTP_REFERER;
+		if(strpos($url, '?'))
+			$url .= '&focus=btn_order';
+		else 
+			$url .= '?focus=btn_order';
+		
 		$this->assign(array(
 			'course'     =>	$course,
 			'chargeMode' => $chargeMode,	
-			'backUrl'    => HTTP_REFERER,	
+			'backUrl'    => $url,	
 		));
 		$this->display();
 	}
