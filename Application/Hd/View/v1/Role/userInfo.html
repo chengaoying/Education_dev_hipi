@@ -59,7 +59,7 @@
 	
 	window.onload = function() {
 		initButtons();
-		popup(2);
+		popup();
 		filterFocus();
 		Epg.btn.init(focus, buttons, true);
 	};
@@ -133,7 +133,7 @@
 		<div id="div_{$info['name']}_focus" style="position:absolute;visibility:hidden;left:{$left_content}px;top:{$top_content}px;text-align:center;">
 			<img id="{$info['name']}_focus" src="__HD__/images/usercenter/baseInfo/{$bottom_over}" width={$width} height="56">
 		</div>
-		<div id="div_{$info['name']}_content" style="position:absolute;line-height:56px;width:{$width-5}px;height:56px;left:{$left_content}px;top:{$top_content}px;text-align:center;border-style:none;color:black">
+		<div id="div_{$info['name']}_content" style="position:absolute;line-height:56px;width:{$width-5}px;height:56px;left:{$left_content}px;top:{$top_content}px;text-align:center;">
 			<span style="color:black;text-align:center;">{$content}</span>
 		</div>
 	</volist>

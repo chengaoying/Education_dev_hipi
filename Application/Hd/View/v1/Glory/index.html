@@ -42,9 +42,9 @@
 	var channel = {$json_channel};
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'changeNum',down:'ch_2',right:'reward'}, 
-	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',blurHandler:'blurHandler()',up:'ch_1',down:'ch_3',right:'reward'}, 
-	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_2',right:'reward'},
+	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'changeNum',down:'ch_2',right:''}, 
+	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',blurHandler:'blurHandler()',up:'ch_1',down:'ch_3',right:''}, 
+	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_2',right:''},
 
 	{id:'selectFace',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'__HD__/images/usercenter/leftNavigation/title_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
 	{id:'changeNum',name:'',action:'',linkImage:'__HD__/images/usercenter/leftNavigation/change_account.png',focusImage:'__HD__/images/usercenter/leftNavigation/change_account_over.png',selectBox:'',right:'sex',up:'selectFace',down:'ch_1'},
@@ -124,12 +124,17 @@
 </div>
 
 <!-- 积分总数 -->
-<div style="position: absolute; left:485px; top:170px;">
+<div style="position: absolute; left:500px; top:160px;">
 	<span style="font-size:37px">{$totalCredit}</span>
 </div>
 <!-- 今日获得积分 -->
-<div style="position:absolute;left:598px;top:181px;width:160px;line-height:27px;height:27px;text-align:center;border-style:none;color:white"">
+<div style="position:absolute;left:598px;top:170px;width:160px;line-height:27px;height:27px;text-align:center;border-style:none;color:white"">
 	<span>今日获得{$todayCredit}枚</span>
+</div>
+
+<!-- 当前等级 -->
+<div style="position:absolute;left:415px;top:250px;text-align:center;">
+		<img title="" src="__HD__/images/usercenter/glory/class/LV{$gloryClass}.png" width="61" height="32">
 </div>
 
 <script type="text/javascript">

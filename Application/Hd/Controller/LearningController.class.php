@@ -28,7 +28,8 @@ class LearningController extends CommonController {
 		
 		$dataGet = I('Get.');
 		$arrange = $dataGet['arrange'];
-		$dateArrange = ($arrange == 'month') ? $this->getMonthDate() : null;
+		$dateArrange = $this->getDateArray();//得到要查询的时间范围
+		$dateArrange = ($arrange == 'month') ? $dateArrange : null;
 		//查出t_role_browse表中中包含能力标签的项 1-视频
 		$BrowseRecord = D('BrowseRecord','Logic') -> queryBrowseRecordListByKeys($role['id'], 1, null, $dateArrange);
 		$finish = $this -> getCount($BrowseRecord['rows'],'keys');
@@ -47,6 +48,7 @@ class LearningController extends CommonController {
 		}
 		
 		$focus = $dataGet['focus'];
+		
 		$this->assign(array(
 					'curProgress' => $length,
 					'face' => $role['face'],
@@ -140,29 +142,50 @@ class LearningController extends CommonController {
 		date_default_timezone_set('Etc/GMT-8');     //这里设置了时区
 		
 		$startDate = date('Y-m').'-01 00:00:00';
-/* 		$birthdayStamp = strtotime($this->role['birthday']);
-		if($birthdayStamp === false)
-		{
-			$this->showMessage('生日设置有误：'.$this->role['birthday']);
-		}
-		
-		echo NOW_TIME;
-		dump(date('Y-m-d H:i:s',strtotime('+1 months', strtotime('2015-01-32 17:35:12'))));exit;
-		if(strtotime(date('Y-m',$birthdayStamp)) == strtotime(date('Y-m')))
-		{
-			dump(strtotime(date('Y-m')));exit;
-		}
-		echo 11;exit;
-		dump(date('Y-m-d H:i:s',strtotime('+1 days', NOW_TIME)));exit;
-		dump('11');exit;
-		$startM = date('m')-1;
-		if($startM == 0)
-		{
-			$startM = 12;
-			$startY = date('Y')-1;
-		} */
 		$endDate = date('Y-m-d H:i:s');//get now time
 		return array($startDate, $endDate);
+	}
+	
+	/*
+	 * 得到月龄时间范围
+	 */
+	private function getDateArray()
+	{
+		date_default_timezone_set('Etc/GMT-8');     //这里设置了时区
+		
+		$birthday = $this->role['birthday'];
+		if(empty($birthday) || strtotime($birthday)===false)//没有生日或者生日输入错误则获得本月1日到当前时间范围
+		{
+			return getMonthDate();
+		}
+		else 
+		{
+			$day_birthday = date('d', strtotime($birthday));
+			$day_now = date('d');
+			if($day_now >= $day_birthday)
+			{
+				$startDate = date('Y-m-').$day_birthday.' 00:00:00';
+				$endDate = date('Y-m-d H:i:s');//now time
+				return array($startDate, $endDate);
+			}
+			else 
+			{
+				$lastmonthEndDays = date('t', strtotime(date('Y-m-01').' -1 month'));
+				if($day_birthday <= $lastmonthEndDays)
+				{
+					$startDate = date('Y-m-',strtotime(date('Y-m-01')." -1 month")).$day_birthday.' 00:00:00';
+					$endDate = date('Y-m-d H:i:s');//now time
+					return array($startDate, $endDate);
+				}
+				else 
+				{
+					$startDate = date('Y-m-01 00:00:00');
+					$endDate = date('Y-m-d H:i:s');//now time
+					return array($startDate, $endDate);
+				}
+			}
+			
+		}
 	}
 	
 	/*根据用户中心生日得到月龄

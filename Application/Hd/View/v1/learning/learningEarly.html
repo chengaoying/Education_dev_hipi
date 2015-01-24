@@ -46,6 +46,8 @@
 	}
 	window.onload = function() {
 		initButtons();
+		
+		G('ch_3').src = buttons[2].titleImage;
 		Epg.btn.init(focus, buttons, true);
 	};
 </script>
@@ -54,7 +56,7 @@
 <!-- 静态图片 -->
 <div id="bottom"></div>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1)}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
 
 
 <!-- 以下是导航栏 -->
@@ -87,7 +89,7 @@
 
 <!-- 选择按钮"本月 总体" -->
 <div id="div_option_1" style="position:absolute; left:400px; top: 250px;">
-	<img id='option_1' title="/Hd/Learning/learningEarly?arrange=month"
+	<img id='option_1' title="/Hd/Learning/learningEarly?arrange=month&focus=option_1"
 		src="__HD__/images/usercenter/learningEarly/month.png" width="140" height="40">
 </div>
 <!-- 文字 -->
@@ -95,7 +97,7 @@
 	<span style="">{$monthAge}</span>
 </div>
 <div id="div_option_2" style="position: absolute; left:400px; top:300px;">
-	<img id='option_2' title="/Hd/Learning/learningEarly?arrange=all"
+	<img id='option_2' title="/Hd/Learning/learningEarly?arrange=all&focus=option_2"
 		src="__HD__/images/usercenter/learningEarly/all.png" width="140" height="40">
 </div>
 

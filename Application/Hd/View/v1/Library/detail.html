@@ -32,8 +32,7 @@
          top:0px;
          left:0px;
          visibility:hidden;
-    	 z-index:999;
-         background-image: url(__HD__/images/common/popup/bg.png);            	
+    	 z-index:999;    	
     }    
     
     /*退出弹框*/
@@ -64,14 +63,14 @@
         position:absolute;
         display: block;
         width:100px;
-        height:40px;
-        line-height: 40px;
+        height:44px;
+        line-height: 44px;
         top:225px;
         left:720px;
         color:#f65074;
         text-align: center;
         font-weight: 700;
-        font-size: 34px;
+        font-size: 40px;
         z-index: 1000;
     }
 
@@ -80,14 +79,14 @@
         position:absolute;
         display: block;
         width:50px;
-        height:20px;
-        line-height: 20px;
-        top:320px;
+        height:28px;
+        line-height: 28px;
+        top:316px;
         left:485px;
         color:#f65074;
         text-align: center;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 28px;
         z-index: 1000;
     }
     /*答错多少题*/
@@ -95,14 +94,14 @@
         position:absolute;
         display: block;
         width:50px;
-        height:20px;
-        line-height: 20px;
-        top:320px;
+        height:28px;
+        line-height: 28px;
+        top:316px;
         left:635px;
         color:#f65074;
         text-align: center;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 28px;
         z-index: 1000;
     }
     /*多少小红花*/
@@ -110,14 +109,14 @@
         position:absolute;
         display: block;
         width:50px;
-        height:20px;
-        line-height: 20px;
-        top:320px;
+        height:28px;
+        line-height: 28px;
+        top:316px;
         left:805px;
         color:#f65074;
         text-align: center;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 28px;
         z-index: 1000;
     }
 </style>
@@ -153,7 +152,8 @@
             	
             ];
 
-    var postdata = [];
+    //var postdata = [];
+    var postdata1 = "";
     var roleid = {$roleId}; //知识点ID
     var topicid = {$topicId}; //知识点ID
     var sectionid = {$sectionId}; //课时ID
@@ -202,8 +202,16 @@
                 G('div_error2_' + i).style.display = "block";
             }
         }
-        data = {'roleId': roleid, 'topicId': topicid, 'sectionId': sectionid, 'itemId': itemid, 'correct': correct, 'wrong': wrong, 'status': status};
-        postdata.push(data);
+        //data = {'roleId': roleid, 'topicId': topicid, 'sectionId': sectionid, 'itemId': itemid, 'correct': correct, 'wrong': wrong, 'status': status};
+        //postdata.push(data);
+        var temp =itemid;
+        postdata1 +="itemId|"+temp;
+        temp = correct;
+        postdata1 +="|correct|"+temp;
+        temp = wrong;
+        postdata1 +="|wrong|"+temp;
+        temp = status;
+        postdata1 +="|status|"+temp+"@";
         setTimeout("nextAnswer()", 1500);
     }
     //item是第几道题目
@@ -332,7 +340,8 @@ function disExit(){
 
 //返回
     function backlearn() {
-        var jsonText = JSON.stringify(postdata);
+        //var jsonText = JSON.stringify(postdata);
+        var jsonText = postdata1.substr(0,postdata1.length-1);
         G('post_data').value = jsonText;
         G('count_score').value = countscore;
         G('red_flower').value = rednum;
@@ -349,7 +358,7 @@ function disExit(){
     }
     
     function exitPrePage(){
-    	window.location =  "{:get_back_url('Index/recommend',1)}";
+    	window.location =  "{:get_back_url('Index/recommend',1,0,1)}";
     }
 </script>
 

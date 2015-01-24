@@ -131,15 +131,24 @@ class LibraryController extends CommonController {
     public function saveLibAct() {
         if(IS_POST){
             $postData = I('postdata','');
-            $postData = html_entity_decode($postData);
+            //$postData = html_entity_decode($postData);
             $topicId = I('topicid',0);
             $sectionId = I('sectionid',0);
             $countScore = I('countscore',0);
             $redFlower = I('redflower',0);
+            //$libData = json_decode($postData, true);
             
-            //echo $countscore;
-            //echo $redgrown;
-            $libData = json_decode($postData, true);
+            $temp = explode('@',$postData);
+            foreach ($temp as $key=>$value){
+            	$temp1 = explode('|',$value);
+            	$libData[$key][$temp1[0]] = $temp1[1];
+            	$libData[$key][$temp1[2]] = $temp1[3];
+            	$libData[$key][$temp1[4]] = $temp1[5];
+            	$libData[$key][$temp1[6]] = $temp1[7];
+            	$libData[$key]['roleId'] = $this->role['id'];
+            	$libData[$key]['topicId'] = $topicId;
+            	$libData[$key]['sectionId'] = $sectionId;
+            }
             $data['topicId'] = $topicId;
             $data['sectionId'] = $sectionId;
             $data['score'] = $countScore;

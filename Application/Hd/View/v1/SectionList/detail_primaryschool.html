@@ -5,8 +5,8 @@ body{ background-image:url(__HD__/images/sectionList/primaryschool/bg.jpg); }
 
 .page_prev{
 	position:absolute;
-	width:20px;
-	height:26px;
+	width:25px;
+	height:32px;
 	left:1077px;
 	top:275px;
 }
@@ -14,14 +14,15 @@ body{ background-image:url(__HD__/images/sectionList/primaryschool/bg.jpg); }
 	position:absolute;
 	width:80px;
 	height:30px;
+	line-height:30px;
 	left:1097px;
 	top:275px;
 	text-align:center;
 }
 .page_next{
 	position:absolute;
-	width:20px;
-	height:26px;
+	width:25px;
+	height:32px;
 	left:1177px;
 	top:275px;
 }
@@ -64,7 +65,6 @@ var url = "{:U('SectionList/index').'?courseId='.$course['id'].'&preFocus='.$pre
 function pageUp()
 {
 	url += "&focus="+Epg.btn.current.id+"&page=";
-	//alert(url);
 	Epg.page(url,{$page}-1,{$pageCount});
 }
 
@@ -72,12 +72,10 @@ function pageUp()
 function pageDown()
 {
 	url += "&focus="+Epg.btn.current.id+"&page=";
-	//alert(url);
 	Epg.page(url,{$page}+1,{$pageCount});
 }
 
 var defaultId = "{$focus}";
-var preFocus = "{$preFocus}";
 
 window.onload=function()
 {
@@ -140,8 +138,8 @@ window.onload=function()
 </div>
 
 <!-- 课程简介 -->
-<div style="position:absolute;width:740px;height:100px;left:425px;top:120px;text-align:left;line-height:30px;">
-	{$course['description']}
+<div style="position:absolute;width:740px;height:130px;left:425px;top:120px;text-align:left;line-height:30px;">
+	{:msubstr($course['description'],0,80)}
 </div>
 
 <!-- 上一页/下一页 -->
@@ -173,12 +171,12 @@ window.onload=function()
 
 //失去时焦点处理（目前主要用于栏目按钮）
 function blurHandler(){
-	Epg.marquee.stop();
+	//Epg.marquee.stop();
 }
 
 //获取焦点时处理（目前主要用于栏目按钮）
 function focusHandler(){
-	Epg.marquee.start();
+	//Epg.marquee.start();
 }
 
 function addPlan(){

@@ -208,6 +208,9 @@ class IndexController extends CommonController {
 		$json_class = get_array_fieldkey(array_slice($class,0,count($class)),array('id','name','chKey','imgUrl','linkUrl'));
 		$json_class = json_encode($json_class);
 		
+		//焦点缓存清空
+		Session('preFocus',null);
+		
 		$this->assign(array(
 			'json_channel'	=> $json_channel,
 			'topChannel' 	=> $this->topChannel,

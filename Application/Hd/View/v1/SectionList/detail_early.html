@@ -82,6 +82,7 @@ var topics = {$json_topic};
 
 //当前选中的知识点id
 var cur_topic = "topic_1";
+var cur_topic_title_img = '';
 
 /* 初始化按钮 属性   */
 var initButtons = function(){
@@ -94,20 +95,35 @@ var initButtons = function(){
 		
 		if("{$topicId}" == topics[i].id){
 			cur_topic = buttons[i+2].id;
+			cur_topic_title_img = buttons[i+2].focusImage;
 		}
 	}
 	
 }
 
+var defaultId = "{$preFocus}";
+
 window.onload=function()
 {
     initButtons();
     popup();
-	Epg.btn.init([cur_topic,'section_1'],buttons,true);	
+    
+  	//处理页面跳转时的焦点定位:
+	defaultId = Epg.isEmpty(defaultId) ? "{$focus}" : defaultId;
+	if(Epg.isEmpty(defaultId)){
+    	defaultId = cur_topic;
+    }else{
+    	if(Epg.isEmpty(G(defaultId))) 
+    		defaultId = cur_topic;
+    	if(!Epg.isEmpty(G(cur_topic))) 
+    		G(cur_topic).src = cur_topic_title_img;
+    }
+	
+	Epg.btn.init([defaultId,'section_1'],buttons,true);	
 };
 </script>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/index','/Resource/play'))}" ></a>
+<a id="a_back" style="display:none;" href="{$backUrl}" ></a>
 
 <!-- 栏目LOGO -->
 <div id="div_btn_logo" style="position:absolute;width:225px;height:91px;top:45px;left:85px;">
@@ -121,14 +137,14 @@ window.onload=function()
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:85px;left:1100px;">
-	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId)}" src="__HD__/images/common/order/btn_order.png">
+	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId.'&preFocus='.$preFocus)}" src="__HD__/images/common/order/btn_order.png">
 </div>
 
 <!-- 知识点列表 -->
 <volist name="topics" id="t" key="i">
     <php>$top = 180+($i-1)*65;</php>
     <div id="div_topic_{$i}" style="position: absolute;height:54px;left:345px;top:{$top}px;">
-        <img id="topic_{$i}" title="{:U('SectionList/index?courseId='.$courseId.'&topicId='.$t['id'].'&chId='.$chId)}" src="{$t['linkImage']}" height="54" />
+        <img id="topic_{$i}" title="{:U('SectionList/index?courseId='.$courseId.'&topicId='.$t['id'].'&chId='.$chId.'&preFocus='.$preFocus)}" src="{$t['linkImage']}" height="54" />
    </div>
 </volist>
 
@@ -143,7 +159,7 @@ window.onload=function()
         }
     </php>
     <div id="div_section_{$i}" style="position:absolute;width:220px;height:190px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="section_{$i}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId)}" src="{:get_upfile_url($section['imgUrl'])}" width="210" height="180">
+        <img id="section_{$i}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId.'&preFocus=section_'.$i)}" src="{:get_upfile_url($section['imgUrl'])}" width="210" height="180">
     </div>
     <div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:200px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
         <img id="section_{$i}_focus" src="" width="220" height="190">

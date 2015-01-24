@@ -66,6 +66,8 @@ class SectionListController extends CommonController {
 			'courseId'	 =>	$course['id'],
 			'topicId'	 => $topicId,		
 			'focus'		 => I('focus',''),	
+			'preFocus'	 => I('preFocus',''),
+			'backUrl'	 => $this->getBackUrl(),
 		));
 		$this->display('detail_early');
 	}
@@ -132,6 +134,8 @@ class SectionListController extends CommonController {
 			'nextTopicId'	=> $nextTopicId,
 			'chId'			=> $chId,	
 			'focus'		    => I('focus',''),
+			'preFocus'		=> I('preFocus',''),
+			'backUrl'		=> $this->getBackUrl(),
 		));
 		if($week==6||$week==0){
 			$template = 'detail_preschool_weekend';
@@ -161,12 +165,6 @@ class SectionListController extends CommonController {
 		$pageCount = get_page_count($sections['total'], $pageSize);
 		$pageHtml = get_page_html($page, $pageCount);
 		
-		//返回处理（焦点参数）
-		$backUrl = get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/index','/Resource/play'));
-		if(strpos($backUrl, '&preFocus'))
-			$backUrl = substr($backUrl, 0, strpos($backUrl, '&preFocus'));
-		$backUrl .= '&preFocus='.I('preFocus','');
-		
 		$this->assign(array(
 			'course'	=> $course,	
 			'sections'	=> $sections['rows'],
@@ -176,7 +174,7 @@ class SectionListController extends CommonController {
 			'pageHtml' 	=> $pageHtml,
 			'focus'		=> I('focus',''),
 			'preFocus'	=> I('preFocus',''),	
-			'backUrl'	=> $backUrl,	
+			'backUrl'	=> $this->getBackUrl(),	
 		));
 		$this->display('detail_primaryschool');
 	}
@@ -222,9 +220,26 @@ class SectionListController extends CommonController {
 			'week'	   => $week,
 			'prevWeek' => $prevWeek,
 			'nextWeek' => $nextWeek,
-			'focus'		 => I('focus',''),
+			'focus'		=> I('focus',''),
+			'preFocus'	=> I('preFocus',''),
+			'backUrl'	=> $this->getBackUrl(),
 		));
 		$this->display();
+	}
+	
+	private function getBackUrl(){
+		//返回处理（焦点参数）
+		$backUrl = get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/index','/Resource/play'));
+		if(strpos($backUrl, '?preFocus'))
+			$backUrl = substr($backUrl, 0, strpos($backUrl, '?preFocus'));
+		if(strpos($backUrl, '&preFocus'))
+			$backUrl = substr($backUrl, 0, strpos($backUrl, '&preFocus'));
+		if(strpos($backUrl, '?')){
+			$backUrl .= '&preFocus='.I('preFocus','');
+		}else{
+			$backUrl .= '?preFocus='.I('preFocus','');
+		}
+		return $backUrl;
 	}
 	
 }

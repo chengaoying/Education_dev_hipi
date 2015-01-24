@@ -236,7 +236,6 @@ Epg.Button = Epg.btn =
 	{
 		if(Epg.isEmpty(this.current.action)) //add 20141216  添加页面按钮默认的action函数
 			this.current.action = "Epg.btn.defAction()";
-		alert(1);
 		Epg.call(this.current.action, [this.current]);
 	},
 	
@@ -691,16 +690,16 @@ Epg.popup=function(info,second,type)
 {
 	if(Epg.isEmpty(info))//info为空时不产生任何效果
 		return;
-	second = Epg.isEmpty(second) ? 3 : second;
+	second = second == undefined ? 3 : second;
 	type = Epg.isEmpty(type) ? 1 : type;
 	
 	var popupId = '';
 	if(type == 1){
 		popupId = 'popup_1';
-		var width = info.length * 30;
-		var left = 640 - width/2;
-		G(popupId).style.width = width + "px";
-		G(popupId).style.left = left + "px";
+		//var width = info.length * 30;
+		//var left = 640 - width/2;
+		//G(popupId).style.width = width + "px";
+		//G(popupId).style.left = left + "px";
 		G(popupId).innerHTML = info;
 	}else{
 		popupId = 'popup_2';
@@ -845,7 +844,7 @@ var event_handler = function(e)
 };
 
 //按键处理
-//document.onkeypress = document.onkeyup = event_handler;
+//document.onkeyup = event_handler;
 document.onkeypress = event_handler;
 
 //增加别名

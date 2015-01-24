@@ -77,7 +77,15 @@
 	}
 	window.onload = function() {
 		initbuttons();
-		Epg.btn.init('option_1', buttons, true);
+		if(buttons.length==4)
+		{
+			Epg.btn.init('option_1', buttons, true);
+		}
+		else
+		{
+			Epg.btn.init('optionRecmd_1', buttons, true);
+		}
+		
 	};
 </script>
 

@@ -20,7 +20,7 @@ class RoleController extends CommonController {
 		$roleList = Session('roleList');
 		if(count($roleList) >= 10)
 		{
-			$this->addFloatMessage('您创建的角色超过10个，</br>不能再创建',U('Role/changeNum'));
+			$this->addFloatMessage('您创建的角色超过10个！',U('Role/changeNum'));
 		}
 		if(empty($stageId)){
 			//顶级分类(二级栏目)
@@ -48,9 +48,8 @@ class RoleController extends CommonController {
 				}
 				else
 				{
-					$this->addFloatMessage('创建角色成功',U('Index/recommend'));
+					$this->addFloatMessage('创建角色成功',U('Role/userInfo'));
 				}
-//				header('location:'.U('Index/recommend'));
 			}else{
 				$this->addFloatMessage('角色创建失败：'.$r['info'],U('Role/userInfo'));
 			}
@@ -779,9 +778,6 @@ class RoleController extends CommonController {
 			$url .= '&focus=btn_plan';
 		else 
 			$url .= '?focus=btn_plan';
-		/* dump(strpos($url, '?'));
-		dump($url);
-		exit; */
 		
 		if($r['status']){
 			$this->addFloatMessage("加入学习计划成功！",$url);
@@ -811,11 +807,11 @@ class RoleController extends CommonController {
 			{
 				if($grade['chKey']=='early' || $grade['chKey']=='preschool')
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month';
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month&focus=ch_3';
 				}
 				else 
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool';
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool?focus=ch_3';
 				}
 			}
 		}

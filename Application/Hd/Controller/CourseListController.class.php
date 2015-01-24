@@ -56,9 +56,10 @@ class CourseListController extends CommonController {
 		
 		//返回处理（焦点参数）
 		$backUrl = get_back_url('Index/allCourse',0);
-		if(strpos($backUrl, '&preFocus'))
-			$backUrl = substr($backUrl, 0, strpos($backUrl, '&preFocus'));
-		$backUrl .= '&preFocus='.I('preFocus','');
+		$_preFocus = Session('preFocus');
+		if(empty($_preFocus))
+			Session('preFocus',I('preFocus'));
+		$backUrl .= '?preFocus='. Session('preFocus');
 		
 		$this->assign(array(
 			'chKey'	     => $chKey,
@@ -71,7 +72,7 @@ class CourseListController extends CommonController {
 			'pageCount'	 => $pageCount,
 			'focus'		 => I('focus',''),	
 			'preFocus'	 => I('preFocus',''),
-			'backUrl'	=> $backUrl,
+			'backUrl'	 => $backUrl,
 		));
 		$this->display();
 	}

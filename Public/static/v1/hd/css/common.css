@@ -19,14 +19,14 @@ Div{overflow:hidden}
 
 #popup_1{
 	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 35px;
-	color:#F8E391;
+	top: 300px;
+	left: 464px;
+	width: 352px;
+	height: 85px;
+	color:#FFF;
 	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
+	line-height:60px;
+	background-image:url(/static/v1/hd/images/common/popup/info_bg.png);
 	visibility:hidden;
 	z-index:99;
 }
@@ -52,10 +52,10 @@ Div{overflow:hidden}
 
 #popup_2_info{
 	position: absolute;
-	top: 335px;
+	top: 315px;
 	left: 360px;
 	width: 300px;
-	height: 35px;
+	height: 60px;
 	color:saddlebrown;
 	font-weight: 600; 
 	font-size:30px;

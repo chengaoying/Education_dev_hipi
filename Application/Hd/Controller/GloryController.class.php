@@ -24,6 +24,9 @@ class GloryController extends CommonController {
 		$todayCredit = empty($todayCredit) ? 0 : $todayCredit;
 		$totalCredit = $this->user['point'] + $this->role['point'];
 		
+		$gloryClass = $this->getGloryClass($totalCredit);
+		
+		
 		$curProgress = 60;
 		$this->assign(array(
 					'curProgress' => $curProgress*390/100,
@@ -32,6 +35,7 @@ class GloryController extends CommonController {
 					'json_channel' => $json_encode,
 					'todayCredit' => $todayCredit,
 					'totalCredit' => $totalCredit,
+					'gloryClass' => $gloryClass,
 				));
 		$this->display();
 	}
@@ -46,6 +50,35 @@ class GloryController extends CommonController {
 					'datas' => $data,
 				));
 		$this->display();
+	}
+	
+	/*得到总积分
+	 * 
+	 */
+	public function getGloryClass($totalCredit)
+	{
+		$proConf = get_pro_config_content('proConfig');
+		foreach($proConf['gloryClass'] as $key => $value)
+		{
+			$credit_array = explode('-',$value);
+			if(count($credit_array) == 2)
+			{
+				$credit1 = intval($credit_array[0]);
+				$credit2 = intval($credit_array[1]);
+				if($totalCredit>=$credit1 && $totalCredit<=$credit2)
+				{
+					return $key-1;
+				}
+			}
+			else if(count($credit_array) == 1)
+			{
+				$credit1 = intval($credit_array[0]);
+				if($totalCredit>=$credit1)
+				{
+					return $key-1;
+				}
+			}
+		}
 	}
 	
 	/**
@@ -69,11 +102,11 @@ class GloryController extends CommonController {
 			{
 				if($grade['chKey']=='early' || $grade['chKey']=='preschool')
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month';
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month&focus=ch_3';
 				}
 				else
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool';
+					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool?focus=ch_3';
 				}
 			}
 		}

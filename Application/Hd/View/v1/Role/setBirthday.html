@@ -60,9 +60,9 @@
 /* 页面可点击按钮  */
 var buttons=
 	[
-		{id:'year',name:'year',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'month',down:'ok'},
-		{id:'month',name:'month',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'day',left:'year',down:'ok'},
-		{id:'day',name:'day',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'',left:'month',down:'ok'},
+		{id:'year',name:'year',action:'',linkImage:'',resize:'-1',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'month',down:'ok'},
+		{id:'month',name:'month',action:'',linkImage:'',resize:'-1',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'day',left:'year',down:'ok'},
+		{id:'day',name:'day',action:'',linkImage:'',resize:'-1',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'',left:'month',down:'ok'},
 
 		{id:'ok',name:'确定',action:'submit()',linkImage:'__HD__/images/usercenter/baseInfo/confirm_1.png',focusImage:'__HD__/images/usercenter/baseInfo/confirm_2.png',up:'year',down:''},
 	];
@@ -70,7 +70,7 @@ var buttons=
 
 window.onload=function()
 {
-	popup(2);
+	popup(0);
 	Epg.btn.init('year',buttons,true);	
 	
 	//删除0键返回事件
@@ -92,7 +92,7 @@ window.onload=function()
 
 <form id="form" action="{:U('Role/setBirthday')}" method="post" style="padding:10px">
 	<div id="div_year" style="position:absolute;left:150px;top:202px;">
-		<input type="text" id="year" name="year" value="{$birthday[0]}" maxlength="4" style="width:103px;height:40px;font-size:30px;"/><br/><br/>
+		<input type="text" id="year" name="year" value="{$birthday[0]}" maxlength="4" style="width:103px;height:40px;font-size:30px;" /><br/><br/>
 	</div>
 	<div id="div_month" style="position:absolute;left:320px;top:202px;">
 		<input type="text" id="month" name="month" value="{$birthday[1]}" maxlength="2" style="width:103px;height:40px;font-size:30px;"/><br/><br/>
@@ -104,12 +104,12 @@ window.onload=function()
 
 <!-- 确定按钮 -->
  <div id="div_ok" style="position:absolute;width:140px;height:50px;left:150px;top:300px;">
-    <!-- <img id="ok" title="" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50"> -->
-	<a id="focus" style="display:block" href="javascript:submit();" onclick="editSubmit()"
+    <img id="ok" title="" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
+<!-- 	<a id="focus" style="display:block" href="javascript:submit();" onclick="editSubmit()"
 			onmouseover="changeImage('#btn_ok','__HD__/images/usercenter/baseInfo/confirm_2.png')" 
 			onmouseout="changeImage('#btn_ok','__HD__/images/usercenter/baseInfo/confirm_1.png')"><img 
 			id="btn_ok" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
-	</a>
+	</a> -->
 
 </div>
 

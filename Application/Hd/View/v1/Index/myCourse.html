@@ -38,7 +38,7 @@ var buttons=
 		{id:'course_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'course_9',right:'pageDown()',up:'course_5',down:''},
         
         /* 课程为空时选择课程 */
-        {id:'empty_course',name:'',action:'',linkImage:'__HD__/images/index/myCourse/select_course.png',focusImage:'__HD__/images/index/myCourse/select_course_over.png',selectBox:'',up:'ch_1'},
+        {id:'empty_course',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',up:'ch_1'},
 	];
 
 /* 初始化按钮 属性   */
@@ -145,9 +145,12 @@ window.onload=function()
     </volist>
 <else /> 
 	<!-- 当课程为空的时候提示去选择课程 -->
-	<div id="div_empty_course" title="{:U('Index/allCourse')}" style="position:absolute;width:98px;height:40px;left:145px;top:335px;text-align:center;">
-		<img id="empty_course" src="__HD__/images/index/myCourse/select_course.png" width="98" height="40">
-	</div>
+	<div id="div_empty_course" title="{:U('Index/allCourse')}" style="position:absolute;width:220px;height:220px;left:80px;top:180px;text-align:center;">
+        <img id="empty_course" src="__HD__/images/index/myCourse/select_course.png" width="210" height="210">
+    </div>
+    <div id="div_empty_course_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:75px;top:175px;text-align:center;">
+        <img id="empty_course_focus" src="" width="220" height="220">
+    </div>
 </if>
 <!-- 我的课程结束 -->
 

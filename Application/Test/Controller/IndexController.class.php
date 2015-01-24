@@ -35,8 +35,8 @@ class IndexController extends \Think\Controller {
 	
 	public function hproseAct(){
 		vendor('Hprose.HproseHttpClient');
-		$client = new \HproseHttpClient('http://localhost:8500/Api/UserApi');
-		$result = $client->add(array('id'=>1));
+		$client = new \HproseHttpClient('http://192.168.0.152:8500/Api/UserApi');
+		$result = $client->load(6);
 		dump($result);
 	}
 	

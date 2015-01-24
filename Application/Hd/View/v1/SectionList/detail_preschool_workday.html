@@ -55,6 +55,8 @@ var initButtons = function(){
 	
 }
 
+var defaultId = "{$preFocus}";
+
 window.onload=function()
 {
     initButtons();
@@ -63,7 +65,7 @@ window.onload=function()
 };
 </script>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/index','/Resource/play'))}" ></a>
+<a id="a_back" style="display:none;" href="{$backUrl}" ></a>
 
 <!-- 栏目LOGO -->
 <div id="div_btn_logo" style="position:absolute;width:225px;height:91px;top:45px;left:85px;">
@@ -74,20 +76,20 @@ window.onload=function()
 <div id="week"></div>
 <!-- 前一天 -->
 <div id="div_btn_prev_day" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
-    <img id="btn_prev_day" title="{:U('SectionList/index').'?courseId='.$courseId.'&topicId='.$prevTopicId.'&chId='.$chId}" src="__HD__/images/common/page/page_prev.png" width="20" height="26">
+    <img id="btn_prev_day" title="{:U('SectionList/index').'?courseId='.$courseId.'&topicId='.$prevTopicId.'&chId='.$chId.'&preFocus='.$preFocus}" src="__HD__/images/common/page/page_prev.png" width="20" height="26">
 </div>
 <!-- 后一天 -->
 <div id="div_btn_next_day" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
-    <img id="btn_next_day" title="{:U('SectionList/index').'?courseId='.$courseId.'&topicId='.$nextTopicId.'&chId='.$chId}" src="__HD__/images/common/page/page_next.png" width="20" height="26">
+    <img id="btn_next_day" title="{:U('SectionList/index').'?courseId='.$courseId.'&topicId='.$nextTopicId.'&chId='.$chId.'&preFocus='.$preFocus}" src="__HD__/images/common/page/page_next.png" width="20" height="26">
 </div>
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:100px;left:1105px;">
-	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId)}" src="__HD__/images/common/order/btn_order.png">
+	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId.'&preFocus='.$preFocus)}" src="__HD__/images/common/order/btn_order.png">
 </div>
 
 <!-- 本周课程 -->
-<div id="div_btn_week" title="{:U('SectionList/week?courseId='.$courseId)}" style="position: absolute;width:138px;height:33px;left:950px;top:100px;">
+<div id="div_btn_week" title="{:U('SectionList/week?courseId='.$courseId.'&preFocus='.$preFocus)}" style="position: absolute;width:138px;height:33px;left:950px;top:100px;">
 	<img id="btn_week" src="__HD__/images/sectionList/preschool/btn_week.png" width="138" height="33" />
 </div>
 
@@ -97,7 +99,7 @@ window.onload=function()
          $top = 180; $left = 85 + ($i-1)*225;
     </php>
     <div id="div_section_{$i}" style="position:absolute;width:220px;height:310px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="section_{$i}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId)}" src="{:get_upfile_url($section['imgUrl'])}" width="210" height="300">
+        <img id="section_{$i}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId.'&preFocus='.$preFocus)}" src="{:get_upfile_url($section['imgUrl'])}" width="210" height="300">
     </div>
     <div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:320px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
         <img id="section_{$i}_focus" src="" width="220" height="310">

@@ -201,20 +201,20 @@ function get_page_html($page, $pageCount){
 	//上一页
 	if($page > 1){
 		$pageHtml .= '<div id="div_page_prev" class="page_prev">
-	    			<img id="page_prev" src="/static/v1/hd/images/common/page/page_prev.png" width="20" height="26"></div>';
+	    			<img id="page_prev" src="/static/v1/hd/images/common/page/page_prev.png" width="25" height="32"></div>';
 	}else{
 		$pageHtml .= '<div class="page_prev">
-	    			<img src="/static/v1/hd/images/common/page/page_prev_none.png" width="20" height="26"></div>';
+	    			<img src="/static/v1/hd/images/common/page/page_prev_none.png" width="25" height="32"></div>';
 	}
 	//页号
 	$pageHtml .= '<div class="text">'.$page.'/'.$pageCount.'</div>';
 	//下一页
 	if($page < $pageCount){
 		$pageHtml .= '<div id="div_page_next" class="page_next">
-	    			  <img id="page_next" src="/static/v1/hd/images/common/page/page_next.png" width="20" height="26"></div>';
+	    			  <img id="page_next" src="/static/v1/hd/images/common/page/page_next.png" width="25" height="32"></div>';
 	}else{
 		$pageHtml .= '<div class="page_next">
-	   	             <img src="/static/v1/hd/images/common/page/page_next_none.png" width="20" height="26"></div>';
+	   	             <img src="/static/v1/hd/images/common/page/page_next_none.png" width="25" height="32"></div>';
 	}
 	return $pageHtml;
 }
