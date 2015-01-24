@@ -844,8 +844,8 @@ var event_handler = function(e)
 };
 
 //按键处理
-//document.onkeyup = event_handler;
-document.onkeypress = event_handler;
+document.onkeyup = event_handler;
+//document.onkeypress = event_handler;
 
 //增加别名
 window.EPG = window.epg = Epg;

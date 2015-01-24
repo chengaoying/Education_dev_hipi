@@ -44,7 +44,7 @@ class RoleController extends CommonController {
 				$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
 				if($grade['chKey'] === 'early')
 				{
-					$this->addFloatMessage('创建角色成功',U('Role/setBirthday'));
+					$this->addFloatMessage('创建角色成功',U('Index/recommend'));
 				}
 				else
 				{
@@ -201,47 +201,6 @@ class RoleController extends CommonController {
  		$act = substr($url,$startPos,$len);
  		if($act === false) return $baseInfo;
  		return $act;
-/*		$startPos = strpos($url,'/Role');
-		if($startPos===false)
-		{
-			return $baseInfo;
-		}
-		$startPos += 6;
-		$endPos = strpos($url,'?');
-		$endPos = $endPos===false ? strlen($url) : $endPos;
-
-		$len = $endPos - $startPos;//操作长度
-		
-		$act = substr($url,$startPos,$len);
-		if($act === false) return $baseInfo;
-		
-		switch($act)
-		{
-			case 'setNickname':
-				return 'nickname';
-			case 'setSex':
-				return 'sex';
-			case 'setBirthday':
-				return 'birthday';
-			case 'changeStage':
-				return 'stage';
-			case 'setPhone':
-				return 'phone';
-			case 'setVersion':
-				return 'version';
-			case 'setMulchoice':
-				
-				break;
-			case 'setAdvantage':
-				return 'advantage';
-			case 'setDisadvantage':
-				return 'disadvantage';
-			case 'setInterests':
-				return 'interests';
-			default:
-				return $baseInfo;
-		}
-		 */
 	}
 	
 	/*
@@ -286,7 +245,6 @@ class RoleController extends CommonController {
 				{
 					$this->addFloatMessage('修改龄段成功',U('Role/userInfo'));
 				}
-				//header('location:'.U('Role/userInfo'));
 			}else{
 				$this->addFloatMessage('昵称更新失败：'.$r['info'],U('Role/userInfo'));
 			}
@@ -445,6 +403,7 @@ class RoleController extends CommonController {
 			$width_logo = 143;
 		}
 		//$interest = $proConf['interest']; //TODO 兴趣和科目配置分开
+		
 		if(!IS_POST)
 		{
 			$index = 0;
@@ -530,7 +489,8 @@ class RoleController extends CommonController {
 		
 		$stage = $this->getStage($this->role['stageId']);//根据stageId得到段龄信息；
 		$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
-		$stageAge = $grade['chKey'];
+		$stageAge = $stage['sKey'];
+		$grade = $grade['chKey'];
 		
 		if(!IS_POST)
 		{
@@ -576,7 +536,7 @@ class RoleController extends CommonController {
 				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
 				
 				//保存成功弹框
-				if($stageAge==='early' && !empty($role['birthday']))//早教跳转到推荐页
+				if($grade==='early' && !empty($role['birthday']))//早教跳转到推荐页
 				{
 					$this->addFloatMessage('修改生日成功',U('Index/recommend'));
 				}
@@ -600,7 +560,7 @@ class RoleController extends CommonController {
 			$birthday_array = explode("-", $birthday);
 			if(!empty($birthday_array[0])&&!is_numeric($birthday_array[0]) || !empty($birthday_array[1])&&!is_numeric($birthday_array[1]) || !empty($birthday_array[2])&&!is_numeric($birthday_array[2]))
 			{
-				$info = '日期不正确，日期应为数字';
+				$info = '请正确填写生日';
 				return result_data(0, $info);
 			}
 			
@@ -608,20 +568,41 @@ class RoleController extends CommonController {
 			if($birthday_unix === false)
 			{
 				//$info = '日期不正确,日期范围应在1901-12-15<br/>到2038-1-19。如果年份为两位数字则: 0-69 <br/>表示 2000-2069,70-100 表示1970-2000';
-				$info = '日期不正确，请重新输入';
+				$info = '请正确填写生日';
 				return result_data(0, $info);
 			}
 			
 			$stage = $this->getStage($this->role['stageId']);//根据stageId得到段龄信息；
 			$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
-			if($stageAge === 'early')
+			
+			$monthAge = monthNum($birthday);
+			if($stageAge === 'one')
 			{
-				$monthAge = monthNum($birthday);
 				if($monthAge['status'])
 				{
-					if($monthAge['data']['monthNum'] > 36)
+					if($monthAge['data']['monthNum']<=0 || $monthAge['data']['monthNum']>12)
 					{
-						return result_data(0, '你家小朋友不在该龄段</br>内哦，请返回选择其它龄段');
+						return result_data(0, '生日与段龄不一致');
+					}
+				}
+			}
+			else if($stageAge === 'two')
+			{
+				if($monthAge['status'])
+				{
+					if($monthAge['data']['monthNum']<=12 || $monthAge['data']['monthNum']>24)
+					{
+						return result_data(0, '生日与段龄不一致');
+					}
+				}
+			}
+			else if($stageAge === 'three')
+			{
+				if($monthAge['status'])
+				{
+					if($monthAge['data']['monthNum']<=24 || $monthAge['data']['monthNum']>36)
+					{
+						return result_data(0, '生日与段龄不一致');
 					}
 				}
 			}
@@ -697,7 +678,7 @@ class RoleController extends CommonController {
 			}
 			
 			$left = ($page==0) ? 0 : 1;//可以向左移动则显示左号
-			$right = (($page+1)*$pageSize<count($roleList)) ? 1 : 0;
+			$right = (($page+1)*$pageSize<=count($roleList)) ? 1 : 0;
 			
 			$this->assign(array(
 						'lists' => $list,
