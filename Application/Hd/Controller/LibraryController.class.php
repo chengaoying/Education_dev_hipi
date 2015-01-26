@@ -16,15 +16,16 @@ class LibraryController extends CommonController {
      */
 	public function detailAct() {
     	get_back_url('Index/recommend',1);
-        $topicId = I('topicId',0);
+        $courseId = I('courseId',0);
         $sectionId = I('sectionId',0);
-        if(!$topicId || !$sectionId){
+        if(!$courseId || !$sectionId){
             $this->showMessage('参数错误');
         }
         $section = D('Section', 'Logic')->querySectionById($sectionId);
         $roleId = $this->role['id'];
         $answerList = D('Library','Logic')->queryLib($sectionId);
-        if($answerList==null){
+        
+        if($answerList['status']==0){
              $this->showMessage('题库不存在！',self::ICON_ERROR,'','Public:message');
         }
         foreach($answerList['content'] as $key=>$value){
@@ -36,12 +37,11 @@ class LibraryController extends CommonController {
         	$answerList['content'][$key]['itemList'] = $itemList;
         	unset($itemList);
         }
-        
         //题库类型 1为文字 2为图片
         
         $this->assign(array(
             'roleId' => $roleId,
-            'topicId' => $topicId,
+            'courseId' => $courseId,
             'sectionId' => $sectionId,
         	'sectionName'=>$section['name'],
             'answerList' => json_encode($answerList['content']),
@@ -54,10 +54,10 @@ class LibraryController extends CommonController {
      */
     public function wrongAnthologyAct() {
         $roleId = $this->role['id'];;
-        $topicId = I('topicId',0);
+        $courseId = I('courseId',0);
         $sectionId = I('sectionId',0);  
         $index = I('index',1);
-        if(!$topicId || !$sectionId){
+        if(!$courseId){
             $this->showMessage('参数错误');
         }
         $s_page = (int)I('spage',1); //课时页数
@@ -66,8 +66,8 @@ class LibraryController extends CommonController {
         $l_page = (int)I('lpage',1);//题目页数
         $l_pageSize = 6;
         
-        $wrongLib = D('Library','Logic')->queryRoleWrongLib($roleId,$topicId,$sectionId,$s_page,$index,$s_pageSize,$l_page,$l_pageSize);
-//         print_r($wrongLib);exit;
+        $wrongLib = D('Library','Logic')->queryRoleWrongLibs($roleId,$courseId,$sectionId,$s_page,$index,$s_pageSize,$l_page,$l_pageSize);
+        
 		if($wrongLib==null){
              $this->showMessage('题库不存在！',self::ICON_ERROR,'','Public:message');
 		}
@@ -91,7 +91,7 @@ class LibraryController extends CommonController {
             'nextImg' => $imgPath .'/library/wrong_anthology/down.png',
             'nowIsShow' => 0,
         );
-        $s_html = get_pageHtml($wrongLib['sectionList']['total'], $s_pageSize, $config,array('topicId'=>$topicId,'sectionId'=>$sectionId,'index'=>1));
+        $s_html = get_pageHtml($wrongLib['sectionList']['total'], $s_pageSize, $config,array('courseId'=>$courseId,'sectionId'=>$sectionId,'index'=>1));
 //         print_r($s_html);
         
         $questionList = $wrongLib['rows'];
@@ -109,10 +109,10 @@ class LibraryController extends CommonController {
             'nextImg' => $imgPath .'/common/page/page_next.png',
             'nowIsShow' => 1,
         );
-        $l_html = get_pageHtml($wrongLib['total'], $l_pageSize, $config2,array('topicId'=>$topicId,'sectionId'=>$sectionId,'index'=>$index,'spage'=>$s_page));
+        $l_html = get_pageHtml($wrongLib['total'], $l_pageSize, $config2,array('courseId'=>$courseId,'sectionId'=>$sectionId,'index'=>$index,'spage'=>$s_page));
         //print_r($libList);
         $this->assign(array(
-            'topicId' => $topicId,
+            'courseId' => $courseId,
             'sectionId' => $sectionId,
             'libList' => $libList,
             'questionList' => $questionList,
@@ -132,7 +132,7 @@ class LibraryController extends CommonController {
         if(IS_POST){
             $postData = I('postdata','');
             //$postData = html_entity_decode($postData);
-            $topicId = I('topicid',0);
+            $courseId = I('courseid',0);
             $sectionId = I('sectionid',0);
             $countScore = I('countscore',0);
             $redFlower = I('redflower',0);
@@ -146,10 +146,10 @@ class LibraryController extends CommonController {
             	$libData[$key][$temp1[4]] = $temp1[5];
             	$libData[$key][$temp1[6]] = $temp1[7];
             	$libData[$key]['roleId'] = $this->role['id'];
-            	$libData[$key]['topicId'] = $topicId;
+            	$libData[$key]['courseId'] = $courseId;
             	$libData[$key]['sectionId'] = $sectionId;
             }
-            $data['topicId'] = $topicId;
+            $data['courseId'] = $courseId;
             $data['sectionId'] = $sectionId;
             $data['score'] = $countScore;
             $data['redFlower'] = $redFlower;

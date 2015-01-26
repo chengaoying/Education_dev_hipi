@@ -25,17 +25,17 @@ class GloryController extends CommonController {
 		$totalCredit = $this->user['point'] + $this->role['point'];
 		
 		$gloryClass = $this->getGloryClass($totalCredit);
+		$classValue = array($gloryClass[2],$gloryClass[3]);//总积分/当前等级上限值
 		
-		
-		$curProgress = 60;
 		$this->assign(array(
-					'curProgress' => $curProgress*390/100,
+					'curProgress' => $gloryClass[1],
 					'channels' => $channel,
 					'face' => $role['face'],
 					'json_channel' => $json_encode,
 					'todayCredit' => $todayCredit,
 					'totalCredit' => $totalCredit,
-					'gloryClass' => $gloryClass,
+					'gloryClass' => $gloryClass[0],
+					'classValue' => $classValue,
 				));
 		$this->display();
 	}
@@ -53,7 +53,7 @@ class GloryController extends CommonController {
 	}
 	
 	/*得到总积分
-	 * 
+	 *@param array array[0] 等级值;array[1] 进度;array[2]/array[3] 当前总积分/当前等级上限
 	 */
 	public function getGloryClass($totalCredit)
 	{
@@ -67,7 +67,9 @@ class GloryController extends CommonController {
 				$credit2 = intval($credit_array[1]);
 				if($totalCredit>=$credit1 && $totalCredit<=$credit2)
 				{
-					return $key-1;
+					$class = $key - 1;
+					$classProgress = ($totalCredit-$credit1)*390/($credit2-$credit1);
+					return array($class, $classProgress, $totalCredit, $credit2);
 				}
 			}
 			else if(count($credit_array) == 1)
@@ -75,7 +77,7 @@ class GloryController extends CommonController {
 				$credit1 = intval($credit_array[0]);
 				if($totalCredit>=$credit1)
 				{
-					return $key-1;
+					return array($key-1, 390, $totalCredit, $totalCredit);
 				}
 			}
 		}

@@ -77,7 +77,7 @@
 	}
 	window.onload = function() {
 		initbuttons();
-		if(buttons.length==4)
+		if(buttons.length==2)
 		{
 			Epg.btn.init('option_1', buttons, true);
 		}
@@ -135,13 +135,13 @@
 
 //失去时焦点处理（目前主要用于栏目按钮）
 function blurHandler(){
-	Epg.marquee.stop();
+	//Epg.marquee.stop();
 }
 
 //获取焦点时处理（目前主要用于栏目按钮）
 function focusHandler(){
 	var id = Epg.btn.current.id + '_text';
-	Epg.marquee.start(16,id);
+	//Epg.marquee.start(16,id);
 }
 
 

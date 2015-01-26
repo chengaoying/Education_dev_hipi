@@ -36,8 +36,8 @@ class LibraryLogic extends BaseLogic{
      * @param int $l_pageSize 题目每页记录数
      * @return array $data 查询的数组
      */
-    public function queryRoleWrongLib($roleId,$topicId,$sectionId,$s_pageNo,$index,$s_pageSize,$l_pageNo,$l_pageSize) {
-        return $this->client->queryRoleWrongLib($roleId,$topicId,$sectionId,$s_pageNo,$index,$s_pageSize,$l_pageNo,$l_pageSize);
+    public function queryRoleWrongLibs($roleId,$courseId,$sectionId,$s_pageNo,$index,$s_pageSize,$l_pageNo,$l_pageSize) {
+        return $this->client->queryRoleWrongLibs($roleId,$courseId,$sectionId,$s_pageNo,$index,$s_pageSize,$l_pageNo,$l_pageSize);
     }
     
     /**

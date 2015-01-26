@@ -112,7 +112,14 @@
 	window.onload = function() {
 		initbuttons();
 		Epg.btn.init('option_1', buttons, true);
-		
+		if(buttons.length==4)
+		{
+			Epg.btn.init('option_1', buttons, true);
+		}
+		else
+		{
+			Epg.btn.init('optionRecmd_1', buttons, true);
+		}
 		//设置翻页键翻页事件
 		Epg.key.set(
 		{
@@ -183,13 +190,13 @@
 
 //失去时焦点处理（目前主要用于栏目按钮）
 function blurHandler(){
-	Epg.marquee.stop();
+	//Epg.marquee.stop();
 }
 
 //获取焦点时处理（目前主要用于栏目按钮）
 function focusHandler(){
 	var id = Epg.btn.current.id + '_text';
-	Epg.marquee.start(16,id);
+	//Epg.marquee.start(16,id);
 }
 
 

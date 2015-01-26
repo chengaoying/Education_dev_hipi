@@ -19,14 +19,17 @@ class OrderController extends CommonController {
 		
 		$courseId = I('courseId','');
 		$course = D('Course','Logic')->queryCourseById($courseId);
+		$chargeModes = S('ChargeMode');
+		$chargeModes = array_slice($chargeModes, 0, count($chargeModes));
+		
 		//订购处理
 		//1.产品包月的订购模式(如果为包月，其他订购模式暂不支持)
 		if(is_monthly_order()){
-			//TODO	
-			
-		}else{
-			$chargeMode = S('ChargeMode');
+			$chargeMode = get_array_for_fieldval($chargeModes, 'type', '1');
 			$chargeMode = array_slice($chargeMode, 0, count($chargeMode));
+			$chargeMode = $chargeMode[0];
+		}else{
+			
 		}
 		
 		//处理焦点

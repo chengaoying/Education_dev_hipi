@@ -144,7 +144,7 @@
                 /*返回学习*/
                 {id: 'back_learn', name: '', action: 'backlearn()', linkImage: '__HD__/images/library/back_learn.png', focusImage: '__HD__/images/library/back_learn_over.png', selectBox: '', right: '', left: 're_answer', up: '', down: ''},
                 /*是的*/
-                {id: 'yes', name: '', action: 'exitPrePage()', linkImage: '__HD__/images/library/yes.png', focusImage: '__HD__/images/library/yes_over.png', selectBox: '', right: 'no', left: '', up: '', down: ''},
+                {id: 'yes', name: '', action: 'exitPrePage1()', linkImage: '__HD__/images/library/yes.png', focusImage: '__HD__/images/library/yes_over.png', selectBox: '', right: 'no', left: '', up: '', down: ''},
                 /*不*/
                 {id: 'no', name: '', action: 'disExit()', linkImage: '__HD__/images/library/no.png', focusImage: '__HD__/images/library/no_over.png', selectBox: '', right: '', left: 'yes', up: '', down: ''},
                 /*同步课堂*/
@@ -155,7 +155,7 @@
     //var postdata = [];
     var postdata1 = "";
     var roleid = {$roleId}; //知识点ID
-    var topicid = {$topicId}; //知识点ID
+    var courseId = {$courseId}; //知识点ID
     var sectionid = {$sectionId}; //课时ID
     var answerlist = {$answerList};
     var countlib = answerlist.length;
@@ -347,6 +347,7 @@ function disExit(){
         G('red_flower').value = rednum;
         G('postlib').submit();
     }
+    
     window.onload = function()
     {
         initAnswer(1);
@@ -356,8 +357,11 @@ function disExit(){
     Epg.Button.defBack = function(){
     	showExit();
     }
-    
     function exitPrePage(){
+    	window.location =  "{:get_back_url('Index/recommend',1,0,0)}";
+    }
+
+    function exitPrePage1(){
     	window.location =  "{:get_back_url('Index/recommend',1,0,1)}";
     }
 </script>
@@ -434,7 +438,7 @@ function disExit(){
 </div>
 <form id="postlib" action="{:U('Library/saveLib')}" method="post">
     <input type="hidden" name="postdata" id="post_data" />
-    <input type="hidden" name="topicid" id="topic_id" value="{$topicId}" />
+    <input type="hidden" name="courseid" id="course_id" value="{$courseId}" />
     <input type="hidden" name="sectionid" id="section_id" value="{$sectionId}" />
     <input type="hidden" name="countscore" id="count_score" />
     <input type="hidden" name="redflower" id="red_flower" />

@@ -35,25 +35,25 @@ body{ background-image:url(__HD__/images/sectionList/primaryschool/bg.jpg); }
 var buttons=
 	[
 		/* 上边 */
-		{id:'btn_record',name:'',action:'',linkImage:'__HD__/images/sectionList/primaryschool/btn_record.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_record_over.png',selectBox:'',right:'btn_plan',left:'',up:'',down:'section_1'},
+		{id:'btn_record',name:'',action:'',linkImage:'__HD__/images/sectionList/primaryschool/btn_record.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_record_over.png',selectBox:'',right:'btn_plan',down:'section_1'},
 		{id:'btn_plan',name:'',action:'addPlan()',linkImage:'__HD__/images/sectionList/primaryschool/btn_plan.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_plan_over.png',selectBox:'',right:'btn_order',left:'btn_record' ,down:'section_1',},
-		{id:'btn_order',name:'',action:'order()',linkImage:'__HD__/images/sectionList/primaryschool/btn_order.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['page_prev','page_next'],left:'btn_plan',up:'',down:['page_prev','page_next']},
+		{id:'btn_order',name:'',action:'order()',linkImage:'__HD__/images/sectionList/primaryschool/btn_order.png',focusImage:'__HD__/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['page_prev','page_next'],left:'btn_plan',down:['page_prev','page_next']},
 		
 		/* 分页按钮 */
-		{id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'btn_order',right:'page_next',down:['section_7'],up:'btn_order'},
-    	{id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','btn_order'],down:['section_7'],up:'btn_order'},
+		{id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'btn_order',right:'page_next',down:['section_6','section_1'],up:'btn_order'},
+    	{id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','btn_order'],down:['section_6','section_1'],up:'btn_order'},
         
 		/* 下边 */
-		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'',right:'section_6',up:'btn_record',down:'section_2'},
-		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'',right:'section_7',up:'section_1',down:'section_3'},
-		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'',right:'section_8',up:'section_2',down:'section_4'},
-		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'',right:'section_9',up:'section_3',down:'section_5'},
-		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'',right:'section_10',up:'section_4',down:''},
-		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_1',right:'',up:['page_prev','page_next'],down:'section_7'},
-		{id:'section_7',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_2',right:'',up:'section_6',down:'section_8'},
-		{id:'section_8',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_3',right:'',up:'section_7',down:'section_9'},
-		{id:'section_9',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_4',right:'',up:'section_8',down:'section_10'},
-		{id:'section_10',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_5',right:'',up:'section_9',down:''}
+		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',right:'section_6',up:'btn_record',down:'section_2'},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',right:'section_7',up:'section_1',down:'section_3'},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',right:'section_8',up:'section_2',down:'section_4'},
+		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',right:'section_9',up:'section_3',down:'section_5'},
+		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',right:'section_10',up:'section_4'},
+		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_1',up:['page_prev','page_next'],down:'section_7'},
+		{id:'section_7',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_2',up:'section_6',down:'section_8'},
+		{id:'section_8',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_3',up:'section_7',down:'section_9'},
+		{id:'section_9',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_4',up:'section_8',down:'section_10'},
+		{id:'section_10',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__HD__/images/common/selectBox/select_box_396x55.png',left:'section_5',up:'section_9'}
 	];
 
 /* 初始化按钮 属性   */
@@ -90,7 +90,7 @@ window.onload=function()
 		defaultId = "page_next";
 	}
 	
-	Epg.btn.init([defaultId,'section_1'],buttons,true);	
+	Epg.btn.init([defaultId,'btn_record'],buttons,true);	
 	
 	//设置翻页键翻页事件
 	Epg.key.set(
@@ -153,8 +153,9 @@ window.onload=function()
 			$left = 805; $top = ($i-6)*55+383;
 		}
 	</php>
-	<div id="section_{$i}" title="{:U('Section/index?courseId='.$course['id'].'&sectionId='.$section['id'])}" style="position:absolute;width:380px;height:50px;left:{$left+10}px;top:{$top-2}px; text-align:left;line-height:50px;">
-			{$section['name']}
+	<div id="div_section_{$i}" title="{:U('Section/index?courseId='.$course['id'].'&sectionId='.$section['id'])}" 
+		 style="position:absolute;width:380px;height:50px;left:{$left+10}px;top:{$top-2}px;line-height:50px;">
+			<span id="section_{$i}">{$section['name']}</span>
 	</div>
 	<div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden; width:396px;height:55px;left:{$left+1}px;top:{$top-3}px;">
 		<img id="section_{$i}_focus" src="" width='391' height='50'>

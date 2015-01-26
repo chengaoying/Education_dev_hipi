@@ -21,20 +21,17 @@ class LearningController extends CommonController {
 		$json_encode = json_encode($channel);
 		
 		$proConf = get_pro_config_content('proConfig');//获得配置文件
-		$tags = array_values($proConf['tags']);//获得能力标签并从0编号
-		
+		$tags = array_keys($proConf['tags']);//获得能力标签并从0编号
 		$resource = D('Resource','Logic') -> queryResourceListByKeyList($tags,null,null,'keyList');//查出keyList中包含能力标签中的项
-		$total = $this -> getCount($resource['rows'],'keyList');
-		
+		$total = $this -> getCount1($resource['rows'],'keyList');
 		$dataGet = I('Get.');
 		$arrange = $dataGet['arrange'];
 		$dateArrange = $this->getDateArray();//得到要查询的时间范围
 		$dateArrange = ($arrange == 'month') ? $dateArrange : null;
 		//查出t_role_browse表中中包含能力标签的项 1-视频
 		$BrowseRecord = D('BrowseRecord','Logic') -> queryBrowseRecordListByKeys($role['id'], 1, null, $dateArrange);
-		$finish = $this -> getCount($BrowseRecord['rows'],'keys');
-		
-		$length = $this -> getProgressOfEarly($total, $finish, $tags);
+		$finish = $this -> getCount1($BrowseRecord['rows'],'keys');
+		$length = $this -> getProgressOfEarly1($total, $finish);
 		$length = array_values($length);
 		//获得段龄
 		$monthAge = $this->getMonthAge();
@@ -156,7 +153,7 @@ class LearningController extends CommonController {
 		$birthday = $this->role['birthday'];
 		if(empty($birthday) || strtotime($birthday)===false)//没有生日或者生日输入错误则获得本月1日到当前时间范围
 		{
-			return getMonthDate();
+			return $this->getMonthDate();
 		}
 		else 
 		{
@@ -230,6 +227,26 @@ class LearningController extends CommonController {
 		}
 		return $length;
 	}
+	/*
+	 * 得到早教各项能力进度
+	 */
+	private function getProgressOfEarly1($total, $finish)
+	{
+		$length = array();
+		foreach ($total as $key => $value)
+		{
+			if($finish[$key]>$total[$key]) $finish[$key] = $total[$key];
+			if($total[$key]==0)
+			{
+				$length[$key] = 300;
+			}
+			else 
+			{
+				$length[$key] = ($total[$key]-$finish[$key])*300/$total[$key];
+			}
+		}
+		return $length;
+	}
 	
 	/*
 	 * 统计t_resource中各项能力的总数目
@@ -276,6 +293,29 @@ class LearningController extends CommonController {
 				$count['综合'] ++;
 			}
 		}
+		
+		return $count;
+	}
+	/*
+	 * 统计t_resource中各项能力的总数目
+	 */
+	public function getCount1($data,$key)
+	{
+		for($i=0;$i<9;$i++)
+		{
+			$count[$i+1] = 0;
+		}
+		foreach($data as $keys => $value)
+		{
+			$temp_array = explode(getDelimiterInStr($value[$key]),$value[$key]);
+			foreach ($temp_array as $key1 => $value)
+			{
+				if($value>=1 && $value<=9)
+				{
+					$count[$value]++;
+				}
+			}
+		}	
 		return $count;
 	}
 	
