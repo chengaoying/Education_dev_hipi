@@ -43,7 +43,8 @@ var KEY_LEFT_XJ		 	= 3;   // 左
 var	KEY_UP_XJ			= 1;   // 上
 var KEY_RIGHT_XJ 		= 4;	// 右
 var	KEY_DOWN_XJ 		= 2;	// 下
-var KEY_ENTER_XJ 		 = 13; 	// 确定
+var KEY_ENTER_XJ 		= 13; 	// 确定
+var KEY_BACK_XJ      	= 340;   //新疆广电返回键
 
 // PC
 var KEY_W = 119;
@@ -143,6 +144,7 @@ Epg.Button = Epg.btn =
 				KEY_DOWN:'Epg.Button.move("down")',		//下键
 				KEY_BACK:'Epg.Button.defBack()',		//返回键
 				KEY_BACK_TJ:'Epg.Button.defBack()',		//返回键
+				KEY_BACK_XJ:'Epg.Button.defBack()',		//返回键
 				KEY_0:'Epg.Button.defBack()',			//按0返回
 				KEY_A:'Epg.Button.move("left")',		//A
 				KEY_D:'Epg.Button.move("right")',		//D
@@ -838,13 +840,13 @@ var event_handler = function(e)
 		Epg.eventHandler(keyCode);
 		//屏蔽浏览器默认的“返回键后退”功能，注意不能所有键都return false，否则连F5等常见按键也失效
 		//注意：如果返回方法内部出错，那么浏览器默认方法将不能被屏蔽（测试于360急速浏览器下）
-		if(keyCode === KEY_BACK)
+		if(keyCode === KEY_BACK || keyCode === KEY_BACK_XJ || keyCode === KEY_BACK_TJ)
 			return false;
 	}
 };
 
 //按键处理
-document.onkeyup = event_handler;
+document.onkeydown = event_handler;
 //document.onkeypress = event_handler;
 
 //增加别名

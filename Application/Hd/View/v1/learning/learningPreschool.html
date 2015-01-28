@@ -18,11 +18,21 @@
 #word{
 	position: absolute;
 	display: block;
-	width: 486px;
-	height: 21px;
-	top:180px;
+	width: 790px;
+	height: 70px;
+	top:130px;
 	left:390px;
 	background-image: url(__HD__/images/usercenter/learningPreschool/word.png);
+}
+/* girl */
+#girl{
+	position: absolute;
+	display: block;
+	width: 182px;
+	height: 112px;
+	top:95px;
+	left:960px;
+	background-image: url(__HD__/images/usercenter/learningPreschool/girl_comeon.png);
 }
 
 /* 分页 */
@@ -55,6 +65,7 @@
 <script type="text/javascript">
 	var faceNum = {$face};
 	var channel = {$json_channel};
+	var focus = '{$focus}';
 	var buttons = [
 	/* 栏目  */
 	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'changeNum',down:'ch_2',right:'detail_1'}, 
@@ -64,12 +75,12 @@
 	{id:'selectFace',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'__HD__/images/usercenter/leftNavigation/title_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
 	{id:'changeNum',name:'',action:'',linkImage:'__HD__/images/usercenter/leftNavigation/change_account.png',focusImage:'__HD__/images/usercenter/leftNavigation/change_account_over.png',selectBox:'',right:'sex',up:'selectFace',down:'ch_1'},
 
-	{id:'detail_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/detail.png',focusImage:'__HD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_1',up:'',left:'ch_2'},
-	{id:'detail_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/detail.png',focusImage:'__HD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_2',up:'wrong_1'},
-	{id:'detail_3',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/detail.png',focusImage:'__HD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_3',up:'wrong_2'},
-	{id:'wrong_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_2','page_next'],up:'detail_1'},
-	{id:'wrong_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_3','page_next'],up:'detail_2'},
-	{id:'wrong_3',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:'page_next',up:'detail_3'},
+	{id:'detail_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/detail.png',focusImage:'__HD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_1',up:'',left:'ch_3'},
+	{id:'detail_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/detail.png',focusImage:'__HD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_2',up:'wrong_1',left:'ch_3'},
+	{id:'detail_3',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/detail.png',focusImage:'__HD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_3',up:'wrong_2',left:'ch_3'},
+	{id:'wrong_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_2','page_next'],up:'detail_1',left:'ch_3'},
+	{id:'wrong_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_3','page_next'],up:'detail_2',left:'ch_3'},
+	{id:'wrong_3',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:'page_next',up:'detail_3',left:'ch_3'},
 
 	{id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:['wrong_3','wrong_2','wrong_1'],left:'ch_2'},
 	{id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:['wrong_3','wrong_2','wrong_1']},
@@ -85,10 +96,12 @@
 			buttons[i].focusImage = channel[i].focusImage;
 			buttons[i].titleImage = channel[i].titleImage;
 		} 
+ 		if(focus !== 'ch_3') G('ch_3').src = buttons[2].titleImage;
 	}
 	window.onload = function() {
 		initButtons();
-		Epg.btn.init('ch_3', buttons, true);
+		popup();
+		Epg.btn.init(focus, buttons, true);
 		
 		//设置翻页键翻页事件
 		Epg.key.set(
@@ -116,6 +129,7 @@
 <!-- 静态图片 -->
 <!-- <div id="bottom"></div> -->
 <div id="word"></div>
+<div id="girl"></div>
 
 <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
 
@@ -144,31 +158,46 @@
 	<img id="changeNum" title="{:U('Role/changeNum')}" src="__HD__/images/usercenter/leftNavigation/change_account.png" width="120" height="35">
 </div>
 
+<!-- 总分 -->
+<div style="position:absolute;left:490px;top:150px;width:100px;height:30px;line-height:30px;text-align:left;border-style:none;">
+	<span style="color:#ffff64">{$roleScore}</span>
+</div>
+<!-- rank -->
+<div style="position:absolute;left:755px;top:150px;width:100px;height:30px;line-height:30px;text-align:left;border-style:none;">
+	<span style="color:#ffff64">{$rank}%</span>
+</div>
 
 <volist name="datas" id="data" key="i">
 	<php>
 		$left = 390;
-		$top = 260 + ($i-1)*105;
+		$top = 230 + ($i-1)*115;
 	</php>
 	<div style="position:absolute; left:{$left}px; top:{$top}px;">
-		<img src="__HD__/images/usercenter/learningPreschool/bottom.png" width="790" height="90">
+		<img src="__HD__/images/usercenter/learningPreschool/bottom.png" width="790" height="100">
 	</div>
 	<!-- title -->
-	<div style="position:absolute; left:{$left+20}px; top:{$top+20}px;width:180px;height:37px;line-height:37px;text-align:center;border-style:solid">
+	<div style="position:absolute;left:{$left+20}px;top:{$top+25}px;width:220px;height:37px;line-height:37px;text-align:center;border-style:none">
 		<span>{$data['name']}</span>
 	</div>
+	<!-- 总分 -->
+	<div style="position:absolute;left:{$left+340}px;top:{$top}px;width:100px;height:37px;line-height:37px;text-align:left;border-style:none;">
+		<span style="color:black">{$data['sumScore']}</span>
+	</div>
 	<!-- progress bar -->
-	<div style="position:absolute; left:{$left+400}px; top:{$top+55}px;">
+	<div style="position:absolute; left:{$left+440}px; top:{$top+60}px;">
 		<img src="__HD__/images/usercenter/learningPreschool/progress.png" width="{$data['length']}" height="10">
 	</div>
 	<!-- detail -->
 	<div id="div_detail_{$i}" style="position:absolute; left:{$left+700}px; top:{$top+10}px;">
-		<img id="detail_{$i}" title="{:U('Learning/detail?courseId='.$data['id'].'&courseName='.$data['name'])}" src="__HD__/images/usercenter/learningPreschool/detail.png" width="70" height="27">
+		<img id="detail_{$i}" title="{:U('Learning/detail?courseId='.$data['id'].'&courseName='.$data['name'].'&focus=detail_'.$i)}" 
+		src="__HD__/images/usercenter/learningPreschool/detail.png" width="75" height="32">
 	</div>
 	<!-- 错题集 -->
 	<div id="div_wrong_{$i}" style="position:absolute; left:{$left+700}px; top:{$top+50}px;">
-		<img id="wrong_{$i}" title="{:U('Library/wrongAnthology?courseId='.$data['id'])}" src="__HD__/images/usercenter/learningPreschool/wrong.png" width="70" height="27">
+		<img id="wrong_{$i}" title="{:U('Library/wrongAnthology?courseId='.$data['id'].'&focus=wrong_'.$i)}" 
+		src="__HD__/images/usercenter/learningPreschool/wrong.png" width="75" height="32">
 	</div>
+	
 </volist>
 
 <!-- 分页 -->

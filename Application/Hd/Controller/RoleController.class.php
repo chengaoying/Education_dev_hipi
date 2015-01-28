@@ -20,7 +20,7 @@ class RoleController extends CommonController {
 		$roleList = Session('roleList');
 		if(count($roleList) >= 10)
 		{
-			$this->addFloatMessage('您创建的角色超过10个！',U('Role/changeNum'));
+			$this->addFloatMessage('创建的角色不能超过10个！',U('Role/changeNum'));
 		}
 		if(empty($stageId)){
 			//顶级分类(二级栏目)
@@ -37,7 +37,7 @@ class RoleController extends CommonController {
 			$role = array('id'=>I('id',''),'stageId'=>$stageId,'userId'=>$this->user['id'],'status'=>1);
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){ //创建成功跳转至首页
-				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
+				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
 				D('Role','Logic')->changeRole($r['data']['id']);//改变当前角色
 				
 				$stage = $this->getStage($role['stageId']);//根据stageId得到段龄信息；
@@ -126,31 +126,31 @@ class RoleController extends CommonController {
 				array(
 						'name' => 'nickname',
 						'content' => array($nickName),
-						'linkUrl' => '/Hd/Role/setNickname',
+						'linkUrl' => '/Hd/Role/setNickname?focus=nickname',
 				),
 				/*性别*/
 				array(
 						'name' => 'sex',
 						'content' => array($sex),
-						'linkUrl' => '/Hd/Role/setSex',
+						'linkUrl' => '/Hd/Role/setSex?focus=sex',
 				),
 				/*生日*/
 				array(
 						'name' => 'birthday',
 						'content' => array($birthday),
-						'linkUrl' => '/Hd/Role/setBirthday',
+						'linkUrl' => '/Hd/Role/setBirthday?focus=birthday',
 				),
 				/*年级*/
 				array(
 						'name' => 'stage',
 						'content' => array($stage[$role['stageId']]['name']),
-						'linkUrl' => '/Hd/Role/changeStage',
+						'linkUrl' => '/Hd/Role/changeStage?focus=stage',
 				),
 				/*手机*/
 				array(
 						'name' => 'phone',
 						'content' => array($phone),
-						'linkUrl' => '/Hd/Role/setPhone',
+						'linkUrl' => '/Hd/Role/setPhone?focus=phone',
 				),
 				/*版本*/
 /* 				array(
@@ -161,19 +161,19 @@ class RoleController extends CommonController {
 				array(
 						'name' => 'advantage',
 						'content' => $advantages,
-						'linkUrl' => '/Hd/Role/setMulchoice?type=advantage',
+						'linkUrl' => '/Hd/Role/setMulchoice?type=advantage&focus=advantage',
 				),
 				/*弱项*/
 				array(
 						'name' => 'disadvantage',
 						'content' => $disadvantages,
-						'linkUrl' => '/Hd/Role/setMulchoice?type=disAdvantage',
+						'linkUrl' => '/Hd/Role/setMulchoice?type=disAdvantage&focus=disadvantage',
 				),
 				/*兴趣*/
 				array(
 						'name' => 'interests',
 						'content' => $interests,
-						'linkUrl' => '/Hd/Role/setMulchoice?type=interests',
+						'linkUrl' => '/Hd/Role/setMulchoice?type=interests&focus=interests',
 				),
 		);
 		return $userInfo;
@@ -184,7 +184,7 @@ class RoleController extends CommonController {
 	 */
 	private function getFocus()
 	{
-		$baseInfo = 'ch_3';//在http_refferr中没有focuse参数时的默认焦点
+		$baseInfo = 'ch_1';//在http_refferr中没有focuse参数时的默认焦点
  		$url = HTTP_REFERER;//上页面索引，根据focus值得到默认焦点
  		//得到开始坐标
  		$startPos = strpos($url,'focus');
@@ -193,7 +193,8 @@ class RoleController extends CommonController {
  		//得到结束坐标
  		$endPos1 = strpos($url, '&', $startPos);
  		$endPos2 = strpos($url, '/', $startPos);
- 		$endPos = $endPos1 || $endPos2;
+ 		$endPos3 = strpos($url, '.html', $startPos);
+		($endPos = $endPos1) || ($endPos = $endPos2) || ($endPos = $endPos3);
  		$endPos = $endPos===false ? strlen($url) : $endPos;
  		//得到长度
  		$len = $endPos - $startPos;
@@ -233,7 +234,7 @@ class RoleController extends CommonController {
 			$role['stageId'] = $stageId;
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){
-				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
+				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
 				
 				$stage = $this->getStage($role['stageId']);//根据stageId得到段龄信息；
 				$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
@@ -274,7 +275,7 @@ class RoleController extends CommonController {
 				{
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'nickname', '设置角色昵称');
 				}
-				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
+				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
 				$this->addFloatMessage('修改昵称成功',U('Role/userInfo'));
 				//header('location:'.U('Role/userInfo'));
 			}else{
@@ -364,7 +365,7 @@ class RoleController extends CommonController {
 				{
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'sex', '设置角色sex');
 				}
-				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
+				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
 				$this->addFloatMessage('修改性别成功',U('Role/userInfo'));
 				//header('location:'.U('Role/userInfo'));
 			}else{
@@ -440,6 +441,7 @@ class RoleController extends CommonController {
 					}
 				}
 			}
+			
 			$isEmpty = empty($subject_display) ? 1 : 0;
 			$this->assign(array(
 					'json_selected'	=> json_encode($subject_selected),
@@ -449,6 +451,7 @@ class RoleController extends CommonController {
 					'count_sub' => count($subject_display),
 					'type' => $type,
 					'width_logo' => $width_logo,
+					'count_selected' => count($subject_selected),
 			));
 			$this->display();
 		}
@@ -470,7 +473,7 @@ class RoleController extends CommonController {
 				{
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], $data['type'], '设置角色'+$data['type']);
 				}
-				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
+				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
 				$this->addFloatMessage('修改成功',U('Role/userInfo'));
 				//header('location:'.U('Role/userInfo'));
 			}else{
@@ -533,7 +536,7 @@ class RoleController extends CommonController {
 				{
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'birthday', '设置角色birthday');
 				}
-				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
+				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
 				
 				//保存成功弹框
 				if($grade==='early' && !empty($role['birthday']))//早教跳转到推荐页
@@ -637,7 +640,7 @@ class RoleController extends CommonController {
 			}
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){
-				D('Role','Logic')->initUserRoleInfo();//重新加载角色信息
+				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
 				$this->addFloatMessage('修改头像成功',U('Role/userInfo'));
 				//header('location:'.U('Role/userInfo'));
 			}else{
@@ -665,7 +668,7 @@ class RoleController extends CommonController {
 			{
 				$list[$i-$page*$pageSize]['id'] = $roleList[$i]['id'];
 				$list[$i-$page*$pageSize]['name'] = empty($roleList[$i]['nickName']) ? $roleList[$i]['id'] : $roleList[$i]['nickName'];
-				$list[$i-$page*$pageSize]['stage'] = $stage[$roleList[$i]['stageId']]['sKey'];
+				$list[$i-$page*$pageSize]['stage'] = empty($stage[$roleList[$i]['stageId']]['sKey']) ? 'noset' : $stage[$roleList[$i]['stageId']]['sKey'];
 				$list[$i-$page*$pageSize]['face'] = $roleList[$i]['face'];
 			}
 			$count = count($list);
@@ -676,7 +679,7 @@ class RoleController extends CommonController {
 				$list[$count]['stage'] = '';
 				$list[$count]['face'] = 'add';
 			}
-			
+//			p($list);exit;
 			$left = ($page==0) ? 0 : 1;//可以向左移动则显示左号
 			$right = (($page+1)*$pageSize<=count($roleList)) ? 1 : 0;
 			

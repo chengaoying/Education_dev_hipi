@@ -88,8 +88,8 @@ var buttons=
 	 	{id:'btn_order',name:'订购',action:'',linkImage:'__HD__/images/common/order/btn_order.png',focusImage:'__HD__/images/common/order/btn_order_over.png',left:'btn_next_week',right:'',up:'',down:'section_7_1'},
 	 	
 	 	/* 前一天 /后一天 */
-		{id:'btn_prev_week',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'',right:'btn_next_week',down:'section_2_1'},
-		{id:'btn_next_week',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'btn_prev_week',right:'btn_order',down:'section_3_1'},
+		{id:'btn_prev_week',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'',right:'btn_next_week',down:'section_2_1'},
+		{id:'btn_next_week',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'btn_prev_week',right:'btn_order',down:'section_3_1'},
 	
 	];
 
@@ -103,11 +103,38 @@ var initButtons = function(){
 	
 }
 
+var url = "{:U('SectionList/week').'?preFocus='.$preFocus}";
+
+//上一页
+function pageUp()
+{
+	url += "&focus="+Epg.btn.current.id+"&week={$prevWeek}";
+	Epg.jump(url);
+}
+
+//下一页
+function pageDown()
+{
+	url += "&focus="+Epg.btn.current.id+"&week={$nextWeek}";
+	Epg.jump(url);
+}
+
+var defaultId = "{$focus}";
+
 window.onload=function()
 {
 	initButtons();
 	popup();
-	Epg.btn.init('btn_order',buttons,true);	
+	
+	//翻页焦点定位
+	if(defaultId == "btn_prev_week" && Epg.isEmpty(G(defaultId))){
+		defaultId = "btn_next_week";
+	}
+	if(defaultId == "btn_next_week" && Epg.isEmpty(G(defaultId))){
+		defaultId = "btn_prev_week";
+	}
+	
+	Epg.btn.init([defaultId,'btn_order'],buttons,true);	
 };
 </script>
 
@@ -117,19 +144,31 @@ window.onload=function()
 <div class="ch_logo"></div>
 
 <!-- 周数 -->
-<div class="week">第{$week}周</div>
+<div class="week" style="font-size:24px;">第{$week}周</div>
 <!-- 前一周 -->
-<div id="div_btn_prev_week" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
-    <img id="btn_prev_week" title="{:U('SectionList/week').'?week='.$prevWeek}" src="__HD__/images/common/page/page_prev.png" width="20" height="26">
-</div>
+<if condition="$week gt 1">
+	<div id="div_btn_prev_week" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
+	    <img id="btn_prev_week" src="__HD__/images/common/page/page_prev.png" width="20" height="26">
+	</div>
+<else />
+	<div id="div_btn_prev_week" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
+    	<img src="__HD__/images/common/page/page_prev_none.png" width="20" height="26">
+	</div>
+</if>
 <!-- 后一周 -->
-<div id="div_btn_next_week" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
-    <img id="btn_next_week" title="{:U('SectionList/week').'?week='.$nextWeek}" src="__HD__/images/common/page/page_next.png" width="20" height="26">
-</div>
+<if condition="$week lt 52">
+	<div id="div_btn_next_week" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
+	    <img id="btn_next_week" src="__HD__/images/common/page/page_next.png" width="20" height="26">
+	</div>
+<else />
+	<div id="div_btn_next_week" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
+    	<img src="__HD__/images/common/page/page_next_none.png" width="20" height="26">
+	</div>
+</if>
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:90px;left:1100px;">
-	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId)}" src="__HD__/images/common/order/btn_order.png">
+	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId.'&preFocus='.$preFocus)}" src="__HD__/images/common/order/btn_order.png">
 </div>
 
 <!-- 背景  -->
@@ -149,7 +188,7 @@ window.onload=function()
             }
         </php>
         <div id="div_section_{$i}_{$j}" style="position:absolute;width:150px;height:{$height}px;left:{$left}px;top:{$top}px;line-height: {$height}px;text-align:center;">
-             <img id="section_{$i}_{$j}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId)}" src="__HD__/images/common/transparent.png" width="150" height="{$height}">
+             <img id="section_{$i}_{$j}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId.'&preFocus='.$preFocus)}" src="__HD__/images/common/transparent.png" width="150" height="{$height}">
         </div>
         <div id="div_section_{$i}_{$j}" style="position:absolute;width:150px;height:{$height}px;left:{$left}px;top:{$top}px;text-align:left;vertical-align: middle;">
             <span style="color:#666;font-size:16px;">{$section['name']}</span>

@@ -11,6 +11,7 @@ use Common\Controller\CommonController;
 
 class LearningController extends CommonController {
 	
+//	static  $progressPreschool = '';	//进度
 	/**
 	 * 显示早教学习评价
 	 */
@@ -70,24 +71,51 @@ class LearningController extends CommonController {
 		
 		$channel = $this->initUserCenterChannel();
 		$json_encode = json_encode($channel);
-		
 		$data_get = I('get.');
 	
 		//分页查找数据,$role['stageId']得到段龄,第二个参数typeid没有用到，值0，查询时忽略该字段
 		$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 1, $page, $pageSize);
-		//$total = $course['total'];
 		$pageCount = get_page_count($course['total'], $pageSize);
 		$pageHtml = get_page_html($page, $pageCount);
-		//$page = get_pageHtml2($total,3,array(),'/static/v1/hd/images/common/page');
-		//$course = D('Course','Logic') -> queryCourseListByType($role['stageId'], 1, $page['nowPage'], 3);
+		
 		foreach($course['rows'] as $key => $value)
+		{
+			$courseIds[] = $value['id'];
+		}
+		
+		//统计进度
+		$progressPreschool = D('Learning', 'Logic')->statisticsDataPreschool($courseIds,$this->role['id'],230);
+		$progressPreschool = $progressPreschool['data'];
+		Session('progressPreschool',$progressPreschool);
+		
+		$score = D('Learning', 'Logic')->statisticsScore($role['stageId'],$this->role['id'],1);
+//		p($score);exit;
+		$score = $score['data'];
+		Session('score',$score);
+		
+		$focus = $this->getFocus();
+		foreach($course['rows'] as $key => $value)
+		{
+			$temp = 0;
+			foreach($progressPreschool[$value['id']] as $k => $v)
+			{
+				$temp += $v; 
+			}
+			$data[$key]['name'] = $value['name'];
+			$data[$key]['id'] = $value['id'];
+			$data[$key]['length'] = $temp/count($progressPreschool[$value['id']])*230;
+			$data[$key]['sumScore'] = $score['courseScore'][$value['id']]['sum'];
+		}
+//		p($data);exit;
+/* 		foreach($course['rows'] as $key => $value)
 		{
 			$data[$key]['name'] = $value['name'];
 			$data[$key]['id'] = $value['id'];
 			$d = $this -> getData($value['id']);
-			$data[$key]['length'] = $this -> getProgressCounrse($d,270);
-		}
+			$data[$key]['length'] = $this -> getProgressCounrse($d,230);
+		} */
 		
+		$focus = $this->getFocus();//获得上个页面焦点
 		$this->assign(array(
 				'pageHtml' => $pageHtml,//$page['html'],
 				'datas' => $data,
@@ -96,6 +124,9 @@ class LearningController extends CommonController {
 				'face' => $role['face'],
 				'page' => $page,
 				'pageCount' => $pageCount,
+				'focus' => $focus,
+				'roleScore' => $score['roleScore'],
+				'rank' => $score['rank'],
 		));
 		$this->display();
 	}
@@ -113,19 +144,30 @@ class LearningController extends CommonController {
 		$data_get = I('get.');
 	
 		//分页查找
-		$topic = D('Topic','Logic') -> queryTopicList($data_get['courseId']);
+		$topic = D('Topic','Logic') -> queryTopicList($data_get['courseId'],$page,$pageSize);
 		//$total = $topic['total'];
 		$pageCount = get_page_count($topic['total'], $pageSize);
 		$pageHtml = get_page_html($page, $pageCount);
 		//$page = get_pageHtml2($total,12,array(),'/static/v1/hd/images/common/page');
-		$data = $this -> getData($data_get['courseId'], $page/* $page['nowPage'] */, $pageSize);
+//		$data = $this -> getData($data_get['courseId'], $page/* $page['nowPage'] */, $pageSize);
+//		dump($this->progressPreschool);exit;
 		
+		$progressPreschool = Session('progressPreschool');
+		$topic = $topic['rows'];
+		foreach($topic as $key => $value)
+		{
+			$data[$key]['name'] = $value['name'];
+			$data[$key]['length'] = $progressPreschool[$value['courseId']][$value['id']]*300;
+		}
+		$score = Session('score');
+		$totalScore = $score['courseScore'][$data_get['courseId']]['sum'];
 		$this->assign(array(
 				'pageHtml' => $pageHtml,//$page['html'],
 				'datas' => $data,
 				'courseName' => $data_get['courseName'],
 				'page'	=> $page,
 				'pageCount' => $pageCount,
+				'roleScore' => $totalScore,
 		));
 		$this->display();
 	}
@@ -227,6 +269,7 @@ class LearningController extends CommonController {
 		}
 		return $length;
 	}
+	
 	/*
 	 * 得到早教各项能力进度
 	 */
@@ -413,6 +456,24 @@ class LearningController extends CommonController {
 			$data[$key]['length'] = $this -> getProgressTopic($data[$key]['total'],$data[$key]['finish'],300);
 		}
 		return $data;
+	}
+	 
+	/*
+	 * 统计课程进度 
+	 * @param array courseIds 当前页面的课程id
+	 * @param
+	 */
+ 	private function statisticsData($courseIds,$pageNo='',$pageSize='')
+	{
+		$topic = D('Topic','Logic') -> queryTopicList($courseId,$pageNo, $pageSize);
+		foreach($topic[rows] as $key => $value)
+		{
+			$data[$key]['name'] = $value['name'];
+			$data[$key]['total'] = $this -> getTotal($value);//知识点中包含视频总个数
+			$data[$key]['finish'] = $this->getFinishNum($this->role['id'],$value['id']);//已观看改知识点的视频个数
+			$data[$key]['length'] = $this -> getProgressTopic($data[$key]['total'],$data[$key]['finish'],300);
+		}
+		return $data;
 	} 
 	
 	//得到各个知识点进度
@@ -484,12 +545,15 @@ class LearningController extends CommonController {
 		$url = HTTP_REFERER;//上页面索引，根据focus值得到默认焦点
 		//得到开始坐标
 		$startPos = strpos($url,'focus');
+		
 		if($startPos===false) return $baseInfo;
 		$startPos += 6;
 		//得到结束坐标
 		$endPos1 = strpos($url, '&', $startPos);
 		$endPos2 = strpos($url, '/', $startPos);
-		$endPos = $endPos1 || $endPos2;
+		$endPos3 = strpos($url, '.html', $startPos);
+		($endPos = $endPos1) || ($endPos = $endPos2) || ($endPos = $endPos3);
+		
 		$endPos = $endPos===false ? strlen($url) : $endPos;
 		//得到长度
 		$len = $endPos - $startPos;

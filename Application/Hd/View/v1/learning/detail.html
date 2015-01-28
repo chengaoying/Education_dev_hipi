@@ -18,11 +18,21 @@
 #word{
 	position: absolute;
 	display: block;
-	width: 184px;
-	height: 28px;
-	top:90px;
+	width: 227px;
+	height: 38px;
+	top:85px;
 	left:95px;
 	background-image: url(__HD__/images/usercenter/detail/word.png);
+}
+/* 分数*/
+#score{
+	position: absolute;
+	display: block;
+	width: 790px;
+	height: 60px;
+	top:170px;
+	left:400px;
+	background-image: url(__HD__/images/usercenter/detail/score.png);
 }
 
 /* 分页 */
@@ -89,13 +99,18 @@
 <!-- 静态图片 -->
 <div id="bottom"></div>
 <div id="word"></div>
+<div id="score"></div>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('learning/index',1)}" ></a>
 
 
 <!-- 课程名字 -->
-<div style="position:absolute;left:290px;top:88px;width:250px;height:37px;line-height:37px;text-align:left;border-style:none">
+<div style="position:absolute;left:330px;top:83px;width:250px;height:37px;line-height:37px;text-align:left;border-style:none">
 	<span>{$courseName}</span>
+</div>
+<!-- 总分 -->
+<div style="position:absolute;left:540px;top:185px;width:100px;height:30px;line-height:30px;text-align:left;border-style:none;">
+	<span style="color:#ffff64">{$roleScore}</span>
 </div>
 <volist name="datas" id="data" key="i">
 	<php>

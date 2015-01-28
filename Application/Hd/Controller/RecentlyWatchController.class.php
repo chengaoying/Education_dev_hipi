@@ -26,16 +26,27 @@ class RecentlyWatchController extends CommonController {
 		$data = D('BrowseRecord','Logic')->queryBrowseRecordList($role['id'],$page['nowPage'],14); */
 		//以下是大家都在看的代码	
 		$proConfig = get_pro_config_content('proConfig');
+		
 		$key = array_search('最新',$proConfig['keys']);
-		$c = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key),1,2);
+		if($role['stageId'] == 99)
+		{
+			$c = D('Course','Logic')->queryCourseListByKeys(null,array($key));
+		}
+		else 
+		{
+			$c = D('Course','Logic')->queryCourseListByKeys($role['stageId'],array($key));
+		}
+		
+		$key = getRandNumber(0,$c['total']-1);
 		$c = $c['rows'];
-		foreach ($c as $k=>$v){
-			if($v['imgUrl']){
-				$char = getDelimiterInStr($v['imgUrl']);
-				$imgs = explode($char, $v['imgUrl']);
+		foreach($key as $k => $v)
+		{
+			if($c[$k]['imgUrl']){
+				$imgs = explode(getDelimiterInStr($c[$k]['imgUrl']), $c[$k]['imgUrl']);
 				$c[$k]['imgUrl']  = get_upfile_url(trim($imgs[0]));
 			}
 		}
+		
 		$this->assign(array(
 					'datas' => $data['rows'],
 					'count' => count($data['rows']),

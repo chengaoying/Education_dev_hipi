@@ -125,19 +125,53 @@ function submit(){
 	G('form').submit();
 }
 
+var count_selected = {$count_selected};
+var selected_array = new Array(4);
+var type = '{$type}';
+/* 初始化selected_array */
+var i=0;
+for(var key in subject_selected)
+{	
+	selected_array[i++] = subject_selected[key];
+}
 function select(subject)
 {
 	if(G('div_subject_'+subject+'_selected').style.visibility == 'visible')
 	{
 		G('div_subject_'+subject+'_selected').style.visibility = 'hidden';
 		G('form_subject_'+subject).value = '';
+		if(type != 'interests')
+		{
+			if(count_selected>0) count_selected--;
+		}
 	}
 	else
 	{
 		G('div_subject_'+subject+'_selected').style.visibility = 'visible'
 		G('form_subject_'+subject).value = subjects['subject_'+subject];
-	}
+		
+		if(type != 'interests')
+		{
+			count_selected++;	
+			if(count_selected>4)
+			{
+				G('div_subject_'+selected_array[0]+'_selected').style.visibility = 'hidden';
+				G('form_subject_'+selected_array[0]).value = '';
+				count_selected--;
+				for(i=0;i<selected_array.length-1;i++)
+				{
+					selected_array[i] = selected_array[i+1];
+				}
+				selected_array[selected_array.length-1] = subject;
+			}
+			else
+			{
+				selected_array[count_selected-1] = subject;
+			}
+		}
 
+	}
+	
 }
 
 </script>

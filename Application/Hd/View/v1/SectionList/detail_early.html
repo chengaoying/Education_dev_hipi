@@ -1,27 +1,28 @@
 <layout name="layout" />
+
+<php>
+	/*月份*/ 
+	$month = $courseId - 1000;
+	if($month>=1 and $month<=12){
+	    $monthbg = '__HD__/images/sectionList/early/month/1_12_month.png';
+	}else if($month>=13 and $month<=24){
+	    $monthbg = '__HD__/images/sectionList/early/month/13_24_month.png';
+	}else{
+	    $monthbg = '__HD__/images/sectionList/early/month/25_36_month.png';
+	}
+
+	/* 进度条背景 */
+	if(in_array($month,array(12,24,36))){
+	    $probgwidth = 1110;
+	    $proleft = 1085;
+	}else{
+	    $probgwidth = ($month%12)*86;
+	    $proleft = ($month%12)*86+62;
+	}
+</php>
+
 <style type="text/css">
     body{ background-image:url(__HD__/images/common/bg.jpg); }
-    
-    /*月份*/
-    <php>
-	$month = $courseId - 1000;
-    if($month>=1 and $month<=12){
-        $monthbg = '__HD__/images/sectionList/early/month/1_12_month.png';
-    }else if($month>=13 and $month<=24){
-        $monthbg = '__HD__/images/sectionList/early/month/13_24_month.png';
-    }else{
-        $monthbg = '__HD__/images/sectionList/early/month/25_36_month.png';
-    }
-    
-    //进度条背景
-    if(in_array($month,array(12,24,36))){
-        $probgwidth = 1110;
-        $proleft = 1085;
-    }else{
-        $probgwidth = ($month%12)*86;
-        $proleft = ($month%12)*86+62;
-    }
-    </php>
     
     .monthbg{
         position: absolute;
@@ -127,7 +128,7 @@ window.onload=function()
 
 <!-- 栏目LOGO -->
 <div id="div_btn_logo" style="position:absolute;width:225px;height:91px;top:45px;left:85px;">
-	<img id="btn_logo" src="__HD__/images/sectionList/title_early.png">
+	<img id="btn_logo" title="{:U('CourseList/courseDesc').'?chKey='.$chKey}" src="__HD__/images/sectionList/title_early.png">
 </div>
 
 <!-- 课程横幅图 -->

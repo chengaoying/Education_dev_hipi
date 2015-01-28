@@ -19,15 +19,16 @@
 	var faceNum = {$face};
 	var channel = {$json_channel};
 	var focus = '{$focus}';
+	
 	var buttons = [
 	/* 栏目  */
 	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',blurHandler:'blurHandler()',up:'changeNum',down:'ch_2',right:'nickname'}, 
 	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_1',down:'ch_3',right:'nickname'}, 
 	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_2',right:'nickname'},
 
-	{id:'nickname',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'selectFace',right:'phone',down:'sex'},
-	{id:'sex',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'advantage',up:'nickname',down:'birthday'},
-	{id:'birthday',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'disadvantage',up:'sex',down:'stage'},
+	{id:'nickname',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'phone',down:'sex'},
+	{id:'sex',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_1',right:'advantage',up:'nickname',down:'birthday'},
+	{id:'birthday',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_2',right:'disadvantage',up:'sex',down:'stage'},
 	{id:'stage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_3',right:'interests',up:'birthday',down:''},
 
 	{id:'phone',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'nickname',up:'ch_3',down:'advantage'},
@@ -54,7 +55,7 @@
 	
 	var filterFocus = function()
 	{
-		if(focus==='ch_3' || focus==='ch_2') focus = 'ch_1';
+		if(focus !== 'ch_1') G('ch_1').src = buttons[0].titleImage;
 	}
 	
 	window.onload = function() {
@@ -113,13 +114,23 @@
 	
 	<volist name="info['content']" id="content" key="j">
 		<php>
-			if($info['name']=="advantage" || $info['name']=="disadvantage" || $info['name']=="interests"){
+			if($info['name']=="advantage" || $info['name']=="disadvantage"){
           		$bottom = 'kuang_short.png';
           		$bottom_over = 'kuang_short_over.png';
           		$width = 96;
           		$left_content = $left + (($j-1)%4)*100;
           		$top_content = $top;
-       		}else{
+       		}
+       		else if($info['name']=="interests")
+       		{
+          		$bottom = 'kuang_short.png';
+          		$bottom_over = 'kuang_short_over.png';
+          		$width = 96;
+          		$left_content = $left + (($j-1)%4)*100;
+          		$top_content = $top + floor(($j-1)/4)*60;
+       		}
+       		else
+       		{
            		$bottom = 'kuang_long.png';
            		$bottom_over = 'kuang_long_over.png';
            		$width = 176;

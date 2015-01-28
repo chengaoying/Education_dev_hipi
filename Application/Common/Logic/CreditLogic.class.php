@@ -20,7 +20,9 @@ class CreditLogic extends BaseLogic{
 	*/
 	public function ruleIncOrDec($userId = 0,$roleId = 0,$ruleKey = '',$info = '')
 	{
-		return $this->client->ruleIncOrDec($userId, $roleId, $ruleKey, $info);
+		$result = $this->client->ruleIncOrDec($userId, $roleId, $ruleKey, $info);
+		D('Role','Logic')->reloadRoleInfo($userId,$roleId);//更新角色相关session
+		return $result;
 	}
 	
    /*
@@ -32,11 +34,13 @@ class CreditLogic extends BaseLogic{
      */
 	public function incOrDec($userId = 0,$roleId = 0,$creditData = array(), $info = '',$log = true)
 	{
-		return $this->client->incOrDec($userId,$roleId,$creditData, $info,$log);
+		$result = $this->client->incOrDec($userId,$roleId,$creditData, $info,$log);
+		D('Role','Logic')->reloadRoleInfo($userId,$roleId);//更新角色相关session
+		return $result;
 	}
 	
 	/*
-	* 根据规则更新积分写日志
+	* 登陆奖励
 	* @param int $userId 用户ID
 	* @param int $roleId 角色ID
 	* @param string $ruleKey 规则KEY
@@ -44,7 +48,18 @@ class CreditLogic extends BaseLogic{
 	*/
 	public function everydayLogin($userId = 0,$roleId = 0,$info = '')
 	{
-		return $this->client->everydayLogin($userId, $roleId, $info);
+		$result = $this->client->everydayLogin($userId, $roleId, $info);
+		D('Role','Logic')->reloadRoleInfo($userId,$roleId);//更新角色相关session
+		return $result;
+	}
+	
+	/*
+	 * 查询连续登陆天数
+	 * 
+	 */
+	public function queryContinueLogin($userId = 0,$roleId = 0)
+	{
+		return $this->client->queryContinueLogin($userId, $roleId);
 	}
 	
 	/*

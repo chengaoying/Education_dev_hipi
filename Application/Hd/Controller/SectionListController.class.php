@@ -60,6 +60,7 @@ class SectionListController extends CommonController {
 		$json_topic = get_array_fieldkey($topics['rows'],array('id','name','linkImage','focusImage'));
 		$json_topic = json_encode($json_topic);
 		$this->assign(array(
+			'chKey'		 => $chKey,	
 			'topics' 	 => $topics['rows'],
 			'json_topic' => $json_topic,
 			'sections'   => $sections['rows'],
@@ -126,6 +127,7 @@ class SectionListController extends CommonController {
 		}
 		
 		$this->assign(array(
+			'chKey' 		=> $chKey,
 			'sections' 		=> $sections['rows'],
 			'specialList'	=> $specials['rows'],
 			'courseId'		=> $course['id'],	
@@ -229,7 +231,7 @@ class SectionListController extends CommonController {
 	
 	private function getBackUrl(){
 		//返回处理（焦点参数）
-		$backUrl = get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/index','/Resource/play'));
+		$backUrl = get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/week','/SectionList/index','/Resource/play'));
 		if(strpos($backUrl, '?preFocus'))
 			$backUrl = substr($backUrl, 0, strpos($backUrl, '?preFocus'));
 		if(strpos($backUrl, '&preFocus'))

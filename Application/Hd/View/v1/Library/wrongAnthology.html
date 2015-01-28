@@ -5,45 +5,45 @@
     .course_title{
         position: absolute;
         display: block;
-        top:67px;
-        left:260px;
-        font-size: 22px;
+        top:82px;
+        left:290px;
+    	font-weight:bold;
+        font-size: 30px;
     }
     
     .ch_logo{
         position: absolute;
         display: block;
-        top:70px;
-        left:100px;
-        width: 154px;
-        height: 28px;
+        top:85px;
+        left:95px;
+        width: 187px;
+        height: 38px;
         background: url(__HD__/images/library/wrong_anthology/ch_logo.png) no-repeat;
     }
     
     .lib_bg{
         position: absolute;
         display: block;
-        top:178px;
+        top:170px;
         left:85px;
         width: 250px;
-        height: 420px;
+        height: 455px;
         background: url(__HD__/images/library/wrong_anthology/lib_bg.png) no-repeat;
-        z-index: 2;
     }
     .score_bg{
         position: absolute;
         display: block;
-        top:165px;
-        left:380px;
-        width: 790px;
-        height: 47px;
+        top:180px;
+        left:995px;
+        width: 193px;
+        height: 56px;
         background: url(__HD__/images/library/wrong_anthology/score.png) no-repeat;
     }
     .title_bg{
         position: absolute;
         display: block;
-        top:220px;
-        left:360px;
+        top:258px;
+        left:380px;
         width: 810px;
         height: 332px;
         background: url(__HD__/images/library/wrong_anthology/title_bg.png) no-repeat;
@@ -51,12 +51,21 @@
     .score{
         position: absolute;
         display: block;
-        top:168px;
-        left:495px;
+        top:190px;
+        left:550px;
         width: 80px;
-        color:#f65074;
+        color:#ffff64;
         font-size: 28px;
         font-weight: 600;
+    }
+    #lianxi_score{
+        position: absolute;
+        display: block;
+        top:180px;
+        left:380px;
+        width: 250px;
+        height: 60px;
+        background: url(__HD__/images/library/wrong_anthology/lianxi.png) no-repeat;    	   	
     }
     .now{
         width:100px;
@@ -67,6 +76,31 @@
         text-align:center;
         color: #000
     }  
+	.page_prev{
+		position:absolute;
+		width:25px;
+		height:32px;
+		left:1040px;
+		top:615px;
+	}
+	.text{
+		position:absolute;
+		width:80px;
+		height:30px;
+		line-height:30px;
+		left:1060px;
+		top:615px;
+		text-align:center;
+	}
+	.page_next{
+		position:absolute;
+		width:25px;
+		height:32px;
+		left:1140px;
+		top:615px;
+	}
+    
+    
 </style>
 
 <script type="text/javascript">
@@ -74,37 +108,102 @@
 var buttons=
 	[
         /*课题列表*/
-        {id:'lib_1',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'',down:['lib_2','up','down']},
-        {id:'lib_2',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_1',down:['lib_3','up','down']},
-        {id:'lib_3',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_2',down:['lib_4','up','down']},
-        {id:'lib_4',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_3',down:['lib_5','up','down']},
-        {id:'lib_5',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_4',down:['lib_6','up','down']},
-        {id:'lib_6',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_5',down:['lib_7','up','down']},
-        {id:'lib_7',name:'',action:'',linkImage:'__HD__/images/common/transparent.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',left:'',right:'re_answer',up:'lib_6',down:['up','down']},
+        {id:'lib_1',name:'',action:'',linkTextColor:'#ffff00',focusTextColor:'#503200',linkImage:'__HD__/images/common/transparent.png',titleImage:'__HD__/images/library/wrong_anthology/select_box_out.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',left:'',right:'re_answer',up:'pageUp()',down:'lib_2'},
+        {id:'lib_2',name:'',action:'',linkTextColor:'#ffff00',focusTextColor:'#503200',linkImage:'__HD__/images/common/transparent.png',titleImage:'__HD__/images/library/wrong_anthology/select_box_out.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',left:'',right:'re_answer',up:'lib_1',down:'lib_3'},
+        {id:'lib_3',name:'',action:'',linkTextColor:'#ffff00',focusTextColor:'#503200',linkImage:'__HD__/images/common/transparent.png',titleImage:'__HD__/images/library/wrong_anthology/select_box_out.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',left:'',right:'re_answer',up:'lib_2',down:'lib_4'},
+        {id:'lib_4',name:'',action:'',linkTextColor:'#ffff00',focusTextColor:'#503200',linkImage:'__HD__/images/common/transparent.png',titleImage:'__HD__/images/library/wrong_anthology/select_box_out.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',left:'',right:'re_answer',up:'lib_3',down:'lib_5'},
+        {id:'lib_5',name:'',action:'',linkTextColor:'#ffff00',focusTextColor:'#503200',linkImage:'__HD__/images/common/transparent.png',titleImage:'__HD__/images/library/wrong_anthology/select_box_out.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',left:'',right:'re_answer',up:'lib_4',down:'lib_6'},
+        {id:'lib_6',name:'',action:'',linkTextColor:'#ffff00',focusTextColor:'#503200',linkImage:'__HD__/images/common/transparent.png',titleImage:'__HD__/images/library/wrong_anthology/select_box_out.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',left:'',right:'re_answer',up:'lib_5',down:'lib_7'},
+        {id:'lib_7',name:'',action:'',linkTextColor:'#ffff00',focusTextColor:'#503200',linkImage:'__HD__/images/common/transparent.png',titleImage:'__HD__/images/library/wrong_anthology/select_box_out.png',focusImage:'__HD__/images/library/wrong_anthology/select_box.png',selectBox:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',left:'',right:'re_answer',up:'lib_6',down:'pageDown()'},
         
         /* 页码 */
-		{id:'pre',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:['down','up','re_answer'],right:'next',up:'re_answer',down:''},
-		{id:'next',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['pre','down','up','re_answer'],right:'',up:'re_answer',down:''},
-        {id:'up',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/up.png',focusImage:'__HD__/images/library/wrong_anthology/up_over.png',selectBox:'',left:'',right:['down','pre','next','re_answer'],up:['lib_7','lib_6','lib_5','lib_4','lib_3','lib_2','lib_1'],down:''},
-		{id:'down',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/down.png',focusImage:'__HD__/images/library/wrong_anthology/down_over.png',selectBox:'',left:'up',right:['pre','next','re_answer'],up:['lib_7','lib_6','lib_5','lib_4','lib_3','lib_2','lib_1'],down:''},
+		{id:'page_prev',name:'',action:'pageLeft()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'re_answer',right:'page_next',up:'re_answer',down:''},
+		{id:'page_next',name:'',action:'pageRight()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','re_answer'],right:'',up:'re_answer',down:''},
+        {id:'up',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/up.png',focusImage:'__HD__/images/library/wrong_anthology/up_over.png',selectBox:'',left:'',right:'',up:'',down:''},
+		{id:'down',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/down.png',focusImage:'__HD__/images/library/wrong_anthology/down_over.png',selectBox:'',left:'',right:'',up:'',down:''},
         
 	 	/*重新答题*/
-        {id:'re_answer',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/re_answer.png',focusImage:'__HD__/images/library/wrong_anthology/re_answer_over.png',selectBox:'',right:['pre','next'],left:'lib_1',up:'',down:''},
+        {id:'re_answer',name:'',action:'',linkImage:'__HD__/images/library/wrong_anthology/re_answer.png',focusImage:'__HD__/images/library/wrong_anthology/re_answer_over.png',selectBox:'',right:['page_prev','page_next'],left:'',up:'',down:''},
         
 	];
+
+var defaultId = "{$focus}";
+
 
 window.onload=function()
 {
 	var index = {$index};
-	Epg.btn.init('lib_'+index,buttons,true);
+	buttons[11].left = "lib_"+index;
+	//翻页焦点定位
+	if(defaultId == "page_next" && Epg.isEmpty(G(defaultId))){
+		defaultId = "page_prev";
+	}
+	if(defaultId == "page_prev" && Epg.isEmpty(G(defaultId))){
+		defaultId = "page_next";
+	}
+	if(!Epg.isEmpty(G(defaultId))){
+		G("lib_"+index).src = "__HD__/images/library/wrong_anthology/select_box_out.png";
+	}
+	G("lib_"+index+"_focus").style.color = buttons[index-1].focusTextColor;
+	Epg.btn.init([defaultId,'lib_'+index],buttons,true);
+	
 };
+//       =3079&amp;sectionId=0&amp;index=1&amp;spage=2
+var url = "{:U('Library/wrongAnthology').'?courseId='.$courseId.'&index='}";
+//上一页
+function pageUp()
+{
+	url += 7+"&spage=";
+	Epg.page(url,{$s_page}-1,{$pageCount});
+}
+
+//下一页
+function pageDown()
+{
+	url += 1+"&spage=";
+	Epg.page(url,{$s_page}+1,{$pageCount});
+}
+
+//上一页
+function pageLeft()
+{
+	url += {$index}+"&focus="+Epg.btn.current.id+"&spage="+{$s_page}+"&lpage=";
+	Epg.page(url,{$l_page}-1,{$l_pageCount});
+}
+
+//下一页
+function pageRight()
+{
+	url += {$index}+"&focus="+Epg.btn.current.id+"&spage="+{$s_page}+"&lpage=";
+	Epg.page(url,{$l_page}+1,{$l_pageCount});
+}
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id == "re_answer"){
+		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+var timeHandlerVar;
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(timeHandlerVar){
+		clearTimeout(timeHandlerVar);
+	}
+	if(Epg.btn.current.id != "lib_"+{$index}){
+		timeHandlerVar = setTimeout("Epg.btn.click()",500);
+	}
+}
 
 </script>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('Learning/learningEvaluation2',1)}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('Learning/learningPreschool',1)}" ></a>
+
+<!-- 练习得分 -->
+<div id="lianxi_score"></div>
 
 <!-- 课程名称 -->
-<div class="course_title">小学一年级语文（上）</div>
+<div class="course_title">{$courseName}</div>
 
 <!-- 上面栏目 -->
 <div class="ch_logo"></div>
@@ -115,13 +214,13 @@ window.onload=function()
 <!-- 左边课程 -->
 <volist name="libList" id="lib">
 	<php>
-		$top = 178 + ($i-1)*55;
+		$top = 200 + ($i-1)*55;
 	</php>
-    <div id="div_lib_{$i}" title="{:U('Library/wrongAnthology',array('courseId'=>$courseId,'sectionId'=>$sectionId,'index'=>$i,'spage'=>$s_page))}" style="position:absolute;height:55px;left:85px;top:{$top+6}px;z-index: 100">
-        <img id="lib_{$i}" src="__HD__/images/common/transparent.png" width="250" height="55" />
+    <div id="div_lib_{$i}" title="{:U('Library/wrongAnthology',array('courseId'=>$courseId,'sectionId'=>$libList[$i]['sectionId'],'index'=>$i,'spage'=>$s_page))}" style="position:absolute;height:55px;left:85px;top:{$top+6}px;z-index: 100">
+        <img id="lib_{$i}" src="__HD__/images/common/transparent.png" width="261" height="55" />
 	</div>
     <div id="div_lib_{$i}_focus" style="position:absolute;left:90px;top:{$top+5}px;z-index: 1000;">
-        <span id="lib_{$i}_focus" style="display: block;height: 55px;width:250px; line-height: 55px; font-size: 22px;color:#fff;text-align:center; z-index: 9999">{:msubstr($lib['sectionName'],0,10)}</span>
+        <span id="lib_{$i}_focus" style="display: block;height: 55px;width:250px; line-height: 55px; font-size: 22px;text-align:center; z-index: 9999">{:msubstr($lib['sectionName'],0,10)}</span>
 	</div>
 </volist>
 
@@ -135,8 +234,8 @@ window.onload=function()
 <div class="score">{$score}</div>
 
 <!-- 重新答题 -->
-<div id="div_re_answer" title="{:U('Library/detail',array('courseId'=>$courseId,'sectionId'=>$sectionId))}" style="position:absolute;width:100px;height:36px;left:550px;top:170px;text-align:center;">
-	<img id="re_answer" src="__HD__/images/library/wrong_anthology/re_answer.png" width="100" height="36">
+<div id="div_re_answer" title="{:U('Library/detail',array('courseId'=>$courseId,'sectionId'=>$sectionId))}" style="position:absolute;width:110px;height:40px;left:670px;top:190px;text-align:center;">
+	<img id="re_answer" src="__HD__/images/library/wrong_anthology/re_answer.png" width="110" height="40">
 </div>
 
 <!-- 题目背景 -->
@@ -145,20 +244,20 @@ window.onload=function()
 <!-- 题目列表 -->
 <volist name="questionList" id="question">
 	<php>
-		$top = 228 + ($i-1)*55;
+		$top = 265 + ($i-1)*55;
 	</php>
-    <div id="div_question_{$i}" style="position:absolute;left:365px;top:{$top-2}px;z-index: 1000;">
-        <span id="question_{$i}" style=" display: block;height: 48px;line-height: 48px; font-size: 20px;color:#fff;">{:msubstr($question['title'],0,42)}</span>
+    <div id="div_question_{$i}" style="position:absolute;left:385px;top:{$top-2}px;z-index: 1000;">
+        <span id="question_{$i}" style=" display: block;height: 48px;line-height: 48px; font-size: 20px;color:#fff;">{:msubstr($question['title'],0,30)}</span>
 	</div>
     
     <!-- 你的答案 -->
     <div id="div_myself_{$i}" style="position:absolute;left:1030px;top:{$top+10}px;z-index: 1000;">
-        <img id="myself_{$i}" src="__HD__/images/library/wrong_anthology/{$question['wrong']}.png" width='30' height='30' />
+        <img id="myself_{$i}" src="__HD__/images/library/wrong_anthology/{$question['wrong']}.png" width='35' height='35' />
 	</div>
     
     <!-- 正确答案 -->
-    <div id="div_correct_{$i}" style="position:absolute;left:1120px;top:{$top+10}px;z-index: 1000;">
-        <img id="correct_{$i}" src="__HD__/images/library/wrong_anthology/{$question['correct']}.png" width='30' height='30' />
+    <div id="div_correct_{$i}" style="position:absolute;left:1130px;top:{$top+10}px;z-index: 1000;">
+        <img id="correct_{$i}" src="__HD__/images/library/wrong_anthology/{$question['correct']}.png" width='35' height='35' />
 	</div>
 </volist>
 

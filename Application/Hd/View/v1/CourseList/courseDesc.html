@@ -1,0 +1,22 @@
+<layout name="layout" />
+<style type="text/css">
+body{ background-image:url(__HD__/images/courseList/courseDesc_{$chKey}.jpg); }
+</style>
+
+<script type="text/javascript">
+
+
+var buttons=
+	[
+        /*龄段*/
+	 	{id:'stage_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:'stage_2',up:'',down:'course_1'},
+	];
+
+window.onload=function()
+{
+	Epg.btn.init(['stage_1'],buttons,true);
+};
+
+</script>
+
+<a id="a_back" style="display:none;" href="{$backUrl}" ></a>

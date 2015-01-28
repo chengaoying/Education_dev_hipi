@@ -95,11 +95,11 @@
 		/* 最后两项按down时，焦点移到分页选项上 */
 		if(count>=1) 
 		{
-			buttons[count-1]['down'] = G('page_next') ? 'page_next' : 'page_prev';	
+			buttons[count-1]['down'] = 'page_next';	
 		}
 		if(count>=2)
 		{
-			buttons[count-2]['down'] = G('page_next') ? 'page_next' : 'page_prev';
+			buttons[count-2]['down'] = 'page_next';
 		}
 		/* 最右边推荐按钮 */
 		buttons[buttons.length-4] = {id:'optionRecmd_1',linkImage:img1,selectBox:'__HD__/images/freeZone/kuang_big.png',resize:'-1',left:['option_4','option_2','option_1'],down:'optionRecmd_2'};		
@@ -107,18 +107,17 @@
 		/* 分页按钮 */
 		buttons[buttons.length-2] = {id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:buttons[buttons.length-4-1]['id']};
 		buttons[buttons.length-1] = {id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:buttons[buttons.length-4-1]['id']};
-
 	}
+	
 	window.onload = function() {
 		initbuttons();
-		Epg.btn.init('option_1', buttons, true);
 		if(buttons.length==4)
 		{
-			Epg.btn.init('option_1', buttons, true);
+			Epg.btn.init('optionRecmd_1', buttons, true);
 		}
 		else
 		{
-			Epg.btn.init('optionRecmd_1', buttons, true);
+			Epg.btn.init('option_1', buttons, true);
 		}
 		//设置翻页键翻页事件
 		Epg.key.set(

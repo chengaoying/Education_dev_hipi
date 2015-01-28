@@ -56,7 +56,8 @@ class LibraryController extends CommonController {
         $roleId = $this->role['id'];;
         $courseId = I('courseId',0);
         $sectionId = I('sectionId',0);  
-        $index = I('index',1);
+        $index = I('index',1); 
+        $l_index = I('l_index',1);
         if(!$courseId){
             $this->showMessage('参数错误');
         }
@@ -67,9 +68,9 @@ class LibraryController extends CommonController {
         $l_pageSize = 6;
         
         $wrongLib = D('Library','Logic')->queryRoleWrongLibs($roleId,$courseId,$sectionId,$s_page,$index,$s_pageSize,$l_page,$l_pageSize);
-        
+		
 		if($wrongLib==null){
-             $this->showMessage('题库不存在！',self::ICON_ERROR,'','Public:message');
+			$this->addFloatMessage('该课程暂时还没有错题集！',get_back_url('Index/recommend',1));
 		}
 		
 		foreach ($wrongLib['rows'] as $key=>$value){
@@ -77,50 +78,45 @@ class LibraryController extends CommonController {
 		}
 		
         $libList = $wrongLib['sectionList']['rows'];
-        
+        if(empty($sectionId)){
+        	$sectionId = $libList[0]['sectionId'];
+        }
         $imgPath = C('TMPL_PARSE_STRING.__' . strtoupper(C('PARENT_MODULE') . '__')) . '/images';
         $config = array(
             'p' => 'spage',
             'preId'=>'up',
             'nextId' => 'down',
-            'preTop' => 575,
-            'preLeft' => 100,
-            'nextTop' => 575,
-            'nextLeft' => 170,
+            'preTop' => 185,
+            'preLeft' => 196,
+            'nextTop' => 610,
+            'nextLeft' => 196,
             'preImg' => $imgPath .'/library/wrong_anthology/up.png',
             'nextImg' => $imgPath .'/library/wrong_anthology/down.png',
             'nowIsShow' => 0,
         );
-        $s_html = get_pageHtml($wrongLib['sectionList']['total'], $s_pageSize, $config,array('courseId'=>$courseId,'sectionId'=>$sectionId,'index'=>1));
+        $s_html = get_pageHtml($wrongLib['sectionList']['total'], $s_pageSize, $config,array('courseId'=>$courseId,'sectionId'=>$sectionId,'index'=>$index));
 //         print_r($s_html);
-        
+        $pageCount = ceil($wrongLib['sectionList']['total']/$s_pageSize);
         $questionList = $wrongLib['rows'];
-        $config2 = array(
-            'p' => 'lpage',
-            'preId'=>'pre',
-            'nextId' => 'next',
-            'preTop' => 570,
-            'preLeft' => 1020,
-            'nowTop' => 566,
-            'nowLeft' => 1030,
-            'nextTop' => 570,
-            'nextLeft' => 1115,
-            'preImg' => $imgPath .'/common/page/page_prev.png',
-            'nextImg' => $imgPath .'/common/page/page_next.png',
-            'nowIsShow' => 1,
-        );
-        $l_html = get_pageHtml($wrongLib['total'], $l_pageSize, $config2,array('courseId'=>$courseId,'sectionId'=>$sectionId,'index'=>$index,'spage'=>$s_page));
-        //print_r($libList);
+        
+        $l_pageCount = ceil($wrongLib['total']/$l_pageSize);
+        $l_html = get_page_html($l_page, $l_pageCount);
+        $course = D('Course','Logic')->queryCourseById($courseId);
         $this->assign(array(
+        	'courseName' =>$course['name'],
             'courseId' => $courseId,
             'sectionId' => $sectionId,
             'libList' => $libList,
             'questionList' => $questionList,
             'score' => $wrongLib['score'],
             's_html' => $s_html['html'],
-            'l_html' => $l_html['html'],
+            'l_html' => $l_html,
         	'index'=>$index,
         	's_page'=>$s_page,
+        	'pageCount'=>$pageCount,
+        	'l_pageCount'=>$l_pageCount,
+        	'l_page'=>$l_page,
+        	'focus'		=> I('focus',''),
         ));
         $this->display();
     }

@@ -27,6 +27,9 @@ class GloryController extends CommonController {
 		$gloryClass = $this->getGloryClass($totalCredit);
 		$classValue = array($gloryClass[2],$gloryClass[3]);//总积分/当前等级上限值
 		
+		$creditRuleLog = D('Credit','Logic') -> queryContinueLogin($this->user['id'], $this->role['id']);
+		$continueNum = $creditRuleLog['num'];
+		$giftNum = 0;
 		$this->assign(array(
 					'curProgress' => $gloryClass[1],
 					'channels' => $channel,
@@ -36,6 +39,8 @@ class GloryController extends CommonController {
 					'totalCredit' => $totalCredit,
 					'gloryClass' => $gloryClass[0],
 					'classValue' => $classValue,
+					'continueNum' => $continueNum,
+					'giftNum' => $giftNum,
 				));
 		$this->display();
 	}

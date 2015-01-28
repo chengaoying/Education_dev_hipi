@@ -63,8 +63,11 @@ class RoleLogic extends BaseLogic{
 			Session('user',serialize($user));
 		}
 		
+		$role = $roleList[$user['usedRoleID']];
 		//用户最近使用的角色
-		Session('role',serialize($roleList[$user['usedRoleID']]));
+		Session('role',serialize($role));
+		//每天登入
+		D('Credit','Logic')->everydayLogin($user['id'],$role['id'],'角色登入');
 	}
 	
 	/**
@@ -78,10 +81,42 @@ class RoleLogic extends BaseLogic{
 		if($r['status']){
 			Session('user',serialize($user));
 			$roleList = Session('roleList');
-			Session('role',serialize($roleList[$roleId]));
-			return result_data(1,'',unserialize(Session('role')));
+			$role = $roleList[$roleId];
+			Session('role',serialize($role));
+			//每天登入
+			D('Credit','Logic')->everydayLogin($user['id'],$role['id'],'角色登入');
+			return result_data(1,'',$role);
 		}
 		return $r;
 	} 
+	
+	/**
+	 * 重新加载角色信息
+	 * @param int $userId
+	 * @param int $roleId
+	 */
+	public function reloadRoleInfo($userId,$roleId){
+		if(empty($userId)) return result_data(0,'加载角色信息异常：userId为空!');
+		
+		$roleList = $this->queryRoleList($userId);
+		if(empty($roleList) || count($roleList) < 1) {
+			Session('role',null);
+			Session('roleList',null);
+			return;
+		}
+		
+		//把角色列表数组的key改为角色的ID
+		foreach ($roleList as $k=>$v){
+			$roleList[$v['id']] = $v;
+			unset($roleList[$k]);
+		}
+		//用户的角色列表
+		Session('roleList',$roleList);
+		
+		$role = $roleList[$roleId];
+		//用户最近使用的角色
+		Session('role',serialize($role));
+		return result_data(1,'',$role);
+	}
 	
 }

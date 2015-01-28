@@ -46,15 +46,9 @@ class UserLogic extends BaseLogic{
 			$result = $this->LoginOrReg($params);
 			//登入成功
 			if($result['status']){
-				$user = unserialize(Session('user'));
-				$role = unserialize(Session('role'));
-				//登入记录
-				if($role){
-					D('Credit','Logic')->everydayLogin($user['id'],$role['id'],'角色登入');
-				}
-				
 				//产品是包月类型，则进行产品鉴权
 				if(is_monthly_order()){
+					$user = unserialize(Session('user'));
 					$r = D('Order','Logic')->auth($user['id']);
 					if($r['status']){
 						//更新用户类型状态

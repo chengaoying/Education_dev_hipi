@@ -109,9 +109,13 @@
 </div> 
 
 <!-- 查看全部按钮 -->
-<div id="div_wiewAll" style="position: absolute; left:1070px; top:265px;">
+<!-- <div id="div_wiewAll" style="position: absolute; left:1070px; top:265px;">
 	<img id='viewAll' title="{:U('Glory/view')}"
 		src="__HD__/images/usercenter/glory/view.png" width="100" height="36">
+</div> -->
+<!-- 全部礼物数值 -->
+<div id="div_wiewAll" style="position: absolute; left:1097px; top:218px;width:40px;line-height:23px;height:23px;text-align:center;border-style:none;">
+	<span>{$giftNum}</span>
 </div>
 <!-- 领取奖励 -->
 <!-- <div id="div_reward" style="position: absolute; left:430px; top:520px;">
@@ -140,6 +144,10 @@
 <!-- 当前总积分/下等级上限 -->
 <div style="position:absolute;left:700px;top:225px;width:160px;line-height:27px;height:27px;text-align:right;border-style:none;color:white"">
 	<span>{$classValue[0]}/{$classValue[1]}</span>
+</div>
+<!-- 连续登陆 -->
+<div style="position:absolute;left:688px;top:476px;width:40px;line-height:23px;height:23px;text-align:center;border-style:none;color:black"">
+	<span>{$continueNum}</span>
 </div>
 
 <script type="text/javascript">

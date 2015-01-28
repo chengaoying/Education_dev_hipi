@@ -28,8 +28,8 @@ var buttons=
 		{id:'btn_logo',name:'logo',action:'',linkImage:'__HD__/images/sectionList/title_preschool.png',focusImage:'__HD__/images/sectionList/title_preschool_over.png',selectBox:'',right:'btn_prev_day',down:'section_1'},
 			
 		/* 前一天 /后一天 */
-		{id:'btn_prev_day',name:'',action:'',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'btn_logo',right:'btn_next_day',down:'section_2'},
-		{id:'btn_next_day',name:'',action:'',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'btn_prev_day',right:'btn_week',down:'section_2'},
+		{id:'btn_prev_day',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',left:'btn_logo',right:'btn_next_day',down:'section_2'},
+		{id:'btn_next_day',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'btn_prev_day',right:'btn_week',down:'section_2'},
 	
         /*本周课程*/
         {id:'btn_week',name:'',action:'',linkImage:'__HD__/images/sectionList/preschool/btn_week.png',focusImage:'__HD__/images/sectionList/preschool/btn_week_over.png',selectBox:'',left:'btn_next_day',right:'btn_order',up:'',down:['section_5','section_4','section_3','section_2','section_1']},
@@ -52,16 +52,40 @@ var buttons=
     
 /* 初始化按钮 属性   */
 var initButtons = function(){
-	
 }
 
-var defaultId = "{$preFocus}";
+var url = "{:U('SectionList/index').'?courseId='.$courseId.'&chId='.$chId.'&preFocus='.$preFocus}";
+
+//上一页
+function pageUp()
+{
+	url += "&focus="+Epg.btn.current.id+"&topicId={$prevTopicId}";
+	Epg.jump(url);
+}
+
+//下一页
+function pageDown()
+{
+	url += "&focus="+Epg.btn.current.id+"&topicId={$nextTopicId}";
+	Epg.jump(url);
+}
+
+var defaultId = "{$focus}";
 
 window.onload=function()
 {
     initButtons();
     popup();
-	Epg.btn.init('section_1',buttons,true);	
+    
+  	//翻页焦点定位
+	if(defaultId == "btn_prev_day" && Epg.isEmpty(G(defaultId))){
+		defaultId = "btn_next_day";
+	}
+	if(defaultId == "btn_next_day" && Epg.isEmpty(G(defaultId))){
+		defaultId = "btn_prev_day";
+	}
+    
+	Epg.btn.init([defaultId,'section_1'],buttons,true);	
 };
 </script>
 
@@ -69,19 +93,31 @@ window.onload=function()
 
 <!-- 栏目LOGO -->
 <div id="div_btn_logo" style="position:absolute;width:225px;height:91px;top:45px;left:85px;">
-	<img id="btn_logo" src="__HD__/images/sectionList/title_preschool.png">
+	<img id="btn_logo" title="{:U('CourseList/courseDesc').'?chKey='.$chKey.'&preFocus='.$preFocus}" src="__HD__/images/sectionList/title_preschool.png">
 </div>
 
 <!-- 星期 -->
 <div id="week"></div>
 <!-- 前一天 -->
-<div id="div_btn_prev_day" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
-    <img id="btn_prev_day" title="{:U('SectionList/index').'?courseId='.$courseId.'&topicId='.$prevTopicId.'&chId='.$chId.'&preFocus='.$preFocus}" src="__HD__/images/common/page/page_prev.png" width="20" height="26">
-</div>
+<if condition="$week gt 1">
+	<div id="div_btn_prev_day" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
+	    <img id="btn_prev_day" src="__HD__/images/common/page/page_prev.png" width="20" height="26">
+	</div>
+<else />
+	<div id="div_btn_prev_day" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
+  	  <img src="__HD__/images/common/page/page_prev_none.png" width="20" height="26">
+	</div>
+</if>
 <!-- 后一天 -->
-<div id="div_btn_next_day" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
-    <img id="btn_next_day" title="{:U('SectionList/index').'?courseId='.$courseId.'&topicId='.$nextTopicId.'&chId='.$chId.'&preFocus='.$preFocus}" src="__HD__/images/common/page/page_next.png" width="20" height="26">
-</div>
+<if condition="$week lt 6">
+	<div id="div_btn_next_day" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
+	    <img id="btn_next_day" src="__HD__/images/common/page/page_next.png" width="20" height="26">
+	</div>
+<else />
+	<div id="div_btn_next_day" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
+	    <img src="__HD__/images/common/page/page_next_none.png" width="20" height="26">
+	</div>
+</if>
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:100px;left:1105px;">

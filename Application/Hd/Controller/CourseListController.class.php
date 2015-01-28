@@ -94,4 +94,15 @@ class CourseListController extends CommonController {
 		}	
 	}
 	
+	/**
+	 * 早，幼教课程描述
+	 */
+	public function courseDescAct(){
+		$this->assign(array(
+			'chKey' 	=> I('chKey',''),
+			'backUrl'	=> get_back_url('CourseList/index',1),
+		));
+		$this->display();
+	}
+	
 }
