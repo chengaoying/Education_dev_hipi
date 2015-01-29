@@ -78,46 +78,49 @@ class LearningController extends CommonController {
 		$pageCount = get_page_count($course['total'], $pageSize);
 		$pageHtml = get_page_html($page, $pageCount);
 		
-		foreach($course['rows'] as $key => $value)
+		if(!empty($course[rows]))
 		{
-			$courseIds[] = $value['id'];
-		}
-		
-		//统计进度
-		$progressPreschool = D('Learning', 'Logic')->statisticsDataPreschool($courseIds,$this->role['id'],230);
-		$progressPreschool = $progressPreschool['data'];
-		Session('progressPreschool',$progressPreschool);
-		
-		$score = D('Learning', 'Logic')->statisticsScore($role['stageId'],$this->role['id'],1);
-//		p($score);exit;
-		$score = $score['data'];
-		Session('score',$score);
-		
-		$focus = $this->getFocus();
-		foreach($course['rows'] as $key => $value)
-		{
-			$temp = 0;
-			foreach($progressPreschool[$value['id']] as $k => $v)
+			foreach($course['rows'] as $key => $value)
 			{
-				$temp += $v; 
+				$courseIds[] = $value['id'];
 			}
-			$data[$key]['name'] = $value['name'];
-			$data[$key]['id'] = $value['id'];
-			$data[$key]['length'] = $temp/count($progressPreschool[$value['id']])*230;
-			$data[$key]['sumScore'] = $score['courseScore'][$value['id']]['sum'];
-		}
-//		p($data);exit;
-/* 		foreach($course['rows'] as $key => $value)
-		{
+			
+			//统计进度
+			$progressPreschool = D('Learning', 'Logic')->statisticsDataPreschool($courseIds,$this->role['id'],230);
+			$progressPreschool = $progressPreschool['data'];
+			Session('progressPreschool',$progressPreschool);
+			
+			$score = D('Learning', 'Logic')->statisticsScore($role['stageId'],$this->role['id'],1);
+			//p($score);exit;
+			$score = $score['data'];
+			Session('score',$score);
+			
+			$focus = $this->getFocus();
+			foreach($course['rows'] as $key => $value)
+			{
+				$temp = 0;
+				foreach($progressPreschool[$value['id']] as $k => $v)
+				{
+					$temp += $v;
+				}
+				$data[$key]['name'] = $value['name'];
+				$data[$key]['id'] = $value['id'];
+				$data[$key]['length'] = round($temp*230/count($progressPreschool[$value['id']]),0);//得到进度长度，四舍五入取整数
+				$data[$key]['sumScore'] = empty($score['courseScore'][$value['id']]) ? 0 : $score['courseScore'][$value['id']]['sum'];
+			}
+			//p($data);exit;
+			/* 		foreach($course['rows'] as $key => $value)
+			 {
 			$data[$key]['name'] = $value['name'];
 			$data[$key]['id'] = $value['id'];
 			$d = $this -> getData($value['id']);
 			$data[$key]['length'] = $this -> getProgressCounrse($d,230);
-		} */
+			} */
+		}
 		
 		$focus = $this->getFocus();//获得上个页面焦点
 		$this->assign(array(
-				'pageHtml' => $pageHtml,//$page['html'],
+				'pageHtml' => ($role['stageId']==99) ? null : $pageHtml,//$page['html'],
 				'datas' => $data,
 				'channels' => $channel,
 				'json_channel' => $json_encode,
@@ -125,8 +128,8 @@ class LearningController extends CommonController {
 				'page' => $page,
 				'pageCount' => $pageCount,
 				'focus' => $focus,
-				'roleScore' => $score['roleScore'],
-				'rank' => $score['rank'],
+				'roleScore' => isset($score['roleScore']) ? $score['roleScore'] : 0,
+				'rank' => isset($score['rank']) ? $score['rank'] : 0,
 		));
 		$this->display();
 	}

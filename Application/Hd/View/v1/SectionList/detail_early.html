@@ -76,6 +76,20 @@ var buttons=
 		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:['topic_5','topic_4'],right:'section_5',up:'section_1',down:''},
 		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_4',right:'section_6',up:'section_2',down:''},
 		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_5',right:'',up:'section_3',down:''},
+		
+		/* 月份按钮 */
+		{id:'month_1',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'month_2',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_2',name:'',action:'',linkImage:'',focusImage:'',left:'month_1',right:'month_3',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_3',name:'',action:'',linkImage:'',focusImage:'',left:'month_2',right:'month_4',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_4',name:'',action:'',linkImage:'',focusImage:'',left:'month_3',right:'month_5',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_5',name:'',action:'',linkImage:'',focusImage:'',left:'month_4',right:'month_6',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_6',name:'',action:'',linkImage:'',focusImage:'',left:'month_5',right:'month_7',up:['section_4','section_1']},
+		{id:'month_7',name:'',action:'',linkImage:'',focusImage:'',left:'month_6',right:'month_8',up:['section_4','section_1']},
+		{id:'month_8',name:'',action:'',linkImage:'',focusImage:'',left:'month_7',right:'month_9',up:['section_5','section_2']},
+		{id:'month_9',name:'',action:'',linkImage:'',focusImage:'',left:'month_8',right:'month_10',up:['section_5','section_2']},
+		{id:'month_10',name:'',action:'',linkImage:'',focusImage:'',left:'month_9',right:'month_11',up:['section_5','section_2']},
+		{id:'month_11',name:'',action:'',linkImage:'',focusImage:'',left:'month_10',right:'month_12',up:['section_6','section_3']},
+		{id:'month_12',name:'',action:'',linkImage:'',focusImage:'',left:'month_11',right:'',up:['section_6','section_3']},
 	];
 
 //知识点
@@ -194,7 +208,7 @@ function blurHandler(){
 //获取焦点时处理（目前主要用于栏目按钮）
 function focusHandler(){
 	if(Epg.btn.current.id != cur_topic){
-		setTimeout("Epg.btn.click()",50)
+		setTimeout("Epg.btn.click()",500)
 	}
 }
 

@@ -7,8 +7,8 @@
 #bottom{
 	position: absolute;
 	display: block;
-	width: 380px;
-	height: 351px;
+	width: 379px;
+	height: 350px;
 	top: 190px;
 	left: 400px;
 	background-image: url(__HD__/images/usercenter/baseInfo/bottom_baseInfo.png);
@@ -22,20 +22,20 @@
 	
 	var buttons = [
 	/* 栏目  */
-	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',blurHandler:'blurHandler()',up:'changeNum',down:'ch_2',right:'nickname'}, 
-	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_1',down:'ch_3',right:'nickname'}, 
-	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_2',right:'nickname'},
+	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',blurHandler:'blurHandler()',up:'changeNum',down:'ch_2',right:'stage'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_1',down:'ch_3',right:'stage'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_2',right:'stage'},
 
-	{id:'nickname',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'phone',down:'sex'},
-	{id:'sex',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_1',right:'advantage',up:'nickname',down:'birthday'},
-	{id:'birthday',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_2',right:'disadvantage',up:'sex',down:'stage'},
-	{id:'stage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_3',right:'interests',up:'birthday',down:''},
+	{id:'stage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'selectFace',right:'',up:'',down:'nickname'},
+	{id:'nickname',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'advantage',up:'stage',down:'birthday'},
+	{id:'birthday',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_1',right:'disadvantage',up:'nickname',down:'sex'},
+	{id:'sex',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_2',right:'interests',up:'birthday',down:'phone'},
+	{id:'phone',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_3',up:'sex',down:''},
 
-	{id:'phone',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'nickname',up:'ch_3',down:'advantage'},
 	{id:'version',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'nickname',up:'phone',down:'advantage'},
-	{id:'advantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'sex',up:'phone',down:'disadvantage'},
+	{id:'advantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'nickname',up:'',down:'disadvantage'},
 	{id:'disadvantage',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'birthday',right:'',up:'advantage',down:'interests'},
-	{id:'interests',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'stage',up:'disadvantage',down:''},
+	{id:'interests',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__HD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'sex',up:'disadvantage',down:''},
 
 	{id:'selectFace',name:'',action:'',linkImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'__HD__/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'__HD__/images/usercenter/leftNavigation/title_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
 	{id:'changeNum',name:'',action:'',linkImage:'__HD__/images/usercenter/leftNavigation/change_account.png',focusImage:'__HD__/images/usercenter/leftNavigation/change_account_over.png',selectBox:'',right:'sex',up:'selectFace',down:'ch_1'},
@@ -99,16 +99,16 @@
 
 
 <!-- 学号  -->
-<div style="position:absolute;line-height:56px;width:196px;height:56px;left:460px;top:175px;text-align:center;border-style:none;color:black">
+<div style="position:absolute;line-height:56px;width:91px;height:56px;left:800px;top:175px;text-align:center;border-style:none;color:black">
 	<span style="color:white;text-align:center;">{$roleId}</span>
 </div>
 <!-- 用户信息 -->
 <volist name="userInfo" id="info" key="i">
 	<php>
-     	if($i > 4){
-          	$left = 800; $top = 255 + ($i-5)*80;
+     	if($i > 5){
+          	$left = 800; $top = 255 + ($i-6)*80;
        	}else{
-           	$left = 480; $top = 255 + ($i-1)*80;
+           	$left = 480; $top = 175 + ($i-1)*80;
         }
     </php>
 	

@@ -154,7 +154,7 @@ window.onload=function()
          $top = 500; $left = 85 + ($i-1)*375;
     </php>
     <div id="div_special_{$i}" style="position:absolute;width:370px;height:125px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="special_{$i}" title="{:U('SectionList/index?courseId='.$special['id'])}" src="{:get_upfile_url($special['imgUrl'])}" width="360" height="115">
+        <img id="special_{$i}" title="{:U('SectionList/index?courseId='.$special['id'].'&preFocus='.$preFocus)}" src="{:get_upfile_url($special['imgUrl'])}" width="360" height="115">
     </div>
     <div id="div_special_{$i}_focus" style="position:absolute;visibility:hidden;width:380px;height:135px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
         <img id="special_{$i}_focus" src="" width="370" height="125">

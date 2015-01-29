@@ -33,6 +33,10 @@ class ResourceController extends CommonController {
         $lessonList = explode(',', $section['lessonList']);
         $playList = array_merge($playList, $lessonList); //将预习与课堂进行组合
         $playList = array_filter($playList); //去除数组中空值
+        if(empty($playList)){
+        	$jumpUrl = 'Library/detail?courseId='.$courseId.'&sectionId='.$sectionId;
+        	header('location:'.U($jumpUrl));
+        }
         //print_r($playList);
         $playResourceData = D('Resource', 'Logic')->queryResourceList($playList, 'id,content,keyList');
         // print_r($playResourceData);

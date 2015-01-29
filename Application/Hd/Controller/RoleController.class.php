@@ -115,6 +115,7 @@ class RoleController extends CommonController {
 		$sex=( (empty($role['sex'])) ? ('去设置') :( ($role['sex']=='1') ? '男' : '女') );
 		$nickName = empty($role['nickName']) ? '去设置' : $role['nickName'];	
 		$birthday = empty($role['birthday']) ? '去设置' : $role['birthday'];	
+		$stageAge = $role['stageId']==99 ? '去设置' : $stage[$role['stageId']]['name'];	
 		
 		$userInfo = array(
 				/*学号*/
@@ -122,17 +123,17 @@ class RoleController extends CommonController {
 						'name' => 'num',
 						'content' => array($role['id']),
 				), */
+				/*年级*/
+				array(
+						'name' => 'stage',
+						'content' => array($stageAge),
+						'linkUrl' => '/Hd/Role/changeStage?focus=stage',
+				),
 				/*昵称*/
 				array(
 						'name' => 'nickname',
 						'content' => array($nickName),
 						'linkUrl' => '/Hd/Role/setNickname?focus=nickname',
-				),
-				/*性别*/
-				array(
-						'name' => 'sex',
-						'content' => array($sex),
-						'linkUrl' => '/Hd/Role/setSex?focus=sex',
 				),
 				/*生日*/
 				array(
@@ -140,12 +141,13 @@ class RoleController extends CommonController {
 						'content' => array($birthday),
 						'linkUrl' => '/Hd/Role/setBirthday?focus=birthday',
 				),
-				/*年级*/
+				/*性别*/
 				array(
-						'name' => 'stage',
-						'content' => array($stage[$role['stageId']]['name']),
-						'linkUrl' => '/Hd/Role/changeStage?focus=stage',
+						'name' => 'sex',
+						'content' => array($sex),
+						'linkUrl' => '/Hd/Role/setSex?focus=sex',
 				),
+
 				/*手机*/
 				array(
 						'name' => 'phone',
