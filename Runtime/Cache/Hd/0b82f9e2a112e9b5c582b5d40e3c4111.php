@@ -7,66 +7,81 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
-
-#default_tip{
-	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 60px;
-	color:#F8E391;
-	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
-	visibility:hidden;
-	z-index:99;
-}
-
 </style>
 <script type="text/javascript">
 
 <?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
 
-/* 弹窗信息  */
-var popup = function(){
-	var msg = "<?php echo ($floatMsg); ?>";
-	Epg.tip(msg);
-}
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-小图提示信息，2-大图提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("<?php echo ($floatMsg); ?>",3,type);
+}	
 
 </script>
 
 </head>
-<body>
+<body >
 
 <style type="text/css">
-    body{ background-image:url(/static/v1/hd/images/library/bg.jpg); }
+    body{ background-image:url(/static/v1/hd/images/library/bg.png); }
 
+    #div_top{
+        position:absolute;
+        width:282px;
+        height:57px;
+        top:60px;
+        left:100px;
+        visibility:visible;
+        background-image: url(/static/v1/hd/images/library/ketang_bg.png);      
+    }    
+    
     .title{
         position: absolute;
-        top:120px;
+        top:190px;
         left:170px;
-        width: 750px;
+        width: 950px;
         height: 100px;
-        color:#000;
-        font-size: 22px;
-        line-height: 45px;
+        color:#00648c;
+        font-size: 20px;
+        line-height: 35px;
         font-weight: 590;
     }
-    /*弹窗*/
-
+    
+    /*弹窗背景*/
+	#transparent_bg{
+         position:absolute;
+         width:1280px;
+         height:720px;
+         top:0px;
+         left:0px;
+         visibility:hidden;
+    	 z-index:999;    	
+    }    
+    
+    /*退出弹框*/
+    #pop_exit_bg{
+        position:absolute;
+        display: block;
+        width:561px;
+        height:365px;
+        top:177px;
+        left:314px; 
+        background-image:url(/static/v1/hd/images/library/exit_bg.png);
+        z-index: 1000;    
+    }
+    
+    /*完成题目弹窗*/
     .pop_bg{
         position:absolute;
         display: block;
-        width:560px;
-        height:357px;
-        top:185px;
-        left:350px;
-        background-image:url(/static/v1/hd/images/library/pop_bg.png?);
+        width:651px;
+        height:424px;
+        top:148px;
+        left:314px;
+        background-image:url(/static/v1/hd/images/library/pop_bg.png);
         z-index: 1000;
     }
     /*获取多少分*/
@@ -74,14 +89,14 @@ var popup = function(){
         position:absolute;
         display: block;
         width:100px;
-        height:40px;
-        line-height: 40px;
-        top:270px;
-        left:630px;
+        height:44px;
+        line-height: 44px;
+        top:225px;
+        left:720px;
         color:#f65074;
         text-align: center;
         font-weight: 700;
-        font-size: 34px;
+        font-size: 40px;
         z-index: 1000;
     }
 
@@ -90,14 +105,14 @@ var popup = function(){
         position:absolute;
         display: block;
         width:50px;
-        height:20px;
-        line-height: 20px;
-        top:372px;
-        left:450px;
+        height:28px;
+        line-height: 28px;
+        top:316px;
+        left:485px;
         color:#f65074;
         text-align: center;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 28px;
         z-index: 1000;
     }
     /*答错多少题*/
@@ -105,14 +120,14 @@ var popup = function(){
         position:absolute;
         display: block;
         width:50px;
-        height:20px;
-        line-height: 20px;
-        top:372px;
-        left:595px;
+        height:28px;
+        line-height: 28px;
+        top:316px;
+        left:635px;
         color:#f65074;
         text-align: center;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 28px;
         z-index: 1000;
     }
     /*多少小红花*/
@@ -120,14 +135,14 @@ var popup = function(){
         position:absolute;
         display: block;
         width:50px;
-        height:20px;
-        line-height: 20px;
-        top:372px;
-        left:745px;
+        height:28px;
+        line-height: 28px;
+        top:316px;
+        left:805px;
         color:#f65074;
         text-align: center;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 28px;
         z-index: 1000;
     }
 </style>
@@ -137,30 +152,39 @@ var popup = function(){
     var buttons =
             [
                 /*文字答题选项*/
-                {id: 'answer_1', name: '', action: 'answer(1)', linkImage: '/static/v1/hd/images/library/word_1.png', focusImage: '/static/v1/hd/images/library/word_1_over.png', selectBox: '', left: '', right: '', up: '', down:['answer_2','next']},
-                {id: 'answer_2', name: '', action: 'answer(2)', linkImage: '/static/v1/hd/images/library/word_2.png', focusImage: '/static/v1/hd/images/library/word_5_over.png', selectBox: '', left: '', right: '', up: 'answer_1', down:['answer_3','next']},
-                {id: 'answer_3', name: '', action: 'answer(3)', linkImage: '/static/v1/hd/images/library/word_3.png', focusImage: '/static/v1/hd/images/library/word_3_over.png', selectBox: '', left: '', right: '', up: 'answer_2', down:['answer_4','next']},
-                {id: 'answer_4', name: '', action: 'answer(4)', linkImage: '/static/v1/hd/images/library/word_3.png', focusImage: '/static/v1/hd/images/library/word_4_over.png', selectBox: '', left: '', right: '', up: 'answer_3', down: 'next'},
+                {id: 'answer_1', name: '', action: 'answer(1)', linkImage: '/static/v1/hd/images/library/word_1.png', focusImage: '/static/v1/hd/images/library/word_1_over.png', selectBox: '', left: '', right: 'answer_2', up: 'btn_ketang', down:['answer_3','next','exit']},
+                {id: 'answer_2', name: '', action: 'answer(2)', linkImage: '/static/v1/hd/images/library/word_2.png', focusImage: '/static/v1/hd/images/library/word_2_over.png', selectBox: '', left: 'answer_1', right: '', up: 'btn_ketang', down:['answer_4','next','exit']},
+                {id: 'answer_3', name: '', action: 'answer(3)', linkImage: '/static/v1/hd/images/library/word_3.png', focusImage: '/static/v1/hd/images/library/word_3_over.png', selectBox: '', left: '', right: 'answer_4', up: 'answer_1', down:['next','exit']},
+                {id: 'answer_4', name: '', action: 'answer(4)', linkImage: '/static/v1/hd/images/library/word_4.png', focusImage: '/static/v1/hd/images/library/word_4_over.png', selectBox: '', left: 'answer_3', right: '', up: 'answer_2', down: ['next','exit']},
                 /*答题选项*/
                 {id: 'answer2_1', name: '', action: 'answer(1)', linkImage: '', focusImage: '', selectBox: '/static/v1/hd/images/library/pic_item_bg_over.png', resize:'-1', left: '', right: 'answer2_2', up: '', down: 'next'},
                 {id: 'answer2_2', name: '', action: 'answer(2)', linkImage: '', focusImage: '', selectBox: '/static/v1/hd/images/library/pic_item_bg_over.png', resize:'-1', left: 'answer2_1', right: ['answer2_3', 'next'], up: '', down: 'next'},
-                {id: 'answer2_3', name: '', action: 'answer(3)', linkImage: '', focusImage: '', selectBox: '/static/v1/hd/images/library/pic_item_bg_over.png', resize:'-1', left: 'answer2_2', right: 'next', up: '', down: 'back'},
-                /* 页码 */
-                {id: 'pre', name: '', action: 'preAnswer()', linkImage: '/static/v1/hd/images/library/pre.png', focusImage: '/static/v1/hd/images/library/pre_over.png', selectBox: '', left: '', right: 'next', up: '', down: ''},
-                {id: 'next', name: '', action: 'nextAnswer()', linkImage: '/static/v1/hd/images/library/next.png', focusImage: '/static/v1/hd/images/library/next_over.png', selectBox: '', left: 'pre', right: 'back', up: '', down: ''},
+                {id: 'answer2_3', name: '', action: 'answer(3)', linkImage: '', focusImage: '', selectBox: '/static/v1/hd/images/library/pic_item_bg_over.png', resize:'-1', left: 'answer2_2', right: ['answer2_4', 'next'], up: '', down: 'exit'},
+                {id: 'answer2_4', name: '', action: 'answer(4)', linkImage: '', focusImage: '', selectBox: '/static/v1/hd/images/library/pic_item_bg_over.png', resize:'-1', left: 'answer2_3', right: 'next', up: '', down: 'exit'},
+                /* 下一题 */
+                {id: 'next', name: '', action: 'nextAnswer()', linkImage: '/static/v1/hd/images/library/next.png', focusImage: '/static/v1/hd/images/library/next_over.png', selectBox: '', left: '', right: 'exit', up: '', down: ''},
                 /*返回*/
-                {id: 'back', name: '', action: 'showdiv()', linkImage: '/static/v1/hd/images/library/back.png', focusImage: '/static/v1/hd/images/library/back_over.png', selectBox: '', right: '', left: 'next', up: '', down: ''},
+                {id: 'exit', name: '', action: 'showExit()', linkImage: '/static/v1/hd/images/library/exit.png', focusImage: '/static/v1/hd/images/library/exit_over.png', selectBox: '', right: '', left: 'next', up: '', down: ''},
                 /*重新答题*/
                 {id: 're_answer', name: '', action: 'reanswer()', linkImage: '/static/v1/hd/images/library/re_answer.png', focusImage: '/static/v1/hd/images/library/re_answer_over.png', selectBox: '', right: 'back_learn', left: '', up: '', down: ''},
                 /*返回学习*/
                 {id: 'back_learn', name: '', action: 'backlearn()', linkImage: '/static/v1/hd/images/library/back_learn.png', focusImage: '/static/v1/hd/images/library/back_learn_over.png', selectBox: '', right: '', left: 're_answer', up: '', down: ''},
+                /*是的*/
+                {id: 'yes', name: '', action: 'exitPrePage1()', linkImage: '/static/v1/hd/images/library/yes.png', focusImage: '/static/v1/hd/images/library/yes_over.png', selectBox: '', right: 'no', left: '', up: '', down: ''},
+                /*不*/
+                {id: 'no', name: '', action: 'disExit()', linkImage: '/static/v1/hd/images/library/no.png', focusImage: '/static/v1/hd/images/library/no_over.png', selectBox: '', right: '', left: 'yes', up: '', down: ''},
+                /*同步课堂*/
+                {id: 'btn_ketang', name: '', action: 'exitPrePage()', linkImage: '/static/v1/hd/images/library/btn_ketang.png', focusImage: '/static/v1/hd/images/library/btn_ketang_over.png', selectBox: '', left: '', right: '', up: '', down: ['answer_1','answer2_1']},
+            	
             ];
 
-    var postdata = [];
+    //var postdata = [];
+    var postdata1 = "";
     var roleid = <?php echo ($roleId); ?>; //知识点ID
-    var topicid = <?php echo ($topicId); ?>; //知识点ID
+    var courseId = <?php echo ($courseId); ?>; //知识点ID
     var sectionid = <?php echo ($sectionId); ?>; //课时ID
     var answerlist = <?php echo ($answerList); ?>;
+    var countlib = answerlist.length;
     var itemid; //题目ID
     var countscore = 0;//获取总分数
     var kind; //该题类型
@@ -174,7 +198,6 @@ var popup = function(){
     var wrongnum = 0;
     var rednum = 0;
     var status;
-    var countlib = answerlist.length;
 
     function answer(i) {
         var data = {};
@@ -205,14 +228,22 @@ var popup = function(){
                 G('div_error2_' + i).style.display = "block";
             }
         }
-        data = {'roleId': roleid, 'topicId': topicid, 'sectionId': sectionid, 'itemId': itemid, 'correct': correct, 'wrong': wrong, 'status': status};
-        postdata.push(data);
+        //data = {'roleId': roleid, 'topicId': topicid, 'sectionId': sectionid, 'itemId': itemid, 'correct': correct, 'wrong': wrong, 'status': status};
+        //postdata.push(data);
+        var temp =itemid;
+        postdata1 +="itemId|"+temp;
+        temp = correct;
+        postdata1 +="|correct|"+temp;
+        temp = wrong;
+        postdata1 +="|wrong|"+temp;
+        temp = status;
+        postdata1 +="|status|"+temp+"@";
         setTimeout("nextAnswer()", 1500);
     }
     //item是第几道题目
     function initAnswer(item) {
         theAnswer = item;
-        G('now_page').innerHTML = theAnswer+'/'+countlib;
+        G('now_page').innerHTML = theAnswer+'&nbsp;/&nbsp;'+countlib;
         html = '';
         var n = item - 1;
 
@@ -233,27 +264,28 @@ var popup = function(){
             G('word').style.display = "block";
             G('pic').style.display = "none";
             //修改上下页和返回键的up值
-            buttons[7]['up'] = ['answer_4', 'answer_3', 'answer_2', 'answer_1'];
-            buttons[8]['up'] = ['answer_4', 'answer_3', 'answer_2', 'answer_1'];
-            buttons[9]['up'] = ['answer_4', 'answer_3', 'answer_2', 'answer_1'];
+            buttons[7]['up'] = ['answer_4', 'answer_2'];
+            buttons[8]['up'] = ['answer_4', 'answer_2'];
+            buttons[9]['up'] = ['answer_4', 'answer_2'];
             //初始化按钮
             initButton = 'answer_1';
             //alert(itemlist.length);
             //初始化各选项
             for (var i = 0; i < itemlist.length; i++) {
-                var top = parseInt(280 + i * 70);
+                var top = parseInt(400 + Math.floor(i/2) * 90);
+                var left = parseInt(150 + (i%2) * 520);
                 var num = i + 1;
-                html += '<div id="div_answer_' + num + '" title="" style="position:absolute;width:763px;height:50px;left:160px;top:' + top + 'px;text-align:center;">';
-                html += '<img id="answer_' + num + '" src="/static/v1/hd/images/library/word_' + num + '.png" width="763" height="50">';
+                html += '<div id="div_answer_' + num + '" title="" style="position:absolute;width:452px;height:77px;left:'+left+'px;top:' + top + 'px;text-align:center;">';
+                html += '<img id="answer_' + num + '" src="/static/v1/hd/images/library/word_' + num + '.png" width="452" height="77">';
                 html += '</div>';
-                html += '<div id="div_answer_' + num + '_focus" title="" style="position:absolute;width:683px;height:50px;left:240px;top:' + top + 'px;z-index:999">';
-                html += '<span id="answer_' + num + '_focus" style="display: block;height:50px;line-height: 50px;color:#000;font-size:22px;font-weight: 590;">' + itemlist[i] + '</span>';
+                html += '<div id="div_answer_' + num + '_focus" title="" style="position:absolute;width:360px;height:60px;left:'+parseInt(left+70)+'px;top:' + parseInt(top+10) + 'px;z-index:888">';
+                html += '<span id="answer_' + num + '_focus" style="display: block;height:50px;line-height: 60px;color:#000;font-size:25px;font-weight: 590;">' + itemlist[i] + '</span>';
                 html += '</div>';
-                html += '<div id="div_correct_' + num + '" style="display:none;position:absolute;width:41px;height:37px;left:870px;top:' + parseInt(top + 8) + 'px;z-index:999">';
-                html += '<img id="correct_' + num + '" src="/static/v1/hd/images/library/success_1.png" width="41" height="37" />';
+                html += '<div id="div_correct_' + num + '" style="display:none;position:absolute;width:55px;height:53px;left:'+parseInt(left+415)+'px;top:' + parseInt(top + 12) + 'px;z-index:800">';
+                html += '<img id="correct_' + num + '" src="/static/v1/hd/images/library/success_1.png" width="55" height="53" />';
                 html += '</div>';
-                html += '<div id="div_error_' + num + '" style="display:none;position:absolute;width:41px;height:37px;left:870px;top:' + parseInt(top + 8) + 'px;z-index:999">';
-                html += '<img id="error_' + num + '" src="/static/v1/hd/images/library/error_1.png"  width="41" height="37" />';
+                html += '<div id="div_error_' + num + '" style="display:none;position:absolute;width:55px;height:53px;left:'+parseInt(left+415)+'px;top:' + parseInt(top + 12) + 'px;z-index:888">';
+                html += '<img id="error_' + num + '" src="/static/v1/hd/images/library/error_1.png"  width="55" height="53" />';
                 html += '</div>';
             }
 
@@ -290,15 +322,6 @@ var popup = function(){
         }
     }
 
-    //上一题
-    function preAnswer() {
-        if (theAnswer > 1) {
-            var item = theAnswer - 1;
-            initAnswer(item);
-            Epg.btn.set(initButton);
-        }
-    }
-
     //下一题
     function nextAnswer() {
         if (theAnswer == countlib) {
@@ -312,14 +335,29 @@ var popup = function(){
 
 //弹窗
     function showdiv() {
-        G('pop_div').style.display = "block";
+        G('transparent_bg').style.visibility = "visible";
+    	G('pop_div').style.display = "block";
         G('countscore').innerHTML = countscore;
         G('correctnum').innerHTML = correctnum;
         G('wrongnum').innerHTML = wrongnum;
         rednum = parseInt(countscore/10);
         G('rednum').innerHTML = rednum;
-        Epg.btn.set('re_answer')
+        Epg.btn.set('re_answer');
     }
+    
+//返回弹窗
+	function showExit(){
+        G('transparent_bg').style.visibility = "visible";
+    	G('pop_exit_div').style.display = "block";
+        Epg.btn.set('no');
+}
+
+//返回弹窗
+function disExit(){
+        G('transparent_bg').style.visibility = "hidden";
+    	G('pop_exit_div').style.display = "none";
+        Epg.btn.set('exit');
+}
 
 //重新答题
     function reanswer() {
@@ -328,50 +366,80 @@ var popup = function(){
 
 //返回
     function backlearn() {
-        var jsonText = JSON.stringify(postdata);
+        //var jsonText = JSON.stringify(postdata);
+        var jsonText = postdata1.substr(0,postdata1.length-1);
         G('post_data').value = jsonText;
         G('count_score').value = countscore;
         G('red_flower').value = rednum;
         G('postlib').submit();
     }
+    
     window.onload = function()
     {
         initAnswer(1);
         Epg.btn.init(initButton, buttons, true);
     }
+    
+    Epg.Button.defBack = function(){
+    	showExit();
+    }
+    function exitPrePage(){
+    	window.location =  "<?php echo get_back_url('Index/recommend',1,0,0);?>";
+    }
+
+    function exitPrePage1(){
+    	window.location =  "<?php echo get_back_url('Index/recommend',1,0,1);?>";
+    }
 </script>
 
-<!--返回-->
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+<!-- 同步课堂 -->
+<div id="div_top">
+       <div id="div_btn_ketang" style="position:absolute;width:137px;height:42px;left:4px;top:3px;">
+           <img id="btn_ketang" title="" src="/static/v1/hd/images/library/btn_ketang.png" width="137" height="42">
+       </div>
+</div>
 
+<!-- sectionName -->
+<div style="position:absolute;width:440px;height:55px;top:75px;left:430px; font-size: 28px;color: #00648c;text-align:center;"><?php echo ($sectionName); ?></div>
 <!-- 标题 -->
-<div class="title" id="title"><?php echo ($title); ?></div>
+<div class="title" id="title" style="font-size: 28px;"><?php echo ($title); ?></div>
 
 <!-- 答题选项答案 -->
 <div id="word" style="display:none"></div>
 
 <div id="pic" style="display:none"></div>
 
-<!-- 分页 -->
-
-<!-- 上一页 -->
-<div id="div_pre" style="position:absolute;width:63px;height:67px;left:430px;top:585px;text-align:center;">
-    <img id="pre" src="/static/v1/hd/images/library/pre.png" width="63" height="67">
-</div>
-
 <!-- 页码 -->
-<div id="now_page" style="position:absolute;width:100px;height:67px;line-height: 67px;left:500px;top:585px;font-size:30px;font-weight: 500;text-align:center;">
+<div id="now_page" style="position:absolute;width:135px;height:38px;line-height: 40px;color:#784600; left:960px;top:133px;font-size:28px;font-weight: 500;text-align:center;">
     
 </div>
 
 <!-- 下一页-->
-<div id="div_next" style="position:absolute;width:63px;height:67px;left:610px;top:585px;text-align:center;">
-    <img id="next" src="/static/v1/hd/images/library/next.png" width="63" height="67">
+<div id="div_next" style="position:absolute;width:136px;height:60px;left:910px;top:585px;text-align:center;">
+    <img id="next" src="/static/v1/hd/images/library/next.png" width="136" height="60">
 </div>
 
 <!-- 返回按钮 -->
-<div id="div_back" style="position:absolute;width:63px;height:67px;left:790px;top:585px;text-align:center;">
-    <img id="back" src="/static/v1/hd/images/library/back.png" width="63" height="67">
+<div id="div_exit" style="position:absolute;width:110px;height:60px;left:1090px;top:585px;text-align:center;">
+    <img id="exit" src="/static/v1/hd/images/library/exit.png" width="110" height="60">
+</div>
+
+<div id="transparent_bg"></div>
+
+<!-- 退出提示框 -->
+<div id="pop_exit_div" class="pop_exit_div" style="display:none;">
+    <!-- 背景 -->
+    <div id="pop_exit_bg" class="pop_exit_bg"></div>
+    <!-- 弹窗描述 -->
+    <div style="position:absolute;width:300px;height:40px;left:380px;top:290px;text-align:center;font-size:30px; color:#784600; z-index: 1000;"><b>确定要退出练习吗？</b></div>
+    <!-- 是的 -->
+    <div id="div_yes" style="position:absolute;width:116px;height:51px;left:400px;top:370px;text-align:center;z-index: 1000;">
+        <img id="yes" src="/static/v1/hd/images/library/yes.png" width="116" height="51">
+    </div>
+    <!-- 不 -->
+    <div id="div_no" style="position:absolute;width:116px;height:51px;left:550px;top:370px;text-align:center;z-index: 1000;">
+        <img id="no" src="/static/v1/hd/images/library/no.png" width="116" height="51">
+    </div>
 </div>
 
 <div id="pop_div" class="pop_div" style="display:none;">
@@ -386,28 +454,30 @@ var popup = function(){
     <!-- 获取多少小红花 -->
     <div id="rednum" class="rednum">0</div>
     <!-- 重新答题 -->
-    <div id="div_re_answer" style="position:absolute;width:140px;height:50px;left:450px;top:460px;text-align:center;z-index: 1000;">
-        <img id="re_answer" src="/static/v1/hd/images/library/re_answer.png" width="140" height="50">
+    <div id="div_re_answer" style="position:absolute;width:146px;height:56px;left:450px;top:400px;text-align:center;z-index: 1000;">
+        <img id="re_answer" src="/static/v1/hd/images/library/re_answer.png" width="146" height="56">
     </div>
     <!-- 返回学习 -->
-    <div id="div_back_learn" style="position:absolute;width:140px;height:50px;left:680px;top:460px;text-align:center;z-index: 1000;">
-        <img id="back_learn" src="/static/v1/hd/images/library/back_learn.png" width="140" height="50">
+    <div id="div_back_learn" style="position:absolute;width:146px;height:56px;left:680px;top:400px;text-align:center;z-index: 1000;">
+        <img id="back_learn" src="/static/v1/hd/images/library/back_learn.png" width="146" height="56">
     </div>
 </div>
 <form id="postlib" action="<?php echo U('Library/saveLib');?>" method="post">
     <input type="hidden" name="postdata" id="post_data" />
-    <input type="hidden" name="topicid" id="topic_id" value="<?php echo ($topicId); ?>" />
+    <input type="hidden" name="courseid" id="course_id" value="<?php echo ($courseId); ?>" />
     <input type="hidden" name="sectionid" id="section_id" value="<?php echo ($sectionId); ?>" />
     <input type="hidden" name="countscore" id="count_score" />
     <input type="hidden" name="redflower" id="red_flower" />
 </form>    
 
-<!-- 弹窗 -->
-<div id="div_popup">
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
+
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
 </div>
 
-<!-- 默认的提示 -->
-<div id="default_tip" class="default_tip">
-</div>
 </body>
 </html>

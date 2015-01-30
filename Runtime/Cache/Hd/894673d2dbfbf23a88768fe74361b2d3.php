@@ -7,41 +7,23 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
-
-#default_tip{
-	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 60px;
-	color:#F8E391;
-	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
-	visibility:hidden;
-	z-index:99;
-}
-
 </style>
 <script type="text/javascript">
 
 <?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
 
-/* 弹窗信息  */
-var popup = function(){
-	var msg = "<?php echo ($floatMsg); ?>";
-	Epg.tip(msg);
-}
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-小图提示信息，2-大图提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("<?php echo ($floatMsg); ?>",3,type);
+}	
 
 </script>
 
 </head>
-<body>
+<body >
 
 
 <style>
@@ -78,53 +60,116 @@ var popup = function(){
 	background-image: url(/static/v1/hd/images/freeZone/recommend.png);
 }
 
+/* 分页 */
+.page_prev{
+	position:absolute;
+	width:25px;
+	height:32px;
+	left:745px;
+	top:600px;
+}
+.text{
+	position:absolute;
+	width:80px;
+	height:30px;
+	line-height:30px;
+	left:765px;
+	top:600px;
+	text-align:center;
+}
+.page_next{
+	position:absolute;
+	width:25px;
+	height:32px;
+	left:845px;
+	top:600px;
+}
+
 </style>
 
 <script type="text/javascript">
 	var img1 = '<?php echo ($img_recommend1); ?>';
 	var img2 = '<?php echo ($img_recommend2); ?>';
-	var count = <?php echo ($count); ?>;
-	var buttons = new Array(count+4);
+	var count = <?php echo ($count); ?>;//免费课程按钮数目
+	var buttons = new Array(count+4);//4为最新推荐按钮数（2）+分页按钮数（2）
 	var colnum = 2;
 	
 	function initbuttons()
 	{
-		for(var i=1; i<=buttons.length-4; i++)
+		/*  给免费课程按钮加事件处理*/
+		for(var i=1; i<=count; i++)
 		{
 			obj = new Object();
 			
 			obj.id = 'option_' + i;
 			obj.selectBox = "/static/v1/hd/images/freeZone/kuang_small.png";
 			obj.resize = -1;
-			obj.right = (i<buttons.length-4) ? 'option_'+(i+1) : '' ; 
+			obj.right = (i<count) ? 'option_'+(i+1) : '' ; 
 			obj.left = (i>1) ? 'option_'+(i-1) : '' ; 
-			obj.down = (i+colnum<=buttons.length-4) ? 'option_'+(i+colnum) : '';
+			obj.down = (i+colnum<=count) ? 'option_'+(i+colnum) : '';
 			obj.up = (i-colnum>0) ? 'option_'+(i-colnum) : '' ; 
+			obj.focusHandler='focusHandler()';
+			obj.blurHandler='blurHandler()';
 			
 			if(i%colnum==0&&i<=8) obj.right = 'optionRecmd_1';
 			if(i%colnum==0&&i>8) obj.right = 'optionRecmd_2';
-			if(i==buttons.length-4&&i<=8) obj.right = 'optionRecmd_1';
-			if(i==buttons.length-4&&i>8) obj.right = 'optionRecmd_2';
+			if(i==count&&i<=8) obj.right = 'optionRecmd_1';
+			if(i==count&&i>8) obj.right = 'optionRecmd_2';
 			
 			buttons[i-1] = obj;
 		}
-		if(count>=1) buttons[buttons.length-4-1]['down'] = 'page_prev';	
-		if(count>=2) buttons[buttons.length-4-2]['down'] = 'page_prev';
-		
+		/* 最后两项按down时，焦点移到分页选项上 */
+		if(count>=1) 
+		{
+			buttons[count-1]['down'] = 'page_next';	
+		}
+		if(count>=2)
+		{
+			buttons[count-2]['down'] = 'page_next';
+		}
+		/* 最右边推荐按钮 */
 		buttons[buttons.length-4] = {id:'optionRecmd_1',linkImage:img1,selectBox:'/static/v1/hd/images/freeZone/kuang_big.png',resize:'-1',left:['option_4','option_2','option_1'],down:'optionRecmd_2'};		
 		buttons[buttons.length-3] = {id:'optionRecmd_2',linkImage:img2,selectBox:'/static/v1/hd/images/freeZone/kuang_big.png',resize:'-1',left:['option_12','option_10','option_8','option_4','option_2','option_1'],up:'optionRecmd_1'};		
-		
-		buttons[buttons.length-2] = {id:'page_prev',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:buttons[buttons.length-4-1]['id']};
-		buttons[buttons.length-1] = {id:'page_next',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:buttons[buttons.length-4-1]['id']};
-
+		/* 分页按钮 */
+		buttons[buttons.length-2] = {id:'page_prev',name:'',action:'pageUp()',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:buttons[buttons.length-4-1]['id']};
+		buttons[buttons.length-1] = {id:'page_next',name:'',action:'pageDown()',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:buttons[buttons.length-4-1]['id']};
 	}
+	
 	window.onload = function() {
 		initbuttons();
-		Epg.btn.init('option_1', buttons, true);
+		if(buttons.length==4)
+		{
+			Epg.btn.init('optionRecmd_1', buttons, true);
+		}
+		else
+		{
+			Epg.btn.init('option_1', buttons, true);
+		}
+		//设置翻页键翻页事件
+		Epg.key.set(
+		{
+			KEY_PAGE_UP:'pageUp()',
+			KEY_PAGE_DOWN:'pageDown()',
+		});
 	};
+	
+	
+	var url = "<?php echo U('FreeZone/index').'?page=';?>";
+	//上一页
+	function pageUp()
+	{
+		Epg.page(url,<?php echo ($page); ?>-1,<?php echo ($pageCount); ?>);
+	}
+
+	//下一页
+	function pageDown()
+	{
+		Epg.page(url,<?php echo ($page); ?>+1,<?php echo ($pageCount); ?>);
+	}
+	
 </script>
 
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',0);?>" ></a>
 
 <!-- 静态图片 -->
 <div id="bottom"></div>
@@ -139,11 +184,11 @@ var popup = function(){
 	<div id="div_option_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="option_<?php echo ($i); ?>_focus" title="" src="" width="370" height="60">
 	</div>
-	<!-- 文字 -->
-	<div style="position:absolute;width:330px;height:30px;left:<?php echo ($left+20); ?>px;top:<?php echo ($top+10); ?>px;line-height:30px;text-align:center;">
-		<span ><?php echo ($data['name']); ?></span>
+	<!-- 免费专区文字 -->
+	<div id="option_<?php echo ($i); ?>_text" style="position:absolute;width:350px;height:37px;left:<?php echo ($left+10); ?>px;top:<?php echo ($top+10); ?>px;line-height:37px;text-align:left;border-style:none">
+		<?php echo ($data['name']); ?>
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
-
+	<!-- 最新推荐 -->
 	<div id="div_optionRecmd_1" style="position:absolute;left:965px;top:165px;text-align:center;">
 		<img id="optionRecmd_1" title="<?php echo U('SectionList/index?courseId='.$url_recommend1);?>" src="<?php echo ($img_recommend1); ?>" width="210" height="210">
 	</div>
@@ -158,16 +203,34 @@ var popup = function(){
 	</div>
 
 <!-- 分页 -->
-<div style="position:absolute; left:765px; top:600px;">
-	<?php echo ($pageHtml); ?>
+<?php echo ($pageHtml); ?>
+
+<script type="text/javascript">
+
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	//Epg.marquee.stop();
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	var id = Epg.btn.current.id + '_text';
+	//Epg.marquee.start(16,id);
+}
+
+
+</script>
+
+
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
+
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
 </div>
 
-
-<!-- 弹窗 -->
-<div id="div_popup"></div>
-
-<!-- 默认的提示 -->
-<div id="default_tip" class="default_tip">
-</div>
 </body>
 </html>

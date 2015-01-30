@@ -7,41 +7,23 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
-
-#default_tip{
-	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 60px;
-	color:#F8E391;
-	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
-	visibility:hidden;
-	z-index:99;
-}
-
 </style>
 <script type="text/javascript">
 
 <?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
 
-/* 弹窗信息  */
-var popup = function(){
-	var msg = "<?php echo ($floatMsg); ?>";
-	Epg.tip(msg);
-}
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-小图提示信息，2-大图提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("<?php echo ($floatMsg); ?>",3,type);
+}	
 
 </script>
 
 </head>
-<body>
+<body >
 
 <style type="text/css">
     body{ background-image:url(/static/v1/hd/images/common/bg.jpg); }
@@ -132,8 +114,8 @@ var buttons=
 	 	{id:'btn_order',name:'订购',action:'',linkImage:'/static/v1/hd/images/common/order/btn_order.png',focusImage:'/static/v1/hd/images/common/order/btn_order_over.png',left:'btn_next_week',right:'',up:'',down:'section_7_1'},
 	 	
 	 	/* 前一天 /后一天 */
-		{id:'btn_prev_week',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',left:'',right:'btn_next_week',down:'section_2_1'},
-		{id:'btn_next_week',name:'',action:'',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:'btn_prev_week',right:'btn_order',down:'section_3_1'},
+		{id:'btn_prev_week',name:'',action:'pageUp()',linkImage:'/static/v1/hd/images/common/page/page_prev.png',focusImage:'/static/v1/hd/images/common/page/page_prev_over.png',selectBox:'',left:'',right:'btn_next_week',down:'section_2_1'},
+		{id:'btn_next_week',name:'',action:'pageDown()',linkImage:'/static/v1/hd/images/common/page/page_next.png',focusImage:'/static/v1/hd/images/common/page/page_next_over.png',selectBox:'',left:'btn_prev_week',right:'btn_order',down:'section_3_1'},
 	
 	];
 
@@ -147,33 +129,68 @@ var initButtons = function(){
 	
 }
 
+var url = "<?php echo U('SectionList/week').'?preFocus='.$preFocus;?>";
+
+//上一页
+function pageUp()
+{
+	url += "&focus="+Epg.btn.current.id+"&week=<?php echo ($prevWeek); ?>";
+	Epg.jump(url);
+}
+
+//下一页
+function pageDown()
+{
+	url += "&focus="+Epg.btn.current.id+"&week=<?php echo ($nextWeek); ?>";
+	Epg.jump(url);
+}
+
+var defaultId = "<?php echo ($focus); ?>";
+
 window.onload=function()
 {
 	initButtons();
 	popup();
-	Epg.btn.init('btn_order',buttons,true);	
+	
+	//翻页焦点定位
+	if(defaultId == "btn_prev_week" && Epg.isEmpty(G(defaultId))){
+		defaultId = "btn_next_week";
+	}
+	if(defaultId == "btn_next_week" && Epg.isEmpty(G(defaultId))){
+		defaultId = "btn_prev_week";
+	}
+	
+	Epg.btn.init([defaultId,'btn_order'],buttons,true);	
 };
 </script>
 
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+<a id="a_back" style="display:none;" href="<?php echo ($backUrl); ?>" ></a>
 
 <!-- 左上角的栏目LOGO -->
 <div class="ch_logo"></div>
 
 <!-- 周数 -->
-<div class="week">第<?php echo ($week); ?>周</div>
+<div class="week" style="font-size:24px;">第<?php echo ($week); ?>周</div>
 <!-- 前一周 -->
-<div id="div_btn_prev_week" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
-    <img id="btn_prev_week" title="<?php echo U('SectionList/week').'?week='.$prevWeek;?>" src="/static/v1/hd/images/common/page/page_prev.png" width="20" height="26">
-</div>
+<?php if($week > 1): ?><div id="div_btn_prev_week" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
+	    <img id="btn_prev_week" src="/static/v1/hd/images/common/page/page_prev.png" width="20" height="26">
+	</div>
+<?php else: ?>
+	<div id="div_btn_prev_week" style="position:absolute;width:20px;height:26px;left:350px;top:100px;text-align:center;">
+    	<img src="/static/v1/hd/images/common/page/page_prev_none.png" width="20" height="26">
+	</div><?php endif; ?>
 <!-- 后一周 -->
-<div id="div_btn_next_week" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
-    <img id="btn_next_week" title="<?php echo U('SectionList/week').'?week='.$nextWeek;?>" src="/static/v1/hd/images/common/page/page_next.png" width="20" height="26">
-</div>
+<?php if($week < 52): ?><div id="div_btn_next_week" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
+	    <img id="btn_next_week" src="/static/v1/hd/images/common/page/page_next.png" width="20" height="26">
+	</div>
+<?php else: ?>
+	<div id="div_btn_next_week" style="position:absolute;width:20px;height:26px;left:465px;top:100px;text-align:center;">
+    	<img src="/static/v1/hd/images/common/page/page_next_none.png" width="20" height="26">
+	</div><?php endif; ?>
 
 <!-- 订购 -->
 <div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:90px;left:1100px;">
-	<img id="btn_order" title="<?php echo U('Order/index?courseId='.$courseId);?>" src="/static/v1/hd/images/common/order/btn_order.png">
+	<img id="btn_order" title="<?php echo U('Order/index?courseId='.$courseId.'&preFocus='.$preFocus);?>" src="/static/v1/hd/images/common/order/btn_order.png">
 </div>
 
 <!-- 背景  -->
@@ -182,7 +199,7 @@ window.onload=function()
 <!-- 一周课时列表 -->
 <?php if(is_array($sections)): $i = 0; $__LIST__ = $sections;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$week): $mod = ($i % 2 );++$i; if(is_array($week)): $j = 0; $__LIST__ = $week;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$section): $mod = ($j % 2 );++$j; $left = 85+($i-1)*160; if(($i == 6) || ($i==7)){ $height = 99; $top = 309+($j-1)*101; }else{ $height = 68; $top = 261+($j-1)*70; } ?>
         <div id="div_section_<?php echo ($i); ?>_<?php echo ($j); ?>" style="position:absolute;width:150px;height:<?php echo ($height); ?>px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;line-height: <?php echo ($height); ?>px;text-align:center;">
-             <img id="section_<?php echo ($i); ?>_<?php echo ($j); ?>" title="<?php echo U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId);?>" src="/static/v1/hd/images/common/transparent.png" width="150" height="<?php echo ($height); ?>">
+             <img id="section_<?php echo ($i); ?>_<?php echo ($j); ?>" title="<?php echo U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId.'&preFocus='.$preFocus);?>" src="/static/v1/hd/images/common/transparent.png" width="150" height="<?php echo ($height); ?>">
         </div>
         <div id="div_section_<?php echo ($i); ?>_<?php echo ($j); ?>" style="position:absolute;width:150px;height:<?php echo ($height); ?>px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:left;vertical-align: middle;">
             <span style="color:#666;font-size:16px;"><?php echo ($section['name']); ?></span>
@@ -192,11 +209,14 @@ window.onload=function()
 <div class="week_shadow"></div>
 
 
-<!-- 弹窗 -->
-<div id="div_popup"></div>
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
 
-<!-- 默认的提示 -->
-<div id="default_tip" class="default_tip">
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
 </div>
+
 </body>
 </html>

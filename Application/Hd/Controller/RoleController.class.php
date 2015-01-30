@@ -73,7 +73,8 @@ class RoleController extends CommonController {
 			$face = (empty($role['face'])) ? '0' : $role['face'];
 			$userInfo = $this->getUserInfo($role);
 			
-			$focus = $this->getFocus();//获得焦点位置
+			$focus = getFocus('ch_1','preFocus');//获得焦点位置
+			if(!$focus['status']) $this->showMessage($focus['info']);
 			$this->assign(array(
 				'userInfo' => $userInfo,
 				'face' => $face,
@@ -88,6 +89,21 @@ class RoleController extends CommonController {
 			
 		}
 		$this->display();
+	}
+	
+	private function getBackUrl(){
+		//返回处理（焦点参数）
+		$backUrl = get_back_url('Role/userInfo',0);
+		if(strpos($backUrl, '?preFocus'))
+			$backUrl = substr($backUrl, 0, strpos($backUrl, '?preFocus'));
+		if(strpos($backUrl, '&preFocus'))
+			$backUrl = substr($backUrl, 0, strpos($backUrl, '&preFocus'));
+		if(strpos($backUrl, '?')){
+			$backUrl .= '&preFocus='.I('preFocus','');
+		}else{
+			$backUrl .= '?preFocus='.I('preFocus','');
+		}
+		return $backUrl;
 	}
 	
 	private function getUserInfo($role){
@@ -127,32 +143,32 @@ class RoleController extends CommonController {
 				array(
 						'name' => 'stage',
 						'content' => array($stageAge),
-						'linkUrl' => '/Hd/Role/changeStage?focus=stage',
+						'linkUrl' => '/Hd/Role/changeStage?preFocus=stage',
 				),
 				/*昵称*/
 				array(
 						'name' => 'nickname',
 						'content' => array($nickName),
-						'linkUrl' => '/Hd/Role/setNickname?focus=nickname',
+						'linkUrl' => '/Hd/Role/setNickname?preFocus=nickname',
 				),
 				/*生日*/
 				array(
 						'name' => 'birthday',
 						'content' => array($birthday),
-						'linkUrl' => '/Hd/Role/setBirthday?focus=birthday',
+						'linkUrl' => '/Hd/Role/setBirthday?preFocus=birthday',
 				),
 				/*性别*/
 				array(
 						'name' => 'sex',
 						'content' => array($sex),
-						'linkUrl' => '/Hd/Role/setSex?focus=sex',
+						'linkUrl' => '/Hd/Role/setSex?preFocus=sex',
 				),
 
 				/*手机*/
 				array(
 						'name' => 'phone',
 						'content' => array($phone),
-						'linkUrl' => '/Hd/Role/setPhone?focus=phone',
+						'linkUrl' => '/Hd/Role/setPhone?preFocus=phone',
 				),
 				/*版本*/
 /* 				array(
@@ -163,47 +179,22 @@ class RoleController extends CommonController {
 				array(
 						'name' => 'advantage',
 						'content' => $advantages,
-						'linkUrl' => '/Hd/Role/setMulchoice?type=advantage&focus=advantage',
+						'linkUrl' => '/Hd/Role/setMulchoice?type=advantage&preFocus=advantage',
 				),
 				/*弱项*/
 				array(
 						'name' => 'disadvantage',
 						'content' => $disadvantages,
-						'linkUrl' => '/Hd/Role/setMulchoice?type=disAdvantage&focus=disadvantage',
+						'linkUrl' => '/Hd/Role/setMulchoice?type=disAdvantage&preFocus=disadvantage',
 				),
 				/*兴趣*/
 				array(
 						'name' => 'interests',
 						'content' => $interests,
-						'linkUrl' => '/Hd/Role/setMulchoice?type=interests&focus=interests',
+						'linkUrl' => '/Hd/Role/setMulchoice?type=interests&preFocus=interests',
 				),
 		);
 		return $userInfo;
-	}
-	
-	/*获取上个页面操作名
-	 * 
-	 */
-	private function getFocus()
-	{
-		$baseInfo = 'ch_1';//在http_refferr中没有focuse参数时的默认焦点
- 		$url = HTTP_REFERER;//上页面索引，根据focus值得到默认焦点
- 		//得到开始坐标
- 		$startPos = strpos($url,'focus');
- 		if($startPos===false) return $baseInfo;
- 		$startPos += 6;
- 		//得到结束坐标
- 		$endPos1 = strpos($url, '&', $startPos);
- 		$endPos2 = strpos($url, '/', $startPos);
- 		$endPos3 = strpos($url, '.html', $startPos);
-		($endPos = $endPos1) || ($endPos = $endPos2) || ($endPos = $endPos3);
- 		$endPos = $endPos===false ? strlen($url) : $endPos;
- 		//得到长度
- 		$len = $endPos - $startPos;
- 		//得到focus
- 		$act = substr($url,$startPos,$len);
- 		if($act === false) return $baseInfo;
- 		return $act;
 	}
 	
 	/*
@@ -306,7 +297,7 @@ class RoleController extends CommonController {
 			{
 /* 				echo '</br>';
 				dump('结果为：'.$result['info']);exit; */
-				$this->addFloatMessage($result['info'],U('Role/setPhone'));;
+				$this->addFloatMessage($result['info'],U('Role/setPhone?preFocus=phone'));;
 				return;
 			}
 			$user['phone'] = $data['phone'];
@@ -523,7 +514,7 @@ class RoleController extends CommonController {
 				$result = $this -> judgeDate($date,$stageAge);
 				if(!$result['status'])
 				{
-					$this->addFloatMessage($result['info'],U('Role/setBirthday'));
+					$this->addFloatMessage($result['info'],U('Role/setBirthday?preFocus=birthday'));
 					return;
 				}
 			}

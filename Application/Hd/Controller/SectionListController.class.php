@@ -59,13 +59,33 @@ class SectionListController extends CommonController {
 		
 		$json_topic = get_array_fieldkey($topics['rows'],array('id','name','linkImage','focusImage'));
 		$json_topic = json_encode($json_topic);
+		
+		//月龄
+		$month = $course['id'] - 1000;
+		if($month<=12){
+			$index = 1001;
+		}else if($month>=13 and $month<=24){
+			$index = 1013;
+		}else{
+			$index = 1025;
+		}
+		for ($i=0; $i<12; $i++){
+			$id = $index + $i;
+			$months[$i]['courseId'] = $id;
+			$months[$i]['linkImage'] = get_upfile_url("__HD__/images/sectionList/early/month/". $id ."_over.png");
+			$months[$i]['focusImage'] = get_upfile_url("__HD__/images/sectionList/early/month/". $id .".png");
+		}
+		$json_months = json_encode($months);
+		
 		$this->assign(array(
 			'chKey'		 => $chKey,	
 			'topics' 	 => $topics['rows'],
 			'json_topic' => $json_topic,
+			'months'	 => $months,
+			'json_months'=> $json_months,	
 			'sections'   => $sections['rows'],
 			'courseId'	 =>	$course['id'],
-			'topicId'	 => $topicId,		
+			'topicId'	 => $topicId,	
 			'focus'		 => I('focus',''),	
 			'preFocus'	 => I('preFocus',''),
 			'backUrl'	 => $this->getBackUrl(),

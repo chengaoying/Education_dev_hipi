@@ -7,41 +7,23 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
-
-#default_tip{
-	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 60px;
-	color:#F8E391;
-	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
-	visibility:hidden;
-	z-index:99;
-}
-
 </style>
 <script type="text/javascript">
 
 <?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
 
-/* 弹窗信息  */
-var popup = function(){
-	var msg = "<?php echo ($floatMsg); ?>";
-	Epg.tip(msg);
-}
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-小图提示信息，2-大图提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("<?php echo ($floatMsg); ?>",3,type);
+}	
 
 </script>
 
 </head>
-<body>
+<body >
 
 <style>
     body{ background-image:url(/static/v1/hd/images/usercenter/baseInfo/info_bg.jpg); }
@@ -50,7 +32,7 @@ var popup = function(){
 #logo{
 	position:absolute;
     display: block;
-    width:206px;
+    width:<?php echo ($width_logo); ?>px;
     height:40px;
     top:100px;
     left:100px;	
@@ -72,6 +54,7 @@ var popup = function(){
 var count = <?php echo ($count_sub); ?>;
 var subject_selected = <?php echo ($json_selected); ?>;
 var subjects = <?php echo ($subjects_json); ?>;
+var isEmpty = <?php echo ($isEmpty); ?>;
 var n = 5;//一行五列
 /* 页面可点击按钮  */
 var buttons= new Array(count+1);
@@ -97,8 +80,8 @@ var initButtons = function()
 	//第12个元素初始化为ok键
 	buttons[count] = {id:'ok',action:'submit()',linkImage:'/static/v1/hd/images/usercenter/mulchoice/confirm_1.png',focusImage:'/static/v1/hd/images/usercenter/mulchoice/confirm_2.png',up:('subject_'+id),down:''};
 }
-
-var init_interests = function()
+//选中的显示对号
+var init_subjects = function()
 {
 	for(var key in subject_selected)
 	{
@@ -110,13 +93,20 @@ var init_interests = function()
 window.onload=function()
 {
 	initButtons();
-	init_interests();
-	Epg.btn.init('subject_1',buttons,true);	
+	init_subjects();
+	if(isEmpty)
+	{	
+		Epg.btn.init('ok',buttons,true);	
+	}
+	else
+	{
+		Epg.btn.init('subject_1',buttons,true);	
+	}
 };
 
 </script>
 
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Role/userInfo',1);?>" ></a>
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Role/userInfo',0);?>" ></a>
 
 <!-- 静态图片 -->
 <div id="logo"></div>
@@ -154,19 +144,53 @@ function submit(){
 	G('form').submit();
 }
 
+var count_selected = <?php echo ($count_selected); ?>;
+var selected_array = new Array(4);
+var type = '<?php echo ($type); ?>';
+/* 初始化selected_array */
+var i=0;
+for(var key in subject_selected)
+{	
+	selected_array[i++] = subject_selected[key];
+}
 function select(subject)
 {
 	if(G('div_subject_'+subject+'_selected').style.visibility == 'visible')
 	{
 		G('div_subject_'+subject+'_selected').style.visibility = 'hidden';
 		G('form_subject_'+subject).value = '';
+		if(type != 'interests')
+		{
+			if(count_selected>0) count_selected--;
+		}
 	}
 	else
 	{
 		G('div_subject_'+subject+'_selected').style.visibility = 'visible'
 		G('form_subject_'+subject).value = subjects['subject_'+subject];
-	}
+		
+		if(type != 'interests')
+		{
+			count_selected++;	
+			if(count_selected>4)
+			{
+				G('div_subject_'+selected_array[0]+'_selected').style.visibility = 'hidden';
+				G('form_subject_'+selected_array[0]).value = '';
+				count_selected--;
+				for(i=0;i<selected_array.length-1;i++)
+				{
+					selected_array[i] = selected_array[i+1];
+				}
+				selected_array[selected_array.length-1] = subject;
+			}
+			else
+			{
+				selected_array[count_selected-1] = subject;
+			}
+		}
 
+	}
+	
 }
 
 </script>
@@ -180,11 +204,14 @@ function select(subject)
 
 
 
-<!-- 弹窗 -->
-<div id="div_popup"></div>
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
 
-<!-- 默认的提示 -->
-<div id="default_tip" class="default_tip">
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
 </div>
+
 </body>
 </html>

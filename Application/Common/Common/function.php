@@ -96,5 +96,37 @@ function monthNum($birthday)
 	return result_data(1,'成功',array('monthNum' => $m));
 }
 
+/*获取上个页面指定参数的参数值
+ *@param string default 默认参数值
+ *@param string focusName 要获得的参数名
+ *@return 上页地址中有对应的参数,则取参数值;没有或出错,则返回$default
+*/
+function getFocus($default='',$focusName='')
+{
+	if(empty($default) || empty($focusName))
+	{
+		return result_data(0,'缺少参数');
+	}
+	$url = HTTP_REFERER;//上页面索引，根据focus值得到默认焦点
+	//得到开始坐标
+	$startPos = strpos($url,'preFocus');
 
+	if($startPos===false) return $default;
+	
+	$startPos += 9;
+	//得到结束坐标
+	$endPos1 = strpos($url, '&', $startPos);
+	$endPos2 = strpos($url, '/', $startPos);
+	$endPos3 = strpos($url, '.', $startPos);
+	($endPos = $endPos1) || ($endPos = $endPos2) || ($endPos = $endPos3);
+
+	$endPos = $endPos===false ? strlen($url) : $endPos;
+	//得到长度
+	$len = $endPos - $startPos;
+	//得到focus
+	$act = substr($url,$startPos,$len);
+	if($act === false) return $default;
+	
+	return $act;
+}
 

@@ -78,8 +78,8 @@
 	{id:'detail_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/detail.png',focusImage:'__HD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_1',up:'',left:'ch_3'},
 	{id:'detail_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/detail.png',focusImage:'__HD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_2',up:'wrong_1',left:'ch_3'},
 	{id:'detail_3',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/detail.png',focusImage:'__HD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_3',up:'wrong_2',left:'ch_3'},
-	{id:'wrong_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_2','page_next'],up:'detail_1',left:'ch_3'},
-	{id:'wrong_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_3','page_next'],up:'detail_2',left:'ch_3'},
+	{id:'wrong_1',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_2',G('page_next') ? 'page_next' : 'page_prev'],up:'detail_1',left:'ch_3'},
+	{id:'wrong_2',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_3',G('page_next') ? 'page_next' : 'page_prev'],up:'detail_2',left:'ch_3'},
 	{id:'wrong_3',name:'',action:'',linkImage:'__HD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__HD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:'page_next',up:'detail_3',left:'ch_3'},
 
 	{id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:['wrong_3','wrong_2','wrong_1'],left:'ch_2'},
@@ -98,9 +98,20 @@
 		} 
  		if(focus !== 'ch_3') G('ch_3').src = buttons[2].titleImage;
 	}
+	
+ 	function handleFocus(focus)//焦点判断
+	{
+		if(focus == 'page_next' || focus == 'page_prev')
+		{
+			focus = ( ( focus=='page_prev'&& G(focus) ) ? focus : 'page_next' ); 
+			focus = ( ( focus=='page_next'&& G(focus) ) ? focus : 'page_prev' ); 
+		}
+		return focus;
+	} 
 	window.onload = function() {
 		initButtons();
 		popup();
+		focus = handleFocus(focus);
 		Epg.btn.init(focus, buttons, true);
 		
 		//设置翻页键翻页事件
@@ -111,16 +122,18 @@
 		});
 	};
 	
-	var url = "{:U('Learning/learningPreschool').'?page='}";
+	var url = "{:U('Learning/learningPreschool')}";
 	//上一页
 	function pageUp()
 	{
+		url += '?focus='+ Epg.btn.current.id +'&page=';
 		Epg.page(url,{$page}-1,{$pageCount});
 	}
 
 	//下一页
 	function pageDown()
 	{
+		url += '?focus='+ Epg.btn.current.id +'&page=';
 		Epg.page(url,{$page}+1,{$pageCount});
 	}
 </script>
@@ -189,12 +202,12 @@
 	</div>
 	<!-- detail -->
 	<div id="div_detail_{$i}" style="position:absolute; left:{$left+700}px; top:{$top+10}px;">
-		<img id="detail_{$i}" title="{:U('Learning/detail?courseId='.$data['id'].'&courseName='.$data['name'].'&focus=detail_'.$i)}" 
+		<img id="detail_{$i}" title="{:U('Learning/detail?courseId='.$data['id'].'&courseName='.$data['name'].'&preFocus=detail_'.$i)}" 
 		src="__HD__/images/usercenter/learningPreschool/detail.png" width="75" height="32">
 	</div>
 	<!-- 错题集 -->
 	<div id="div_wrong_{$i}" style="position:absolute; left:{$left+700}px; top:{$top+50}px;">
-		<img id="wrong_{$i}" title="{:U('Library/wrongAnthology?courseId='.$data['id'].'&focus=wrong_'.$i)}" 
+		<img id="wrong_{$i}" title="{:U('Library/wrongAnthology?courseId='.$data['id'].'&preFocus=wrong_'.$i)}" 
 		src="__HD__/images/usercenter/learningPreschool/wrong.png" width="75" height="32">
 	</div>
 	

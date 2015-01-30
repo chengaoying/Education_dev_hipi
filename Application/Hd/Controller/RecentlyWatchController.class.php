@@ -47,6 +47,8 @@ class RecentlyWatchController extends CommonController {
 			}
 		}
 		
+		$focus = I('preFocus','option_1');
+		// 	p($data['rows']);exit;
 		$this->assign(array(
 					'datas' => $data['rows'],
 					'count' => count($data['rows']),
@@ -54,6 +56,7 @@ class RecentlyWatchController extends CommonController {
 					'img_recommend2' => $c[1]['imgUrl'],
 					'id_recommend1' => $c[0]['id'],
 					'id_recommend2' => $c[1]['id'],
+					'focus' => $focus,
 				));
 		$this->display();
 	}

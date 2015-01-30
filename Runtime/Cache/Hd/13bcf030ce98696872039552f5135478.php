@@ -7,41 +7,23 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
-
-#default_tip{
-	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 60px;
-	color:#F8E391;
-	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
-	visibility:hidden;
-	z-index:99;
-}
-
 </style>
 <script type="text/javascript">
 
 <?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
 
-/* 弹窗信息  */
-var popup = function(){
-	var msg = "<?php echo ($floatMsg); ?>";
-	Epg.tip(msg);
-}
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-无图片的提示信息，2-为有图片的提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("<?php echo ($floatMsg); ?>",3,type);
+}	
 
 </script>
 
 </head>
-<body>
+<body >
 
 <style>
     body{ background-image:url(/static/v1/hd/images/usercenter/growthIndex/bg_growth.jpg); }
@@ -95,7 +77,7 @@ window.onload=function()
 <div id="baobao"></div>
 
 
-<?php $__FOR_START_3639__=1;$__FOR_END_3639__=7;for($i=$__FOR_START_3639__;$i < $__FOR_END_3639__;$i+=1){ $left = 650; $top = 195 + ($i - 1)*70; ?>
+<?php $__FOR_START_24576__=1;$__FOR_END_24576__=7;for($i=$__FOR_START_24576__;$i < $__FOR_END_24576__;$i+=1){ $left = 650; $top = 195 + ($i - 1)*70; ?>
 	<div id="div_option_<?php echo ($i); ?>" style="position:absolute;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
 		<img id="option_<?php echo ($i); ?>" src="/static/v1/hd/images/usercenter/growthIndex/option_<?php echo ($i); ?>.png" width="150" height="34">
 	</div><?php } ?>
@@ -120,11 +102,14 @@ function submit(){
 
 
 
-<!-- 弹窗 -->
-<div id="div_popup"></div>
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
 
-<!-- 默认的提示 -->
-<div id="default_tip" class="default_tip">
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
 </div>
+
 </body>
 </html>

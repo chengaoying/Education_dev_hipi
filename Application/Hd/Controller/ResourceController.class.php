@@ -77,7 +77,8 @@ class ResourceController extends CommonController {
         
         //赠送积分
         D('Credit','Logic')->ruleIncOrDec($this->user['id'],$this->role['id'],'play','视频播放送2个积分');
-
+        
+       	$preFocus = I('preFocus','option_1'); 
         $template = 'play' . $areacode;
         $this->assign(array(
         	'courseId' =>$courseId,
@@ -86,6 +87,7 @@ class ResourceController extends CommonController {
             'section' => $section,
             'playData' => $playData,
         	'awardInfo'=>$awardInfo['data'],
+        	'preFocus' => $preFocus,
         ));
         $this->display($template);
     }

@@ -7,41 +7,23 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
-
-#default_tip{
-	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 60px;
-	color:#F8E391;
-	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
-	visibility:hidden;
-	z-index:99;
-}
-
 </style>
 <script type="text/javascript">
 
 <?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
 
-/* 弹窗信息  */
-var popup = function(){
-	var msg = "<?php echo ($floatMsg); ?>";
-	Epg.tip(msg);
-}
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-小图提示信息，2-大图提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("<?php echo ($floatMsg); ?>",3,type);
+}	
 
 </script>
 
 </head>
-<body>
+<body >
 
 <style>
     body{ background-image:url(/static/v1/hd/images/usercenter/baseInfo/info_bg.jpg); }
@@ -104,6 +86,7 @@ var initButtons = function(){
 		buttons[0].left = '';
 		buttons[0].linkImage = "/static/v1/hd/images/usercenter/changeNum/left_1.png";
 		buttons[0].focusImage = "/static/v1/hd/images/usercenter/changeNum/left_2.png";
+		buttons[0].focusHandler = 'focusHandler()';
 		buttons[0].selectBox = '';
 	}
 	if(!isRight)
@@ -115,18 +98,20 @@ var initButtons = function(){
 		buttons[countButton-1].right = '';
 		buttons[countButton-1].linkImage = "/static/v1/hd/images/usercenter/changeNum/right_1.png";
 		buttons[countButton-1].focusImage = "/static/v1/hd/images/usercenter/changeNum/right_2.png";
+		buttons[countButton-1].focusHandler = 'focusHandler()';
 		buttons[countButton-1].selectBox = '';
 	}
 }
 window.onload=function()
 {
 	initButtons();
+	popup();
 	Epg.btn.init('option_1',buttons,true);	
 };
 
 </script>
 
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Role/userInfo',1);?>" ></a>
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Role/userInfo',0);?>" ></a>
 
 <!-- 静态图片 -->
 <div id="selectFace_set"></div>
@@ -134,7 +119,7 @@ window.onload=function()
 
 
 <form id="form" action="<?php echo U('Role/changeNum');?>" method="post" style="padding:10px">
-	<?php $__FOR_START_2290__=1;$__FOR_END_2290__=$count+1;for($i=$__FOR_START_2290__;$i < $__FOR_END_2290__;$i+=1){ ?><input type="hidden" id="option_<?php echo ($i); ?>ID" name="option_<?php echo ($i); ?>" value=""/><?php } ?>
+	<?php $__FOR_START_9635__=1;$__FOR_END_9635__=$count+1;for($i=$__FOR_START_9635__;$i < $__FOR_END_9635__;$i+=1){ ?><input type="hidden" id="option_<?php echo ($i); ?>ID" name="option_<?php echo ($i); ?>" value=""/><?php } ?>
 </form>
 
 
@@ -163,11 +148,11 @@ window.onload=function()
 
 <!-- 左分页符号 -->
 <?php if($leftDir): ?><div id="div_option_0" style="position:absolute;left:50px;top:345px;text-align:center;">
-		<img id="option_0" src="/static/v1/hd/images/usercenter/changeNum/left_1.png" width="25" height="30">
+		<img id="option_0" title="<?php echo U('Role/changeNum?page='.($page-1));?>"  src="/static/v1/hd/images/usercenter/changeNum/left_1.png" width="25" height="30">
 	</div><?php endif; ?>
 <!-- 右分页符号 -->
 <?php if($rightDir): ?><div id="div_option_<?php echo ($count+1); ?>" style="position:absolute;left:1200px;top:345px;text-align:center;">
-		<img id="option_<?php echo ($count+1); ?>" title="<?php echo U(Role/changeNum);?>" src="/static/v1/hd/images/usercenter/changeNum/right_1.png" width="25" height="30">
+		<img id="option_<?php echo ($count+1); ?>" title="<?php echo U('Role/changeNum?page='.($page+1));?>" src="/static/v1/hd/images/usercenter/changeNum/right_1.png" width="25" height="30">
 	</div><?php endif; ?>
 
 <script type="text/javascript">
@@ -193,16 +178,22 @@ function select(option){
 	}
 }
 
+function focusHandler(){
+	setTimeout("Epg.btn.click()",50)
+}
 </script>
 
 
 
 
-<!-- 弹窗 -->
-<div id="div_popup"></div>
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
 
-<!-- 默认的提示 -->
-<div id="default_tip" class="default_tip">
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
 </div>
+
 </body>
 </html>

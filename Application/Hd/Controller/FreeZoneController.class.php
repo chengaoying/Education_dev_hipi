@@ -24,11 +24,6 @@ class FreeZoneController extends CommonController {
 		$pageCount = get_page_count($data['total'], $pageSize);
 		$pageHtml = get_page_html($page, $pageCount);
 		
-		/* $total = $data['total'];
-		$imgPath = '/static/v1/hd/images/common/page';
-		$page = get_pageHtml2($total,14,array(),$imgPath);
-		$data = D('Section','Logic')->querySectionByPrivilege('0',$page['nowPage'],14); */
-		
 		//角色信息
 		$role = unserialize(Session('role'));
 		$proConfig = get_pro_config_content('proConfig');
@@ -53,6 +48,13 @@ class FreeZoneController extends CommonController {
 			}
 		}
 		
+		/* 获得焦点 */
+		$focus = I('preFocus','option_1');
+		if($focus == 'option_1')
+		{
+			$focus = I('focus','option_1');
+		}
+		
 		$this->assign(array(
 					'pageHtml' => $pageHtml,
 					'datas' => $data['rows'],
@@ -63,6 +65,7 @@ class FreeZoneController extends CommonController {
 					'img_recommend2' => $c[1]['imgUrl'],
 					'url_recommend1' => $c[0]['id'],
 					'url_recommend2' => $c[1]['id'],
+					'focus' => $focus,
 				));
 		$this->display();
 	}

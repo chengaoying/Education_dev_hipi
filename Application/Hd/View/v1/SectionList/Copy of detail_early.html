@@ -1,0 +1,202 @@
+<layout name="layout" />
+
+<php>
+	/*月份*/ 
+	$month = $courseId - 1000;
+	if($month>=1 and $month<=12){
+	    $monthbg = '__HD__/images/sectionList/early/month/1_12_month.png';
+	}else if($month>=13 and $month<=24){
+	    $monthbg = '__HD__/images/sectionList/early/month/13_24_month.png';
+	}else{
+	    $monthbg = '__HD__/images/sectionList/early/month/25_36_month.png';
+	}
+
+	/* 进度条背景 */
+	if(in_array($month,array(12,24,36))){
+	    $probgwidth = 1110;
+	    $proleft = 1085;
+	}else{
+	    $probgwidth = ($month%12)*86;
+	    $proleft = ($month%12)*86+62;
+	}
+</php>
+
+<style type="text/css">
+    body{ background-image:url(__HD__/images/common/bg.jpg); }
+    
+    .monthbg{
+        position: absolute;
+        width:1110px;
+        height:50px;
+        top:580px;
+        left:85px;
+        background: url({$monthbg}) no-repeat;
+    }
+    .progress{
+        position: absolute;
+        width:46px;
+        height:30px;
+        top:593px;
+        left:{$proleft}px;
+        background: url(__HD__/images/sectionList/early/month/{$courseId}.png) no-repeat;
+    }
+    
+    .probg{
+        position: absolute;
+        width:{$probgwidth}px;
+        height:5px;
+        top:625px;
+        left:85px;
+        background: url(__HD__/images/sectionList/early/month/pro_bg.png) no-repeat;
+    }
+</style>
+<script type="text/javascript">
+
+
+var buttons=
+	[
+	 	/* logo */	
+	 	{id:'btn_logo',name:'logo',action:'',linkImage:'__HD__/images/sectionList/title_early.png',focusImage:'__HD__/images/sectionList/title_early_over.png',selectBox:'',left:'',right:'btn_order',down:'topic_1'},
+	 	
+	 	/* 订购按钮 */	
+	 	{id:'btn_order',name:'订购',action:'',linkImage:'__HD__/images/common/order/btn_order.png',focusImage:'__HD__/images/common/order/btn_order_over.png',selectBox:'',left:'btn_logo',right:'',up:'',down:['section_3','section_2','section_1']},
+	 
+        /*左侧知识点列表*/
+	 	{id:'topic_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:'section_1',up:'btn_logo',down:'topic_2'},
+        {id:'topic_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:'section_1',up:'topic_1',down:'topic_3'},
+        {id:'topic_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:'section_1',up:'topic_2',down:'topic_4'},
+        {id:'topic_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:['section_4','section_1'],up:'topic_3',down:'topic_5'},
+        {id:'topic_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:['section_4','section_1'],up:'topic_4',down:'topic_6'},
+        {id:'topic_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:['section_4','section_1'],up:'topic_5',down:'topic_7'},
+        
+        /* 右边视频列表 */
+        {id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'topic_1',right:'section_2',up:'btn_order',down:'section_4'},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_1',right:'section_3',up:'btn_order',down:['section_5','section_4']},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_2',right:'',up:'btn_order',down:['section_6','section_5','section_4']},
+		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:['topic_5','topic_4'],right:'section_5',up:'section_1',down:''},
+		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_4',right:'section_6',up:'section_2',down:''},
+		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'section_5',right:'',up:'section_3',down:''},
+	];
+
+//知识点
+var topics = {$json_topic};
+
+//当前选中的知识点id
+var cur_topic = "topic_1";
+var cur_topic_title_img = '';
+
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	//知识点
+	for(var i=0; i<topics.length; i++)
+	{
+		buttons[i+2].name = topics[i].name;
+		buttons[i+2].linkImage = topics[i].linkImage;
+		buttons[i+2].focusImage = topics[i].focusImage;
+		
+		if("{$topicId}" == topics[i].id){
+			cur_topic = buttons[i+2].id;
+			cur_topic_title_img = buttons[i+2].focusImage;
+		}
+	}
+	
+}
+
+var defaultId = "{$preFocus}";
+
+window.onload=function()
+{
+    initButtons();
+    popup();
+    
+  	//处理页面跳转时的焦点定位:
+	defaultId = Epg.isEmpty(defaultId) ? "{$focus}" : defaultId;
+	if(Epg.isEmpty(defaultId)){
+    	defaultId = cur_topic;
+    }else{
+    	if(Epg.isEmpty(G(defaultId))) 
+    		defaultId = cur_topic;
+    	if(!Epg.isEmpty(G(cur_topic))) 
+    		G(cur_topic).src = cur_topic_title_img;
+    }
+	
+	Epg.btn.init([defaultId,'section_1'],buttons,true);	
+};
+</script>
+
+<a id="a_back" style="display:none;" href="{$backUrl}" ></a>
+
+<!-- 栏目LOGO -->
+<div id="div_btn_logo" style="position:absolute;width:225px;height:91px;top:45px;left:85px;">
+	<img id="btn_logo" title="{:U('CourseList/courseDesc').'?chKey='.$chKey}" src="__HD__/images/sectionList/title_early.png">
+</div>
+
+<!-- 课程横幅图 -->
+<div style="position: absolute;top:180px;left:60px;width: 286px;height:382px;
+        background-image: url(__HD__/images/sectionList/early/month_aim/{$courseId}.png);">
+</div>
+
+<!-- 订购 -->
+<div id="div_btn_order" style="position:absolute;width:90px;height:34px;top:85px;left:1100px;">
+	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId.'&preFocus='.$preFocus)}" src="__HD__/images/common/order/btn_order.png">
+</div>
+
+<!-- 知识点列表 -->
+<volist name="topics" id="t" key="i">
+    <php>$top = 180+($i-1)*65;</php>
+    <div id="div_topic_{$i}" style="position: absolute;height:54px;left:345px;top:{$top}px;">
+        <img id="topic_{$i}" title="{:U('SectionList/index?courseId='.$courseId.'&topicId='.$t['id'].'&chId='.$chId.'&preFocus='.$preFocus)}" src="{$t['linkImage']}" height="54" />
+   </div>
+</volist>
+
+
+<!-- 课时列表 -->
+<volist name="sections" id="section" key="i">
+    <php>
+        if($i > 3){
+            $top = 375; $left = 530 + ($i-4)*225;
+        }else{
+            $top = 180; $left = 530 + ($i-1)*225;
+        }
+    </php>
+    <div id="div_section_{$i}" style="position:absolute;width:220px;height:190px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="section_{$i}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId.'&preFocus=section_'.$i)}" src="{:get_upfile_url($section['imgUrl'])}" width="210" height="180">
+    </div>
+    <div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:200px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="section_{$i}_focus" src="" width="220" height="190">
+    </div>
+</volist>
+
+
+<!-- 月份条 -->
+<div class="monthbg"></div>
+<!-- 进度条 -->
+<div class="progress"></div>
+<!-- 进度条背景 -->
+<div class="probg"></div>
+
+<!-- 底部投影 -->
+<div style="position: absolute;width:1110px;height:45px;top:630px;left:85px;
+        background-image: url(__HD__/images/common/shadow/shadow_1110x45.png);">
+</div>
+
+<script type="text/javascript">
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "topic_1" && Epg.btn.current.id != "topic_2"
+	   && Epg.btn.current.id != "topic_3" && Epg.btn.current.id != "topic_4"
+	   && Epg.btn.current.id != "topic_5" && Epg.btn.current.id != "topic_6"){
+			G(Epg.btn.previous.id).src = Epg.btn.previous.focusImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != cur_topic){
+		setTimeout("Epg.btn.click()",50)
+	}
+}
+
+</script>
+

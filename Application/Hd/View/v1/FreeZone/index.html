@@ -39,15 +39,15 @@
 	position:absolute;
 	width:25px;
 	height:32px;
-	left:745px;
+	left:725px;
 	top:600px;
 }
 .text{
 	position:absolute;
-	width:80px;
+	width:100px;
 	height:30px;
 	line-height:30px;
-	left:765px;
+	left:745px;
 	top:600px;
 	text-align:center;
 }
@@ -64,6 +64,7 @@
 <script type="text/javascript">
 	var img1 = '{$img_recommend1}';
 	var img2 = '{$img_recommend2}';
+	var focus = '{$focus}';//上个页面焦点位置
 	var count = {$count};//免费课程按钮数目
 	var buttons = new Array(count+4);//4为最新推荐按钮数（2）+分页按钮数（2）
 	var colnum = 2;
@@ -95,29 +96,40 @@
 		/* 最后两项按down时，焦点移到分页选项上 */
 		if(count>=1) 
 		{
-			buttons[count-1]['down'] = 'page_next';	
+			buttons[count-1]['down'] = G('page_next') ? 'page_next' : 'page_prev';	
 		}
 		if(count>=2)
 		{
-			buttons[count-2]['down'] = 'page_next';
+			buttons[count-2]['down'] = G('page_next') ? 'page_next' : 'page_prev';
 		}
 		/* 最右边推荐按钮 */
 		buttons[buttons.length-4] = {id:'optionRecmd_1',linkImage:img1,selectBox:'__HD__/images/freeZone/kuang_big.png',resize:'-1',left:['option_4','option_2','option_1'],down:'optionRecmd_2'};		
 		buttons[buttons.length-3] = {id:'optionRecmd_2',linkImage:img2,selectBox:'__HD__/images/freeZone/kuang_big.png',resize:'-1',left:['option_12','option_10','option_8','option_4','option_2','option_1'],up:'optionRecmd_1'};		
 		/* 分页按钮 */
 		buttons[buttons.length-2] = {id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:buttons[buttons.length-4-1]['id']};
-		buttons[buttons.length-1] = {id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:buttons[buttons.length-4-1]['id']};
+		buttons[buttons.length-1] = {id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',right:'optionRecmd_2',down:'',up:buttons[buttons.length-4-1]['id']};
 	}
 	
+ 	function handleFocus(focus)//焦点判断
+	{
+		if(focus == 'page_next' || focus == 'page_prev')
+		{
+			focus = ( ( focus=='page_prev'&& G(focus) ) ? focus : 'page_next' ); 
+			focus = ( ( focus=='page_next'&& G(focus) ) ? focus : 'page_prev' ); 
+		}
+		return focus;
+	} 
 	window.onload = function() {
 		initbuttons();
+
 		if(buttons.length==4)
 		{
 			Epg.btn.init('optionRecmd_1', buttons, true);
 		}
 		else
 		{
-			Epg.btn.init('option_1', buttons, true);
+			focus = handleFocus(focus);
+			Epg.btn.init(focus, buttons, true);
 		}
 		//设置翻页键翻页事件
 		Epg.key.set(
@@ -127,17 +139,17 @@
 		});
 	};
 	
-	
-	var url = "{:U('FreeZone/index').'?page='}";
 	//上一页
 	function pageUp()
 	{
+		var url = "{:U('FreeZone/index')}"+"?focus="+Epg.btn.current.id+"&page=";
 		Epg.page(url,{$page}-1,{$pageCount});
 	}
 
 	//下一页
 	function pageDown()
 	{
+		var url = "{:U('FreeZone/index')}"+"?focus="+Epg.btn.current.id+"&page=";
 		Epg.page(url,{$page}+1,{$pageCount});
 	}
 	
@@ -157,7 +169,7 @@
 	</php>
 	
 	<div id="div_option_{$i}" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
-		<img id="option_{$i}" title="{:U('Resource/play?sectionId='.$data['id'])}" src="" width="370" height="60">
+		<img id="option_{$i}" title="{:U('Resource/play?sectionId='.$data['id'].'&preFocus=option_'.$i)}" src="" width="370" height="60">
 	</div>
 	<div id="div_option_{$i}_focus" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
 		<img id="option_{$i}_focus" title="" src="" width="370" height="60">
@@ -169,13 +181,13 @@
 </volist>
 	<!-- 最新推荐 -->
 	<div id="div_optionRecmd_1" style="position:absolute;left:965px;top:165px;text-align:center;">
-		<img id="optionRecmd_1" title="{:U('SectionList/index?courseId='.$url_recommend1)}" src="{$img_recommend1}" width="210" height="210">
+		<img id="optionRecmd_1" title="{:U('SectionList/index?courseId='.$url_recommend1.'&preFocus=optionRecmd_1')}" src="{$img_recommend1}" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_1_focus" style="position:absolute;visibility:hidden;left:960px;top:160px;text-align:center;">
 		<img id="optionRecmd_1_focus" src="__HD__/images/freeZone/kuang_big.png" width="220" height="220">
 	</div>
 	<div id="div_optionRecmd_2" style="position:absolute;left:965px;top:395px;text-align:center;">
-		<img id="optionRecmd_2" title="{:U('SectionList/index?courseId='.$url_recommend2)}" src="{$img_recommend2}" width="210" height="210">
+		<img id="optionRecmd_2" title="{:U('SectionList/index?courseId='.$url_recommend2.'&preFocus=optionRecmd_2')}" src="{$img_recommend2}" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_2_focus" style="position:absolute;visibility:hidden;left:960px;top:390px;text-align:center;">
 		<img id="optionRecmd_2_focus" src="__HD__/images/freeZone/kuang_big.png" width="220" height="220">

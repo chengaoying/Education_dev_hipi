@@ -7,41 +7,23 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
-
-#default_tip{
-	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 60px;
-	color:#F8E391;
-	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
-	visibility:hidden;
-	z-index:99;
-}
-
 </style>
 <script type="text/javascript">
 
 <?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
 
-/* 弹窗信息  */
-var popup = function(){
-	var msg = "<?php echo ($floatMsg); ?>";
-	Epg.tip(msg);
-}
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-小图提示信息，2-大图提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("<?php echo ($floatMsg); ?>",3,type);
+}	
 
 </script>
 
 </head>
-<body>
+<body >
 
 <style type="text/css">
    body{ background-image:url(/static/v1/hd/images/sectionList/preschool/weekend/bg<?php echo ($week); ?>.jpg); }
@@ -90,6 +72,8 @@ var initButtons = function(){
 	
 }
 
+var defaultId = "<?php echo ($preFocus); ?>";
+
 window.onload=function()
 {
     initButtons();
@@ -98,17 +82,17 @@ window.onload=function()
 };
 </script>
 
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Index/recommend',1);?>" ></a>
+<a id="a_back" style="display:none;" href="<?php echo ($backUrl); ?>" ></a>
 
 <!-- 星期 -->
 <div id="week"></div>
 <!-- 前一天 -->
 <div id="div_btn_prev_day" style="position:absolute;width:22px;height:26px;left:820px;top:650px;text-align:center;">
-    <img id="btn_prev_day" title="<?php echo U('SectionList/index').'?courseId='.$courseId.'&topicId='.$prevTopicId.'&chId='.$chId;?>" src="/static/v1/hd/images/sectionList/preschool/weekend/page_prev.png" width="22" height="26">
+    <img id="btn_prev_day" title="<?php echo U('SectionList/index').'?courseId='.$courseId.'&topicId='.$prevTopicId.'&chId='.$chId.'&preFocus='.$preFocus;?>" src="/static/v1/hd/images/sectionList/preschool/weekend/page_prev.png" width="22" height="26">
 </div>
 <!-- 后一天 -->
 <div id="div_btn_next_day" style="position:absolute;width:22px;height:26px;left:935px;top:650px;text-align:center;">
-    <img id="btn_next_day" title="<?php echo U('SectionList/index').'?courseId='.$courseId.'&topicId='.$nextTopicId.'&chId='.$chId;?>" src="/static/v1/hd/images/sectionList/preschool/weekend/page_next.png" width="22" height="26">
+    <img id="btn_next_day" title="<?php echo U('SectionList/index').'?courseId='.$courseId.'&topicId='.$nextTopicId.'&chId='.$chId.'&preFocus='.$preFocus;?>" src="/static/v1/hd/images/sectionList/preschool/weekend/page_next.png" width="22" height="26">
 </div>
 
 <!-- 订购 -->
@@ -117,25 +101,28 @@ window.onload=function()
 </div>
 
 <!-- 本周课程 -->
-<div id="div_btn_week" title="<?php echo U('SectionList/week?courseId='.$courseId);?>" style="position: absolute;width:142px;height:31px;left:970px;top:645px;">
+<div id="div_btn_week" title="<?php echo U('SectionList/week?courseId='.$courseId.'&preFocus='.$preFocus);?>" style="position: absolute;width:142px;height:31px;left:970px;top:645px;">
 	<img id="btn_week" src="/static/v1/hd/images/sectionList/preschool/weekend/btn_week.png" width="138" height="33" />
 </div>
 
 <!-- 课时列表 -->
 <?php if(is_array($sections)): $i = 0; $__LIST__ = $sections;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$section): $mod = ($i % 2 );++$i; $top = 265; $left = 265 + ($i-1)*260; ?>
     <div id="div_section_<?php echo ($i); ?>" style="position:absolute;width:230px;height:320px;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;text-align:center;">
-        <img id="section_<?php echo ($i); ?>" title="<?php echo U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId);?>" src="<?php echo get_upfile_url($section['imgUrl']);?>" width="220" height="310">
+        <img id="section_<?php echo ($i); ?>" title="<?php echo U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId.'&preFocus='.$preFocus);?>" src="<?php echo get_upfile_url($section['imgUrl']);?>" width="220" height="310">
     </div>
-    <div id="div_section_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:230px;height:320px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
+    <div id="div_section_<?php echo ($i); ?>_focus" style="position:absolute;visibility:hidden;width:240px;height:330px;left:<?php echo ($left-5); ?>px;top:<?php echo ($top-5); ?>px;text-align:center;">
         <img id="section_<?php echo ($i); ?>_focus" src="" width="235" height="325">
     </div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 
-<!-- 弹窗 -->
-<div id="div_popup"></div>
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
 
-<!-- 默认的提示 -->
-<div id="default_tip" class="default_tip">
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
 </div>
+
 </body>
 </html>

@@ -63,6 +63,8 @@
 </style>
 
 <script type="text/javascript">
+
+	var focus = '{$focus}';
 	var buttons = [
 	/* 栏目  */
 	{id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:['wrong_3','wrong_2','wrong_1'],left:'ch_2'},
@@ -70,8 +72,19 @@
 
 	];
 	
+ 	function handleFocus(focus)//焦点判断
+	{
+		if(focus == 'page_next' || focus == 'page_prev')
+		{
+			focus = ( ( focus=='page_prev'&& G(focus) ) ? focus : 'page_next' ); 
+			focus = ( ( focus=='page_next'&& G(focus) ) ? focus : 'page_prev' ); 
+		}
+		return focus;
+	} 
+ 	
 	window.onload = function() {
-		Epg.btn.init('page_next', buttons, true);
+		focus = handleFocus(focus);
+		Epg.btn.init(focus, buttons, true);
 		
 		//设置翻页键翻页事件
 		Epg.key.set(
@@ -81,16 +94,18 @@
 		});
 	};
 	
-	var url = "{:U('Learning/learningPreschool').'?page='}";
+	var url = "{:U('Learning/detail')}";
 	//上一页
 	function pageUp()
 	{
+		url += '?focus='+ Epg.btn.current.id +'&page=';
 		Epg.page(url,{$page}-1,{$pageCount});
 	}
 
 	//下一页
 	function pageDown()
 	{
+		url += '?focus='+ Epg.btn.current.id +'&page=';
 		Epg.page(url,{$page}+1,{$pageCount});
 	}
 </script>
@@ -101,7 +116,7 @@
 <div id="word"></div>
 <div id="score"></div>
 
-<a id="a_back" style="display:none;" href="{:get_back_url('learning/index',1)}" ></a>
+<a id="a_back" style="display:none;" href="{:get_back_url('learning/learningPreschool',1)}" ></a>
 
 
 <!-- 课程名字 -->

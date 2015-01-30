@@ -42,7 +42,7 @@
 	var count = {$count};
 	var buttons = new Array(count+2);
 	var colnum = 2;
-	
+	var focus = '{$focus}';//上个页面焦点位置
 	function initbuttons()
 	{
 		for(var i=1; i<=count; i++)
@@ -83,7 +83,7 @@
 		}
 		else
 		{
-			Epg.btn.init('option_1', buttons, true);
+			Epg.btn.init(focus, buttons, true);
 		}
 	};
 </script>
@@ -100,9 +100,8 @@
 		$left = 95 + (($i-1)%2)*414;
 		$top = 160 + (ceil($i/2)-1)*60;
 	</php>
-	
 	<div id="option_{$i}" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
-		<img id="option_{$i}" title="{:U('Resource/play?sectionId='.$data['sectionId'])}" src="" width="370" height="60">
+		<img id="option_{$i}" title="{:U('Resource/play?sectionId='.$data['sectionId'].'&preFocus=option_'.$i)}" src="" width="370" height="60">
 	</div>
 	<div id="div_option_{$i}_focus" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
 		<img id="option_{$i}_focus" title="" src="" width="370" height="60">
@@ -117,13 +116,13 @@
 </volist>
 
 	<div id="div_optionRecmd_1" style="position:absolute;left:965px;top:165px;text-align:center;">
-		<img id="optionRecmd_1" title="{:U('SectionList/index?courseId='.$id_recommend1)}" src="{$img_recommend1}" width="210" height="210">
+		<img id="optionRecmd_1" title="{:U('SectionList/index?courseId='.$id_recommend1.'&preFocus=optionRecmd_1')}" src="{$img_recommend1}" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_1_focus" style="position:absolute;visibility:hidden;left:960px;top:160px;text-align:center;">
 		<img id="optionRecmd_1_focus" src="__HD__/images/freeZone/kuang_big.png" width="220" height="220">
 	</div>
 	<div id="div_optionRecmd_2" style="position:absolute;left:965px;top:395px;text-align:center;">
-		<img id="optionRecmd_2" title="{:U('SectionList/index?courseId='.$id_recommend2)}" src="{$img_recommend2}" width="210" height="210">
+		<img id="optionRecmd_2" title="{:U('SectionList/index?courseId='.$id_recommend2.'&preFocus=optionRecmd_2')}" src="{$img_recommend2}" width="210" height="210">
 	</div>
 	<div id="div_optionRecmd_2_focus" style="position:absolute;visibility:hidden;left:960px;top:390px;text-align:center;">
 		<img id="optionRecmd_2_focus" src="__HD__/images/freeZone/kuang_big.png" width="220" height="220">

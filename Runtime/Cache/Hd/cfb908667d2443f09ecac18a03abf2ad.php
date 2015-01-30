@@ -7,41 +7,23 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
-
-#default_tip{
-	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 60px;
-	color:#F8E391;
-	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
-	visibility:hidden;
-	z-index:99;
-}
-
 </style>
 <script type="text/javascript">
 
 <?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
 
-/* 弹窗信息  */
-var popup = function(){
-	var msg = "<?php echo ($floatMsg); ?>";
-	Epg.tip(msg);
-}
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-小图提示信息，2-大图提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("<?php echo ($floatMsg); ?>",3,type);
+}	
 
 </script>
 
 </head>
-<body>
+<body >
 
 
 <style>
@@ -65,9 +47,9 @@ var channel = <?php echo ($json_channel); ?>;
 var buttons=
 	[
 	 	/* 栏目  */
-		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',resize:'-1',blurHandler:'blurHandler()',right:'ch_2',down:'user_center'},
-		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'banner_center'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',resize:'-1',focusHandler:'focusHandler()',left:'ch_2',down:'banner_center'},
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',blurHandler:'blurHandler()',right:'ch_2',down:'user_center'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'banner_center'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_2',down:'banner_center'},
 		
 		/* 左侧导航 */
 		{id:'user_center',name:'',action:'',linkImage:'',focusImage:'',selectBox:'/static/v1/hd/images/common/selectBox/select_box_160x145.png',right:'banner_center',up:'ch_1',down:'free'},
@@ -104,15 +86,23 @@ var initButtons = function(){
 window.onload=function()
 {
 	initButtons();
-	Epg.btn.init('ch_1',buttons,true);	
+	popup();
+	Epg.btn.init(['ch_1'],buttons,true);	
+	
 };
 
 </script>
 
+<!-- 静态图片-->
+<div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x60.png);"></div>
+<div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x60.png);"></div>
+<?php $__FOR_START_6510__=1;$__FOR_END_6510__=4;for($i=$__FOR_START_6510__;$i < $__FOR_END_6510__;$i+=1){ $left = 535 + ($i-1)*225; ?>
+	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x60.png);"></div><?php } ?>
+
 <!-- 顶部-栏目 -->
-<?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*150; $top = 95; ?>
+<?php if(is_array($topChannel)): $i = 0; $__LIST__ = $topChannel;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$ch): $mod = ($i % 2 );++$i; $left = 100 + ($i-1)*180; $top = 95; ?>
 	<div id="div_ch_<?php echo ($i); ?>" style="position:absolute;visibility: visible;left:<?php echo ($left); ?>px;top:<?php echo ($top); ?>px;">
-		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="110" height="33">
+		<img id='ch_<?php echo ($i); ?>' title="<?php echo ($ch['linkUrl']); ?>" src="<?php echo ($ch['linkImage']); ?>" width="130" height="44">
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
 
 <!-- 页面左侧 -开始-->
@@ -122,6 +112,9 @@ window.onload=function()
 </div>
 <div id="div_user_center_focus" style="position:absolute;visibility: hidden;width:170px;height:155px;left:75px;top:175px;text-align:center;">
 	<img id="user_center_focus" src="" width="160" height="145">
+</div>
+<div style="position:absolute;width:74px;height:74px;left:120px;top:200px;text-align:center;">
+	<img id="user_face" src="/static/v1/hd/images/usercenter/face/face_<?php echo ($role['face']); ?>.png" width="64" height="64">
 </div>
 	<!-- 免费专区 -->
 <div id="div_free" style="position:absolute;width:160px;height:145px;left:80px;top:330px;text-align:center;">
@@ -183,19 +176,6 @@ window.onload=function()
 		</div><?php endforeach; endif; else: echo "" ;endif; ?>
 <!-- 页面右侧-结束 -->	
 	
-	
-	
-<!-- 静态图片-->
-<div style="position:absolute;width:74px;height:74px;left:120px;top:200px;text-align:center;">
-	<img id="user_face" src="/static/v1/hd/images/usercenter/face/face_<?php echo ($role['face']); ?>.png" width="64" height="64">
-</div>
-
-<div class="shadow" style="left:85px;width:150px;background-image:url(/static/v1/hd/images/common/shadow/shadow_150x60.png);"></div>
-<div class="shadow" style="left:250px;width:270px;background-image:url(/static/v1/hd/images/common/shadow/shadow_270x60.png);"></div>
-<?php $__FOR_START_11415__=1;$__FOR_END_11415__=4;for($i=$__FOR_START_11415__;$i < $__FOR_END_11415__;$i+=1){ $left = 535 + ($i-1)*225; ?>
-	<div class="shadow" style="left:<?php echo ($left); ?>px;width:210px;background-image:url(/static/v1/hd/images/common/shadow/shadow_210x60.png);"></div><?php } ?>
-
-
 <script type="text/javascript">
 
 //失去时焦点处理（目前主要用于栏目按钮）
@@ -208,30 +188,22 @@ function blurHandler(){
 //获取焦点时处理（目前主要用于栏目按钮）
 function focusHandler(){
 	if(Epg.btn.current.id != "ch_1"){
-		setTimeout("Epg.btn.click()",50)
+		setTimeout("Epg.btn.click()",500);
 	}
 }
 
-
-/* function pop(){
-	Epg.popup('div_popup')
-}
-
-function disPop(){
-	Epg.disPopup(buttons,'div_popup')
-} */
-
-//setTimeout("pop()",1000);
-//setTimeout("disPop()",5000);
 </script>
 
 
 
-<!-- 弹窗 -->
-<div id="div_popup"></div>
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
 
-<!-- 默认的提示 -->
-<div id="default_tip" class="default_tip">
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
 </div>
+
 </body>
 </html>

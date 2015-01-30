@@ -7,41 +7,23 @@
 <link rel="stylesheet" type="text/css" href="/static/v1/hd/css/common.css?20140208173232">
 <script type="text/javascript" src="/static/v1/common/js/base.js?20140208173232"></script>
 <style type="text/css">
-.page td	{ height:26px; text-align:center;color:#fff;font-weight: 300; font-size:20px;}
-.page .up	{ width:25px;}
-.page .down	{ width:25px;}
-.page .now	{ width:60px;}
-body {background-color: transparent;}
-
-#default_tip{
-	position: absolute;
-	top: 310px;
-	left: 490px;
-	width: 300px;
-	height: 60px;
-	color:#F8E391;
-	text-align: center;
-	line-height:30px;
-	background-color:saddlebrown;
-	visibility:hidden;
-	z-index:99;
-}
-
 </style>
 <script type="text/javascript">
 
 <?php $floatMsg = Session('floatMessage'); Session('floatMessage',null); ?>
 
-/* 弹窗信息  */
-var popup = function(){
-	var msg = "<?php echo ($floatMsg); ?>";
-	Epg.tip(msg);
-}
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-小图提示信息，2-大图提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("<?php echo ($floatMsg); ?>",3,type);
+}	
 
 </script>
 
 </head>
-<body>
+<body >
 
 <style>
     body{ background-image:url(/static/v1/hd/images/usercenter/baseInfo/info_bg.jpg); }
@@ -75,8 +57,8 @@ var popup = function(){
     top:210px;
     left:275px;	
 }
-/* word_mouth  */
-#word_mouth{
+/* word_month  */
+#word_month{
 	position:absolute;
     display: block;
 	font-size:20px;
@@ -104,9 +86,9 @@ var popup = function(){
 /* 页面可点击按钮  */
 var buttons=
 	[
-		{id:'year',name:'year',action:'',linkImage:'',focusImage:'',right:'mouth',down:'ok'},
-		{id:'mouth',name:'mouth',action:'',linkImage:'',focusImage:'',right:'day',left:'year',down:'ok'},
-		{id:'day',name:'day',action:'',linkImage:'',focusImage:'',right:'',left:'mouth',down:'ok'},
+		{id:'year',name:'year',action:'',linkImage:'',resize:'-1',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'month',down:'ok'},
+		{id:'month',name:'month',action:'',linkImage:'',resize:'-1',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'day',left:'year',down:'ok'},
+		{id:'day',name:'day',action:'',linkImage:'',resize:'-1',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'',left:'month',down:'ok'},
 
 		{id:'ok',name:'确定',action:'submit()',linkImage:'/static/v1/hd/images/usercenter/baseInfo/confirm_1.png',focusImage:'/static/v1/hd/images/usercenter/baseInfo/confirm_2.png',up:'year',down:''},
 	];
@@ -114,54 +96,79 @@ var buttons=
 
 window.onload=function()
 {
-	//Epg.tip('');//显示info信息，3秒后自动隐藏，如果info为空将不会显示
+	popup(0);
 	Epg.btn.init('year',buttons,true);	
+	
+	//删除0键返回事件
+  	Epg.key.del(
+	{
+		KEY_0:'',
+	});  
 };
 
 </script>
 
-<a id="a_back" style="display:none;" href="<?php echo get_back_url('Role/userInfo',1);?>" ></a>
+<a id="a_back" style="display:none;" href="<?php echo get_back_url('Role/userInfo',0);?>" ></a>
 
 <!-- 静态图片 -->
 <div id="birthday_set"></div>
 <div id="word_year">年</div>
-<div id="word_mouth">月</div>
+<div id="word_month">月</div>
 <div id="word_day">日</div> 
 
-<form id="form" action="<?php echo U(Role/setNickname);?>" method="post" style="padding:10px">
+<form id="form" action="<?php echo U('Role/setBirthday');?>" method="post" style="padding:10px">
 	<div id="div_year" style="position:absolute;left:150px;top:202px;">
-		<input type="text" id="year" name="year" value="" style="width:103px;height:40px;font-size:30px;"/><br/><br/>
+		<input type="text" id="year" name="year" value="<?php echo ($birthday[0]); ?>" maxlength="4" style="width:103px;height:40px;font-size:30px;" /><br/><br/>
 	</div>
-	<div id="div_mouth" style="position:absolute;left:320px;top:202px;">
-		<input type="text" id="mouth" name="mouth" value="" style="width:103px;height:40px;font-size:30px;"/><br/><br/>
+	<div id="div_month" style="position:absolute;left:320px;top:202px;">
+		<input type="text" id="month" name="month" value="<?php echo ($birthday[1]); ?>" maxlength="2" style="width:103px;height:40px;font-size:30px;"/><br/><br/>
 	</div>
 	<div id="div_day" style="position:absolute;left:490px;top:202px;">
-		<input type="text" id="day" name="day" value="" style="width:103px;height:40px;font-size:30px;"/><br/><br/>
+		<input type="text" id="day" name="day" value="<?php echo ($birthday[2]); ?>" maxlength="2" style="width:103px;height:40px;font-size:30px;"/><br/><br/>
 	</div>
 </form>
 
 <!-- 确定按钮 -->
  <div id="div_ok" style="position:absolute;width:140px;height:50px;left:150px;top:300px;">
-    <img id="ok" title="" src="/static/v1/hd/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
+    <!--  <img id="ok" title="" src="/static/v1/hd/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">-->
+ 	<a id="focus" style="display:block" href="javascript:submit();" onclick="editSubmit()"
+			onmouseover="changeImage('#btn_ok','/static/v1/hd/images/usercenter/baseInfo/confirm_2.png')" 
+			onmouseout="changeImage('#btn_ok','/static/v1/hd/images/usercenter/baseInfo/confirm_1.png')"><img 
+			id="btn_ok" src="/static/v1/hd/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
+	</a>
+
 </div>
 
 <script type="text/javascript">
+
+function changeImage(id,src){
+	G(id).src = src;
+}
 
 function submit(){
 	G('form').submit();
 }
 
+function focusHandler(){
+//	G(Epg.btn.current.id).focus(); 
+}
+
+function blurHandler(){
+//	G(Epg.btn.previous.id).blur(); 
+}
 </script>
 
 
 
 
-<!-- 弹窗 -->
-<div id="div_popup">
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
+
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
 </div>
 
-<!-- 默认的提示 -->
-<div id="default_tip" class="default_tip">
-</div>
 </body>
 </html>
