@@ -33,7 +33,11 @@ class CourseListController extends CommonController {
 			if(empty($stageId)) {
 				$stageId = $stageList[0]['id'];
 			}
-			$courses = D('Course','Logic')->queryCourseListByKeys($stageId, '', $page, $pageSize);
+			
+			//获取课程列表
+			//$courses = D('Course','Logic')->queryCourseListByKeys($stageId, '', $page, $pageSize);
+			$courses = $this->getCourseList($chKey, $stageId, $page, $pageSize);
+			
 		}else{  //没有龄段的一级分类，直接查询该一级分类（二级栏目）下的课程
 			$courses = D('Course','Logic')->queryCourseListByChId($chId, $page, $pageSize);
 		}
@@ -76,6 +80,94 @@ class CourseListController extends CommonController {
 		));
 		$this->display();
 	}
+	
+	/**
+	 * 获取课程列表，早、幼教的基础课程只显示一个：
+	 * 早教：角色当前月龄的基础课程（一个）
+	 * 幼教：显示当前周的基础课程（一个）
+	 * @param unknown_type $chKey
+	 * @param unknown_type $stageId
+	 * @param unknown_type $page
+	 * @param unknown_type $pageSize
+	 */
+	private function getCourseList($chKey,$stageId,$page,$pageSize){
+		
+		$courseType = get_pro_config_content('proConfig','courseType');
+		$k1 = array_search('基础', $courseType); //课程的基础类型的key
+		$keys = array_keys($courseType);		//除基础类型之外的课程key
+		foreach ($keys as $k => $v)
+			if($v == $k1) unset($keys[$k]);
+		
+		switch ($chKey){
+			case 'early': //早教
+				//如果是第一页：第一个课程为基础课程
+				if($page == 1){
+					$pageSize -= 1;
+					$courses = D('Course','Logic')->queryCourseListByType($stageId, $keys, $page, $pageSize);
+					
+					//根据角色的月龄获取该月龄对应的基础课程
+					//如果角色的龄段Id和课程的龄段id不相等，则显示的课程月龄为默认月龄
+					//如果相等，则获取角色的月龄并查找对应月龄的基础课程
+					if($this->role['stageId'] !== $stageId){
+						$month = $this->getDefMonth($stageId);
+					}else{
+						$month = $this->getMonthOfRole();
+						if($this->isValidMonth($this->role,$month))
+							$month = $this->getDefMonth($stageId);
+					}
+					$name = '.'.$month.'月';
+					$_courses = D('Course','Logic')->queryCourseListByType($stageId, $k1, $page, $pageSize);
+					foreach ($_courses['rows'] as $k=>$v){
+						if(strchr($v['name'], $name))
+							$c = $v;
+					}
+					if(!empty($c)){
+						//手动把基础课程合并到课程列表中
+						foreach ($courses['rows'] as $k1 => $v1){
+							$_k1 = $k1 + 1;
+							$courses['rows'][$_k1] = $v1;
+						}
+						$courses['rows'][0] = $c;
+						$courses['total'] += 1;
+					}
+				}else{
+					$courses = D('Course','Logic')->queryCourseListByType($stageId, $keys, $page, $pageSize);
+				} 
+				break;
+			case 'preschool': //幼教
+				if($page == 1){
+					$pageSize -= 1;
+					$courses = D('Course','Logic')->queryCourseListByType($stageId, $keys, $page, $pageSize);
+					
+					//根据当前周数显示对应周数的基础课程
+					$name = '第'.getCurrentWeek().'周';
+					$_courses = D('Course','Logic')->queryCourseListByType($stageId, $k1, $page, $pageSize);
+					foreach ($_courses['rows'] as $k=>$v){
+						if(strchr($v['name'], $name))
+							$c = $v;
+					}
+
+					if(!empty($c)){
+						//手动把基础课程合并到课程列表中
+						foreach ($courses['rows'] as $k1 => $v1){
+							$_k1 = $k1 + 1;
+							$courses['rows'][$_k1] = $v1;
+						}
+						$courses['rows'][0] = $c;
+						$courses['total'] += 1;
+					}
+				}else{
+					$courses = D('Course','Logic')->queryCourseListByType($stageId, $keys, $page, $pageSize);
+				} 
+				
+				break;
+			default: //其他年级
+				$courses = D('Course','Logic')->queryCourseListByKeys($stageId, '', $page, $pageSize);
+				break;
+		}
+		return $courses;
+	}
+	
 	
 	/**
 	 * 初始化龄段的图片

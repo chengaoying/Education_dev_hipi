@@ -18,15 +18,15 @@ class LibraryController extends CommonController {
     	get_back_url('Index/recommend',1);
         $courseId = I('courseId',0);
         $sectionId = I('sectionId',0);
+        $isExistVideo = I('isExistVideo','true');
         if(!$courseId || !$sectionId){
             $this->showMessage('参数错误');
         }
         $section = D('Section', 'Logic')->querySectionById($sectionId);
         $roleId = $this->role['id'];
         $answerList = D('Library','Logic')->queryLib($sectionId);
-        
         if($answerList['status']==0){
-             $this->showMessage('题库不存在！',self::ICON_ERROR,'','Public:message');
+			$this->addFloatMessage('题库不存在！',get_back_url('Index/recommend',1));
         }
         foreach($answerList['content'] as $key=>$value){
         	$value['title'] = str_replace(array('|','Ω'),array('<br>','<br>'),$value['title']);
@@ -45,6 +45,7 @@ class LibraryController extends CommonController {
             'sectionId' => $sectionId,
         	'sectionName'=>$section['name'],
             'answerList' => json_encode($answerList['content']),
+        	'isExistVideo'=>$isExistVideo,
         ));
         $this->display();
     }

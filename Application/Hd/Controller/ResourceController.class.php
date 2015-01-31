@@ -25,7 +25,7 @@ class ResourceController extends CommonController {
         $preSection = I('preSection','');
         $nextSection = I('nextSection','');
         $section = D('Section', 'Logic')->querySectionById($sectionId);
-        //print_r($section);exit;
+//         print_r($section);exit;
         $playList = array();
         if ($section['previewList']) {
             $playList = explode(',', $section['previewList']);
@@ -34,7 +34,11 @@ class ResourceController extends CommonController {
         $playList = array_merge($playList, $lessonList); //将预习与课堂进行组合
         $playList = array_filter($playList); //去除数组中空值
         if(empty($playList)){
-        	$jumpUrl = 'Library/detail?courseId='.$courseId.'&sectionId='.$sectionId;
+        	if(empty($section['libId'])){
+				$this->addFloatMessage('视频和题库都不存在！',get_back_url('Index/recommend',1));
+        	}
+        	$isExistVideo = 'false';
+        	$jumpUrl = 'Library/detail?courseId='.$courseId.'&sectionId='.$sectionId.'&isExistVideo='.$isExistVideo;
         	header('location:'.U($jumpUrl));
         }
         //print_r($playList);

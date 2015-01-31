@@ -63,12 +63,13 @@ class CourseLogic extends BaseLogic{
 	/**
 	 * 通过课程类型查询课程列表
 	 * @param int $stageId	龄段id
-	 * @param int $type		课程类型
+	 * @param arr $types	课程类型
 	 * @param int $pageNo	页号
 	 * @param int $pageSize 每页记录数
 	 */
-	public function queryCourseListByType($stageId, $type, $pageNo, $pageSize){
-		return $this->client->queryCourseListByType($stageId, $type, $pageNo, $pageSize);
+	public function queryCourseListByType($stageId, $types, $pageNo, $pageSize){
+		if(!is_array($types)) $types = array($types);
+		return $this->client->queryCourseListByType($stageId, $types, $pageNo, $pageSize);
 	}
 	
 }

@@ -91,7 +91,12 @@
             	}
             	else
             	{
-            		window.location = "{:get_back_url('Index/recommend',1)}";
+            		var tempUrl = "{:get_back_url('Index/recommend',1)}";
+            		if(tempUrl.indexOf('Library')==-1){
+                		window.location = tempUrl;
+            		}else{
+            			window.location = "{:get_back_url('Index/recommend',1,0,1)}";
+            		}
             	}
             	
             }
@@ -303,7 +308,7 @@
 			<!-- 联系，课堂 -->
 			<div id="div_img_lianxi"></div>
 			<div id="div_btn_exercise" style="position:absolute;width:100px;height:65px;left:200px;top:60px;">
-			    <img id="btn_exercise" title="" src="__HD__/images/play/btn_exercise.png" width="100" height="65">
+			    <img id="btn_exercise" title="{:U('Library/detail?sectionId='.$section['id'].'&courseId='.$courseId)}" src="__HD__/images/play/btn_exercise.png" width="100" height="65">
 			</div>
         </if>
         

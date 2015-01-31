@@ -43,7 +43,10 @@ class SectionListController extends CommonController {
 	private function early($chKey,$course){
 		$topicId = I('topicId','');
 		//该课程知识点列表
-		$topics = D('Topic','Logic')->queryTopicList($course['id'],1,10);
+		//$topics = D('Topic','Logic')->queryTopicList($course['id'],1,10);
+		$c = getDelimiterInStr($course['topicIds']);
+		$topicIds = explode($c, $course['topicIds']);
+		$topics = D('Topic','Logic')->queryTopicListByTopicIds($topicIds,1,10);
 		foreach ($topics['rows'] as $k=>$v){
 			if($v['imgUrl']){
 				$char = getDelimiterInStr($v['imgUrl']);
@@ -55,6 +58,7 @@ class SectionListController extends CommonController {
 		
 		//某个知识点下的课时列表
 		if(empty($topicId)) $topicId = $topics['rows'][0]['id'];
+		$topic = get_array_vals($topics, $topicId);
 		$sections = D('Section','Logic')->querySectionList($topicId,1,6);
 		
 		$json_topic = get_array_fieldkey($topics['rows'],array('id','name','linkImage','focusImage'));
@@ -101,7 +105,9 @@ class SectionListController extends CommonController {
 	 */
 	private function preschool($chKey,$course){
 		//该课程知识点列表
-		$topics = D('Topic','Logic')->queryTopicList($course['id'],1,10);
+		$c = getDelimiterInStr($course['topicIds']);
+		$topicIds = explode($c, $course['topicIds']);
+		$topics = D('Topic','Logic')->queryTopicListByTopicIds($topicIds,1,10);
 		$topics = $topics['rows'];
 		foreach ($topics as $k=>$v){
 			if($v['imgUrl']){
@@ -251,7 +257,7 @@ class SectionListController extends CommonController {
 	
 	private function getBackUrl(){
 		//返回处理（焦点参数）
-		$backUrl = get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/week','/SectionList/index','/Resource/play'));
+		$backUrl = get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/week','/SectionList/index','/Resource/play','/Library/detail'));
 		if(strpos($backUrl, '?preFocus'))
 			$backUrl = substr($backUrl, 0, strpos($backUrl, '?preFocus'));
 		if(strpos($backUrl, '&preFocus'))

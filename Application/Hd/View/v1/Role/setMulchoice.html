@@ -42,10 +42,11 @@ var initButtons = function()
 		obj.action = 'select("'  + i + '")';
 		obj.linkImage = "__HD__/images/usercenter/mulchoice/kuang_1.png";
 		obj.focusImage = "__HD__/images/usercenter/mulchoice/kuang_2.png";
-		obj.left = ((i-1)>0) ? 'subject_'+(i-1) : '' ;
-		obj.right = ((i+1)<=count) ? 'subject_'+(i+1) : '' ;
-		obj.up = (i-n>0) ? 'subject_'+(i-n) : '' ; 
-		obj.down = (i+n)>count ? (Math.ceil(i/n)==Math.ceil(count/n) ? 'ok' : '') : 'subject_'+(i+n);
+		obj.left = 'subject_'+(i-1);
+		obj.right = 'subject_'+(i+1);
+		obj.up = 'subject_'+(i-n); 
+		/* obj.down = (i+n)>count ? ( Math.ceil(i/n)==Math.ceil(count/n) ? 'ok' : 'subject_'+((Math.ceil(count/n)-1)*n+1) ) : 'subject_'+(i+n); //方法一 */
+		obj.down = ['subject_'+(i+n), 'subject_'+((Math.ceil(i/n)-1)*n+(count%n)+n), 'ok'];//方法二
 		
 		buttons[i-1] = obj;
 	}

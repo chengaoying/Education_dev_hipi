@@ -150,6 +150,23 @@ class CommonController extends \Think\Controller{
 			return 1;
 	}
 	
+	public function isValidMonth($role,$month){
+		if(empty($role)) $role = $this->role;
+		
+		$stage = $this->getStage($role['stageId']);
+		if($stage['sKey'] == 'three')
+			if($month <= 36 && $month >24)
+				return true;
+		elseif($stage['sKey'] == 'two')
+			if($month <= 24 && $month >12)
+				return true;
+		else
+			if($month <= 12 && $month >0)
+				return true;
+		
+		return false;
+	}
+	
 	/**
 	 * 根据广告位的key获取该广告位下的广告
 	 * @param string $asKey
@@ -170,6 +187,17 @@ class CommonController extends \Think\Controller{
 			$ad = $ad[0];
 		}
 		return $ad;
+	}
+	
+	/**
+	 * 获取角色的月龄
+	 * @param unknown_type $role
+	 */
+	public function getMonthOfRole($role){
+		if(empty($role)) $role = $this->role;
+		$m = monthNum($role['birthday']);
+		$roleMonthNum = $m['status'] ? $m['data']['monthNum'] : $this->getDefMonth($role['stageId']);
+		return $roleMonthNum;
 	}
 	
 	/**

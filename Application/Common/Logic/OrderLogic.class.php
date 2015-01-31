@@ -12,10 +12,15 @@ class OrderLogic extends BaseLogic{
 	
 	/**
 	 * 产品鉴权
-	 * @param $userId 用户id
 	 */
-	public function auth($userId){
-		$result = $this->client->auth($userId);
+	public function auth(){
+		$user = unserialize(Session('user'));
+		$r = $this->client->auth($user['id']);
+		
+		//更新鉴权状态(用户鉴权信息)
+		if($r['status']){
+			
+		}
 	}
 	
 	/**

@@ -79,10 +79,14 @@
 			obj.id = 'option_' + i;
 			obj.selectBox = "__HD__/images/freeZone/kuang_small.png";
 			obj.resize = -1;
-			obj.right = (i<count) ? 'option_'+(i+1) : '' ; 
+/*  		obj.right = (i<count) ? 'option_'+(i+1) : '' ; 
 			obj.left = (i>1) ? 'option_'+(i-1) : '' ; 
 			obj.down = (i+colnum<=count) ? 'option_'+(i+colnum) : '';
-			obj.up = (i-colnum>0) ? 'option_'+(i-colnum) : '' ; 
+			obj.up = (i-colnum>0) ? 'option_'+(i-colnum) : '' ;   */
+ 			obj.right = 'option_'+(i+1); 
+			obj.left = 'option_'+(i-1); 
+			obj.down = 'option_'+(i+colnum);
+			obj.up = 'option_'+(i-colnum);  
 			obj.focusHandler='focusHandler()';
 			obj.blurHandler='blurHandler()';
 			

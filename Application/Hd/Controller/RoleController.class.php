@@ -42,14 +42,8 @@ class RoleController extends CommonController {
 				
 				$stage = $this->getStage($role['stageId']);//根据stageId得到段龄信息；
 				$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
-				if($grade['chKey'] === 'early')
-				{
-					$this->addFloatMessage('创建角色成功',U('Index/recommend'));
-				}
-				else
-				{
-					$this->addFloatMessage('创建角色成功',U('Role/userInfo'));
-				}
+					
+				$this->addFloatMessage('创建角色成功',U('Index/recommend'));
 			}else{
 				$this->addFloatMessage('角色创建失败：'.$r['info'],U('Role/userInfo'));
 			}
@@ -233,11 +227,12 @@ class RoleController extends CommonController {
 				$grade = $this->getGrade($stage['chId']);//得到学生信息，如早教，小学，幼教，高中，初中
 				if($grade['chKey'] === 'early')
 				{
-					$this->addFloatMessage('修改龄段成功',U('Role/setBirthday'));
+					//$this->addFloatMessage('',U('Role/setBirthday'));
+					header('location:'.U('Role/setBirthday'));
 				}
 				else 
 				{
-					$this->addFloatMessage('修改龄段成功',U('Role/userInfo'));
+					$this->addFloatMessage('修改成功',U('Role/userInfo'));
 				}
 			}else{
 				$this->addFloatMessage('昵称更新失败：'.$r['info'],U('Role/userInfo'));
@@ -269,7 +264,7 @@ class RoleController extends CommonController {
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'nickname', '设置角色昵称');
 				}
 				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
-				$this->addFloatMessage('修改昵称成功',U('Role/userInfo'));
+				$this->addFloatMessage('修改成功',U('Role/userInfo'));
 				//header('location:'.U('Role/userInfo'));
 			}else{
 				$this->addFloatMessage('昵称更新失败：'.$r['info'],U('Role/userInfo'));
@@ -308,7 +303,7 @@ class RoleController extends CommonController {
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'phone', '添加电话号码');
 				}
 				Session('user',serialize($user));//更新sessions
-				$this->addFloatMessage('修改手机号成功',U('Role/userInfo'));
+				$this->addFloatMessage('修改成功',U('Role/userInfo'));
 				//header('location:'.U('Role/userInfo'));
 			}else{
 				$this->addFloatMessage('昵称更新失败：'.$u['info'],U('Role/userInfo'));
@@ -359,7 +354,7 @@ class RoleController extends CommonController {
 					D('Credit','Logic') -> ruleIncOrDec($this->user['id'], $this->role['id'], 'sex', '设置角色sex');
 				}
 				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
-				$this->addFloatMessage('修改性别成功',U('Role/userInfo'));
+				$this->addFloatMessage('修改成功',U('Role/userInfo'));
 				//header('location:'.U('Role/userInfo'));
 			}else{
 				$this->addFloatMessage('性别修改失败：'.$r['info'],U('Role/userInfo'));
@@ -531,15 +526,7 @@ class RoleController extends CommonController {
 				}
 				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
 				
-				//保存成功弹框
-				if($grade==='early' && !empty($role['birthday']))//早教跳转到推荐页
-				{
-					$this->addFloatMessage('修改生日成功',U('Index/recommend'));
-				}
-				else 
-				{
-					$this->addFloatMessage('修改生日成功',U('Role/userInfo'));
-				}
+				$this->addFloatMessage('修改成功',U('Role/userInfo'));
 				
 				//header('location:'.U('Role/userInfo'));
 			}else{
@@ -634,7 +621,7 @@ class RoleController extends CommonController {
 			$r = D('Role','Logic')->save($role);
 			if($r['status']){
 				D('Role','Logic')->reloadRoleInfo($this->user['id'],$this->role['id']);//重新加载角色信息
-				$this->addFloatMessage('修改头像成功',U('Role/userInfo'));
+				$this->addFloatMessage('修改成功',U('Role/userInfo'));
 				//header('location:'.U('Role/userInfo'));
 			}else{
 				$this->addFloatMessage('头像更新失败：'.$r['info'],U('Role/userInfo'));

@@ -53,9 +53,11 @@ class IndexController extends CommonController {
 				case 'early': //早教
 					//计算角色月龄
 					//如果角色没有设置出生年月，则默认月龄为1个月
-					$m = monthNum($this->role['birthday']);
-					$roleMonthNum = $m['status'] ? $m['data']['monthNum'] : $this->getDefMonth($this->role['stageId']);
-					$value = '.'.$roleMonthNum.'月'; //特别推荐一匹配的月龄
+					$month = $this->getMonthOfRole();
+					if($this->isValidMonth($this->role,$month))
+							$month = $this->getDefMonth($this->role['stageId']);
+					
+					$value = '.'.$month.'月'; //特别推荐一匹配的月龄
 					$this->earlyOrPreschoolRecommend($data,$value);
 					break;
 				case 'preschool': //幼教
@@ -138,6 +140,10 @@ class IndexController extends CommonController {
 			$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,4);
 			$courses = $courses['rows'];
 			$target = $courses[0];
+			$c = getDelimiterInStr($target['imgUrl']);
+			$_img = explode($c, $target['imgUrl']);
+			$target['imgUrl']  = get_upfile_url(trim($_img[0]));
+			
 			$courses = array_slice($courses, 1, count($courses)-1);
 		}
 		foreach ($courses as $k=>$v){
@@ -182,6 +188,10 @@ class IndexController extends CommonController {
 		$courses = D('Course','Logic')->queryCourseListByKeys($this->role['stageId'],array($key),1,4);
 		$courses = $courses['rows'];
 		$target = $courses[0];
+		$c = getDelimiterInStr($target['imgUrl']);
+		$_img = explode($c, $target['imgUrl']);
+		$target['imgUrl']  = get_upfile_url(trim($_img[0]));
+		
 		$courses = array_slice($courses, 1, count($courses)-1);
 		foreach ($courses as $k=>$v){
 			if($v['imgUrl']){

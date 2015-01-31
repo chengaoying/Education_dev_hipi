@@ -362,16 +362,22 @@ function disExit(){
     }
 
     function exitPrePage1(){
-    	window.location =  "{:get_back_url('Index/recommend',1,0,1)}";
+    	var isExist = {$isExistVideo};
+    	if(isExist==false){
+    		window.location =  "{:get_back_url('Index/recommend',1,0,0)}";
+    	}else{
+    		window.location =  "{:get_back_url('Index/recommend',1,0,1)}";
+    	}
     }
 </script>
 
-<!-- 联系，课堂 -->
-<div id="div_img_lianxi"></div>
-<div id="div_btn_ketang" style="position:absolute;width:100px;height:65px;left:200px;top:60px;">
-    <img id="btn_ketang" title="" src="__HD__/images/library/btn_ketang.png" width="100" height="65">
-</div>
-
+<if condition="$isExistVideo eq 'true'">
+	<!-- 联系，课堂 -->
+	<div id="div_img_lianxi"></div>
+	<div id="div_btn_ketang" style="position:absolute;width:100px;height:65px;left:200px;top:60px;">
+	    <img id="btn_ketang" title="" src="__HD__/images/library/btn_ketang.png" width="100" height="65">
+	</div>
+</if>
 
 <!-- sectionName -->
 <div style="position:absolute;width:440px;height:55px;top:75px;left:430px; font-size: 28px;color: #00648c;text-align:center;">{$sectionName}</div>

@@ -44,20 +44,10 @@ class UserLogic extends BaseLogic{
 		$params = I('params');
 		if(!empty($params)){ //1.EPG登入产品
 			$result = $this->LoginOrReg($params);
-			//登入成功
 			if($result['status']){
-				//产品是包月类型，则进行产品鉴权
-				if(is_monthly_order()){
-					$user = unserialize(Session('user'));
-					$r = D('Order','Logic')->auth($user['id']);
-					if($r['status']){
-						//更新用户类型状态
-						$data = $r['data'];
-						$type = $data['userType'];
-						$user['userType'] = $type;
-						Session('user',serialize($user));
-					}
-				}
+				//登入成功则进行产品鉴权
+				if(is_monthly_order())
+					$r = D('Order','Logic')->auth();
 			} 
 		}else{
 			$userId = I('userId','');
