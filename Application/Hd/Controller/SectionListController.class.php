@@ -58,8 +58,11 @@ class SectionListController extends CommonController {
 		
 		//某个知识点下的课时列表
 		if(empty($topicId)) $topicId = $topics['rows'][0]['id'];
-		$topic = get_array_vals($topics, $topicId);
-		$sections = D('Section','Logic')->querySectionList($topicId,1,6);
+		$topic = get_array_by_key($topics['rows'],'id',$topicId);
+		//$sections = D('Section','Logic')->querySectionList($topicId,1,6);
+		$_c = getDelimiterInStr($topic['sectionIds']);
+		$sectionIds = explode($_c, $topic['sectionIds']);
+		$sections = D('Section','Logic')->querySectionListBySectionIds($sectionIds,1,6);
 		
 		$json_topic = get_array_fieldkey($topics['rows'],array('id','name','linkImage','focusImage'));
 		$json_topic = json_encode($json_topic);
@@ -136,7 +139,10 @@ class SectionListController extends CommonController {
 		$prevTopicId = $topics[$prev]['id'];
 		$nextTopicId = $topics[$next]['id'];
 		
-		$sections = D('Section','Logic')->querySectionList($topicId,1,5);
+		$topic = get_array_by_key($topics['rows'],'id',$topicId);
+		$_c = getDelimiterInStr($topic['sectionIds']);
+		$sectionIds = explode($_c, $topic['sectionIds']);
+		$sections = D('Section','Logic')->querySectionListBySectionIds($sectionIds,1,6);
 
 		//专题列表
 		$proConfig = get_pro_config_content('proConfig');
