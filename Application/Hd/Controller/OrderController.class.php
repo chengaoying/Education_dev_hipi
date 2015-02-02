@@ -66,4 +66,20 @@ class OrderController extends CommonController {
 			$this->addFloatMessage("订购失败，原因：".$r['info'],$backUrl);
 		}
 	}
+	
+	/**
+	 * 订购返回：接口方返回并携带订购信息
+	 */
+	public function payBackAct(){
+		
+	}
+	
+	/**
+	 * 退订
+	 */
+	public function cancelOrderAct(){
+		
+	}
+	
+	
 }

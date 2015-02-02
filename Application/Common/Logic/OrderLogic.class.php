@@ -23,4 +23,8 @@ class OrderLogic extends BaseLogic{
 		}
 	}
 	
+	public function order($userId,$backUrl){
+		$r = $this->client->order($userId,$backUrl);
+	}
+	
 }
