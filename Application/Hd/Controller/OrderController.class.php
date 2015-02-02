@@ -25,9 +25,8 @@ class OrderController extends CommonController {
 		//订购处理
 		//1.产品包月的订购模式(如果为包月，其他订购模式暂不支持)
 		if(is_monthly_order()){
-			$chargeMode = get_array_for_fieldval($chargeModes, 'type', '1');
-			$chargeMode = array_slice($chargeMode, 0, count($chargeMode));
-			$chargeMode = $chargeMode[0];
+			$chargeMode = get_array_by_key($chargeModes, 'type', '1');
+			dump($chargeMode);
 		}else{
 			
 		}

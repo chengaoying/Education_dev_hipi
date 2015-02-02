@@ -16,6 +16,12 @@ class IndexController extends \Think\Controller {
 		$this->datas = $data;
 		$this->display();
 	}
+	public function index1Act(){
+
+		$data = I('get.');
+		$this->datas = $data;
+		$this->display();
+	}
 	
 	public function testAct()
 	{

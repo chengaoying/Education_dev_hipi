@@ -139,7 +139,7 @@ class SectionListController extends CommonController {
 		$prevTopicId = $topics[$prev]['id'];
 		$nextTopicId = $topics[$next]['id'];
 		
-		$topic = get_array_by_key($topics['rows'],'id',$topicId);
+		$topic = get_array_by_key($topics,'id',$topicId);
 		$_c = getDelimiterInStr($topic['sectionIds']);
 		$sectionIds = explode($_c, $topic['sectionIds']);
 		$sections = D('Section','Logic')->querySectionListBySectionIds($sectionIds,1,6);

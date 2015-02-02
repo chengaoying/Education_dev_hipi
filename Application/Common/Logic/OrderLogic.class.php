@@ -18,21 +18,9 @@ class OrderLogic extends BaseLogic{
 		$r = $this->client->auth($user['id']);
 		
 		//更新鉴权状态(用户鉴权信息)
-		if($r['status']){
+		if($r['status']){//
 			
 		}
-	}
-	
-	/**
-	 * 订购课程
-	 * @param int $userId	用户id
-	 * @param int $roleId	角色id
-	 * @param int $courseId	课程id
-	 */
-	public function orderCourse($userId,$roleId='',$courseId){
-		if(empty($userId)) return result_data(0,'订购异常：用户id(serId)不能为空！');
-		if(empty($courseId)) return result_data(0,'订购异常：课程id(courseId)不能为空！');
-		return $this->client->orderCourse($userId,$roleId,$courseId);
 	}
 	
 }
