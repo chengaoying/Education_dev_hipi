@@ -8,7 +8,7 @@ return array (
 	'DEFAULT_MODULE'	=> 'Hd',	//默认分组模块
 	'AREA_CODE' 		=> '80027',	//地区编码
 	'PARENT_MODULE'     => 'Hd',	//父类分组模块
-	'SERVER_IP'			=> '',		//服务器IP
+	'PRO_KEY'			=> 'hipi',	//产品key
 	'RTSP_VIDEO_URL'	=> 'rtsp://192.168.0.5:8554/videos/',
 	'IS_ENV'			=> 0,
 
@@ -41,4 +41,7 @@ return array (
 	//与教育平台通讯参数
 	'PLATFORM_URL'	=>	'http://192.168.0.152:8500',	//平台地址
 	'CHECK_CODE'	=>	'2014edu!@#',					//校验码
+	
+	// pv地址 
+	'PV_URL'		=>	'http://192.168.0.4:8231/remote/PvRemote/save_pv',
 );

@@ -46,8 +46,8 @@ class UserLogic extends BaseLogic{
 			$result = $this->LoginOrReg($params);
 			if($result['status']){
 				//登入成功则进行产品鉴权
-				if(is_monthly_order())
-					$r = D('Order','Logic')->auth();
+				//if(is_monthly_order())
+					//$r = D('Order','Logic')->auth();
 			} 
 		}else{
 			$userId = I('userId','');

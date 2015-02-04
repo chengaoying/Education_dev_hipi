@@ -738,10 +738,15 @@ class RoleController extends CommonController {
 		
 		//处理焦点
 		$url = HTTP_REFERER; 
-		if(strpos($url, '?'))
+		if(strpos($url, '?focus'))
+			$url = substr($url, 0, strpos($url, '?focus'));
+		if(strpos($url, '&focus'))
+			$url = substr($url, 0, strpos($url, '&focus'));
+		if(strpos($url, '?')){
 			$url .= '&focus=btn_plan';
-		else 
+		}else{
 			$url .= '?focus=btn_plan';
+		}
 		
 		if($r['status']){
 			$this->addFloatMessage("加入学习计划成功！",$url);
