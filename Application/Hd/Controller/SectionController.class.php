@@ -20,56 +20,54 @@ class SectionController extends CommonController {
     	
     	$courseId  = I('courseId','');
     	$sectionId = I('sectionId','');
-        
-		$course = D('Course','Logic')->queryCourseById($courseId);
-        $char = getDelimiterInStr($course['topicIds']);
-		$topicIds = explode($char,$course['topicIds']);
-		$topicIds = array_filter($topicIds);
-		$sections = D('Section','Logic')->querySectionList($topicIds,$page,1000);
-        //print_r($sections);exit;
-        $preSection = $nextSection = '';
-        foreach ($sections['rows'] as $key => $value) {
-            if($value['id'] == $sectionId){
-                if($sections['rows'][$key-1]){
-                    $preSection = $sections['rows'][$key-1]['id'];
-                }
-                if($sections['rows'][$key+1]){
-                    $nextSection = $sections['rows'][$key+1]['id'];
-                }
-                break;
-            }
-        }
-        
-		$jumpUrl = 'Resource/play?courseId='.$courseId.'&sectionId='.$sectionId;
-		if($preSection){
-			$jumpUrl.='&preSection='.$preSection;
-		}
-		if($nextSection){
-			$jumpUrl.='&nextSection='.$nextSection;
-		}
-    	header('location:'.U($jumpUrl));
-    	exit;
     	
     	//1.判断该课程是否收费
+    	//暂不支持课程包的计费方式，所以不用判断课程是否收费
     	$isFree = false;
-    	$course = D('Course','Logic')->queryCourseById($courseId);
-    	if($course['privilege'] == 1){
+    	/* $course = D('Course','Logic')->queryCourseById($courseId);
+    	if($course['privilege'] == 1){ */
     		//2.判断该课时是否收费
     		$section = D('Section', 'Logic')->querySectionById($sectionId);
-    		if($section['privilege'] == 1){
+    		if($section['privilege'] == 1 && C('DEBUG_MODE') != 1){
     			//3.判断用户是否购买该课程(鉴权)
     			
     			//4.没有订购则进入订购页面
     		}else{
     			$isFree = true;
     		}
-    	}else{
+    	/* }else{
     		$isFree = true;
-    	}
+    	} */
     	
     	//5.课时流程处理,判断是否有课堂预习、同步课堂、练习题
     	if($isFree){
+    		/* $course = D('Course','Logic')->queryCourseById($courseId);
+    		$char = getDelimiterInStr($course['topicIds']);
+    		$topicIds = explode($char,$course['topicIds']);
+    		$topicIds = array_filter($topicIds);
+    		$sections = D('Section','Logic')->querySectionList($topicIds,$page,1000);
+    		//print_r($sections);exit;
+    		$preSection = $nextSection = '';
+    		foreach ($sections['rows'] as $key => $value) {
+    			if($value['id'] == $sectionId){
+    				if($sections['rows'][$key-1]){
+    					$preSection = $sections['rows'][$key-1]['id'];
+    				}
+    				if($sections['rows'][$key+1]){
+    					$nextSection = $sections['rows'][$key+1]['id'];
+    				}
+    				break;
+    			}
+    		} */
     		
+    		$jumpUrl = 'Resource/play?courseId='.$courseId.'&sectionId='.$sectionId;
+    		/* if($preSection){
+    			$jumpUrl.='&preSection='.$preSection;
+    		}
+    		if($nextSection){
+    			$jumpUrl.='&nextSection='.$nextSection;
+    		} */
+    		header('location:'.U($jumpUrl));
     	}
     	exit;
     }

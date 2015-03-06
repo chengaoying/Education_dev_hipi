@@ -15,19 +15,34 @@ class LibraryController extends CommonController {
      * 单一题目
      */
 	public function detailAct() {
-    	get_back_url('Index/recommend',1);
+    	//get_back_url('Index/recommend',1);
         $courseId = I('courseId',0);
         $sectionId = I('sectionId',0);
+        
+        //根据是否有视频播放，生成答题页面的退出地址
         $isExistVideo = I('isExistVideo','true');
+        //dump($isExistVideo);
+        if($isExistVideo == 'true')
+        {
+        	$exit_url = get_back_url('Index/recommend',1,0,1);
+        }
+        else 
+        {
+        	$exit_url = get_back_url('Index/recommend',1,0,0);
+        }
         if(!$courseId || !$sectionId){
             $this->showMessage('参数错误');
         }
+
         $section = D('Section', 'Logic')->querySectionById($sectionId);
         $roleId = $this->role['id'];
+        //读题库，将题库excel中内容读到内存中，存放在$answerList变量中
         $answerList = D('Library','Logic')->queryLib($sectionId);
         if($answerList['status']==0){
 			$this->addFloatMessage('题库不存在！',get_back_url('Index/recommend',1));
         }
+        
+        //过滤$answerList中字符
         foreach($answerList['content'] as $key=>$value){
         	$value['title'] = str_replace(array('|','Ω'),array('<br>','<br>'),$value['title']);
         	$answerList['content'][$key]['title'] = $value['title'];
@@ -38,7 +53,6 @@ class LibraryController extends CommonController {
         	unset($itemList);
         }
         //题库类型 1为文字 2为图片
-        
         $this->assign(array(
             'roleId' => $roleId,
             'courseId' => $courseId,
@@ -46,6 +60,7 @@ class LibraryController extends CommonController {
         	'sectionName'=>$section['name'],
             'answerList' => json_encode($answerList['content']),
         	'isExistVideo'=>$isExistVideo,
+        	'exit_url'=>$exit_url,	
         ));
         $this->display();
     }
@@ -69,7 +84,7 @@ class LibraryController extends CommonController {
         $l_pageSize = 6;
         
         $wrongLib = D('Library','Logic')->queryRoleWrongLibs($roleId,$courseId,$sectionId,$s_page,$index,$s_pageSize,$l_page,$l_pageSize);
-		
+		//p($wrongLib);exit;
 		if($wrongLib==null){
 			$this->addFloatMessage('该课程暂时还没有错题集！',get_back_url('Index/recommend',1));
 		}
@@ -118,6 +133,7 @@ class LibraryController extends CommonController {
         	'l_pageCount'=>$l_pageCount,
         	'l_page'=>$l_page,
         	'focus'		=> I('focus',''),
+        	'preFocus'  => I('preFocus','wrong_1'),
         ));
         $this->display();
     }
@@ -127,6 +143,7 @@ class LibraryController extends CommonController {
      */
     public function saveLibAct() {
         if(IS_POST){
+        	
             $postData = I('postdata','');
             //$postData = html_entity_decode($postData);
             $courseId = I('courseid',0);
@@ -146,6 +163,7 @@ class LibraryController extends CommonController {
             	$libData[$key]['courseId'] = $courseId;
             	$libData[$key]['sectionId'] = $sectionId;
             }
+            
             $data['courseId'] = $courseId;
             $data['sectionId'] = $sectionId;
             $data['score'] = $countScore;
@@ -156,6 +174,7 @@ class LibraryController extends CommonController {
             	$this->role['point'] = (int)$this->role['point']+(int)$data['redFlower'];
             	Session('role',serialize($this->role));
                 $this->addFloatMessage('保存成功！',get_back_url('Index/recommend',1,0,1));
+                //$this->addFloatMessage('保存成功！',$exit_url);
             }else{
                 $this->showMessage('保存失败！');
             }

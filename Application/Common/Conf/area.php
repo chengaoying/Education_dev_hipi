@@ -9,8 +9,7 @@ return array (
 	'AREA_CODE' 		=> '80027',	//地区编码
 	'PARENT_MODULE'     => 'Hd',	//父类分组模块
 	'PRO_KEY'			=> 'hipi',	//产品key
-	'RTSP_VIDEO_URL'	=> 'rtsp://192.168.0.5:8554/videos/',
-	'IS_ENV'			=> 0,
+	'DEBUG_MODE'		=> 1,		//debug模式，1-开启，0-关闭
 
 	//附件上传
 	'UPFILE_ISREMOTE'	=> false,		//是否保存到远程文件服务器
@@ -34,6 +33,9 @@ return array (
         '__CSSJS_VERSION__'=>'20140208173232',  //CSS和JS版本
 
 	),
+	
+	//本地视频播放地址
+	'RTSP_VIDEO_URL'	=> 'rtsp://192.168.0.5:8554/videos/',
 	
 	//首页成长指标配置参数(成长指标是针对早幼教龄段的用户)，0-关闭, 1-开启
 	'OPEN_TARGET'	=>	0, 

@@ -362,12 +362,7 @@ function disExit(){
     }
 
     function exitPrePage1(){
-    	var isExist = {$isExistVideo};
-    	if(isExist==false){
-    		window.location =  "{:get_back_url('Index/recommend',1,0,0)}";
-    	}else{
-    		window.location =  "{:get_back_url('Index/recommend',1,0,1)}";
-    	}
+    	window.location = "{$exit_url}";
     }
 </script>
 

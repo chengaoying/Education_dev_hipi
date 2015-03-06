@@ -23,8 +23,7 @@ class OrderController extends CommonController {
 		if(is_monthly_order()){
 			$chargeMode = get_array_by_key($chargeModes, 'type', '1');
 		}else{
-			$courseId = I('courseId','');
-			$course = D('Course','Logic')->queryCourseById($courseId);
+			
 		}
 		
 		//处理焦点
@@ -40,7 +39,6 @@ class OrderController extends CommonController {
 		}
 		
 		$this->assign(array(
-			'course'     =>	$course,
 			'chargeMode' => $chargeMode,	
 			'backUrl'    => $url,	
 		));
