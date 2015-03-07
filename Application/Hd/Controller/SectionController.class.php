@@ -41,32 +41,7 @@ class SectionController extends CommonController {
     	
     	//5.课时流程处理,判断是否有课堂预习、同步课堂、练习题
     	if($isFree){
-    		/* $course = D('Course','Logic')->queryCourseById($courseId);
-    		$char = getDelimiterInStr($course['topicIds']);
-    		$topicIds = explode($char,$course['topicIds']);
-    		$topicIds = array_filter($topicIds);
-    		$sections = D('Section','Logic')->querySectionList($topicIds,$page,1000);
-    		//print_r($sections);exit;
-    		$preSection = $nextSection = '';
-    		foreach ($sections['rows'] as $key => $value) {
-    			if($value['id'] == $sectionId){
-    				if($sections['rows'][$key-1]){
-    					$preSection = $sections['rows'][$key-1]['id'];
-    				}
-    				if($sections['rows'][$key+1]){
-    					$nextSection = $sections['rows'][$key+1]['id'];
-    				}
-    				break;
-    			}
-    		} */
-    		
     		$jumpUrl = 'Resource/play?courseId='.$courseId.'&sectionId='.$sectionId;
-    		/* if($preSection){
-    			$jumpUrl.='&preSection='.$preSection;
-    		}
-    		if($nextSection){
-    			$jumpUrl.='&nextSection='.$nextSection;
-    		} */
     		header('location:'.U($jumpUrl));
     	}
     	exit;

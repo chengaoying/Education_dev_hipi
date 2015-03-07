@@ -5,12 +5,12 @@
 return array (
 		
 	//专区适配设置	
-	'DEFAULT_MODULE'	=> 'Hd',	//默认分组模块
-	'AREA_CODE' 		=> '80027',	//地区编码
-	'PARENT_MODULE'     => 'Hd',	//父类分组模块
-	'PRO_KEY'			=> 'hipi',	//产品key
-	'DEBUG_MODE'		=> 1,		//debug模式，1-开启，0-关闭
-
+	'DEFAULT_MODULE'	=> 'Hd80027',	//默认分组模块
+	'AREA_CODE' 		=> '80027',		//地区编码
+	'PARENT_MODULE'     => 'Hd',		//父类分组模块
+	'DEBUG_MODE'		=> 1,			//debug模式，1-开启，0-关闭
+	'PRO_KEY'			=> 'hipi',		//产品key
+	
 	//附件上传
 	'UPFILE_ISREMOTE'	=> false,		//是否保存到远程文件服务器
 	'UPFILE_FTP_SERVER'	=> '127.0.0.1',	//远程FTP服务器	

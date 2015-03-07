@@ -86,7 +86,7 @@
      	$left = 0; $top = 340 + ($i-1)*70;
     </php>
     <div id="div_ch_{$i}" style="position:absolute;visibility:visible;left:{$left}px; top:{$top}px;">
-		<img id='ch_{$i}' title="{$channel['linkUrl']}"
+		<img id='ch_{$i}' title="{:U($channel['linkUrl'])}"
 			src="{$channel['linkImage']}" width="290" height="70">
 	</div>
 </volist>
