@@ -28,19 +28,22 @@ class ResourceController extends  CommonController{
 		$section = D('Section', 'Logic')->querySectionById($sectionId);
 		
 		//请求上下文，用于各函数及页面之间数据传递
-		$_CONTEXT = array();
-		$_CONTEXT['returnUrl'] = $backUrl;
+		$data = array();
+		$data['returnUrl'] = $backUrl;
+		$data['courseId'] = $courseId;
+		$data['sectionId'] = $sectionId;
 		
 		//课时处理：
-		$this->sectionProcessing($section,$courseId,$_CONTEXT);
+		$this->sectionProcessing($section,$courseId,$data);
 		
         if(C('DEBUG_MODE')){ //调试模式
         	$playUrl = C('RTSP_VIDEO_URL');
-        	$this->assign($_CONTEXT);
+        	$this->assign($data);
         	$this->display();
         }else{
         	//数据统计
         	//$this->dataStat($section, $courseId, $resource);
+        	$this->display();
         } 
 	}
 	
@@ -50,7 +53,7 @@ class ResourceController extends  CommonController{
 	 *    2.视频播放完则进入做练习题页面
 	 *    3.如果没有练习题，则进入下一个课时流程
 	 */
-	private function sectionProcessing($section,$courseId,&$_CONTEXT){
+	private function sectionProcessing($section,$courseId,&$data){
 		$playList = array();
 		if ($section['previewList']) {
 			$playList = explode(',', $section['previewList']);
@@ -65,14 +68,15 @@ class ResourceController extends  CommonController{
 			$isExistVideo = 'false';
 			$jumpUrl = 'Library/detail?courseId='.$courseId.'&sectionId='.$section['id'].'&isExistVideo='.$isExistVideo;
 			header('location:'.U($jumpUrl));
+			exit;
 		}
 		$resources = D('Resource', 'Logic')->queryResourceList($playList, 'id,title,content,keyList');
 		
-		$_CONTEXT['resources'] = json_encode($resources); //资源列表
-		$_CONTEXT['prevSeciton'] = $section['id'] - 1;	  //上一个课时id
-		$_CONTEXT['nextSeciton'] = $section['id'] + 1;	  //下一个课时id
+		$data['resources'] = json_encode($resources); //资源列表
+		$data['prevSeciton'] = $section['id'] - 1;	  //上一个课时id
+		$data['nextSeciton'] = $section['id'] + 1;	  //下一个课时id
 		
-		dump($_CONTEXT);exit;
+		dump($data);
 	}
 	
 	
