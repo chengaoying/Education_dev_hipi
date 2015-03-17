@@ -164,7 +164,7 @@ function fastRewind_fun(){
 	}
 }
 
-//每秒执行一次，如果视频播放控制菜单是隐藏的，则把焦点定位到练习按钮上。
+//每秒查询一次，如果视频播放控制菜单是隐藏的，则把焦点定位到练习按钮上。
 setInterval('isControl()',1000);
 function isControl(){
 	var o = G('div_control').style.visibility;
@@ -209,7 +209,7 @@ window.onload = function() {
     Epg.btn.init('btn_exercise', buttons, true);
     
     //视频播放
-    //initPlayer();
+    initPlayer();
     
     //显示视频播放控制菜单，进度条，5秒内没有操作则隐藏
     timer1 = setTimeout("H('div_control')", time);

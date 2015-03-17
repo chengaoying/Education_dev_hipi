@@ -50,8 +50,15 @@ class OrderController extends CommonController {
 	 */
 	public function payAct(){
 		$backUrl     = I('backUrl','');
-		$r = D('Order','Logic')->order($this->user['id'],$backUrl);
-		$r = json_decode($r, true);
+		
+		//订购
+		if(C('DEBUG_MODE')){
+			$r = result_data(1,'');
+		}else{
+			$r = D('Order','Logic')->order($this->user['id'],$backUrl);
+			$r = json_decode($r, true);
+		}
+			
 		if($r['status']){
 			$this->addFloatMessage("订购成功！",$backUrl);
 		}else{

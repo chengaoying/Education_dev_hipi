@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="page-view-size" content="1280*720">
+<title>{$pageTitle}</title>
+<link rel="stylesheet" type="text/css" href="__HD__/css/common.css?__CSSJS_VERSION__">
+<script type="text/javascript" src="__COMMON__/js/base.js?__CSSJS_VERSION__"></script>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+
+<php>
+$floatMsg = Session('floatMessage');
+Session('floatMessage',null);
+</php>
+
+/**
+ * 页面弹窗，弹窗类型：
+ * @param type 弹窗类型：1-小图提示信息，2-大图提示信息，不设置则默认为1
+ */
+var popup = function(type){
+	Epg.popup("{$floatMsg}",3,type);
+}	
+
+</script>
+
+</head>
+<body >
+{__CONTENT__}
+
+<!-- 1.无背景图的文字提示 -->
+<div id="popup_1"></div>
+
+<!-- 2.有背景图的文字提示 -->
+<div id="popup_2">
+	<div id="popup_2_info_bg"></div>
+	<div id="popup_2_info"></div>
+</div>
+
+<php>
+$url = U('Pv/savePv');
+echo '<iframe  src="'.$url.'" style="width:0px; height:0px;display: none;" frameborder="0" ></iframe>';
+</php>
+
+</body>
+</html>

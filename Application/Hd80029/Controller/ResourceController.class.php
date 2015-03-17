@@ -1,6 +1,6 @@
 <?php
 
-namespace Hd80027\Controller;
+namespace Hd80029\Controller;
 use Common\Controller\CommonController;
 
 /**

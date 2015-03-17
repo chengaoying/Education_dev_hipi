@@ -1,4 +1,15 @@
 
+/**
+ * 天津专区按键
+ */
+var KEY_PLAY_PAUSE = 13;//播放或是暂停
+var KEY_VOL_UP = 4;//音量加大
+var KEY_VOL_DOWN = 3; //音量减少
+var KEY_FAST_FORWARD = 373; //快进
+var KEY_FAST_REWIND = 372; //快退
+
+
+
 var mp; 
 var instanceId;
 try {
@@ -77,12 +88,14 @@ function mplay(){ //播放/暂停
 
 /** 总时长 */
 function getTotalTime(){
-	return mp.getMediaDuration();
+	return 1900;
+	//return mp.getMediaDuration();
 }
 
 /** 当前时长 */
 function getCurrentTime(){
-	return mp.getCurrentPlayTime();
+	return 1600;
+	//return mp.getCurrentPlayTime();
 }
 
 function playByTime(bytime){
