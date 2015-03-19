@@ -99,8 +99,9 @@
 		buttons[recommend+1] = {id:'optionRecmd_2',linkImage:img2,selectBox:'__HD__/images/freeZone/kuang_big.png',resize:'-1',left:('option_'+count),up:'optionRecmd_1'};		
 		/* 分页按钮 */
 		page = count+2;
-		buttons[page] = {id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:buttons[buttons.length-4-1]['id']};
-		buttons[page + 1] = {id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',right:'optionRecmd_2',down:'',up:buttons[buttons.length-4-1]['id']};
+		upButton = buttons.length>4 ?  buttons[buttons.length-4-1]['id']  :  'optionRecmd_1';//分页键上一个按键
+		buttons[page] = {id:'page_prev',name:'',action:'pageUp()',linkImage:'__HD__/images/common/page/page_prev.png',focusImage:'__HD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:[upButton,'optionRecmd_1','optionRecmd_2']};
+		buttons[page + 1] = {id:'page_next',name:'',action:'pageDown()',linkImage:'__HD__/images/common/page/page_next.png',focusImage:'__HD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',right:'optionRecmd_2',down:'',up:[upButton,'optionRecmd_1','optionRecmd_2']};
 	}
 	
  	function handleFocus(focus)//焦点判断

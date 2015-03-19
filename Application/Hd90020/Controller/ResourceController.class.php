@@ -1,6 +1,6 @@
 <?php
 
-namespace Hd80027\Controller;
+namespace Hd90020\Controller;
 use Common\Controller\CommonController;
 
 /**
@@ -36,14 +36,13 @@ class ResourceController extends  CommonController{
 		//课时处理：
 		$this->sectionProcessing($section,$courseId,$data);
 		
-		$this->assign($data);
         if(C('DEBUG_MODE')){ //调试模式
         	$playUrl = C('RTSP_VIDEO_URL');
-        	//$this->display('play_debug');
-        	$this->display();
         }else{
-        	$this->display();
+        	
         } 
+        $this->assign($data);
+        $this->display();
 	}
 	
 	/*

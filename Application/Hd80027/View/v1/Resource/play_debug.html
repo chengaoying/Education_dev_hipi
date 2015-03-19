@@ -1,5 +1,5 @@
 <layout name="layout" />
-<script type="text/javascript" src="__COMMON__/js/play/play{:C('AREA_CODE')}.js?__CSSJS_VERSION__"></script>
+<script type="text/javascript" src="__COMMON__/js/play/play.js?__CSSJS_VERSION__"></script>
 
 <style type="text/css">
 
@@ -33,16 +33,6 @@
     background-image: url(__HD__/images/play/back_bg.png);            	
 }
 
-#div_progress{
-	position:absolute;
-	width:840px;/* 1020px; */
-    height:40px;
-    top:650px;
-    left:220px;/* 130px; */
-    visibility:visible;
-    background-image: url(__HD__/images/play/progress_bg.png);  
-}
-
 </style>
 
 <script type="text/javascript">
@@ -73,7 +63,6 @@ var hasWindow = false;
 var time = 5000;
 
 var timer1;
-var timer2;
     
 /**
  * 播放/暂停
@@ -98,7 +87,6 @@ function _playOrPause(){
 Epg.Button.defBack = function(){
 	if(!hasWindow){
 		clearTimeout(timer1);
-		clearTimeout(timer2);
 		S('div_back');
 		hasWindow = true;
 		Epg.Button.set('btn_continue');
@@ -113,8 +101,6 @@ function _continue(){
 	H('div_back');
 	hasWindow = false;
 	Epg.Button.set('btn_playOrPause');
-	timer1 = setTimeout("H('div_control')", time);
-    timer2 = setTimeout("H('div_progress')", time);
 	_playOrPause();
 }
 
@@ -144,28 +130,6 @@ function _playOrPause_fun(){
 	}
 }
 
-//快进
-function fastForward_fun(){
-	if(!hasWindow){
-		S('div_progress');
-		clearTimeout(timer2);
-		timer2 = setTimeout("H('div_progress')", time);
-		setPlayTime();
-		fastForward();
-	}
-}
-
-//快退
-function fastRewind_fun(){
-	if(hasWindow == 0){
-		S('div_progress');
-		clearTimeout(timer2);
-		timer2 = setTimeout("H('div_progress')", time);
-		setPlayTime();
-		fastRewind();
-	}
-}
-
 //每秒执行一次，如果视频播放控制菜单是隐藏的，则把焦点定位到练习按钮上。
 setInterval('isControl()',1000);
 function isControl(){
@@ -175,38 +139,6 @@ function isControl(){
 	}
 }
 
-//填充视频播放的当前时间和总时间
-var playTimer = setInterval('setPlayTime()',1000);
-function setPlayTime(){
-	var t1 = getCurrentTime();
-	var t2 = getTotalTime();
-	if((t1 >= t2) && (t1 != 0) && (t2 != 0)){ //播放完就播放下一个课时
-		window.location.href = "{:U('Section/index?sectionId='.$nextSeciton.'&courseId='.$courseId)}";
-		destoryMP();
-	}
-	
-	setCurrentTime(t1);
-	setTotalTime(t2);
-	
-	//计算进度条长度
-	var w = parseInt((t1/t2)*560);
-	G('progress_img').width = w;
-	var l = 125 + w - 5;
-	G('progress_point').style.left = l + 'px';
-}
-
-function setCurrentTime(t){
-	var _t = formatTime(t);
-	G('curr_time').innerHTML = _t;
-}
-
-function setTotalTime(t){
-	var _t = formatTime(t);
-	G('total_time').innerHTML = _t;
-}
-
-
-
 window.onload = function() {
     Epg.btn.init('btn_exercise', buttons, true);
     
@@ -215,7 +147,6 @@ window.onload = function() {
     
     //显示视频播放控制菜单，进度条，5秒内没有操作则隐藏
     timer1 = setTimeout("H('div_control')", time);
-    timer2 = setTimeout("H('div_progress')", time);
     setPlayTime();
 }
 
@@ -243,18 +174,6 @@ window.onload = function() {
 	<div id="div_btn_next" style="position:absolute;width:28px;height:31px;left:254px;top:25px;">
 	     <img id="btn_next" title="{:U('Section/index?sectionId='.$nextSeciton.'&courseId='.$courseId)}" src="__HD__/images/play/btn_next.png" width="31" height="28">
 	</div>
-</div>
-
-<!-- 播放时间定位 -->
-<div id="div_progress">
-	<div id="curr_time" style="position:absolute;top:5px;left:10px; width:110px;height:30px;text-align:center;z-index:99;font-size: 20px;color:#ffffff;">00:00:00</div>
-	<div id="progress" style="position:absolute;top:15px;left:140px;z-index:99;">
-		<img id="progress_img" src="__HD__/images/play/progress.png" width="0" height="10"/>
-	</div>	
-	<div id="progress_point" style="position:absolute;top:8px;left:125px;z-index:99;">
-		<img id="progress_point_img" src="__HD__/images/play/progress_point.png" width="24" height="24" />
-	</div>
-	<div id="total_time" style="position:absolute;top:5px;left:710px; width:110px;height:30px;text-align:center;z-index:99;font-size: 20px;color:#ffffff;">00:00:00</div>
 </div>
 
 <!-- 返回弹窗 -->
