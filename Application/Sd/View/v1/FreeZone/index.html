@@ -1,0 +1,208 @@
+<layout name="layout" />
+
+<style>
+
+	body{ background-image:url(__SD__/images/common/bg.jpg); }
+/* 用户信息背景底框 */
+#bottom{
+	position: absolute;
+	display: block;
+	width: 415px;
+	height: 321px;
+	top: 120px;
+	left: 40px;
+	background-image: url(__SD__/images/freeZone/bottom.png);
+}
+/* logo */
+#logo{
+	position: absolute;
+	display: block;
+	width: 117px;
+	height: 46px;
+	top: 60px;
+	left: 40px;
+	background-image: url(__SD__/images/freeZone/logo.png);
+}
+/* 推荐 */
+#recommend{
+	position: absolute;
+	display: block;
+	width: 71px;
+	height: 24px;
+	top: 77px;
+	left: 490px;
+	background-image: url(__SD__/images/freeZone/recommend.png);
+}
+
+/* 分页 */
+.page_prev{
+	position:absolute;
+	width:25px;
+	height:32px;
+	left:400px;
+	top:460px;
+}
+.text{
+	position:absolute;
+	width:30px;
+	height:30px;
+	line-height:30px;
+	left:410px;
+	top:457px;
+	text-align:center;
+}
+.page_next{
+	position:absolute;
+	width:25px;
+	height:32px;
+	left:435px;
+	top:460px;
+}
+
+</style>
+
+<script type="text/javascript">
+	var img1 = '{$img_recommend1}';
+	var img2 = '{$img_recommend2}';
+	var focus = '{$focus}';//上个页面焦点位置
+	var count = {$count};//免费课程按钮数目
+	var buttons = new Array(count+4);//4为最新推荐按钮数（2）+分页按钮数（2）
+	var colnum = 7;
+	
+	function initbuttons()
+	{
+		/*  给免费课程按钮加事件处理*/
+		for(var i=1; i<=count; i++)
+		{
+			obj = new Object();
+			
+			obj.id = 'option_' + i;
+			obj.selectBox = "__SD__/images/freeZone/kuang_small.png";
+			obj.resize = -1;
+ 			obj.right = ['option_'+(i+colnum),i>=5&&i<=7||i>=12&&i<=14 ? 'optionRecmd_2' : 'optionRecmd_1']; 
+			obj.left = 'option_'+(i-colnum); 
+			obj.down = ['option_'+(i+1),G('page_next') ? 'page_next' : 'page_prev'];
+			obj.up = 'option_'+(i-1);  
+			obj.focusHandler='focusHandler()';
+			obj.blurHandler='blurHandler()';
+			
+			buttons[i-1] = obj;
+		}
+		/* 最后两项按down时，焦点移到分页选项上 */
+		if(count>=6) 
+		{
+			buttons[6]['down'] = [G('page_next') ? 'page_next' : 'page_prev', 'option_'+8];	
+		}
+		/* 最右边推荐按钮 */
+		recommend = count;
+		buttons[recommend] = {id:'optionRecmd_1',linkImage:img1,selectBox:'__SD__/images/freeZone/kuang_big.png',resize:'-1',left:['option_9','option_2','option_1'],down:'optionRecmd_2'};		
+		buttons[recommend+1] = {id:'optionRecmd_2',linkImage:img2,selectBox:'__SD__/images/freeZone/kuang_big.png',resize:'-1',left:('option_'+count),up:'optionRecmd_1'};		
+		/* 分页按钮 */
+		page = count+2;
+		upButton = buttons.length>4 ?  buttons[buttons.length-4-1]['id']  :  'optionRecmd_1';//分页键上一个按键
+		buttons[page] = {id:'page_prev',name:'',action:'pageUp()',linkImage:'__SD__/images/common/page/page_prev.png',focusImage:'__SD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:[upButton,'optionRecmd_1','optionRecmd_2']};
+		buttons[page + 1] = {id:'page_next',name:'',action:'pageDown()',linkImage:'__SD__/images/common/page/page_next.png',focusImage:'__SD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',right:'optionRecmd_2',down:'',up:[upButton,'optionRecmd_1','optionRecmd_2']};
+	}
+	
+ 	function handleFocus(focus)//焦点判断
+	{
+		if(focus == 'page_next' || focus == 'page_prev')
+		{
+			focus = ( ( focus=='page_prev'&& G(focus) ) ? focus : 'page_next' ); 
+			focus = ( ( focus=='page_next'&& G(focus) ) ? focus : 'page_prev' ); 
+		}
+		return focus;
+	} 
+	window.onload = function() {
+		initbuttons();
+
+		if(buttons.length==4)
+		{
+			Epg.btn.init('optionRecmd_1', buttons, true);
+		}
+		else
+		{
+			focus = handleFocus(focus);
+			Epg.btn.init(focus, buttons, true);
+		}
+		//设置翻页键翻页事件
+		Epg.key.set(
+		{
+			KEY_PAGE_UP:'pageUp()',
+			KEY_PAGE_DOWN:'pageDown()',
+		});
+	};
+	
+	//上一页
+	function pageUp()
+	{
+		var url = "{:U('FreeZone/index')}"+"?focus="+Epg.btn.current.id+"&page=";
+		Epg.page(url,{$page}-1,{$pageCount});
+	}
+
+	//下一页
+	function pageDown()
+	{
+		var url = "{:U('FreeZone/index')}"+"?focus="+Epg.btn.current.id+"&page=";
+		Epg.page(url,{$page}+1,{$pageCount});
+	}
+	
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
+
+<!-- 静态图片 -->
+<div id="bottom"></div>
+<div id="logo"></div>
+<div id="recommend"></div>
+
+<volist name ="datas" id ="data" key="i">
+	<php>
+		$left = 40 + (ceil($i/7)-1)*230;
+		$top = 110 + (($i-1)%7)*47;
+	</php>
+	
+	<div id="div_option_{$i}" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
+		<img id="option_{$i}" title="{:U('Resource/play?sectionId='.$data['id'].'&preFocus=option_'.$i)}" src="" width="370" height="60">
+	</div>
+	<div id="div_option_{$i}_focus" style="position:absolute;visibility:hidden;left:{$left-2}px;top:{$top+7}px;text-align:center;">
+		<img id="option_{$i}_focus" title="" src="" width="199" height="45">
+	</div>
+	<!-- 免费专区文字 -->
+	<div id="option_{$i}_text" style="position:absolute;width:180px;height:37px;left:{$left+8}px;top:{$top+10}px;line-height:37px;text-align:left;border-style:none;">
+		{$data['name']}
+	</div>
+</volist>
+	<!-- 最新推荐 -->
+	<div id="div_optionRecmd_1" style="position:absolute;left:490px;top:120px;text-align:center;">
+		<img id="optionRecmd_1" title="{:U('SectionList/index?courseId='.$url_recommend1.'&preFocus=optionRecmd_1')}" src="{$img_recommend1}" width="110" height="164">
+	</div>
+	<div id="div_optionRecmd_1_focus" style="position:absolute;visibility:hidden;left:486px;top:115px;text-align:center;">
+		<img id="optionRecmd_1_focus" src="__SD__/images/freeZone/kuang_big.png" width="118" height="174">
+	</div>
+	<div id="div_optionRecmd_2" style="position:absolute;left:490px;top:300px;text-align:center;">
+		<img id="optionRecmd_2" title="{:U('SectionList/index?courseId='.$url_recommend2.'&preFocus=optionRecmd_2')}" src="{$img_recommend2}" width="110" height="164">
+	</div>
+	<div id="div_optionRecmd_2_focus" style="position:absolute;visibility:hidden;left:486px;top:295px;text-align:center;">
+		<img id="optionRecmd_2_focus" src="__SD__/images/freeZone/kuang_big.png" width="118" height="174">
+	</div>
+
+<!-- 分页 -->
+{$pageHtml}
+
+<script type="text/javascript">
+
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	//Epg.marquee.stop();
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	var id = Epg.btn.current.id + '_text';
+	//Epg.marquee.start(16,id);
+}
+
+
+</script>

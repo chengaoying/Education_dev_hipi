@@ -1,0 +1,238 @@
+<layout name="layout" />
+
+<style>
+
+	body{ background-image:url(__SD__/images/usercenter/bg.jpg); }
+/* 用户信息背景底框 */
+#bottom{
+	position: absolute;
+	display: block;
+	width: 790px;
+	height: 433px;
+	top: 160px;
+	left: 390px;
+	background-image: url(__SD__/images/usercenter/learningEarly/bottom.png);
+}
+
+/* 文字 */
+#word{
+	position: absolute;
+	display: block;
+	width: 414px;
+	height: 54px;
+	top:90px;
+	left:185px;
+	background-image: url(__SD__/images/usercenter/learningPreschool/word.png);
+}
+/* girl */
+#girl{
+	position: absolute;
+	display: block;
+	width: 96px;
+	height: 88px;
+	top:62px;
+	left:485px;
+	background-image: url(__SD__/images/usercenter/learningPreschool/girl_comeon.png);
+}
+
+/* 分页 */
+.page_prev{
+	position:absolute;
+	width:25px;
+	height:32px;
+	left:540px;
+	top:450px;
+}
+.text{
+	position:absolute;
+	width:80px;
+	height:30px;
+	line-height:30px;
+	left:528px;
+	top:446px;
+	text-align:center;
+}
+.page_next{
+	position:absolute;
+	width:25px;
+	height:32px;
+	left:580px;
+	top:450px;
+}
+
+</style>
+
+<script type="text/javascript">
+	var faceNum = {$face};
+	var channel = {$json_channel};
+	var focus = '{$focus}';
+	var buttons = [
+	/* 栏目  */
+	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'changeNum',down:'ch_2',right:'detail_1'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_1',down:'ch_3',right:'detail_1'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',blurHandler:'blurHandler()',up:'ch_2',right:'detail_1'},
+
+	{id:'selectFace',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'__SD__/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'__SD__/images/usercenter/leftNavigation/title_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
+	{id:'changeNum',name:'',action:'',linkImage:'__SD__/images/usercenter/leftNavigation/change_account.png',focusImage:'__SD__/images/usercenter/leftNavigation/change_account_over.png',selectBox:'',right:'sex',up:'selectFace',down:'ch_1'},
+
+	{id:'detail_1',name:'',action:'',linkImage:'__SD__/images/usercenter/learningPreschool/detail.png',focusImage:'__SD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_1',up:'',left:'ch_3'},
+	{id:'detail_2',name:'',action:'',linkImage:'__SD__/images/usercenter/learningPreschool/detail.png',focusImage:'__SD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_2',up:'wrong_1',left:'ch_3'},
+	{id:'detail_3',name:'',action:'',linkImage:'__SD__/images/usercenter/learningPreschool/detail.png',focusImage:'__SD__/images/usercenter/learningPreschool/detail_over.png',selectBox:'',down:'wrong_3',up:'wrong_2',left:'ch_3'},
+	{id:'wrong_1',name:'',action:'',linkImage:'__SD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__SD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_2',G('page_next') ? 'page_next' : 'page_prev'],up:'detail_1',left:'ch_3'},
+	{id:'wrong_2',name:'',action:'',linkImage:'__SD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__SD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:['detail_3',G('page_next') ? 'page_next' : 'page_prev'],up:'detail_2',left:'ch_3'},
+	{id:'wrong_3',name:'',action:'',linkImage:'__SD__/images/usercenter/learningPreschool/wrong.png',focusImage:'__SD__/images/usercenter/learningPreschool/wrong_over.png',selectBox:'',down:'page_next',up:'detail_3',left:'ch_3'},
+
+	{id:'page_prev',name:'',action:'pageUp()',linkImage:'__SD__/images/common/page/page_prev.png',focusImage:'__SD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:['wrong_3','wrong_2','wrong_1'],left:'ch_2'},
+	{id:'page_next',name:'',action:'pageDown()',linkImage:'__SD__/images/common/page/page_next.png',focusImage:'__SD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:['wrong_3','wrong_2','wrong_1']},
+
+	];
+	
+	var initButtons = function()
+	{
+ 		for(var i=0; i<channel.length; i++)
+		{
+			buttons[i].name = channel[i].name;
+			buttons[i].linkImage = channel[i].linkImage;
+			buttons[i].focusImage = channel[i].focusImage;
+			buttons[i].titleImage = channel[i].titleImage;
+		} 
+ 		if(focus !== 'ch_3') G('ch_3').src = buttons[2].titleImage;
+	}
+	
+ 	function handleFocus(focus)//焦点判断
+	{
+		if(focus == 'page_next' || focus == 'page_prev')
+		{
+			focus = ( ( focus=='page_prev'&& G(focus) ) ? focus : 'page_next' ); 
+			focus = ( ( focus=='page_next'&& G(focus) ) ? focus : 'page_prev' ); 
+		}
+		return focus;
+	} 
+	window.onload = function() {
+		initButtons();
+		popup();
+		focus = handleFocus(focus);
+		Epg.btn.init(focus, buttons, true);
+		
+		//设置翻页键翻页事件
+		Epg.key.set(
+		{
+			KEY_PAGE_UP:'pageUp()',
+			KEY_PAGE_DOWN:'pageDown()',
+		});
+	};
+	
+	var url = "{:U('Learning/learningPreschool')}";
+	//上一页
+	function pageUp()
+	{
+		url += '?focus='+ Epg.btn.current.id +'&page=';
+		Epg.page(url,{$page}-1,{$pageCount});
+	}
+
+	//下一页
+	function pageDown()
+	{
+		url += '?focus='+ Epg.btn.current.id +'&page=';
+		Epg.page(url,{$page}+1,{$pageCount});
+	}
+</script>
+
+
+<!-- 静态图片 -->
+<!-- <div id="bottom"></div> -->
+<div id="word"></div>
+<div id="girl"></div>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
+
+
+<!-- 以下是导航栏 -->
+<volist name="channels" id="channel" key="i">
+	<php>
+     	$left = 0; $top = 250 + ($i-1)*55;
+    </php>
+    <div id="div_ch_{$i}" style="position:absolute;visibility:visible;left:{$left}px; top:{$top}px;">
+		<img id='ch_{$i}' title="{:U($channel['linkUrl'])}"
+			src="{$channel['linkImage']}" width="148" height="55">
+	</div>
+</volist>
+
+<!-- 选择头像  -->
+<div id="div_selectFace" style="position:absolute;width:63px;height:125px;left:45px;top:55px;text-align:center;">
+	<img id="selectFace" title="{:U('Role/selectFace')}" src="__SD__/images/usercenter/baseInfo/face_{$face}.png" width="63" height="125">
+</div>
+<div id="div_selectFace_focus" style="position:absolute;visibility:hidden;width:63px;height:125px;left:45px;top:55px;text-align:center;">
+	<img id="selectFace_focus" title="" src="" width="58" height="120">
+</div>
+<!-- 切换账号  -->
+<div id="div_changeNum" style="position:absolute;left:45px;top:190px;text-align:center;">
+	<img id="changeNum" title="{:U('Role/changeNum')}" src="__SD__/images/usercenter/leftNavigation/change_account.png" width="63" height="27">
+</div>
+
+<!-- 总分 -->
+<div style="position:absolute;left:240px;top:108px;width:50px;height:20px;line-height:20px;text-align:left;border-style:none;">
+	<span style="color:#ffff64;font-size:18px">{$roleScore}</span>
+</div>
+<!-- rank -->
+<div style="position:absolute;left:372px;top:108px;width:50px;height:20px;line-height:20px;text-align:left;border-style:none;">
+	<span style="color:#ffff64;font-size:16px">{$rank}%</span>
+</div>
+
+<volist name="datas" id="data" key="i">
+	<php>
+		$left = 185;
+		$top = 175 + ($i-1)*90;
+	</php>
+	<div style="position:absolute; left:{$left}px; top:{$top}px;">
+		<img src="__SD__/images/usercenter/learningPreschool/bottom.png" width="414" height="78">
+	</div>
+	<!-- title -->
+	<div style="position:absolute;left:{$left+10}px;top:{$top+22}px;width:120px;height:30px;line-height:30px;text-align:center;border-style:none;">
+		<span style="font-size:12px;">{$data['name']}</span>
+	</div>
+	<!-- 总分 -->
+	<div style="position:absolute;left:{$left+180}px;top:{$top+5}px;width:40px;height:20px;line-height:20px;text-align:left;border-style:none;">
+		<span style="color:black;font-size:18px;">{$data['sumScore']}</span>
+	</div>
+	<!-- progress bar -->
+	<div style="position:absolute; left:{$left+231}px; top:{$top+46}px;">
+		<img src="__SD__/images/usercenter/learningPreschool/progress.png" width="{$data['length']}" height="8">
+	</div>
+	<!-- detail -->
+	<div id="div_detail_{$i}" style="position:absolute; left:{$left+360}px; top:{$top+10}px;">
+		<img id="detail_{$i}" title="{:U('Learning/detail?courseId='.$data['id'].'&courseName='.$data['name'].'&preFocus=detail_'.$i)}" 
+		src="__SD__/images/usercenter/learningPreschool/detail.png" width="40" height="25">
+	</div>
+	<!-- 错题集 -->
+	<div id="div_wrong_{$i}" style="position:absolute; left:{$left+360}px; top:{$top+40}px;">
+		<img id="wrong_{$i}" title="{:U('Library/wrongAnthology?courseId='.$data['id'].'&preFocus=wrong_'.$i)}" 
+		src="__SD__/images/usercenter/learningPreschool/wrong.png" width="40" height="25">
+	</div>
+	
+</volist>
+
+<!-- 分页 -->
+<!-- <div style="position:absolute; left:1050px; top:600px;">
+	{$pageHtml}
+</div> -->
+{$pageHtml}
+
+
+<script type="text/javascript">
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "ch_2" && Epg.btn.current.id != "ch_1"){
+		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != "ch_3"){
+		setTimeout("Epg.btn.click()",50);
+	}
+}
+
+</script>

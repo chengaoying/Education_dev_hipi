@@ -102,9 +102,6 @@ class CourseListController extends CommonController {
 			case 'early': //早教
 				//如果是第一页：第一个课程为基础课程
 				if($page == 1){
-					$pageSize -= 1;
-					$courses = D('Course','Logic')->queryCourseListByType($stageId, $keys, $page, $pageSize);
-					
 					//根据角色的月龄获取该月龄对应的基础课程
 					//如果角色的龄段Id和课程的龄段id不相等，则显示的课程月龄为默认月龄
 					//如果相等，则获取角色的月龄并查找对应月龄的基础课程
@@ -121,6 +118,9 @@ class CourseListController extends CommonController {
 						if(strchr($v['name'], $name))
 							$c = $v;
 					}
+						
+					if(!empty($c)) $pageSize -= 1;
+					$courses = D('Course','Logic')->queryCourseListByType($stageId, $keys, $page, $pageSize);
 					if(!empty($c)){
 						//手动把基础课程合并到课程列表中
 						foreach ($courses['rows'] as $k1 => $v1){
@@ -130,15 +130,13 @@ class CourseListController extends CommonController {
 						$courses['rows'][0] = $c;
 						$courses['total'] += 1;
 					}
+					
 				}else{
 					$courses = D('Course','Logic')->queryCourseListByType($stageId, $keys, $page, $pageSize);
 				} 
 				break;
 			case 'preschool': //幼教
 				if($page == 1){
-					$pageSize -= 1;
-					$courses = D('Course','Logic')->queryCourseListByType($stageId, $keys, $page, $pageSize);
-					
 					//根据当前周数显示对应周数的基础课程
 					$name = '第'.getCurrentWeek().'周';
 					$_courses = D('Course','Logic')->queryCourseListByType($stageId, $k1, $page, $pageSize);
@@ -146,6 +144,9 @@ class CourseListController extends CommonController {
 						if(strchr($v['name'], $name))
 							$c = $v;
 					}
+					
+					if(!empty($c)) $pageSize -= 1;
+					$courses = D('Course','Logic')->queryCourseListByType($stageId, $keys, $page, $pageSize);
 
 					if(!empty($c)){
 						//手动把基础课程合并到课程列表中

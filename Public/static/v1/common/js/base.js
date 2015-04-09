@@ -157,7 +157,7 @@ Epg.Button = Epg.btn =
 				//KEY_ENTER_XJ:'Epg.Button.click()',			//确定键
 			});
 		}
-		
+		//alert('lala');
 		this.previous = null,
 		this._buttonStore = {};
 		for(var i=0; i<config.buttons.length; i++)
@@ -302,16 +302,16 @@ Epg.Button = Epg.btn =
 			}else{
 				//add 20141224 增加按钮放大缩小控制(按钮buttons中resize属性为-1则不进行放大缩小效果)
 				if(Epg.isEmpty(current.resize) || current.resize != -1){
-					G(current.id).width  += size;
-					G(current.id).height += size;
+					G(current.id).width  = parseInt(G(current.id).width) + size;
+					G(current.id).height = parseInt(G(current.id).height) + size;
 				}
 			}
 			if(current.selectBox){ //add 20141213    增加焦点框选中效果
 				var selectBoxId = current.id + '_focus';
 				G(selectBoxId).src = current.selectBox;
 				if(Epg.isEmpty(current.resize) || current.resize != -1){
-					G(selectBoxId).width  += size;
-					G(selectBoxId).height += size;
+					G(selectBoxId).width  = parseInt(G(selectBoxId).width) + size;
+					G(selectBoxId).height = parseInt(G(selectBoxId).height) + size;
 				}
 				var divId = 'div_' + current.id + '_focus';
 				S(divId);
@@ -536,7 +536,7 @@ Epg.marquee =
  */
 Epg.trace = function(info)
 {
-	window.location.href = "/Debug/Index/index?info="+info;
+	window.location.href = "/Test/Index/debug?info="+info;
 	return;
 }
 
@@ -558,11 +558,12 @@ var event_handler = function(e)
 		if(keyCode === KEY_BACK || keyCode === KEY_BACK_XJ || keyCode === KEY_BACK_TJ)
 			return false;
 	}
+	return false;
 };
 
 //按键处理
-document.onkeydown = event_handler;
-//document.onkeypress = event_handler;
+//document.onkeydown = event_handler;
+document.onkeypress = document.onkeydown = event_handler;
 
 //增加别名
 window.EPG = window.epg = Epg;

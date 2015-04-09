@@ -1,0 +1,209 @@
+<layout name="layout" />
+<style type="text/css">
+body{ background-image:url(__SD__/images/common/bg.jpg); }
+    
+/* 通用logo */
+.ch_logo_common{
+    position: absolute;
+    display: block;
+    top:56px;
+    left:30px;
+    width: 65px;
+    height: 32px;
+    background: url(__SD__/images/courseList/title/title_{$chKey}.png) no-repeat;
+}
+
+/* 底部投影背景图 */
+.shadow{
+	position:absolute;
+    display: block;
+    width:110px;
+    height:45px;
+	top:458px;
+    background-image:url(__SD__/images/common/shadow/shadow_110x45.png);
+}
+</style>
+
+<script type="text/javascript">
+
+
+var buttons=
+	[
+        /*龄段*/
+	 	{id:'stage_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'',right:'stage_2',up:'',down:'course_1'},
+        {id:'stage_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_1',right:'stage_3',up:'',down:['course_2','course_1']},
+        {id:'stage_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_2',right:['stage_4','stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_3',right:['stage_5','stage_6','page_prev','page_next'],up:'',down:['course_2','course_1']},
+        {id:'stage_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_4',right:['stage_6','page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+        {id:'stage_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',left:'stage_5',right:['page_prev','page_next'],up:'',down:['course_3','course_2','course_1']},
+        
+        {id:'page_prev',name:'',action:'',linkImage:'__SD__/images/common/page/page_prev.png',focusImage:'__SD__/images/common/page/page_prev_over.png',selectBox:'',left:['stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],right:'page_next',down:['course_5','course_4','course_3','course_2','course_1']},
+    	{id:'page_next',name:'',action:'',linkImage:'__SD__/images/common/page/page_next.png',focusImage:'__SD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','stage_6','stage_5','stage_4','stage_3','stage_2','stage_1'],down:['course_5','course_4','course_3','course_2','course_1']},
+        
+        /* 课程列表 */
+        {id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'pageUp()',right:'course_2',up:['stage_1'],down:'course_6'},
+		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_1',right:'course_3',up:'stage_2',down:['course_7','course_6']},
+		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_2',right:'course_4',up:['stage_4','stage_3'],down:['course_8','course_7','course_6']},
+		{id:'course_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_3',right:'course_5',up:['stage_6','stage_3'],down:['course_9','course_8','course_7','course_6']},
+		{id:'course_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_4',right:'pageDown()',up:['stage_6','stage_3'],down:['course_10','course_9','course_8','course_7','course_6']},
+		{id:'course_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'pageUp()',right:'course_7',up:'course_1',down:''},
+        {id:'course_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_6',right:'course_8',up:'course_2',down:''},
+		{id:'course_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_7',right:'course_9',up:'course_3',down:''},
+		{id:'course_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_8',right:'course_10',up:'course_4',down:''},
+		{id:'course_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_9',right:'pageDown()',up:'course_5',down:''},
+	];
+
+var stagelist = {$json_stage};
+
+var cur_stage = "";      //页面当前龄段(默认为页面中的第一个龄段)
+var curr_stage_title_img = "";	//当前龄段的titleImage
+
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	//龄段
+	for(var i=0; i<stagelist.length; i++)
+	{
+		buttons[i].name = stagelist[i].name;
+		buttons[i].linkImage = stagelist[i].linkImage;
+		buttons[i].focusImage = stagelist[i].focusImage;
+		buttons[i].titleImage = stagelist[i].titleImage;
+		
+		//判断当前栏目
+		if(stagelist[i].id == "{$stageId}"){
+			cur_stage = buttons[i].id;
+			curr_stage_title_img = buttons[i].titleImage;
+		}
+	}
+	
+}
+
+var url = "{:U('CourseList/index').'?chId='.$chId.'&stageId='.$stageId}";
+
+//上一页
+function pageUp()
+{
+	url += "&focus="+Epg.btn.current.id+"&page=";
+	Epg.page(url,{$page}-1,{$pageCount});
+}
+
+//下一页
+function pageDown()
+{
+	url += "&focus="+Epg.btn.current.id+"&page=";
+	Epg.page(url,{$page}+1,{$pageCount});
+}
+
+var defaultId = "{$preFocus}";
+
+window.onload=function()
+{
+    initButtons();
+    
+    //处理页面跳转时的焦点定位:
+	defaultId = Epg.isEmpty(defaultId) ? "{$focus}" : defaultId;
+    if(defaultId.indexOf('class_') != -1 || Epg.isEmpty(defaultId)){
+    	defaultId = cur_stage;
+    }else{
+    	if(Epg.isEmpty(G(defaultId))) 
+    		defaultId = "course_1";
+    	if(!Epg.isEmpty(G(cur_stage))) 
+    		G(cur_stage).src = curr_stage_title_img;
+    }
+   
+	Epg.btn.init([defaultId,'course_1'],buttons,true);
+	
+	//设置翻页键翻页事件
+	Epg.key.set(
+	{
+		KEY_PAGE_UP:'pageUp()',
+		KEY_PAGE_DOWN:'pageDown()',
+	});
+
+};
+
+</script>
+
+<a id="a_back" style="display:none;" href="{$backUrl}" ></a>
+
+<!-- 左上角的栏目LOGO -->
+<div class="ch_logo_common"></div>
+
+<!-- 龄段列表 -->
+<volist name="stageList" id="stage" key="i">
+    <php> $left = 112+($i-1)*57; </php>
+    <div id="div_stage_{$i}" title="{:U('CourseList/index?chId='.$stage['chId'].'&stageId='.$stage['id'])}" style="position:absolute;width:48px;height:30px;left:{$left}px;top:60px;text-align:center;">
+        <img id="stage_{$i}" src="{$stage['linkImage']}" width="48" height="30">
+    </div>
+</volist>
+
+<!-- 课程背景图片 -->
+<for start="1" end="11" name="j">
+	<php>
+	 	if($j > 5){
+	        $t = 294; $l = 18 + ($j-6)*120;
+	    }else{
+	        $t = 120; $l = 18 + ($j-1)*120;
+	    }
+	</php>
+
+	<div id="div_empty_png_{$j}" style="position:absolute;width:120px;height:174px;left:{$l}px;top:{$t}px;text-align:center;">
+	    <img id="empty_png_{$j}" src="__SD__/images/index/myCourse/empty_bg.png" width="110" height="164">
+	</div>
+</for>
+
+<!-- 静态图片-底部投影效果 -->
+<for start="1" end="6" step="1">
+	<php> $lt = 22 + ($i-1)*120;</php>
+	<div class="shadow" style="left:{$lt}px;"></div>
+</for>
+
+<!-- 课程列表 -->
+<volist name="courses" id="course" key="i">
+    <php>
+        if($i > 5){
+            $top = 294; $left = 18 + ($i-6)*120;
+        }else{
+            $top = 120; $left = 18 + ($i-1)*120;
+        }
+    </php>
+    <div id="div_course_{$i}" title="{:U('SectionList/index?courseId='.$course['id'].'&chId='.$chId.'&preFocus=course_'.$i)}" style="position:absolute;width:120px;height:174px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="course_{$i}" src="{:get_upfile_url($course['imgUrl'])}" width="110" height="164">
+    </div>
+    <div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:130px;height:184px;left:{$left-5}px;top:{$top-4}px;text-align:center;">
+        <img id="course_{$i}_focus" src="" width="116" height="172">
+    </div>
+</volist>
+
+<!-- 上一页/下一页 -->
+<if condition="$page gt 1">
+	<div id="div_btn_prev" style="position:absolute;width:25px;height:44px;left:5px;top:270px;">
+	    <img id="btn_prev" src="__SD__/images/common/page/btn_prev.png" width="14" height="34">
+	</div>
+</if>
+<if condition="$page lt $pageCount">
+	<div id="div_btn_next" style="position:absolute;width:25px;height:44px;left:620px;top:270px;">
+	    <img id="btn_next" src="__SD__/images/common/page/btn_next.png" width="14" height="34">
+	</div>
+</if>
+
+
+<script type="text/javascript">
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "stage_1" && Epg.btn.current.id != "stage_2"
+	   && Epg.btn.current.id != "stage_3" && Epg.btn.current.id != "stage_4"
+	   && Epg.btn.current.id != "stage_5" && Epg.btn.current.id != "stage_6"){
+			G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != cur_stage){
+		setTimeout("Epg.btn.click()",500)
+	}
+}
+
+</script>
+

@@ -1,0 +1,249 @@
+<layout name="layout" />
+
+<php>
+	/*月份*/ 
+	/* 进度条背景 */
+	$month = $courseId - 1000;
+	if(in_array($month,array(12,24,36))){
+	    $probgwidth = 582;
+	}else{
+	    $probgwidth = ($month%12)*45;
+	}
+</php>
+
+<style type="text/css">
+    body{ background-image:url(__SD__/images/common/bg.jpg); }
+    
+    .monthbg{
+        position: absolute;
+        width:582px;
+        height:40px;
+        top:428px;
+        left:29px;
+        background: url(__SD__/images/sectionList/early/month/bg.png) no-repeat;
+    }
+    
+    .probg{
+        position: absolute;
+        width:{$probgwidth}px;
+        height:4px;
+        top:464px;
+        left:29px;
+        background: url(__SD__/images/sectionList/early/month/pro_bg.png) no-repeat;
+    }
+</style>
+<script type="text/javascript">
+
+
+var buttons=
+	[
+	 	/* logo */	
+	 	{id:'btn_logo',name:'logo',action:'',linkImage:'__SD__/images/sectionList/title_early.png',focusImage:'__SD__/images/sectionList/title_early_over.png',selectBox:'',left:'',right:'btn_order',down:'topic_1'},
+	 	
+	 	/* 订购按钮 */	
+	 	{id:'btn_order',name:'订购',action:'',linkImage:'__SD__/images/common/order/btn_order.png',focusImage:'__SD__/images/common/order/btn_order_over.png',selectBox:'',left:'btn_logo',right:'',up:'',down:['section_3','section_2','section_1']},
+	 
+        /*左侧知识点列表*/
+	 	{id:'topic_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_1',up:'btn_logo',down:['topic_2','month_4']},
+        {id:'topic_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_1',up:'topic_1',down:['topic_3','month_4']},
+        {id:'topic_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:'section_1',up:'topic_2',down:['topic_4','month_4']},
+        {id:'topic_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:['section_4','section_1'],up:'topic_3',down:['topic_5','month_4']},
+        {id:'topic_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:['section_4','section_1'],up:'topic_4',down:['topic_6','month_4']},
+        {id:'topic_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',left:'',right:['section_4','section_1'],up:'topic_5',down:'month_4'},
+        
+        /* 右边视频列表 */
+        {id:'section_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_116x149.png',left:'topic_1',right:'section_2',up:'btn_order',down:['section_4','month_6']},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_116x149.png',left:'section_1',right:'section_3',up:'btn_order',down:['section_5','month_9','section_4']},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_116x149.png',left:'section_2',right:'',up:'btn_order',down:['section_6','section_5','month_12','section_4']},
+		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_116x149.png',left:['topic_5','topic_4'],right:'section_5',up:'section_1',down:'month_6'},
+		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_116x149.png',left:'section_4',right:'section_6',up:'section_2',down:'month_9'},
+		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_116x149.png',left:'section_5',right:'',up:'section_3',down:'month_12'},
+		
+		/* 月份按钮 */
+		{id:'month_1',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'month_2',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_2',name:'',action:'',linkImage:'',focusImage:'',left:'month_1',right:'month_3',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_3',name:'',action:'',linkImage:'',focusImage:'',left:'month_2',right:'month_4',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_4',name:'',action:'',linkImage:'',focusImage:'',left:'month_3',right:'month_5',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_5',name:'',action:'',linkImage:'',focusImage:'',left:'month_4',right:'month_6',up:['topic_6','topic_5','topic_4','topic_3','topic_2','topic_1']},
+		{id:'month_6',name:'',action:'',linkImage:'',focusImage:'',left:'month_5',right:'month_7',up:['section_4','section_1']},
+		{id:'month_7',name:'',action:'',linkImage:'',focusImage:'',left:'month_6',right:'month_8',up:['section_4','section_1']},
+		{id:'month_8',name:'',action:'',linkImage:'',focusImage:'',left:'month_7',right:'month_9',up:['section_5','section_2']},
+		{id:'month_9',name:'',action:'',linkImage:'',focusImage:'',left:'month_8',right:'month_10',up:['section_5','section_2']},
+		{id:'month_10',name:'',action:'',linkImage:'',focusImage:'',left:'month_9',right:'month_11',up:['section_5','section_2']},
+		{id:'month_11',name:'',action:'',linkImage:'',focusImage:'',left:'month_10',right:'month_12',up:['section_6','section_3']},
+		{id:'month_12',name:'',action:'',linkImage:'',focusImage:'',left:'month_11',right:'',up:['section_6','section_3']},
+	];
+
+//知识点
+var topics = {$json_topic};
+//月份
+var months = {$json_months};
+
+//当前选中的知识点id
+var cur_topic = "topic_1";
+var cur_topic_title_img = '';
+
+//当前课程/月份
+var cur_course = "";
+var cur_course_title_img = "";
+
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	//知识点
+	for(var i=0; i<topics.length; i++)
+	{
+		buttons[i+2].name = topics[i].name;
+		buttons[i+2].linkImage = topics[i].linkImage;
+		buttons[i+2].focusImage = topics[i].focusImage;
+		
+		buttons[i+2].focusHandler = "focusHandler()";
+		buttons[i+2].blurHandler = "blurHandler()";
+		
+		if("{$topicId}" == topics[i].id){
+			cur_topic = buttons[i+2].id;
+			cur_topic_title_img = buttons[i+2].focusImage;
+		}
+	}
+	
+	//月龄
+	for(var i=0; i<months.length; i++)
+	{
+		buttons[i+14].linkImage = months[i].linkImage;
+		buttons[i+14].focusImage = months[i].focusImage;
+		
+		buttons[i+14].focusHandler = "focusHandler2()";
+		buttons[i+14].blurHandler = "blurHandler2()";
+		
+		if("{$courseId}" == months[i].courseId){
+			cur_course = buttons[i+14].id;
+			cur_course_title_img = buttons[i+14].focusImage;
+		}
+	}
+	
+}
+
+var defaultId = "{$focus}";
+
+window.onload=function()
+{
+    initButtons();
+    popup();
+    
+  	//处理页面跳转时的焦点定位:
+	defaultId = Epg.isEmpty(defaultId) ? "{$preFocus}" : defaultId;
+	if(Epg.isEmpty(defaultId)){
+    	defaultId = cur_topic;
+    }else{
+    	if(Epg.isEmpty(G(defaultId))) 
+    		defaultId = cur_topic;
+    	if(!Epg.isEmpty(G(cur_topic))) 
+    		G(cur_topic).src = cur_topic_title_img;
+    }
+	
+	if(!Epg.isEmpty(G(cur_course)))
+		G(cur_course).src = cur_course_title_img;
+	
+	Epg.btn.init([defaultId,'section_1'],buttons,true);	
+};
+</script>
+
+<a id="a_back" style="display:none;" href="{$backUrl}" ></a>
+
+<!-- 栏目LOGO -->
+<div id="div_btn_logo" style="position:absolute;width:114px;height:70px;top:20px;left:29px;">
+	<img id="btn_logo" title="{:U('CourseList/courseDesc').'?chKey='.$chKey}" src="__SD__/images/sectionList/title_early.png">
+</div>
+
+<!-- 课程横幅图 -->
+<div style="position: absolute;top:120px;left:12px;width: 154px;height:299px;
+        background-image: url(__SD__/images/sectionList/early/month_aim/{$courseId}.png);">
+</div>
+
+<!-- 订购 -->
+<div id="div_btn_order" style="position:absolute;width:53px;height:30px;top:60px;left:557px;">
+	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId.'&preFocus='.$preFocus)}" src="__SD__/images/common/order/btn_order.png">
+</div>
+
+<!-- 知识点列表 -->
+<volist name="topics" id="t" key="i">
+    <php>$top = 120+($i-1)*51;</php>
+    <div id="div_topic_{$i}" style="position: absolute;height:42px;left:166px;top:{$top}px;">
+        <img id="topic_{$i}" title="{:U('SectionList/index?courseId='.$courseId.'&topicId='.$t['id'].'&chId='.$chId.'&preFocus='.$preFocus)}" src="{$t['linkImage']}" height="42" />
+   </div>
+</volist>
+
+
+<!-- 课时列表 -->
+<volist name="sections" id="section" key="i">
+    <php>
+        if($i > 3){
+            $top = 273; $left = 265 + ($i-4)*118;
+        }else{
+            $top = 120; $left = 265 + ($i-1)*118;
+        }
+    </php>
+    <div id="div_section_{$i}" style="position:absolute;width:120px;height:151px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="section_{$i}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId.'&preFocus='.$preFocus)}" src="{:get_upfile_url($section['imgUrl'])}" width="110" height="141">
+    </div>
+    <div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden;width:126px;height:161px;left:{$left-3}px;top:{$top-3}px;text-align:center;">
+        <img id="section_{$i}_focus" src="" width="116" height="148">
+    </div>
+</volist>
+
+
+<!-- 月份条 -->
+<div class="monthbg"></div>
+<!-- 进度条背景 -->
+<div class="probg"></div>
+
+<!-- 月份 -->
+<volist name="months" id="m">
+	<php>
+		$left = ($i-1)*45+59;
+	</php>
+	<div id="div_month_{$i}" class="progress" style="position:absolute;width:27px;height:26px;top:435px;left:{$left}px;">
+		<img id="month_{$i}" title="{:U('SectionList/index?courseId='.$m['courseId'].'&focus=month_'.$i.'&preFocus='.$preFocus)}" src="{$m['linkImage']}" width="27" height="26">
+	</div>
+</volist>
+
+<!-- 底部投影 -->
+<div style="position: absolute;width:582px;height:37px;top:468px;left:29px;
+        background-image: url(__SD__/images/common/shadow/shadow_582x37.png);">
+</div>
+
+<script type="text/javascript">
+
+//失去时焦点处理（知识点列表）
+function blurHandler(){
+	if(Epg.btn.current.id != "topic_1" && Epg.btn.current.id != "topic_2"
+	   && Epg.btn.current.id != "topic_3" && Epg.btn.current.id != "topic_4"
+	   && Epg.btn.current.id != "topic_5" && Epg.btn.current.id != "topic_6"){
+			G(Epg.btn.previous.id).src = Epg.btn.previous.focusImage;
+	}
+}
+
+//获取焦点时处理（知识点列表）
+function focusHandler(){
+	if(Epg.btn.current.id != cur_topic){
+		setTimeout("Epg.btn.click()",500)
+	}
+}
+
+//失去时焦点处理（月份列表）
+function blurHandler2(){
+	/* if(Epg.btn.current.id != "topic_1" && Epg.btn.current.id != "topic_2"
+	   && Epg.btn.current.id != "topic_3" && Epg.btn.current.id != "topic_4"
+	   && Epg.btn.current.id != "topic_5" && Epg.btn.current.id != "topic_6"){
+			G(Epg.btn.previous.id).src = Epg.btn.previous.focusImage;
+	} */
+}
+
+//获取焦点时处理（月份列表）
+function focusHandler2(){
+	if(Epg.btn.current.id != cur_course){
+		setTimeout("Epg.btn.click()",500)
+	}
+}
+
+</script>
+

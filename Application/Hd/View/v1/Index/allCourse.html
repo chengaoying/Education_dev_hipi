@@ -7,10 +7,8 @@
 .shadow{
 	position:absolute;
     display: block;
-    width:210px;
-    height:55px;
+    height:60px;
 	top:615px;
-    background-image:url(__HD__/images/common/shadow/shadow_210x60.png);
 }
     
 </style>
@@ -26,22 +24,20 @@ var buttons=
 	 	/* 栏目  */
 		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',right:'ch_2',down:'class_1'},
 		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'class_1'},
-		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',blurHandler:'blurHandler()',left:'ch_2',right:'search',down:'class_2'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',blurHandler:'blurHandler()',left:'ch_2',right:'search',down:'class_1'},
 
 		/* 检索按钮 */
 		//{id:'search',name:'',action:'',linkImage:'__HD__/images/Index/allCourse/btn_search.png',focusImage:'__HD__/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
 		
 		/* 顶级分类（二级栏目） */
-		{id:'class_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'',right:'class_2',up:'ch_1',down:'class_6'},
-		{id:'class_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_1',right:'class_3',up:'ch_3',down:'class_7'},
-		{id:'class_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_2',right:'class_4',up:'ch_3',down:'class_8'},
-		{id:'class_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_3',right:'class_5',up:['search','ch_3'],down:'class_9'},
-		{id:'class_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_4',right:'',up:['search','ch_3'],down:'class_10'},
-		{id:'class_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'',right:'class_7',up:'class_1',down:''},
-		{id:'class_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_6',right:'class_8',up:'class_2',down:''},
-		{id:'class_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_7',right:'class_9',up:'class_3',down:''},
-		{id:'class_9',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_8',right:'class_10',up:'class_4',down:''},
-		{id:'class_10',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_220x220.png',left:'class_9',right:'',up:'class_5',down:''},
+		{id:'class_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_465x295.png',left:'',right:'class_2',up:'ch_2',down:'class_5'},
+		{id:'class_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_213x145.png',left:'class_1',right:'class_3',up:'ch_3',down:'class_7'},
+		{id:'class_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_213x145.png',left:'class_2',right:'class_4',up:'ch_3',down:'class_7'},
+		{id:'class_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_213x145.png',left:'class_3',right:'',up:['search','ch_3'],down:'class_8'},
+		{id:'class_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_230x145.png',left:'',right:'class_6',up:['class_1'],down:''},
+		{id:'class_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_230x145.png',left:'class_5',right:'class_7',up:'class_1',down:''},
+		{id:'class_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_322x295.png',left:'class_6',right:'class_8',up:'class_2',down:''},
+		{id:'class_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__HD__/images/common/selectBox/select_box_322x295.png',left:'class_7',right:'class_9',up:'class_4',down:''},
 	];
 
 /* 初始化按钮 属性   */
@@ -80,10 +76,10 @@ window.onload=function()
 <a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
 
 <!-- 静态图片-底部投影效果 -->
-<for start="1" end="6" step="1">
-	<php> $left = 85 + ($i-1)*225;</php>
-	<div class="shadow" style="left:{$left}px;"></div>
-</for>
+<div class="shadow" style="width:220px;left:90px;background-image:url(__HD__/images/common/shadow/shadow_220x60.png);"></div>
+<div class="shadow" style="width:220px;left:325px;background-image:url(__HD__/images/common/shadow/shadow_220x60.png);"></div>
+<div class="shadow" style="width:312px;left:560px;background-image:url(__HD__/images/common/shadow/shadow_312x60.png);"></div>
+<div class="shadow" style="width:312px;left:889px;background-image:url(__HD__/images/common/shadow/shadow_312x60.png);"></div>
 
 <!-- 顶部-栏目 -->
 <volist name="topChannel" id="ch">
@@ -95,27 +91,53 @@ window.onload=function()
 	</div>
 </volist>
 
-<!-- 检索按钮 -->
-<!-- <div id="div_search" style="position:absolute;width:130px;height:40px;left:1060px;top:60px;text-align:center;">
-    <img id="search" title="" src="__HD__/images/Index/allCourse/btn_search.png" width="130" height="40">
-</div> -->
+<!-- 直击必考点 -->
+<div id="div_class_1" style="position:absolute;width:465px;height:295px;left:85px;top:180px;text-align:center;">
+    <img id="class_1" title="{:U($class[0]['linkUrl'].'&preFocus=class_1')}" src="{$class[0]['imgUrl']}" width="455" height="285">
+</div>
+<div id="div_class_1_focus" style="position:absolute;visibility:hidden;width:475px;height:305px;left:80px;top:175px;text-align:center;">
+    <img id="class_1_focus" src="" width="465" height="295">
+</div>
 
-<!-- 顶级分类（二级栏目） -->
-<volist name="class" id="c" key="i">
+<!-- 小学、初中、高中 -->
+<volist name="class" id="c" offset="1" length='3'>
     <php>
-        if($i > 5){
-            $top = 405; $left = 80 + ($i-6)*225;
-        }else{
-            $top = 180; $left = 80 + ($i-1)*225;
-        }
+        $top = 180; $left = 555 + ($i-1)*218;
     </php>
-    <div id="div_class_{$i}" style="position:absolute;width:220px;height:220px;left:{$left}px;top:{$top}px;text-align:center;">
-        <img id="class_{$i}" title="{:U($c['linkUrl'].'&preFocus=class_'.$i)}" src="{$c['imgUrl']}" width="210" height="210">
+    <div id="div_class_{$i+1}" style="position:absolute;width:213px;height:145px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="class_{$i+1}" title="{:U($c['linkUrl'].'&preFocus=class_'.($i+1))}" src="{$c['imgUrl']}" width="203" height="135">
     </div>
-    <div id="div_class_{$i}_focus" style="position:absolute;visibility:hidden;width:230px;height:230px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
-        <img id="class_{$i}_focus" src="" width="220" height="220">
+    <div id="div_class_{$i+1}_focus" style="position:absolute;visibility:hidden;width:223px;height:155px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="class_{$i+1}_focus" src="" width="213" height="145">
     </div>
 </volist>
+
+<!--英语、早教 -->
+<volist name="class" id="c1" offset="4" length='2'>
+    <php>
+        $top = 480; $left = 85 + ($i-1)*235;
+    </php>
+    <div id="div_class_{$i+4}" style="position:absolute;width:230px;height:145px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="class_{$i+4}" title="{:U($c1['linkUrl'].'&preFocus=class_'.($i+4))}" src="{$c1['imgUrl']}" width="220" height="135">
+    </div>
+    <div id="div_class_{$i+4}_focus" style="position:absolute;visibility:hidden;width:240px;height:155px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="class_{$i+4}_focus" src="" width="230" height="145">
+    </div>
+</volist>
+
+<!--幼儿园、微课堂 -->
+<volist name="class" id="c2" offset="6" length='2'>
+    <php>
+        $top = 330; $left = 555 + ($i-1)*327;
+    </php>
+    <div id="div_class_{$i+6}" style="position:absolute;width:322px;height:295px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="class_{$i+6}" title="{:U($c2['linkUrl'].'&preFocus=class_'.($i+6))}" src="{$c2['imgUrl']}" width="312" height="285">
+    </div>
+    <div id="div_class_{$i+6}_focus" style="position:absolute;visibility:hidden;width:332px;height:305px;left:{$left-5}px;top:{$top-5}px;text-align:center;">
+        <img id="class_{$i+6}_focus" src="" width="322" height="295">
+    </div>
+</volist>
+
 
 
 <script type="text/javascript">

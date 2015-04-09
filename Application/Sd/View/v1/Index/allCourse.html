@@ -1,0 +1,160 @@
+<layout name="layout" />
+
+<style>
+    body{ background-image:url(__SD__/images/common/bg.jpg); }
+    
+/* 底部投影背景图 */
+.shadow{
+	position:absolute;
+    display: block;
+    height:45px;
+	top:458px;
+}
+    
+</style>
+
+<script type="text/javascript">
+
+//栏目object(json格式数据)
+var channel = {$json_channel};
+var json_class = {$json_class};
+
+var buttons=
+	[
+	 	/* 栏目  */
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',right:'ch_2',down:'class_1'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'class_1'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'',blurHandler:'blurHandler()',left:'ch_2',right:'search',down:'class_1'},
+
+		/* 检索按钮 */
+		//{id:'search',name:'',action:'',linkImage:'__SD__/images/Index/allCourse/btn_search.png',focusImage:'__SD__/images/index/allCourse/btn_search_over.png',selectBox:'',left:'ch_3',down:'class_4'},
+		
+		/* 顶级分类（二级栏目） */
+		{id:'class_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_244x231.png',left:'',right:'class_2',up:'ch_2',down:'class_5'},
+		{id:'class_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_112x113.png',left:'class_1',right:'class_3',up:'ch_3',down:'class_7'},
+		{id:'class_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_112x113.png',left:'class_2',right:'class_4',up:'ch_3',down:'class_7'},
+		{id:'class_4',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_112x113.png',left:'class_3',right:'',up:['search','ch_3'],down:'class_8'},
+		{id:'class_5',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_121x113.png',left:'',right:'class_6',up:['class_1'],down:''},
+		{id:'class_6',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_121x113.png',left:'class_5',right:'class_7',up:'class_1',down:''},
+		{id:'class_7',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_169x231.png',left:'class_6',right:'class_8',up:'class_2',down:''},
+		{id:'class_8',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_169x231.png',left:'class_7',right:'class_9',up:'class_4',down:''},
+	];
+
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	//栏目
+	for(var i=0; i<channel.length; i++)
+	{
+		buttons[i].name = channel[i].name;
+		buttons[i].linkImage = channel[i].linkImage;
+		buttons[i].focusImage = channel[i].focusImage;
+		buttons[i].titleImage = channel[i].titleImage;
+	}
+	
+	//顶级分类（二级栏目）
+	for(var j=0; j<json_class.length; j++)
+	{
+		buttons[j+3].name = json_class[j].name;
+		//buttons[j+3].linkImage = json_class[j].imgUrl;
+	}
+	
+}
+
+var defaultId = "{$preFocus}";
+
+window.onload=function()
+{
+	initButtons();
+	//处理页面跳转时的焦点定位:
+	defaultId = Epg.isEmpty(defaultId) ? "{$focus}" : defaultId;
+	G('ch_3').src = buttons[2].titleImage;
+	Epg.btn.init([defaultId,'ch_3'],buttons,true);	
+};
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
+
+<!-- 静态图片-底部投影效果 -->
+<div class="shadow" style="width:115px;left:34px;background-image:url(__SD__/images/common/shadow/shadow_115x45.png);"></div>
+<div class="shadow" style="width:115px;left:155px;background-image:url(__SD__/images/common/shadow/shadow_115x45.png);"></div>
+<div class="shadow" style="width:163px;left:279px;background-image:url(__SD__/images/common/shadow/shadow_163x45.png);"></div>
+<div class="shadow" style="width:163px;left:450px;background-image:url(__SD__/images/common/shadow/shadow_163x45.png);"></div>
+
+<!-- 顶部-栏目 -->
+<volist name="topChannel" id="ch">
+	<php>
+		$left = 34 + ($i-1)*108; $top = 54;
+	</php>
+	<div id="div_ch_{$i}" style="position:absolute;visibility: visible;left:{$left}px;top:{$top}px;">
+		<img id='ch_{$i}' title="{:U($ch['linkUrl'])}" src="{$ch['linkImage']}" width="72" height="36">
+	</div>
+</volist>
+
+<!-- 直击必考点 -->
+<div id="div_class_1" style="position:absolute;width:248px;height:233px;left:29px;top:120px;text-align:center;">
+    <img id="class_1" title="{:U($class[0]['linkUrl'].'&preFocus=class_1')}" src="{$class[0]['imgUrl']}" width="238" height="223">
+</div>
+<div id="div_class_1_focus" style="position:absolute;visibility:hidden;width:258px;height:243px;left:24px;top:116px;text-align:center;">
+    <img id="class_1_focus" src="" width="244" height="231">
+</div>
+
+<!-- 小学、初中、高中 -->
+<volist name="class" id="c" offset="1" length='3'>
+    <php>
+        $top = 120; $left = 275 + ($i-1)*112;
+    </php>
+    <div id="div_class_{$i+1}" style="position:absolute;width:116px;height:115px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="class_{$i+1}" title="{:U($c['linkUrl'].'&preFocus=class_'.($i+1))}" src="{$c['imgUrl']}" width="106" height="105">
+    </div>
+    <div id="div_class_{$i+1}_focus" style="position:absolute;visibility:hidden;width:126px;height:125px;left:{$left-5}px;top:{$top-4}px;text-align:center;">
+        <img id="class_{$i+1}_focus" src="" width="112" height="113">
+    </div>
+</volist>
+
+<!--英语、早教 -->
+<volist name="class" id="c1" offset="4" length='2'>
+    <php>
+        $top = 353; $left = 29 + ($i-1)*122;
+    </php>
+    <div id="div_class_{$i+4}" style="position:absolute;width:125px;height:115px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="class_{$i+4}" title="{:U($c1['linkUrl'].'&preFocus=class_'.($i+4))}" src="{$c1['imgUrl']}" width="115" height="105">
+    </div>
+    <div id="div_class_{$i+4}_focus" style="position:absolute;visibility:hidden;width:135px;height:125px;left:{$left-5}px;top:{$top-4}px;text-align:center;">
+        <img id="class_{$i+4}_focus" src="" width="121" height="113">
+    </div>
+</volist>
+
+<!--幼儿园、微课堂 -->
+<volist name="class" id="c2" offset="6" length='2'>
+    <php>
+        $top = 235; $left = 275 + ($i-1)*170;
+    </php>
+    <div id="div_class_{$i+6}" style="position:absolute;width:173px;height:233px;left:{$left}px;top:{$top}px;text-align:center;">
+        <img id="class_{$i+6}" title="{:U($c2['linkUrl'].'&preFocus=class_'.($i+6))}" src="{$c2['imgUrl']}" width="163" height="223">
+    </div>
+    <div id="div_class_{$i+6}_focus" style="position:absolute;visibility:hidden;width:183px;height:243px;left:{$left-5}px;top:{$top-4}px;text-align:center;">
+        <img id="class_{$i+6}_focus" src="" width="169" height="231">
+    </div>
+</volist>
+
+
+
+<script type="text/javascript">
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "ch_1" && Epg.btn.current.id != "ch_2"){
+		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != "ch_3"){
+		setTimeout("Epg.btn.click()",500)
+	}
+}
+
+</script>
+
+

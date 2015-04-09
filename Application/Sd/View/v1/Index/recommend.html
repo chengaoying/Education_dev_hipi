@@ -1,0 +1,182 @@
+<layout name="layout" />
+
+<style>
+    body{ background-image:url(__SD__/images/common/bg.jpg); }
+    
+/* 底部投影背景图 */
+.shadow{
+	position:absolute;
+    display: block;
+    height:45px;
+	top:460px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+//栏目object(json格式数据)
+var channel = {$json_channel};
+
+var buttons=
+	[
+	 	/* 栏目  */
+		{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',blurHandler:'blurHandler()',right:'ch_2',down:'user_center'},
+		{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_1',right:'ch_3',down:'banner_center'},
+		{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',titleImage:'',selectBox:'',focusHandler:'focusHandler()',left:'ch_2',down:'banner_center'},
+		
+		/* 左侧导航 */
+		{id:'user_center',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_84x113.png',right:'banner_center',up:'ch_1',down:'free'},
+		{id:'free',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_84x113.png',left:'t_left_ad',right:'banner_center',up:'user_center',down:'record'},
+		{id:'record',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_84x113.png',left:'record_1',right:'banner_center',up:'free',down:''},
+		
+		/* 中间横幅 */
+		{id:'banner_center',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_148x348.png',left:'user_center',right:'special_1',up:'ch_2',down:''},
+		
+		/* 右侧上方-专题*/
+		{id:'special_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_234x172.png',left:'banner_center',right:'special_2',up:'ch_3',down:'course_1'},
+		{id:'special_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'special_1',right:'',up:'ch_3',down:['course_3','course_2','course_1']},
+		
+		/* 右侧下方-推荐课程 */
+		{id:'course_1',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'banner_center',right:'course_2',up:'special_1',down:''},
+		{id:'course_2',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_1',right:'course_3',up:'special_1',down:''},
+		{id:'course_3',name:'',action:'',linkImage:'',focusImage:'',selectBox:'__SD__/images/common/selectBox/select_box_120x174.png',left:'course_2',right:'',up:'special_2',down:''},
+		
+	];
+
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	//栏目
+	for(var i=0; i<channel.length; i++)
+	{
+		buttons[i].name = channel[i].name;
+		buttons[i].linkImage = channel[i].linkImage;
+		buttons[i].focusImage = channel[i].focusImage;
+		buttons[i].titleImage = channel[i].titleImage;
+	}
+	
+}
+
+window.onload=function()
+{
+	initButtons();
+	popup();
+	Epg.btn.init(['ch_1'],buttons,true);	
+	
+};
+
+</script>
+
+<!-- 静态图片-->
+<div class="shadow" style="left:34px;width:78px;background-image:url(__SD__/images/common/shadow/shadow_78x45.png);"></div>
+<div class="shadow" style="left:119px;width:142px;background-image:url(__SD__/images/common/shadow/shadow_142x45.png);"></div>
+<for start="1" end="4" step="1">
+	<php> $left = 268 + ($i-1)*119;</php>
+	<div class="shadow" style="left:{$left}px;width:110px;background-image:url(__SD__/images/common/shadow/shadow_110x45.png);"></div>
+</for>
+
+<!-- 顶部-栏目 -->
+<volist name="topChannel" id="ch">
+	<php>
+		$left = 34 + ($i-1)*108; $top = 54;
+	</php>
+	<div id="div_ch_{$i}" style="position:absolute;visibility: visible;left:{$left}px;top:{$top}px;">
+		<img id='ch_{$i}' title="{:U($ch['linkUrl'])}" src="{$ch['linkImage']}" width="72" height="36">
+	</div>
+</volist>
+
+<!-- 页面左侧 -开始-->
+	<!-- 用户中心 -->
+<div id="div_user_center" style="position:absolute;width:88px;height:115px;left:29px;top:120px;text-align:center;">
+	<img id="user_center" title="{:U('Role/userInfo')}"  src="__SD__/images/index/recommend/btn_user_center.png" width="78" height="105">
+</div>
+<div id="div_user_center_focus" style="position:absolute;visibility: hidden;width:98px;height:125px;left:24px;top:115px;text-align:center;">
+	<img id="user_center_focus" src="" width="84" height="115">
+</div>
+<div style="position:absolute;width:33px;height:49px;left:52px;top:136px;text-align:center;">
+	<img id="user_face" src="__SD__/images/usercenter/face/face_{$role['face']}.png" width="33" height="49">
+</div>
+	<!-- 免费专区 -->
+<div id="div_free" style="position:absolute;width:88px;height:115px;left:29px;top:237px;text-align:center;">
+	<img id="free"  title="{:U('FreeZone/index')}" src="__SD__/images/index/recommend/btn_free.png" width="78" height="105">
+</div>
+<div id="div_free_focus" style="position:absolute;visibility: hidden;width:98px;height:125px;left:24px;top:232px;text-align:center;">
+	<img id="free_focus" src="" width="84" height="115">
+</div>
+	<!-- 最近观看 -->
+<div id="div_record" style="position:absolute;width:88px;height:116px;left:29px;top:354px;text-align:center;">
+	<img id="record"  title="{:U('RecentlyWatch/index')}" src="__SD__/images/index/recommend/btn_record.png" width="78" height="106">
+</div>
+<div id="div_record_focus" style="position:absolute;visibility: hidden;width:98px;height:126px;left:24px;top:349px;text-align:center;">
+	<img id="record_focus" src="" width="84" height="116">
+</div>
+<!-- 页面左侧-结束 -->
+
+
+
+
+<!-- 页面中间-开始 -->
+<div id="div_banner_center" style="position:absolute;width:152px;height:350px;left:115px;top:120px;text-align:center;">
+	<img id="banner_center" title="{:U('SectionList/index?courseId='.$c1['id'])}" src="{$c1['banner']}" width="142" height="340">
+</div>
+<div id="div_banner_center_focus" style="position:absolute;visibility: hidden;width:162px;height:360px;left:110px;top:116px;text-align:center;">
+	<img id="banner_center_focus" src="" width="148" height="348">
+</div>
+<!-- 页面中间-结束-->
+
+
+
+<!-- 页面右侧-开始  -->
+	<!-- 右侧上方--专题 -->
+	<div id="div_special_1_center" style="position:absolute;width:238px;height:174px;left:265px;top:120px;text-align:center;">
+		<img id="special_1" title="{:U('SectionList/index?courseId='.$c2['id'])}" src="{$c2['banner']}" width="228" height="164">
+	</div>
+	<div id="div_special_1_focus" style="position:absolute;visibility: hidden;width:248px;height:184px;left:260px;top:116px;text-align:center;">
+		<img id="special_1_focus" src="" width="234" height="172">
+	</div>
+	<!-- 小学以上是课程，小学以下是成长指标 -->
+	<if condition="$isEarly eq true">
+		<div id="div_special_2_center" style="position:absolute;width:120px;height:174px;left:501px;top:120px;text-align:center;">
+			<img id="special_2" title="{$target['linkUrl']}" src="__SD__/images/index/recommend/target_{$target['stageKey']}.png" width="110" height="164">
+		</div>
+	<else />
+		<div id="div_special_2_center" style="position:absolute;width:120px;height:174px;left:501px;top:120px;text-align:center;">
+			<img id="special_2" title="{:U('SectionList/index?courseId='.$target['id'])}" src="{:get_upfile_url($target['imgUrl'])}" width="110" height="164">
+		</div>
+	</if>
+	<div id="div_special_2_focus" style="position:absolute;visibility: hidden;width:130px;height:184px;left:496px;top:116px;text-align:center;">
+		<img id="special_2_focus" src="" width="116" height="172">
+	</div>
+
+	<!-- 右侧下方-推荐课程 -->
+	<volist name="courses" id="c" >
+		<php>
+			$top = 296; $left = 265 + ($i-1)*118;
+		</php>
+		<div id="div_course_{$i}" style="position:absolute;width:120px;height:174px;left:{$left}px;top:{$top}px;text-align:center;">
+			<img id="course_{$i}" title="{:U('SectionList/index?courseId='.$c['id'])}" src="{:get_upfile_url($c['imgUrl'])}" width="110" height="164">
+		</div>
+		<div id="div_course_{$i}_focus" style="position:absolute;visibility:hidden;width:130px;height:184px;left:{$left-5}px;top:{$top-4}px;text-align:center;">
+			<img id="course_{$i}_focus" src="" width="116" height="172">
+		</div>
+	</volist>
+<!-- 页面右侧-结束 -->	
+	
+<script type="text/javascript">
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "ch_2" && Epg.btn.current.id != "ch_3"){
+		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != "ch_1"){
+		setTimeout("Epg.btn.click()",500);
+	}
+}
+
+</script>
+

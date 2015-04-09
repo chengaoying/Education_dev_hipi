@@ -6,8 +6,9 @@ return array (
 		
 	//专区适配设置	
 	'DEFAULT_MODULE'	=> 'Hd80027',	//默认分组模块
-	'AREA_CODE' 		=> '80027',		//地区编码
+	'AREA_CODE' 		=> 'Hd80027',		//地区编码
 	'PARENT_MODULE'     => 'Hd',		//父类分组模块
+
 	'DEBUG_MODE'		=> 1,			//debug模式，1-开启，0-关闭
 	'PRO_KEY'			=> 'hipi',		//产品key
 	

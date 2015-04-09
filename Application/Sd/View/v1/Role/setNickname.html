@@ -1,0 +1,72 @@
+<layout name="layout" />
+<style>
+    body{ background-image:url(__SD__/images/usercenter/baseInfo/info_bg.jpg); }
+
+/* 设置昵称  */
+#nickname_set{
+	position:absolute;
+    display: block;
+    width:72px;
+    height:30px;
+    top:75px;
+    left:65px;	
+    background-image:url(__SD__/images/usercenter/baseInfo/nickname_set.png);
+}
+</style>
+
+<script type="text/javascript">
+
+/* 页面可点击按钮  */
+var buttons=
+	[
+		{id:'nickname',name:'nickname',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'',down:'ok'},
+		{id:'ok',name:'确定',action:'submit()',linkImage:'__SD__/images/usercenter/baseInfo/confirm_1.png',focusImage:'__SD__/images/usercenter/baseInfo/confirm_2.png',up:'nickname',down:''},
+	];
+
+
+window.onload=function()
+{
+	focusHandler();
+	//Epg.tip('');//显示info信息，3秒后自动隐藏，如果info为空将不会显示
+	Epg.btn.init('nickname',buttons,true);	
+};
+
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',0)}" ></a>
+
+<!-- 静态图片 -->
+<div id="nickname_set"></div>
+
+<form id="form" action="{:U(Role/setNickname)}" method="post" style="padding:10px">
+	<div id="div_nickname" style="position:absolute;left:65px;top:150px;">
+		<input type="text" id="nickname" name="nickname" value="{$nickName}" maxlength="8" style="width:190px;height:30px;font-size:30px;"/><br/><br/>
+	</div>
+</form>
+
+<!-- 确定按钮 -->
+ <div id="div_ok" style="position:absolute;width:70px;height:37px;left:65px;top:230px;">
+    <!-- <img id="ok" title="" src="__SD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50"> -->
+	<a id="focus" style="display:block" href="javascript:submit();" onclick="editSubmit()"
+			onmouseover="changeImage('#btn_ok','__SD__/images/usercenter/baseInfo/confirm_2.png')" 
+			onmouseout="changeImage('#btn_ok','__SD__/images/usercenter/baseInfo/confirm_1.png')"><img 
+			id="btn_ok" src="__SD__/images/usercenter/baseInfo/confirm_1.png" width="70" height="37">
+	</a>
+</div>
+
+<script type="text/javascript">
+
+function submit(){
+	G('form').submit();
+}
+
+function focusHandler(){
+//	G('nickname').focus();
+}
+
+function blurHandler(){
+//	G('nickname').blur();
+}
+</script>
+
+

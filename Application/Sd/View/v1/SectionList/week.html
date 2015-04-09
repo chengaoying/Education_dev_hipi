@@ -1,0 +1,200 @@
+<layout name="layout" />
+<style type="text/css">
+    body{ background-image:url(__SD__/images/common/bg.jpg); }
+    
+    /* 栏目logo */
+    .ch_logo{
+        position: absolute;
+        display: block;
+        top:60px;
+        left:29px;
+        width: 72px;
+        height: 30px;
+        background: url(__SD__/images/sectionList/preschool/week/title_week.png) no-repeat;
+    }
+    
+    /*课程列表背景*/
+    .weekbg{
+        position: absolute;
+        display: block;
+        top:120px;
+        left:24px;
+        width: 1130px;
+        height: 440px;
+        background: url(__SD__/images/sectionList/preschool/week/bg.png) no-repeat;
+    }
+    
+    .week_shadow{
+        position: absolute;
+        display: block;
+        top:620px;
+        left:75px;
+        width: 1130px;
+        height: 49px;
+        background: url(__SD__/images/common/shadow_3.png) no-repeat;
+    }
+    
+    .week{
+		position:absolute;
+		width:44px;
+		height:24px;
+		left:190px;
+		top:61px;
+		text-align:center;
+		line-height:24px;	
+    }
+</style>
+
+<script type="text/javascript">
+
+
+var buttons=
+	[
+	 	
+        /*课时列表*/
+	 	{id:'section_1_1',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_1',up:'btn_prev_week',down:'section_1_2'},
+        {id:'section_1_2',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_2',up:'section_1_1',down:'section_1_3'},
+        {id:'section_1_3',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_3',up:'section_1_2',down:'section_1_4'},
+        {id:'section_1_4',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_4',up:'section_1_3',down:'section_1_5'},
+        {id:'section_1_5',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_1.png',left:'',right:'section_2_5',up:'section_1_4',down:''},
+        {id:'section_2_1',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_2.png',left:'section_1_1',right:'section_3_1',up:'btn_prev_week',down:'section_2_2'},
+        {id:'section_2_2',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_2.png',left:'section_1_2',right:'section_3_2',up:'section_2_1',down:'section_2_3'},
+        {id:'section_2_3',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_2.png',left:'section_1_3',right:'section_3_3',up:'section_2_2',down:'section_2_4'},
+        {id:'section_2_4',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_2.png',left:'section_1_4',right:'section_3_4',up:'section_2_3',down:'section_2_5'},
+        {id:'section_2_5',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_2.png',left:'section_1_5',right:'section_3_5',up:'section_2_4',down:''},
+        {id:'section_3_1',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_3.png',left:'section_2_1',right:'section_4_1',up:'btn_next_week',down:'section_3_2'},
+        {id:'section_3_2',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_3.png',left:'section_2_2',right:'section_4_2',up:'section_3_1',down:'section_3_3'},
+        {id:'section_3_3',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_3.png',left:'section_2_3',right:'section_4_3',up:'section_3_2',down:'section_3_4'},
+        {id:'section_3_4',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_3.png',left:'section_2_4',right:'section_4_4',up:'section_3_3',down:'section_3_5'},
+        {id:'section_3_5',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_3.png',left:'section_2_5',right:'section_4_5',up:'section_3_4',down:''},
+        {id:'section_4_1',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_4.png',left:'section_3_1',right:'section_5_1',up:'btn_next_week',down:'section_4_2'},
+        {id:'section_4_2',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_4.png',left:'section_3_2',right:'section_5_2',up:'section_4_1',down:'section_4_3'},
+        {id:'section_4_3',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_4.png',left:'section_3_3',right:'section_5_3',up:'section_4_2',down:'section_4_4'},
+        {id:'section_4_4',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_4.png',left:'section_3_4',right:'section_5_4',up:'section_4_3',down:'section_4_5'},
+        {id:'section_4_5',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_4.png',left:'section_3_5',right:'section_5_5',up:'section_4_4',down:''},
+        {id:'section_5_1',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_5.png',left:'section_4_1',right:'section_6_1',up:'btn_order',down:'section_5_2'},
+        {id:'section_5_2',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_5.png',left:'section_4_2',right:'section_6_1',up:'section_5_1',down:'section_5_3'},
+        {id:'section_5_3',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_5.png',left:'section_4_3',right:'section_6_2',up:'section_5_2',down:'section_5_4'},
+        {id:'section_5_4',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_5.png',left:'section_4_4',right:'section_6_2',up:'section_5_3',down:'section_5_5'},
+        {id:'section_5_5',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_5.png',left:'section_4_5',right:'section_6_3',up:'section_5_4',down:''},
+        {id:'section_6_1',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_6.png',left:'section_5_2',right:'section_7_1',up:'btn_order',down:'section_6_2'},
+        {id:'section_6_2',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_6.png',left:'section_5_3',right:'section_7_2',up:'section_6_1',down:'section_6_3'},
+        {id:'section_6_3',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_6.png',left:'section_5_5',right:'section_7_3',up:'section_6_2',down:'section_6_4'},
+        {id:'section_7_1',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_7.png',left:'section_6_1',right:'',up:'btn_order',down:'section_7_2'},
+        {id:'section_7_2',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_7.png',left:'section_6_2',right:'',up:'section_7_1',down:'section_7_3'},
+        {id:'section_7_3',name:'',action:'',focusImage:'__SD__/images/sectionList/preschool/week/select_box_7.png',left:'section_6_3',right:'',up:'section_7_2',down:'section_7_4'},
+        
+	 	/* 订购按钮 */	
+	 	{id:'btn_order',name:'订购',action:'',linkImage:'__SD__/images/common/order/btn_order.png',focusImage:'__SD__/images/common/order/btn_order_over.png',left:'btn_next_week',right:'',up:'',down:'section_7_1'},
+	 	
+	 	/* 前一天 /后一天 */
+		{id:'btn_prev_week',name:'',action:'pageUp()',linkImage:'__SD__/images/common/page/page_prev.png',focusImage:'__SD__/images/common/page/page_prev_over.png',selectBox:'',left:'',right:'btn_next_week',down:'section_2_1'},
+		{id:'btn_next_week',name:'',action:'pageDown()',linkImage:'__SD__/images/common/page/page_next.png',focusImage:'__SD__/images/common/page/page_next_over.png',selectBox:'',left:'btn_prev_week',right:'btn_order',down:'section_3_1'},
+	
+	];
+
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	//栏目
+	for(var i=0; i<31; i++)
+	{
+		buttons[i].linkImage = '__SD__/images/common/transparent.png';
+	}
+	
+}
+
+var url = "{:U('SectionList/week').'?preFocus='.$preFocus}";
+
+//上一页
+function pageUp()
+{
+	url += "&focus="+Epg.btn.current.id+"&week={$prevWeek}";
+	Epg.jump(url);
+}
+
+//下一页
+function pageDown()
+{
+	url += "&focus="+Epg.btn.current.id+"&week={$nextWeek}";
+	Epg.jump(url);
+}
+
+var defaultId = "{$focus}";
+
+window.onload=function()
+{
+	initButtons();
+	popup();
+	
+	//翻页焦点定位
+	if(defaultId == "btn_prev_week" && Epg.isEmpty(G(defaultId))){
+		defaultId = "btn_next_week";
+	}
+	if(defaultId == "btn_next_week" && Epg.isEmpty(G(defaultId))){
+		defaultId = "btn_prev_week";
+	}
+	
+	Epg.btn.init([defaultId,'btn_order'],buttons,true);	
+};
+</script>
+
+<a id="a_back" style="display:none;" href="{$backUrl}" ></a>
+
+<!-- 左上角的栏目LOGO -->
+<div class="ch_logo"></div>
+
+<!-- 周数 -->
+<div class="week" style="font-size:13px;">第{$week}周</div>
+<!-- 前一周 -->
+<if condition="$week gt 1">
+	<div id="div_btn_prev_week" style="position:absolute;width:14px;height:24px;left:173px;top:61px;text-align:center;">
+	    <img id="btn_prev_week" src="__SD__/images/common/page/page_prev.png" width="14" height="24">
+	</div>
+<else />
+	<div id="div_btn_prev_week" style="position:absolute;width:14px;height:24px;left:173px;top:61px;text-align:center;">
+    	<img src="__SD__/images/common/page/page_prev_none.png" width="14" height="24">
+	</div>
+</if>
+<!-- 后一周 -->
+<if condition="$week lt 52">
+	<div id="div_btn_next_week" style="position:absolute;width:14px;height:24px;left:237px;top:61px;text-align:center;">
+	    <img id="btn_next_week" src="__SD__/images/common/page/page_next.png" width="14" height="24">
+	</div>
+<else />
+	<div id="div_btn_next_week" style="position:absolute;width:14px;height:24px;left:237px;top:61px;text-align:center;">
+    	<img src="__SD__/images/common/page/page_next_none.png" width="14" height="24">
+	</div>
+</if>
+
+<!-- 订购 -->
+<div id="div_btn_order" style="position:absolute;width:53px;height:30px;top:60px;left:559px;">
+	<img id="btn_order" title="{:U('Order/index?courseId='.$courseId.'&preFocus='.$preFocus)}" src="__SD__/images/common/order/btn_order.png">
+</div>
+
+<!-- 背景  -->
+<div class="weekbg"></div>
+
+<!-- 一周课时列表 -->
+<volist name="sections" id="week" key="i">
+    <volist name="week" id="section" key="j">
+        <php>
+            $left = 29+($i-1)*84;
+            if(($i == 6) || ($i==7)){
+                $height = 70;
+                $top = 230+($j-1)*76;
+            }else{
+                $height = 53;
+                $top = 183+($j-1)*55;
+            }
+        </php>
+        <div id="div_section_{$i}_{$j}" style="position:absolute;width:79px;height:{$height}px;left:{$left}px;top:{$top}px;line-height: {$height}px;text-align:center;">
+             <img id="section_{$i}_{$j}" title="{:U('Section/index?sectionId='.$section['id'].'&courseId='.$courseId.'&preFocus='.$preFocus)}" src="__SD__/images/common/transparent.png" width="79" height="{$height}">
+        </div>
+        <div id="div_section_{$i}_{$j}" style="position:absolute;width:79px;height:{$height}px;left:{$left}px;top:{$top}px;text-align:left;vertical-align: middle;">
+            <span style="color:#666;font-size:13px;">{$section['name']}</span>
+        </div>
+    </volist>
+</volist>
+
+<!-- 底部投影  -->
+<div class="week_shadow"></div>

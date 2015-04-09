@@ -1,0 +1,160 @@
+<layout name="layout" />
+
+<style>
+
+	body{ background-image:url(__SD__/images/common/bg.jpg); }
+/* 用户信息背景底框 */
+#bottom{
+	position: absolute;
+	display: block;
+	width: 580px;
+	height: 260px;
+	top: 190px;
+	left: 30px;
+	background-image: url(__SD__/images/usercenter/detail/bottom.png);
+}
+
+/* 文字 */
+#word{
+	position: absolute;
+	display: block;
+	width: 122px;
+	height: 31px;
+	top:55px;
+	left:35px;
+	background-image: url(__SD__/images/usercenter/detail/word.png);
+}
+/* 分数*/
+#score{
+	position: absolute;
+	display: block;
+	width: 415px;
+	height: 47px;
+	top:120px;
+	left:190px;
+	background-image: url(__SD__/images/usercenter/detail/score.png);
+}
+
+/* 分页 */
+.page_prev{
+	position:absolute;
+	width:25px;
+	height:32px;
+	left:525px;
+	top:470px;
+}
+.text{
+	position:absolute;
+	width:30px;
+	height:20px;
+	line-height:20px;
+	left:537px;
+	top:472px;
+	text-align:center;
+}
+.page_next{
+	position:absolute;
+	width:25px;
+	height:32px;
+	left:565px;
+	top:470px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+	var focus = '{$focus}';
+	var buttons = [
+	/* 栏目  */
+	{id:'page_prev',name:'',action:'pageUp()',linkImage:'__SD__/images/common/page/page_prev.png',focusImage:'__SD__/images/common/page/page_prev_over.png',selectBox:'',right:'page_next',down:'',up:['wrong_3','wrong_2','wrong_1'],left:'ch_2'},
+	{id:'page_next',name:'',action:'pageDown()',linkImage:'__SD__/images/common/page/page_next.png',focusImage:'__SD__/images/common/page/page_next_over.png',selectBox:'',left:'page_prev',down:'',up:['wrong_3','wrong_2','wrong_1']},
+
+	];
+	
+ 	function handleFocus(focus)//焦点判断
+	{
+		if(focus == 'page_next' || focus == 'page_prev')
+		{
+			focus = ( ( focus=='page_prev'&& G(focus) ) ? focus : 'page_next' ); 
+			focus = ( ( focus=='page_next'&& G(focus) ) ? focus : 'page_prev' ); 
+		}
+		return focus;
+	} 
+ 	
+	window.onload = function() {
+		focus = handleFocus(focus);
+		Epg.btn.init(focus, buttons, true);
+		
+		//设置翻页键翻页事件
+		Epg.key.set(
+		{
+			KEY_PAGE_UP:'pageUp()',
+			KEY_PAGE_DOWN:'pageDown()',
+		});
+	};
+	
+	var url = "{:U('Learning/detail')}";
+	//上一页
+	function pageUp()
+	{
+		url += '?focus='+ Epg.btn.current.id +'&page=';
+		Epg.page(url,{$page}-1,{$pageCount});
+	}
+
+	//下一页
+	function pageDown()
+	{
+		url += '?focus='+ Epg.btn.current.id +'&page=';
+		Epg.page(url,{$page}+1,{$pageCount});
+	}
+</script>
+
+
+<!-- 静态图片 -->
+<div id="bottom"></div>
+<div id="word"></div>
+<div id="score"></div>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('learning/learningPreschool',1)}" ></a>
+
+
+<!-- 课程名字 -->
+<div style="position:absolute;left:160px;top:55px;width:250px;height:30px;line-height:30px;text-align:left;">
+	<span style="font-size:20px;">{$courseName}</span>
+</div>
+<!-- 总分 -->
+<div style="position:absolute;left:265px;top:130px;width:50px;height:30px;line-height:30px;text-align:left;">
+	<span style="color:#ffff64">{$roleScore}</span>
+</div>
+<volist name="datas" id="data" key="i">
+	<php>
+		if($i%2==0)
+		{
+			$left = 50;
+			$top= 192 + ($i/2-1)*43;
+		}
+		else
+		{
+			$left = 330;
+			$top= 192+ (($i+1)/2-1)*43;
+		}
+	</php>
+	<div style="position:absolute;left:{$left}px;top:{$top+2}px;width:100px;height:37px;line-height:37px;text-align:right;">
+		<span>{$data['name']}</span>
+	</div>
+	<div style="position:absolute; left:{$left+110}px; top:{$top+15}px;">
+		<img src="__SD__/images/usercenter/detail/progressBottom.png" width="158" height="12">
+	</div>
+	<div style="position:absolute; left:{$left+100}px; top:{$top+15}px;">
+		<img src="__SD__/images/usercenter/detail/progress.png" width="{$data['length']}" height="15">
+	</div>
+	
+</volist>
+
+
+<!-- 分页 -->
+<!-- <div style="position:absolute; left:1030px; top:620px;">
+	{$pageHtml}
+</div> -->
+{$pageHtml}

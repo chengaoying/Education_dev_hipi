@@ -1,0 +1,190 @@
+<layout name="layout" />
+<script type="text/javascript" src="__COMMON__/js/play/play.js?__CSSJS_VERSION__"></script>
+
+<style type="text/css">
+
+#div_lession{
+    position:absolute;
+    width:100px;
+    height:65px;
+    top:60px;
+    left:100px;
+    visibility:visible;
+    background-image: url(__HD__/images/play/lession_bg.png);            
+}
+
+#div_control{
+    position:absolute;
+    width:332px;
+    height:85px;
+    top:550px;
+    left:474px;
+    visibility:visible;
+    background-image: url(__HD__/images/play/control_bg.png);
+}
+
+#div_back{
+    position:absolute;
+    width:434px;
+    height:287px;
+    top:216px;
+    left:423px;
+    visibility:hidden;
+    background-image: url(__HD__/images/play/back_bg.png);            	
+}
+
+</style>
+
+<script type="text/javascript">
+
+var buttons =
+    [
+      /*播放控制按钮*/
+      {id:'btn_pre', name:'', action:'', linkImage:'__HD__/images/play/btn_pre.png', focusImage: '__HD__/images/play/btn_pre_over.png', selectBox: '', right: 'btn_playOrPause', up: 'btn_exercise'},
+      {id:'btn_playOrPause', name:'', action:'_playOrPause()', linkImage:'__HD__/images/play/btn_play.png', focusImage: '__HD__/images/play/btn_play_over.png', selectBox: '', left: 'btn_pre', right: 'btn_next', up: 'btn_exercise'},
+      {id:'btn_next', name:'', action:'', linkImage:'__HD__/images/play/btn_next.png', focusImage: '__HD__/images/play/btn_next_over.png', selectBox: '', left: 'btn_playOrPause', up: 'btn_exercise'},
+     
+      /* 练习按钮   */
+      {id:'btn_exercise', name:'', action:'', linkImage: '__HD__/images/play/btn_exercise.png', focusImage: '__HD__/images/play/btn_exercise_over.png', selectBox:'',down:'btn_playOrPause'},
+     
+      /*返回弹窗上的按钮*/
+      {id:'btn_continue', name:'', action:'_continue()', linkImage:'__HD__/images/play/btn_continue.png', focusImage: '__HD__/images/play/btn_continue_over.png', selectBox: '',down: 'btn_quit'},
+      {id:'btn_quit', name:'', action:'_quit()', linkImage:'__HD__/images/play/btn_quit.png', focusImage:'__HD__/images/play/btn_quit_over.png', selectBox: '',up: 'btn_continue'},
+    ];
+    
+//视频资源列表    
+var resources = {$resources};
+var p_index = 0;
+
+//是否有返回弹窗。
+var hasWindow = false;
+
+//菜单显示时间
+var time = 5000;
+
+var timer1;
+    
+/**
+ * 播放/暂停
+ */
+function _playOrPause(){
+	if(playStat == "play"){
+		G('btn_playOrPause').src = "__HD__/images/play/btn_pause_over.png";
+		buttons[1]['linkImage'] = '__HD__/images/play/btn_pause.png';
+		buttons[1]['focusImage'] = '__HD__/images/play/btn_pause_over.png';
+		pause();
+	}else{
+		G('btn_playOrPause').src = "__HD__/images/play/btn_play_over.png";
+		buttons[1]['linkImage'] = '__HD__/images/play/btn_play.png';
+		buttons[1]['focusImage'] = '__HD__/images/play/btn_play_over.png';
+		resume();
+	}
+}
+
+/**
+ * 重写返回事件
+ */
+Epg.Button.defBack = function(){
+	if(!hasWindow){
+		clearTimeout(timer1);
+		S('div_back');
+		hasWindow = true;
+		Epg.Button.set('btn_continue');
+		_playOrPause();
+	}
+}
+
+/**
+ * 继续观看
+ */
+function _continue(){
+	H('div_back');
+	hasWindow = false;
+	Epg.Button.set('btn_playOrPause');
+	_playOrPause();
+}
+
+/**
+ * 退出
+ */
+function _quit(){
+	window.location.href = "{$returnUrl}";
+	destoryMP();
+}
+
+//播放控制按键
+Epg.key.set({KEY_PLAY_PAUSE:"_playOrPause_fun()"});
+Epg.key.set({KEY_VOL_UP:"volUp()"});
+Epg.key.set({KEY_VOL_DOWN:"volDown()"});
+Epg.key.set({KEY_FAST_FORWARD:"fastForward_fun()"});
+Epg.key.set({KEY_FAST_REWIND:"fastRewind_fun()"});
+
+//播放或暂停
+function _playOrPause_fun(){
+	if(!hasWindow){
+		S('div_control');
+		Epg.Button.set('btn_playOrPause')
+		clearTimeout(timer1);
+		timer1 = setTimeout("H('div_control')", time);
+		_playOrPause();
+	}
+}
+
+//每秒执行一次，如果视频播放控制菜单是隐藏的，则把焦点定位到练习按钮上。
+setInterval('isControl()',1000);
+function isControl(){
+	var o = G('div_control').style.visibility;
+	if(o == 'hidden'){
+		Epg.Button.set('btn_exercise');
+	}
+}
+
+window.onload = function() {
+    Epg.btn.init('btn_exercise', buttons, true);
+    
+    //视频播放
+    //initPlayer();
+    
+    //显示视频播放控制菜单，进度条，5秒内没有操作则隐藏
+    timer1 = setTimeout("H('div_control')", time);
+    setPlayTime();
+}
+
+</script>
+
+<!-- 课堂\练习-->
+<div id="div_lession"></div>
+<if condition="$libId neq ''">
+	<div id="div_btn_exercise" style="position:absolute;width:100px;height:65px;left:200px;top:60px;">
+	    <img id="btn_exercise" title="{:U('Library/detail?sectionId='.$libId.'&courseId='.$courseId)}" src="__HD__/images/play/btn_exercise.png" width="100" height="65">
+	</div>
+</if>
+
+<!-- 播放控制 -->
+<div id="div_control">
+	<!-- 上一集 -->
+	<div id="div_btn_pre" style="position:absolute;width:28px;height:31px;left:50px;top:25px;z-index: 1000;">
+	    <img id="btn_pre" title="{:U('Section/index?sectionId='.$prevSeciton.'&courseId='.$courseId)}" src="__HD__/images/play/btn_pre.png" width="28" height="31">
+	</div>
+	<!-- 播放暂停 -->
+	<div id="div_btn_playOrPause" style="position:absolute;width:48px;height:49px;left:138px;top:14px;">
+	    <img id="btn_playOrPause" src="__HD__/images/play/btn_play.png" width="48" height="49">
+	</div>
+	<!-- 下一集 -->
+	<div id="div_btn_next" style="position:absolute;width:28px;height:31px;left:254px;top:25px;">
+	     <img id="btn_next" title="{:U('Section/index?sectionId='.$nextSeciton.'&courseId='.$courseId)}" src="__HD__/images/play/btn_next.png" width="31" height="28">
+	</div>
+</div>
+
+<!-- 返回弹窗 -->
+<div id="div_back">
+    <div id="div_btn_continue" style="position:absolute;width:146px;height:56px;left:60px;top:55px;">
+        <img id="btn_continue" src="__HD__/images/play/btn_continue.png" width="146" height="56">
+    </div>
+    <div id="div_btn_quit" style="position:absolute;width:146px;height:56px;left:60px;top:130px;">
+        <img id="btn_quit" src="__HD__/images/play/btn_quit.png" width="146" height="56">
+    </div>
+</div>  
+
+
+<video src="http://121.201.104.244:8502/100011192.mp4" loop="loop"  autoplay width="1280" height="720"></video>

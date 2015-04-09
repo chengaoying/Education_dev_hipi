@@ -1,0 +1,173 @@
+<layout name="layout" />
+<style>
+    body{ background-image:url(__SD__/images/usercenter/baseInfo/info_bg.jpg); }
+/* 选择账号  */
+#selectFace_set{
+	position:absolute;
+    display: block;
+    width:71px;
+    height:31px;
+    top:70px;
+    left:75px;	
+    background-image:url(__SD__/images/usercenter/changeNum/changeNum_set.png);
+}
+/* 提示 */
+#tip{
+	position:absolute;
+    display: block;
+    width:348px;
+    height:22px;
+    top:73px;
+    left:170px;	
+    background-image:url(__SD__/images/usercenter/changeNum/changeNum_tip.png);
+}
+
+
+</style>
+
+<script type="text/javascript">
+
+var countButton = {$count}+2;
+var isLeft = {$leftDir};
+var isRight = {$rightDir};
+
+/* 页面可点击按钮  */
+var buttons= new Array(countButton);
+
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	
+	for(var i=0; i<buttons.length; i++)
+	{
+		obj = new Object();
+		
+		obj.id = 'option_' + i;
+		obj.action = 'select(' + '\"' + i + '\"' + ')';
+		obj.linkImage = "__SD__/images/usercenter/changeNum/right_1.png";
+		obj.focusImage = "__SD__/images/usercenter/changeNum/right_2.png";
+		obj.selectBox = '__SD__/images/usercenter/changeNum/kuang.png';
+		obj.left = 'option_' + (i-1);
+		obj.right = 'option_' + (i+1);
+		
+		buttons[i] = obj;
+	}
+	if(!isLeft)
+	{
+		buttons[1].left = '';
+	}
+	else
+	{
+		buttons[0].left = '';
+		buttons[0].linkImage = "__SD__/images/usercenter/changeNum/left_1.png";
+		buttons[0].focusImage = "__SD__/images/usercenter/changeNum/left_2.png";
+		buttons[0].focusHandler = 'focusHandler()';
+		buttons[0].selectBox = '';
+	}
+	if(!isRight)
+	{
+		buttons[countButton-2].right = '';
+	}
+	else
+	{
+		buttons[countButton-1].right = '';
+		buttons[countButton-1].linkImage = "__SD__/images/usercenter/changeNum/right_1.png";
+		buttons[countButton-1].focusImage = "__SD__/images/usercenter/changeNum/right_2.png";
+		buttons[countButton-1].focusHandler = 'focusHandler()';
+		buttons[countButton-1].selectBox = '';
+	}
+}
+window.onload=function()
+{
+	initButtons();
+	popup();
+	Epg.btn.init('option_1',buttons,true);	
+};
+
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',0)}" ></a>
+
+<!-- 静态图片 -->
+<div id="selectFace_set"></div>
+<div id="tip"></div>
+
+
+<form id="form" action="{:U('Role/changeNum')}" method="post" style="padding:10px">
+	<for start="1" end="$count+1" step="1" name="i">
+		<input type="hidden" id="option_{$i}ID" name="option_{$i}" value=""/>	
+	</for>
+</form>
+
+
+<volist name ="lists" id ="list" key="i">
+	<php>
+		$top = 160;
+		$left = 90 + ($i-1)*120;
+		$count = count($lists);
+	</php>
+	
+	
+	<div id="div_option_{$i}" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
+		<img id="option_{$i}" src="" >
+	</div>
+	<div id="div_bottom_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;text-align:center;">
+		<img id="bottom_{$i}" src="__SD__/images/usercenter/changeNum/changeNum_bottom.png" width="100" height="213">
+	</div>
+ 	<div id="div_face_{$i}" style="position:absolute;left:{$left+5}px;top:{$top+10}px;text-align:center;">
+		<img id="face_{$i}" src="__SD__/images/usercenter/changeNum/face_{$list['face']}.png" width="90" height="147">
+	</div>
+	<if condition="$list['name'] != ''"><!-- 最后一个不显示以下两项  -->
+		<div id="div_name_{$i}" style="position:absolute;left:{$left+5}px;top:{$top+163}px;text-align:center;line-height:20px;width:90px;height:20px;">
+			<span style="color:blue;font-size:18px;" > {$list['name']} </span>
+		</div>
+		 <div id="div_stage_{$i}" style="position:absolute;left:{$left+30}px;top:{$top+187}px;text-align:center;">
+			<img id="stage_{$i}" src="__SD__/images/usercenter/changeNum/s_{$list['stage']}.png" width="33" height="15">
+		</div>
+	</if>
+	<div id="div_option_{$i}_focus" style="position:absolute;visibility:hidden;left:{$left-1}px;top:{$top-2}px;text-align:center;">
+		<img id="option_{$i}_focus" src="" width="99" height="214">
+	</div>
+</volist>
+
+<!-- 左分页符号 -->
+<if condition="$leftDir">
+	<div id="div_option_0" style="position:absolute;left:30px;top:250px;text-align:center;">
+		<img id="option_0" title="{:U('Role/changeNum?page='.($page-1))}"  src="__SD__/images/usercenter/changeNum/left_1.png" width="25" height="30">
+	</div>
+</if>
+<!-- 右分页符号 -->
+<if condition="$rightDir">
+	<div id="div_option_{$count+1}" style="position:absolute;left:590px;top:250px;text-align:center;">
+		<img id="option_{$count+1}" title="{:U('Role/changeNum?page='.($page+1))}" src="__SD__/images/usercenter/changeNum/right_1.png" width="25" height="30">
+	</div>
+</if>
+
+<script type="text/javascript">
+
+function select(option){
+	var lists = {$json_lists};
+	if(option == countButton-1)
+	{
+		window.location.href = "/Sd/Role/changeNum?page="+{$page+1};
+	}
+	else if(option == 0)
+	{
+		window.location.href = "/Sd/Role/changeNum?page="+{$page-1};
+	}
+	else if((option == countButton-2) && option<=lists.length && lists[option-1]['face']=='add')
+	{
+		window.location.href = "/Sd/Role/createRole";
+	}
+	else
+	{
+		G('option_'+option+'ID').value = lists[option-1]['id'];
+		G('form').submit();
+	}
+}
+
+function focusHandler(){
+	setTimeout("Epg.btn.click()",50)
+}
+</script>
+
+

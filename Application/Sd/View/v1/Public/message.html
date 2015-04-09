@@ -1,0 +1,21 @@
+<layout name="layout" />
+<style>
+body	{ background-image:url(__HD__/images/common/msg/bg.png); }
+</style>
+
+<div style="position:absolute;top:255px;left:350px;">
+	<img src="__HD__/images/common/msg/icon_{$icon}.png"/>
+</div>
+
+<div style="position:absolute;top:295px;left:550px;">
+	<font style="font-size:24px;color:#999;">{$message}</font>
+</div>
+
+<div id="back" style="position:absolute;top:395px;left:550px;">
+	<a id="a_back" href="{:get_back_url('Index/index',1)}"
+		onmouseover="changeImage('#btn_back','__HD__/images/common/msg/btn_back_over.png')" 
+		onmouseout="changeImage('#btn_back','__HD__/images/common/msg/btn_back.png')">
+		<img id="btn_back" src="__HD__/images/common/msg/btn_back.png" />
+	</a>
+</div>
+

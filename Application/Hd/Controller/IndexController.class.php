@@ -217,6 +217,7 @@ class IndexController extends CommonController {
 		$class = $this->getClass();
 		$json_class = get_array_fieldkey(array_slice($class,0,count($class)),array('id','name','chKey','imgUrl','linkUrl'));
 		$json_class = json_encode($json_class);
+		$class = array_values($class);
 		
 		//焦点缓存清空
 		Session('preFocus',null);

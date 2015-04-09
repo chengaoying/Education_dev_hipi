@@ -17,14 +17,19 @@ class IndexController extends \Think\Controller {
 		$this->display();
 	}
 	
+	public function debugAct(){
+		$info = I('info');
+		dump($info);exit;
+	}
 	
-	public function testAct(){
+	
+	/* public function testAct(){
 		$url = "http://192.168.0.152:8500/Api/TestApi/test";
 		vendor('Hprose.HproseHttpClient');
 		$client = new \HproseHttpClient($url);
 		$result = $client->test();
 		dump($result);
-	}
+	} */
 	
 	public function phpRPCAct(){
 		Vendor('phpRPC.phprpc_client');

@@ -1,0 +1,155 @@
+<layout name="layout" />
+<style>
+    body{ background-image:url(__SD__/images/usercenter/baseInfo/info_bg.jpg); }
+/* 设置头像  */
+#selectFace_set{
+	position:absolute;
+    display: block;
+    width:71px;
+    height:31px;
+    top:70px;
+    left:75px;	
+    background-image:url(__SD__/images/usercenter/baseInfo/selectFace_set.png);
+}
+/* 提示 */
+#tip{
+	position:absolute;
+    display: block;
+    width:170px;
+    height:16px;
+    top:75px;
+    left:180px;	
+    background-image:url(__SD__/images/usercenter/baseInfo/select_tip_1.png);
+}
+/* bottom */
+#bottom{
+	position:absolute;
+    display: block;
+    width:553px;
+    height:336px;
+    top:115px;
+    left:45px;	
+    background-image:url(__SD__/images/usercenter/baseInfo/face_bottom.png);
+}
+
+
+</style>
+
+<script type="text/javascript">
+
+/* 页面可点击按钮  */
+var buttons=
+	[
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+		{id:'',name:'',action:'',linkImage:'',focusImage:'',left:'',right:'',up:'',down:''},
+	];
+
+/* 初始化按钮 属性   */
+var initButtons = function(){
+	
+	for(var i=0; i<13; i++)
+	{
+		buttons[i].id = 'face_' + i;
+		buttons[i].action = 'select(' + '\"' + i + '\"' + ')';
+		buttons[i].linkImage = "__SD__/images/usercenter/baseInfo/face_"+ i +".png";
+		buttons[i].focusImage = "__SD__/images/usercenter/baseInfo/face_"+ i +".png";
+		buttons[i].selectBox = '__SD__/images/usercenter/baseInfo/face_kuang.png';
+		buttons[i].left = 'face_' + (i-1);
+		buttons[i].right = 'face_' + (i+1);
+		
+		if(i==0)
+		{
+			buttons[i].left = '';
+			buttons[i].right = 'face_' + (i+1);
+			buttons[i].up = '';
+			buttons[i].down = 'face_' + (i+6);
+		}
+		else if(i==12)
+		{
+			buttons[i].left = 'face_' + (i-1);
+			buttons[i].right = '';
+			buttons[i].up = 'face_' + (i-6);
+			buttons[i].down = '';
+		}
+		else 
+		{
+			if(i<=6)
+			{
+				buttons[i].up = '';
+				buttons[i].down = 'face_' + (i+6);
+			}
+			else
+			{
+				buttons[i].up = 'face_' + (i-6);
+				buttons[i].down = '';
+			}
+		}
+	}
+}
+window.onload=function()
+{
+	initButtons();
+	Epg.btn.init('face_'+{$face},buttons,true);	
+};
+
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',0)}" ></a>
+
+<!-- 静态图片 -->
+<div id="selectFace_set"></div>
+<div id="tip"></div>
+<div id="bottom"></div>
+
+
+<form id="form" action="{:U(Role/selectFace)}" method="post" style="padding:10px">
+	<for start="0" end="13" step="1" name="i">
+		<input type="hidden" id="face_{$i}ID" name="face_{$i}" value=""/>	
+	</for>
+</form>
+
+<!-- 默认  -->
+<div id="div_face_0" style="position:absolute;left:70px;top:155px;text-align:center;">
+	<img id="face_0" src="__SD__/images/usercenter/baseInfo/face_0.png" width="65" height="125">
+</div>
+<div id="div_face_0_focus" style="position:absolute;visibility:hidden;left:70px;top:155px;text-align:center;">
+	<img id="face_0_focus" src="" width="60" height="120">
+</div>
+<for start="1" end="13" step="1" name="i">
+	<php>
+		if($i > 6){
+			$top = 295; $left = 160 + ($i-7)*70;
+		}else{
+			$top = 155; $left = 160 + ($i-1)*70;
+		}
+	</php>
+	<div id="div_face_{$i}" style="position:absolute;left:{$left}px;top:{$top}px;text-align:center;">
+		<img id="face_{$i}" src="__SD__/images/usercenter/baseInfo/face_{$i}.png" width="65" height="125">
+	</div>
+	<div id="div_face_{$i}_focus" style="position:absolute;visibility:hidden;left:{$left}px;top:{$top}px;text-align:center;">
+		<img id="face_{$i}_focus" src="" width="60" height="120">
+	</div>
+</for>
+
+<script type="text/javascript">
+
+function select(face){
+	G('face_'+face+'ID').value = face;
+	G('form').submit();
+}
+
+</script>
+
+

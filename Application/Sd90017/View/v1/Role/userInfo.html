@@ -1,0 +1,170 @@
+<layout name="layout" />
+
+<style>
+
+	body{ background-image:url(__SD__/images/usercenter/bg.jpg); }
+/* 用户信息背景底框 */
+#bottom{
+	position: absolute;
+	display: block;
+	width: 220px;
+	height: 287px;
+	top: 130px;
+	left: 200px;
+	background-image: url(__SD__/images/usercenter/baseInfo/bottom_baseInfo.png);
+}
+</style>
+
+<script type="text/javascript">
+	var faceNum = {$face};
+	var channel = {$json_channel};
+	var focus = '{$focus}';
+	
+	var buttons = [
+	/* 栏目  */
+	{id:'ch_1',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',blurHandler:'blurHandler()',up:'changeNum',down:'ch_2',right:'stage'}, 
+	{id:'ch_2',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_1',down:'ch_3',right:'stage'}, 
+	{id:'ch_3',name:'',action:'',linkImage:'',focusImage:'',resize:'-1',selectBox:'',focusHandler:'focusHandler()',up:'ch_2',right:'stage'},
+
+	{id:'stage',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__SD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'selectFace',right:'',up:'',down:'nickname'},
+	{id:'nickname',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__SD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'changeNum',right:'advantage',up:'stage',down:'birthday'},
+	{id:'birthday',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__SD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_1',right:'disadvantage',up:'nickname',down:'sex'},
+	{id:'sex',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__SD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_2',right:'interests',up:'birthday',down:'phone'},
+	{id:'phone',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__SD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'ch_3',up:'sex',down:''},
+
+	{id:'version',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/kuang_long.png',selectBox:'__SD__/images/usercenter/baseInfo/kuang_long_over.png',resize:'-1',left:'nickname',up:'phone',down:'advantage'},
+	{id:'advantage',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__SD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'nickname',up:'',down:'disadvantage'},
+	{id:'disadvantage',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__SD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'birtSDay',right:'',up:'advantage',down:'interests'},
+	{id:'interests',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/kuang_short.png',selectBox:'__SD__/images/usercenter/baseInfo/kuang_short_over.png',resize:'-1',left:'sex',up:'disadvantage',down:''},
+
+	{id:'selectFace',name:'',action:'',linkImage:'__SD__/images/usercenter/baseInfo/face_'+faceNum+'.png',focusImage:'__SD__/images/usercenter/baseInfo/face_'+faceNum+'.png',selectBox:'__SD__/images/usercenter/leftNavigation/title_kuang.png',right:'nickname',up:'ch_3',down:'changeNum'},
+	{id:'changeNum',name:'',action:'',linkImage:'__SD__/images/usercenter/leftNavigation/change_account.png',focusImage:'__SD__/images/usercenter/leftNavigation/change_account_over.png',selectBox:'',right:'sex',up:'selectFace',down:'ch_1'},
+
+	];
+	
+	var initButtons = function()
+	{
+ 		for(var i=0; i<channel.length; i++)
+		{
+			buttons[i].name = channel[i].name;
+			buttons[i].linkImage = channel[i].linkImage;
+			buttons[i].focusImage = channel[i].focusImage;
+			buttons[i].titleImage = channel[i].titleImage;
+		} 
+	}
+	
+	var filterFocus = function()
+	{
+		if(focus !== 'ch_1') G('ch_1').src = buttons[0].titleImage;
+	}
+	
+	window.onload = function() {
+		initButtons();
+		popup();
+		filterFocus();
+		Epg.btn.init(focus, buttons, true);
+	};
+</script>
+
+
+<!-- 静态图片 -->
+<div id="bottom"></div>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Index/recommend',0)}" ></a>
+
+
+<!-- 以下是导航栏 -->
+<volist name="channels" id="channel" key="i">
+	<php>
+     	$left = 0; $top = 250 + ($i-1)*55;
+    </php>
+    <div id="div_ch_{$i}" style="position:absolute;visibility:visible;left:{$left}px; top:{$top}px;">
+		<img id='ch_{$i}' title="{:U($channel['linkUrl'])}"
+			src="{$channel['linkImage']}" width="148" height="55">
+	</div>
+</volist>
+
+<!-- 选择头像  -->
+<div id="div_selectFace" style="position:absolute;width:63px;height:125px;left:45px;top:55px;text-align:center;">
+	<img id="selectFace" title="{:U('Role/selectFace')}" src="__SD__/images/usercenter/baseInfo/face_{$face}.png" width="63" height="125">
+</div>
+<div id="div_selectFace_focus" style="position:absolute;visibility:hidden;width:63px;height:125px;left:45px;top:55px;text-align:center;">
+	<img id="selectFace_focus" title="" src="" width="58" height="120">
+</div>
+<!-- 切换账号  -->
+<div id="div_changeNum" style="position:absolute;left:45px;top:190px;text-align:center;">
+	<img id="changeNum" title="{:U('Role/changeNum')}" src="__SD__/images/usercenter/leftNavigation/change_account.png" width="63" height="27">
+</div>
+
+
+<!-- 学号  -->
+<div style="position:absolute;line-height:45px;width:60px;padding-top:15px;height:45px;left:415px;top:125px;text-align:center;border-style:none;color:black">
+	<span style="color:white;text-align:center;">{$roleId}</span>
+</div>
+<!-- 用户信息 -->
+<volist name="userInfo" id="info" key="i">
+	<php>
+     	if($i > 5){
+          	$left = 415; $top = 188 + ($i-6)*63;
+       	}else{
+           	$left = 250; $top = 125 + ($i-1)*63;
+        }
+    </php>
+	
+	<volist name="info['content']" id="content" key="j">
+		<php>
+			if($info['name']=="advantage" || $info['name']=="disadvantage"){
+          		$bottom = 'kuang_short.png';
+          		$bottom_over = 'kuang_short_over.png';
+          		$width = 51;
+          		$left_content = $left + (($j-1)%4)*55;
+          		$top_content = $top;
+       		}
+       		else if($info['name']=="interests")
+       		{
+          		$bottom = 'kuang_short.png';
+          		$bottom_over = 'kuang_short_over.png';
+          		$width = 51;
+          		$left_content = $left + (($j-1)%4)*55;
+          		$top_content = $top + floor(($j-1)/4)*55;
+       		}
+       		else
+       		{
+           		$bottom = 'kuang_long.png';
+           		$bottom_over = 'kuang_long_over.png';
+           		$width = 93;
+           		$left_content = $left;
+           		$top_content = $top; 
+        	}
+		</php>
+		<div id="div_{$info['name']}" style="position:absolute;left:{$left_content}px;top:{$top_content}px;text-align:center;">
+			<img id="{$info['name']}" title="{$info['linkUrl']}" src="__SD__/images/usercenter/baseInfo/{$bottom}" width={$width} height="45">
+		</div>
+		<div id="div_{$info['name']}_focus" style="position:absolute;visibility:hidden;left:{$left_content}px;top:{$top_content}px;text-align:center;">
+			<img id="{$info['name']}_focus" src="__SD__/images/usercenter/baseInfo/{$bottom_over}" width={$width} height="45">
+		</div>
+		<div id="div_{$info['name']}_content" style="position:absolute;width:{$width-5}px;padding-top:15px;left:{$left_content}px;top:{$top_content}px;text-align:center;">
+			<span style="color:black;text-align:center;">{$content}</span>
+		</div>
+	</volist>
+	
+</volist>
+
+
+<script type="text/javascript">
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	if(Epg.btn.current.id != "ch_2" && Epg.btn.current.id != "ch_3"){
+		G(Epg.btn.previous.id).src = Epg.btn.previous.titleImage;
+	}
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	if(Epg.btn.current.id != "ch_1"){
+		setTimeout("Epg.btn.click()",50);
+	}
+}
+
+</script>

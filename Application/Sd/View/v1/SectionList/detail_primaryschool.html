@@ -1,0 +1,196 @@
+<layout name="layout" />
+
+<style>
+body{ background-image:url(__SD__/images/sectionList/primaryschool/bg.png); }
+
+.page_prev{
+	position:absolute;
+	width:14px;
+	height:24px;
+	left:530px;
+	top:250px;
+}
+.text{
+	position:absolute;
+	width:80px;
+	height:30px;
+	line-height:18px;
+	font-size:18px;
+	left:525px;
+	top:252px;
+	text-align:center;
+}
+.page_next{
+	position:absolute;
+	width:14px;
+	height:24px;
+	left:585px;
+	top:250px;
+}
+    
+    
+</style>
+
+<script type="text/javascript">
+
+var buttons=
+	[
+		/* 上边 */
+		{id:'btn_record',name:'',action:'',linkImage:'__SD__/images/sectionList/primaryschool/btn_record.png',focusImage:'__SD__/images/sectionList/primaryschool/btn_record_over.png',selectBox:'',right:'btn_plan',down:'section_1'},
+		{id:'btn_plan',name:'',action:'addPlan()',linkImage:'__SD__/images/sectionList/primaryschool/btn_plan.png',focusImage:'__SD__/images/sectionList/primaryschool/btn_plan_over.png',selectBox:'',right:'btn_order',left:'btn_record' ,down:'section_1',},
+		{id:'btn_order',name:'',action:'order()',linkImage:'__SD__/images/sectionList/primaryschool/btn_order.png',focusImage:'__SD__/images/sectionList/primaryschool/btn_order_over.png',selectBox:'',right:['page_prev','page_next'],left:'btn_plan',down:['page_prev','page_next']},
+		
+		/* 分页按钮 */
+		{id:'page_prev',name:'',action:'pageUp()',linkImage:'__SD__/images/common/page/page_prev.png',focusImage:'__SD__/images/common/page/page_prev_over.png',selectBox:'',left:'btn_order',right:'page_next',down:['section_6','section_1'],up:'btn_order'},
+    	{id:'page_next',name:'',action:'pageDown()',linkImage:'__SD__/images/common/page/page_next.png',focusImage:'__SD__/images/common/page/page_next_over.png',selectBox:'',left:['page_prev','btn_order'],down:['section_6','section_1'],up:'btn_order'},
+        
+		/* 下边 */
+		{id:'section_1',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',right:'section_6',up:'btn_record',down:'section_2'},
+		{id:'section_2',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',right:'section_7',up:'section_1',down:'section_3'},
+		{id:'section_3',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',right:'section_8',up:'section_2',down:'section_4'},
+		{id:'section_4',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',right:'section_9',up:'section_3',down:'section_5'},
+		{id:'section_5',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',right:'section_10',up:'section_4'},
+		{id:'section_6',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',left:'section_1',up:['page_prev','page_next'],down:'section_7'},
+		{id:'section_7',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',left:'section_2',up:'section_6',down:'section_8'},
+		{id:'section_8',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',left:'section_3',up:'section_7',down:'section_9'},
+		{id:'section_9',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',left:'section_4',up:'section_8',down:'section_10'},
+		{id:'section_10',name:'',action:'',linkImage:'',focusImage:'',focusHandler:'focusHandler()',blurHandler:'blurHandler()',selectBox:'__SD__/images/common/selectBox/select_box_208x43.png',left:'section_5',up:'section_9'}
+	];
+
+/* 初始化按钮 属性   */
+var initButtons = function(){}
+
+var url = "{:U('SectionList/index').'?courseId='.$course['id'].'&preFocus='.$preFocus}";
+
+//上一页
+function pageUp()
+{
+	url += "&focus="+Epg.btn.current.id+"&page=";
+	Epg.page(url,{$page}-1,{$pageCount});
+}
+
+//下一页
+function pageDown()
+{
+	url += "&focus="+Epg.btn.current.id+"&page=";
+	Epg.page(url,{$page}+1,{$pageCount});
+}
+
+var defaultId = "{$focus}";
+
+window.onload=function()
+{
+	initButtons();
+	popup();
+	
+	//翻页焦点定位
+	if(defaultId == "page_next" && Epg.isEmpty(G(defaultId))){
+		defaultId = "page_prev";
+	}
+	if(defaultId == "page_prev" && Epg.isEmpty(G(defaultId))){
+		defaultId = "page_next";
+	}
+	
+	Epg.btn.init([defaultId,'btn_record'],buttons,true);	
+	
+	//设置翻页键翻页事件
+	Epg.key.set(
+	{
+		KEY_PAGE_UP:'pageUp()',
+		KEY_PAGE_DOWN:'pageDown()',
+	});
+};
+</script>
+
+<a id="a_back" style="display:none;" href="{$backUrl}" ></a>
+
+<!-- 课程iconcourse_icon -->
+<div id="div_course_icon" style="position:absolute;left:29px;top:50px;">
+	<img src="{:get_upfile_url($course['imgUrl'])}" width="110" height="164">
+</div>
+<div style="position:absolute;left:29px;top:238px;">
+	<span style="font-size:13px;">共{$total}课时<br>
+	800人正在学习该课程
+	</span>
+</div>
+
+<!-- 继续观看 -->
+<div id="div_btn_record" style="position:absolute;width:75px;height:30px;left:191px;top:182px;text-align:center;">
+	<img id="btn_record"  src="__SD__/images/sectionList/primaryschool/btn_record.png" width="75" height="30">
+</div>
+
+<!-- 加入学习计划 -->
+<div id="div_btn_plan" style="position:absolute;width:100px;height:30px; left:280px;top:182px;">
+	<img id="btn_plan" src="__SD__/images/sectionList/primaryschool/btn_plan.png" width="100" height="30">
+</div>	
+
+<!-- 订购该课程 -->
+<div id="div_btn_order" style="position:absolute;width:88px;height:30px; left:400px;top:182px;">
+	<img id="btn_order" src="__SD__/images/sectionList/primaryschool/btn_order.png" width="88" height="30">
+</div>
+
+<!-- 观看记录 -->
+<div style="position:absolute;width:380px;height:35px;left:195px;top:225px;text-align:left;">
+	<span style = "font-size:18px;">上次看到：无观看记录</span>
+</div>
+
+<!-- 课程标题 -->
+<div style="position:absolute;width:419px;height:24px;left:191px;top:42px;text-align:left;">
+	<span style="font-size:20px;font-weight:bold;">{$course['name']}</span>
+</div>
+
+<!-- 课程简介 -->
+<div style="position:absolute;width:419px;height:70px;left:191px;top:90px;text-align:left;font-size:15px;line-height:15px;">
+	{:msubstr($course['description'],0,80)}
+</div>
+
+<!-- 上一页/下一页 -->
+{$pageHtml}
+
+<volist name='sections' id='section'>
+	<php>
+		if($i<=5){
+			$left = 191; $top = ($i-1)*43+290;
+		}else{
+			$left = 406; $top = ($i-6)*43+290;
+		}
+	</php>
+	<div id="div_section_{$i}" title="{:U('Section/index?courseId='.$course['id'].'&sectionId='.$section['id'])}" 
+		 style="position:absolute;width:200px;height:20px;left:{$left+10}px;top:{$top+5}px;line-height:20px;">
+			<span id="section_{$i}" style="font-size:13px;">{$section['name']}</span>
+	</div>
+	<div id="div_section_{$i}_focus" style="position:absolute;visibility:hidden; width:205px;height:43px;left:{$left+1}px;top:{$top-3}px;">
+		<img id="section_{$i}_focus" src="" width='200' height='35'>
+	</div>
+	<if condition="$section['privilege'] eq 0">
+		<div id="div_section_{$i}_free" style="position:absolute;width:24px;height:19px;left:{$left+170}px;top:{$top-3}px;">
+			<img id="section_{$i}_free" src="__SD__/images/sectionList/primaryschool/free.png" width='24' height='19'>
+		</div>
+	</if>
+</volist>
+
+<script type="text/javascript">
+
+
+//失去时焦点处理（目前主要用于栏目按钮）
+function blurHandler(){
+	//Epg.marquee.stop();
+}
+
+//获取焦点时处理（目前主要用于栏目按钮）
+function focusHandler(){
+	//Epg.marquee.start();
+}
+
+function addPlan(){
+	var url = "{:U('Role/addCourse').'?courseId='.$course['id'].'&courseName='.urlencode($course['name']).'&courseImg='.$course['imgUrl'].'&preFocus='.$preFocus}";
+	Epg.jump(url,'btn_plan');
+}
+
+function order(){
+	var url = "{:U('Order/index?courseId='.$course['id'].'&preFocus='.$preFocus)}";
+	Epg.jump(url,'btn_order');
+}
+
+</script>
+

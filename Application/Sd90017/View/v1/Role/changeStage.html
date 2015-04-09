@@ -1,0 +1,161 @@
+<layout name="layout" />
+<style>
+    body{ background-image:url(__SD__/images/common/bg.jpg); }
+
+/* 左侧文字 */
+#text_age{
+	position: absolute;
+    display: block;
+    width: 111px;
+    height: 32px;
+    left: 60px;
+    top: 140px;
+    background-image:url(__SD__/images/usercenter/text_age.png);
+}  
+
+/* 书包  */
+#package{
+	position: absolute;
+    display: block;
+	width: 100px;
+    height: 149px;
+    left: 80px;
+    top: 260px;
+    background-image:url(__SD__/images/usercenter/package.png);
+}  
+
+/* 龄段底图 */
+#info_bg{
+	position: absolute;
+    display: block;
+	width: 298px;
+    height: 390px;
+    left: 270px;
+    top: 70px;
+    background-image:url(__SD__/images/usercenter/info_bg.png);
+}
+</style>
+
+<script type="text/javascript">
+
+/* 页面可点击按钮  */
+var buttons=
+	[
+		{id:'s1_1',name:'0-1岁',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',right:'s1_2',up:'',down:'s2_1'},
+		{id:'s1_2',name:'1-2岁',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s1_1',right:'s1_3',up:'',down:'s2_2'},
+		{id:'s1_3',name:'2-3岁',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s1_2',up:'',down:'s2_3'},
+		
+		{id:'s2_1',name:'小班',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',right:'s2_2',up:'s1_1',down:'s3_1'},
+		{id:'s2_2',name:'中班',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s2_1',right:'s2_3',up:'s1_2',down:'s3_2'},
+		{id:'s2_3',name:'大班',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s2_2',up:'s1_3',down:'s3_3'},
+		
+		{id:'s3_1',name:'一年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',right:'s3_2',up:'s2_1',down:'s3_4'},
+		{id:'s3_2',name:'二年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s3_1',right:'s3_3',up:'s2_2',down:'s3_5'},
+		{id:'s3_3',name:'三年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s3_2',up:'s2_3',down:'s3_6'},
+		{id:'s3_4',name:'四年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',right:'s3_5',up:'s3_1',down:'s4_1'},
+		{id:'s3_5',name:'五年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s3_4',right:'s3_6',up:'s3_2',down:'s4_2'},
+		{id:'s3_6',name:'六年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s3_5',up:'s3_3',down:'s4_3'},
+		
+		{id:'s4_1',name:'一年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',right:'s4_2',up:'s3_4',down:'s5_1'},
+		{id:'s4_2',name:'二年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s4_1',up:'s3_5',right:'s4_3',down:'s5_2'},
+		{id:'s4_3',name:'三年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s4_2',up:'s3_6',down:'s5_3'},
+		
+		{id:'s5_1',name:'四年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',right:'s5_2',up:'s4_1',down:'skip'},
+		{id:'s5_2',name:'五年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s5_1',right:'s5_3',up:'s4_2',down:'skip'},
+		{id:'s5_3',name:'六年级',action:'',linkImage:'__SD__/images/usercenter/btn.png',focusImage:'__SD__/images/usercenter/btn_over.png',left:'s5_2',up:'s4_3',down:'skip'},
+		
+		{id:'skip',name:'跳过',action:'',linkImage:'__SD__/images/usercenter/btn_skip.png',focusImage:'__SD__/images/usercenter/btn_skip_over.png',up:'s5_3'},
+	];
+
+window.onload=function()
+{
+	//Epg.tip('');//显示info信息，3秒后自动隐藏，如果info为空将不会显示
+	Epg.btn.init('s1_1',buttons,true);	
+};
+
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',0)}" ></a>
+
+<!-- 静态图片 -->
+<div id="text_age"></div>
+<div id="package"></div>
+<div id="info_bg"></div>
+
+<!-- 早教 -->
+<volist name="stage['early']" id="s1">
+	<php> 
+		$top = 107; $left = 365 + ($i-1)*60;
+	</php>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;">
+		<img id="s1_{$i}" title="{:U('Role/changeStage?stageId='.$s1['id'])}" src="__SD__/images/usercenter/btn.png" width="55" height="37">
+	</div>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;">
+		<img src="__SD__/images/usercenter/early_{$s1['sKey']}.png" width="55" height="37">
+	</div>
+</volist>
+
+<!-- 幼儿园 -->
+<volist name="stage['preschool']" id="s2">
+	<php> 
+		$top = 163; $left = 365 + ($i-1)*60;
+	</php>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;">
+		<img id="s2_{$i}" title="{:U('Role/changeStage?stageId='.$s2['id'])}" src="__SD__/images/usercenter/btn.png" width="55" height="37">
+	</div>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;;">
+		<img src="__SD__/images/usercenter/preschool_{$s2['sKey']}.png" width="55" height="37">
+	</div>
+</volist>
+
+<!-- 小学 -->
+<volist name="stage['primaryschool']" id="s3">
+	<php> 
+		if($i > 3){
+			$top = 280; $left = 365 + ($i-4)*60;
+		}else{
+			$top = 223; $left = 365 + ($i-1)*60;
+		}
+	</php>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;">
+		<img id="s3_{$i}" title="{:U('Role/changeStage?stageId='.$s3['id'])}" src="__SD__/images/usercenter/btn.png" width="55" height="37">
+	</div>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;">
+		<img src="__SD__/images/usercenter/primary_{$s3['sKey']}.png" width="55" height="37">
+	</div>
+</volist>
+
+<!-- 初中 -->
+<volist name="stage['middleschool']" id="s4">
+	<php> 
+		$top = 335; $left = 365 + ($i-1)*60;
+	</php>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;">
+		<img id="s4_{$i}" title="{:U('Role/changeStage?stageId='.$s4['id'])}" src="__SD__/images/usercenter/btn.png" width="55" height="37">
+	</div>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;">
+		<img src="__SD__/images/usercenter/middle_{$s4['sKey']}.png" width="55" height="37">
+	</div>
+</volist>
+
+<!--  高中 -->
+<volist name="stage['highschool']" id="s5">
+	<php> 
+		$top = 395; $left = 365 + ($i-1)*60;
+	</php>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;">
+		<img id="s5_{$i}" title="{:U('Role/changeStage?stageId='.$s5['id'])}" src="__SD__/images/usercenter/btn.png" width="55" height="37">
+	</div>
+	<div style="position:absolute;top:{$top}px;left:{$left}px;">
+		<img src="__SD__/images/usercenter/high_{$s5['sKey']}.png" width="55" height="37">
+	</div>
+</volist>
+
+<!-- 跳过 -->
+<div style="position:absolute;left:480px;top:475px;">
+	<img id="skip" title="{:U('Role/changeStage')}?stageId=99" src="__SD__/images/usercenter/btn_skip.png" width="85" height="29">
+</div>
+
+
+
+
