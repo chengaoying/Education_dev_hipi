@@ -137,32 +137,32 @@ class RoleController extends CommonController {
 				array(
 						'name' => 'stage',
 						'content' => array($stageAge),
-						'linkUrl' => '/Hd/Role/changeStage?preFocus=stage',
+						'linkUrl' => U('Role/changeStage?preFocus=stage'),
 				),
 				/*昵称*/
 				array(
 						'name' => 'nickname',
 						'content' => array($nickName),
-						'linkUrl' => '/Hd/Role/setNickname?preFocus=nickname',
+						'linkUrl' => U('Role/setNickname?preFocus=nickname'),
 				),
 				/*生日*/
 				array(
 						'name' => 'birthday',
 						'content' => array($birthday),
-						'linkUrl' => '/Hd/Role/setBirthday?preFocus=birthday',
+						'linkUrl' => U('Role/setBirthday?preFocus=birthday'),
 				),
 				/*性别*/
 				array(
 						'name' => 'sex',
 						'content' => array($sex),
-						'linkUrl' => '/Hd/Role/setSex?preFocus=sex',
+						'linkUrl' => U('Role/setSex?preFocus=sex'),
 				),
 
 				/*手机*/
 				array(
 						'name' => 'phone',
 						'content' => array($phone),
-						'linkUrl' => '/Hd/Role/setPhone?preFocus=phone',
+						'linkUrl' => U('Role/setPhone?preFocus=phone'),
 				),
 				/*版本*/
 /* 				array(
@@ -173,19 +173,19 @@ class RoleController extends CommonController {
 				array(
 						'name' => 'advantage',
 						'content' => $advantages,
-						'linkUrl' => '/Hd/Role/setMulchoice?type=advantage&preFocus=advantage',
+						'linkUrl' => U('Role/setMulchoice?type=advantage&preFocus=advantage'),
 				),
 				/*弱项*/
 				array(
 						'name' => 'disadvantage',
 						'content' => $disadvantages,
-						'linkUrl' => '/Hd/Role/setMulchoice?type=disAdvantage&preFocus=disadvantage',
+						'linkUrl' => U('Role/setMulchoice?type=disAdvantage&preFocus=disadvantage'),
 				),
 				/*兴趣*/
 				array(
 						'name' => 'interests',
 						'content' => $interests,
-						'linkUrl' => '/Hd/Role/setMulchoice?type=interests&preFocus=interests',
+						'linkUrl' => U('Role/setMulchoice?type=interests&preFocus=interests'),
 				),
 		);
 		return $userInfo;
@@ -776,11 +776,11 @@ class RoleController extends CommonController {
 			{
 				if($grade['chKey']=='early' || $grade['chKey']=='preschool')
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month&focus=ch_3';
+					$channel[$key]['linkUrl'] = U('Learning/learningEarly?arrange=month&focus=ch_3');
 				}
 				else 
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool?focus=ch_3';
+					$channel[$key]['linkUrl'] = U('Learning/learningPreschool?focus=ch_3');
 				}
 			}
 		}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hd90020\Controller;
+namespace Hd90021\Controller;
 use Common\Controller\CommonController;
 
 /**

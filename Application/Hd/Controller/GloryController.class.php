@@ -109,11 +109,11 @@ class GloryController extends CommonController {
 			{
 				if($grade['chKey']=='early' || $grade['chKey']=='preschool')
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month&focus=ch_3';
+					$channel[$key]['linkUrl'] = U('Learning/learningEarly?arrange=month&focus=ch_3');
 				}
 				else
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool?focus=ch_3';
+					$channel[$key]['linkUrl'] = U('Learning/learningPreschool?focus=ch_3');
 				}
 			}
 		}

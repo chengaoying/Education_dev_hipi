@@ -13,6 +13,8 @@ class IndexController extends CommonController {
 	
 	public function indexAct(){
 		//欢迎页，如果有跳转至欢迎页
+		//header('location:'.U('Index/welcome'));
+		//exit;
 		
 		//检查用户是否有角色帐号或者用户只用一个角色，但该角色为游客，则跳转至创建角色页面(选择龄段页面)
 		//其他情况则让用户使用最后一次使用的角色帐号进入产品首页(推荐课程页)
@@ -29,7 +31,9 @@ class IndexController extends CommonController {
 	/**
 	 * 欢迎页
 	 */
-	public function welcomeAct(){}
+	public function welcomeAct(){
+		$this->display();	
+	}
 	
 	/**
 	 * 推荐课程首页

@@ -16,7 +16,9 @@ class ResourceController extends  CommonController{
 	public function playAct(){
 		
 		//播放返回地址
-		if(strstr(HTTP_REFERER,'SectionList/')){
+		if(strstr(HTTP_REFERER,'SectionList/')
+				 || strstr(HTTP_REFERER,'/FreeZone/')
+				 || strstr(HTTP_REFERER,'/RecentlyWatch/')){
 			session('video_back_url',HTTP_REFERER);
 			$backUrl = get_back_url('Index/recommend',1);
 		}else{

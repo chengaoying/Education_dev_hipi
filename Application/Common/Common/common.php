@@ -198,23 +198,68 @@ function get_pageHtml($count, $pageSize, $config = array(),$parameter = '',$imgP
  */
 function get_page_html($page, $pageCount){
 	
+	$version = C('PARENT_MODULE');
+	if($version == 'Hd'){
+		return get_page_html_hd($page, $pageCount);
+	}else{
+		return get_page_html_sd($page, $pageCount);
+	}
+}
+
+/**
+ * 标清分页
+ * @param unknown_type $page
+ * @param unknown_type $pageCount
+ * @return string
+ */
+function get_page_html_sd($page, $pageCount){
+
 	//上一页
 	if($page > 1){
 		$pageHtml .= '<div id="div_page_prev" class="page_prev">
-	    			<img id="page_prev" src="/static/v1/sd/images/common/page/page_prev.png" width="14" height="24"></div>';
+		<img id="page_prev" src="/static/v1/sd/images/common/page/page_prev.png" width="14" height="24"></div>';
 	}else{
 		$pageHtml .= '<div class="page_prev">
-	    			<img src="/static/v1/sd/images/common/page/page_prev_none.png" width="14" height="24"></div>';
+		<img src="/static/v1/sd/images/common/page/page_prev_none.png" width="14" height="24"></div>';
 	}
 	//页号
 	$pageHtml .= '<div class="text">'.$page.'/'.$pageCount.'</div>';
 	//下一页
 	if($page < $pageCount){
 		$pageHtml .= '<div id="div_page_next" class="page_next">
-	    			  <img id="page_next" src="/static/v1/sd/images/common/page/page_next.png" width="14" height="24"></div>';
+		<img id="page_next" src="/static/v1/sd/images/common/page/page_next.png" width="14" height="24"></div>';
 	}else{
 		$pageHtml .= '<div class="page_next">
-	   	             <img src="/static/v1/sd/images/common/page/page_next_none.png" width="14" height="24"></div>';
+		<img src="/static/v1/sd/images/common/page/page_next_none.png" width="14" height="24"></div>';
+	}
+	return $pageHtml;
+}
+
+/**
+ * 高清分页
+ * @param unknown_type $page
+ * @param unknown_type $pageCount
+ * @return string
+ */
+function get_page_html_hd($page, $pageCount){
+
+	//上一页
+	if($page > 1){
+		$pageHtml .= '<div id="div_page_prev" class="page_prev">
+		<img id="page_prev" src="/static/v1/hd/images/common/page/page_prev.png" width="25" height="32"></div>';
+	}else{
+		$pageHtml .= '<div class="page_prev">
+		<img src="/static/v1/hd/images/common/page/page_prev_none.png" width="25" height="32"></div>';
+	}
+	//页号
+	$pageHtml .= '<div class="text">'.$page.'/'.$pageCount.'</div>';
+	//下一页
+	if($page < $pageCount){
+		$pageHtml .= '<div id="div_page_next" class="page_next">
+		<img id="page_next" src="/static/v1/hd/images/common/page/page_next.png" width="25" height="32"></div>';
+	}else{
+		$pageHtml .= '<div class="page_next">
+		<img src="/static/v1/hd/images/common/page/page_next_none.png" width="25" height="32"></div>';
 	}
 	return $pageHtml;
 }

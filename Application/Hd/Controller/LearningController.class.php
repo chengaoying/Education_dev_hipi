@@ -330,14 +330,15 @@ class LearningController extends CommonController {
 			{
 				if($grade['chKey']=='early' || $grade['chKey']=='preschool')
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningEarly?arrange=month';
+					$channel[$key]['linkUrl'] = U('Learning/learningEarly?arrange=month');
 				}
 				else
 				{
-					$channel[$key]['linkUrl'] = '/Hd/Learning/learningPreschool';
+					$channel[$key]['linkUrl'] = U('Learning/learningPreschool');
 				}
 			}
 		}
+		
 		//把栏目的图片数组拆开
 		foreach ($channel as $k=>$v){
 			if($v['imgUrl']){
