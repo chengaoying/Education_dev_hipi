@@ -24,6 +24,7 @@ var KEY_6 			 = 0x0036;  // 6
 var KEY_7 			 = 0x0037;  // 7
 var KEY_8 			 = 0x0038;  // 8
 var KEY_9 			 = 0x0039;  // 9
+
 var KEY_VOL_UP 		 = 0x0103; 	// Vol+，音量加
 var KEY_VOL_DOWN 	 = 0x0104;	// Vol-，音量减
 var	KEY_MUTE 		 = 0x0105;	// Mute，静音
@@ -157,7 +158,6 @@ Epg.Button = Epg.btn =
 				//KEY_ENTER_XJ:'Epg.Button.click()',			//确定键
 			});
 		}
-		//alert('lala');
 		this.previous = null,
 		this._buttonStore = {};
 		for(var i=0; i<config.buttons.length; i++)

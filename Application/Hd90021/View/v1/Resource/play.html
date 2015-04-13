@@ -1,42 +1,257 @@
 <layout name="layout" />
 
+<style type="text/css">
+#div_lession{
+    position:absolute;
+    width:100px;
+    height:65px;
+    top:50px;
+    left:985px;
+    visibility:visible;
+    background-image: url(__HD__/images/play/lession_bg.png);            
+}
+
+#div_control{
+    position:absolute;
+    width:332px;
+    height:85px;
+    top:550px;
+    left:474px;
+    visibility:visible;
+    background-image: url(__HD__/images/play/control_bg.png);
+}
+
+#div_back{
+    position:absolute;
+    width:434px;
+    height:287px;
+    top:216px;
+    left:423px;
+    visibility:hidden;
+    background-image: url(__HD__/images/play/back_bg.png);            	
+}
+
+#div_progress{
+	position:absolute;
+	width:840px;
+    height:40px;
+    top:650px;
+    left:220px;
+    visibility:visible;
+    background-image: url(__HD__/images/play/progress_bg.png);  
+}
+</style>
 
 <script type="text/javascript">
+
+var buttons =
+    [
+      /*播放控制按钮*/
+      {id:'btn_pre', name:'', action:'', linkImage:'__HD__/images/play/btn_pre.png', focusImage: '__HD__/images/play/btn_pre_over.png', selectBox: '', right: 'btn_playOrPause', up: 'btn_exercise'},
+      {id:'btn_playOrPause', name:'', action:'_playOrPause()', linkImage:'__HD__/images/play/btn_play.png', focusImage: '__HD__/images/play/btn_play_over.png', selectBox: '', left: 'btn_pre', right: 'btn_next', up: 'btn_exercise'},
+      {id:'btn_next', name:'', action:'', linkImage:'__HD__/images/play/btn_next.png', focusImage: '__HD__/images/play/btn_next_over.png', selectBox: '', left: 'btn_playOrPause', up: 'btn_exercise'},
+     
+      /* 练习按钮   */
+      {id:'btn_exercise', name:'', action:'', linkImage: '__HD__/images/play/btn_exercise.png', focusImage: '__HD__/images/play/btn_exercise_over.png', selectBox:'',down:'btn_playOrPause'},
+     
+      /*返回弹窗上的按钮*/
+      {id:'btn_continue', name:'', action:'_continue()', linkImage:'__HD__/images/play/btn_continue.png', focusImage: '__HD__/images/play/btn_continue_over.png', selectBox: '',down: 'btn_quit'},
+      {id:'btn_quit', name:'', action:'_quit()', linkImage:'__HD__/images/play/btn_quit.png', focusImage:'__HD__/images/play/btn_quit_over.png', selectBox: '',up: 'btn_continue'},
+    ];
+    
+//视频资源列表    
+var resources = {$resources};
+var p_index = 0;
+
+//是否有返回弹窗。
+var hasWindow = false;
+
+//菜单显示时间
+var time = 5000;
+
+var timer1;
+var timer2;
+    
+/**
+ * 播放/暂停
+ */
+function _playOrPause(){
+	if(playStat == "play"){
+		G('btn_playOrPause').src = "__HD__/images/play/btn_pause_over.png";
+		buttons[1]['linkImage'] = '__HD__/images/play/btn_pause.png';
+		buttons[1]['focusImage'] = '__HD__/images/play/btn_pause_over.png';
+		
+		playStat = 'pause';
+	    mp.pause();
+	}else{
+		G('btn_playOrPause').src = "__HD__/images/play/btn_play_over.png";
+		buttons[1]['linkImage'] = '__HD__/images/play/btn_play.png';
+		buttons[1]['focusImage'] = '__HD__/images/play/btn_play_over.png';
+		
+		playStat = 'play';
+	    mp.resume();
+	}
+}
+
+/**
+ * 重写返回事件
+ */
+Epg.Button.defBack = function(){
+	if(!hasWindow){
+		clearTimeout(timer1);
+		clearTimeout(timer2);
+		S('div_back');
+		hasWindow = true;
+		Epg.Button.set('btn_continue');
+		playStat = 'play';
+		_playOrPause();
+	}
+}
+
+/**
+ * 继续观看
+ */
+function _continue(){
+	H('div_back');
+	hasWindow = false;
+	Epg.Button.set('btn_playOrPause');
+	timer1 = setTimeout("H('div_control')", time);
+    timer2 = setTimeout("H('div_progress')", time);
+	_playOrPause();
+}
+
+/**
+ * 退出
+ */
+function _quit(){
+	destoryMP();
+	window.location.href = "{$returnUrl}";
+}
+
+//播放或暂停
+function _playOrPause_fun(){
+	if(!hasWindow){
+		S('div_control');
+		Epg.Button.set('btn_playOrPause')
+		clearTimeout(timer1);
+		timer1 = setTimeout("H('div_control')", time);
+		_playOrPause();
+	}
+}
+
+//快进
+function fastForward_fun(){
+	if(!hasWindow){
+		S('div_progress');
+		clearTimeout(timer2);
+		timer2 = setTimeout("H('div_progress')", time);
+		fastForward();
+		setPlayTime();
+	}
+}
+
+//快退
+function fastRewind_fun(){
+	if(!hasWindow){
+		S('div_progress');
+		clearTimeout(timer2);
+		timer2 = setTimeout("H('div_progress')", time);
+		fastRewind();
+		setPlayTime();
+	}
+}
+
+//每秒查询一次，如果视频播放控制菜单是隐藏的，则把焦点定位到练习按钮上。
+setInterval('isControl()',1000);
+function isControl(){
+	if(hasWindow == 0){
+		var o = G('div_control').style.visibility;
+		if(o == 'hidden'){
+			Epg.Button.set('btn_exercise');
+		}
+	}
+}
+
+//填充视频播放的当前时间和总时间
+var playTimer = setInterval('setPlayTime()',1000);
+function setPlayTime(){
+	var t1 = getCurrentTime();
+	var t2 = getTotalTime();
+	if((t1 >= t2) && (t1 != 0) && (t2 != 0)){ //播放完就播放下一个课时
+		destoryMP();
+		window.location.href = "{:U('Section/index?sectionId='.$nextSeciton.'&courseId='.$courseId)}";
+	}
+	
+	//显示当前播放时间和总时间
+	G('curr_time').innerHTML = timeFormat(t1);
+	G('total_time').innerHTML = timeFormat(t2);
+	
+	//计算进度条长度
+	var w = parseInt((t1/t2)*560);
+	G('progress_img').width = w;
+	var l = 125 + w - 5;
+	G('progress_point').style.left = l + 'px';
+}
+
+
+/****************** 初始化播放器（四川电信）-开始  *********************/
+var height = 720;
+var width = 1280;
+var left = 1;
+var top =  31;
+
+var timeFlag = 15;//快进/快退时间间隔
+
+//静音标记
+var muteFlag = 0;
+var muteValue = 0;
 
 var mp = new MediaPlayer();
 var vas_small_player_id = mp.getNativePlayerInstanceID();
 
-function playVideo(videoUrl,width,height,left,top) {
-	  if (videoUrl == "") {
-	        return;
-	  }
-	  var jsonstr = '[{mediaUrl:"' + videoUrl + '",';
-	  jsonstr +=  'mediaCode: "jsoncode1",';//字符串媒体的唯一标示-武
-	  jsonstr +=  'mediaType:2,';
-	  jsonstr +=  'audioType:1,';
-	  jsonstr +=  'videoType:1,';
-	  jsonstr +=  'streamType:1,';
-	  jsonstr +=  'drmType:1,';
-	  jsonstr +=  'fingerPrint:0,';
-	  jsonstr +=  'copyProtection:1,';
-	  jsonstr +=  'allowTrickmode:1,';
-	  jsonstr +=  'startTime:0,';
-	  jsonstr +=  'endTime:20000.3,';
-	  jsonstr +=  'entryID:"jsonentry1"}]';//可能出问题-武-只有在加入播放列表时媒体的唯一标示
-	  speed = 1;
-	  playStat = "play";
-	  initMediaPlay(width,height,left,top);
-	  mp.setSingleMedia(jsonstr);
-	  mp.setNativeUIFlag(0);
-	  mp.setMuteUIFlag(1);//xjadd
-	  mp.setAllowTrickmodeFlag(0);//允许快进快退操作
-	  mp.playFromStart();
-	  mp.setVideoDisplayMode(1); 
-	  mp.refreshVideoDisplay();
+//销毁播放器
+function destoryMP() {
+	if (mp) {
+    	mp.stop();
+		if(vas_small_player_id>=0){
+			mp.releaseMediaPlayer(vas_small_player_id);
+			vas_small_player_id = -1;
+	 	}
+	}
+}
+
+//视频播放
+function playVideo(videoUrl) {
+  if (videoUrl == "") {
+        return;
+  }
+  var jsonstr = '[{mediaUrl:"' + videoUrl + '",';
+  jsonstr +=  'mediaCode: "jsoncode1",';//字符串媒体的唯一标示-武
+  jsonstr +=  'mediaType:2,';
+  jsonstr +=  'audioType:1,';
+  jsonstr +=  'videoType:1,';
+  jsonstr +=  'streamType:1,';
+  jsonstr +=  'drmType:1,';
+  jsonstr +=  'fingerPrint:0,';
+  jsonstr +=  'copyProtection:1,';
+  jsonstr +=  'allowTrickmode:1,';
+  jsonstr +=  'startTime:0,';
+  jsonstr +=  'endTime:20000.3,';
+  jsonstr +=  'entryID:"jsonentry1"}]';//可能出问题-武-只有在加入播放列表时媒体的唯一标示
+  speed = 1;
+  playStat = "play";
+  initMediaPlay();
+  mp.setSingleMedia(jsonstr);
+  mp.setNativeUIFlag(0);
+  mp.setMuteUIFlag(1);
+  mp.setAllowTrickmodeFlag(0);//允许快进快退操作
+  mp.playFromStart();
+  mp.setVideoDisplayMode(1); 
+  mp.refreshVideoDisplay();
 }
 
 //初始化播放实例
-function initMediaPlay(width,height,left,top){
+function initMediaPlay(){
     var playListFlag = 0;
     var videoDisplayMode = 0;
     var muteFlag = 0;
@@ -47,58 +262,161 @@ function initMediaPlay(width,height,left,top){
     var autoDelFlag = 0;
     var useNativeUIFlag = 1;
     var instanceId = 2;
-   //初始化数据
+    //初始化数据
     mp.initMediaPlayer(vas_small_player_id, playListFlag, videoDisplayMode, height, width, left, top, muteFlag, useNativeUIFlag, subtitleFlag, videoAlpha, cycleFlag, randomFlag, autoDelFlag);
 }
 
-function initLoad(){
-  var url = "http://182.138.48.83:8089/ZTE_EPG/32/999990000007?Authinfo=OO8%2B0al6xT%2Fpm7FukKg%2Blwis2YGr9S1irQC0EprYWVp657jExDyvD6hmL7Nezj9F&version=1&BreakPoint=0&virtualDomain=ZTE_EPG.vod_hpd.zte.com&mtype=mp4";
-  playVideo(url,1280,720,1,31);
+//获取视频总长
+function getTotalTime(){
+  return parseInt(mp.getMediaDuration()) ; 
 }
 
+//获取当前时间
+function getCurrentTime(){
+  return parseInt(mp.getCurrentPlayTime()); 
+}
+
+//快进
+function fastForward(){
+      var currTime = getCurrentTime();
+      var totalTime = getTotalTime(); 
+      var _t;
+      if(currTime+timeFlag >= totalTime){
+    	  _t = totalTime-1;
+      }else{
+    	  _t = currTime + timeFlag;
+      }
+      mp.playByTime(1,_t);
+}
+
+//快退
+function fastRewind(){
+      var currTime = getCurrentTime();
+      var t;
+      if(currTime-timeFlag <= 0){
+    	  t = 0;
+      }else{
+    	  t = currTime-timeFlag;
+      }
+      mp.playByTime(1,t);
+}
+
+//静音
+function volMuted(){
+    if(muteFlag==0){
+      muteValue = mp.getVolume();
+      mp.setVolume(0);
+      muteFlag=1;
+    }else{
+      mp.setVolume(muteValue);
+      muteFlag=0;
+    }
+}
+
+//音量加
+function volUp(){
+  var v = parseInt(mp.getVolume());
+  if(v < 100){
+    mp.setVolume(v + 15);
+  }
+}
+
+//音量减
+function volDown(){
+  var v = parseInt(mp.getVolume());
+  if(v > 9){
+    mp.setVolume(v - 15);
+  }
+}
+
+function timeFormat(time){
+	  var minute =parseInt( time/60);
+	  var second = time%60;
+	  if(minute<10){
+	    minute = "0"+minute;
+	  }
+	  if(second<10){
+	    second = "0"+second;
+	  }
+	  return minute+":"+second;
+}
+/****************** 初始化播放器（四川电信）-结束 *********************/
 
 
 window.onload = function() {
+    Epg.btn.init(['btn_exercise','btn_playOrPause'], buttons, true);
+    
+  	//播放控制按键
+    Epg.key.set({KEY_PLAY_PAUSE:"_playOrPause_fun()"});
+    Epg.key.set({KEY_VOL_UP:"volUp()"});
+    Epg.key.set({KEY_VOL_DOWN:"volDown()"});
+    Epg.key.set({KEY_MUTE:"volMuted()"});
+    Epg.key.set({KEY_FAST_FORWARD:"fastForward_fun()"});
+    Epg.key.set({KEY_FAST_REWIND:"fastRewind_fun()"});
+    Epg.key.set({KEY_RIGHT:"fastForward_fun()"});
+    Epg.key.set({KEY_LEFT:"fastRewind_fun()"});
     
     //视频播放
-    initLoad();
-}
-
-//播放控制逻辑
-document.onkeypress = function(keyEvent){
-  keyEvent = keyEvent ? keyEvent : window.event;
-  var keyvalue = keyEvent.which ? keyEvent.which : keyEvent.keyCode;  
-  if (typeof(Utility) != "object" || !"getEvent" in Utility) { 
-         return; 
-    } 
-    var epgdomain = Authentication.CTCGetConfig("EPGDomain" );
-  if ( keyvalue == 0x0008 ){  
-     history.back();
-  }
-  else if(keyvalue == 0x0107){
-    videoPause();
-  }
-  else if(keyvalue == 0x0108 || keyvalue == 0x0027){
-     videoFast();
-  }
-  else if(keyvalue == 0x0109 || keyvalue == 0x0025){
-    videoBackward();
-  }
-  else if(keyvalue == 0x0105){
-    volMuted();
-  }
-  else if(keyvalue == 0x0103){
-    volUp();
-  }
-  else if(keyvalue == 0x0104){
-    volDown();
-  }
-  else if(keyvalue == 0x0300){
-      // var UtilityEvent = Utility.getEvent();
-      // if(UtilityEvent.type=="EVENT_MEDIA_END"){
-      //   history.back();
-      // }
-  }
+    //var url = "http://182.140.141.92/cc.mp4";
+    var url = "http://182.140.237.74:8502/14.mp4";
+    //var url = "http://182.138.48.83:8089/ZTE_EPG/32/999990000007?Authinfo=OO8%2B0al6xT%2Fpm7FukKg%2Blwis2YGr9S1irQC0EprYWVp657jExDyvD6hmL7Nezj9F&version=1&BreakPoint=0&virtualDomain=ZTE_EPG.vod_hpd.zte.com&mtype=mp4";
+ 	playVideo(url);
+    
+    //显示视频播放控制菜单，进度条，5秒内没有操作则隐藏
+    timer1 = setTimeout("H('div_control')", time);
+    timer2 = setTimeout("H('div_progress')", time);
+    setPlayTime();
 }
 
 </script>
+
+<!-- 课堂\练习-->
+<div id="div_lession"></div>
+<if condition="$libId neq ''">
+	<div id="div_btn_exercise" style="position:absolute;width:100px;height:65px;left:1085px;top:50px;">
+	    <img id="btn_exercise" title="{:U('Library/detail?sectionId='.$libId.'&courseId='.$courseId)}" src="__HD__/images/play/btn_exercise.png" width="100" height="65">
+	</div>
+</if>
+
+<!-- 播放控制 -->
+<div id="div_control">
+	<!-- 上一集 -->
+	<div id="div_btn_pre" style="position:absolute;width:28px;height:31px;left:50px;top:25px;z-index: 1000;">
+	    <img id="btn_pre" title="{:U('Section/index?sectionId='.$prevSeciton.'&courseId='.$courseId)}" src="__HD__/images/play/btn_pre.png" width="28" height="31">
+	</div>
+	<!-- 播放暂停 -->
+	<div id="div_btn_playOrPause" style="position:absolute;width:48px;height:49px;left:138px;top:14px;">
+	    <img id="btn_playOrPause" src="__HD__/images/play/btn_play.png" width="48" height="49">
+	</div>
+	<!-- 下一集 -->
+	<div id="div_btn_next" style="position:absolute;width:28px;height:31px;left:254px;top:25px;">
+	     <img id="btn_next" title="{:U('Section/index?sectionId='.$nextSeciton.'&courseId='.$courseId)}" src="__HD__/images/play/btn_next.png" width="31" height="28">
+	</div>
+</div>
+
+<!-- 播放时间定位 -->
+<div id="div_progress">
+	<div id="curr_time" style="position:absolute;top:5px;left:10px; width:110px;height:30px;text-align:center;z-index:99;font-size: 20px;color:#ffffff;">00:00:00</div>
+	<div id="progress" style="position:absolute;top:15px;left:140px;z-index:99;">
+		<img id="progress_img" src="__HD__/images/play/progress.png" width="0" height="10"/>
+	</div>	
+	<div id="progress_point" style="position:absolute;top:8px;left:125px;z-index:99;">
+		<img id="progress_point_img" src="__HD__/images/play/progress_point.png" width="24" height="24" />
+	</div>
+	<div id="total_time" style="position:absolute;top:5px;left:710px; width:110px;height:30px;text-align:center;z-index:99;font-size: 20px;color:#ffffff;">00:00:00</div>
+</div>
+
+<!-- 返回弹窗 -->
+<div id="div_back">
+    <div id="div_btn_continue" style="position:absolute;width:146px;height:56px;left:60px;top:55px;">
+        <img id="btn_continue" src="__HD__/images/play/btn_continue.png" width="146" height="56">
+    </div>
+    <div id="div_btn_quit" style="position:absolute;width:146px;height:56px;left:60px;top:130px;">
+        <img id="btn_quit" src="__HD__/images/play/btn_quit.png" width="146" height="56">
+    </div>
+</div>  
+
+<!-- <php>
+$url = U('Resource/dataStat').'?courseId='.$courseId.'&sectionId='.$sectionId.'&resourceId='.$id;
+echo '<iframe  src="'.$url.'" style="width:0px; height:0px;display: none;" frameborder="0" ></iframe>';
+</php> -->

@@ -17,8 +17,8 @@ class ResourceController extends  CommonController{
 		
 		//播放返回地址
 		if(strstr(HTTP_REFERER,'SectionList/')
-				 || strstr(HTTP_REFERER,'/FreeZone/')
-				 || strstr(HTTP_REFERER,'/RecentlyWatch/')){
+			|| strstr(HTTP_REFERER,'/FreeZone/')
+		    || strstr(HTTP_REFERER,'/RecentlyWatch/')){
 			session('video_back_url',HTTP_REFERER);
 			$backUrl = get_back_url('Index/recommend',1);
 		}else{
@@ -84,28 +84,21 @@ class ResourceController extends  CommonController{
 	/**
 	 * 视频播放相关的统计
 	 */
-	private function dataStatAct(){
+	public function dataStatAct(){
 		$courseId = I('courseId','');
 		$sectionId = I('sectionId','');
 		$resourceId = I('resourceId','');
-		
+	
 		$section = D('Section', 'Logic')->querySectionById($sectionId);
 		$resources = D('Resource', 'Logic')->queryResourceList(array($resourceId), 'id,rpId,keyList');
 		$resource = $resources[0];
-		
+	
 		//添加浏览记录
-		$browser['roleId'] = $this->role['id'];
-		$browser['title'] = $section['name'];
-		$browser['courseId'] = $courseId;
-		$browser['topicId']  = $section['topicId'];
-		$browser['sectionId']= $section['id'];
-		$browser['keys'] = $resource['keyList'];
-		$browser['type'] = 1;
-		$res = D('BrowseRecord','Logic')->saveBrowseRecord($browser);
-		
+		$this->saveRecord($section, $courseId, $resource);
+	
 		//赠送积分
 		D('Credit','Logic')->ruleIncOrDec($this->user['id'],$this->role['id'],'play','视频播放送2个积分');
-		
+	
 		//收费资源pv
 		if($section['privilege'] == 1){
 			$data['c_class'] = 'res';
@@ -115,7 +108,20 @@ class ResourceController extends  CommonController{
 		}
 	}
 	
-	
+	/**
+	 * 保存浏览记录
+	 * @param unknown_type $section
+	 */
+	private function saveRecord($section,$courseId,$resource){
+		$browser['roleId'] = $this->role['id'];
+		$browser['title'] = $section['name'];
+		$browser['courseId'] = $courseId;
+		$browser['topicId']  = $section['topicId'];
+		$browser['sectionId']= $section['id'];
+		$browser['keys'] = $resource['keyList'];
+		$browser['type'] = 1;
+		$res = D('BrowseRecord','Logic')->saveBrowseRecord($browser);
+	}
 	
 	
 }
