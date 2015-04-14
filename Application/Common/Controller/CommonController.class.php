@@ -28,11 +28,13 @@ class CommonController extends \Think\Controller{
 		$className = $className[count($className)-1];
 		$this->name = substr($className,0,-10);
 		
-		//初始化用户信息
-		$this->_initUser();
-		//初始化一级栏目
-	    $this->_initTopChannel();
-	    header("Content-Type: text/html;charset=utf-8");
+		if($this->name　!== 'Empty'){
+			//初始化用户信息
+			$this->_initUser();
+			//初始化一级栏目
+			$this->_initTopChannel();
+		}
+	    //header("Content-Type: text/html;charset=utf-8");
 	}
 	
 	

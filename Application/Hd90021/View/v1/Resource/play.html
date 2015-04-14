@@ -146,7 +146,6 @@ function fastForward_fun(){
 		clearTimeout(timer2);
 		timer2 = setTimeout("H('div_progress')", time);
 		fastForward();
-		setPlayTime();
 	}
 }
 
@@ -157,7 +156,6 @@ function fastRewind_fun(){
 		clearTimeout(timer2);
 		timer2 = setTimeout("H('div_progress')", time);
 		fastRewind();
-		setPlayTime();
 	}
 }
 
@@ -206,9 +204,16 @@ var timeFlag = 15;//快进/快退时间间隔
 var muteFlag = 0;
 var muteValue = 0;
 
-var mp = new MediaPlayer();
-var vas_small_player_id = mp.getNativePlayerInstanceID();
+var speed = 1;
+var playStat = "play";
 
+var mp;
+var vas_small_player_id;
+try {
+	mp = new MediaPlayer(); //新建一个mediaplayer对象
+	vas_small_player_id = mp.getNativePlayerInstanceID(); //读取本地的媒体播放实例的标识
+} catch (e) {
+}
 //销毁播放器
 function destoryMP() {
 	if (mp) {
@@ -238,13 +243,11 @@ function playVideo(videoUrl) {
   jsonstr +=  'startTime:0,';
   jsonstr +=  'endTime:20000.3,';
   jsonstr +=  'entryID:"jsonentry1"}]';//可能出问题-武-只有在加入播放列表时媒体的唯一标示
-  speed = 1;
-  playStat = "play";
   initMediaPlay();
   mp.setSingleMedia(jsonstr);
   mp.setNativeUIFlag(0);
   mp.setMuteUIFlag(1);
-  mp.setAllowTrickmodeFlag(0);//允许快进快退操作
+  mp.setAllowTrickmodeFlag(1);//允许快进快退操作
   mp.playFromStart();
   mp.setVideoDisplayMode(1); 
   mp.refreshVideoDisplay();
@@ -301,6 +304,24 @@ function fastRewind(){
       mp.playByTime(1,t);
 }
 
+/**
+ * 快进
+ */
+function fastForward2(){  
+	speed = speed * 2;
+	if(speed > 32) speed = 2;
+	mp.fastForward(speed);
+}
+
+/**
+ * 快退
+ */
+function fastRewind2(){  
+ 	speed = speed * 2;
+	if(speed > 32) speed = 2;
+	mp.fastRewind(-speed);
+}
+
 //静音
 function volMuted(){
     if(muteFlag==0){
@@ -317,7 +338,7 @@ function volMuted(){
 function volUp(){
   var v = parseInt(mp.getVolume());
   if(v < 100){
-    mp.setVolume(v + 15);
+    mp.setVolume(v + 20);
   }
 }
 
@@ -325,7 +346,7 @@ function volUp(){
 function volDown(){
   var v = parseInt(mp.getVolume());
   if(v > 9){
-    mp.setVolume(v - 15);
+    mp.setVolume(v - 20);
   }
 }
 
@@ -358,8 +379,8 @@ window.onload = function() {
     
     //视频播放
     //var url = "http://182.140.141.92/cc.mp4";
-    var url = "http://182.140.237.74:8502/14.mp4";
-    //var url = "http://182.138.48.83:8089/ZTE_EPG/32/999990000007?Authinfo=OO8%2B0al6xT%2Fpm7FukKg%2Blwis2YGr9S1irQC0EprYWVp657jExDyvD6hmL7Nezj9F&version=1&BreakPoint=0&virtualDomain=ZTE_EPG.vod_hpd.zte.com&mtype=mp4";
+    //var url = "http://182.140.237.74:8502/22-2.mp4";
+    var url = "http://182.138.48.83:8089/ZTE_EPG/32/999990000009?Authinfo=OO8%2B0al6xT%2Fpm7FukKg%2Blwis2YGr9S1irQC0EprYWVp657jExDyvD6hmL7Nezj9F&version=1&BreakPoint=0&virtualDomain=ZTE_EPG.vod_hpd.zte.com&mtype=mp4";
  	playVideo(url);
     
     //显示视频播放控制菜单，进度条，5秒内没有操作则隐藏

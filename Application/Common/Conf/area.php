@@ -5,12 +5,12 @@
 return array (
 		
 	//专区适配设置	
-	'DEFAULT_MODULE'	=> 'Hd80027',	//默认分组模块
-	'AREA_CODE' 		=> 'Hd80027',		//地区编码
+	'DEFAULT_MODULE'	=> 'Hd90021',	//默认分组模块
+	'AREA_CODE' 		=> 'Hd90021',	//地区编码
 	'PARENT_MODULE'     => 'Hd',		//父类分组模块
 
-	'DEBUG_MODE'		=> 1,			//debug模式，1-开启，0-关闭
-	'PRO_KEY'			=> 'hipi',		//产品key
+	'DEBUG_MODE'		=> 1,			//debug模式，1-开启，0-关闭(正式上线请关闭)
+	'PRO_KEY'			=> 'eduhipi',	//产品key
 	
 	//附件上传
 	'UPFILE_ISREMOTE'	=> false,		//是否保存到远程文件服务器
@@ -30,7 +30,7 @@ return array (
 		'__SD__'		=> '/static/v1/sd',	 	//标清公共资源路径
 		'__HD__'		=> '/static/v1/hd',		//高清公共资源路径
 		'__THEME__' 	=> '/static/v1', 		//分组模块资源路径
-		'__UPFILE__'	=> 'http://192.168.0.152:8500/upfiles',	//附件访问地址,请使用绝对地址(正式环境不要使用localhost)
+		'__UPFILE__'	=> 'http://localhost:8500/upfiles',	//附件访问地址,请使用绝对地址(正式环境不要使用localhost)
         '__CSSJS_VERSION__'=>'20140208173232',  //CSS和JS版本
 
 	),
@@ -42,7 +42,7 @@ return array (
 	'OPEN_TARGET'	=>	0, 
 	
 	//与教育平台通讯参数
-	'PLATFORM_URL'	=>	'http://192.168.0.152:8500',	//平台地址
+	'PLATFORM_URL'	=>	'http://localhost:8500',	//平台地址
 	'CHECK_CODE'	=>	'2014edu!@#',					//校验码
 	
 	// pv地址 

@@ -52,7 +52,7 @@ class OrderController extends CommonController {
 		$backUrl     = I('backUrl','');
 		
 		//订购
-		if(C('DEBUG_MODE')){
+		if(!C('DEBUG_MODE')){
 			$r = result_data(1,'');
 		}else{
 			$r = D('Order','Logic')->order($this->user['id'],$backUrl);
