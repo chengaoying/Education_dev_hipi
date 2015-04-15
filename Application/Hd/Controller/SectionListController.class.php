@@ -15,6 +15,9 @@ class SectionListController extends CommonController {
 	 * 课时列表统一入口
 	 */
 	public function indexAct(){
+		//清除视频播放返回地址sesion
+		session('video_back_url',null);
+		
 		$courseId   = I('courseId','');
 		$course = D('Course','Logic')->queryCourseById($courseId);
 		$char = getDelimiterInStr($course['chId']);
@@ -248,6 +251,9 @@ class SectionListController extends CommonController {
 		$prevWeek = ($week-1)<1 ? 1 : ($week-1);
 		$nextWeek = ($week+1)>52 ? 52 : ($week+1);
 		
+		//清除视频播放返回地址sesion
+		session('video_back_url',null);
+		
 		$this->assign(array(
 			'sections' => $data,
 			'courseId' => $courseId,
@@ -262,8 +268,17 @@ class SectionListController extends CommonController {
 	}
 	
 	private function getBackUrl(){
-		//返回处理（焦点参数）
-		$backUrl = get_back_url('Index/recommend',1,0,0,array('/Order/','/SectionList/week','/SectionList/index','/Resource/play','/Library/detail'));
+		$backUrl = Session('sectionList_backurl');
+		if(empty($backUrl)){
+			//返回处理（焦点参数）
+			$filterUrl = array(
+					'/Order/','/SectionList/week','/SectionList/index',
+					'/Resource/play','/Library/detail','/main/sichuan/order');
+			
+			$backUrl = get_back_url('Index/recommend',1,0,0,$filterUrl);
+			Session('sectionList_backurl',$backUrl);
+		}
+		
 		if(strpos($backUrl, '?preFocus'))
 			$backUrl = substr($backUrl, 0, strpos($backUrl, '?preFocus'));
 		if(strpos($backUrl, '&preFocus'))

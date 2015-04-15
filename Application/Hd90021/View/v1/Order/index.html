@@ -1,0 +1,30 @@
+<layout name="layout" />
+
+<style>
+    body{ background-image:url(__HD__/images/common/order/order_bg.png); }
+</style>
+
+
+<script type="text/javascript">
+
+var buttons=
+	[
+		{id:'btn_pay',name:'',action:'',linkImage:'__HD__/images/common/order/btn_pay.png',focusImage:'__HD__/images/common/order/btn_pay_over.png',selectBox:'',left:'',right:'',up:'',down:''},
+	];
+
+/* 初始化按钮 属性   */
+var initButtons = function(){}
+
+window.onload=function()
+{
+	initButtons();
+	Epg.btn.init('btn_pay',buttons,true);	
+};
+</script>
+
+<a id="a_back" style="display:none;" href="{$backUrl}" ></a>
+
+<!-- 包月 -->
+<div id="div_btn_pay" style="position:absolute;width:170px;height:55px;top:240px;left:980px;">
+	<img id="btn_pay" title="{:U('Order/pay?').'?backUrl='.$backUrl}" src="__HD__/images/common/order/btn_pay.png">
+</div>

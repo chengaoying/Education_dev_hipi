@@ -6,7 +6,7 @@ return array (
 		
 	//专区适配设置	
 	'DEFAULT_MODULE'	=> 'Hd90021',	//默认分组模块
-	'AREA_CODE' 		=> 'Hd90021',	//地区编码
+	'AREA_CODE' 		=> '90021',		//地区编码
 	'PARENT_MODULE'     => 'Hd',		//父类分组模块
 
 	'DEBUG_MODE'		=> 1,			//debug模式，1-开启，0-关闭(正式上线请关闭)

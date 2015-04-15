@@ -73,6 +73,10 @@ class IndexController extends CommonController {
 					break;
 			}
 		}
+		
+		//清除课时列表返回地址的session
+		Session('sectionList_backurl',null);
+		
 		$this->assign($data);
 		$this->display();
 	}
@@ -260,6 +264,9 @@ class IndexController extends CommonController {
 		
 		//计算总页数
 		$pageCount = get_page_count($myCourse['total'], $pageSize);
+		
+		//清除课时列表返回地址的session
+		Session('sectionList_backurl',null);
 		
 		$this->assign(array(
 			'json_channel'	=> $json_channel,

@@ -2,12 +2,11 @@
 
 /**
  * 控制器：订购相关
- * 公共订购控制器，如果分区订购流程不同需在分区分组中实现
  * @author CGY
  *
  */
 
-namespace Hd\Controller;
+namespace Hd90021\Controller;
 use Common\Controller\CommonController;
 
 class OrderController extends CommonController {
@@ -27,7 +26,12 @@ class OrderController extends CommonController {
 		}
 		
 		//处理焦点
-		$url = HTTP_REFERER;
+		if(strstr(HTTP_REFERER,'/SectionList/index')){
+			session('order_back',HTTP_REFERER);
+			$url = get_back_url('SectionList/index',1);
+		}else{
+			$url = session('order_back');
+		}
 		if(strpos($url, '?focus'))
 			$url = substr($url, 0, strpos($url, '?focus'));
 		if(strpos($url, '&focus'))
@@ -50,17 +54,21 @@ class OrderController extends CommonController {
 	 */
 	public function payAct(){
 		$backUrl = I('backUrl','');
+		$_backUrl = 'http://'.$_SERVER['HTTP_HOST'].U('Order/payBack');
+		$_backUrl .= '?backUrl='.urlencode($backUrl);
 		
 		//订购
 		if(!C('DEBUG_MODE')){
 			$r = result_data(1,'');
 		}else{
-			$r = D('Order','Logic')->order($this->user['id'],$backUrl);
+			$r = D('Order','Logic')->order($this->user['id'],$_backUrl);
 			$r = json_decode($r, true);
 		}
 			
 		if($r['status']){
-			$this->addFloatMessage("订购成功！",$backUrl);
+			header('location:'.$r['data']);
+			exit;
+			//$this->addFloatMessage("订购成功！",$backUrl);
 		}else{
 			$this->addFloatMessage("订购失败：".$r['info'],$backUrl);
 		} 
@@ -70,7 +78,14 @@ class OrderController extends CommonController {
 	 * 订购返回：接口方返回并携带订购信息
 	 */
 	public function payBackAct(){
+		$backUrl = I('backUrl',U('Index/recommend'));
+		$result = I('result','');
 		
+		if($result['status']){
+			$this->addFloatMessage("订购成功！",$backUrl);
+		}else{
+			$this->addFloatMessage("订购失败：".$result['info'],$backUrl);
+		} 
 	}
 	
 	/**

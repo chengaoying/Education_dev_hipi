@@ -65,6 +65,9 @@ class CourseListController extends CommonController {
 			Session('preFocus',I('preFocus'));
 		$backUrl .= '?preFocus='. Session('preFocus');
 		
+		//清除课时列表返回地址的session
+		Session('sectionList_backurl',null);
+		
 		$this->assign(array(
 			'chKey'	     => $chKey,
 			'stageId'    => $stageId,
