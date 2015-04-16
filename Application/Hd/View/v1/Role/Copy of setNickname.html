@@ -1,18 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<META http-equiv="Content-Type" content="text/html; charset=gb2312">
-<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
-<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
-<META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 2000 08:21:57 GMT"> 
-  <meta name="page-view-size" content="1280*720" />
-<META HTTP-EQUIV="expires" CONTENT="0"> 
-
-<title></title>
+<layout name="layout" />
 <style>
     body{ background-image:url(__HD__/images/usercenter/baseInfo/info_bg.jpg); }
 
-/* ÉèÖÃêÇ³Æ  */
+/* è®¾ç½®æ˜µç§°  */
 #nickname_set{
 	position:absolute;
     display: block;
@@ -26,20 +16,20 @@
 
 <script type="text/javascript">
 
-/* Ò³Ãæ¿Éµã»÷°´Å¥  */
-/* var buttons=
+/* é¡µé¢å¯ç‚¹å‡»æŒ‰é’®  */
+var buttons=
 	[
 		{id:'nickname',name:'nickname',action:'',linkImage:'',focusImage:'',blurHandler:'blurHandler()',focusHandler:'focusHandler()',right:'',down:'ok'},
-		{id:'ok',name:'È·¶¨',action:'submit()',linkImage:'__HD__/images/usercenter/baseInfo/confirm_1.png',focusImage:'__HD__/images/usercenter/baseInfo/confirm_2.png',up:'nickname',down:''},
-	]; */
+		{id:'ok',name:'ç¡®å®š',action:'submit()',linkImage:'__HD__/images/usercenter/baseInfo/confirm_1.png',focusImage:'__HD__/images/usercenter/baseInfo/confirm_2.png',up:'nickname',down:''},
+	];
 
 
-/* window.onload=function()
+window.onload=function()
 {
 	focusHandler();
-	//Epg.tip('');//ÏÔÊ¾infoĞÅÏ¢£¬3Ãëºó×Ô¶¯Òş²Ø£¬Èç¹ûinfoÎª¿Õ½«²»»áÏÔÊ¾
+	//Epg.tip('');//æ˜¾ç¤ºinfoä¿¡æ¯ï¼Œ3ç§’åè‡ªåŠ¨éšè—ï¼Œå¦‚æœinfoä¸ºç©ºå°†ä¸ä¼šæ˜¾ç¤º
 	//Epg.btn.init(['nickname','ok'],buttons,true);	
-}; */
+};
 
 document.onkeypress = listControl;
 function listControl(keyEvent){
@@ -52,8 +42,33 @@ function listControl(keyEvent){
   
 }
 
+</script>
+
+<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',0)}" ></a>
+
+<!-- é™æ€å›¾ç‰‡ -->
+<div id="nickname_set"></div>
+
+<form id="form" action="{:U(Role/setNickname)}" method="post" style="padding:10px">
+	<div id="div_nickname" style="position:absolute;left:150px;top:200px;">
+		<input type="text" id="nickname" name="nickname" value="{$nickName}" maxlength="8" style="width:160px;height:40px;font-size:30px;"/><br/><br/>
+	</div>
+</form>
+
+<!-- ç¡®å®šæŒ‰é’® -->
+<div id="div_ok" style="position:absolute;width:140px;height:50px;left:150px;top:300px;">
+    <!-- <img id="ok" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50"> -->
+	<a id="focus" style="display:block" href="javascript:submit();" onclick="editSubmit()"
+			onmouseover="changeImage('#btn_ok','__HD__/images/usercenter/baseInfo/confirm_2.png')" 
+			onmouseout="changeImage('#btn_ok','__HD__/images/usercenter/baseInfo/confirm_1.png')"><img 
+			id="btn_ok" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
+	</a>
+</div>
+
+<script type="text/javascript">
+
 function submit(){
-	document.getElementById('form').submit();
+	G('form').submit();
 }
 
 function focusHandler(){
@@ -64,29 +79,5 @@ function blurHandler(){
 //	G('nickname').blur();
 }
 </script>
-<body>
-<a id="a_back" style="display:none;" href="{:get_back_url('Role/userInfo',0)}" ></a>
-
-<!-- ¾²Ì¬Í¼Æ¬ -->
-<div id="nickname_set"></div>
-
-<form id="form" action="{:U(Role/setNickname)}" method="post" style="padding:10px">
-	<div id="div_nickname" style="position:absolute;left:150px;top:200px;">
-		<input type="text" id="nickname" name="nickname" value="{$nickName}" maxlength="8" style="width:160px;height:40px;font-size:30px;"/><br/><br/>
-	</div>
-</form>
-
-<!-- È·¶¨°´Å¥ -->
-<div id="div_ok" style="position:absolute;width:140px;height:50px;left:150px;top:300px;">
-    <!-- <img id="ok" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50"> -->
-	<a id="focus" style="display:block" href="javascript:submit();" onclick="editSubmit()"
-			onmouseover="changeImage('#btn_ok','__HD__/images/usercenter/baseInfo/confirm_2.png')" 
-			onmouseout="changeImage('#btn_ok','__HD__/images/usercenter/baseInfo/confirm_1.png')"><img 
-			id="btn_ok" src="__HD__/images/usercenter/baseInfo/confirm_1.png" width="140" height="50">
-	</a>
-</div>
-</body>
-</html>
-
 
 
